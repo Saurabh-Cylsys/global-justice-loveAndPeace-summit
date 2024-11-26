@@ -1,0 +1,15 @@
+/* Add media queries for finer control on smaller devices */
+@media (max-width: 768px) {
+  .index .section1 {
+    height: 93vh; /* Reduce height for smaller screens */
+    background-size: 100% 100%; /* Adjust background for better visibility */
+  }
+
+  .index .section1 .logo {
+    position: relative;
+    top: -50px;
+  }
+  .index .section4 img {
+    margin: 120px 0 0;
+  }
+}
