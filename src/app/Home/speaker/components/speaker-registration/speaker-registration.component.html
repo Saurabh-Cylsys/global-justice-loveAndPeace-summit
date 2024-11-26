@@ -1,0 +1,888 @@
+
+
+<div class="home page-template-default page page-id-208 wp-custom-logo wp-embed-responsive no-sidebar">
+
+    <div class="page--wrap">
+       
+        <div class="innerpage-content-area-wrap single-page-style-1 pb-0 pt-0" style="min-height: calc(100vh - 180px);">
+            <div class="fb-container">
+                <div class="single-content-container">
+                    <h4 class="mt-5 pt-4 text-center fw-600">Speaker Registration </h4>
+
+                    <div class="text-center mt-5 mb-4 p-4 shadow-sm rounded align-items-center"
+                        style="background: linear-gradient(90deg, #003249, #003249, #532569d1); color: #fff;font-size: 18px;padding:10px;margin-bottom:15px;">
+                        Already registered for Pharma pre-connect 2023 ?
+                        <a href="registration1.html" class="button header-link-btn ml-4 bg-white"
+                            style="font-size: 14px;color: #300049 !important; border-radius: 25px; background: #fff !important;"   routerLink="/speakar">Download
+                            Badge</a>
+                    </div>
+                    <p style="color: #ff0000; font-weight: 500;">FREE Delegate Registrations are strictly open to
+                        professionals working for pharmaceutical/drug manufacturing companies. Any registrations apart
+                        from pharma drug companies will be deemed invalid. For more queries contact <a
+                            href="mailto:Sheron.david@informa.com">Sheron.david@informa.com</a> </p>
+
+
+                    <div class="clearfix"></div>
+
+                    <div class="clearfix">
+                    </div>
+
+                    <div class="clearfix pb-5">
+                        <div id="regformcontainer">
+
+                            <div class="clearfix"></div>
+                            <form [formGroup]="speakerForm" (ngSubmit)="signup()">
+                                <div class="clearfix">
+                                    <div class="form-step-wrapper" id="formstep-1">
+                                        <div class="panel panel-default reg-panel  section_1">
+                                            <div class="panel-heading">Contact Details</div>
+                                            <div class="panel-body">
+                                                <div id="common-field-row-con" class="row mx-0">
+                                                    <div id="common-fields-row1" class="common-fields-row clearfix col-12">
+                                                        <div class="common-field-container row"><input type="hidden"
+                                                                name="registration_index[]" value="1">
+                                                            <div class="form-group fg-nametitle col-md-2 col-sm-2">
+                                                                <label class="col-md-12 no-padding"
+                                                                    for="nametitle1">Title<span class="form-label-span"
+                                                                        style="color:#ff0000;"> *</span></label>
+                                                                <div class="col-md-12 no-padding">
+
+                                                                    <select name="nametitle[1]" id="nametitle1"
+                                                                        class="form-control " required
+                                                                        data-error="Please select option"
+                                                                       formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }" >
+                                                                       <option selected value="" disabled>--Please select--</option>
+                                                                        <option value="Mr.">Mr.</option>
+                                                                        <option value="Mrs.">Mrs.</option>
+                                                                        <option value="Miss">Miss</option>
+                                                                        <option value="Ms.">Ms.</option>
+                                                                        <option value="Dr.">Dr.</option>
+                                                                        <option value="Prof.">Prof.</option>
+                                                                        <option value="Capt.">Capt.</option>
+                                                                        <option value="Hon">Hon</option>
+                                                                        <option value="Lord">Lord</option>
+                                                                    </select>
+                                                                    <div *ngIf="getcontrol('title')?.errors && getcontrol('title')?.touched">
+                                                                        <small class="text-danger" *ngIf="getcontrol('title')?.errors?.['required']">Title
+                                                                            is required</small>
+                                            
+                                                                    </div>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-fname col-md-3 col-sm-3">
+                                                                <label class="col-md-12 no-padding" for="fname1">First
+                                                                    Name<span class="form-label-span"
+                                                                        style="color:#ff0000;"> *</span></label>
+                                                                <div class="col-md-12 no-padding"><input type="text"
+                                                                        name="fname[1]" id="fname1" placeholder=""
+                                                                        class="form-control " value="" required
+                                                                        formControlName="first_name" minlength="3" [(ngModel)]="first_name" (keydown)="onKeyDown($event, first_name)" (keypress)="ValidateAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f['first_name'].errors }">
+                                                                        <div *ngIf="getcontrol('first_name')?.errors && getcontrol('first_name')?.touched">
+                                                                            <small class="text-danger" *ngIf="getcontrol('first_name')?.errors?.['required']">First name
+                                                                                is required</small>
+                                                                            <small class="text-danger" *ngIf="getcontrol('first_name')?.errors?.['minlength']">First name must be at least 3 characters long.</small>
+                                                                        </div>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-lname col-md-3 col-sm-3">
+                                                                <label class="col-md-12 no-padding" for="lname1">Last
+                                                                    Name<span class="form-label-span"
+                                                                        style="color:#ff0000;"> *</span></label>
+                                                                <div class="col-md-12 no-padding"><input type="text"
+                                                                        name="lname[1]" id="lname1" placeholder=""
+                                                                        class="form-control " value="" required
+                                                                        formControlName="last_name" minlength="3" [(ngModel)]="last_name" (keydown)="onKeyDown($event, last_name)" (keypress)="ValidateAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f['last_name'].errors }">
+                                                                        <div *ngIf="getcontrol('last_name')?.errors && getcontrol('last_name')?.touched">
+                                                                            <small class="text-danger" *ngIf="getcontrol('last_name')?.errors?.['required']">Last name
+                                                                                is required</small>
+                                                                            <small class="text-danger" *ngIf="getcontrol('last_name')?.errors?.['minlength']">Last name must be at least 3 characters long.</small>
+                                                                        </div>
+                                                                    <div class="help-block with-errors"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-department col-md-4 col-sm-4">
+                                                                <label class="col-md-12 no-padding"
+                                                                    for="department1">Department</label>
+                                                                <div class="col-md-12 no-padding"><input type="text"
+                                                                        name="department[1]" id="department1"
+                                                                        placeholder="" class="form-control " value=""
+                                                                        formControlName="department" minlength="3" [(ngModel)]="department" (keydown)="onKeyDown($event, department)" (keypress)="ValidateAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f['department'].errors }">
+                                                                        
+                                                                    <div class="help-block with-errors"></div>
+
+                                                                    <div *ngIf="getcontrol('department')?.errors && getcontrol('department')?.touched">
+
+                                                                        <small class="text-danger" *ngIf="getcontrol('department')?.errors?.['minlength']">Department name must be at least 3 characters long.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-designation col-md-4 col-sm-4">
+                                                                <label class="col-md-12 no-padding"
+                                                                    for="designation1">Designation<span
+                                                                        class="form-label-span" style="color:#ff0000;">
+                                                                        *</span></label>
+                                                                <div class="col-md-12 no-padding"><input type="text"
+                                                                        name="designation[1]" id="designation1"
+                                                                        placeholder="" class="form-control " value=""
+                                                                        required formControlName="designation" minlength="3" [(ngModel)]="designation" (keydown)="onKeyDown($event, designation)" (keypress)="ValidateAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f['designation'].errors }">
+                                                                    <div class="help-block with-errors"></div>
+                                                                    <div *ngIf="getcontrol('designation')?.errors && getcontrol('designation')?.touched">
+                                                                        <small class="text-danger"
+                                                                            *ngIf="getcontrol('designation')?.errors?.['required']">Designation name
+                                                                            is required</small>
+                                                                        <small class="text-danger" *ngIf="getcontrol('designation')?.errors?.['minlength']">Designation name must be at least 3 characters long.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-mobile col-md-4 col-sm-4">
+                                                                <label class="col-md-12 no-padding" for="mobile1">Mobile
+                                                                    Number<span class="form-label-span"
+                                                                        style="color:#ff0000;"> *</span></label>
+                                                                <div class="col-md-12 no-padding row">
+                                                                    <div
+                                                                        class=" form-group-inner mobile-code">
+                                                                        <select  formControlName="country_code"
+                                                                            class="form-control" required
+                                                                            data-error="Please enter code" >
+                                                                            <option selected value="" disabled>--Please select--</option>
+                                                                            <!-- <option>India (91)</option> -->
+                                                                            <option *ngFor="let code of code; let j = index" [value]="code.country_mobile_code">
+                                                                                {{ code.country_mobile_code }}
+                                                                              </option>
+                                                                            <!-- <option *ngFor="let countryode of code">{{countryode.country_mobile_code}}</option> -->
+                                                                        </select>
+                                                                        <div *ngIf="getcontrol('country_code')?.errors && getcontrol('country_code')?.touched">
+                                                                            <small class="text-danger"
+                                                                                *ngIf="getcontrol('country_code')?.errors?.['required']">Country code
+                                                                                is required</small>
+                                                                            
+                                                                        </div>
+                                                                        <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="form-group form-group-inner mobile-number">
+                                                                        <input type="text" name="mobile_number[1]"
+                                                                            id="number_mobile1"
+                                                                            placeholder="Mobile Number"
+                                                                            class="form-control number_field" value=""
+                                                                            pattern=".{8,12}" minlength="10" maxlength="10" required
+                                                                            data-error="Please enter valid number."
+                                                                            formControlName="mobile_number" [(ngModel)]="mobile_number" (keydown)="onKeyDown($event, mobile_number)" (keypress)="keyPressNumbers($event)" [ngClass]="{ 'is-invalid': submitted && f['mobile_number'].errors }">
+                                                                        <div class="help-block with-errors"></div>
+                                                                        <div
+                                    *ngIf="getcontrol('mobile_number')?.errors && getcontrol('mobile_number')?.touched">
+                                    <small class="text-danger"
+                                        *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile number
+                                        is required</small>
+                                    <small class="text-danger"
+                                        *ngIf="getcontrol('mobile_number')?.errors?.['minlength']">Mobile number must be at least 10 digit long.</small>
+                                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['repeatingDigits']">
+                                            Mobile number cannot contain repeating digits.
+                                          </small>
+                                          <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['containsConsecutiveZeros']">
+                                            cannot contain three or more consecutive zeros.
+                                              </small>
+                                </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group fg-email col-md-4 col-sm-4"><label
+                                                                    class="col-md-12 no-padding" for="email1">Email
+                                                                    Id<span class="form-label-span"
+                                                                        style="color:#ff0000;"> *</span></label>
+                                                                <div class="col-md-12 no-padding"><input type="email"
+                                                                        name="email[1]" id="email1" placeholder=""
+                                                                        class="form-control "
+                                                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                                                        value="" required
+                                                                        data-error="Please enter valid email id"
+                                                                        [(ngModel)]="email_id" (keydown)="onKeyDown($event, email_id)"
+                                                                        formControlName="email_id" [ngClass]="{ 'is-invalid': submitted && f['email_id'].errors }">
+                                                                    <div class="help-block with-errors"></div>
+                                                                    <div *ngIf="getcontrol('email_id')?.errors && getcontrol('email_id')?.touched">
+                                                                        <small class="text-danger" *ngIf="getcontrol('email_id')?.errors?.['required']">Email is
+                                                                            Required.</small>
+                                                                        <small class="text-danger" *ngIf="getcontrol('email_id')?.errors?.['email']">Please enter
+                                                                            valid email address.</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_1 col-md-4 col-sm-4"><label
+                                                            class="col-md-12 no-padding" for="field_1">Company Name<span
+                                                                class="form-label-span" style="color:#ff0000;">
+                                                                *</span></label>
+                                                        <div class="col-md-12 no-padding"><span
+                                                                class="required-icon"></span><input type="text"
+                                                                name="field_1" id="field_1" placeholder=""
+                                                                class="form-control " value="" required
+                                                                [(ngModel)]="company_name" (keydown)="onKeyDown($event, company_name)"
+                                                                formControlName="company_name" minlength="3" (keypress)="ValidateAlpha($event)" [ngClass]="{ 'is-invalid': submitted && f['company_name'].errors }">
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('company_name')?.errors && getcontrol('company_name')?.touched">
+                                                                <small class="text-danger" *ngIf="getcontrol('company_name')?.errors?.['required']">Company
+                                                                    Name is Required.</small>
+                                                                <small class="text-danger" *ngIf="getcontrol('company_name')?.errors?.['minlength']">Company name must be at least 3 characters long.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_2 col-md-8"><label
+                                                            class="col-md-12 no-padding" for="field_2">Company
+                                                            Address</label>
+                                                        <div class="col-md-12 no-padding"><input type="text"
+                                                                name="field_2" id="field_2" placeholder=""
+                                                                class="form-control " value=""
+                                                                [(ngModel)]="company_address" (keydown)="onKeyDown($event, company_address)"
+                                                                formControlName="company_address" minlength="5"  [ngClass]="{ 'is-invalid': submitted && f['company_address'].errors }">
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('company_address')?.errors && getcontrol('company_address')?.touched">
+                                                                
+                                                                <small class="text-danger" *ngIf="getcontrol('company_address')?.errors?.['minlength']">Company address must be at least 5 characters long.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_3 col-md-4 col-sm-4"><label
+                                                            class="col-md-12 no-padding" for="field_3">Address Line 1
+                                                            <span class="form-label-span" style="color:#ff0000;">
+                                                                *</span></label>
+                                                        <div class="col-md-12 no-padding"><span
+                                                                class="required-icon"></span><input type="text"
+                                                                name="field_3" id="field_3" placeholder=""
+                                                                class="form-control " value="" required
+                                                                [(ngModel)]="address_line_1" (keydown)="onKeyDown($event, address_line_1)"
+                                                                formControlName="address_line_1" minlength="5"  [ngClass]="{ 'is-invalid': submitted && f['address_line_1'].errors }">
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('address_line_1')?.errors && getcontrol('address_line_1')?.touched">
+                                                                <small class="text-danger"
+                                                                    *ngIf="getcontrol('address_line_1')?.errors?.['required']">Address Line 1 is
+                                                                    Required.</small>
+                                                                <small class="text-danger" *ngIf="getcontrol('address_line_1')?.errors?.['minlength']"> Address line 1 must be at least 5 characters long.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_4 col-md-4 col-sm-4"><label
+                                                            class="col-md-12 no-padding" for="field_4">Address Line
+                                                            2</label>
+                                                        <div class="col-md-12 no-padding"><input type="text"
+                                                                name="field_4" id="field_4" placeholder=""
+                                                                class="form-control " value=""
+                                                                formControlName="address_line_2" minlength="5" [(ngModel)]="address_line_2" (keydown)="onKeyDown($event, address_line_2)"  [ngClass]="{ 'is-invalid': submitted && f['address_line_2'].errors }">
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('address_line_2')?.errors && getcontrol('address_line_2')?.touched">
+                                                                <!-- <small class="text-danger"
+                                                                    *ngIf="getcontrol('address_line_2')?.errors?.['required']">Address Line 2 is
+                                                                    Required.</small> -->
+                                                                <small class="text-danger" *ngIf="getcontrol('address_line_2')?.errors?.['minlength']"> Address line 2 must be at least 5 characters long.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_5 col-md-4 col-sm-4"><label
+                                                            class="col-md-12 no-padding" for="field_5">Address Line
+                                                            3</label>
+                                                        <div class="col-md-12 no-padding"><input type="text"
+                                                                name="field_5" id="field_5" placeholder=""
+                                                                class="form-control " value=""
+
+                                                                [(ngModel)]="address_line_3" (keydown)="onKeyDown($event, address_line_3)"
+                                                                formControlName="address_line_3" minlength="5"  [ngClass]="{ 'is-invalid': submitted && f['address_line_3'].errors }">
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('address_line_3')?.errors && getcontrol('address_line_3')?.touched">
+                                                                <!-- <small class="text-danger"
+                                                                    *ngIf="getcontrol('address_line_3')?.errors?.['required']">Address Line 3 is
+                                                                    Required.</small> -->
+                                                                <small class="text-danger" *ngIf="getcontrol('address_line_3')?.errors?.['minlength']"> Address line 3 must be at least 5 characters long.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label for="">Country<span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span>
+                                                        </label>
+                                                        <select (change)="
+                                                        changeCountry($event)
+                                                          " class="form-control" class="form-control" id="country"
+                                                            formControlName="country" name="India" [ngClass]="{ 'is-invalid': submitted && f['country'].errors }">
+                                                            <option value="" disabled>
+                                                                Select Country
+                                                            </option>
+                                                            <!-- <option 
+                                                            [value]="101">
+                                                            India
+                                                        </option> -->
+                                                        <option *ngFor="let country of countryData; let j = index" [value]="country.country_id">
+                                                            {{ country.country_name }}
+                                                          </option>
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
+                                                        <div *ngIf="getcontrol('country')?.errors && getcontrol('country')?.touched">
+                                                            <small class="text-danger" *ngIf="getcontrol('country')?.errors?.['required']">Country is
+                                                                Required.</small>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-4">
+                                                        <label for="">State/Province<span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span>
+                                                        </label>
+                                                        <select class="form-control" (change)="
+                                                        changeStates($event)
+                                                          " id="state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+                                                            <option value="" disabled selected>Select State</option>
+                                                            <!-- <option *ngFor="
+                                                              let state of statesData;
+                                                              let j = index
+                                                            " [value]="state.state_id">
+                                                                {{ state.state_name }}
+                                                            </option> -->
+                                                            <option *ngFor="let state of statesData; let j = index" [value]="state.state_id"
+                                                            [attr.selected]="state.state_name === othervalstate ? 'selected' : null">
+                                                            {{ state.state_name }}
+                                                          </option>
+                                                        </select>
+                                                        <div *ngIf="getcontrol('state')?.errors && getcontrol('state')?.touched">
+                                                            <small class="text-danger" *ngIf="getcontrol('state')?.errors?.['required']">State is
+                                                                Required.</small>
+                                                   
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-4 form-group">
+                                                        <label for="">City<span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span>
+                                                        </label>
+                                                        <select class="form-control" (change)="changeCity($event)" id="city" formControlName="city" value [ngClass]="{ 'is-invalid': submitted && f['city'].errors }">
+                                                            <option selected value="" disabled>Select city</option>
+                                                            <!-- <option *ngFor="let city of cityData;let k = index" [value]="city.city_id">
+                                                                {{ city.city_name }}
+                                                            </option> -->
+                                                            <option *ngFor="let city of cityData; let k = index" [value]="city.city_id" [attr.selected]="city.city_name === othervalcity ? 'selected' : null">
+                                                                {{ city.city_name }}
+                                                              </option>
+                                                        </select>
+                                                        <div *ngIf="getcontrol('city')?.errors && getcontrol('city')?.touched">
+                                                            <small class="text-danger" *ngIf="getcontrol('city')?.errors?.['required']">City is
+                                                                Required.</small>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_9 col-md-4 col-sm-4">
+                                                        <label class="col-md-12 no-padding" for="field_9">Pin Code<span
+                                                                class="form-label-span" style="color:#ff0000;">
+                                                                *</span></label>
+                                                        <div class="col-md-12 no-padding"><span
+                                                                class="required-icon"></span>
+                                                            <input type="input" name="field_9" id="field_9"
+                                                            [(ngModel)]="pin_code" (keydown)="onKeyDown($event, pin_code)"
+                                                                placeholder="" class="form-control" minlength="6" maxlength="6"  value="" required
+                                                                formControlName="pin_code" (keypress)="keyPressNumbers($event)"
+                                                                [ngClass]="{ 'is-invalid': submitted && f['pin_code'].errors }">
+                                                            <div class="help-block with-errors"></div>
+
+                                                            <div *ngIf="getcontrol('pin_code')?.errors && getcontrol('pin_code')?.touched">
+                                                                <small class="text-danger" *ngIf="getcontrol('pin_code')?.errors?.['required']">Pin Code is
+                                                                    Required.</small>
+                                                                
+                                                                    <small class="text-danger" *ngIf="getcontrol('pin_code')?.errors?.['minlength']">Pin code must be at least 6 digit long.</small>
+                                                                    <small class="text-danger" *ngIf="speakerForm.get('pin_code')?.hasError('containsConsecutiveZeros')">
+                                                                        Cannot contain three or more consecutive zeros.
+                                                                    </small>
+                                                                    
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_10 col-md-8">
+                                                        <label class="col-md-12 no-padding" for="field_10">Website</label>
+                                                        <div class="col-md-12 no-padding">
+                                                            <input type="text" name="field_10" id="field_10"
+                                                                placeholder="" class="form-control " value=""
+                                                                [(ngModel)]="website" (keydown)="onKeyDown($event, website)"
+                                                                formControlName="website" [ngClass]="{ 'is-invalid': submitted && speakerForm.get('website')?.errors }"
+                                                                >
+                                                            <div class="help-block with-errors"></div>
+                                                            <div *ngIf="getcontrol('website')?.errors && getcontrol('website')?.touched">
+                                                                <!-- <small class="text-danger" *ngIf="getcontrol('website')?.errors?.['required']"> Website Url
+                                                                    is Required.</small> -->
+                                                                <small class="text-danger" *ngIf="getcontrol('website')?.errors?.['pattern']">Please enter valid URL.</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group fg-field_11 col-md-6">
+                                                        <label class="col-md-12 no-padding" for="field_11">Which day
+                                                            would you like to attend conference on ?<span
+                                                                class="form-label-span" style="color:#ff0000;">
+                                                                *</span></label>
+                                                        <div class="col-md-12 no-padding"><span
+                                                                class="required-icon"></span>
+                                                            <select class="form-control " required
+                                                                data-error="Please select option"
+                                                                formControlName="conference_day" [ngClass]="{ 'is-invalid': submitted && f['conference_day'].errors }">
+                                                                <option selected value="" disabled>--Please select--</option>
+                                                                <option > 27-November 2023 </option>       
+                                                            </select>
+                                                            <div *ngIf="getcontrol('conference_day')?.errors && getcontrol('conference_day')?.touched">
+                                                                <small class="text-danger" *ngIf="getcontrol('conference_day')?.errors?.['required']">Conference day is Required.</small>
+                                    
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default reg-panel  section_2">
+                                            <div class="panel-heading">Demographics</div>
+                                            <div class="panel-body">
+                                                <div class="form-group fg-field_13 col-md-12 py-3"><label
+                                                        class="col-md-12 no-padding" for="field_13"><b>To help us
+                                                            Deliver the best output & improve your experience at
+                                                            Pharma pre-connect 2023, we would like to know a few
+                                                            more details about you, your role and company. The
+                                                            information is used purely for analytical
+                                                            purposes.</b></label>
+                                                    <div class="col-md-12 no-padding checkbox-group ">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" name="field_13[]" class="" 
+                                                                    value="I understand the purpose of the questions and their importance to my event experience"
+                                                                    formControlName="events">
+                                                                    <!-- <span class="form-label-span" style="color:#ff0000;">*</span> -->
+                                                                    I understand the purpose of the questions and their
+                                                                importance to my event experience 
+                                                                
+                                                            </label>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group fg-field_14 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_14">Which best describes
+                                                        your role in the organization? </label>
+                                                    <div class="col-md-12 no-padding"><select name="field_14"
+                                                            id="field_14"
+                                                            class="form-control " data-error="Please select option"
+                                                            formControlName="organization_role">
+                                                            <option value="">Please Select</option>
+                                                            <option value="Packaging development">Packaging development
+                                                            </option>
+                                                            <option value="Purchase and procureent ">Purchase and
+                                                                procureent </option>
+                                                            <option value="Quality Assurance/Quality Control">Quality
+                                                                Assurance/Quality Control</option>
+                                                            <option value="Supply Chain Management">Supply Chain
+                                                                Management</option>
+                                                            <option value="Formulations">Formulations</option>
+                                                            <option value="Marketing">Marketing</option>
+                                                            <option value="Research and Development">Research and
+                                                                Development</option>
+                                                            <option value="Regulatory affairs">Regulatory affairs
+                                                            </option>
+                                                            <option value="Plant Head / Manager">Plant Head / Manager
+                                                            </option>
+                                                            <option value="other">Other</option>
+                                                        </select> -->
+                                                        <!-- <div id="othercon_field_14" class="form-group form-group-inner"
+                                                            style="margin-top:5px !important;display:none"> <input
+                                                                class="form-control form-control-inner" type="text"
+                                                                name="other_field_14" id="other_field_14"
+                                                                placeholder="Please Specify" value="" disabled>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div> -->
+                                                <!-- <div class="form-group fg-field_15 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_15">Do you represent
+                                                        pharmaceutical industry? <span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><input type="text"
+                                                            [(ngModel)]="represent_pharmaceutical_industry" (keydown)="onKeyDown($event, represent_pharmaceutical_industry)"
+                                                            name="field_15" id="field_15" placeholder=""
+                                                            class="form-control " value="" required
+                                                            formControlName="represent_pharmaceutical_industry" minlength="2" [ngClass]="{ 'is-invalid': submitted && f['represent_pharmaceutical_industry'].errors }" (keypress)="ValidateAlpha($event)">
+                                                        <div class="help-block with-errors"></div> -->
+                                                        <!-- <div
+                            *ngIf="getcontrol('represent_pharmaceutical_industry')?.errors && getcontrol('represent_pharmaceutical_industry')?.touched">
+                            <small class="text-danger"
+                                *ngIf="getcontrol('represent_pharmaceutical_industry')?.errors?.['required']">Represent pharmaceutical industry is Required.</small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('represent_pharmaceutical_industry')?.errors?.['minlength']">This field must be at least 2 characters long.</small>
+                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <!-- <div class="form-group fg-field_16 col-md-8"><label
+                                                        class="col-md-12 no-padding" for="field_16">Do you represent
+                                                        manufacturing or solution provider in pharmaceutical industry?
+                                                        <span class="form-label-span" style="color:#ff0000;">
+                                                            *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><input type="text"
+                                                            [(ngModel)]="manufacturing_solution_PI" (keydown)="onKeyDown($event, manufacturing_solution_PI)"
+                                                            name="field_16" id="field_16" placeholder=""
+                                                            class="form-control " value="" required
+                                                            formControlName="manufacturing_solution_PI" minlength="2" [ngClass]="{ 'is-invalid': submitted && f['manufacturing_solution_PI'].errors }" (keypress)="ValidateAlpha($event)">
+                                                        <div class="help-block with-errors"></div>
+                                                        <div
+                                                        *ngIf="getcontrol('manufacturing_solution_PI')?.errors && getcontrol('manufacturing_solution_PI')?.touched">
+                                                        <small class="text-danger"
+                                                            *ngIf="getcontrol('manufacturing_solution_PI')?.errors?.['required']">manufacturing solution PI is
+                                                            Required.</small>
+                                                        <small class="text-danger"
+                                                            *ngIf="getcontrol('manufacturing_solution_PI')?.errors?.['minlength']">This field must be at least 2 characters long.</small>
+                                                    </div>
+                                                    </div>
+                                                </div> -->
+                                                <!-- <div class="form-group fg-field_17 col-md-4 "><label
+                                                        class="col-md-12 no-padding" for="field_17">Name of the product
+                                                        you are part of? <span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><input type="text"
+                                                            [(ngModel)]="part_of_product" (keydown)="onKeyDown($event, part_of_product)"
+                                                            name="field_17" id="field_17" placeholder=""
+                                                            class="form-control " value="" required
+                                                            formControlName="part_of_product" minlength="3" [ngClass]="{ 'is-invalid': submitted && f['part_of_product'].errors }" (keypress)="ValidateAlpha($event)">
+                                                        <div class="help-block with-errors"></div> -->
+                                                        <!-- <div *ngIf="getcontrol('part_of_product')?.errors && getcontrol('part_of_product')?.touched">
+                                                            <small class="text-danger"
+                                                                *ngIf="getcontrol('part_of_product')?.errors?.['required']">Part of product is
+                                                                Required.</small>
+                                                            <small class="text-danger" *ngIf="getcontrol('part_of_product')?.errors?.['minlength']">This field must be at least 3 characters long.</small>
+                                                        </div>
+                                                    </div> -->
+                                                <!-- </div> -->
+                                                <div class="form-group fg-field_18 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_18">What is your purpose
+                                                        of attending this conference? <span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><select name="nametitle[1]" id="nametitle1"
+                                                            class="form-control " required
+                                                            data-error="Please select option"
+                                                           formControlName="attending_purpose" [ngClass]="{ 'is-invalid': submitted && f['attending_purpose'].errors }" >
+                                                           <option selected value="" disabled>--Please select--</option>
+                                                            <option value="Knowledge">Knowledge</option>
+                                                            <option value="Networking">Networking</option>
+                                                            <option value="solution">solution</option>
+                                                            <option value="Other">Other</option>
+                                                           
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
+                                                        <div
+                                                        *ngIf="getcontrol('attending_purpose')?.errors && getcontrol('attending_purpose')?.touched">
+                                                        <small class="text-danger"
+                                                            *ngIf="getcontrol('attending_purpose')?.errors?.['required']">Attending purpose is
+                                                            Required.</small>
+                                                        <small class="text-danger" *ngIf="getcontrol('attending_purpose')?.errors?.['minlength']"> This field must be at least 5 characters long.</small>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group fg-field_19 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_19">Are you looking for
+                                                        specific solution?<span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><select name="nametitle[1]" id="nametitle1"
+                                                            class="form-control " required
+                                                            data-error="Please select option"
+                                                           formControlName="specific_solution" [ngClass]="{ 'is-invalid': submitted && f['specific_solution'].errors }" >
+                                                           <option selected value="" disabled>--Please select--</option>
+                                                            <option value="Yes">Yes.</option>
+                                                            <option value="No">No.</option>
+                                                          
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
+                                                        <div
+                            *ngIf="getcontrol('specific_solution')?.errors && getcontrol('specific_solution')?.touched">
+                            <small class="text-danger"
+                                *ngIf="getcontrol('specific_solution')?.errors?.['required']">Specific solution
+                                is required</small>
+                            <small class="text-danger" *ngIf="getcontrol('specific_solution')?.errors?.['minlength']">This field must be at least 2 characters long.</small>
+                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group fg-field_20 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_20">Have you attended
+                                                        Pharma pre-connect in the past?<span class="form-label-span"
+                                                            style="color:#ff0000;"> *</span></label>
+                                                    <div class="col-md-12 no-padding"><span
+                                                            class="required-icon"></span><select name="nametitle[1]" id="nametitle1"
+                                                            class="form-control " required
+                                                            data-error="Please select option"
+                                                           formControlName="attended_innopack" [ngClass]="{ 'is-invalid': submitted && f['attended_innopack'].errors }" >
+                                                           <option selected value="" disabled>--Please select--</option>
+                                                            <option value="Yes">Yes.</option>
+                                                            <option value="No">No.</option>
+                                                          
+                                                        </select>
+                                                        <div class="help-block with-errors"></div>
+                                                        <div
+                            *ngIf="getcontrol('attended_innopack')?.errors && getcontrol('attended_innopack')?.touched">
+                            <small class="text-danger"
+                                *ngIf="getcontrol('attended_innopack')?.errors?.['required']">Attended innopack is
+                                Required.</small>
+                            <small class="text-danger" *ngIf="getcontrol('attended_innopack')?.errors?.['minlength']">This field must be at least 2 characters long.</small>
+                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group fg-field_21 col-md-6"><label
+                                                        class="col-md-12 no-padding" for="field_21">What is the team
+                                                        size of your firm?</label> -->
+                                                    <!-- <div class="col-md-12 no-padding"><select name="field_21"
+                                                            id="field_21" class="form-control "
+                                                            data-error="Please select option"
+                                                            formControlName="firm_teamsize" (keypress)="ValidateAlpha($event)">
+                                                            <option selected value="" disabled>--Please select--</option>
+                                                            <option value="0 -50">0 -50</option>
+                                                            <option value="50 – 100">50 – 100</option>
+                                                            <option value="100 – 200">100 – 200 </option>
+                                                            <option value="500+">500+</option>
+                                                        </select>
+                                                        <div class="help-block with-errors"></div> -->
+                                                    <!-- </div> -->
+                                                <!-- </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default reg-panel  section_3">
+                                            <div class="panel-heading">Consent</div>
+                                            <div class="panel-body">
+                                                <div class="form-group fg-field_22 col-sm-12">
+                                                    <div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="hidden" id="field_22" name="field_22"
+                                                                    value="yes">
+                                                                <input type="checkbox" name="checkbox_field_22" 
+                                                                    class="" onchange="changeynvalue(this,'field_22')"
+                                                                    value="yes" (click)="checkTerms($event)" formControlName="is_whatsapp_number" [ngClass]="{ 'is-invalid': submitted && f['is_whatsapp_number'].errors }">
+                                                                <span class="form-label-span" style="color:#ff0000;">
+                                                                    *</span>I Confirm that my Whatsapp number is same as
+                                                                the mobile number registered above. I also provide my
+                                                                consent to Informa Markets India Pvt Ltd for sending
+                                                                messages/notifications on my whatsapp number.
+                                                            </label>
+                                                            
+                                                        </div>
+
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group fg-field_23 col-sm-12">
+                                                    <div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="hidden" id="field_23" name="field_23"
+                                                                    value="yes">
+                                                                <input type="checkbox" name="checkbox_field_23" 
+                                                                    class="" onchange="changeynvalue(this,'field_23')"
+                                                                    value="yes" (click)="checkTerms1($event)" formControlName="terms_condition">
+                                                                <span class="form-label-span" style="color:#ff0000;">
+                                                                    *</span>I accept the <a
+                                                                    href='https://www.informamarkets.com/en/visitor-terms-and-conditions.html'
+                                                                    target='_blank'>Visitor Terms & Conditions</a> and
+                                                                <a href='https://www.informa.com/privacy-policy/?AspxAutoDetectCookieSupport=1'
+                                                                    target='_blank'>Privacy Terms</a>.By continuing to
+                                                                register, you accept that Informa Markets in India may
+                                                                contact you with updates, relevant promotions, and
+                                                                information about future events provided by Informa
+                                                                Markets. Your details may be shared with the event
+                                                                sponsors, who may contact you about their products and
+                                                                services.
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default reg-panel  section_4">
+                                            <div class="panel-heading">Disclaimer</div>
+                                            <div class="panel-body">
+                                                <div class="panel-body">
+                                                    <div style="margin-right: 260px;"><b>EVENT RELATED GENERAL
+                                                            GUIDELINES OR ADVOSIRY FOR THE VISITORS</b></div>
+                                                    <p></p>
+                                                    <p>While visiting the Exhibition, the visitors are requested (at all
+                                                        the time) to: -</p>
+                                                    <ol
+                                                        style="list-style-type: decimal;margin-left: 30px; margin-bottom:30px;">
+                                                        <li>Maintain at least 6 feet physical distance from each other;
+                                                        </li>
+                                                        <li>Use face masks, which covers their face properly. Entry to
+                                                            the exhibition halls will be declined in absence of face
+                                                            masks;</li>
+                                                        <li>Practice frequent hand washing with soap (for at least 40-60
+                                                            seconds) / alcohol-based hand sanitizers (for at least 20
+                                                            seconds);</li>
+                                                        <li>Strictly follow respiratory etiquettes, which involves
+                                                            strict practice of covering one’s mouth and nose while
+                                                            coughing/sneezing with a tissue/handkerchief/ flexed elbow
+                                                            and disposing off used tissues properly in the bio-waste
+                                                            dustbins;</li>
+                                                        <li>Exercise self-health monitoring and to immediately report
+                                                            any health issues to COVID onsite helpdesk;</li>
+                                                        <li>Avoid visiting the exhibition venue if having temperature or
+                                                            not feeling well;</li>
+                                                        <li>Not to spit anywhere while you are inside the exhibition
+                                                            venue, failing which a fine of INR_1,000/- will be payable,
+                                                            including other disciplinary action at the Organisers sole
+                                                            discretion;</li>
+                                                        <li>Mandatorily undergo thermal screening without fail;</li>
+                                                        <li>Follow Informa’s AllSecure Guidelines (available at
+                                                            www.informamarkets.com) and such other guidelines as may be
+                                                            made available by the Organisers from time to time.</li>
+                                                        <li>Carry their E-badge (received through email or sms) and
+                                                            present the same for scanning purpose while entering the
+                                                            Exhibition. No entry in the Exhibition will be granted in
+                                                            the absence of valid E-badge.</li>
+                                                        <li>Mandatorily carry with them any one (01) of the Government
+                                                            issued photo identity card such as PAN Card, Aadhar Card,
+                                                            Driving License, Passport etc. ("Identity Card”). Passport
+                                                            is to be mandatorily provided by the foreign nationals. The
+                                                            mentioned Identity Card is to be presented at the request of
+                                                            the Organisers or by any of its assigned staff.</li>
+                                                    </ol>
+                                                    <br>
+                                                    <div style="margin-right: 260px;"><b>OTHER IMPORTANT NOTICES: - </b>
+                                                    </div>
+                                                    <p></p>
+                                                    <ol
+                                                        style="list-style-type: decimal;margin-left: 30px; margin-bottom:10px;">
+                                                        <li>Individuals above 65 years of age, persons with
+                                                            co-morbidities and pregnant women’s are recommended not to
+                                                            visit the Exhibition. Individuals below 18 years of age and
+                                                            infants in arms are strictly not allowed inside the
+                                                            exhibition halls.</li>
+                                                        <li>Kindly make a note that Entry within the Exhibition halls or
+                                                            Conference Program, is allowed / permitted only at the given
+                                                            time slots in the E-Badge. You are hereby requested to
+                                                            kindly adhere to the entry and exit time slot provided in
+                                                            your E-badge. As Organisers of the exhibition, we hereby
+                                                            request your full co-operation in this to avoid any
+                                                            discomfort to you.</li>
+                                                        <li>The rights for admission in the Exhibition, are reserved
+                                                            with the Organisers.</li>
+                                                        <li>No Food & Beverages are allowed inside the exhibition halls.
+                                                        </li>
+                                                        <li>Without prior written permission of the Organisers,
+                                                            photography & videography inside the Exhibition venue is
+                                                            strictly prohibited.</li>
+                                                        <li>The Organisers does not takes any responsibility of your
+                                                            personal belongings. Kindly be vigilant about your personal
+                                                            belongings while visiting the Exhibition. Any theft / loss
+                                                            of the same will not be entertained by the Organisers under
+                                                            any circumstances.</li>
+                                                        <li>The event is subject to Force Majeure conditions.</li>
+                                                        <li>Installation and use of ‘Aarogya Setu’ app is mandatory for
+                                                            all the attendees with smart phones.</li>
+                                                    </ol>
+                                                </div>
+                                            </div>  
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div id="submit-wrapper" class="text-center">
+
+                                        <!-- ================ ======================= -->
+                                        <input type="hidden" name="ttst" id="st" value="1692166964" />
+                                        <div class="d-none">
+                                            <input type="text" name="middle_name" id="middle_name" value=""
+                                                autocomplete="mdlnme" />
+                                        </div>
+                                        <!-- ================ ======================= -->
+
+                                        <input type="hidden" name="frmkey" value="cad4ec633a6ac6fadbe930f9ac476631">
+
+                                        <input type="hidden" name="chk_mob_regid" value="0">
+                                        <input type="hidden" name="stepid" value="1">
+                                        <input id="showid" type="hidden" name="showid" value="1">
+                                        <input type="submit" class="btn btn-primary" [disabled]="speakerForm.invalid || (!terms || !terms1)"
+                                        value="Submit" name="register">
+                                    </div>
+
+
+                                    <!-- <form id="previous_step_form" class="hidden" action="#" method="post">
+                                        <input type="hidden" name="previous_step" value="1">
+                                        <input type="hidden" name="stepid" value="1">
+                                        <input id="showid" type="hidden" name="showid" value="1">
+                                    </form> -->
+                                </div>
+
+                            </form>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                                             
+
+
+      <!-- Modal -->
+      <div *ngIf="showPopup" [ngStyle]="{ display: display }" class="modal" id="trustUntrust_alert"
+      #trustUntrust_alert tabindex="-1" role="dialog">     
+      <div class="modal-dialog come-from-modal new_dialog1">     
+        <div class="modal-content">     
+          <div class="modal-body pt-5">      
+         <div class="row">
+              <div>
+                <span class="m-4 font-weight-bold">       
+                    Thank you for registering at Pharma Pre-connect 2023​               
+                        </span>
+                <p class="m-4">
+Your registration screening is under process once validated you will receive your entry badge on WhatsApp and Email.​
+                  <br><br>                
+Regards,​
+<br>
+Team Pharma Pre-connect Conference​
+                </p>
+              </div>
+              <div class="col-md-9">             
+              </div>     
+              <div class="col-md-3 mt-2">       
+                <a class="btn btn-primary w-100 lm-btn" data-dismiss="modal" (click)="closeModal()" style="height: 36px;
+                font-size: 15px;">
+Close        
+                </a>       
+              </div>       
+            </div>       
+          </div>      
+          <br />       
+        </div>       
+      </div>      
+    </div>      
+                            
+
+
+                        
+
+                            <footer class="footer dark secondary-widget-area mt-5" id="footer">
+                                <div class="footer-inner">
+                                    <div class="footer-bottom py-0">
+                                        <div class="fb-container">
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="footer-bottom-copy text-center py-4">
+                                                        &copy; 2023 All right reserved.
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                </div>
+                                            </div>
+                                            <!-- .row -->
+                                        </div>
+                                        <!-- .fb-container -->
+                                    </div>
+                                    <!-- .footer-bottom -->
+                                </div>
+                                <!-- .footer-inner -->
+                            </footer>
+

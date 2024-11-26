@@ -1,0 +1,375 @@
+<header id="header" data-spy="affix" data-offset-top="197" class>
+  <div class="informa_header-container">
+    <section class="informa-bar">
+      <div class="region region-informa-bar">
+        <div
+          id="block-penton-informa-banner-penton-informa-banner"
+          class="block-penton-informa-banner"
+        >
+          <div class="content">
+            <div id="iribbon-container">
+              <!-- <a id="iribbon-title" href="javascript:void(0);" title="show/hide">Informa<span
+                                class="arrow-down"></span></a> -->
+
+              <a
+                id="iribbon-title"
+                href="javascript:void(0);"
+                title="show/hide"
+                (click)="toggleVisibility()"
+                >Informa<span class="arrow-down" id="arrow-icon"></span
+              ></a>
+              <!-- <div class="ribbon-hide"  id="myDIV"  [ngStyle]="{ 'max-height.px': displayMyDIV ? '500' : '0','transition': displayMyDIV ? 'all 3s ease' : 'none' }"> -->
+              <div
+                class="ribbon-hide"
+                id="myDIV"
+                [ngStyle]="{
+                  'max-height.px': displayMyDIV ? '500' : '0',
+                  transition: 'all 3s ease'
+                }"
+                [ngClass]="{ open: displayMyDIV }"
+              >
+                <div id="iribbon-detail" class>
+                  <div id="iribbon-left">
+                    <p>
+                      IMS site is part of the Informa Markets Division of
+                      Informa PLC
+                    </p>
+                    <ul>
+                      <li class="iribbon-mainlink">
+                        <a href="https://informa.com/" tabindex="0"
+                          >Informa PLC</a
+                        >
+                      </li>
+                      <li>
+                        <a href="https://informa.com/about-us/" tabindex="0"
+                          >About us</a
+                        >
+                      </li>
+                      <li>
+                        <a href="https://informa.com/investors/" tabindex="0"
+                          >Investor relations</a
+                        >
+                      </li>
+                      <li>
+                        <a href="https://informa.com/talent/" tabindex="0"
+                          >Talent</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="iribbon-right">
+                    <p>
+                      This site is operated by a business or businesses owned by
+                      Informa PLC and all copyright resides with them. Informa
+                      PLC's registered office is 5 Howick Place, London SW1P
+                      1WG. Registered in England and Wales. Number 8860726.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-sm-4 col-xs-8 text-left">
+        <ul class="d-flex justify-content-between list-unstyled">
+          <li>
+            <a (click)="refreshPage('webhome')" class="cursorPointer logo">
+              <img src="assets/images/PharmaConnectLogo.png" class="logo" />
+            </a>
+          </li>
+          <li>
+            <div class="headervenue">
+              <p><i class="fa fa-calendar fa-lg"></i> 27 November 2023</p>
+              <p class="mt-1">
+                <i class="fa fa-map-marker fa-lg"></i> &nbsp;Le Meridien New Delhi
+              </p>
+            </div>
+
+          </li>
+          <li>
+            <button
+            (click)="abhi()"
+            class="float-right hidden-lg hidden-sm hidden-md hidden-sm humburger"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+          </li>
+        </ul>
+
+        
+      </div>
+      <div
+        class="hidden-lg hidden-sm hidden-md hidden-sm col-xs-12 text-right col"
+      >
+        <div class="navbar-header">
+          <div *ngIf="display" id="sideb">
+            <ul
+              class="nav navbar-nav pull-right"
+              style="flex-direction: row; align-items: center"
+            >
+              <li>
+                <a (click)="refreshPage('webhome')" class="cursorPointer"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a (click)="refreshPage('awards')" class="cursorPointer"
+                  >Pharma Week</a
+                >
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button class="dropbtn dropdown-toggle">
+                    <a class="text-black" [routerLink]="['/aboutUs']">About</a>
+                  </button>
+                  <div class="dropdown-content">
+                    <a (click)="refreshPage('OurLengcy')" class="cursorPointer"
+                      >Our Legacy</a
+                    >
+
+                    <a
+                      (click)="refreshPage('JoinOurmailingList')"
+                      class="cursorPointer"
+                      >Join our Mailing List</a
+                    >
+
+                    <a (click)="refreshPage('Photos')" class="cursorPointer"
+                      >Photo Gallery</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button class="dropbtn dropdown-toggle">
+                    <a class="text-black" [routerLink]="['/webhome']"
+                      >Speakers</a
+                    >
+                  </button>
+                  <div class="dropdown-content">
+                    <a
+                      (click)="refreshPage('speaker-registration')"
+                      class="cursorPointer"
+                      >Speaker Form</a
+                    >
+
+                    <a (click)="refreshPage('speaker')" class="cursorPointer"
+                      >Speakers 2023</a
+                    >
+
+                    <a
+                      (click)="refreshPage('pastspeakers')"
+                      class="cursorPointer"
+                      >Past Speakers</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button class="dropbtn dropdown-toggle">
+                    <a class="text-black" [routerLink]="['/webhome']"
+                      >Conference</a
+                    >
+                  </button>
+                  <div class="dropdown-content">
+                    <a (click)="refreshPage('agenda')" class="cursorPointer"
+                      >Agenda</a
+                    >
+
+                    <a
+                      (click)="refreshPage('WhoShouldAttend')"
+                      class="cursorPointer"
+                      >Who Should Attend & Why</a
+                    >
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <button class="dropbtn dropdown-toggle">
+                    <a [routerLink]="['/webhome']" style="color: black"
+                      >Partners</a
+                    >
+                  </button>
+                  <div class="dropdown-content">
+                    <a
+                      (click)="refreshPage('partner-registration')"
+                      class="cursorPointer"
+                      >Partner Form</a
+                    >
+
+                    <!-- <a (click)="refreshPage('WhoShouldAttend')" class="cursorPointer">Who Should Attend & Why</a> -->
+
+                    <!-- <a
+                      (click)="refreshPage('EventPartners')"
+                      class="cursorPointer"
+                      >Event Partners</a
+                    >
+
+                    <a
+                      (click)="refreshPage('MediaPartners')"
+                      class="cursorPointer"
+                      >Media Partners</a
+                    > -->
+                  </div>
+                </div>
+              </li>
+              <li>
+                <a (click)="refreshPage('DownloadCenter')" class="cursorPointer"
+                  >Download Center</a
+                >
+              </li>
+              <!-- <li><a [routerLink]="['/delegate-registration']" class="nav-btn2">Register Now </a> -->
+
+              <!-- </li> -->
+              <!-- <li>
+                <a
+                  [routerLink]="['/delegate-registration']"
+                  class="btn btn-lg btn-link button-glow"
+                  style="border-radius: 6px; border: 1px solid #0c9"
+                  >Register As a Delegate</a
+                >
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <a
+          [routerLink]="['/delegate-registration']"
+          class="btn btn-lg btn-link button-glow"
+          style="border-radius: 6px; border: 1px solid #0c9"
+          >Register As a Delegate</a
+        >
+      </div>
+      <div
+        class="col-md-9 nav1 col-sm-8 col-xs-12 text-right p-0"
+        id="sidebarnav"
+      >
+        <nav
+          class="navbar navbar-default p-0"
+          role="banner"
+          data-aos="fade-down"
+        >
+          <div id="">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul
+                class="nav navbar-nav pull-right"
+                style="flex-direction: row; align-items: center"
+              >
+                <li>
+                  <a (click)="refreshPage('webhome')" class="cursorPointer"
+                    >Home</a
+                  >
+                </li>
+                <li><a [routerLink]="['/awards']">Pharma Week</a></li>
+                <li>
+                  <div class="dropdown">
+                    <button class="dropbtn dropdown-toggle">
+                      <a class="text-black" [routerLink]="['/aboutUs']"
+                        >About</a
+                      >
+                    </button>
+                    <div class="dropdown-content">
+                      <a [routerLink]="['/OurLengcy']">Our Legacy</a>
+
+                      <a [routerLink]="['/JoinOurmailingList']"
+                        >Join our Mailing List</a
+                      >
+
+                      <a [routerLink]="['/Photos']">Photo Gallery</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="dropbtn dropdown-toggle">
+                      <a class="text-black" [routerLink]="['/webhome']"
+                        >Speakers</a
+                      >
+                    </button>
+                    <div class="dropdown-content">
+                      <a [routerLink]="['/speaker-registration']"
+                        >Speaker Form</a
+                      >
+
+                      <a [routerLink]="['/speaker']">Speakers 2023</a>
+
+                      <a [routerLink]="['/pastspeakers']">Past Speakers</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="dropbtn dropdown-toggle">
+                      <a class="text-black" [routerLink]="['/webhome']"
+                        >Conference</a
+                      >
+                    </button>
+                    <div class="dropdown-content">
+                      <a [routerLink]="['/agenda']">Agenda</a>
+
+                      <a [routerLink]="['/WhoShouldAttend']"
+                        >Who Should Attend & Why</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="dropbtn dropdown-toggle">
+                      <a [routerLink]="['/webhome']" style="color: black"
+                        >Partners</a
+                      >
+                    </button>
+                    <div class="dropdown-content">
+                      <a [routerLink]="['/partner-registration']"
+                        >Partner Form</a
+                      >
+
+                      <!-- <a [routerLink]="['/WhoShouldAttend']">Who Should Attend & Why</a> -->
+
+                      <!-- <a [routerLink]="['/EventPartners']">Event Partners</a>
+
+                      <a [routerLink]="['/MediaPartners']">Media Partners</a> -->
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a [routerLink]="['/DownloadCenter']">Download Center</a>
+                </li>
+
+                <li>
+                  <a
+                    [routerLink]="['/delegate-registration']"
+                    class="btn btn-lg btn-link button-glow"
+                    style="
+                      border-radius: 6px;
+                      border: 1px solid #0c9;
+                      background-color: #093f41;
+                      color: white;
+                      font-size: 16px;
+                      margin-left: 16px;
+                      margin-top: -14px;
+                      font-size: 15px;
+                      text-transform: uppercase;
+                    "
+                    >Register As a Delegate</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</header>

@@ -1,0 +1,124 @@
+
+
+.fourcolumn .checkbox-group{
+    column-count: 4;
+}
+
+.fourcolumn .checkbox label{
+    font-weight: 400 !important;
+}
+
+.btn.btn-primary{
+    border-radius: 25px !important;
+}
+
+.fw-500{
+    font-weight: 500 !important;
+}
+
+.fw-400 label{
+    font-weight: 400 !important;
+}
+
+.form-group label {
+    font-weight: 400 !important;
+    padding-bottom: 5px;
+}
+
+.customcat-font{
+    font-size : 19px !important;
+    font-weight: 400 !important;
+    font-family: 'IBM Plex Sans';
+
+}
+.category-section-title{
+    font-weight: 500 !important;
+}
+
+.form-group .checkbox-group .checkbox{
+    display: inline-block;
+    min-width: 270px;
+    margin-right: 20px;
+}
+
+#registrationform .form-control, #registrationform .multiselect{
+    height: 34px;
+    color: #000000 !important;
+    font-family: 'IBM Plex Sans';
+    border-radius: 8px !important;
+}
+#registrationform .multiselect.dropdown-toggle:hover{
+    border: 1px solid #cccccc !important;
+}
+
+.multiselect-native-select ul.multiselect-container {
+    width: 100%;
+    top: 34px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.multiselect-container>li>a>label.radio, .multiselect-container>li>a>label.checkbox,
+.multiselect-container>li.multiselect-group label {
+    font-size: 15px;
+    color: #000000;
+}
+.form-group .multiselect-container li .checkbox{
+    width: 100%;
+    margin-right: 0 !important;
+    padding-left: 35px;
+}
+.form-group .multiselect-container li.multiselect-group label,
+.form-group .multiselect-container li.multiselect-all label{
+    padding-left: 15px;
+}
+.form-group .multiselect-container li.multiselect-group.group-level-2 label{
+    padding-left: 22px;
+}
+.multiselect-container .multiselect-filter .input-group {
+    margin: 2%;
+    width: 96%;
+}
+
+.fb-container {
+    max-width: 1200px !important;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+@media (max-width: 575px) {
+    .resp{
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .resp-text{
+        font-size: 15px !important;
+    }
+
+    .header-style-1 .site-branding {
+        margin: 0 auto;
+    }
+    .header-content-wrap .header-content-txt h4 {
+        font-size: 15px;
+        text-align: center;
+    }
+    .site-header.sticky .header-link-buttons,
+    .site-header.sticky .header-content-wrap{
+        display: none;
+    }
+
+}
+
+/* dnyanesh 03-06-2023 */
+
+@media (max-width: 768px) {
+    .informa-logo img{
+        width:150px !important;
+
+    }
+    .header-link-btn{
+        padding:9px 18px !important;
+    }
+}
+

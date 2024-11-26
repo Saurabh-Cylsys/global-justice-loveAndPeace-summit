@@ -1,0 +1,57 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { WebHomeComponent } from './web-home/web-home.component';
+import { AgendaPharmaPreconnectComponent } from './agenda-pharma-preconnect/agenda-pharma-preconnect.component';
+import { FaqsComponent } from './faqs/faqs.component';
+import { OurLengcyComponent } from './our-lengcy/our-lengcy.component';
+import { PhotosComponent } from './photos/photos.component';
+import { MediaPartnersComponent } from './media-partners/media-partners.component';
+import { JoinOurmailingListComponent } from './join-ourmailing-list/join-ourmailing-list.component';
+import { SpeakerComponent } from './speaker/speaker.component';
+import { SpeakerPostComponent } from './speaker-post/speaker-post.component';
+import { EventPartnersComponent } from './event-partners/event-partners.component';
+import { DownloadCenterComponent } from './download-center/download-center.component';
+import { WebMainComponent } from './web-main/web-main.component';
+import { WhoShouldAttendComponent } from './who-should-attend/who-should-attend.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { BrochureComponent } from './brochure/brochure.component';
+import { SalesBrochureComponent } from './sales-brochure/sales-brochure.component';
+import { AgendaComponent } from './agenda/agenda.component';
+import { AwardsComponent } from './awards/awards.component';
+
+const routes: Routes = [
+  {
+    path: '', 
+    component: WebMainComponent,
+
+    children:[
+      {path:'webhome',component:WebHomeComponent},
+      { path: 'AgendaPharma', component: AgendaPharmaPreconnectComponent },
+      { path: 'Faqs', component: FaqsComponent },
+      { path: 'OurLengcy', component: OurLengcyComponent },
+      { path: 'DownloadCenter', component: DownloadCenterComponent },
+      { path: 'EventPartners', component: EventPartnersComponent },
+      { path: 'pastspeakers', component: SpeakerPostComponent },
+      { path: 'speaker', component: SpeakerComponent },
+      { path: 'MediaPartners', component: MediaPartnersComponent },
+      { path: 'WhoShouldAttend', component: WhoShouldAttendComponent },
+      { path: 'aboutUs', component: AboutUsComponent },
+      { path: 'Brochure', component: BrochureComponent },
+      { path: 'salesbrochure', component: SalesBrochureComponent },
+      {path:'Photos',component:PhotosComponent},
+      {path:'JoinOurmailingList',component:JoinOurmailingListComponent},
+
+      {path:'agenda',component:AgendaComponent},
+      {path:'awards',component:AwardsComponent},
+      {path:'', redirectTo:'webhome', pathMatch:'full'}
+    ]
+  }
+
+
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class WebRoutingModule { }

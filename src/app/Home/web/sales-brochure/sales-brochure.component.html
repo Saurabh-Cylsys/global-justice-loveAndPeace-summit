@@ -1,0 +1,298 @@
+
+<!-- <div id="MainContent_otherslider" >
+    <div class="container">
+        <div class="row">
+            <h1 class="innerpageheading">Download Sales Brochure</h1>
+        </div>
+    </div>
+</div> -->
+<form [formGroup]="form" (ngSubmit)="jmit()">
+    <section id="register" class="aboutshow">
+        <div class="container">
+            <div id="MainContent_Step1">
+                <p style="color:#ce5b5b;">
+                    <strong>Fields marked in asterisk (*) are mandatory</strong>
+                </p>
+                <p>Please fill the below mentioned form to Download Sales Brochure:</p>
+                <div class="row" style="padding-top: 21px">
+                    <div class="col-md-2 text-right">
+                        First Name<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="first_name" (keydown)="onKeyDown($event, first_name)" formControlName="first_name" id="MainContent_name"
+                            class="form-control RequiredValid" autocomplete="off" placeholder="Enter first name"
+                            maxlength="50" (keypress)="ValidateAlpha($event)" />
+                        <div *ngIf="getcontrol('first_name')?.errors && getcontrol('first_name')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('first_name')?.errors?.['required']">First name
+                                is
+                                Required.</small>
+                            <small class="text-danger" *ngIf="getcontrol('first_name')?.errors?.['minlength']">First
+                                name must be at least 3 characters long.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        Last Name<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="last_name" (keydown)="onKeyDown($event, last_name)" id="MainContent_companyprofile" formControlName="last_name"
+                            class="form-control RequiredValid" autocomplete="off" maxlength="250"
+                            placeholder="Enter last name" (keypress)="ValidateAlpha($event)"/>
+                        <div *ngIf="getcontrol('last_name')?.errors && getcontrol('last_name')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('last_name')?.errors?.['required']">Last name
+                                is Required.</small>
+                            <small class="text-danger" *ngIf="getcontrol('last_name')?.errors?.['minlength']">Last name
+                                must be at least 3 characters long.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        Designation<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="designation" (keydown)="onKeyDown($event, designation)" id="MainContent_designation" formControlName="designation"
+                            class="form-control RequiredValid" autocomplete="off" maxlength="50"
+                            placeholder="Enter your designation" (keypress)="ValidateAlpha($event)" />
+                        <div *ngIf="getcontrol('designation')?.errors && getcontrol('designation')?.touched">
+                            <small class="text-danger"
+                                *ngIf="getcontrol('designation')?.errors?.['required']">Designation name
+                                is Required.</small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('designation')?.errors?.['minlength']">Designation name must be at
+                                least 3 characters long.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        Department<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input formControlName="department" [(ngModel)]="department" (keydown)="onKeyDown($event, department)" type="text" id="MainContent_department"
+                            class="form-control RequiredValid" autocomplete="off" maxlength="100"
+                            placeholder="Enter your department" (keypress)="ValidateAlpha($event)" />
+                        <div *ngIf="getcontrol('department')?.errors && getcontrol('department')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('department')?.errors?.['required']">Department
+                                name
+                                is Required.</small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('department')?.errors?.['minlength']">Department name must be at least
+                                3 characters long.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        Company Name <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="company_name" (keydown)="onKeyDown($event, company_name)" formControlName="company_name" id="MainContent_company"
+                            class="form-control RequiredValid" autocomplete="off" placeholder="Enter company name"
+                            maxlength="100" (keypress)="ValidateAlpha($event)" />
+                        <div *ngIf="getcontrol('company_name')?.errors && getcontrol('company_name')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('company_name')?.errors?.['required']"> Company
+                                name
+                                is Required.</small>
+                            <small class="text-danger" *ngIf="getcontrol('company_name')?.errors?.['minlength']">Company
+                                name must be at least 3 characters long.</small>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        Work Email<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="work_email" (keydown)="onKeyDown($event, work_email)" formControlName="work_email" id="MainContent_email"
+                            class="form-control RequiredValid" autocomplete="off" placeholder="Enter email" />
+                        <div *ngIf="getcontrol('work_email')?.errors && getcontrol('work_email')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('work_email')?.errors?.['required']">work email
+                                is
+                                Required.</small>
+                            <small class="text-danger" *ngIf="getcontrol('work_email')?.errors?.['email']">Please insert
+                                a
+                                valid email address.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        Work Phone Number<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input [(ngModel)]="work_phone_number" (keydown)="onKeyDown($event, work_phone_number)" formControlName="work_phone_number" type="text" id="MainContent_mobile"
+                            class="form-control RequiredValid number" autocomplete="off" maxlength="10"
+                            placeholder="Work Phone Number" (keypress)="keyPressNumbers($event)" />
+                        <div
+                            *ngIf="getcontrol('work_phone_number')?.errors && getcontrol('work_phone_number')?.touched">
+                            <small class="text-danger"
+                                *ngIf="getcontrol('work_phone_number')?.errors?.['required']">Mobile number
+                                is required</small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('work_phone_number')?.errors?.['minlength']">Mobile number must be at
+                                least 10 digit long.</small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('work_phone_number')?.errors?.['repeatingDigits']">
+                                Mobile number cannot contain repeating digits.
+                            </small>
+                            <small class="text-danger"
+                                *ngIf="getcontrol('work_phone_number')?.errors?.['containsConsecutiveZeros']">
+                                cannot contain three or more consecutive zeros.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        Country <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <select  id="MainContent_country"  formControlName="country"class="form-control" (change)="changeCountry($event)">
+                            <option value="" selected>--Select--</option>
+                            <option *ngFor="let country of countryData"
+                            [value]="country.country_id">
+                            {{ country.country_name }}
+                        </option>
+
+                            </select>
+                        <div *ngIf="getcontrol('country')?.errors && getcontrol('country')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('country')?.errors?.['required']">Country is
+                                Required.</small>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        State  
+                    </div>
+                    <div class="col-md-4">
+                        <select  id="MainContent_country" formControlName="state" class="form-control"   (change)="
+                        changeStates($event)">
+                            <option value="" selected>--Select--</option>
+                            <option *ngFor="
+                            let state of statesData;
+                            let j = index
+                          " [value]="state.state_id">
+                              {{ state.state_name }}
+                          </option>
+                          
+                        </select>
+                        <div *ngIf="getcontrol('state')?.errors && getcontrol('state')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('state')?.errors?.['required']">State is
+                                Required.</small>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-2 text-right">
+                        City<span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <select id="MainContent_country" formControlName="city" class="form-control" (change)="changeCity($event)">
+                            <option value="" selected>--Select--</option>
+                            <option *ngFor="
+                                                              let city of cityData;
+                                                              let k = index
+                                                            " [value]="city.city_id">
+                                                                {{ city.city_name }}
+                                                            </option>
+                    
+                        </select>
+                        <div *ngIf="getcontrol('city')?.errors && getcontrol('city')?.touched">
+                            <small class="text-danger" *ngIf="getcontrol('city')?.errors?.['required']">City is
+                                Required.</small>
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        Postcode <span style="color:red;">*</span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" [(ngModel)]="postcode" (keydown)="onKeyDown($event, postcode)" id="MainContent_postcode" formControlName="postcode" 
+                            class="form-control RequiredValid number" autocomplete="off" placeholder="Enter postcode"
+                            maxlength="6" (keypress)="keyPressNumbers($event)" />
+                            <div *ngIf="getcontrol('postcode')?.errors && getcontrol('postcode')?.touched">
+                                <small class="text-danger" *ngIf="getcontrol('postcode')?.errors?.['required']">Postcode is
+                                    Required.</small>
+                                <small class="text-danger" *ngIf="getcontrol('postcode')?.errors?.['pattern']">Please insert valid postcode.</small>
+                                    <small class="text-danger"
+                                *ngIf="getcontrol('postcode')?.errors?.['containsConsecutiveZeros']">
+                                cannot contain three or more consecutive zeros.
+                            </small>
+                            </div>
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="checkboxSty">
+                            <input [disabled]="!form.valid" id="MainContent_chkwhatsapp" type="checkbox" formControlName="check_whatsapp_number"
+                                />
+                            <label for="MainContent_chkwhatsapp"><span style="color:red;">*</span> I Confirm that my WhatsApp number is same as the mobile
+                                number registered above. I also provide my consent to Informa Markets India Pvt Ltd for
+                                sending messages/notifications on my WhatsApp number.</label></span>
+                        <span class="checkboxSty"><input [disabled]="!form.valid" id="MainContent_chkTermsConditions" type="checkbox" formControlName="check_details"
+                               />
+                            <label for="MainContent_chkTermsConditions"><span style="color:red;">*</span> By submitting the above details, you accept that
+                                Informa Markets in India may contact you with updates, relevant promotions, and
+                                information about this and future events & solutions provided by Informa Markets. Your
+                                details may be shared with the event sponsor/partners who may contact you about their
+                                products and services.</label></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 text-right">
+                        <label><b></b></label>
+                    </div>
+                    <div class="col-md-2 text-center" >
+                        <label><b style="font-size:24px; color:red;">{{cptcha}}</b></label>
+                    </div>
+                    <div class="col-md-3" style="margin-left: -47px;">
+                        <input  type="text" id="MainContent_TextCaptcha" formControlName="captcha" [(ngModel)]="captcha" (keydown)="onKeyDown($event, captcha)"
+                            class="form-control RequiredValid number" autocomplete="off" maxlength="6"
+                            placeholder="Type the number from the image" />
+                            <div *ngIf="getcontrol('captcha')?.errors && getcontrol('captcha')?.touched">
+                                <small class="text-danger" *ngIf="getcontrol('captcha')?.errors?.['required']">captcha is
+                                    Required.</small>
+                                <small class="text-danger" *ngIf="getcontrol('captcha')?.errors?.['pattern']">Please insert a
+                                    valid captcha .</small>
+                            </div>
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <span id="MainContent_msgText" style="color:Red;font-weight:bold;font-style:italic;"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">&nbsp;</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <input type="submit" name="ctl00$MainContent$btnSubmit" value="Submit"
+                            id="MainContent_btnSubmit" class="btn btn-primary btn-lg" style="width:200px;" [disabled]="!form.valid"/>
+                            
+                    </div>
+                </div>
+                <br>
+            </div>
+       </div>
+       </section>
+       </form>
+       

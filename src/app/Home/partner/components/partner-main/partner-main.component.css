@@ -1,0 +1,16 @@
+/* @media only screen and (max-width: 650px) and (min-width: 600px) {
+
+    .abc {
+
+        font-size: 9px;
+   
+       }
+   
+  } */
+  @media (max-width:650px) {
+    .abc {
+
+        font-size: 9px;
+   
+       }
+  }
