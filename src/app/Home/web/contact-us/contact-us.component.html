@@ -25,7 +25,7 @@
               </div>
               <ul>
                 <li><img src="assets/UIComponents/images/contact-us/phone-call.png" alt="assets/UIComponents/images/contact-us/phone-call.png"> +91 93240 64978</li>
-                <li><img src="assets/UIComponents/images/contact-us/email.png" alt="assets/UIComponents/images/contact-us/email.png">help@justice-love-peace.com</li>
+                <li><img src="assets/UIComponents/images/contact-us/email.png" alt="assets/UIComponents/images/contact-us/email.png">{{helpjustice}}</li>
                 <li><img src="assets/UIComponents/images/contact-us/website.png" alt="assets/UIComponents/images/contact-us/website.png">www.justice-love-peace.com</li>
               </ul>
               <div class="row" style="position: absolute; bottom: 10%;">
@@ -53,7 +53,7 @@
               <div class="mb-5 col-md-6">
                 <div class="form-floating">
                   <input
-                    type="email"
+                    type="email_id"
                     class="form-control"
                     id="email"
                     placeholder=""
@@ -68,6 +68,8 @@
                     type="text"
                     class="form-control"
                     id="FirstName"
+                    formControlName="first_name"
+                    name="first_name"
                     placeholder=""
                     value=""
                   />
@@ -79,6 +81,8 @@
                   <input
                     type="text"
                     class="form-control"
+                    formControlName="last_name"
+                    name="last_name"
                     id="LastName"
                     placeholder=""
                     value=""
@@ -92,6 +96,8 @@
                   <input
                     type="number"
                     class="form-control pt-1 pb-0"
+                    formControlName="country_code"
+                    name="country_code"
                     id="phone"
                     placeholder=""
                   />
@@ -102,6 +108,8 @@
                   <input
                     type="tel"
                     class="form-control"
+                    formControlName="mobile_number"
+                    name="mobile_number"
                     id="mobileNomber"
                     placeholder=""
                     value=""
@@ -115,6 +123,8 @@
                   <input
                     type="text"
                     class="form-control"
+                    formControlName="question"
+                    name="question"
                     id="question"
                     placeholder="Write your que.."
                     value=""

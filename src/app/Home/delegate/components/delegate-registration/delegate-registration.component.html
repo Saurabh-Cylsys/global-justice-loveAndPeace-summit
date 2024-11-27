@@ -383,50 +383,38 @@
                                 >
                                   <label
                                     class="col-md-12 no-padding"
-                                    for="email1"
-                                    >LinkedIn Profile<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
+                                    for="profileurl"
+                                    >LinkedIn Profile</label
                                   >
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
                                       name=""
-                                      id="email1"
+                                      id="linkedIn"
                                       placeholder=""
                                       class="form-control"
-                                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
                                       value=""
-                                      required
-                                      [(ngModel)]="email_id"
-                                      (keydown)="onKeyDown($event, email_id)"
-                                      data-error="Please enter valid email id"
-                                      formControlName="email_id"
+                                      
+                                      [(ngModel)]="linkedIn_url"
+                                      (keydown)="onKeyDown($event, linkedIn_url)"
+                                      data-error="Please enter valid linkedIn_url"
+                                      formControlName="linkedIn_url"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.email_id.errors
+                                          submitted && f.linkedIn_url.errors
                                       }"
                                     />
-                                    <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
-                                        getcontrol('email_id')?.errors &&
-                                        getcontrol('email_id')?.touched
+                                        getcontrol('linkedIn_url')?.errors &&
+                                        getcontrol('linkedIn_url')?.touched
                                       "
                                     >
+                                      
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['required']"
-                                        >Email is Required.</small
-                                      >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['email']"
-                                        >Please enter valid email
-                                        address.</small
+                                        *ngIf="getcontrol('linkedIn_url')?.errors?.['pattern']"
+                                        >Please enter valid linkedIn URL.</small
                                       >
                                     </div>
                                   </div>
@@ -436,50 +424,37 @@
                                 >
                                   <label
                                     class="col-md-12 no-padding"
-                                    for="email1"
-                                    >Facebook Profile<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
+                                    for="profileurl"
+                                    >Facebook Profile</label
                                   >
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
                                       name=""
-                                      id="email1"
+                                      id="facebook_url"
                                       placeholder=""
                                       class="form-control"
-                                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
                                       value=""
-                                      required
-                                      [(ngModel)]="email_id"
-                                      (keydown)="onKeyDown($event, email_id)"
-                                      data-error="Please enter valid email id"
-                                      formControlName="email_id"
+                                      [(ngModel)]="facebook_url"
+                                      (keydown)="onKeyDown($event, facebook_url)"
+                                      data-error="Please enter valid Facebook URL"
+                                      formControlName="facebook_url"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.email_id.errors
+                                          submitted && f.facebook_url.errors
                                       }"
                                     />
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
-                                        getcontrol('email_id')?.errors &&
-                                        getcontrol('email_id')?.touched
+                                        getcontrol('facebook_url')?.errors &&
+                                        getcontrol('facebook_url')?.touched
                                       "
                                     >
-                                      <small
+                                                                          <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['required']"
-                                        >Email is Required.</small
-                                      >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['email']"
-                                        >Please enter valid email
-                                        address.</small
+                                        *ngIf="getcontrol('facebook_url')?.errors?.['pattern']"
+                                        >Please enter valid Facebook URL.</small
                                       >
                                     </div>
                                   </div>
@@ -494,7 +469,7 @@
                                 >
                                   <label
                                     class="col-md-12 no-padding"
-                                    for="lname1"
+                                    for="profession1"
                                     >Profession 1<span
                                       class="form-label-span"
                                       style="color: #ff0000"
@@ -505,35 +480,35 @@
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
-                                      name="lname[1]"
-                                      id="lname1"
+                                      name="profession_1"
+                                      id="Profession1"
                                       placeholder=""
                                       class="form-control"
                                       value=""
                                       required
-                                      formControlName="last_name"
+                                      formControlName="profession_1"
                                       minlength="3"
                                       (keypress)="ValidateAlpha($event)"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.last_name.errors
+                                          submitted && f.profession_1.errors
                                       }"
                                     />
                                     <div
                                       *ngIf="
-                                        getcontrol('last_name')?.errors &&
-                                        getcontrol('last_name')?.touched
+                                        getcontrol('profession_1')?.errors &&
+                                        getcontrol('profession_1')?.touched
                                       "
                                     >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
-                                        >Last name is required</small
+                                        *ngIf="getcontrol('profession_1')?.errors?.['required']"
+                                        >Profession is required</small
                                       >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
-                                        >Last name must be at least 3 characters
+                                        *ngIf="getcontrol('profession_1')?.errors?.['minlength']"
+                                        >Profession must be at least 3 characters
                                         long.</small
                                       >
                                     </div>
@@ -545,32 +520,23 @@
                                 >
                                   <label
                                     class="col-md-12 no-padding"
-                                    for="lname1"
-                                    >Profession 2 (if any)<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
+                                    for="profession2"
+                                    >Profession 2 (if any)</label
                                   >
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
-                                      name="lname[1]"
-                                      id="lname1"
+                                      name="profession_2"
+                                      id="profession2"
                                       placeholder=""
                                       class="form-control"
                                       value=""
-                                      required
-                                      formControlName="last_name"
+                                      
+                                      formControlName="profession_2"
                                       minlength="3"
                                       (keypress)="ValidateAlpha($event)"
-                                      [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.last_name.errors
-                                      }"
-                                    />
-                                    <div
+                                                                />
+                                    <!-- <div
                                       *ngIf="
                                         getcontrol('last_name')?.errors &&
                                         getcontrol('last_name')?.touched
@@ -587,7 +553,7 @@
                                         >Last name must be at least 3 characters
                                         long.</small
                                       >
-                                    </div>
+                                    </div> -->
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
@@ -641,7 +607,7 @@
                                 >
                                   <label
                                     class="col-md-12 no-padding"
-                                    for="lname1"
+                                    for="organization"
                                     >Organization Name<span
                                       class="form-label-span"
                                       style="color: #ff0000"
@@ -652,35 +618,35 @@
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
-                                      name="lname[1]"
-                                      id="lname1"
+                                      name="organization_name"
+                                      id="organization"
                                       placeholder=""
                                       class="form-control"
                                       value=""
                                       required
-                                      formControlName="last_name"
+                                      formControlName="organization_name"
                                       minlength="3"
                                       (keypress)="ValidateAlpha($event)"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.last_name.errors
+                                          submitted && f.organization_name.errors
                                       }"
                                     />
                                     <div
                                       *ngIf="
-                                        getcontrol('last_name')?.errors &&
-                                        getcontrol('last_name')?.touched
+                                        getcontrol('organization_name')?.errors &&
+                                        getcontrol('organization_name')?.touched
                                       "
                                     >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
-                                        >Last name is required</small
+                                        *ngIf="getcontrol('organization_name')?.errors?.['required']"
+                                        >organization name is required</small
                                       >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
-                                        >Last name must be at least 3 characters
+                                        *ngIf="getcontrol('organization_name')?.errors?.['minlength']"
+                                        >organization name must be at least 3 characters
                                         long.</small
                                       >
                                     </div>
@@ -705,8 +671,8 @@
                                     <span class="required-icon"></span
                                     ><input
                                       type="text"
-                                      name="field_3"
-                                      id="field_3"
+                                      name="address_line_1"
+                                      id="address_line_1"
                                       placeholder=""
                                       class="form-control"
                                       value=""
@@ -997,9 +963,10 @@
                           <input
                             class="form-check-input"
                             type="radio"
-                            name="gridRadios"
+                            name="attending"
                             id="gridRadios1"
-                            value="option1"
+                            formControlName="attending"
+                            value="in-person"
                             checked
                           />
                           <label class="form-check-label" for="gridRadios1">
@@ -1010,9 +977,10 @@
                           <input
                             class="form-check-input"
                             type="radio"
-                            name="gridRadios"
+                            formControlName="attending"
+                            name="attending"
                             id="gridRadios2"
-                            value="option2"
+                            value="online"
                           />
                           <label class="form-check-label" for="gridRadios2">
                             Online
@@ -1034,9 +1002,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="attending"
+                            formControlName="priAttending"
+                            name="priAttending"
                               id="attending1"
-                              value="option1"
+                              value="Gathering Knowledge"
                               checked
                             />
                             <label class="form-check-label" for="attending1">
@@ -1047,9 +1016,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="attending"
+                            formControlName="priAttending"
+                            name="priAttending"
                               id="attending2"
-                              value="option2"
+                              value="Networking"
                             />
                             <label class="form-check-label" for="attending2">
                               Networking
@@ -1059,9 +1029,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="attending"
+                            formControlName="priAttending"
+                            name="priAttending"
                               id="attending3"
-                              value="option3"
+                              value="Speaker Profile"
                             />
                             <label class="form-check-label" for="attending3">
                               Speaker Profile
@@ -1071,9 +1042,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="attending"
+                            formControlName="priAttending"
+                            name="priAttending"
                               id="attending4"
-                              value="option4"
+                              value="Working for Peace"
                             />
                             <label class="form-check-label" for="attending4">
                               Working for Peace
@@ -1083,9 +1055,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="attending"
+                            formControlName="priAttending"
+                            name="priAttending"
                               id="attending5"
-                              value="option4"
+                              value="Other"
                             />
                             <label class="form-check-label" for="attending5">
                               Other
@@ -1109,8 +1082,9 @@
                               class="form-check-input"
                               type="radio"
                               name="level"
-                              id="level1"
-                              value="option1"
+                            formControlName="level"
+                            id="level1"
+                              value="Justice"
                               checked
                             />
                             <label class="form-check-label" for="level1">
@@ -1121,9 +1095,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="level"
+                            formControlName="level"
+                            name="level"
                               id="level2"
-                              value="option2"
+                              value="Love"
                             />
                             <label class="form-check-label" for="level2">
                               Love
@@ -1132,10 +1107,11 @@
                           <div class="form-check col-md-4 my-3">
                             <input
                               class="form-check-input"
-                              type="radio"
+                            formControlName="level"
+                            type="radio"
                               name="level"
                               id="level3"
-                              value="option3"
+                              value="Peace"
                             />
                             <label class="form-check-label" for="level3">
                               Peace
@@ -1147,24 +1123,24 @@
                   </div>
                   <div id="submit-wrapper" class="text-center mt-3">
                     <!-- ================ ======================= -->
-                    <input
+                    <!-- <input
                       type="hidden"
                       name="ttst"
                       id="st"
                       value="1692166964"
-                    />
+                    /> -->
                     <div class="d-none">
-                      <input
+                      <!-- <input
                         type="text"
                         name="middle_name"
                         id="middle_name"
                         value=""
                         autocomplete="mdlnme"
-                      />
+                      /> -->
                     </div>
                     <!-- ================ ======================= -->
 
-                    <input
+                    <!-- <input
                       type="hidden"
                       name="frmkey"
                       value="cad4ec633a6ac6fadbe930f9ac476631"
@@ -1172,11 +1148,11 @@
 
                     <input type="hidden" name="chk_mob_regid" value="0" />
                     <input type="hidden" name="stepid" value="1" />
-                    <input id="showid" type="hidden" name="showid" value="1" />
+                    <input id="showid" type="hidden" name="showid" value="1" /> -->
                     <input
                       type="submit"
                       class="btn btn-success"
-                      [disabled]="registrationForm.invalid || !terms || !terms1"
+                      [disabled]="registrationForm.invalid"
                       value="Complete Registration"
                       name="register"
                     />
@@ -1207,15 +1183,15 @@
         <div class="row">
           <div>
             <span class="m-4 font-weight-bold">
-              Thank you for registering at Pharma Pre-connect 2023​
+              Thank you for registering at Global Justice, Love & Peace Summit
             </span>
             <p class="m-4">
               Your registration screening is under process once validated you
-              will receive your entry badge on WhatsApp and Email.​
+              will receive your entry badge on Email.​
               <br /><br />
               Regards,​
               <br />
-              Team Pharma Pre-connect Conference​
+              Team Global Justice, Love & Peace Summit Conference​
             </p>
           </div>
           <div class="col-md-9"></div>
