@@ -9,6 +9,18 @@
   width: 90%;
 }
 
+.badge h6 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 40px;
+  text-align: center;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: auto;
+  color: var(--color1);
+}
+
 .badge li {
   line-height: 8;
 }
