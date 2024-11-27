@@ -959,3 +959,56 @@ text-decoration-skip-ink: none;
 .speakers img{
   width: 100%;
 }
+
+
+.invited .table-responsive {
+  border-radius: 10px;
+  height: 93vh;
+}
+
+.invited table thead tr th:first-child {
+  background-color: var(--color1);
+  color: var(--color2);
+  width: 30%;
+}
+
+.invited table thead tr th:last-child {
+  background-color: var(--color3);
+  color: var(--color2);
+  width: 70%;
+}
+
+.invited table tbody tr:nth-child(odd) td:first-child {
+  background-color: #cfd5e3;
+}
+.invited table tbody tr:nth-child(odd) td:last-child {
+  background-color: #d8e5cf;
+}
+
+.invited table tbody tr:nth-child(even) td:first-child {
+  background-color: #e4e9f2;
+}
+.invited table tbody tr:nth-child(even) td:last-child {
+  background-color: #eaf1e6;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #dce7b0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #dce7b0;
+}

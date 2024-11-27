@@ -8,3 +8,7 @@
   color: var(--color6);
   width: 90%;
 }
+
+.badge li {
+  line-height: 8;
+}
