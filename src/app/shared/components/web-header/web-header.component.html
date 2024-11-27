@@ -1,88 +1,138 @@
 <!-- offcanvas start -->
 <div
-class="offcanvas offcanvas-start"
-data-bs-scroll="true"
-data-bs-backdrop="false"
-tabindex="-1"
-id="offcanvasScrolling"
-aria-labelledby="offcanvasScrollingLabel"
+  class="offcanvas offcanvas-start"
+  data-bs-scroll="true"
+  data-bs-backdrop="false"
+  tabindex="-1"
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
 >
-<div class="offcanvas-header">
-  <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
-    <!-- Offcanvas with body scrolling -->
-  </h5>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="offcanvas"
-    aria-label="Close"
-  ></button>
-</div>
-<div class="offcanvas-body">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="the_summit.html">The Summit</a></li>
-    <li><a href="partners.html">Partners</a></li>
-    <li><a href="awards.html">Awards</a></li>
-    <li>World Peacekeepers Movement</li>
-    <li>Download Center</li>
-    <li><a href="contact-us.html">Contact Us</a></li>
-    <li><a type="btn" class="btn btn-success"href="register-delegate.html">Register As a Delegate</a></li>
-  </ul>
-</div>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+      <!-- Offcanvas with body scrolling -->
+    </h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul>
+      <li><a [routerLink]="['/webhome']">Home</a></li>
+      <li><a [routerLink]="['/the-summit']">The Summit</a></li>
+      <li><a [routerLink]="['/partners']">Partners</a></li>
+      <li><a [routerLink]="['/awards']">Awards</a></li>
+      <li>
+        <a [routerLink]="['/world-peacekeepers-movement']"
+          >World Peacekeepers Movement</a
+        >
+      </li>
+      <li><a [routerLink]="['/DownloadCenter']">Download Center</a></li>
+      <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
+      <li>
+        <a
+          type="btn"
+          class="btn btn-success"
+          [routerLink]="['/delegate-registration']"
+          >Register As a Delegate</a
+        >
+      </li>
+    </ul>
+  </div>
 </div>
 <!-- offcanvas end -->
 
 <!-- header start -->
 <header>
-<nav class="navbar navbar-expand-lg py-lg-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasScrolling"
-      aria-controls="offcanvasScrolling"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/webhome']">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/the-summit']">The Summit</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/partners']">Partners</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/awards']">Awards</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/world-peacekeepers-movement']">World Peacekeepers Movement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/DownloadCenter']">Download Center</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['/contact-us']">Contact Us</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <a type="btn" class="btn btn-success me-2" [routerLink]="['/delegate-registration']">Register As a Delegate</a>
-        <select name="" id="" class="">
-          <option value="">Eng</option>
-        </select>
-      </form>
+  <nav class="navbar navbar-expand-lg py-lg-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/webhome']"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/the-summit']"
+              >The Summit</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/partners']"
+              >Partners</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/awards']"
+              >Awards</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/world-peacekeepers-movement']"
+              >World Peacekeepers Movement</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/DownloadCenter']"
+              >Download Center</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/contact-us']"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <a
+            type="btn"
+            class="btn btn-success me-2"
+            [routerLink]="['/delegate-registration']"
+            >Register As a Delegate</a
+          >
+          <select name="" id="" class="">
+            <option value="">Eng</option>
+          </select>
+        </form>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </header>
 <!-- header end -->
- 
