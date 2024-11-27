@@ -22,6 +22,10 @@ import { BrochureComponent } from './brochure/brochure.component';
 import { SalesBrochureComponent } from './sales-brochure/sales-brochure.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AwardsComponent } from './awards/awards.component';
+import { TheSummitComponent } from './the-summit/the-summit.component';
+import { PartnersComponent } from './partners/partners.component';
+import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
@@ -46,6 +50,10 @@ import { AwardsComponent } from './awards/awards.component';
     SalesBrochureComponent,
     AgendaComponent,
     AwardsComponent,
+    TheSummitComponent,
+    PartnersComponent,
+    WorldPeacekeepersMovementComponent,
+    ContactUsComponent,
   
     // WhoShouldAttendAndWhyComponent,
     

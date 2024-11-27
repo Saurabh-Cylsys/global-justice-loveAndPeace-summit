@@ -18,6 +18,10 @@ import { BrochureComponent } from './brochure/brochure.component';
 import { SalesBrochureComponent } from './sales-brochure/sales-brochure.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { AwardsComponent } from './awards/awards.component';
+import { TheSummitComponent } from './the-summit/the-summit.component';
+import { PartnersComponent } from './partners/partners.component';
+import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -43,6 +47,12 @@ const routes: Routes = [
 
       {path:'agenda',component:AgendaComponent},
       {path:'awards',component:AwardsComponent},
+
+      // summit url
+      {path:'the-summit',component:TheSummitComponent},
+      {path:'partners',component:PartnersComponent},
+      {path:'world-peacekeepers-movement',component:WorldPeacekeepersMovementComponent},
+      {path:'contact-us',component:ContactUsComponent},
       {path:'', redirectTo:'webhome', pathMatch:'full'}
     ]
   }

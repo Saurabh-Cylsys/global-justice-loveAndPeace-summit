@@ -1,0 +1,10 @@
+.delegate-form form .form-control, .delegate-form form .form-select {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.1px dotted #131313;
+  border-radius: 0 !important;
+  background-color: transparent;
+  color: var(--color6);
+  width: 90%;
+}
