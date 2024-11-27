@@ -940,3 +940,22 @@ text-decoration-skip-ink: none;
   right: 7%;
   top: 74%;
 }
+
+.partner_carousel img {
+  width: 80px;
+  height: 80px;
+}
+
+.partner_carousel ul li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #12894099;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.speakers img{
+  width: 100%;
+}
