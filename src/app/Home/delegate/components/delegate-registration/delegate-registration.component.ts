@@ -41,8 +41,12 @@ export class DelegateRegistrationComponent {
   designation: string = '';
   mobile_number: string = '';
   email_id: string = '';
+  linkedIn_url: string = '';
+  facebook_url: string = '';
   company_name: string = '';
   company_address: string = '';
+  profession_1: string = '';
+  profession_2: string = '';
   address_line_1: string = '';
   address_line_2: string = '';
   address_line_3: string = '';
@@ -77,40 +81,48 @@ export class DelegateRegistrationComponent {
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      department: [''],
-      designation: ['', [Validators.required]],
+      department: [null],
+      designation: [null],
       country_code: ['', [Validators.required]],
 
-      mobile_number: ['', [
+      mobile_number: ['+91', [
         Validators.required,
         Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
         this.noRepeatingDigits(), this.containsConsecutiveZeros()
       ]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      company_name: ['', [Validators.required]],
-      company_address: [''],
+      linkedIn_url:['', [Validators.pattern('https?://.+')]],
+      facebook_url:['', [Validators.pattern('https?://.+')]],
+      company_name: [null],
+      company_address: [null],
+      profession_1: ['', [Validators.required]],// need 
+      profession_2: [''],// need 
+      website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
       address_line_1: ['', [Validators.required]],
-      address_line_2: [''],
-      address_line_3: [''],
+      address_line_2: [null],
+      address_line_3: [null],
+      organization_name: [null],// need 
       country: ['', [Validators.required]],
       state: ['', [Validators.required]],
       city: ['', [Validators.required]],
       pin_code: ['', [Validators.required, Validators.pattern(/^\d{6}$/), this.containsConsecutiveZeros()]],
-      website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
-      conference_day: ['', [Validators.required]],
+      conference_day: [null],
       // organization_role: [''],
       // represent_pharmaceutical_industry: ['', [Validators.required]],
       // manufacturing_solution_PI: ['', [Validators.required]],
       // part_of_product: ['', [Validators.required]],
-      attending_purpose: ['', [Validators.required]],
-      specific_solution: ['', [Validators.required]],
-      attended_innopack: ['', [Validators.required]],
+      attending_purpose: [null],
+      specific_solution: [null],
+      attended_innopack: [null],
       // firm_teamsize: [''],
       status: ['0'],
       registration_type: ['1'],
-      terms_condition: ['', [Validators.required]],
-      is_whatsapp_number: ['', [Validators.required]],
-      events: [''],
+      terms_condition: [null],
+      is_whatsapp_number: [null],
+      events: [null],
+      attending: [''],
+      priAttending: [''],
+      level: [''],
       
     });
 
@@ -161,7 +173,7 @@ console.log(indiaCodeObject);
     if(this.country_id==='247'){
       console.log("hii",this.country_id);
       this.DelegateService.getAllStates(this.country_id).subscribe((res: any) => {
-        this.ngxService.stop();
+        // this.ngxService.stop();
         this.statesData = res.data;
         console.log(this.statesData[0].state_name);
       this.othervalstate=this.statesData[0].state_name;
@@ -171,7 +183,7 @@ console.log(indiaCodeObject);
         })
 
         this.DelegateService.getAllCities(this.othervalstate_id).subscribe((res: any) => {
-          this.ngxService.stop();
+          // this.ngxService.stop();
           this.cityData = res.data;
           console.log(this.cityData[0].city_name);
           this.othervalcity=this.cityData[0].city_name;
@@ -192,7 +204,7 @@ console.log(indiaCodeObject);
       
       }, (err: any) => {
         console.log("Err", err);
-        this.ngxService.stop();
+        // this.ngxService.stop();
       });
       
     }
@@ -204,22 +216,22 @@ console.log(indiaCodeObject);
       this.othervalcity='';
       console.log(typeof(this.othervalcity),this.othervalstate);
       
-    this.ngxService.start();
+    // this.ngxService.start();
     this.DelegateService.getAllStates(this.country_id).subscribe((res: any) => {
-      this.ngxService.stop();
+      // this.ngxService.stop();
       this.statesData = res.data;
     }, (err: any) => {
       console.log("Err", err);
-      this.ngxService.stop();
+      // this.ngxService.stop();
     });
   }
   }
 
   changeStates(e: any) {
     this.state_id = e.target.value;
-    this.ngxService.start();
+    // this.ngxService.start();
     this.DelegateService.getAllCities(this.state_id).subscribe((res: any) => {
-      this.ngxService.stop();
+      // this.ngxService.stop();
       this.cityData = res.data;
     });
   }
@@ -315,26 +327,26 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
         console.log("this.registrationForm.value", this.registrationForm.value);
 
         this.ngxService.start();
-        this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
-          if (result.success) {
-            console.log("result", result);
-            this.ngxService.stop();
-            // this.SharedService.ToastPopup('Delegate added successfully','', 'success')
-            this.SharedService.ToastPopup('', result.message, 'success')
+        // this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
+        //   if (result.success) {
+        //     console.log("result", result);
+        //     this.ngxService.stop();
+        //     // this.SharedService.ToastPopup('Delegate added successfully','', 'success')
+        //     this.SharedService.ToastPopup('', result.message, 'success')
            
-            this.openPopup();
-            // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            //   // this.router.navigateByUrl('/webhome');
-            //   // Show the popup message
+        //     this.openPopup();
+        //     // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        //     //   // this.router.navigateByUrl('/webhome');
+        //     //   // Show the popup message
            
-            // });
-          } else {
-            this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error')
+        //     // });
+        //   } else {
+        //     this.ngxService.stop();
+        //     this.SharedService.ToastPopup('', result.message, 'error')
 
-          }
-        },
-        );
+        //   }
+        // },
+        // );
       }
       else {
         return this.registrationForm.reset({});

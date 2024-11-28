@@ -4,7 +4,7 @@ export const environment = {
 
     //  apiUrl: 'https://apis.pharmapreconnectcongress.com/api/v1',   //production
 
-  apiUrl: 'https://apicphlindia.cylsys.com/api/v1',   //development
+  apiUrl: 'https://preconnectapi.cylsys.com/api/v1',   //development
   // apiUrl: 'http://localhost:5000/api/v1',  //local
   
   apiMockUrl: '/api/v1',
