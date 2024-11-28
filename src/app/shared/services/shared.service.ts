@@ -53,6 +53,15 @@ export class SharedService {
     return this._apiHttpService.post(this._apiEndpointsService.registrationEndpoint(),data
     )
   }
+   contectUs(data:any) {
+    return this._apiHttpService.post(this._apiEndpointsService.contectUsEndpoint(),data
+    )
+  }
+
+  postPeacekeeper(data:any) {
+    return this._apiHttpService.post(this._apiEndpointsService.peacekeeperEndpoint(),data
+    )
+  }
 
   capchaa() {
     return this._apiHttpService.get(this._apiEndpointsService.captchaEndpoint()

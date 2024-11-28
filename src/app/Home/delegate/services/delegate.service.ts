@@ -14,6 +14,10 @@ export class DelegateService {
     private _apiEndpointsService: ApiEndpointsService,
     // private translate: TranslateService
   ) { }
+  getSpeakers() {
+    return this._apiHttpService.get(this._apiEndpointsService.getSpeakersEndpoint());
+  }
+ 
   getdates() {
     return this._apiHttpService.get(this._apiEndpointsService.getdatesEndpoint());
   }

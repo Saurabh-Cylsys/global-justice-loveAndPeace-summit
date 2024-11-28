@@ -1,5 +1,5 @@
 <main class="index delegate-form">
-  <form>
+  <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
     <section class="section7 p-lg-5">
       <div class="container-fluid">
         <div class="row">
@@ -40,26 +40,77 @@
             <div class="row g-2 mt-5">
               <div class="mb-5 col-md-6">
                 <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="title"
-                    placeholder=""
-                    value=""
-                  />
+                  <select
+                  name="nametitle[1]"
+                  id="nametitle1"
+                  class="form-control"
+                  required
+                  data-error="Please select option"
+                  formControlName="title"
+                 
+                >
+                  <option selected value="" disabled>
+                    --Please select--
+                  </option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mrs.">Mrs.</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Ms.">Ms.</option>
+                  <option value="Dr.">Dr.</option>
+                  <option value="Prof.">Prof.</option>
+                  <option value="Capt.">Capt.</option>
+                  <option value="Hon">Hon</option>
+                  <option value="Lord">Lord</option>
+                </select>
                   <label for="title">Title</label>
+                  <div
+                  *ngIf="
+                    getcontrol('title')?.errors &&
+                    getcontrol('title')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('title')?.errors?.['required']"
+                    >Title is required</small
+                  >
+                </div>
+                <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="mb-5 col-md-6">
                 <div class="form-floating">
                   <input
-                    type="email_id"
+                    type="email"
                     class="form-control"
                     id="email"
                     placeholder=""
+                      formControlName="email"
+                      required
+                    name="email"
                     value=""
                   />
                   <label for="email">Email</label>
+
+                  <div class="help-block with-errors"></div>
+                  <div
+                    *ngIf="
+                      getcontrol('email')?.errors &&
+                      getcontrol('email')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['required']"
+                      >Email is Required.</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['email']"
+                      >Please enter valid email
+                      address.</small
+                    >
+                  </div>
                 </div>
               </div>
               <div class="my-5 col-md-6">
@@ -68,12 +119,33 @@
                     type="text"
                     class="form-control"
                     id="FirstName"
-                    formControlName="first_name"
-                    name="first_name"
+                    formControlName="firstName"
+                    name="firstName"
                     placeholder=""
+                    required
                     value=""
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && f.last_name.errors
+                    }"
                   />
                   <label for="FirstName">First Name</label>
+
+                  <div
+                  class="text-danger"
+                  *ngIf="
+                    getcontrol('firstName')?.errors &&
+                    getcontrol('firstName')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('firstName')?.errors?.['required']"
+                    >First name is required</small
+                  >
+                 
+                </div>
+                <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="my-5 col-md-6">
@@ -81,26 +153,58 @@
                   <input
                     type="text"
                     class="form-control"
-                    formControlName="last_name"
-                    name="last_name"
+                    formControlName="lastName"
+                    name="lastName"
                     id="LastName"
+                    required
                     placeholder=""
                     value=""
                   />
                   <label for="LastName">Last Name</label>
+
+                  <div
+                  *ngIf="
+                    getcontrol('lastName')?.errors &&
+                    getcontrol('lastName')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('lastName')?.errors?.['required']"
+                    >Last name is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('lastName')?.errors?.['minlength']"
+                    >Last name must be at least 3 characters
+                    long.</small
+                  >
+                </div>
+                <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="my-5 col-md-2">
                 <div class="form-group">
                   <p class="m-0">Country Code</p>
-                  <input
-                    type="number"
-                    class="form-control pt-1 pb-0"
-                    formControlName="country_code"
-                    name="country_code"
-                    id="phone"
-                    placeholder=""
-                  />
+                  <select
+                  formControlName="countryCode"
+                  class="form-control"
+                  required
+                  data-error="Please enter code"
+                >
+                  <option selected value="" disabled>
+                    --Please select--
+                  </option>
+                  <option
+                    *ngFor="
+                      let code of code;
+                      let j = index
+                    "
+                    [value]="code.country_mobile_code"
+                  >
+                    {{ code.country_mobile_code }}
+                  </option>
+                </select>
                 </div>
               </div>
               <div class="my-5 col-md-10">
@@ -108,32 +212,82 @@
                   <input
                     type="tel"
                     class="form-control"
-                    formControlName="mobile_number"
-                    name="mobile_number"
+                    formControlName="phoneNumber"
+                    name="mobile_number[1]"
                     id="mobileNomber"
+                    (keypress)="keyPressNumbers($event)"
+                    required
                     placeholder=""
+                    pattern=".{8,12}"
+                    minlength="10"
+                    maxlength="15"  
                     value=""
                   />
                   <label for="mobileNomber">Phone Number</label>
+
+
+                  <div class="help-block with-errors"></div>
+                  <div
+                    *ngIf="
+                      getcontrol('phoneNumber')?.errors &&
+                      getcontrol('phoneNumber')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['required']"
+                      >Mobile number is required</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
+                      >Mobile number must be at least 10
+                      digit long.</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['repeatingDigits']"
+                    >
+                      Mobile number cannot contain repeating
+                      digits.
+                    </small>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        contactUsForm
+                          .get('mobile_number')
+                          .hasError(
+                            'containsConsecutiveZeros'
+                          )
+                      "
+                    >
+                      cannot contain three or more
+                      consecutive zeros.
+                    </small>
+                  </div>
                 </div>
               </div>
               <div class="my-5 col-md-12">
                 <div class="form-group">
                   <label for="question">Your Question</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="question"
-                    name="question"
+                  <textarea
+                  type="text"
+                  class="form-control"
+                  placeholder="Write your que.."
+                  value=""
+                  formControlName="yourQuestion"
+                    name="yourQuestion"
                     id="question"
-                    placeholder="Write your que.."
-                    value=""
-                  />
-                  
+                  style="border: 1px dotted; border-radius: 10px;"
+                  >
+
+                  </textarea>
+                   
+                    
                 </div>
               </div>
               <div class="my-5 col-md-12 text-center">
-                <button class="btn btn-success p-2 w-50 text-center">Send</button>
+                <button type="submit" class="btn btn-success p-2 w-50 text-center"[disabled]="this.contactUsForm.invalid" >Send</button>
               </div>
             </div>
           </div>

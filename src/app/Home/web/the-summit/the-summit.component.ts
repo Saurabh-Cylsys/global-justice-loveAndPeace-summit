@@ -1,10 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { DelegateService } from '../../delegate/services/delegate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-the-summit',
   templateUrl: './the-summit.component.html',
   styleUrls: ['./the-summit.component.css']
 })
-export class TheSummitComponent {
+export class TheSummitComponent implements OnInit{
 
+  speakers: any;
+
+  constructor(
+    private formBuilder: FormBuilder,
+     private DelegateService: DelegateService,
+     private SharedService: SharedService, 
+     private ngxService: NgxUiLoaderService, 
+     private router: Router) {
+
+   }
+   ngOnInit(): void {
+  
+    this.getInviteSpeakers()
+   }
+    getInviteSpeakers(){
+    this.DelegateService.getSpeakers().subscribe((res: any) => {
+      console.log("speakers", res.data);
+      this.speakers =res.data;
+    }, (err:any) => {
+      console.log("error", err);
+    });
+  }
 }

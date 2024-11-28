@@ -9,7 +9,9 @@ export class Constants {
     public readonly API_IS_DEVELOPMENT_ENV: boolean = environment.production;
 
 
-    public readonly API_ENDPOINT_registration: string = 'registration/create'
+    public readonly API_ENDPOINT_registration: string = 'registration/create-delegate-profile'
+    public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
+    public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
     public readonly API_ENDPOINT_checkEmailAndMobile: string = 'registration/delegate/already'
     public readonly API_ENDPOINT_checkEmailAndMobile_1: string = 'registration/partner/already'
     public readonly API_ENDPOINT_checkEmailAndMobile_2: string = 'registration/speaker/already'
@@ -36,6 +38,7 @@ export class Constants {
     public readonly API_ENDPOINT_unapproveRegisration: string = 'registration/unapprove'
  
     public readonly API_ENDPOINT_getdates:string = 'getDates'
+    public readonly API_ENDPOINT_GET_SPEAKERS:string = 'invite_speakers'
     public readonly API_ENDPOINT_GET_getAllCountrycode:string = 'getAll/countrycode'
     public readonly API_ENDPOINT_GET_ALL_COUNTRY:string = 'getcountry'
     public readonly API_ENDPOINT_GET_ALL_STATES:string = 'getstate'

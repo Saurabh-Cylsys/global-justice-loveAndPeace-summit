@@ -191,13 +191,15 @@
             <h2>JOIN US AS A PEACEKEEPER NOW</h2>
           </div>
           <div class="col-md-8">
-            <form>
+            <form [formGroup]="peacekeepersForm" (ngSubmit)="submitData()">
               <div class="row g-2">
                 <div class="col-md">
                   <div class="form-floating">
                     <input
                       type="text"
                       class="form-control"
+                      formControlName="full_name"
+                      name="full_name"
                       id="title"
                       placeholder=""
                       value=""
@@ -211,7 +213,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="LastName"
+                      formControlName="country"
+                      name="country"
+                      id="country"
                       placeholder=""
                       value=""
                     />
@@ -226,7 +230,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="title"
+                      formControlName="email_id"
+                    name="email_id"
+                      id="email"
                       placeholder=""
                       value=""
                     />
@@ -239,11 +245,16 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="LastName"
+                      formControlName="mobile_number"
+                    name="mobile_number"
+                      id="mobile_number"
                       placeholder=""
+                      pattern=".{8,12}"
+                      minlength="10"
+                      maxlength="10"
                       value=""
                     />
-                    <label for="LastName">Mobile Number :</label>
+                    <label for="mobilenumber">Mobile Number :</label>
                   </div>
                 </div>
               </div>
@@ -263,13 +274,17 @@
                     <input
                       type="file"
                       class="form-control"
+                    name="profile_picture"
                       id="title"
+                      (change)="onFileChange($event)"
                       placeholder=""
                       value=""
                     />
                   </div>
                 </div>
+                <button type="submit" class="btn btn-success p-2 w-50 text-center" >Save</button>
               </div>
+
             </form>
           </div>
           <div class="col-md-4">
