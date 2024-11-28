@@ -173,7 +173,13 @@ export class ApiEndpointsService {
   public registrationEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_registration);
   }
-
+  public contectUsEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US);
+  }
+  
+  public peacekeeperEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER);
+  }
   
   public checkEmailAndMobileEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_checkEmailAndMobile);
@@ -242,6 +248,9 @@ export class ApiEndpointsService {
 
   public unapproveRegisrationEndpoint(user_id:any): string {
     return this.createUrl(this._constants.API_ENDPOINT_unapproveRegisration + '/' + user_id);
+  }
+  public getSpeakersEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS);
   }
   public getdatesEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_getdates);

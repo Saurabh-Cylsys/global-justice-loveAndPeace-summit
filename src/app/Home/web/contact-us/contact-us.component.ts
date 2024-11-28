@@ -15,6 +15,7 @@ export class ContactUsComponent {
   helpjustice = 'help@justice-love-peace.com';
   code: any;
   contactUsForm: any = FormGroup;
+  reqBody: any;
   submitted = false;
 
   constructor( private formBuilder: FormBuilder, private DelegateService: DelegateService, private SharedService: SharedService, private ngxService: NgxUiLoaderService, private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) {
@@ -29,30 +30,20 @@ export class ContactUsComponent {
 
     this.contactUsForm = this.formBuilder.group({
       title: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
-      country_code: ['', [Validators.required]],
-      mobile_number: ['+91', [
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      countryCode: ['', [Validators.required]],
+      phoneNumber: ['', [
         Validators.required,
         Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
-        this.noRepeatingDigits(), this.containsConsecutiveZeros()
+        this.noRepeatingDigits(),  this.containsConsecutiveZeros()
       ]],
-      email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      question: [''],
+      email: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
+      yourQuestion: [''],
 
     });
 
   }
-  containsConsecutiveZeros(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const value = control.value as string;
-      if (value && /000000/.test(value)) {
-        return { containsConsecutiveZeros: true };
-      }
-      return null;
-    };
-  }
-
   noRepeatingDigits(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -67,6 +58,15 @@ export class ContactUsComponent {
     };
   }
 
+  containsConsecutiveZeros(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value as string;
+      if (value && /000000/.test(value)) {
+        return { containsConsecutiveZeros: true };
+      }
+      return null;
+    };
+  }
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
@@ -79,11 +79,60 @@ const indiaCodeObject =  this.code.find((item:any) => item.country_mobile_code =
 console.log(indiaCodeObject);
 
       this.contactUsForm.patchValue({
-        country_code :indiaCodeObject.country_mobile_code
+        countryCode :indiaCodeObject.country_mobile_code
       })
     }, (err: any) => {
       console.log("error", err);
     });
+  }
+
+  keyPressNumbers(event: any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    // Only Numbers 0-9
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
+  }
+  submitData(): void {
+    console.log(this.contactUsForm.value);
+    this.submitted = true;
+    if (this.contactUsForm.invalid) {
+      return console.log('Invalid Details');
+    }
+    if (this.submitted) {
+      const { valid } =
+        this.contactUsForm;
+      if (valid) {
+        this.reqBody = {
+          ...this.contactUsForm.value,
+        };
+        console.log("this.contactUsForm.value", this.contactUsForm.value);
+        this.ngxService.start();
+        this.SharedService.contectUs(this.reqBody).subscribe((result: any) => {
+          if (result.success) {
+            console.log("result", result);
+            this.ngxService.stop();
+            this.SharedService.ToastPopup('', result.message, 'success')        
+           
+          } 
+        },(err) => {
+          this.ngxService.stop();
+  
+     
+            this.SharedService.ToastPopup('', err.error.message, 'error')
+
+          
+        }
+        );
+      }  
+      else {
+        return this.contactUsForm.reset({});
+      }
+
+    }
   }
 
 }

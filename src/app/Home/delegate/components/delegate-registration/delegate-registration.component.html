@@ -395,25 +395,25 @@
                                       class="form-control"
                                       value=""
                                       
-                                      [(ngModel)]="linkedIn_url"
-                                      (keydown)="onKeyDown($event, linkedIn_url)"
-                                      data-error="Please enter valid linkedIn_url"
-                                      formControlName="linkedIn_url"
+                                      [(ngModel)]="linkedIn_profile"
+                                      (keydown)="onKeyDown($event, linkedIn_profile)"
+                                      data-error="Please enter valid linkedIn_profile"
+                                      formControlName="linkedIn_profile"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.linkedIn_url.errors
+                                          submitted && f.linkedIn_profile.errors
                                       }"
                                     />
                                     <div
                                       *ngIf="
-                                        getcontrol('linkedIn_url')?.errors &&
-                                        getcontrol('linkedIn_url')?.touched
+                                        getcontrol('linkedIn_profile')?.errors &&
+                                        getcontrol('linkedIn_profile')?.touched
                                       "
                                     >
                                       
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('linkedIn_url')?.errors?.['pattern']"
+                                        *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']"
                                         >Please enter valid linkedIn URL.</small
                                       >
                                     </div>
@@ -425,36 +425,36 @@
                                   <label
                                     class="col-md-12 no-padding"
                                     for="profileurl"
-                                    >Facebook Profile</label
+                                    >Instagram ID</label
                                   >
                                   <div class="col-md-12 no-padding">
                                     <input
                                       type="text"
                                       name=""
-                                      id="facebook_url"
+                                      id="instagram_profile"
                                       placeholder=""
                                       class="form-control"
                                       value=""
-                                      [(ngModel)]="facebook_url"
-                                      (keydown)="onKeyDown($event, facebook_url)"
+                                      [(ngModel)]="instagram_profile"
+                                      (keydown)="onKeyDown($event, instagram_profile)"
                                       data-error="Please enter valid Facebook URL"
-                                      formControlName="facebook_url"
+                                      formControlName="instagram_profile"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.facebook_url.errors
+                                          submitted && f.instagram_profile.errors
                                       }"
                                     />
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
-                                        getcontrol('facebook_url')?.errors &&
-                                        getcontrol('facebook_url')?.touched
+                                        getcontrol('instagram_profile')?.errors &&
+                                        getcontrol('instagram_profile')?.touched
                                       "
                                     >
                                                                           <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('facebook_url')?.errors?.['pattern']"
-                                        >Please enter valid Facebook URL.</small
+                                        *ngIf="getcontrol('instagram_profile')?.errors?.['pattern']"
+                                        >Please enter valid Instagram ID.</small
                                       >
                                     </div>
                                   </div>
@@ -671,38 +671,38 @@
                                     <span class="required-icon"></span
                                     ><input
                                       type="text"
-                                      name="address_line_1"
-                                      id="address_line_1"
+                                      name="address"
+                                      id="address"
                                       placeholder=""
                                       class="form-control"
                                       value=""
                                       required
-                                      [(ngModel)]="address_line_1"
+                                      [(ngModel)]="address"
                                       (keydown)="
-                                        onKeyDown($event, address_line_1)
+                                        onKeyDown($event, address)
                                       "
-                                      formControlName="address_line_1"
+                                      formControlName="address"
                                       minlength="5"
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.address_line_1.errors
+                                          submitted && f.address.errors
                                       }"
                                     />
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
-                                        getcontrol('address_line_1')?.errors &&
-                                        getcontrol('address_line_1')?.touched
+                                        getcontrol('address')?.errors &&
+                                        getcontrol('address')?.touched
                                       "
                                     >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('address_line_1')?.errors?.['required']"
+                                        *ngIf="getcontrol('address')?.errors?.['required']"
                                         >Address is Required.</small
                                       >
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('address_line_1')?.errors?.['minlength']"
+                                        *ngIf="getcontrol('address')?.errors?.['minlength']"
                                       >
                                         Address must be at least 5 characters
                                         long.</small
@@ -719,7 +719,47 @@
                                       *</span
                                     >
                                   </label>
-                                  <select
+                                  <div class="col-md-12 no-padding">
+                                    <span class="required-icon"></span
+                                    ><input
+                                      type="text"
+                                      name="country"
+                                      id="country"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      required
+                                      formControlName="country"
+                                      minlength="5"
+                                      [ngClass]="{
+                                        'is-invalid':
+                                          submitted && f.country.errors
+                                      }"
+                                    />
+                                    <div class="help-block with-errors"></div>
+                                    <div class="help-block with-errors"></div>
+                                  <div
+                                    *ngIf="
+                                      getcontrol('country')?.errors &&
+                                      getcontrol('country')?.touched
+                                    "
+                                  >
+                                    <small
+                                      class="text-danger"
+                                      *ngIf="getcontrol('country')?.errors?.['required']"
+                                      >Country is Required.</small
+                                    >
+                                  </div>
+                                  </div>
+
+
+
+
+
+
+
+
+                                  <!-- <select
                                     (change)="changeCountry($event)"
                                     class="form-control"
                                     class="form-control"
@@ -734,7 +774,6 @@
                                     <option value="" disabled>
                                       Select Country
                                     </option>
-                                    <!-- <option [value]="101">India</option> -->
                                     <option
                                       *ngFor="
                                         let country of countryData;
@@ -757,18 +796,46 @@
                                       *ngIf="getcontrol('country')?.errors?.['required']"
                                       >Country is Required.</small
                                     >
-                                  </div>
+                                  </div> -->
                                 </div>
                                 <div class="col-md-4">
                                   <label for=""
-                                    >State/Province<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    >
+                                    >State/Province
                                   </label>
-                                  <select
+                                  <div class="col-md-12 no-padding">
+                                    <input
+                                      type="text"
+                                      name="state"
+                                      id="state"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      formControlName="state"
+                                      minlength="5"
+                                      
+                                    />
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('state')?.errors &&
+                                        getcontrol('state')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('state')?.errors?.['required']"
+                                        >Address is Required.</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('state')?.errors?.['minlength']"
+                                      >
+                                        Address must be at least 5 characters
+                                        long.</small
+                                      >
+                                    </div> -->
+                                  </div>
+
+                                 <!-- <select
                                     class="form-control"
                                     (change)="changeStates($event)"
                                     id="state"
@@ -780,12 +847,12 @@
                                     <option value="" disabled selected>
                                       Select State
                                     </option>
-                                    <!-- <option [value]="othervalstate_id" [selected]="isOthersSelected">
+                                    <option [value]="othervalstate_id" [selected]="isOthersSelected">
                                         {{ isOthersSelected ? othervalstate : 'Select State' }}
-                                      </option> -->
-                                    <!-- <option *ngFor="let state of statesData; let j = index" [value]="state.state_id">
+                                      </option>
+                                    <option *ngFor="let state of statesData; let j = index" [value]="state.state_id">
                                         {{ state.state_name }}
-                                      </option> -->
+                                      </option>
                                     <option
                                       *ngFor="
                                         let state of statesData;
@@ -800,8 +867,8 @@
                                     >
                                       {{ state.state_name }}
                                     </option>
-                                  </select>
-                                  <div
+                                  </select> -->
+                                  <!-- <div
                                     *ngIf="
                                       getcontrol('state')?.errors &&
                                       getcontrol('state')?.touched
@@ -812,7 +879,7 @@
                                       *ngIf="getcontrol('state')?.errors?.['required']"
                                       >State is Required.</small
                                     >
-                                  </div>
+                                  </div> -->
                                 </div>
                                 <div class="col-md-4">
                                   <label for=""
@@ -823,7 +890,19 @@
                                       *</span
                                     >
                                   </label>
-                                  <select
+                                  <div class="col-md-12 no-padding">
+                                    <input
+                                      type="text"
+                                      name="city"
+                                      id="city"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      formControlName="city"
+                                      minlength="5"
+                                      
+                                    />
+                                  <!-- <select
                                     class="form-control"
                                     (change)="changeCity($event)"
                                     id="city"
@@ -838,9 +917,6 @@
                                       Select City
                                     </option>
 
-                                    <!-- <option *ngFor="let city of cityData; let k = index" [value]="city.city_id" >
-                                        {{ city.city_name }}
-                                      </option> -->
                                     <option
                                       *ngFor="
                                         let city of cityData;
@@ -855,7 +931,7 @@
                                     >
                                       {{ city.city_name }}
                                     </option>
-                                  </select>
+                                  </select> -->
                                   <div
                                     *ngIf="
                                       getcontrol('city')?.errors &&
@@ -868,6 +944,7 @@
                                       >City is Required.</small
                                     >
                                   </div>
+                                </div>
                                 </div>
                                 <div
                                   class="form-group fg-field_9 col-md-4 col-sm-4"
@@ -963,10 +1040,10 @@
                           <input
                             class="form-check-input"
                             type="radio"
-                            name="attending"
+                            name="attend_summit"
                             id="gridRadios1"
-                            formControlName="attending"
-                            value="in-person"
+                            formControlName="attend_summit"
+                            value="0"
                             checked
                           />
                           <label class="form-check-label" for="gridRadios1">
@@ -977,10 +1054,10 @@
                           <input
                             class="form-check-input"
                             type="radio"
-                            formControlName="attending"
-                            name="attending"
+                            formControlName="attend_summit"
+                            name="attend_summit"
                             id="gridRadios2"
-                            value="online"
+                            value="1"
                           />
                           <label class="form-check-label" for="gridRadios2">
                             Online
@@ -1002,10 +1079,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="priAttending"
-                            name="priAttending"
+                            formControlName="attendee_purpose"
+                            name="attendee_purpose"
                               id="attending1"
-                              value="Gathering Knowledge"
+                              value="0"
                               checked
                             />
                             <label class="form-check-label" for="attending1">
@@ -1016,10 +1093,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="priAttending"
-                            name="priAttending"
+                            formControlName="attendee_purpose"
+                            name="attendee_purpose"
                               id="attending2"
-                              value="Networking"
+                              value="1"
                             />
                             <label class="form-check-label" for="attending2">
                               Networking
@@ -1029,10 +1106,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="priAttending"
-                            name="priAttending"
+                            formControlName="attendee_purpose"
+                            name="attendee_purpose"
                               id="attending3"
-                              value="Speaker Profile"
+                              value="2"
                             />
                             <label class="form-check-label" for="attending3">
                               Speaker Profile
@@ -1042,10 +1119,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="priAttending"
-                            name="priAttending"
+                            formControlName="attendee_purpose"
+                            name="attendee_purpose"
                               id="attending4"
-                              value="Working for Peace"
+                              value="3"
                             />
                             <label class="form-check-label" for="attending4">
                               Working for Peace
@@ -1055,10 +1132,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="priAttending"
-                            name="priAttending"
+                            formControlName="attendee_purpose"
+                            name="attendee_purpose"
                               id="attending5"
-                              value="Other"
+                              value="4"
                             />
                             <label class="form-check-label" for="attending5">
                               Other
@@ -1081,10 +1158,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                              name="level"
-                            formControlName="level"
+                              name="conference_lever_interest"
+                            formControlName="conference_lever_interest"
                             id="level1"
-                              value="Justice"
+                              value="0"
                               checked
                             />
                             <label class="form-check-label" for="level1">
@@ -1095,10 +1172,10 @@
                             <input
                               class="form-check-input"
                               type="radio"
-                            formControlName="level"
-                            name="level"
+                            formControlName="conference_lever_interest"
+                            name="conference_lever_interest"
                               id="level2"
-                              value="Love"
+                              value="1"
                             />
                             <label class="form-check-label" for="level2">
                               Love
@@ -1107,11 +1184,11 @@
                           <div class="form-check col-md-4 my-3">
                             <input
                               class="form-check-input"
-                            formControlName="level"
+                            formControlName="conference_lever_interest"
                             type="radio"
-                              name="level"
+                              name="conference_lever_interest"
                               id="level3"
-                              value="Peace"
+                              value="2"
                             />
                             <label class="form-check-label" for="level3">
                               Peace

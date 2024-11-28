@@ -27,6 +27,7 @@ export class DelegateRegistrationComponent {
   cities: any;
   states: any;
   countries: any;
+  country:any;
   countryData: any;
   statesData: any;
   cityData: any;
@@ -37,27 +38,17 @@ export class DelegateRegistrationComponent {
   terms1: any;
   first_name: string = '';
   last_name: string = '';
-  department: string = '';
-  designation: string = '';
   mobile_number: string = '';
   email_id: string = '';
-  linkedIn_url: string = '';
-  facebook_url: string = '';
-  company_name: string = '';
-  company_address: string = '';
+  linkedIn_profile: string = '';
+  instagram_profile: string = '';
   profession_1: string = '';
   profession_2: string = '';
-  address_line_1: string = '';
-  address_line_2: string = '';
-  address_line_3: string = '';
+  address: string = '';
   pin_code: string = '';
   website: string = '';
   represent_pharmaceutical_industry: string = '';
   manufacturing_solution_PI: string = '';
-  part_of_product: string = '';
-  attending_purpose: string = '';
-  specific_solution: string = '';
-  attended_innopack: string = '';
   fullURL: string;
   othervalstate: any='';
   othervalstate_id:any='';
@@ -74,15 +65,13 @@ export class DelegateRegistrationComponent {
   get f() { return this.registrationForm.controls; }
   ngOnInit(): void {
   
-    this.getdates()
-    this.getAllCountries()
+    // this.getdates()
+    // this.getAllCountries()
     this.getAllCountrycode()
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      department: [null],
-      designation: [null],
       country_code: ['', [Validators.required]],
 
       mobile_number: ['+91', [
@@ -91,52 +80,35 @@ export class DelegateRegistrationComponent {
         this.noRepeatingDigits(), this.containsConsecutiveZeros()
       ]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      linkedIn_url:['', [Validators.pattern('https?://.+')]],
-      facebook_url:['', [Validators.pattern('https?://.+')]],
-      company_name: [null],
-      company_address: [null],
+      linkedIn_profile:['', [Validators.pattern('https?://.+')]],
+      instagram_profile:['', [Validators.pattern('https?://.+')]],
       profession_1: ['', [Validators.required]],// need 
       profession_2: [''],// need 
       website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
-      address_line_1: ['', [Validators.required]],
-      address_line_2: [null],
-      address_line_3: [null],
       organization_name: [null],// need 
+      address: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      state: ['', [Validators.required]],
+      state: [''],
       city: ['', [Validators.required]],
       pin_code: ['', [Validators.required, Validators.pattern(/^\d{6}$/), this.containsConsecutiveZeros()]],
-      conference_day: [null],
-      // organization_role: [''],
-      // represent_pharmaceutical_industry: ['', [Validators.required]],
-      // manufacturing_solution_PI: ['', [Validators.required]],
-      // part_of_product: ['', [Validators.required]],
-      attending_purpose: [null],
-      specific_solution: [null],
-      attended_innopack: [null],
-      // firm_teamsize: [''],
+      attend_summit: ['', [Validators.required]],
+      attendee_purpose: ['', [Validators.required]],
+      conference_lever_interest: ['', [Validators.required]],
+      created_by: "Admin",
       status: ['0'],
-      registration_type: ['1'],
-      terms_condition: [null],
-      is_whatsapp_number: [null],
-      events: [null],
-      attending: [''],
-      priAttending: [''],
-      level: [''],
-      
     });
 
   }
 
 
-  getdates(){
-    this.DelegateService.getdates().subscribe((res: any) => {
-      console.log("dates", res.data);
-      this.dates = res.data;
-    }, (err:any) => {
-      console.log("error", err);
-    });
-  }
+//   getdates(){
+//     this.DelegateService.getdates().subscribe((res: any) => {
+//       console.log("dates", res.data);
+//       this.dates = res.data;
+//     }, (err:any) => {
+//       console.log("error", err);
+//     });
+//   }
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
@@ -156,14 +128,14 @@ console.log(indiaCodeObject);
     });
   }
 
-  getAllCountries() {
-    this.DelegateService.getAllCountries().subscribe((res: any) => {
-      console.log("CountryData1", res.data);
-      this.countryData = res.data;
-    }, (err: any) => {
-      console.log("error", err);
-    });
-  }
+//   getAllCountries() {
+//     this.DelegateService.getAllCountries().subscribe((res: any) => {
+//       console.log("CountryData1", res.data);
+//       this.countryData = res.data;
+//     }, (err: any) => {
+//       console.log("error", err);
+//     });
+//   }
 
   changeCountry(e: any) {
     
@@ -325,29 +297,31 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
       created_by:"user"
         };
         console.log("this.registrationForm.value", this.registrationForm.value);
-
         this.ngxService.start();
-        // this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
-        //   if (result.success) {
-        //     console.log("result", result);
-        //     this.ngxService.stop();
-        //     // this.SharedService.ToastPopup('Delegate added successfully','', 'success')
-        //     this.SharedService.ToastPopup('', result.message, 'success')
+        this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
+          if (result.success) {
+            console.log("result", result);
+            this.ngxService.stop();
+            this.SharedService.ToastPopup('', result.message, 'success')
            
-        //     this.openPopup();
-        //     // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        //     //   // this.router.navigateByUrl('/webhome');
-        //     //   // Show the popup message
+            // this.openPopup();
            
-        //     // });
-        //   } else {
-        //     this.ngxService.stop();
-        //     this.SharedService.ToastPopup('', result.message, 'error')
+           
+          } else {
+            this.ngxService.stop();
+            this.SharedService.ToastPopup('', result.message, 'error')
 
-        //   }
-        // },
-        // );
-      }
+          }
+        },(err) => {
+          this.ngxService.stop();
+  
+     
+            this.SharedService.ToastPopup('', err.error.message, 'error')
+
+          
+        }
+        );
+      }  
       else {
         return this.registrationForm.reset({});
       }
