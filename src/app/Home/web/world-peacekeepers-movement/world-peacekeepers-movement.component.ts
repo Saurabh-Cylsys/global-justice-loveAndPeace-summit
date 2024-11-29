@@ -96,7 +96,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'success')
       this.peacekeepersForm.reset();
-     
     } else {
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'error')

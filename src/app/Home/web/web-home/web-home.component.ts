@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 declare var AOS: any;
 
@@ -18,10 +19,10 @@ declare var AOS: any;
 
 
 
-export class WebHomeComponent {
-
-
-
+export class WebHomeComponent implements OnInit{
+  // headerIcon:any
+  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
+  ) {}
   ngOnInit(): void {
 
     AOS.init({
@@ -32,31 +33,18 @@ export class WebHomeComponent {
 
     console.log("home");
 
-
-
-  }
-
-
-
-
-
-  constructor(
-
-
-
-    private router: Router,
-
-
-
-  ) {
-
-
+   this.SharedService.headerIcon =  this._router.routerState.snapshot.url;
 
   }
+
+
+
+
+
 
   toggle() {
 
-    this.router.navigateByUrl('/aboutUs');
+    this._router.navigateByUrl('/aboutUs');
 
   }
 
@@ -68,9 +56,9 @@ export class WebHomeComponent {
 
     console.log("del");
 
-    this.router.navigate(['/delegate-registration'])
+    this._router.navigate(['/delegate-registration'])
 
-    // this.router.navigate[('/delegate-registration')];
+    // this._router.navigate[('/delegate-registration')];
 
 
 

@@ -11,8 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SharedService {
   apiUrl: any = environment.apiUrl;
-
-  permissionData : any;
+  headerIcon: any = '';
+  permissionData: any;
 
   private refreshPermissionSubject = new Subject<boolean>();
   refresh$ = this.refreshPermissionSubject.asObservable();
@@ -21,7 +21,7 @@ export class SharedService {
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
-    private _toastr :ToastrService
+    private _toastr: ToastrService
   ) { }
   ToastPopup(errorMsg: string, errorModule: string, errorType: string) {
     switch (errorType) {
@@ -49,17 +49,17 @@ export class SharedService {
   }
 
 
-  registration(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.registrationEndpoint(),data
+  registration(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.registrationEndpoint(), data
     )
   }
-   contectUs(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.contectUsEndpoint(),data
+  contectUs(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.contectUsEndpoint(), data
     )
   }
 
-  postPeacekeeper(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.peacekeeperEndpoint(),data
+  postPeacekeeper(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.peacekeeperEndpoint(), data
     )
   }
 
@@ -69,17 +69,17 @@ export class SharedService {
   }
 
 
-  registratiotjoin(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.registratiotjoinEndpoint(),data
+  registratiotjoin(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.registratiotjoinEndpoint(), data
     )
   }
-  addbrochure(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.addbrochureEndpoint(),data
+  addbrochure(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.addbrochureEndpoint(), data
     )
   }
 
-  brochure(data:any) {
-    return this._apiHttpService.post(this._apiEndpointsService.sales_brochureEndpoint(),data
+  brochure(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.sales_brochureEndpoint(), data
     )
   }
 

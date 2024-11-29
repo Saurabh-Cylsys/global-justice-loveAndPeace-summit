@@ -90,10 +90,10 @@ export class DelegateRegistrationComponent {
       country: ['', [Validators.required]],
       state: [''],
       city: ['', [Validators.required]],
-      pin_code: ['', [Validators.required, Validators.pattern(/^\d{6}$/), this.containsConsecutiveZeros()]],
-      attend_summit: ['', [Validators.required]],
-      attendee_purpose: ['', [Validators.required]],
-      conference_lever_interest: ['', [Validators.required]],
+      pin_code: [null],
+      attend_summit: ['0', [Validators.required]],
+      attendee_purpose: ['0', [Validators.required]],
+      conference_lever_interest: ['0', [Validators.required]],
       created_by: "Admin",
       status: ['0'],
     });
@@ -274,8 +274,9 @@ checkTerms1(evtt: any) {
 
 
 onKeyDown(event: KeyboardEvent, inputValue: string): void {
+  debugger
   // Check if the pressed key is the space bar and the input is empty
-  if (event.key === ' ' && inputValue.trim() === '') {
+  if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
   }
 }

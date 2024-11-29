@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-web-header',
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css'],
 })
-export class WebHeaderComponent {
-  constructor(private _router: Router) {}
-
-  ngOninit() {
-    // this.click();
+export class WebHeaderComponent implements OnInit{
+  headerIcon:any
+  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
+  ) {}
+  ngOnInit(): void {
+    this.headerIcon = this.SharedService.headerIcon;
+    console.log(this.headerIcon,"hhhhhh");
+    console.log(this._activeRouter.url,'WebHeaderComponent initialized');
   }
 
   displayMyDIV: boolean = false; // Initialize the visibility property

@@ -22,6 +22,11 @@ import { TheSummitComponent } from './the-summit/the-summit.component';
 import { PartnersComponent } from './partners/partners.component';
 import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AccessibilityComponent } from './accessibility/accessibility.component';
+import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
+import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 
 const routes: Routes = [
   {
@@ -53,6 +58,15 @@ const routes: Routes = [
       {path:'partners',component:PartnersComponent},
       {path:'world-peacekeepers-movement',component:WorldPeacekeepersMovementComponent},
       {path:'contact-us',component:ContactUsComponent},
+      //footer
+      
+      {path:'privacy-policy',component:PrivacyPolicyComponent},
+      {path:'accessibility',component:AccessibilityComponent},
+      {path:'cookie-policy',component:CookiePolicyComponent},
+      {path:'terms-of-use',component:TermsOfUseComponent},
+      {path:'visitor-terms-onditions',component:VisitorTermsOnditionsComponent},
+      
+      
       {path:'', redirectTo:'webhome', pathMatch:'full'}
     ]
   }

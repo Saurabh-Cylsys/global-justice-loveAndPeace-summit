@@ -26,6 +26,11 @@ import { TheSummitComponent } from './the-summit/the-summit.component';
 import { PartnersComponent } from './partners/partners.component';
 import { WorldPeacekeepersMovementComponent } from './world-peacekeepers-movement/world-peacekeepers-movement.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AccessibilityComponent } from './accessibility/accessibility.component';
+import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
+import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
@@ -54,6 +59,11 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     PartnersComponent,
     WorldPeacekeepersMovementComponent,
     ContactUsComponent,
+    PrivacyPolicyComponent,
+    AccessibilityComponent,
+    CookiePolicyComponent,
+    TermsOfUseComponent,
+    VisitorTermsOnditionsComponent,
   
     // WhoShouldAttendAndWhyComponent,
     

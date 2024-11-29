@@ -6,5 +6,9 @@ export const environment = {
   // apiUrl: 'http://localhost:5000/api/v1',  //local
   apiMockUrl:'/api/v1',
   domainUrl:'http://localhost:5000/',
+
+  // apiUrl:location.origin,
+  // apiMockUrl:location.origin,
+  // domainUrl:location.origin,
   app_env: 'production'
 };
