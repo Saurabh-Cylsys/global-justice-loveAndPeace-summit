@@ -1230,3 +1230,14 @@ section {
   right: 7%;
   top: 74%;
 }
+
+
+.imgUpload{
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 22.04px !important;
+  text-align: left !important;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #8D8D8D !important;
+  }
