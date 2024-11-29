@@ -1085,6 +1085,7 @@ section {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  background-color: var(--color5);
 }
 
 .floating_dots ul li a:hover p {
