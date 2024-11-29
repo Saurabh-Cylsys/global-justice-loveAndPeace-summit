@@ -304,14 +304,14 @@
     }
 }
 
-.dropbtn {
+/* .dropbtn {
     color: #000;
     padding: 16px;
     font-size: 16px;
     border: none;
     background-color: transparent;
     padding: 9px 7px;
-}
+} */
 
 .dropdown {
     position: relative;

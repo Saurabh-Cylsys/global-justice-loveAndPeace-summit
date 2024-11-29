@@ -12,4 +12,8 @@
   .index .section4 img {
     margin: 120px 0 0;
   }
+
+  .index .section1 .tableBox{
+    left: 0;
+  }
 }
