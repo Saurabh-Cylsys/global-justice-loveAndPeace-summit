@@ -1225,3 +1225,7 @@ section {
   border-radius: 50%;
   background-color: var(--color1) !important;
 }
+.second-image {
+  right: 7%;
+  top: 74%;
+}
