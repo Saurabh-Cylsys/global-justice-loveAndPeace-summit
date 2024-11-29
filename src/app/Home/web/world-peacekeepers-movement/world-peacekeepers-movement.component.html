@@ -1,4 +1,4 @@
-<main class="index theSumit " id="fullpage">
+<main class="index theSumit" id="fullpage">
   <div class="partner" id="1">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
@@ -37,7 +37,10 @@
           <div class="col-md-5">
             <ul class="p-0 text-center list-unstyled">
               <li>
-                <img src="assets/UIComponents/images/world-peacemaker.svg" alt="" />
+                <img
+                  src="assets/UIComponents/images/world-peacemaker.svg"
+                  alt=""
+                />
               </li>
               <li>
                 <img src="assets/UIComponents/images/partners/7.png" alt="" />
@@ -66,9 +69,8 @@
                 <img src="assets/UIComponents/images/partners/5.png" alt="" />
 
                 <p>
-                  World Peace Triangle-Peace with Oneself, Peace
-                  with Law, Peace with People, Peace with Nations
-                  (Total: 28 Peace Gems)
+                  World Peace Triangle-Peace with Oneself, Peace with Law, Peace
+                  with People, Peace with Nations (Total: 28 Peace Gems)
                 </p>
               </li>
               <li class="my-5">
@@ -122,7 +124,11 @@
           <div class="col-md-5">
             <ul class="p-0 text-center list-unstyled">
               <li>
-                <img src="assets/UIComponents/images/7.png" alt="" class="col-4" />
+                <img
+                  src="assets/UIComponents/images/7.png"
+                  alt=""
+                  class="col-4"
+                />
                 <p
                   style="
                     font-size: 28px;
@@ -204,26 +210,27 @@
                       placeholder=""
                       value=""
                     />
-                    <label for="title">Name :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
+                    <label for="title"
+                      >Name :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      >
+                    </label>
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        getcontrol('full_name')?.errors &&
+                        getcontrol('full_name')?.touched
+                      "
                     >
-                      *</span
-                    >
-                  </label>
-                  <div
-                                      class="text-danger"
-                                      *ngIf="
-                                        getcontrol('full_name')?.errors &&
-                                        getcontrol('full_name')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('full_name')?.errors?.['required']"
-                                        >First name is required</small
-                                      >
-                                                                       </div>
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('full_name')?.errors?.['required']"
+                        >First name is required</small
+                      >
+                    </div>
                   </div>
                 </div>
 
@@ -238,28 +245,30 @@
                       placeholder=""
                       value=""
                     />
-                    <label for="LastName">Country :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
+                    <label for="LastName"
+                      >Country :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
                     >
-                      *</span
-                    ></label>
                     <div
-                                    *ngIf="
-                                      getcontrol('country')?.errors &&
-                                      getcontrol('country')?.touched
-                                    "
-                                  >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('country')?.errors?.['required']"
-                                      >Country is Required.</small
-                                    >
-                                  </div>
+                      *ngIf="
+                        getcontrol('country')?.errors &&
+                        getcontrol('country')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('country')?.errors?.['required']"
+                        >Country is Required.</small
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-              
+
               <div class="row g-2 mt-5">
                 <div class="col-md">
                   <div class="form-floating">
@@ -267,35 +276,36 @@
                       type="text"
                       class="form-control"
                       formControlName="email_id"
-                    name="email_id"
+                      name="email_id"
                       id="email"
                       placeholder=""
                       value=""
                     />
-                    <label for="title">E-Mail :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
+                    <label for="title"
+                      >E-Mail :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
                     >
-                      *</span
-                    ></label>
                     <div
-                    *ngIf="
-                      getcontrol('email_id')?.errors &&
-                      getcontrol('email_id')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['required']"
-                      >Email is Required.</small
+                      *ngIf="
+                        getcontrol('email_id')?.errors &&
+                        getcontrol('email_id')?.touched
+                      "
                     >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['email']"
-                      >Please enter valid email
-                      address.</small
-                    >
-                  </div>
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('email_id')?.errors?.['required']"
+                        >Email is Required.</small
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('email_id')?.errors?.['email']"
+                        >Please enter valid email address.</small
+                      >
+                    </div>
                   </div>
                 </div>
 
@@ -305,7 +315,7 @@
                       type="number"
                       class="form-control"
                       formControlName="mobile_number"
-                    name="mobile_number"
+                      name="mobile_number"
                       id="mobile_number"
                       placeholder=""
                       pattern=".{8,12}"
@@ -313,54 +323,44 @@
                       maxlength="10"
                       value=""
                     />
-                    <label for="mobilenumber">Mobile Number :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
+                    <label for="mobilenumber"
+                      >Mobile Number :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
                     >
-                      *</span
-                    ></label>
                     <div
-                    *ngIf="
-                      getcontrol('mobile_number')?.errors &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                      >Mobile number is required</small
+                      *ngIf="
+                        getcontrol('mobile_number')?.errors &&
+                        getcontrol('mobile_number')?.touched
+                      "
                     >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                      >Mobile number must be at least 10
-                      digit long.</small
-                    >
-                
-
-                  </div>
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                        >Mobile number is required</small
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
+                        >Mobile number must be at least 10 digit long.</small
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- <div class="row g-2 mt-5">
-                <div class="col-md">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                      Do you want the email or phone number written on the badge? If yes, please tick the checkbox.
-                    </label>
-                  </div>
-                </div>
-              </div> -->
+
               <div class="row g-2 mt-5">
                 <div class="col-md">
-                  <div class="form-floating"><span
-                    class="form-label-span "
-                    style="color: #ff0000; float: left;"
-                  >
-                    *</span
-                  >
-                    <input
+                  <!--<div class="form-floating">
+                     <span
+                      class="form-label-span"
+                      style="color: #ff0000; float: left"
+                    >
+                      *</span
+                    >  <input
                       type="file"
                       class="form-control"
                     name="profile_picture"
@@ -368,21 +368,52 @@
                       (change)="onFileChange($event)"
                       placeholder=""
                       value=""
+                    /> 
+                  </div>-->
+                  <label for="" class="imgUpload">Image Upload</label>
+                  <div class="drop-zone">
+                    <img src="assets/UIComponents/images/upload.svg" alt="" />
+                    <span class="drop-zone__prompt"
+                      >Select your Image to start uploading</span
+                    >
+                    <span>or</span>
+                    <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
+                    <input
+                      class="custom-file-input"
+                      type="file"
+                      name="profile_picture"
+                      id="title"
+                      (change)="onFileChange($event)"
                     />
                   </div>
-                  
+                  <p style="
+                  font-size: 16px;
+                  font-weight: 400;
+                  line-height: var(--lineHeightsmd);
+                  letter-spacing: var(--letterSpacingmd);
+                  text-align: left;
+                  text-underline-position: from-font;
+                  text-decoration-skip-ink: none;
+                  color: #6D6D6D;">Only support .jpg, .png files</p>
                 </div>
               </div>
               <div class="row mt-5">
                 <div class="col-md text-center">
-                  <button type="submit" class="btn btn-success text-white col-1 text-center">Save</button>
+                  <button
+                    type="submit"
+                    class="btn btn-success text-white col-1 text-center"
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
             </form>
           </div>
           <div class="col-md-4">
             <ul class="list-unstyled text-center badge">
-              <li><img src="assets/UIComponents/images/join-us.png" alt="" /></li>
+              <li>
+                <img src="assets/UIComponents/images/join-us.png" alt="" />
+              </li>
               <li>
                 <button class="btn btn-success">
                   download your badge now
@@ -408,9 +439,12 @@
             <h2>7 Peace Values</h2>
           </div>
           <div class="col-md-12 text-center">
-            <img src="assets/UIComponents/images/7peace.svg" alt="" width="80%">
+            <img
+              src="assets/UIComponents/images/7peace.svg"
+              alt=""
+              width="80%"
+            />
           </div>
-
         </div>
       </div>
     </section>
@@ -420,19 +454,37 @@
       <div class="container-fluid h-100">
         <div class="row justify-content-center h-100">
           <div class="col-md-12 text-center">
-            <iframe width="928" height="522" src="https://www.youtube.com/embed/2zG6OIhym60"
-              title="Bringing World Peace" frameborder="0"
+            <iframe
+              width="928"
+              height="522"
+              src="https://www.youtube.com/embed/2zG6OIhym60"
+              title="Bringing World Peace"
+              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
           </div>
           <div class="col-md-4 p-5">
-            <img src="assets/UIComponents/images/wpm/img1.svg" alt="" width="100%">
+            <img
+              src="assets/UIComponents/images/wpm/img1.svg"
+              alt=""
+              width="100%"
+            />
           </div>
           <div class="col-md-4 p-5">
-            <img src="assets/UIComponents/images/wpm/img2.svg" alt="" width="100%">
+            <img
+              src="assets/UIComponents/images/wpm/img2.svg"
+              alt=""
+              width="100%"
+            />
           </div>
           <div class="col-md-4 p-5">
-            <img src="assets/UIComponents/images/wpm/img3.svg" alt="" width="100%">
+            <img
+              src="assets/UIComponents/images/wpm/img3.svg"
+              alt=""
+              width="100%"
+            />
           </div>
         </div>
       </div>
