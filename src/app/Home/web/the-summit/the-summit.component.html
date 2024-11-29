@@ -590,11 +590,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Aga Khan</td>
-                  <td>Spiritual Head of Ismaili Muslim Community</td>
+                <tr *ngFor="let item of speakers">
+                  <th>{{item.Name}}</th>
+                  <th>{{item.Profession_Position}}</th>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>Abdel Fattah Elsisi</td>
                   <td>President of Egypt</td>
                 </tr>
@@ -652,7 +652,7 @@
                 <tr>
                   <td>Bassirou Diomaye Faye</td>
                   <td>President of Senegal</td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>

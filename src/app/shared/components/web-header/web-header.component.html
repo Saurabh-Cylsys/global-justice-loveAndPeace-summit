@@ -48,7 +48,9 @@
 <header>
   <nav class="navbar navbar-expand-lg py-lg-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" *ngIf="headerIcon!=='/webhome'">
+        <!-- <img src="assets/UIComponents/images/innerLogo.png" alt="" width="80%"> -->
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -79,9 +81,9 @@
               >The Summit</a
             > -->
             <div class="hover-dropdown">
-              <button class="dropbtn">The Summit</button>
+              <button class="dropbtn" [routerLink]="['/the-summit']">The Summit</button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/the-summit']" fragment="1">Highlights of summit</a>
+                <a [routerLink]="['/the-summit']">Highlights of summit</a>
                 <a [routerLink]="['/the-summit']" fragment="2">Chairman</a>
                 <a [routerLink]="['/the-summit']" fragment="3">Chief Guest</a>
                 <a [routerLink]="['/the-summit']" fragment="4">Speakers 2025</a>
@@ -100,10 +102,10 @@
           <li class="nav-item">
             
             <div class="hover-dropdown">
-              <button class="dropbtn">Partners</button>
+              <button class="dropbtn"  [routerLink]="['/partners']">Partners</button>
               <div class="hover-dropdown-content">
                 <a routerLinkActive="active"
-                [routerLink]="['/partners']" fragment="1">Corporate Partner</a>
+                [routerLink]="['/partners']" >Corporate Partner</a>
                 <a [routerLink]="['/partners']" fragment="2">Invited Corporate Partners</a>
                 <a [routerLink]="['/partners']" fragment="3">28% Profit</a>
                 <a [routerLink]="['/partners']" fragment="4">Causes we Support</a>
@@ -122,10 +124,10 @@
             > -->
 
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active">Awards</button>
+              <button class="dropbtn" [routerLink]="['/awards']" routerLinkActive="active">Awards</button>
               <div class="hover-dropdown-content">
                 <a 
-                [routerLink]="['/awards']" fragment="1">The Movement</a>
+                [routerLink]="['/awards']" >The Movement</a>
                 <a [routerLink]="['/awards']" fragment="2">Awards Research Committee</a>
               </div>
             </div>
@@ -133,9 +135,9 @@
           <li class="nav-item">
             
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active">World Peacekeepers Movement</button>
+              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/world-peacekeepers-movement']">World Peacekeepers Movement</button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="1">Award Categories</a>
+                <a [routerLink]="['/world-peacekeepers-movement']">Award Categories</a>
                 <a [routerLink]="['/world-peacekeepers-movement']" fragment="2">I am Peacekeeper</a>
                 <a [routerLink]="['/world-peacekeepers-movement']" fragment="3">Sign Up Now</a>
                 <a [routerLink]="['/world-peacekeepers-movement']" fragment="4">7 Peace Value</a>
@@ -146,9 +148,9 @@
           <li class="nav-item">
             
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active">Download Center</button>
+              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/DownloadCenter']">Download Center</button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/DownloadCenter']" fragment="dc1">Missiopn & Pledge</a>
+                <a [routerLink]="['/DownloadCenter']" >Missiopn & Pledge</a>
                 <a [routerLink]="['/DownloadCenter']" fragment="dc2">The Summit of 28</a>
                 <a [routerLink]="['/DownloadCenter']" fragment="dc3">The Number 28</a>
                 <a [routerLink]="['/DownloadCenter']" fragment="dc4">7 Pillars of Justice</a>
