@@ -1064,7 +1064,7 @@ section {
 }
 
 .floating_dots ul li a span {
-  background-color: #d9d9d9;
+  background-color: var(--color1);
   height: 17px;
   width: 17px;
   border-radius: 50%;
@@ -1157,7 +1157,8 @@ section {
   background-image: var(--gradient3);
 }
 .footerLinks h1 {
-  font-size: 64px;
+  /* font-size: 64px; */
+  font-size: 50px;
   font-weight: 700;
   line-height: 82.43px;
   text-transform: uppercase;
