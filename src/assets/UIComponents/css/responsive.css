@@ -1,4 +1,13 @@
 /* Add media queries for finer control on smaller devices */
+@media (min-width: 1440px) {
+
+  .index .section1 .logo {
+    position: relative;
+    top: -50px;
+    left: -50px;
+  }
+  
+}
 @media (max-width: 768px) {
   .index .section1 {
     height: 93vh; /* Reduce height for smaller screens */
