@@ -1,50 +1,54 @@
 <div class="floating_dots">
   <ul>
     <li>
-      
-        <input
+      <input
         type="radio"
         name="summit"
         id=""
-        [routerLink]="['/world-peacekeepers-movement']" checked
+        [routerLink]="['/world-peacekeepers-movement']"
+        checked
       />
-        <p>The Movement</p>
-    </li>
-    <li>
-        <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/world-peacekeepers-movement']" fragment="2"
-      />
-        <p>I am Peacekeeper</p>
+      <p>The Movement</p>
     </li>
     <li>
       <input
         type="radio"
         name="summit"
         id=""
-        [routerLink]="['/world-peacekeepers-movement']" fragment="3"
+        [routerLink]="['/world-peacekeepers-movement']"
+        fragment="2"
       />
-        <p>Sign Up Now</p>
+      <p>I am Peacekeeper</p>
     </li>
     <li>
       <input
         type="radio"
         name="summit"
         id=""
-        [routerLink]="['/world-peacekeepers-movement']" fragment="4"
+        [routerLink]="['/world-peacekeepers-movement']"
+        fragment="3"
       />
-        <p>7 Peace Value</p>
+      <p>Sign Up Now</p>
     </li>
     <li>
       <input
         type="radio"
         name="summit"
         id=""
-        [routerLink]="['/world-peacekeepers-movement']" fragment="5"
+        [routerLink]="['/world-peacekeepers-movement']"
+        fragment="4"
       />
-        <p>Song and Graphics</p>
+      <p>7 Peace Value</p>
+    </li>
+    <li>
+      <input
+        type="radio"
+        name="summit"
+        id=""
+        [routerLink]="['/world-peacekeepers-movement']"
+        fragment="5"
+      />
+      <p>Song and Graphics</p>
     </li>
   </ul>
 </div>
@@ -247,7 +251,11 @@
             <h2>JOIN US AS A PEACEKEEPER NOW</h2>
           </div>
           <div class="col-md-8">
-            <form [formGroup]="peacekeepersForm" (ngSubmit)="submitData()">
+            <form
+              [formGroup]="peacekeepersForm"
+              (ngSubmit)="submitData()"
+              style="position: relative; z-index: 1"
+            >
               <div class="row g-2">
                 <div class="col-md">
                   <div class="form-floating">
@@ -436,15 +444,20 @@
                       (change)="onFileChange($event)"
                     />
                   </div>
-                  <p style="
-                  font-size: 16px;
-                  font-weight: 400;
-                  line-height: var(--lineHeightsmd);
-                  letter-spacing: var(--letterSpacingmd);
-                  text-align: left;
-                  text-underline-position: from-font;
-                  text-decoration-skip-ink: none;
-                  color: #6D6D6D;">Only support .jpg, .png files up to 100mb</p>
+                  <p
+                    style="
+                      font-size: 16px;
+                      font-weight: 400;
+                      line-height: var(--lineHeightsmd);
+                      letter-spacing: var(--letterSpacingmd);
+                      text-align: left;
+                      text-underline-position: from-font;
+                      text-decoration-skip-ink: none;
+                      color: #6d6d6d;
+                    "
+                  >
+                    Only support .jpg, .png files up to 100mb
+                  </p>
                 </div>
               </div>
               <div class="row mt-5">
