@@ -942,7 +942,7 @@ section {
 
 .invited .table-responsive {
   border-radius: 10px;
-  height: 93vh;
+  height: 65vh;
 }
 
 .invited table thead tr th:first-child {
