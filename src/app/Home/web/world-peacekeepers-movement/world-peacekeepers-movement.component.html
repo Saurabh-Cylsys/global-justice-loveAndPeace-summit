@@ -520,7 +520,7 @@
                   (dragleave)="onDragLeave($event)">
                     <img src="assets/UIComponents/images/upload.svg" alt="" />
                     <span class="drop-zone__prompt"
-                      >Select your Image to start uploading</span
+                      >Drag your Image to start uploading</span
                     >
                     <span>or</span>
                     <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
@@ -551,7 +551,7 @@
               </div>
               <div class="row mt-5">
                 <div class="col-md text-center">
-                  <button
+                  <button  [disabled]="!is_selectedFile && peacekeepersForm.invalid "
                     type="submit"
                     class="btn btn-success text-white col-1 text-center"
                   >
@@ -578,7 +578,7 @@
                 <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
               </div>
               <li>
-                <button [disabled]="submitted" class="btn btn-success" (click)="downloadImage()">
+                <button [disabled]="!submitted" class="btn btn-success" (click)="downloadImage()">
                   download your badge now
                   <img src="assets/UIComponents/images/download.svg" alt="" />
                 </button>

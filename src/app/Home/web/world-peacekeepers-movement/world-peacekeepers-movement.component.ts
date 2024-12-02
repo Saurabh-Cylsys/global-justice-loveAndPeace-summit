@@ -18,6 +18,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   reqBody: any;
   code: any;
   submitted = false;
+  is_selectedFile = false;
 
   selectedFile: File | null = null;
   // configOption: ConfigurationOptions = new ConfigurationOptions;
@@ -95,6 +96,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       this.selectedFile = target.files[0];
+      this.is_selectedFile = true;
+
       console.log('Selected file:', this.selectedFile);
     }
   }
@@ -141,6 +144,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+      this.is_selectedFile =true;
     }
   }
 
