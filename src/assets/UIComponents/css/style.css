@@ -1078,7 +1078,7 @@ section {
   cursor: pointer;
 }
 
-.floating_dots ul li a p {
+.floating_dots ul li p {
   display: none;
   margin: 0 20px;
   position: absolute;
@@ -1092,7 +1092,7 @@ section {
   color: var(--color2);
 }
 
-.floating_dots ul li a:hover p {
+.floating_dots ul li:hover p {
   display: block;
 }
 
@@ -1245,4 +1245,8 @@ section {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #8D8D8D !important;
+  }
+
+  .hide-logo .logo {
+    display: none;
   }

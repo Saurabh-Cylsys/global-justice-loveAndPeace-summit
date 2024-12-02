@@ -1,84 +1,123 @@
 <div class="floating_dots">
   <ul>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="1"
-        ><span></span>
-        <p>The Summit - Highlights of summit</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        id=""
+        checked
+        [routerLink]="['/the-summit']"
+      />
+      <p> Highlights of summit</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="2"
-        ><span></span>
-        <p>The Summit - Chairman</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        id=""
+        [routerLink]="['/the-summit']"
+        fragment="2"
+      />
+      <p> Chairman</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="3"
-        ><span></span>
-        <p>The Summit - Chief Guest</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="3"
+      />
+      <p> Chief Guest</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="4"
-        ><span></span>
-        <p>The Summit - Speakers 2025</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="4"
+      />
+        <p> Speakers</p>
+    </li>
+    <!-- <li>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="5"
+      />
+        <p> Breakup of Invited Speakers</p>
+      
+    </li> -->
+    <!-- <li>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="6"
+      />
+        <p> Invited Speakers</p>
+    </li> -->
+    <!-- <li>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="7"
+      />
+        <p> Benefits for Registration</p>
+    </li> -->
+    <li>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="8"
+      />
+        <p> Delegates</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="5"
-        ><span></span>
-        <p>The Summit - Breakup of Invited Speakers</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="9"
+      />
+        <p> Goals of Summit</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="6"
-        ><span></span>
-        <p>The Summit - Invited Speakers</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="10"
+      />
+        <p> Agenda</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="7"
-        ><span></span>
-        <p>The Summit - Benefits for Registration</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="11"
+      />
+        <p>Structured networking</p>
     </li>
     <li>
-      <a [routerLink]="['/the-summit']" fragment="8"
-        ><span></span>
-        <p>The Summit - Delegates</p>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/the-summit']" fragment="9"
-        ><span></span>
-        <p>The Summit - Gosld of the Global Justice</p>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/the-summit']" fragment="10"
-        ><span></span>
-        <p>The Summit - Download Schedule</p>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/the-summit']" fragment="11"
-        ><span></span>
-        <p>The Summit - Unique Points of structured networking formate</p>
-      </a>
-    </li>
-    <li>
-      <a [routerLink]="['/the-summit']" fragment="12"
-        ><span></span>
-        <p>The Summit - Location</p>
-      </a>
+      <input
+        type="radio"
+        name="summit"
+        [routerLink]="['/the-summit']"
+        fragment="12"
+      />
+        <p>Venue</p>
     </li>
   </ul>
 </div>
 
 <!-- main body -->
 
-<main class="index theSumit" id="fullpage">
-  <section class="section2 p-lg-5 py-5" id="1">
+<main class="index theSumit" id="summitPage">
+  <section class="section section2 p-lg-5 py-5" id="1">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3 my-3">
@@ -202,7 +241,7 @@
       </div>
     </div>
   </section>
-  <section class="section5 p-lg-5 py-5" id="2">
+  <section class="section section5 p-lg-5 py-5" id="2">
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12 mb-5">
@@ -314,7 +353,7 @@
       </div>
     </div>
   </section>
-  <section class="section3 mt-5 p-lg-5 py-5" id="3" style="height: 80vh">
+  <section class="section section3 mt-5 p-lg-5 py-5" id="3" style="height: 80vh">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 text-center">
@@ -365,7 +404,7 @@
         </div>
       </div> -->
   </section>
-  <section class="section6 p-lg-5 py-5" id="4">
+  <section class="section section6 p-lg-5 py-5" id="4">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -456,7 +495,7 @@
       </div>
     </div>
   </section>
-  <section class="section7 p-lg-5" id="5">
+  <section class="section section7 p-lg-5" id="5">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -573,7 +612,7 @@
       </div>
     </div>
   </section>
-  <section class="section5 p-lg-5 invited" id="6">
+  <section class="section section5 p-lg-5 invited" id="6">
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12 mb-5">
@@ -591,10 +630,9 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of speakers">
-                  <td>{{item.Name}}</td>
-                  <td>{{item.Profession_Position}}</td>
+                  <td>{{ item.Name }}</td>
+                  <td>{{ item.Profession_Position }}</td>
                 </tr>
-                
               </tbody>
             </table>
           </div>
@@ -603,7 +641,7 @@
     </div>
   </section>
   <!--  -->
-  <div class="partner" id="7">
+  <div class="section partner" id="7">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -824,7 +862,7 @@
       </div>
     </section>
   </div>
-  <div class="partner" id="8">
+  <div class="section partner" id="8">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -846,7 +884,7 @@
       </div>
     </section>
   </div>
-  <div class="partner" id="9">
+  <div class="section partner" id="9">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -1038,7 +1076,7 @@
   </div>
 
   <!--  -->
-  <section class="section7 p-lg-5" id="10" style="height: auto">
+  <section class="section section7 p-lg-5" id="10" style="height: auto">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-4 p-lg-5">
@@ -1112,7 +1150,7 @@
     </div>
   </section>
   <!--  -->
-  <div class="partner" id="11">
+  <div class="section partner" id="11">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -1216,7 +1254,7 @@
     </section>
   </div>
   <!--  -->
-  <section class="section8 p-lg-5 py-5" id="12">
+  <section class="section section8 p-lg-5 py-5" id="12">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 py-4 position-relative map">
