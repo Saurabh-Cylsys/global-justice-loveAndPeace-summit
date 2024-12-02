@@ -151,6 +151,7 @@ section {
   background-color: transparent;
   color: var(--color2);
   border-style: dotted;
+  vertical-align: bottom;
 }
 .index .section1 .tableBox table tr td:nth-child(2) {
   border-left: 1px dotted var(--color2);
@@ -170,7 +171,7 @@ section {
 .index .section1 .tableBox table tr td p {
   color: var(--color7);
   font-family: Optima;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 17px;
   text-align: left;
