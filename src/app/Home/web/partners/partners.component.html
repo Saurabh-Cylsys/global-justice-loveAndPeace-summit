@@ -1,75 +1,54 @@
-<div class="floating_dots">
+<nav class="navbarDots">
   <ul>
     <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        checked
+      <a [routerLink]="['/partners']" class="dot active" data-scroll="1">
+        <span>Corporate Partner</span>
+      </a>
+    </li>
+    <li>
+      <a
         [routerLink]="['/partners']"
-      />
-        <p>Corporate Partner</p>
-      
+        fragment="4"
+        class="dot"
+        data-scroll="4"
+      >
+        <span>Causes we Support</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/partners']"
+        fragment="5"
+        class="dot"
+        data-scroll="5"
+      >
+        <span>Event, Media & PR Agency</span>
+      </a>
     </li>
     <!-- <li>
-        <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="2"
-      />
-        <p>Invited Corporate Partners</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="3"
-      />
-        <p>28% Profit</p>
+      <a
+        [routerLink]="['/partners']"
+        fragment="6"
+        class="dot"
+        data-scroll="6"
+      >
+        <span>Dubai</span>
+      </a>
     </li> -->
     <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="4"
-      />
-        <p>Causes we Support</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="5"
-      />
-        <p>Event, Media & PR Agency</p>
-      
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="6"
-      />
-        <p>Dubai</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/partners']"fragment="7"
-      />
-        <p>Service Partners</p>
+      <a
+        [routerLink]="['/partners']"
+        fragment="6"
+        class="dot"
+        data-scroll="6"
+      >
+        <span>Service Partners</span>
+      </a>
     </li>
   </ul>
-</div>
+</nav>
 <main class="index partner">
-  <section id="1" class="section7 py-lg-5">
+  <section id="1" class="section section7 py-lg-5">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md">
@@ -138,7 +117,7 @@
       </div>
     </div>
   </section>
-  <section class="section5 mt-5 p-lg-5 py-5" id="2">
+  <section class="section section5 mt-5 p-lg-5 py-5" id="2">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -366,7 +345,7 @@
       </div>
     </div>
   </section>
-  <section id="3" class="section9 py-lg-5">
+  <section id="3" class="section section9 py-lg-5">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md">
@@ -407,7 +386,7 @@
       </div>
     </div>
   </section>
-  <section id="4" class="section9 py-lg-5">
+  <section id="4" class="section section9 py-lg-5">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md">
@@ -478,11 +457,11 @@
       </div>
     </div>
   </section>
-  <section id="5" class="section8">
+  <section id="5" class="section section8">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12">
-          <h2>PROPOSED PR AGENCY</h2>
+          <h2>Event, Media & PR Agency</h2>
         </div>
         <div class="col-md-4">
           <img src="assets/UIComponents/images/partners/edelman.png" alt="" width="100%" />
@@ -494,7 +473,7 @@
       </div>
     </div>
   </section>
-  <section id="6" class="section9 p-lg-5">
+  <section id="6" class="section section9 p-lg-5">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 text-center p-5">

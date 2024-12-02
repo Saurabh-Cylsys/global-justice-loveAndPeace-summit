@@ -1,4 +1,4 @@
-<div class="floating_dots">
+<!-- <div class="floating_dots">
   <ul>
     <li>
       <input
@@ -20,15 +20,7 @@
       />
       <p> Chairman</p>
     </li>
-    <!-- <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="3"
-      />
-      <p> Chief Guest</p>
-    </li> -->
+    
     <li>
       <input
         type="radio"
@@ -38,34 +30,7 @@
       />
         <p> Speakers</p>
     </li>
-    <!-- <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="5"
-      />
-        <p> Breakup of Invited Speakers</p>
-      
-    </li> -->
-    <!-- <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="6"
-      />
-        <p> Invited Speakers</p>
-    </li> -->
-    <!-- <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="7"
-      />
-        <p> Benefits for Registration</p>
-    </li> -->
+    
     <li>
       <input
         type="radio"
@@ -112,9 +77,91 @@
         <p>Venue</p>
     </li>
   </ul>
-</div>
+</div> -->
 
+<nav class="navbarDots">
+  <ul>
+    <li>
+      <a [routerLink]="['/the-summit']" class="dot active" data-scroll="1">
+        <span>Highlights of summit</span>
+      </a>
+    </li>
 
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="2"
+        class="dot"
+        data-scroll="2"
+      >
+        <span>Chairman</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="4"
+        class="dot"
+        data-scroll="4"
+      >
+        <span>Speakers</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="8"
+        class="dot"
+        data-scroll="8"
+      >
+        <span>Delegates</span>
+      </a>
+    </li>
+
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="9"
+        class="dot"
+        data-scroll="9"
+      >
+        <span>Goals of Summit</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="10"
+        class="dot"
+        data-scroll="10"
+      >
+        <span>Agenda</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="11"
+        class="dot"
+        data-scroll="11"
+      >
+        <span>Structured networking</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/the-summit']"
+        fragment="12"
+        class="dot"
+        data-scroll="12"
+      >
+        <span>Venue</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <!-- main body -->
 
@@ -630,10 +677,7 @@
         <div class="col-12">
           <div class="table-responsive">
             <table class="table">
-              <thead style="
-              position: sticky;
-              top: 0;
-          ">
+              <thead style="position: sticky; top: 0">
                 <tr>
                   <th>Name</th>
                   <th>Profession / position</th>

@@ -1,27 +1,25 @@
-<div class="floating_dots">
+
+<nav class="navbarDots">
   <ul>
     <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/awards']" checked
-      />
-        <p>Award Categories</p>
+      <a [routerLink]="['/awards']" class="dot active" data-scroll="1">
+        <span>Award Categories</span>
+      </a>
     </li>
     <li>
-        <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/awards']" fragment="2"
-      />
-        <p>Awards Research Committee</p>
+      <a
+        [routerLink]="['/awards']"
+        fragment="2"
+        class="dot"
+        data-scroll="2"
+      >
+        <span>Awards Research Committee</span>
+      </a>
     </li>
   </ul>
-</div>
+</nav>
 <main class="index awards">
-    <section class="section4 py-lg-5" id="1">
+    <section class="section section4 py-lg-5" id="1">
       <div class="container-fluid h-100">
         <div class="row align-items-center">
           <div class="col-md-3">
@@ -84,7 +82,7 @@
       </div>
     </section>
 
-    <section class="section7 p-lg-5" id="2">
+    <section class="section section7 p-lg-5" id="2">
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
