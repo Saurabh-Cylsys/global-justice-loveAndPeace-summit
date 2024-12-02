@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import html2canvas from 'html2canvas';
+
+
 @Component({
   selector: 'app-world-peacekeepers-movement',
   templateUrl: './world-peacekeepers-movement.component.html',
@@ -15,8 +18,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   reqBody: any;
   code: any;
   submitted = false;
-  selectedFile: File | null = null;
 
+  selectedFile: File | null = null;
+  // configOption: ConfigurationOptions = new ConfigurationOptions;
 
   constructor( private formBuilder: FormBuilder,
      private DelegateService: DelegateService,
@@ -24,17 +28,28 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
        private ngxService: NgxUiLoaderService,
         private router: Router,
     private route: ActivatedRoute) {
-
-   }
+    //   this.configOption.SelectorClass = "OptionType3";
+    //   this.configOption.OptionTextTypes = [];
+    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.Flag);
+    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.CountryName);
+    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.CountryPhoneCode);
+    }
+  
    getcontrol(name: any): AbstractControl | null {
     return this.peacekeepersForm.get(name);
   }
   get f() { return this.peacekeepersForm.controls; }
+  @ViewChild('contentTemplate')
+  contentTemplate!: TemplateRef<any>;
+
+ 
   ngOnInit(): void {
+    this.getAllCountrycode()
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
       country: ['', [Validators.required]],
+      country_code: ['', [Validators.required]],
       mobile_number: ['', [
         Validators.required,
         Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
@@ -43,6 +58,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
       is_active: 1,
       
     });
+
+    
 //     console.log('Form Controls:', this.peacekeepersForm.controls);
 // Object.keys(this.peacekeepersForm.controls).forEach((key) => {
 //   const control = this.peacekeepersForm.get(key);
@@ -53,6 +70,69 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
 //   });
 // });
     
+  }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      this.selectedFile = event.dataTransfer.files[0];
+      console.log('Dropped file:', this.selectedFile);
+    }
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    // Add a visual cue for the drag-over state (e.g., border highlight)
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    // Remove the visual cue for the drag-over state
+  }
+
+  // Handle the file selection from the input element
+  onFileSelect(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.selectedFile = target.files[0];
+      console.log('Selected file:', this.selectedFile);
+    }
+  }
+
+  downloadImage() {
+    debugger
+    // Capture the template content as an HTML element
+    const element:any = document.getElementById('capture');
+
+    // Use html2canvas to capture the content of the element
+    html2canvas(element).then((canvas) => {
+      // Convert the canvas to a data URL (JPEG or PNG)
+      const imageUrl = canvas.toDataURL('image/png'); // or 'image/jpeg' for JPEG
+
+      // Create a link to download the image
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.download = 'template-image.png'; // Set the filename for the download
+      link.click();
+    });
+  }
+  getAllCountrycode() {
+    this.DelegateService.getAllCountrycode().subscribe((res: any) => {
+      console.log("code", res.data);
+      this.code = res.data;
+      // Define the country name you want to find (e.g., "India (+91)")
+  const countryToFind = "India (+91)";
+  
+  // Find the object that matches the country name
+  const indiaCodeObject =  this.code.find((item:any) => item.country_mobile_code === countryToFind);
+  console.log(indiaCodeObject);
+  
+      this.peacekeepersForm.patchValue({
+        country_code :indiaCodeObject.country_mobile_code
+      })
+    }, (err: any) => {
+      console.log("error", err);
+    });
   }
   // profile_picture:[''],
 
@@ -65,6 +145,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   }
 
   submitData(): void {
+
+    this.peacekeepersForm.patchValue({
+      is_active :1
+    })
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
       //   return console.log('Invalid Details');
@@ -92,6 +176,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     (response:any) => {          
       
       if (response.success) {
+        this.submitted = true;
       console.log("response", response);
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'success')
@@ -110,6 +195,17 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     
   }
   );
+}
+
+keyPressNumbers(event: any) {
+  var charCode = (event.which) ? event.which : event.keyCode;
+  // Only Numbers 0-9
+  if ((charCode < 48 || charCode > 57)) {
+    event.preventDefault();
+    return false;
+  } else {
+    return true;
+  }
 }
 
 }

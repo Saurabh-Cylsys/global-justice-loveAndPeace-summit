@@ -368,20 +368,106 @@
                 </div>
 
                 <div class="col-md">
-                  <div class="form-floating">
-                    <input
-                      type="number"
+                  <label
+                  class="col-md-12 no-padding"
+                  for="mobile1"
+                  >Mobile Number<span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    *</span
+                  ></label
+                >
+                <div
+                  class="row no-padding "
+                >
+                  <div
+                    class="form-group form-group-inner mobile-code col-3"
+                  >
+                    <select
+                      formControlName="country_code"
                       class="form-control"
-                      formControlName="mobile_number"
-                      name="mobile_number"
-                      id="mobile_number"
-                      placeholder=""
+                      required
+                      data-error="Please enter code"
+                    >
+                      <option selected value="" disabled>
+                        --Please select--
+                      </option>
+                      <option
+                        *ngFor="
+                          let code of code;
+                          let j = index
+                        "
+                        [value]="code.country_mobile_code"
+                      >
+                        {{ code.country_mobile_code }}
+                      </option>
+                      <!-- <option>India (91)</option> -->
+                    </select>
+                    <div
+                      *ngIf="
+                        getcontrol('country_code')?.errors &&
+                        getcontrol('country_code')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('country_code')?.errors?.['required']"
+                        >Country code is required</small
+                      >
+                    </div>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <div
+                    class="form-group form-group-inner mobile-number col-9"
+                  >
+                    <input
+                      type="text"
+                      name="mobile_number[1]"
+                      id="number_mobile1"
+                      placeholder="Mobile Number"
+                   
+                      class="form-control number_field"
+                      value=""
                       pattern=".{8,12}"
                       minlength="10"
                       maxlength="10"
-                      value=""
+                      required
+                      data-error="Please enter valid number."
+                      formControlName="mobile_number"
+                      (keypress)="keyPressNumbers($event)"
+                 
                     />
-                    <label for="mobilenumber"
+                    <div
+                      *ngIf="
+                        getcontrol('mobile_number')?.errors &&
+                        getcontrol('mobile_number')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                        >Mobile number is required</small
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
+                        >Mobile number must be at least 10
+                        digit long.</small
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['repeatingDigits']"
+                      >
+                        Mobile number cannot contain repeating
+                        digits.
+                      </small>
+                      
+                    </div>
+                  </div>
+               
+                </div>
+                    <!-- <label for="mobilenumber"
                       >Mobile Number :<span
                         class="form-label-span"
                         style="color: #ff0000"
@@ -405,10 +491,10 @@
                         *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
                         >Mobile number must be at least 10 digit long.</small
                       >
-                    </div>
+                    </div> -->
                   </div>
                 </div>
-              </div>
+              <!-- </div> -->
 
               <div class="row g-2 mt-5">
                 <div class="col-md">
@@ -429,7 +515,9 @@
                     /> 
                   </div>-->
                   <label for="" class="imgUpload">Image Upload</label>
-                  <div class="drop-zone">
+                  <div class="drop-zone" (drop)="onDrop($event)"
+                  (dragover)="onDragOver($event)"
+                  (dragleave)="onDragLeave($event)">
                     <img src="assets/UIComponents/images/upload.svg" alt="" />
                     <span class="drop-zone__prompt"
                       >Select your Image to start uploading</span
@@ -439,6 +527,7 @@
                     <input
                       class="custom-file-input"
                       type="file"
+                      accept="image/jpg, image/png"
                       name="profile_picture"
                       id="title"
                       (change)="onFileChange($event)"
@@ -474,11 +563,22 @@
           </div>
           <div class="col-md-4">
             <ul class="list-unstyled text-center badge">
+              <div>
+                <ng-template #contentTemplate  >
+                  <div style="text-align: center;">
+                    <img src="assets/UIComponents/images/join-us.png" alt="" />
+        
+                  </div>
+                </ng-template>
+              
+                <div id="capture" >
+                  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+                </div>
+              
+                <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
+              </div>
               <li>
-                <img src="assets/UIComponents/images/join-us.png" alt="" />
-              </li>
-              <li>
-                <button class="btn btn-success">
+                <button [disabled]="submitted" class="btn btn-success" (click)="downloadImage()">
                   download your badge now
                   <img src="assets/UIComponents/images/download.svg" alt="" />
                 </button>
@@ -551,6 +651,7 @@
           </div>
         </div>
       </div>
+      
     </section>
   </div>
 </main>

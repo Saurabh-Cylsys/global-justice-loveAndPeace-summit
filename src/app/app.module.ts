@@ -37,8 +37,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot(), 
     AuthModule,
-    SharedModule,
-    
+    SharedModule,   
     BrowserModule,
     ToastrModule.forRoot(),
     NgxUiLoaderModule,
