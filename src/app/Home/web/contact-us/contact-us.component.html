@@ -6,87 +6,107 @@
           <div class="col-md-12">
             <h2>Contact Us</h2>
             <p class="text-center">
-              We are here to help and answer any questions that you might
-              have. Feel free to share your queries here. <br />
+              We are here to help and answer any questions that you might have.
+              Feel free to share your queries here. <br />
               Look forward to hearing from you.
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
             <div class="contact-info h-100 p-3">
               <h2 class="p-3">Contact Information</h2>
               <div class="d-flex border-bottom mt-4 mx-2">
                 <div class="flex-grow-1 ms-3">
                   <h3>Nikunj Chirde</h3>
-                  <p>Director-Secretariat, Global Justice Love & Peace Summit</p>
+                  <p>
+                    Director-Secretariat, Global Justice Love & Peace Summit
+                  </p>
                 </div>
                 <div class="flex-shrink-0">
-                  <img src="assets/UIComponents/images/contact-us/barcode.png" alt="assets/UIComponents/images/contact-us/barcode.png">
+                  <img
+                    src="assets/UIComponents/images/contact-us/barcode.png"
+                    alt="assets/UIComponents/images/contact-us/barcode.png"
+                  />
                 </div>
               </div>
               <ul>
-                <li><img src="assets/UIComponents/images/contact-us/phone-call.png" alt="assets/UIComponents/images/contact-us/phone-call.png"> +91 93240 64978</li>
-                <li><img src="assets/UIComponents/images/contact-us/email.png" alt="assets/UIComponents/images/contact-us/email.png">{{helpjustice}}</li>
-                <li><img src="assets/UIComponents/images/contact-us/website.png" alt="assets/UIComponents/images/contact-us/website.png">www.justice-love-peace.com</li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/contact-us/phone-call.png"
+                    alt="assets/UIComponents/images/contact-us/phone-call.png"
+                  />
+                  +91 93240 64978
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/contact-us/email.png"
+                    alt="assets/UIComponents/images/contact-us/email.png"
+                  />{{ helpjustice }}
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/contact-us/website.png"
+                    alt="assets/UIComponents/images/contact-us/website.png"
+                  />www.justice-love-peace.com
+                </li>
               </ul>
-              <div class="row" style="position: absolute; bottom: 10%;">
+              <div class="row" style="position: absolute; bottom: 10%">
                 <div class="col-md">
-                  <img src="assets/UIComponents/images/insta.png" alt="">
-                  <img src="assets/UIComponents/images/fb.png" alt="">
+                  <img src="assets/UIComponents/images/insta.png" alt="" />
+                  <img src="assets/UIComponents/images/fb.png" alt="" />
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-8 px-lg-5">
+          <div class="col-md-7 px-lg-5">
             <div class="row g-2 mt-5">
-              <div class="mb-5 col-md-6">
+              <div class="mb-4 col-md-6">
                 <div class="form-floating">
                   <select
-                  name="nametitle[1]"
-                  id="nametitle1"
-                  class="form-control"
-                  required
-                  data-error="Please select option"
-                  formControlName="title"
-                 
-                >
-                  <option selected value="" disabled>
-                    --Please select--
-                  </option>
-                  <option value="Mr.">Mr.</option>
-                  <option value="Mrs.">Mrs.</option>
-                  <option value="Miss">Miss</option>
-                  <option value="Ms.">Ms.</option>
-                  <option value="Dr.">Dr.</option>
-                  <option value="Prof.">Prof.</option>
-                  <option value="Capt.">Capt.</option>
-                  <option value="Hon">Hon</option>
-                  <option value="Lord">Lord</option>
-                </select>
+                    name="nametitle[1]"
+                    id="nametitle1"
+                    class="form-control"
+                    required
+                    data-error="Please select option"
+                    formControlName="title"
+                  >
+                    <option selected value="" disabled>
+                      --Please select--
+                    </option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Ms.">Ms.</option>
+                    <option value="Dr.">Dr.</option>
+                    <option value="Prof.">Prof.</option>
+                    <option value="Capt.">Capt.</option>
+                    <option value="Hon">Hon</option>
+                    <option value="Lord">Lord</option>
+                  </select>
                   <label for="title">Title</label>
                   <div
-                  *ngIf="
-                    getcontrol('title')?.errors &&
-                    getcontrol('title')?.touched
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('title')?.errors?.['required']"
-                    >Title is required</small
+                    *ngIf="
+                      getcontrol('title')?.errors &&
+                      getcontrol('title')?.touched
+                    "
                   >
-                </div>
-                <div class="help-block with-errors"></div>
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('title')?.errors?.['required']"
+                      >Title is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
-              <div class="mb-5 col-md-6">
+              <div class="mb-4 col-md-6">
                 <div class="form-floating">
                   <input
                     type="email"
                     class="form-control"
                     id="email"
                     placeholder=""
-                      formControlName="email"
-                      required
+                    formControlName="email"
+                    required
                     name="email"
                     value=""
                   />
@@ -107,13 +127,12 @@
                     <small
                       class="text-danger"
                       *ngIf="getcontrol('email')?.errors?.['email']"
-                      >Please enter valid email
-                      address.</small
+                      >Please enter valid email address.</small
                     >
                   </div>
                 </div>
               </div>
-              <div class="my-5 col-md-6">
+              <div class="mb-4 col-md-6">
                 <div class="form-floating">
                   <input
                     type="text"
@@ -125,30 +144,28 @@
                     required
                     value=""
                     [ngClass]="{
-                      'is-invalid':
-                        submitted && f.last_name.errors
+                      'is-invalid': submitted && f.last_name.errors
                     }"
                   />
                   <label for="FirstName">First Name</label>
 
                   <div
-                  class="text-danger"
-                  *ngIf="
-                    getcontrol('firstName')?.errors &&
-                    getcontrol('firstName')?.touched
-                  "
-                >
-                  <small
                     class="text-danger"
-                    *ngIf="getcontrol('firstName')?.errors?.['required']"
-                    >First name is required</small
+                    *ngIf="
+                      getcontrol('firstName')?.errors &&
+                      getcontrol('firstName')?.touched
+                    "
                   >
-                 
-                </div>
-                <div class="help-block with-errors"></div>
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('firstName')?.errors?.['required']"
+                      >First name is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
-              <div class="my-5 col-md-6">
+              <div class="mb-4 col-md-6">
                 <div class="form-floating">
                   <input
                     type="text"
@@ -163,51 +180,51 @@
                   <label for="LastName">Last Name</label>
 
                   <div
-                  *ngIf="
-                    getcontrol('lastName')?.errors &&
-                    getcontrol('lastName')?.touched
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('lastName')?.errors?.['required']"
-                    >Last name is required</small
+                    *ngIf="
+                      getcontrol('lastName')?.errors &&
+                      getcontrol('lastName')?.touched
+                    "
                   >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('lastName')?.errors?.['minlength']"
-                    >Last name must be at least 3 characters
-                    long.</small
-                  >
-                </div>
-                <div class="help-block with-errors"></div>
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('lastName')?.errors?.['required']"
+                      >Last name is required</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('lastName')?.errors?.['minlength']"
+                      >Last name must be at least 3 characters long.</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
                 </div>
               </div>
-              <div class="my-5 col-md-2">
+              <div class="col-md-12">
                 <div class="form-group">
                   <p class="m-0">Country Code</p>
-                  <select
-                  formControlName="countryCode"
-                  class="form-control"
-                  required
-                  data-error="Please enter code"
-                >
-                  <option selected value="" disabled>
-                    --Please select--
-                  </option>
-                  <option
-                    *ngFor="
-                      let code of code;
-                      let j = index
-                    "
-                    [value]="code.country_mobile_code"
-                  >
-                    {{ code.country_mobile_code }}
-                  </option>
-                </select>
                 </div>
               </div>
-              <div class="my-5 col-md-10">
+              <div class="mb-4 col-md-3">
+                <div class="form-floating">
+                  <select
+                    formControlName="countryCode"
+                    class="form-control"
+                    required
+                    data-error="Please enter code"
+                  >
+                    <option selected value="" disabled>
+                      --Please select--
+                    </option>
+                    <option
+                      *ngFor="let code of code; let j = index"
+                      [value]="code.country_mobile_code"
+                    >
+                      {{ code.country_mobile_code }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-4 col-md-9">
                 <div class="form-floating">
                   <input
                     type="tel"
@@ -220,11 +237,10 @@
                     placeholder=""
                     pattern=".{8,12}"
                     minlength="10"
-                    maxlength="15"  
+                    maxlength="15"
                     value=""
                   />
                   <label for="mobileNomber">Phone Number</label>
-
 
                   <div class="help-block with-errors"></div>
                   <div
@@ -241,53 +257,51 @@
                     <small
                       class="text-danger"
                       *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
-                      >Mobile number must be at least 10
-                      digit long.</small
+                      >Mobile number must be at least 10 digit long.</small
                     >
                     <small
                       class="text-danger"
                       *ngIf="getcontrol('phoneNumber')?.errors?.['repeatingDigits']"
                     >
-                      Mobile number cannot contain repeating
-                      digits.
+                      Mobile number cannot contain repeating digits.
                     </small>
                     <small
                       class="text-danger"
                       *ngIf="
                         contactUsForm
                           .get('mobile_number')
-                          .hasError(
-                            'containsConsecutiveZeros'
-                          )
+                          .hasError('containsConsecutiveZeros')
                       "
                     >
-                      cannot contain three or more
-                      consecutive zeros.
+                      cannot contain three or more consecutive zeros.
                     </small>
                   </div>
                 </div>
               </div>
-              <div class="my-5 col-md-12">
+              <div class="mb-4 col-md-12">
                 <div class="form-group">
                   <label for="question">Your Question</label>
                   <textarea
-                  type="text"
-                  class="form-control"
-                  placeholder="Write your que.."
-                  value=""
-                  formControlName="yourQuestion"
+                    type="text"
+                    class="form-control"
+                    placeholder="Write your que.."
+                    value=""
+                    formControlName="yourQuestion"
                     name="yourQuestion"
                     id="question"
-                  style="border: 1px dotted; border-radius: 10px;"
+                    style="border: 1px dotted; border-radius: 10px"
                   >
-
                   </textarea>
-                   
-                    
                 </div>
               </div>
-              <div class="my-5 col-md-12 text-center">
-                <button type="submit" class="btn btn-success p-2 w-50 text-center"[disabled]="this.contactUsForm.invalid" >Send</button>
+              <div class="mb-4 col-md-12 text-center">
+                <button
+                  type="submit"
+                  class="btn btn-success p-2 w-50 text-center"
+                  [disabled]="this.contactUsForm.invalid"
+                >
+                  Send
+                </button>
               </div>
             </div>
           </div>
