@@ -839,12 +839,11 @@ section {
 
 .chairman li:nth-child(2) {
   line-height: 3;
-}
-.chairman li:nth-child(2) {
   font-size: 14.32px;
   font-weight: 700;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  color: var(--color1);
 }
 
 .index .section7 h2 {
