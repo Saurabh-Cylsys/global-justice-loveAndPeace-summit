@@ -151,6 +151,7 @@ section {
   background-color: transparent;
   color: var(--color2);
   border-style: dotted;
+  vertical-align: bottom;
 }
 .index .section1 .tableBox table tr td:nth-child(2) {
   border-left: 1px dotted var(--color2);
@@ -170,7 +171,7 @@ section {
 .index .section1 .tableBox table tr td p {
   color: var(--color7);
   font-family: Optima;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 17px;
   text-align: left;
@@ -838,12 +839,11 @@ section {
 
 .chairman li:nth-child(2) {
   line-height: 3;
-}
-.chairman li:nth-child(2) {
   font-size: 14.32px;
   font-weight: 700;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  color: var(--color1);
 }
 
 .index .section7 h2 {
@@ -941,7 +941,7 @@ section {
 
 .invited .table-responsive {
   border-radius: 10px;
-  height: 93vh;
+  height: 65vh;
 }
 
 .invited table thead tr th:first-child {
@@ -1077,7 +1077,7 @@ section {
   cursor: pointer;
 }
 
-.floating_dots ul li a p {
+.floating_dots ul li p {
   display: none;
   margin: 0 20px;
   position: absolute;
@@ -1091,7 +1091,7 @@ section {
   color: var(--color2);
 }
 
-.floating_dots ul li a:hover p {
+.floating_dots ul li:hover p {
   display: block;
 }
 
@@ -1244,4 +1244,8 @@ section {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #8D8D8D !important;
+  }
+
+  .hide-logo .logo {
+    display: none;
   }

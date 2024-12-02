@@ -1,16 +1,22 @@
 <div class="floating_dots">
   <ul>
     <li>
-      <a [routerLink]="['/awards']"
-        ><span></span>
+      <input
+        type="radio"
+        name="summit"
+        id=""
+        [routerLink]="['/awards']" checked
+      />
         <p>Award Categories</p>
-      </a>
     </li>
     <li>
-      <a [routerLink]="['/awards']" fragment="2"
-        ><span></span>
+        <input
+        type="radio"
+        name="summit"
+        id=""
+        [routerLink]="['/awards']" fragment="2"
+      />
         <p>Awards Research Committee</p>
-      </a>
     </li>
   </ul>
 </div>

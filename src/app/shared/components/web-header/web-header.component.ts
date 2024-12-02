@@ -8,13 +8,18 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./web-header.component.css'],
 })
 export class WebHeaderComponent implements OnInit{
-  headerIcon:any
-  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
+  headerIcon:any;
+  isHomePage: boolean = false;
+  constructor(public _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
   ngOnInit(): void {
     this.headerIcon = this.SharedService.headerIcon;
     console.log(this.headerIcon,"hhhhhh");
     console.log(this._activeRouter.url,'WebHeaderComponent initialized');
+
+    this._router.events.subscribe(() => {
+      this.isHomePage = this._router.url === '/webhome';
+    });
   }
 
   displayMyDIV: boolean = false; // Initialize the visibility property
