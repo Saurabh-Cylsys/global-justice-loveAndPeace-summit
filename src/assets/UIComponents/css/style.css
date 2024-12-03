@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 3;
+  z-index: 99;
 }
 
 header .nav-link,
@@ -90,7 +90,7 @@ section {
   position: absolute;
   top: -50px;
   left: -80px;
-  z-index: 3;
+  z-index: 99;
 }
 
 .index .section1 .cardMain {
