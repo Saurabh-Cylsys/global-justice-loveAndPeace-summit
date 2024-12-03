@@ -48,7 +48,7 @@
 <header [class.hide-logo]="_router.url === '/webhome'">
   <nav class="navbar navbar-expand-lg p-0">
     <div class="container-fluid">
-      <a class="navbar-brand logo" *ngIf="!isHomePage">
+      <a class="navbar-brand logo" *ngIf="!isHomePage" [routerLink]="['/webhome']">
         <img src="assets/UIComponents/images/innerLogo.png" alt="" width="80%">
       </a>
       <button

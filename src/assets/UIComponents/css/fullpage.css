@@ -87,7 +87,7 @@
   .navbarDots ul li .dot::before {
     height: 8px;
     width: 8px;
-    border: 2px solid gray;
+    border: 2px solid #fff;
     right: 0;
     transform: translateY(-50%);
     background-color: gray;
@@ -95,14 +95,14 @@
   
   .navbarDots ul li .dot.active::before,
   .navbarDots ul li:hover .dot::before {
-    border-color: #005a93;
+    border-color: #fff;
     background: #005a93;
   }
   
   .navbarDots ul li .dot::after {
     height: 15px;
     width: 15px;
-    border: 2px solid #005a93;
+    border: 2px solid #fff;
     right: -3px;
     transform: translateY(-50%) scale(0);
     background-color: #005a93;

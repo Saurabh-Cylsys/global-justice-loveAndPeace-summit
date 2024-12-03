@@ -1159,7 +1159,7 @@ section {
 }
 .footerLinks h1 {
   /* font-size: 64px; */
-  font-size: 50px;
+  font-size: 35px;
   font-weight: 700;
   line-height: 82.43px;
   text-transform: uppercase;
@@ -1176,7 +1176,7 @@ section {
 .footerLinks h2 {
   display: flex;
   align-items: center;
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 700;
   line-height: 43.79px;
   text-underline-position: from-font;
@@ -1184,7 +1184,7 @@ section {
   color: var(--color3);
 }
 .footerLinks p {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 30.91px;
   text-align: justify;
@@ -1193,7 +1193,7 @@ section {
 }
 
 .footerLinks ul li {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 30.91px;
   text-align: justify;
