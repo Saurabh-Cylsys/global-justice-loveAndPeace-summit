@@ -111,6 +111,7 @@
     border: 2px solid #005a93;
     right: -5px;
     transform: translateY(-50%) scale(0);
+    background-color: #005a93;
   }
   
   .navbarDots ul li .dot.active::after,

@@ -971,24 +971,24 @@ section {
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px transparent;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #dce7b0;
-  border-radius: 10px;
+  background: var(--color1);
+  /* border-radius: 10px; */
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #dce7b0;
+  background: var(--color1);
 }
 
 .partner_carousel img {
