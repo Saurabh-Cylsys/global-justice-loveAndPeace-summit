@@ -78,7 +78,7 @@
 }
 .custom-file-input {
   color: transparent;
-  width: 11%;
+  width: 13%;
 }
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
