@@ -4,7 +4,7 @@
       <div class="row justify-content-between ">
         <div class="col-lg-2 col-2 position-relative">
           <img
-            src="assets/UIComponents/images/index/logo.png"
+            src="assets/UIComponents/images/logo.gif"
             alt=""
             class="logo"
             width="100%"
@@ -63,14 +63,14 @@
                       <h6>2800</h6>
                       <p>Peace Ambassadors (Delegates)</p>
                     </td>
-                    <td colspan="2" class="border-end-0">
-                      <!-- <h6>28</h6> -->
-                      <p> 28 Awards & 28 Corporate Partners</p>
-                    </td>
-                    <!-- <td>
+                    <td class="">
                       <h6>28</h6>
                       <p>Corporate Partners</p>
-                    </td> -->
+                    </td>
+                    <td>
+                      <h6>28</h6>
+                      <p>Awards (Global Justice, Love & Peace Champions)</p>
+                    </td>
                   </tr>
                   <tr>
                     <td>
@@ -530,18 +530,9 @@
                   <div class="col-md mx-3">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
-                        <img src="assets/UIComponents/images/speakers/speaker1.png" />
-                        <h5>Kailash Satyarthi</h5>
-                        <h6>Nobel Peace Laureate (2014)</h6>
-                        <p>Satyarthi Movement for Global Compassion</p>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-md mx-3">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
                         <img src="assets/UIComponents/images/speakers/speaker2.png" />
                         <h5>Nadir Godrej</h5>
+                        <label for="">(India)</label>
                         <h6>Industrialist</h6>
                         <p>
                           Chairman & Managing Director, Godrej Industries
@@ -553,33 +544,51 @@
                   <div class="col-md mx-3">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
-                        <img src="assets/UIComponents/images/speakers/speaker3.png" />
-                        <h5>Leymah Gbowee</h5>
-                        <h6>LIBERIA</h6>
-                        <p>
-                          Nobel Peace <br />
-                          Laureate 2011
-                        </p>
+                        <img src="assets/UIComponents/images/speakers/speaker1.png" />
+                        <h5>Kailash Satyarthi</h5>
+                        <label for="">(India)</label>
+                        <h6>Nobel Peace Laureate (2014)</h6>
+                        <p>Satyarthi Movement for Global Compassion</p>
                       </li>
                     </ul>
                   </div>
+                  
+                  
                   <div class="col-md mx-3">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img src="assets/UIComponents/images/speakers/speaker4.png" />
                         <h5>Rui Duarte de Barros</h5>
+                        <label for="">(Guinea-Bissau)</label>
                         <h6>Politician, Economist</h6>
                         <p>Prime Minister, Republic of Guimea-Bissau</p>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div class="col-md mx-3">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img src="assets/UIComponents/images/speakers/speaker5.png" />
+                        <h5>P V Sindhu</h5>
+                        <label for="">(India)</label>
+                        <h6>Sportsperson, Olympic Medallist</h6>
+                        <p>Badminton World Champion 2019</p>
+                        <label for="">(Final conformation based on tournament schedule)</label>
                       </li>
                     </ul>
                   </div>
                   <div class="col-md mx-3">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
-                        <img src="assets/UIComponents/images/speakers/speaker5.png" />
-                        <h5>P V Sindhu</h5>
-                        <h6>Sportsperson, Olympic Medallist</h6>
-                        <p>World-ranked Badminton Player</p>
+                        <img src="assets/UIComponents/images/speakers/speaker3.png" />
+                        <h5>Leymah Gbowee</h5>
+                        
+                        <label>(LIBERIA)</label>
+                        <h6>
+                          Nobel Peace <br />
+                          Laureate 2011
+                        </h6>
                       </li>
                     </ul>
                   </div>
@@ -635,10 +644,10 @@
             <div class="col-12">
               <div id="timeline-content">
                 <ul class="timeline">
-                  <li class="event" data-date="10:00 AM - 10:30 AM">
-                    <h3 class="fw-bold">Registration</h3>
+                  <li class="event" data-date="10:00 AM - 10:30 AM" [attr.data-count]="i + 1" *ngFor="let event of events; let i = index">
+                    <h3 class="fw-bold">{{ event }}</h3>
                   </li>
-                  <li class="event" data-date="10:30 AM - 11:00 AM">
+                  <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
                     <h3>Opening Session</h3>
                   </li>
                   <li
@@ -654,7 +663,7 @@
                   </li>
                   <li class="event" data-date="2:30 PM - 4:00 PM">
                     <h3>Session Theme 2 - LOVE</h3>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 
@@ -701,7 +710,7 @@
               rel="noopener noreferrer" 
               style="text-decoration: none; color: white; font-weight: bold; font-family:Dinpro;"
             >
-            <h2 class="col-5 text-white">Click on the map and find the route to reach the hotel.</h2>  
+            <h2 class="col-5 text-white" style="font-size: 30px; font-weight: 400; text-align: left;">Click on the map and find the route to reach the hotel.</h2>  
             </a>
           </p>
         </div>

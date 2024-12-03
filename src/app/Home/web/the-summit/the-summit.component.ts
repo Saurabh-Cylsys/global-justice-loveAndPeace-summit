@@ -11,6 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./the-summit.component.css']
 })
 export class TheSummitComponent implements OnInit{
+  events = [
+    'Registration',
+    'Opening Session',
+    'Session Theme 1 - JUSTICE',
+    'Launch & Networking',
+    'Session Theme 2 - LOVE',
+  ];
 
   speakers: any;
 
