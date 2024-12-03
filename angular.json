@@ -28,7 +28,9 @@
             "styles": [
               "src/styles.css",            
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/aos/dist/aos.css"
+              "node_modules/aos/dist/aos.css",
+              "./node_modules/intl-tel-input/build/css/intlTelInput.css"
+
             ],
             "scripts": [
               "node_modules/aos/dist/aos.js"
