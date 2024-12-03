@@ -30,8 +30,8 @@
                                 name="registration_index[]"
                                 value="1"
                               />
-                              <div class="row">
-                                <div class="col-md-12 my-3">
+                              <div class="row mb-4">
+                                <div class="col-md-12">
                                   <h6 class="panel-heading">
                                     Personal Information :
                                   </h6>
@@ -39,17 +39,9 @@
                                 <div
                                   class="form-group fg-nametitle col-md-4 col-sm-2 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="nametitle1"
-                                    >Title<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <select
                                       name="nametitle[1]"
                                       id="nametitle1"
@@ -75,6 +67,17 @@
                                       <option value="Hon">Hon</option>
                                       <option value="Lord">Lord</option>
                                     </select>
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="nametitle1"
+                                    >Title<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  </div>
                                     <div
                                       *ngIf="
                                         getcontrol('title')?.errors &&
@@ -93,17 +96,9 @@
                                 <div
                                   class="form-group fg-fname col-md-4 col-sm-3 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="fname1"
-                                    >First Name<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="fname[1]"
@@ -122,6 +117,17 @@
                                           submitted && f.first_name.errors
                                       }"
                                     />
+
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="fname1"
+                                    >First Name<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  ></div>
                                     <div
                                       class="text-danger"
                                       *ngIf="
@@ -147,17 +153,9 @@
                                 <div
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="lname1"
-                                    >Last Name<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       [(ngModel)]="last_name"
@@ -176,6 +174,16 @@
                                           submitted && f.last_name.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="lname1"
+                                    >Last Name<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  ></div>
                                     <div
                                       *ngIf="
                                         getcontrol('last_name')?.errors &&
@@ -199,29 +207,21 @@
                                 </div>
                               </div>
 
-                              <div class="row">
-                                <div class="col-md-12 my-3">
+                              <div class="row mb-4">
+                                <div class="col-md-12">
                                   <h6>Contact Information :</h6>
                                 </div>
                                 <div
                                   class="form-group fg-mobile col-md-6 col-sm-4 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="mobile1"
-                                    >Mobile Number<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div
-                                    class="row no-padding "
+                                    class="row no-padding"
                                   >
                                     <div
                                       class="form-group form-group-inner mobile-code col-3"
                                     >
+                                    <div class="form-floating">
                                       <select
                                         formControlName="country_code"
                                         class="form-control"
@@ -241,7 +241,7 @@
                                           {{ code.country_mobile_code }}
                                         </option>
                                         <!-- <option>India (91)</option> -->
-                                      </select>
+                                      </select></div>
                                       <div
                                         *ngIf="
                                           getcontrol('country_code')?.errors &&
@@ -259,6 +259,7 @@
                                     <div
                                       class="form-group form-group-inner mobile-number col-9"
                                     >
+                                    <div class="form-floating">
                                       <input
                                         type="text"
                                         name="mobile_number[1]"
@@ -282,6 +283,17 @@
                                             submitted && f.mobile_number.errors
                                         }"
                                       />
+                                      <label
+                                    class="col-md-12 no-padding"
+                                    for="mobile1"
+                                    >Mobile Number<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    </div>
                                       <div class="help-block with-errors"></div>
                                       <div
                                         *ngIf="
@@ -327,17 +339,9 @@
                                 <div
                                   class="form-group fg-email col-md-6 col-sm-4 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="email1"
-                                    >Email Id<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                 
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="email"
                                       name="email[1]"
@@ -356,6 +360,17 @@
                                           submitted && f.email_id.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="email1"
+                                    >Email Id<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  </div>
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
@@ -380,12 +395,9 @@
                                 <div
                                   class="form-group fg-email col-md-4 col-sm-4 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="profileurl"
-                                    >LinkedIn Profile</label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name=""
@@ -403,6 +415,11 @@
                                           submitted && f.linkedIn_profile.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="profileurl"
+                                    >LinkedIn Profile</label
+                                  ></div>
                                     <div
                                       *ngIf="
                                         getcontrol('linkedIn_profile')?.errors &&
@@ -421,12 +438,9 @@
                                 <div
                                   class="form-group fg-email col-md-4 col-sm-4 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="profileurl"
-                                    >Instagram ID</label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name=""
@@ -443,6 +457,11 @@
                                           submitted && f.instagram_profile.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="profileurl"
+                                    >Instagram ID</label
+                                  ></div>
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
@@ -459,14 +478,14 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="row">
+                              <div class="row mb-4">
                                 <div class="col-md-12">
                                   <h6>Professional Information :</h6>
                                 </div>
                                 <div
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
-                                  <label
+                                  <!-- <label
                                     class="col-md-12 no-padding"
                                     for="profession1"
                                     >Profession 1<span
@@ -475,9 +494,10 @@
                                     >
                                       *</span
                                     ></label
-                                  >
+                                  > -->
                                   <div class="col-md-12 no-padding">
-                                    <input
+                                    <div class="form-floating">
+                                      <input
                                       type="text"
                                       name="profession_1"
                                       id="Profession1"
@@ -493,6 +513,17 @@
                                           submitted && f.profession_1.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="profession1"
+                                    >Profession 1<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    </div>
                                     <div
                                       *ngIf="
                                         getcontrol('profession_1')?.errors &&
@@ -517,12 +548,9 @@
                                 <div
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="profession2"
-                                    >Profession 2 (if any)</label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="profession_2"
@@ -535,6 +563,12 @@
                                       minlength="3"
                                       (keypress)="ValidateAlpha($event)"
                                                                 />
+                                                                <label
+                                    class="col-md-12 no-padding"
+                                    for="profession2"
+                                    >Profession 2 (if any)</label
+                                  >
+                                                              </div>
                                     <!-- <div
                                       *ngIf="
                                         getcontrol('last_name')?.errors &&
@@ -557,12 +591,9 @@
                                   </div>
                                 </div>
                                 <div class="form-group fg-field_10 col-md-4 my-3">
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="field_10"
-                                    >Website</label
-                                  >
+                                 
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="field_10"
@@ -579,6 +610,12 @@
                                           registrationForm.get('website').errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="field_10"
+                                    >Website</label
+                                  >
+                                  </div>
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
@@ -597,24 +634,16 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="row">
+                              <div class="row mb-4">
                                 <div class="col-md-12">
                                   <h6>Organization Details :</h6>
                                 </div>
                                 <div
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="organization"
-                                    >Organization Name<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="organization_name"
@@ -631,6 +660,17 @@
                                           submitted && f.organization_name.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="organization"
+                                    >Organization Name<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  </div>
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
@@ -656,18 +696,9 @@
                                 <div
                                   class="form-group fg-field_3 col-md-4 col-sm-4 my-3"
                                 >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="field_3"
-                                    >Address
-                                    <span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <span class="required-icon"></span
                                     ><input
                                       type="text"
@@ -688,6 +719,18 @@
                                           submitted && f.address.errors
                                       }"
                                     />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="field_3"
+                                    >Address
+                                    <span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  </div>
                                     <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
@@ -711,15 +754,9 @@
                                   </div>
                                 </div>
                                 <div class="form-group fg-field_3 col-md-4 my-3">
-                                  <label for=""
-                                    >Country<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    >
-                                  </label>
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <span class="required-icon"></span
                                     ><input
                                       type="text"
@@ -736,7 +773,15 @@
                                           submitted && f.country.errors
                                       }"
                                     />
-                                    <div class="help-block with-errors"></div>
+                                    <label for=""
+                                    >Country<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </label>
+                                  </div>
                                     <div class="help-block with-errors"></div>
                                   <div
                                     *ngIf="
@@ -799,10 +844,9 @@
                                   </div> -->
                                 </div>
                                 <div class="col-md-4">
-                                  <label for=""
-                                    >State/Province
-                                  </label>
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="state"
@@ -814,6 +858,10 @@
                                       minlength="5"
                                       
                                     />
+                                    <label for=""
+                                    >State/Province
+                                  </label>
+                                </div>
                                     <!-- <div
                                       *ngIf="
                                         getcontrol('state')?.errors &&
@@ -882,15 +930,9 @@
                                   </div> -->
                                 </div>
                                 <div class="col-md-4">
-                                  <label for=""
-                                    >City<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    >
-                                  </label>
+                                  
                                   <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
                                     <input
                                       type="text"
                                       name="city"
@@ -902,6 +944,15 @@
                                       minlength="5"
                                       
                                     />
+                                    <label for=""
+                                    >City<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </label>
+                                  </div>
                                   <!-- <select
                                     class="form-control"
                                     (change)="changeCity($event)"

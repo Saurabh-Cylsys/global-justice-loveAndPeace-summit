@@ -23,6 +23,13 @@ export class WebHomeComponent implements OnInit{
   // headerIcon:any
   constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
+  events = [
+    'Registration',
+    'Opening Session',
+    'Session Theme 1 - JUSTICE',
+    'Launch & Networking',
+    'Session Theme 2 - LOVE',
+  ];
   ngOnInit(): void {
 
     AOS.init({
