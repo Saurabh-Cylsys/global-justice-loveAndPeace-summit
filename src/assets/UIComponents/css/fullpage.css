@@ -1,17 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-transform: capitalize;
-    transition: all 0.2s linear;
-    font-family: tahoma;
-  }
+
   
   html {
     scroll-behavior: smooth;
   }
 
-  .sec {
+  /* .sec {
     min-height: 100vh;
     width: 100vw;
     display: flex;
@@ -25,7 +18,7 @@
   
   .sec:nth-child(odd) {
     background: #ddd;
-  }
+  } */
   
   .navbarDots {
     position: fixed;
@@ -92,11 +85,12 @@
   }
   
   .navbarDots ul li .dot::before {
-    height: 5px;
-    width: 5px;
-    border: 2px solid #333;
+    height: 8px;
+    width: 8px;
+    border: 2px solid gray;
     right: 0;
     transform: translateY(-50%);
+    background-color: gray;
   }
   
   .navbarDots ul li .dot.active::before,
@@ -109,7 +103,7 @@
     height: 15px;
     width: 15px;
     border: 2px solid #005a93;
-    right: -5px;
+    right: -3px;
     transform: translateY(-50%) scale(0);
     background-color: #005a93;
   }
