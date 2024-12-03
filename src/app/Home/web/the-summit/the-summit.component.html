@@ -1176,13 +1176,17 @@
             <div class="col-12">
               <div id="timeline-content">
                 <ul class="timeline">
-                  <li class="event" data-date="10:00 AM - 10:30 AM">
-                    <h3 class="fw-bold">Registration</h3>
+                  <li class="event" data-date="10:00 AM - 10:30 AM" [attr.data-count]="i + 1" *ngFor="let event of events; let i = index">
+                    <h3 class="fw-bold">{{ event }}</h3>
                   </li>
-                  <li class="event" data-date="10:30 AM - 11:00 AM">
+                  <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
                     <h3>Opening Session</h3>
                   </li>
-                  <li class="event" id="date" data-date="11:00 AM - 12:30 PM">
+                  <li
+                    class="event"
+                    id="date"
+                    data-date="11:00 AM - 12:30 PM"
+                  >
                     <h3>Session Theme 1 - JUSTICE</h3>
                   </li>
 
@@ -1191,7 +1195,7 @@
                   </li>
                   <li class="event" data-date="2:30 PM - 4:00 PM">
                     <h3>Session Theme 2 - LOVE</h3>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 
