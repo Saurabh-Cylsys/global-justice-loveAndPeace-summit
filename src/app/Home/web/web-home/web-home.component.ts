@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -20,6 +20,8 @@ declare var AOS: any;
 
 
 export class WebHomeComponent implements OnInit{
+
+  isMobileView = false;
   // headerIcon:any
   constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
@@ -31,7 +33,7 @@ export class WebHomeComponent implements OnInit{
     { title: 'Session Theme 2 - LOVE', time: '2:30 PM - 4:00 PM' },
   ];
   ngOnInit(): void {
-
+    this.checkWindowSize();
     AOS.init({
 
       duration: 1200,
@@ -69,6 +71,22 @@ export class WebHomeComponent implements OnInit{
 
 
 
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 
 }

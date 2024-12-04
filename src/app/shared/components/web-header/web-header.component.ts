@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -10,9 +10,11 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class WebHeaderComponent implements OnInit{
   headerIcon:any;
   isHomePage: boolean = false;
+  isMobileView = false;
   constructor(public _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
   ngOnInit(): void {
+    this.checkWindowSize();
     this.headerIcon = this.SharedService.headerIcon;
     console.log(this.headerIcon,"hhhhhh");
     console.log(this._activeRouter.url,'WebHeaderComponent initialized');
@@ -162,5 +164,21 @@ export class WebHeaderComponent implements OnInit{
         break;
       // Add more cases for other routes as needed
     }
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 }

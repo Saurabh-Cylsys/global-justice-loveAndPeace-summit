@@ -160,8 +160,8 @@ header .nav-item .nav-link.active {
 
 .index .section1 .tableBox table tr td h6 {
   color: var(--color2);
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 20px;
+  font-weight: bolder;
   line-height: 46.3px;
   text-align: left;
   text-underline-position: from-font;
@@ -170,13 +170,16 @@ header .nav-item .nav-link.active {
 
 .index .section1 .tableBox table tr td p {
   color: var(--color7);
-  font-family: Optima;
   font-size: 18px;
   font-weight: 700;
   line-height: 17px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+
+.index .section1 .tableBox table tr td p span{
+  font-weight: 400;
 }
 
 /* index section2 */
@@ -1332,4 +1335,9 @@ header .nav-item .nav-link.active {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.list, .list:focus{
+  outline: none;
+  box-shadow: none;
 }

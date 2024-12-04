@@ -1,17 +1,18 @@
 <main class="index">
   <section class="mainSec ">
     <div class="container-fluid section1 position-relative">
-      <div class="row justify-content-between ">
-        <div class="col-lg-2 col-2 position-relative">
+      <div class="row justify-content-between bgColor h-100">
+        <div class="col-lg-2 col-2 position-relative" *ngIf="!isMobileView">
           <img
             src="assets/UIComponents/images/logo.gif"
             alt=""
             class="logo"
             width="100%"
             loading="lazy"
+            
           />
         </div>
-        <div class="col-lg-4 col-12 text-center p-lg-5">
+        <div class="col-lg-4 col-12 text-center py-lg-5 px-lg-5 px-5 mt-lg-0 mt-4">
           <div class="card cardMain">
             <div class="card-body">
               <div class="row">
@@ -61,15 +62,15 @@
                   <tr>
                     <td>
                       <h6>2800</h6>
-                      <p>Peace Ambassadors (Delegates)</p>
+                      <p>Delegates <span>(PeaceKeeper)</span></p>
                     </td>
                     <td class="">
                       <h6>28</h6>
-                      <p>Corporate Partners</p>
+                      <p>Peace Patrons</p>
                     </td>
                     <td>
                       <h6>28</h6>
-                      <p>Awards (Global Justice, Love & Peace Champions)</p>
+                      <p>Awards <span>(Global Justice, Love & Peace Champions)</span></p>
                     </td>
                   </tr>
                   <tr>
@@ -83,7 +84,7 @@
                     </td>
                     <td>
                       <h6>28%</h6>
-                      <p>Revenue to the World PeaceKeeper Movement</p>
+                      <p>Revenue to the I-am-PeaceKeeper Movement</p>
                     </td>
                   </tr>
                 </tbody>
