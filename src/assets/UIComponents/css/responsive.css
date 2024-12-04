@@ -1,17 +1,21 @@
 /* Add media queries for finer control on smaller devices */
 @media (min-width: 1440px) {
-
   .index .section1 .logo {
     position: relative;
-    /* top: -50px;
-    left: -50px; */
+    top: -50px;
+    /* left: -50px;  */
   }
-  
 }
 @media (max-width: 768px) {
   .index .section1 {
-    height: 93vh; /* Reduce height for smaller screens */
-    background-size: 100% 100%; /* Adjust background for better visibility */
+    background: url(../images/index/bannermob.gif);
+    background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    height: 75vh; /* Keeps the height relative to the viewport */
+  }
+  .index .section1 .bgColor {
+    background-color: hsl(203deg 100% 29% / 60%);
   }
 
   .index .section1 .logo {
@@ -22,14 +26,30 @@
     margin: 120px 0 0;
   }
 
-  .index .section1 .tableBox{
+  .index .section1 .tableBox {
     left: 0;
   }
 
   .navbarDots {
     display: none;
   }
-  .index .section7 table td ul li:nth-child(2){
+  .index .section7 table td ul li:nth-child(2) {
     font-size: 14.57px;
   }
+
+  .cardMain .card-body{
+    padding: 10px;
+  }
+
+  #timeline-content{
+    justify-content: end;
+  }
+  .second-image {
+    right: 0%;
+    top: 74%;
+    width: 60%;
+}
+.speakers img{
+  width: auto;
+}
 }

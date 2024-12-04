@@ -16,6 +16,7 @@ export class SharedService {
 
   private refreshPermissionSubject = new Subject<boolean>();
   refresh$ = this.refreshPermissionSubject.asObservable();
+  isMobileView = new Subject();
 
 
   constructor(
