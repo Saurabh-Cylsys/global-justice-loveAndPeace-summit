@@ -25,4 +25,11 @@
   .index .section1 .tableBox{
     left: 0;
   }
+
+  .navbarDots {
+    display: none;
+  }
+  .index .section7 table td ul li:nth-child(2){
+    font-size: 14.57px;
+  }
 }
