@@ -73,8 +73,7 @@ import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visito
     WebRoutingModule,
     SharedModule,
     FormsModule,
-    
-    ReactiveFormsModule,
+   ReactiveFormsModule,
   ]
 })
 export class WebModule { }

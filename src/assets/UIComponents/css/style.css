@@ -1260,3 +1260,6 @@ header .nav-item .nav-link.active {
   .hide-logo .logo {
     display: none;
   }
+  .iti {
+    width: 100%;
+  }
