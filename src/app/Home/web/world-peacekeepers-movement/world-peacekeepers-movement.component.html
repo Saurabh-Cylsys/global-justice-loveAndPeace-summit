@@ -324,8 +324,18 @@
                 </div>
               </div>
 
-              <div class="row g-2 mt-5 align-items-end">
+              <div class="row g-2 mt-5">
                 <div class="col-md">
+                  <label
+                  class="col-md-12 no-padding"
+                  for="mobile1"
+                  ><span
+                    class="form-label-span"
+                    style="color: #ff0000"
+                  >
+                    </span
+                  ></label
+                >
                   <div class="form-floating">
                     <input
                       type="email"
@@ -383,6 +393,7 @@
                   <div
                     class="form-group form-group-inner mobile-code col-3"
                   >
+                  <div class="form-floating">
                     <select
                       formControlName="country_code"
                       class="form-control"
@@ -401,7 +412,7 @@
                       >
                         {{ code.country_mobile_code }}
                       </option>
-                    </select>
+                    </select></div>
                     <div
                       *ngIf="
                         getcontrol('country_code')?.errors &&
@@ -431,6 +442,7 @@
                   data-error="Please enter valid number."
                   formControlName="mobile_number"
                   (keypress)="keyPressNumbers($event)"> -->
+                  <div class="form-floating">
                     <input
                       type="text"
                       name="mobile_number[1]"
@@ -447,7 +459,7 @@
                       formControlName="mobile_number"
                       (keypress)="keyPressNumbers($event)"
                  
-                    />
+                    /></div>
                     <div
                       *ngIf="
                         getcontrol('mobile_number')?.errors &&
@@ -502,6 +514,14 @@
                         >Mobile number must be at least 10 digit long.</small
                       >
                     </div> -->
+                  </div>
+
+                  <div class="col-md-12">
+                    <label class="containerCheck">
+                      <input type="checkbox">
+                      <span class="checkmark"></span>
+                      Do you want the email or phone number written on the badge? If yes, please tick the checkbox.
+                    </label>
                   </div>
                 </div>
               <!-- </div> -->
