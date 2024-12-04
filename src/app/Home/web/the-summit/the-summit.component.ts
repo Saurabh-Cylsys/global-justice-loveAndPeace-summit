@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 })
 export class TheSummitComponent implements OnInit{
   events = [
-    'Registration',
-    'Opening Session',
-    'Session Theme 1 - JUSTICE',
-    'Launch & Networking',
-    'Session Theme 2 - LOVE',
+    { title: 'Registration', time: '10:00 AM - 10:30 AM' },
+    { title: 'Opening Session', time: '10:30 AM - 11:00 AM' },
+    { title: 'Session Theme 1 - JUSTICE', time: '11:00 AM - 12:30 PM' },
+    { title: 'Launch & Networking', time: '12:30 PM - 2:30 PM' },
+    { title: 'Session Theme 2 - LOVE', time: '2:30 PM - 4:00 PM' },
   ];
 
   speakers: any;
