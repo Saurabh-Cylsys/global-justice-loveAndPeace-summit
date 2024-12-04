@@ -31,7 +31,8 @@ import { AccessibilityComponent } from './accessibility/accessibility.component'
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
-
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { IntlInputPhoneModule } from 'intl-input-phone';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -73,7 +74,9 @@ import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visito
     WebRoutingModule,
     SharedModule,
     FormsModule,
-   ReactiveFormsModule,
+   ReactiveFormsModule, 
+    NgxIntlTelInputModule ,
+   IntlInputPhoneModule
   ]
 })
 export class WebModule { }

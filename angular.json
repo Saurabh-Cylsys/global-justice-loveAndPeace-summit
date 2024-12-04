@@ -33,8 +33,7 @@
 
             ],
             "scripts": [
-              "node_modules/aos/dist/aos.js",
-              "node_modules/intl-tel-input/build/js/intlTelInput.min.js"
+              "node_modules/aos/dist/aos.js"
             ]
           },
           "configurations": {
