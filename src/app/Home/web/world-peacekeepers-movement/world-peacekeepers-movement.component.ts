@@ -1,11 +1,14 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import html2canvas from 'html2canvas';
 import int1TelInput from 'intl-tel-input';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -22,6 +25,21 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   countryData:any;
 
   selectedFile: File | null = null;
+
+  separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  country_codeList: any;
+  countryCodes: any;
+  country_code: any;
+  selectedCountryISO: any;
+
+  changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
+
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
   constructor( private formBuilder: FormBuilder,
@@ -44,10 +62,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   @ViewChild('contentTemplate')
   contentTemplate!: TemplateRef<any>;
 
+  country_code_val(){
+
+    console.log(this.peacekeepersForm.value.phone.number,this.peacekeepersForm.value.dialCode)
+      }
  
   ngOnInit(): void {
 
-    this.getAllCountrycode()
+    // this.getAllCountrycode()
     const inputElement = document.getElementById('phone') as HTMLInputElement;
     console.log(inputElement,'inputElement');
     
@@ -75,7 +97,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      country_code: ['', [Validators.required]],
+      // country_code: ['', [Validators.required]],
       mobile_number: ['', [
         Validators.required,
         Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
@@ -179,16 +201,16 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   }
   submitData(): void {
 
+    console.log(this.peacekeepersForm.value.mobile_number.number,this.peacekeepersForm.value.mobile_number.dialCode)
   
   
       const inputString = this.peacekeepersForm.value.country_code;
       const countryCode = this.extractCountryCode(inputString);
       console.log(countryCode); // Output: +91
     
-
     this.peacekeepersForm.patchValue({
       is_active :1,
-      mobile_number: countryCode + ' ' + this.peacekeepersForm.value.mobile_number
+      mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + this.peacekeepersForm.value.mobile_number.number
     })
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
