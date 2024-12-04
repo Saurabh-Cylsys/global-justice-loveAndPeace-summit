@@ -52,4 +52,11 @@
 .speakers img{
   width: auto;
 }
+
+.partner_carousel .carousel-item ul{
+  display: block;
+}
+.partner_carousel ul li img{
+  width: 100%;
+}
 }
