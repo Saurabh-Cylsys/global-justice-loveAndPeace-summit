@@ -1333,3 +1333,17 @@ header .nav-item .nav-link.active {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+
+  .hide-logo .logo {
+    display: none;
+  }
+  .iti {
+    width: 100%;
+    display: flex !important;
+    align-items:center;
+  }
+.iti .dropdown-menu.show {
+  overflow: scroll;
+  height: 50vh;
+}
