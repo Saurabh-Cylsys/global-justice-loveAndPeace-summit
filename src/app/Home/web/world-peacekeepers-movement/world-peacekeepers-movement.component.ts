@@ -5,7 +5,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import html2canvas from 'html2canvas';
-
+import int1TelInput from 'intl-tel-input';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -19,6 +19,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   code: any;
   submitted = false;
   is_selectedFile = false;
+  countryData:any;
 
   selectedFile: File | null = null;
   // configOption: ConfigurationOptions = new ConfigurationOptions;
@@ -45,7 +46,31 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
 
  
   ngOnInit(): void {
+
     this.getAllCountrycode()
+    const inputElement = document.getElementById('phone') as HTMLInputElement;
+    console.log(inputElement,'inputElement');
+    
+    if (inputElement) {
+      debugger
+      const data =
+    int1TelInput(inputElement,{
+    initialCountry: 'ae',
+    separateDialCode:true,
+    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
+    });
+    inputElement.addEventListener('countrychange', () => {
+      console.log(data);
+      
+      this.countryData =  int1TelInput(inputElement,{
+        initialCountry: 'ae',
+        separateDialCode:true,
+        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
+        }).getSelectedCountryData();
+      console.log('Selected Country Code:', this.countryData.dialCode);
+      console.log('Selected Country ISO Code:', this.countryData.iso2);
+    });
+  }
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
@@ -148,10 +173,22 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     }
   }
 
+  extractCountryCode(inputString: string): string | null {
+    const countryCodeMatch = inputString.match(/\(\+(\d+)\)/);
+    return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
+  }
   submitData(): void {
 
+  
+  
+      const inputString = this.peacekeepersForm.value.country_code;
+      const countryCode = this.extractCountryCode(inputString);
+      console.log(countryCode); // Output: +91
+    
+
     this.peacekeepersForm.patchValue({
-      is_active :1
+      is_active :1,
+      mobile_number: countryCode + ' ' + this.peacekeepersForm.value.mobile_number
     })
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {

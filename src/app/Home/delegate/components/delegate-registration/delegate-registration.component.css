@@ -386,3 +386,7 @@
     -webkit-transform: scale(1);
     transform: scale(1);
 }
+
+.mobile-number{
+    margin-left: -70px;
+  }

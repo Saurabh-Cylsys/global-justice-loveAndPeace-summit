@@ -324,15 +324,16 @@
                 </div>
               </div>
 
-              <div class="row g-2 mt-5">
+              <div class="row g-2 mt-5 align-items-end">
                 <div class="col-md">
                   <div class="form-floating">
                     <input
-                      type="text"
+                      type="email"
                       class="form-control"
                       formControlName="email_id"
                       name="email_id"
                       id="email"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,12}$"
                       placeholder=""
                       value=""
                     />
@@ -363,6 +364,7 @@
                     </div>
                   </div>
                 </div>
+
 
                 <div class="col-md">
                   <label
@@ -399,7 +401,6 @@
                       >
                         {{ code.country_mobile_code }}
                       </option>
-                      <!-- <option>India (91)</option> -->
                     </select>
                     <div
                       *ngIf="
@@ -418,6 +419,18 @@
                   <div
                     class="form-group form-group-inner mobile-number col-9"
                   >
+                  <!-- <input type="tel" id="phone" name="mobile_number[1]"
+                  placeholder="   Mobile Number"
+               
+                  class="form-control number_field"
+                  value=""
+                  pattern=".{8,12}"
+                  minlength="10"
+                  maxlength="10"
+                  required
+                  data-error="Please enter valid number."
+                  formControlName="mobile_number"
+                  (keypress)="keyPressNumbers($event)"> -->
                     <input
                       type="text"
                       name="mobile_number[1]"
@@ -548,7 +561,7 @@
               </div>
               <div class="row mt-5">
                 <div class="col-md text-center">
-                  <button  [disabled]="!is_selectedFile && peacekeepersForm.invalid "
+                  <button  [disabled]="peacekeepersForm.invalid "
                     type="submit"
                     class="btn btn-success text-white col-1 text-center"
                   >
