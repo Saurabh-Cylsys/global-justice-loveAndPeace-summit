@@ -81,15 +81,15 @@ header .nav-item .nav-link.active {
 }
 .index .section1 {
   background-image: url(../images/index/banner.gif);
-  background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
+  background-size: 90% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
   height: 100vh; /* Keeps the height relative to the viewport */
 }
 .index .section1 .logo {
   position: absolute;
-  top: -50px;
-  left: -80px;
+  /* top: -50px;
+  left: -80px; */
   z-index: 99;
 }
 
@@ -144,7 +144,7 @@ header .nav-item .nav-link.active {
 .index .section1 .tableBox {
   position: absolute;
   bottom: 0;
-  left: -50px;
+  /* left: -50px; */
 }
 
 .index .section1 .tableBox table tr td {
