@@ -1259,3 +1259,6 @@ section {
   .hide-logo .logo {
     display: none;
   }
+  .iti {
+    width: 100%;
+  }
