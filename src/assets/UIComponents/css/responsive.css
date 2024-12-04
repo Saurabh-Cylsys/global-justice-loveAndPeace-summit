@@ -40,4 +40,16 @@
   .cardMain .card-body{
     padding: 10px;
   }
+
+  #timeline-content{
+    justify-content: end;
+  }
+  .second-image {
+    right: 0%;
+    top: 74%;
+    width: 60%;
+}
+.speakers img{
+  width: auto;
+}
 }

@@ -1009,13 +1009,18 @@ header .nav-item .nav-link.active {
   height: 80px;
 }
 
+.partner_carousel .carousel-item ul{
+  display: flex;
+  align-items: center;
+}
+
 .partner_carousel ul li {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px dashed #12894099;
-  margin: 20px 0;
+  margin: 20px;
   border-radius: 10px;
 }
 
