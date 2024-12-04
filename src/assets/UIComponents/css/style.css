@@ -1004,9 +1004,8 @@ header .nav-item .nav-link.active {
   background: var(--color1);
 }
 
-.partner_carousel img {
-  width: 80px;
-  height: 80px;
+.partner_carousel {
+  width: 100%;
 }
 
 .partner_carousel .carousel-item ul{
@@ -1019,8 +1018,8 @@ header .nav-item .nav-link.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed #12894099;
-  margin: 20px;
+  /* border: 1px dashed #12894099; */
+  /* margin: 20px; */
   border-radius: 10px;
 }
 
@@ -1359,3 +1358,4 @@ header .nav-item .nav-link.active {
   overflow: scroll;
   height: 50vh;
 }
+
