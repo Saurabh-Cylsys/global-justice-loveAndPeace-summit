@@ -486,15 +486,7 @@
                         >Mobile number must be at least 10
                         digit long.</small
                       >
-                      <small
-                        class="text-danger"
-                        *ngIf="getcontrol('mobile_number')?.errors?.['repeatingDigits']"
-                      >
-                        Mobile number cannot contain repeating
-                        digits.
-                      </small>
-                      
-                    </div>
+                                        </div>
                   </div>
                
                 </div>
@@ -593,6 +585,8 @@
                   <button 
                     type="submit"
                     class="btn btn-success text-white col-1 text-center"
+                    [disabled]="this.peacekeepersForm.invalid"
+
                   >
                     Save
                   </button>

@@ -190,21 +190,17 @@
                       *ngIf="getcontrol('lastName')?.errors?.['required']"
                       >Last name is required</small
                     >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('lastName')?.errors?.['minlength']"
-                      >Last name must be at least 3 characters long.</small
-                    >
+                   
                   </div>
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="form-group">
-                  <p class="m-0">Country Code</p>
+                  <p class="m-0">Phone Number</p>
                 </div>
               </div>
-              <div class="mb-4 col-md-3">
+              <!-- <div class="mb-4 col-md-3">
                 <div class="form-floating">
                   <select
                     formControlName="countryCode"
@@ -223,10 +219,33 @@
                     </option>
                   </select>
                 </div>
-              </div>
+              </div> -->
               <div class="mb-4 col-md-9">
                 <div class="form-floating">
-                  <input
+
+                  <ngx-intl-tel-input
+                  type="tel"
+                  class="custom-width-container"
+                    [preferredCountries]="[
+                      CountryISO.India,
+                      CountryISO.UnitedStates,
+                      CountryISO.UnitedKingdom
+                    ]"
+                    [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [phoneValidation]="true"
+                    formControlName="phoneNumber"
+                    name="phoneNumber"
+                 
+                  ></ngx-intl-tel-input>
+                  <!-- <input
                     type="tel"
                     class="form-control"
                     formControlName="phoneNumber"
@@ -239,10 +258,10 @@
                     minlength="10"
                     maxlength="15"
                     value=""
-                  />
-                  <label for="mobileNomber">Phone Number</label>
+                  /> -->
+                  <!-- <label for="mobileNomber">Phone Number</label>
 
-                  <div class="help-block with-errors"></div>
+                  <div class="help-block with-errors"></div> -->
                   <div
                     *ngIf="
                       getcontrol('phoneNumber')?.errors &&
@@ -259,22 +278,8 @@
                       *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
                       >Mobile number must be at least 10 digit long.</small
                     >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('phoneNumber')?.errors?.['repeatingDigits']"
-                    >
-                      Mobile number cannot contain repeating digits.
-                    </small>
-                    <small
-                      class="text-danger"
-                      *ngIf="
-                        contactUsForm
-                          .get('mobile_number')
-                          .hasError('containsConsecutiveZeros')
-                      "
-                    >
-                      cannot contain three or more consecutive zeros.
-                    </small>
+                 
+                   
                   </div>
                 </div>
               </div>

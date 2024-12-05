@@ -58,6 +58,16 @@ export class WebHomeComponent implements OnInit{
   }
 
 
+  downloadPDF() {
+    debugger
+    const fileUrl = 'assets/UIComponents/files/GJLPS-Collateral-Brochure.pdf'; // Path to your PDF file in the assets folder
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = 'GJLPS-Collateral-Brochure.pdf'; // Name of the downloaded file
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
 
 

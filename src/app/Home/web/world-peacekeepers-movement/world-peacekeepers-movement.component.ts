@@ -97,11 +97,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      // country_code: ['', [Validators.required]],
-      mobile_number: ['', [
-        Validators.required,
-        Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
-      ]],
+      country_code: [''],
+      mobile_number: ['', [Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
       
@@ -210,6 +207,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     
     this.peacekeepersForm.patchValue({
       is_active :1,
+      country_code: this.peacekeepersForm.value.mobile_number.countryCode,
       mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + this.peacekeepersForm.value.mobile_number.number
     })
     console.log(this.peacekeepersForm.value);
