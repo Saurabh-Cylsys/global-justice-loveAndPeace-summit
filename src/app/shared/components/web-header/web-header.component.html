@@ -20,22 +20,69 @@
   </div>
   <div class="offcanvas-body">
     <ul>
-      <li><a [routerLink]="['/webhome']" aria-label="Close" data-bs-dismiss="offcanvas">Home</a></li>
-      <li><a [routerLink]="['/the-summit']" aria-label="Close" data-bs-dismiss="offcanvas">The Summit</a></li>
-      <li><a [routerLink]="['/partners']" aria-label="Close" data-bs-dismiss="offcanvas">Partners</a></li>
-      <li><a [routerLink]="['/awards']" aria-label="Close" data-bs-dismiss="offcanvas">Awards</a></li>
       <li>
-        <a [routerLink]="['/world-peacekeepers-movement']" aria-label="Close" data-bs-dismiss="offcanvas"
+        <a
+          [routerLink]="['/webhome']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/the-summit']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >The Summit</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/partners']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Partners</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/awards']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Awards</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/world-peacekeepers-movement']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
           >World Peacekeepers Movement</a
         >
       </li>
-      <li><a [routerLink]="['/DownloadCenter']" aria-label="Close" data-bs-dismiss="offcanvas">Download Center</a></li>
-      <li><a [routerLink]="['/contact-us']" aria-label="Close" data-bs-dismiss="offcanvas">Contact Us</a></li>
+      <li>
+        <a
+          [routerLink]="['/DownloadCenter']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Download Center</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/contact-us']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
+          >Contact Us</a
+        >
+      </li>
       <li>
         <a
           type="btn"
           class="btn btn-success"
-          [routerLink]="['/delegate-registration']" aria-label="Close" data-bs-dismiss="offcanvas"
+          [routerLink]="['/delegate-registration']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
           >Register As a Delegate</a
         >
       </li>
@@ -46,12 +93,17 @@
 
 <!-- header start -->
 <header [class.hide-logo]="_router.url === '/webhome'" *ngIf="!isMobileView">
-  <nav class="navbar navbar-expand-lg p-0" >
+  <nav class="navbar navbar-expand-lg p-0">
     <div class="container-fluid">
-      <a class="navbar-brand logo" *ngIf="!isHomePage" [routerLink]="['/webhome']" style="width: 100px;">
-        <img src="assets/UIComponents/images/logo.gif" alt="" width="100%">
+      <a
+        class="navbar-brand logo"
+        *ngIf="!isHomePage"
+        [routerLink]="['/webhome']"
+        style="width: 100px"
+      >
+        <img src="assets/UIComponents/images/logo.gif" alt="" width="100%" />
       </a>
-      
+
       <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
           <li class="nav-item">
@@ -70,7 +122,9 @@
               >The Summit</a
             > -->
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/the-summit']">The Summit</button>
+              <button class="dropbtn" [routerLink]="['/the-summit']">
+                The Summit
+              </button>
               <div class="hover-dropdown-content">
                 <a [routerLink]="['/the-summit']">Highlights of summit</a>
                 <a [routerLink]="['/the-summit']" fragment="2">Chairman</a>
@@ -80,28 +134,38 @@
                 <a [routerLink]="['/the-summit']" fragment="6">Invited Speakers</a>
                 <a [routerLink]="['/the-summit']" fragment="7">Benefits for Registration</a> -->
                 <a [routerLink]="['/the-summit']" fragment="8">Delegates</a>
-                <a [routerLink]="['/the-summit']" fragment="9">Goals of Summit</a>
+                <a [routerLink]="['/the-summit']" fragment="9"
+                  >Goals of Summit</a
+                >
                 <a [routerLink]="['/the-summit']" fragment="10">Agenda</a>
-                <a [routerLink]="['/the-summit']" fragment="11">Structured
-                  networking</a>
-                  <a [routerLink]="['/the-summit']" fragment="12">Venue</a>
+                <a [routerLink]="['/the-summit']" fragment="11"
+                  >Structured networking</a
+                >
+                <a [routerLink]="['/the-summit']" fragment="12">Venue</a>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn"  [routerLink]="['/partners']">Partners</button>
+              <button class="dropbtn" [routerLink]="['/partners']">
+                Partners
+              </button>
               <div class="hover-dropdown-content">
-                <a routerLinkActive="active"
-                [routerLink]="['/partners']" >Corporate Partner</a>
+                <a routerLinkActive="active" [routerLink]="['/partners']"
+                  >Corporate Partner</a
+                >
                 <!-- <a [routerLink]="['/partners']" fragment="2">Invited Corporate Partners</a>
                 <a [routerLink]="['/partners']" fragment="3">28% Profit</a> -->
-                <a [routerLink]="['/partners']" fragment="3">Causes we Support</a>
-                <a [routerLink]="['/partners']" fragment="5">Event, Media & PR Agency</a>
+                <a [routerLink]="['/partners']" fragment="3"
+                  >Causes we Support</a
+                >
+                <a [routerLink]="['/partners']" fragment="5"
+                  >Event, Media & PR Agency</a
+                >
                 <!-- <a [routerLink]="['/partners']" fragment="6">Dubai</a> -->
-                <a [routerLink]="['/partners']" fragment="7">Service Partners</a>
-                
+                <a [routerLink]="['/partners']" fragment="6"
+                  >Service Partners</a
+                >
               </div>
             </div>
           </li>
@@ -113,43 +177,90 @@
             > -->
 
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/awards']" routerLinkActive="active">Awards</button>
+              <button
+                class="dropbtn"
+                [routerLink]="['/awards']"
+                routerLinkActive="active"
+              >
+                Awards
+              </button>
               <div class="hover-dropdown-content">
-                <a 
-                [routerLink]="['/awards']" >Award Categories</a>
-                <a [routerLink]="['/awards']" fragment="2">Awards Research Committee</a>
+                <a [routerLink]="['/awards']">Award Categories</a>
+                <a [routerLink]="['/awards']" fragment="2"
+                  >Awards Research Committee</a
+                >
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/world-peacekeepers-movement']">World Peacekeepers Movement</button>
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                [routerLink]="['/world-peacekeepers-movement']"
+              >
+                World Peacekeepers Movement
+              </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/world-peacekeepers-movement']">The Movement</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="2">I am Peacekeeper</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="3">Sign Up Now</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="4">7 Peace Values</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="5">Song and Graphics</a>
+                <a [routerLink]="['/world-peacekeepers-movement']"
+                  >The Movement</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="2"
+                  >I am Peacekeeper</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="3"
+                  >Sign Up Now</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="4"
+                  >7 Peace Values</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="5"
+                  >Song and Graphics</a
+                >
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/DownloadCenter']">Download Center</button>
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                [routerLink]="['/DownloadCenter']"
+              >
+                Download Center
+              </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/DownloadCenter']" >Mission & Pledge</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc2">The Summit of 28</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc3">The Number 28</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc4">7 Pillars of Justice</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc5">7 causes of world conflict</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc6">7 quotes of inner peace</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc7">28 gems of world peace</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc8">We are One</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc9">Chairs for Delegates</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc10">28 Poems</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc11">28 Sayings</a>
+                <a [routerLink]="['/DownloadCenter']">Mission & Pledge</a>
+                <a [routerLink]="['/DownloadCenter']" fragment="dc2"
+                  >The Summit of 28</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc3"
+                  >The Number 28</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc4"
+                  >7 Pillars of Justice</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc5"
+                  >7 causes of world conflict</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc6"
+                  >7 quotes of inner peace</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc7"
+                  >28 gems of world peace</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc8"
+                  >We are One</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc9"
+                  >Chairs for Delegates</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc10"
+                  >28 Poems</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc11"
+                  >28 Sayings</a
+                >
               </div>
             </div>
           </li>
@@ -177,11 +288,15 @@
     </div>
   </nav>
 </header>
-<header  *ngIf="isMobileView">
-  <nav class="navbar navbar-expand-lg p-0" >
+<header *ngIf="isMobileView">
+  <nav class="navbar navbar-expand-lg p-0">
     <div class="container-fluid">
-      <a class="navbar-brand logo" [routerLink]="['/webhome']" style="width: 100px;">
-        <img src="assets/UIComponents/images/logo.gif" alt="" width="100%">
+      <a
+        class="navbar-brand logo"
+        [routerLink]="['/webhome']"
+        style="width: 100px"
+      >
+        <img src="assets/UIComponents/images/logo.gif" alt="" width="100%" />
       </a>
       <button
         class="navbar-toggler border-white list"
@@ -193,7 +308,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-      <i class="bi bi-list text-white"></i>
+        <i class="bi bi-list text-white"></i>
       </button>
       <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
@@ -213,7 +328,9 @@
               >The Summit</a
             > -->
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/the-summit']">The Summit</button>
+              <button class="dropbtn" [routerLink]="['/the-summit']">
+                The Summit
+              </button>
               <div class="hover-dropdown-content">
                 <a [routerLink]="['/the-summit']">Highlights of summit</a>
                 <a [routerLink]="['/the-summit']" fragment="2">Chairman</a>
@@ -223,28 +340,38 @@
                 <a [routerLink]="['/the-summit']" fragment="6">Invited Speakers</a>
                 <a [routerLink]="['/the-summit']" fragment="7">Benefits for Registration</a> -->
                 <a [routerLink]="['/the-summit']" fragment="8">Delegates</a>
-                <a [routerLink]="['/the-summit']" fragment="9">Goals of Summit</a>
+                <a [routerLink]="['/the-summit']" fragment="9"
+                  >Goals of Summit</a
+                >
                 <a [routerLink]="['/the-summit']" fragment="10">Agenda</a>
-                <a [routerLink]="['/the-summit']" fragment="11">Structured
-                  networking</a>
-                  <a [routerLink]="['/the-summit']" fragment="12">Venue</a>
+                <a [routerLink]="['/the-summit']" fragment="11"
+                  >Structured networking</a
+                >
+                <a [routerLink]="['/the-summit']" fragment="12">Venue</a>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn"  [routerLink]="['/partners']">Partners</button>
+              <button class="dropbtn" [routerLink]="['/partners']">
+                Partners
+              </button>
               <div class="hover-dropdown-content">
-                <a routerLinkActive="active"
-                [routerLink]="['/partners']" >Corporate Partner</a>
+                <a routerLinkActive="active" [routerLink]="['/partners']"
+                  >Corporate Partner</a
+                >
                 <!-- <a [routerLink]="['/partners']" fragment="2">Invited Corporate Partners</a>
                 <a [routerLink]="['/partners']" fragment="3">28% Profit</a> -->
-                <a [routerLink]="['/partners']" fragment="3">Causes we Support</a>
-                <a [routerLink]="['/partners']" fragment="5">Event, Media & PR Agency</a>
+                <a [routerLink]="['/partners']" fragment="3"
+                  >Causes we Support</a
+                >
+                <a [routerLink]="['/partners']" fragment="5"
+                  >Event, Media & PR Agency</a
+                >
                 <!-- <a [routerLink]="['/partners']" fragment="6">Dubai</a> -->
-                <a [routerLink]="['/partners']" fragment="7">Service Partners</a>
-                
+                <a [routerLink]="['/partners']" fragment="7"
+                  >Service Partners</a
+                >
               </div>
             </div>
           </li>
@@ -256,43 +383,90 @@
             > -->
 
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/awards']" routerLinkActive="active">Awards</button>
+              <button
+                class="dropbtn"
+                [routerLink]="['/awards']"
+                routerLinkActive="active"
+              >
+                Awards
+              </button>
               <div class="hover-dropdown-content">
-                <a 
-                [routerLink]="['/awards']" >Award Categories</a>
-                <a [routerLink]="['/awards']" fragment="2">Awards Research Committee</a>
+                <a [routerLink]="['/awards']">Award Categories</a>
+                <a [routerLink]="['/awards']" fragment="2"
+                  >Awards Research Committee</a
+                >
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/world-peacekeepers-movement']">World Peacekeepers Movement</button>
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                [routerLink]="['/world-peacekeepers-movement']"
+              >
+                World Peacekeepers Movement
+              </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/world-peacekeepers-movement']">The Movement</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="2">I am Peacekeeper</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="3">Sign Up Now</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="4">7 Peace Values</a>
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="5">Song and Graphics</a>
+                <a [routerLink]="['/world-peacekeepers-movement']"
+                  >The Movement</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="2"
+                  >I am Peacekeeper</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="3"
+                  >Sign Up Now</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="4"
+                  >7 Peace Values</a
+                >
+                <a [routerLink]="['/world-peacekeepers-movement']" fragment="5"
+                  >Song and Graphics</a
+                >
               </div>
             </div>
           </li>
           <li class="nav-item">
-            
             <div class="hover-dropdown">
-              <button class="dropbtn" routerLinkActive="active" [routerLink]="['/DownloadCenter']">Download Center</button>
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                [routerLink]="['/DownloadCenter']"
+              >
+                Download Center
+              </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/DownloadCenter']" >Mission & Pledge</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc2">The Summit of 28</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc3">The Number 28</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc4">7 Pillars of Justice</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc5">7 causes of world conflict</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc6">7 quotes of inner peace</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc7">28 gems of world peace</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc8">We are One</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc9">Chairs for Delegates</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc10">28 Poems</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc11">28 Sayings</a>
+                <a [routerLink]="['/DownloadCenter']">Mission & Pledge</a>
+                <a [routerLink]="['/DownloadCenter']" fragment="dc2"
+                  >The Summit of 28</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc3"
+                  >The Number 28</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc4"
+                  >7 Pillars of Justice</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc5"
+                  >7 causes of world conflict</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc6"
+                  >7 quotes of inner peace</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc7"
+                  >28 gems of world peace</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc8"
+                  >We are One</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc9"
+                  >Chairs for Delegates</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc10"
+                  >28 Poems</a
+                >
+                <a [routerLink]="['/DownloadCenter']" fragment="dc11"
+                  >28 Sayings</a
+                >
               </div>
             </div>
           </li>

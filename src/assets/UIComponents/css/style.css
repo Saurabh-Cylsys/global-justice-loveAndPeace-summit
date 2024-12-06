@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 999;
 }
 
 header .nav-link,
@@ -90,7 +90,7 @@ header .nav-item .nav-link.active {
   position: absolute;
   /* top: -50px;
   left: -80px; */
-  z-index: 99;
+  z-index: 999;
 }
 
 .index .section1 .cardMain {
@@ -389,6 +389,8 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color2);
+  position: relative;
+  z-index: 9;
 }
 /* index section7 timeline */
 
@@ -598,13 +600,13 @@ header .nav-item .nav-link.active {
 .partner .section8 h2 {
   color: var(--color1);
 }
-.partner .section8 {
+/* .partner .section8 {
   background-image: url(../images/partners/banner.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 82vh;
   padding: 0;
-}
+} */
 
 .partner .section7 {
   background-size: cover;
@@ -1374,4 +1376,8 @@ header .nav-item .nav-link.active {
   background-size: cover;
   /* height: 127vh; */
   height: auto;
+}
+
+.yT{
+  height: 522px;
 }

@@ -12,7 +12,7 @@
     background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 75vh; /* Keeps the height relative to the viewport */
+    height: 100vh; /* Keeps the height relative to the viewport */
   }
   .index .section1 .bgColor {
     background-color: hsl(203deg 100% 29% / 60%);
@@ -34,48 +34,127 @@
     display: none;
   }
   .index .section7 table td ul li:nth-child(2) {
-    font-size: 14.57px;
+    font-size: 9.57px;
+    font-weight: 600;
+    line-height: 19.21px;
   }
 
-  .cardMain .card-body{
+  .cardMain .card-body {
     padding: 10px;
   }
 
-  #timeline-content{
+  #timeline-content {
     justify-content: end;
   }
   .second-image {
     right: 0%;
     top: 74%;
     width: 60%;
-}
-.speakers img{
-  width: auto;
-}
+  }
+  .speakers img {
+    width: auto;
+  }
 
-.partner_carousel .carousel-item ul{
-  display: block;
-}
-.partner_carousel ul li img{
-  width: 100%;
-}
+  .partner_carousel .carousel-item ul {
+    display: block;
+  }
+  .partner_carousel ul li img {
+    width: 100%;
+  }
 
-.awards .section7 .card .card-body ul{
-  display: block;
-}
+  .awards .section7 .card .card-body ul {
+    display: block;
+  }
 
-.index .section7 p {
-  font-size: 13px;
-  line-height: 20px;
-}
+  .index .section7 p {
+    font-size: 16px;
+    line-height: 20px;
+  }
 
-.index .section1 .tableBox table tr td p{
-  font-size: 12px;
-}
+  .index .section1 .tableBox table tr td p {
+    font-size: 12px;
+  }
+
+  .index .section5 h2,
+  .index .section6 h2,
+  .index .section9 h2 {
+    font-size: 18px;
+  }
+  .index .section1 .cardMain h5 {
+    font-size: 14px;
+  }
+
+  .index .section1 .cardMain .col-4 h6 {
+    font-size: 10px;
+  }
+  .index .section1 .cardMain .col-4 h6 span {
+    font-size: 16px;
+  }
+  .index .section7 h1 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40.6px;
+  }
+  .timeline h2,
+  .timeline h3 {
+    font-size: 12px;
+  }
+  .timeline .event {
+    font-size: 12px;
+  }
+
+  :root {
+    --dotborder: -2px;
+  }
+
+  .index .section7 table td ul li:nth-child(1) {
+    font-size: 25px;
+  }
+  .index .section7 h2 {
+    font-size: 20px;
+  }
+  .invited table {
+    font-size: 10px;
+  }
+  .contact-info ul li {
+    font-size: 16px;
+  }
+  .yT{
+    height: 322px;
+  }
+
+  .chairman{
+    border-top: 1px solid #0000005c;
+  }
+  .awards .section7 .lastP{
+    font-size: 15px;
+  }
+  .index .section7 label {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .footerLinks p{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footerLinks h1{
+    font-size: 16px;
+  }
+  .footerLinks ol li{
+    font-size: 14px;
+  }
+  .footerLinks ul li span{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footerLinks h2, .delegate-form h3{
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 320px) {
-  .index .section1 .tableBox table tr td p{
+  .index .section1 .tableBox table tr td p {
     font-size: 10px;
   }
 }

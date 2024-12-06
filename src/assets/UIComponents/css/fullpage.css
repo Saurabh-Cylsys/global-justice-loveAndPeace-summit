@@ -23,7 +23,7 @@
   .navbarDots {
     position: fixed;
     top: 50%;
-    right: 30px;
+    right: 10px;
     transform: translateY(-50%);
     z-index: 1000;
   }
@@ -35,7 +35,7 @@
   }
   
   .navbarDots ul li {
-    width: 300px;
+    width: 220px;
     position: relative;
     text-align: right;
   }
