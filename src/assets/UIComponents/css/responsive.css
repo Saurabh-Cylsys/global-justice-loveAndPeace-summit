@@ -135,8 +135,21 @@
   }
 
   .footerLinks p{
-    font-weight: 14px;
+    font-size: 14px;
     font-weight: 600;
+  }
+  .footerLinks h1{
+    font-size: 16px;
+  }
+  .footerLinks ol li{
+    font-size: 14px;
+  }
+  .footerLinks ul li span{
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .footerLinks h2, .delegate-form h3{
+    font-size: 16px;
   }
 }
 
