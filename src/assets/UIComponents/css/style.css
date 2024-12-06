@@ -323,6 +323,10 @@ header .nav-item .nav-link.active {
   margin-block: 1rem;
 }
 
+.speakers label{
+  text-transform: uppercase;
+}
+
 .speakers h6 {
   color: var(--color1);
 }
@@ -1023,9 +1027,9 @@ header .nav-item .nav-link.active {
   border-radius: 10px;
 }
 
-.speakers img {
+/* .speakers img {
   width: 100%;
-}
+} */
 
 .badge h6 {
   font-size: 24px;
