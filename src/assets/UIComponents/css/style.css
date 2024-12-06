@@ -151,7 +151,7 @@ header .nav-item .nav-link.active {
   background-color: transparent;
   color: var(--color2);
   border-style: dotted;
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 }
 .index .section1 .tableBox table tr td:nth-child(2) {
   border-left: 1px dotted var(--color2);
@@ -1363,3 +1363,15 @@ header .nav-item .nav-link.active {
   height: 50vh;
 }
 
+.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
+  color: rgba(var(--bs-body-color-rgb), .65);
+  transform: scale(.85) translateY(-1.5rem) translateX(.15rem);
+}
+
+.delegate-form .section7 {
+  background-image: url(../images/delegateBg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 127vh; */
+  height: auto;
+}

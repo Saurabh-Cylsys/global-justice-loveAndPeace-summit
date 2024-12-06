@@ -59,7 +59,7 @@
           </div>
           <div class="col-md-7 px-lg-5">
             <div class="row g-2 mt-5">
-              <div class="mb-4 col-md-6">
+              <div class="mb-4 col-md-4">
                 <div class="form-floating">
                   <select
                     name="nametitle[1]"
@@ -98,7 +98,129 @@
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
+              <div class="mb-4 col-md-4">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="FirstName"
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder=""
+                    required
+                    value=""
+                    [ngClass]="{
+                      'is-invalid': submitted && f.last_name.errors
+                    }"
+                  />
+                  <label for="FirstName">First Name</label>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      getcontrol('firstName')?.errors &&
+                      getcontrol('firstName')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('firstName')?.errors?.['required']"
+                      >First name is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              <div class="mb-4 col-md-4">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="lastName"
+                    name="lastName"
+                    id="LastName"
+                    required
+                    placeholder=""
+                    value=""
+                  />
+                  <label for="LastName">Last Name</label>
+
+                  <div
+                    *ngIf="
+                      getcontrol('lastName')?.errors &&
+                      getcontrol('lastName')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('lastName')?.errors?.['required']"
+                      >Last name is required</small
+                    >
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+              
               <div class="mb-4 col-md-6">
+                <div class="form-floating">
+                  <!-- <ngx-intl-tel-input
+                    type="tel"
+                    class="custom-width-container"
+                    [preferredCountries]="[
+                      CountryISO.India,
+                      CountryISO.UnitedStates,
+                      CountryISO.UnitedKingdom
+                    ]"
+                    [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.India"
+                    [phoneValidation]="true"
+                    formControlName="phoneNumber"
+                    name="phoneNumber"
+                  ></ngx-intl-tel-input> -->
+                  <input
+                    type="tel"
+                    class="form-control"
+                    formControlName="phoneNumber"
+                    name="mobile_number[1]"
+                    id="mobileNomber"
+                    (keypress)="keyPressNumbers($event)"
+                    required
+                    placeholder=""
+                    pattern=".{8,12}"
+                    minlength="10"
+                    maxlength="15"
+                    value=""
+                  />
+                  <label for="mobileNomber">Phone Number</label>
+
+                  <!-- <div class="help-block with-errors"></div> -->
+                  <div
+                    *ngIf="
+                      getcontrol('phoneNumber')?.errors &&
+                      getcontrol('phoneNumber')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['required']"
+                      >Mobile number is required</small
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
+                      >Mobile number must be at least 10 digit long.</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
                 <div class="form-floating">
                   <input
                     type="email"
@@ -132,74 +254,7 @@
                   </div>
                 </div>
               </div>
-              <div class="mb-4 col-md-6">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="FirstName"
-                    formControlName="firstName"
-                    name="firstName"
-                    placeholder=""
-                    required
-                    value=""
-                    [ngClass]="{
-                      'is-invalid': submitted && f.last_name.errors
-                    }"
-                  />
-                  <label for="FirstName">First Name</label>
 
-                  <div
-                    class="text-danger"
-                    *ngIf="
-                      getcontrol('firstName')?.errors &&
-                      getcontrol('firstName')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('firstName')?.errors?.['required']"
-                      >First name is required</small
-                    >
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-              <div class="mb-4 col-md-6">
-                <div class="form-floating">
-                  <input
-                    type="text"
-                    class="form-control"
-                    formControlName="lastName"
-                    name="lastName"
-                    id="LastName"
-                    required
-                    placeholder=""
-                    value=""
-                  />
-                  <label for="LastName">Last Name</label>
-
-                  <div
-                    *ngIf="
-                      getcontrol('lastName')?.errors &&
-                      getcontrol('lastName')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('lastName')?.errors?.['required']"
-                      >Last name is required</small
-                    >
-                   
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <p class="m-0">Phone Number</p>
-                </div>
-              </div>
               <!-- <div class="mb-4 col-md-3">
                 <div class="form-floating">
                   <select
@@ -220,69 +275,7 @@
                   </select>
                 </div>
               </div> -->
-              <div class="mb-4 col-md-9">
-                <div class="form-floating">
-
-                  <ngx-intl-tel-input
-                  type="tel"
-                  class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="true"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [phoneValidation]="true"
-                    formControlName="phoneNumber"
-                    name="phoneNumber"
-                 
-                  ></ngx-intl-tel-input>
-                  <!-- <input
-                    type="tel"
-                    class="form-control"
-                    formControlName="phoneNumber"
-                    name="mobile_number[1]"
-                    id="mobileNomber"
-                    (keypress)="keyPressNumbers($event)"
-                    required
-                    placeholder=""
-                    pattern=".{8,12}"
-                    minlength="10"
-                    maxlength="15"
-                    value=""
-                  /> -->
-                  <!-- <label for="mobileNomber">Phone Number</label>
-
-                  <div class="help-block with-errors"></div> -->
-                  <div
-                    *ngIf="
-                      getcontrol('phoneNumber')?.errors &&
-                      getcontrol('phoneNumber')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('phoneNumber')?.errors?.['required']"
-                      >Mobile number is required</small
-                    >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
-                      >Mobile number must be at least 10 digit long.</small
-                    >
-                 
-                   
-                  </div>
-                </div>
-              </div>
+              
               <div class="mb-4 col-md-12">
                 <div class="form-group">
                   <label for="question">Your Question</label>
@@ -294,7 +287,11 @@
                     formControlName="yourQuestion"
                     name="yourQuestion"
                     id="question"
-                    style="border: 1px dotted; border-radius: 10px"
+                    style="
+                      border: 1px dotted;
+                      border-radius: 10px;
+                      min-height: 20vh;
+                    "
                   >
                   </textarea>
                 </div>
