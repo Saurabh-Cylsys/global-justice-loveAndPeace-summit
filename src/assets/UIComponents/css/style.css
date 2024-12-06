@@ -1023,9 +1023,9 @@ header .nav-item .nav-link.active {
   border-radius: 10px;
 }
 
-.speakers img {
+/* .speakers img {
   width: 100%;
-}
+} */
 
 .badge h6 {
   font-size: 24px;
