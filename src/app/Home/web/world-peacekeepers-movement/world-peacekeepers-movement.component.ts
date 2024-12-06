@@ -155,26 +155,59 @@ isCheckEmail:boolean=true;
 
   downloadImage() {
     
-    // Capture the template content as an HTML element
-    const element:any = document.getElementById('capture');
+    // // Capture the template content as an HTML element
+    // const element:any = document.getElementById('capture');
     
-    // Use html2canvas to capture the content of the element
-    html2canvas(element).then((canvas) => {
-      // Convert the canvas to a data URL (JPEG or PNG)
-      const imageUrl = canvas.toDataURL('image/png'); // or 'image/jpeg' for JPEG
+    // // Use html2canvas to capture the content of the element
+    // html2canvas(element).then((canvas) => {
+    //   // Convert the canvas to a data URL (JPEG or PNG)
+    //   const imageUrl = canvas.toDataURL('image/png'); // or 'image/jpeg' for JPEG
       
-      // Create a link to download the image
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = 'template-image.png'; // Set the filename for the download
-      link.click();
-      this.display = "none";
-      this.showPopup=false;
-      this.formdisplay=true;
+    //   // Create a link to download the image
+    //   const link = document.createElement('a');
+    //   link.href = imageUrl;
+    //   link.download = 'template-image.png'; // Set the filename for the download
+    //   link.click();
+    //   this.display = "none";
+    //   this.showPopup=false;
+    //   this.formdisplay=true;
       
-    });
+    // });
+
+
+    const element: HTMLElement | null = document.getElementById('capture');
+    if (!element) {
+      console.error('Element not found for capturing!');
+      return;
+    }
+  
+
+    // this.isLoading = true; // Show a loading spinner if needed
+
+    html2canvas(element, {
+      useCORS: true, // Ensures cross-origin images are captured
+      scale: 2,      // Improves image quality
+    })
+      .then((canvas) => {
+        const imageUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = 'peacekeeper-card.png'; // Set the filename
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Error capturing the image:', error);
+      })
+      .finally(() => {
+        // this.isLoading = false; // Hide the spinner if added
+        this.showPopup = false;
+      });
+
+
+
   }
   openPopup() {
+    // this.peacekeeperBadgeId = 47
     if(this.peacekeeperBadgeId){
       let id = this.peacekeeperBadgeId
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
@@ -216,7 +249,7 @@ isCheckEmail:boolean=true;
   // profile_picture:[''],
 
   onFileChange(event: any): void {
-    
+    debugger
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
@@ -233,9 +266,9 @@ isCheckEmail:boolean=true;
     console.log(this.peacekeepersForm.value.mobile_number.number,this.peacekeepersForm.value.mobile_number.dialCode)
   
   
-      const inputString = this.peacekeepersForm.value.country_code;
-      const countryCode = this.extractCountryCode(inputString);
-      console.log(countryCode); // Output: +91
+      // const inputString = this.peacekeepersForm.value.country_code;
+      // const countryCode = this.extractCountryCode(inputString);
+      // console.log(countryCode); // Output: +91
       this.isCheckEmail = this.peacekeepersForm.value.Check_email
     this.peacekeepersForm.patchValue({
       is_active :1,
