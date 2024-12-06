@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./the-summit.component.css']
 })
 export class TheSummitComponent implements OnInit{
+  isMobileView = false;
+
   events = [
     { title: 'Registration', time: '10:00 AM - 10:30 AM' },
     { title: 'Opening Session', time: '10:30 AM - 11:00 AM' },
@@ -30,7 +32,8 @@ export class TheSummitComponent implements OnInit{
 
    }
    ngOnInit(): void {
-  
+    this.checkWindowSize();
+
     this.getInviteSpeakers()
    }
     getInviteSpeakers(){
@@ -51,5 +54,21 @@ export class TheSummitComponent implements OnInit{
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 }
