@@ -1,6 +1,11 @@
-<div class="home page-template-default page page-id-208 wp-custom-logo wp-embed-responsive no-sidebar delegate-form">
+<div
+  class="home page-template-default page page-id-208 wp-custom-logo wp-embed-responsive no-sidebar delegate-form"
+>
   <div class="page--wrap">
-    <div class="innerpage-content-area-wrap pb-0 pt-0" style="min-height: calc(100vh - 180px)">
+    <div
+      class="innerpage-content-area-wrap pb-0 pt-0"
+      style="min-height: calc(100vh - 180px)"
+    >
       <div class="fb-container p-0">
         <div class="single-content-container">
           <h2 class="mt-5 pt-4 text-center fw-600">Delegate Registration</h2>
@@ -15,24 +20,39 @@
                     <div class="panel panel-default reg-panel section_1">
                       <div class="panel-body">
                         <div id="common-field-row-con" class="row mx-0">
-                          <div id="common-fields-row1" class="common-fields-row clearfix">
+                          <div
+                            id="common-fields-row1"
+                            class="common-fields-row clearfix"
+                          >
                             <div class="common-field-container">
-                              <input type="hidden" name="registration_index[]" value="1" />
-                              <div class="row mb-5">
+                              <input
+                                type="hidden"
+                                name="registration_index[]"
+                                value="1"
+                              />
+                              <div class="row mb-3">
                                 <div class="col-md-12">
                                   <h6 class="panel-heading">
                                     Personal Information :
                                   </h6>
                                 </div>
-                                <div class="form-group fg-nametitle col-md-4 col-sm-2 my-3">
-
+                                <div
+                                  class="form-group fg-nametitle col-md-4 col-sm-2 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <select name="nametitle[1]" id="nametitle1" class="form-control" required
-                                        data-error="Please select option" formControlName="title" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.title.errors
-                                      }">
+                                      <select
+                                        name="nametitle[1]"
+                                        id="nametitle1"
+                                        class="form-control"
+                                        required
+                                        data-error="Please select option"
+                                        formControlName="title"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.title.errors
+                                        }"
+                                      >
                                         <option selected value="" disabled>
                                           --Please select--
                                         </option>
@@ -46,116 +66,203 @@
                                         <option value="Hon">Hon</option>
                                         <option value="Lord">Lord</option>
                                       </select>
-                                      <label class="col-md-12 no-padding" for="nametitle1">Title<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="nametitle1"
+                                        >Title<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('title')?.errors &&
                                         getcontrol('title')?.touched
-                                      ">
-                                      <small class="text-danger" *ngIf="getcontrol('title')?.errors?.['required']">Title
-                                        is required</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('title')?.errors?.['required']"
+                                        >Title is required</small
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-fname col-md-4 col-sm-3 my-3">
-
+                                <div
+                                  class="form-group fg-fname col-md-4 col-sm-3 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="fname[1]" id="fname1" placeholder="" class="form-control"
-                                        value="" required [(ngModel)]="first_name"
-                                        (keydown)="onKeyDown($event, first_name)" formControlName="first_name"
-                                        minlength="3" (keypress)="ValidateAlpha($event)" [ngClass]="{
-                                        'text-danger':
-                                          submitted && f.first_name.errors
-                                      }" />
+                                      <input
+                                        type="text"
+                                        name="fname[1]"
+                                        id="fname1"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        [(ngModel)]="first_name"
+                                        (keydown)="
+                                          onKeyDown($event, first_name)
+                                        "
+                                        formControlName="first_name"
+                                        minlength="3"
+                                        (keypress)="ValidateAlpha($event)"
+                                        [ngClass]="{
+                                          'text-danger':
+                                            submitted && f.first_name.errors
+                                        }"
+                                      />
 
-                                      <label class="col-md-12 no-padding" for="fname1">First Name<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="fname1"
+                                        >First Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
-                                    <div class="text-danger" *ngIf="
+                                    <div
+                                      class="text-danger"
+                                      *ngIf="
                                         getcontrol('first_name')?.errors &&
                                         getcontrol('first_name')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('first_name')?.errors?.['required']">First name is
-                                        required</small>
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('first_name')?.errors?.['minlength']">First name must be at
-                                        least 3
-                                        characters long.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('first_name')?.errors?.['required']"
+                                        >First name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('first_name')?.errors?.['minlength']"
+                                        >First name must be at least 3
+                                        characters long.</small
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
-
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" [(ngModel)]="last_name"
-                                        (keydown)="onKeyDown($event, last_name)" name="lname[1]" id="lname1"
-                                        placeholder="" class="form-control" value="" required
-                                        formControlName="last_name" minlength="3" (keypress)="ValidateAlpha($event)"
+                                      <input
+                                        type="text"
+                                        [(ngModel)]="last_name"
+                                        (keydown)="onKeyDown($event, last_name)"
+                                        name="lname[1]"
+                                        id="lname1"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        formControlName="last_name"
+                                        minlength="3"
+                                        (keypress)="ValidateAlpha($event)"
                                         [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.last_name.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="lname1">Last Name<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                          'is-invalid':
+                                            submitted && f.last_name.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="lname1"
+                                        >Last Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('last_name')?.errors &&
                                         getcontrol('last_name')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['required']">Last name is
-                                        required</small>
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']">Last name must be at
-                                        least 3 characters
-                                        long.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
+                                        >Last name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
+                                        >Last name must be at least 3 characters
+                                        long.</small
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="row mb-5">
+                              <div class="row mb-3">
                                 <div class="col-md-12">
                                   <h6>Contact Information :</h6>
                                 </div>
-                                <div class="form-group fg-mobile col-md-6 col-sm-4 my-3">
-
+                                <div
+                                  class="form-group fg-mobile col-md-6 col-sm-4 my-3"
+                                >
                                   <div class="row no-padding">
-
-                                    <div class="form-group form-group-inner mobile-number">
-                                      <label class="col-md-12 no-padding" for="mobile1">Mobile Number<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
-                                      <div class="form-floating" style="margin: -13px 0 0 0;">
-                                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
-                                          CountryISO.India,
-                                          CountryISO.UnitedStates,
-                                          CountryISO.UnitedKingdom
-                                        ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="true"
-                                          [searchCountryFlag]="true" [searchCountryField]="[
-                                          SearchCountryField.Iso2,
-                                          SearchCountryField.Name
-                                        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India"
-                                          [maxLength]="10" [phoneValidation]="true" name="mobile_number"
-                                          id="number_mobile1" formControlName="mobile_number"></ngx-intl-tel-input>
-
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="mobile1"
+                                        >Mobile Number<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <div
+                                        class="form-floating"
+                                        style="margin: -13px 0 0 0"
+                                      >
+                                        <ngx-intl-tel-input
+                                          class="custom-width-container"
+                                          [preferredCountries]="[
+                                            CountryISO.India,
+                                            CountryISO.UnitedStates,
+                                            CountryISO.UnitedKingdom
+                                          ]"
+                                          [enableAutoCountrySelect]="false"
+                                          [enablePlaceholder]="true"
+                                          [searchCountryFlag]="true"
+                                          [searchCountryField]="[
+                                            SearchCountryField.Iso2,
+                                            SearchCountryField.Name
+                                          ]"
+                                          [selectFirstCountry]="false"
+                                          [selectedCountryISO]="
+                                            CountryISO.India
+                                          "
+                                          [maxLength]="10"
+                                          [phoneValidation]="true"
+                                          name="mobile_number"
+                                          id="number_mobile1"
+                                          formControlName="mobile_number"
+                                        ></ngx-intl-tel-input>
                                       </div>
-
                                     </div>
-                                    <div class="form-group form-group-inner mobile-number">
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
                                       <div class="form-floating">
-
-
                                         <!-- <input
                                         type="text"
                                         name="mobile_number[1]"
@@ -179,108 +286,183 @@
                                             submitted && f.mobile_number.errors
                                         }"
                                       /> -->
-
                                       </div>
                                       <div class="help-block with-errors"></div>
-                                      <div *ngIf="
+                                      <div
+                                        *ngIf="
                                           getcontrol('mobile_number')?.errors &&
                                           getcontrol('mobile_number')?.touched
-                                        ">
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile number is
-                                          required</small>
-                                        <small class="text-danger"
-                                          *ngIf="getcontrol('mobile_number')?.errors?.['minlength']">Mobile number must
-                                          be at least 10
-                                          digit long.</small>
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                                          >Mobile number is required</small
+                                        >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
+                                          >Mobile number must be at least 10
+                                          digit long.</small
+                                        >
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-email col-md-6 col-sm-4 my-3">
-
+                                <div
+                                  class="form-group fg-email col-md-6 col-sm-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="email" name="email[1]" id="email1" placeholder=""
-                                        class="form-control" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
-                                        value="" required [(ngModel)]="email_id" (keydown)="onKeyDown($event, email_id)"
-                                        data-error="Please enter valid email id" formControlName="email_id" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.email_id.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="email1">Email Id<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <input
+                                        type="email"
+                                        name="email[1]"
+                                        id="email1"
+                                        placeholder=""
+                                        class="form-control"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                        value=""
+                                        required
+                                        [(ngModel)]="email_id"
+                                        (keydown)="onKeyDown($event, email_id)"
+                                        data-error="Please enter valid email id"
+                                        formControlName="email_id"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.email_id.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="email1"
+                                        >Email Id<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('email_id')?.errors &&
                                         getcontrol('email_id')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['required']">Email is Required.</small>
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['email']">Please enter valid email
-                                        address.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('email_id')?.errors?.['required']"
+                                        >Email is Required.</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('email_id')?.errors?.['email']"
+                                        >Please enter valid email
+                                        address.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-email col-md-4 col-sm-4 my-3">
-
+                                <div
+                                  class="form-group fg-email col-md-4 col-sm-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="" id="linkedIn" placeholder="" class="form-control"
-                                        value="" [(ngModel)]="linkedIn_profile"
-                                        (keydown)="onKeyDown($event, linkedIn_profile)"
+                                      <input
+                                        type="text"
+                                        name=""
+                                        id="linkedIn"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        [(ngModel)]="linkedIn_profile"
+                                        (keydown)="
+                                          onKeyDown($event, linkedIn_profile)
+                                        "
                                         data-error="Please enter valid linkedIn_profile"
-                                        formControlName="linkedIn_profile" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.linkedIn_profile.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="profileurl">LinkedIn Profile</label>
+                                        formControlName="linkedIn_profile"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted &&
+                                            f.linkedIn_profile.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profileurl"
+                                        >LinkedIn Profile</label
+                                      >
                                     </div>
-                                    <div *ngIf="
-                                        getcontrol('linkedIn_profile')?.errors &&
+                                    <div
+                                      *ngIf="
+                                        getcontrol('linkedIn_profile')
+                                          ?.errors &&
                                         getcontrol('linkedIn_profile')?.touched
-                                      ">
-
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']">Please enter valid
-                                        linkedIn URL.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']"
+                                        >Please enter valid linkedIn URL.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-email col-md-4 col-sm-4 my-3">
-
+                                <div
+                                  class="form-group fg-email col-md-4 col-sm-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="" id="instagram_profile" placeholder=""
-                                        class="form-control" value="" [(ngModel)]="instagram_profile"
-                                        (keydown)="onKeyDown($event, instagram_profile)"
-                                        data-error="Please enter valid Facebook URL" formControlName="instagram_profile"
+                                      <input
+                                        type="text"
+                                        name=""
+                                        id="instagram_profile"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        [(ngModel)]="instagram_profile"
+                                        (keydown)="
+                                          onKeyDown($event, instagram_profile)
+                                        "
+                                        data-error="Please enter valid Facebook URL"
+                                        formControlName="instagram_profile"
                                         [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.instagram_profile.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="profileurl">Instagram ID</label>
+                                          'is-invalid':
+                                            submitted &&
+                                            f.instagram_profile.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profileurl"
+                                        >Instagram ID</label
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
-                                        getcontrol('instagram_profile')?.errors &&
+                                    <div
+                                      *ngIf="
+                                        getcontrol('instagram_profile')
+                                          ?.errors &&
                                         getcontrol('instagram_profile')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('instagram_profile')?.errors?.['pattern']">Please enter valid
-                                        Instagram ID.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('instagram_profile')?.errors?.['pattern']"
+                                        >Please enter valid Instagram ID.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="row mb-5">
+                              <div class="row mb-3">
                                 <div class="col-md-12">
                                   <h6>Professional Information :</h6>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <!-- <label
                                     class="col-md-12 no-padding"
                                     for="profession1"
@@ -293,39 +475,73 @@
                                   > -->
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="profession_1" id="Profession1" placeholder=""
-                                        class="form-control" value="" required formControlName="profession_1"
-                                        minlength="3" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.profession_1.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="profession1">Profession 1<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <input
+                                        type="text"
+                                        name="profession_1"
+                                        id="Profession1"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        formControlName="profession_1"
+                                        minlength="3"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.profession_1.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profession1"
+                                        >Profession 1<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('profession_1')?.errors &&
                                         getcontrol('profession_1')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('profession_1')?.errors?.['required']">Profession is
-                                        required</small>
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('profession_1')?.errors?.['minlength']">Profession must be at
-                                        least 3 characters
-                                        long.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('profession_1')?.errors?.['required']"
+                                        >Profession is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('profession_1')?.errors?.['minlength']"
+                                        >Profession must be at least 3
+                                        characters long.</small
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
-
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="profession_2" id="profession2" placeholder=""
-                                        class="form-control" value="" formControlName="profession_2" minlength="3" />
-                                      <label class="col-md-12 no-padding" for="profession2">Profession 2 (if
-                                        any)</label>
+                                      <input
+                                        type="text"
+                                        name="profession_2"
+                                        id="profession2"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        formControlName="profession_2"
+                                        minlength="3"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profession2"
+                                        >Profession 2 (if any)</label
+                                      >
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -348,126 +564,212 @@
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-field_10 col-md-4 my-3">
-
+                                <div
+                                  class="form-group fg-field_10 col-md-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="field_10" id="field_10" placeholder=""
-                                        class="form-control" value="" [(ngModel)]="website"
-                                        (keydown)="onKeyDown($event, website)" formControlName="website" [ngClass]="{
-                                        'is-invalid':
-                                          submitted &&
-                                          registrationForm.get('website').errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="field_10">Website</label>
+                                      <input
+                                        type="text"
+                                        name="field_10"
+                                        id="field_10"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        [(ngModel)]="website"
+                                        (keydown)="onKeyDown($event, website)"
+                                        formControlName="website"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted &&
+                                            registrationForm.get('website')
+                                              .errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="field_10"
+                                        >Website</label
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('website')?.errors &&
                                         getcontrol('website')?.touched
-                                      ">
+                                      "
+                                    >
                                       <!-- <small class="text-danger" *ngIf="getcontrol('website')?.errors?.['required']"> Website Url
                                                                           is Required.</small> -->
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('website')?.errors?.['pattern']">Please enter valid
-                                        URL.</small>
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('website')?.errors?.['pattern']"
+                                        >Please enter valid URL.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="row mb-5">
+                              <div class="row mb-3">
                                 <div class="col-md-12">
                                   <h6>Organization Details :</h6>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
-
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="organization_name" id="organization" placeholder=""
-                                        class="form-control" value="" required formControlName="organization_name"
-                                        minlength="3" (keypress)="ValidateAlpha($event)" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.organization_name.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="organization">Organization Name<span
-                                          class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <input
+                                        type="text"
+                                        name="organization_name"
+                                        id="organization"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        formControlName="organization_name"
+                                        minlength="3"
+                                        (keypress)="ValidateAlpha($event)"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted &&
+                                            f.organization_name.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="organization"
+                                        >Organization Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
-                                        getcontrol('organization_name')?.errors &&
+                                    <div
+                                      *ngIf="
+                                        getcontrol('organization_name')
+                                          ?.errors &&
                                         getcontrol('organization_name')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('organization_name')?.errors?.['required']">organization name
-                                        is required</small>
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('organization_name')?.errors?.['minlength']">organization name
-                                        must be at least 3 characters
-                                        long.</small>
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('organization_name')?.errors?.['required']"
+                                        >organization name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('organization_name')?.errors?.['minlength']"
+                                        >organization name must be at least 3
+                                        characters long.</small
+                                      >
                                     </div>
-
                                   </div>
                                 </div>
-                                <div class="form-group fg-field_3 col-md-4 col-sm-4 my-3">
-
+                                <div
+                                  class="form-group fg-field_3 col-md-4 col-sm-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <span class="required-icon"></span><input type="text" name="address" id="address"
-                                        placeholder="" class="form-control" value="" required [(ngModel)]="address"
-                                        (keydown)="
-                                        onKeyDown($event, address)
-                                      " formControlName="address" minlength="5" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.address.errors
-                                      }" />
-                                      <label class="col-md-12 no-padding" for="field_3">Address
-                                        <span class="form-label-span" style="color: #ff0000">
-                                          *</span></label>
+                                      <span class="required-icon"></span
+                                      ><input
+                                        type="text"
+                                        name="address"
+                                        id="address"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        [(ngModel)]="address"
+                                        (keydown)="onKeyDown($event, address)"
+                                        formControlName="address"
+                                        minlength="5"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.address.errors
+                                        }"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="field_3"
+                                        >Address
+                                        <span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
+                                    <div
+                                      *ngIf="
                                         getcontrol('address')?.errors &&
                                         getcontrol('address')?.touched
-                                      ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('address')?.errors?.['required']">Address is Required.</small>
-                                      <small class="text-danger" *ngIf="getcontrol('address')?.errors?.['minlength']">
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('address')?.errors?.['required']"
+                                        >Address is Required.</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('address')?.errors?.['minlength']"
+                                      >
                                         Address must be at least 5 characters
-                                        long.</small>
+                                        long.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-field_3 col-md-4 my-3">
-
+                                <div
+                                  class="form-group fg-field_3 col-md-4 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <span class="required-icon"></span><input type="text" name="country" id="country"
-                                        placeholder="" class="form-control" value="" required formControlName="country"
-                                        minlength="5" [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.country.errors
-                                      }" />
-                                      <label for="">Country<span class="form-label-span" style="color: #ff0000">
-                                          *</span>
+                                      <span class="required-icon"></span
+                                      ><input
+                                        type="text"
+                                        name="country"
+                                        id="country"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        required
+                                        formControlName="country"
+                                        minlength="5"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.country.errors
+                                        }"
+                                      />
+                                      <label for=""
+                                        >Country<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
                                       </label>
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div *ngIf="
-                                      getcontrol('country')?.errors &&
-                                      getcontrol('country')?.touched
-                                    ">
-                                      <small class="text-danger"
-                                        *ngIf="getcontrol('country')?.errors?.['required']">Country is Required.</small>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('country')?.errors &&
+                                        getcontrol('country')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('country')?.errors?.['required']"
+                                        >Country is Required.</small
+                                      >
                                     </div>
                                   </div>
-
-
-
-
-
-
-
 
                                   <!-- <select
                                     (change)="changeCountry($event)"
@@ -509,13 +811,19 @@
                                   </div> -->
                                 </div>
                                 <div class="col-md-4">
-
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="state" id="state" placeholder="" class="form-control"
-                                        value="" formControlName="state" minlength="5" />
-                                      <label for="">State/Province
-                                      </label>
+                                      <input
+                                        type="text"
+                                        name="state"
+                                        id="state"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        formControlName="state"
+                                        minlength="5"
+                                      />
+                                      <label for="">State/Province </label>
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -585,13 +893,25 @@
                                   </div> -->
                                 </div>
                                 <div class="col-md-4">
-
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="city" id="city" placeholder="" class="form-control"
-                                        value="" formControlName="city" minlength="5" />
-                                      <label for="">City<span class="form-label-span" style="color: #ff0000">
-                                          *</span>
+                                      <input
+                                        type="text"
+                                        name="city"
+                                        id="city"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        formControlName="city"
+                                        minlength="5"
+                                      />
+                                      <label for=""
+                                        >City<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        >
                                       </label>
                                     </div>
                                     <!-- <select
@@ -624,12 +944,17 @@
                                       {{ city.city_name }}
                                     </option>
                                   </select> -->
-                                    <div *ngIf="
-                                      getcontrol('city')?.errors &&
-                                      getcontrol('city')?.touched
-                                    ">
-                                      <small class="text-danger" *ngIf="getcontrol('city')?.errors?.['required']">City
-                                        is Required.</small>
+                                    <div
+                                      *ngIf="
+                                        getcontrol('city')?.errors &&
+                                        getcontrol('city')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('city')?.errors?.['required']"
+                                        >City is Required.</small
+                                      >
                                     </div>
                                   </div>
                                 </div>
@@ -704,11 +1029,13 @@
                                   </div>
                                 </div> -->
                               </div>
-                              <div class="row mb-5">
+                              <div class="row mb-3">
                                 <div class="col-md-12">
                                   <h6>Additional Details :</h6>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <!-- <label
                                     class="col-md-12 no-padding"
                                     for="profession1"
@@ -721,9 +1048,21 @@
                                   > -->
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="passport_no" id="passportNo" placeholder=""
-                                        class="form-control" value="" formControlName="passport_no" minlength="3" />
-                                      <label class="col-md-12 no-padding" for="profession1">Passport No.</label>
+                                      <input
+                                        type="text"
+                                        name="passport_no"
+                                        id="passportNo"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        formControlName="passport_no"
+                                        minlength="3"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profession1"
+                                        >Passport No.</label
+                                      >
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -741,14 +1080,27 @@
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
-                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
-
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
                                   <div class="col-md-12 no-padding">
                                     <div class="form-floating">
-                                      <input type="text" name="passport_issue_by" id="profession2" placeholder=""
-                                        class="form-control" value="" formControlName="passport_issue_by" minlength="3"
-                                        (keypress)="ValidateAlpha($event)" />
-                                      <label class="col-md-12 no-padding" for="profession2">Passport Issue By</label>
+                                      <input
+                                        type="text"
+                                        name="passport_issue_by"
+                                        id="profession2"
+                                        placeholder=""
+                                        class="form-control"
+                                        value=""
+                                        formControlName="passport_issue_by"
+                                        minlength="3"
+                                        (keypress)="ValidateAlpha($event)"
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="profession2"
+                                        >Passport Issue By</label
+                                      >
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -771,181 +1123,316 @@
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
+                              </div>
+                              <div
+                                class="row align-items-center justify-content-start"
+                              >
+                                <div class="col-md-12">
+                                  <h3>Summit Participation Details :</h3>
+                                </div>
+                              </div>
+                              <div class="row g-2 mt-5">
+                                <div class="col-md-12">
+                                  <h6>
+                                    You would like to attend the Summit:<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </h6>
+                                </div>
+                                <div class="col-md">
+                                  <div class="row align-items-center">
+                                    <div class="form-check m-3 col-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="attend_summit"
+                                        id="gridRadios1"
+                                        checked
+                                        formControlName="attend_summit"
+                                        value="0"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="gridRadios1"
+                                      >
+                                        In Person <b> </b>(2800$)
+                                      </label>
+                                    </div>
+                                    <div class="form-check m-3 col-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attend_summit"
+                                        name="attend_summit"
+                                        id="gridRadios2"
+                                        value="1"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="gridRadios2"
+                                      >
+                                        Online (280$)
+                                      </label>
+                                    </div>
+                                  </div>
 
+                                  
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-3">
+                                <div class="col-md-12">
+                                  <h6>
+                                    Do you have a Reference code:
+                                  </h6>
+                                </div>
+                                <div class="col-md-3 ps-lg-5">
+                                  <div class="form-floating">
+                                    <input
+                                      type="text"
+                                      name="reference_no"
+                                      id="profession2"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      formControlName="reference_no"
+                                      minlength="3"
+                                    />
+                                    <label
+                                      class="col-md-12 no-padding"
+                                      for="profession2"
+                                      >Reference Number:</label
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-3">
+                                <div class="col-md-12">
+                                  <h6>
+                                    What is your primary purpose of attending
+                                    this Summit? (Choose any 1)<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </h6>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="row m-0 px-3">
+                                    <div class="form-check col-md-4 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending1"
+                                        value="0"
+                                        checked
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending1"
+                                      >
+                                        Gathering Knowledge
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending2"
+                                        value="1"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending2"
+                                      >
+                                        Networking
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending3"
+                                        value="2"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending3"
+                                      >
+                                        Speaker Profile
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending4"
+                                        value="3"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending4"
+                                      >
+                                        Working for Peace
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-4 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="attendee_purpose"
+                                        name="attendee_purpose"
+                                        id="attending5"
+                                        value="4"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="attending5"
+                                      >
+                                        Other
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mt-3">
+                                <div class="col-md-12">
+                                  <h6>
+                                    Which of the 3 levers of the conference
+                                    interests you the most? (Choose any 1)<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    >
+                                  </h6>
+                                </div>
+                                <div class="col-md-8">
+                                  <div class="row m-0 px-3">
+                                    <div class="form-check col-md-3 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="conference_lever_interest"
+                                        formControlName="conference_lever_interest"
+                                        id="level1"
+                                        value="0"
+                                        checked
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="level1"
+                                      >
+                                        Justice
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-3 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        formControlName="conference_lever_interest"
+                                        name="conference_lever_interest"
+                                        id="level2"
+                                        value="1"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="level2"
+                                      >
+                                        Love
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-3 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        formControlName="conference_lever_interest"
+                                        type="radio"
+                                        name="conference_lever_interest"
+                                        id="level3"
+                                        value="2"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="level3"
+                                      >
+                                        Peace
+                                      </label>
+                                    </div>
+                                    <div class="form-check col-md-3 my-3">
+                                      <input
+                                        class="form-check-input"
+                                        formControlName="conference_lever_interest"
+                                        type="radio"
+                                        name="conference_lever_interest"
+                                        id="level4"
+                                        value="3"
+                                      />
+                                      <label
+                                        class="form-check-label"
+                                        for="level4"
+                                      >
+                                        All
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div id="submit-wrapper" class="text-center mt-3">
+                                <!-- ================ ======================= -->
+                                <!-- <input
+                                type="hidden"
+                                name="ttst"
+                                id="st"
+                                value="1692166964"
+                              /> -->
+                                <div class="d-none">
+                                  <!-- <input
+                                  type="text"
+                                  name="middle_name"
+                                  id="middle_name"
+                                  value=""
+                                  autocomplete="mdlnme"
+                                /> -->
+                                </div>
+                                <!-- ================ ======================= -->
+
+                                <!-- <input
+                                type="hidden"
+                                name="frmkey"
+                                value="cad4ec633a6ac6fadbe930f9ac476631"
+                              />
+          
+                              <input type="hidden" name="chk_mob_regid" value="0" />
+                              <input type="hidden" name="stepid" value="1" />
+                              <input id="showid" type="hidden" name="showid" value="1" /> -->
+                                <input
+                                  type="submit"
+                                  class="btn btn-success"
+                                  [disabled]="registrationForm.invalid"
+                                  value="Submit"
+                                  name="register"
+                                />
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="clearfix section7 p-lg-5">
-                  <div class="container-fluid">
-                    <div class="row align-items-center justify-content-start">
-                      <div class="col-md-12">
-                        <h3>Summit Participation Details :</h3>
-                      </div>
-                    </div>
-                    <div class="row g-2 mt-5">
-                      <div class="col-md-12">
-                        <h6>You would like to attend the Summit:<span class="form-label-span" style="color: #ff0000">
-                            *</span></h6>
-                      </div>
-                      <div class="col-md d-flex align-items-center">
-                        <div class="form-check m-3">
-                          <input class="form-check-input" type="radio" name="attend_summit" id="gridRadios1" checked
-                            formControlName="attend_summit" value="0" />
-                          <label class="form-check-label" for="gridRadios1">
-                            In Person <b>
-
-                            </b>(2800$)
-                          </label>
-                        </div>
-                        <div class="form-check m-3">
-                          <input class="form-check-input" type="radio" formControlName="attend_summit"
-                            name="attend_summit" id="gridRadios2" value="1" />
-                          <label class="form-check-label" for="gridRadios2">
-                            Online (280$)
-                          </label>
-                        </div>
-                        <div class="form-check m-3">
-                        </div>
-                        <div class="form-group col-md-3 col-sm-3 mb-4 ms-5">
-
-                          <div class="col-md-12 no-padding">
-                            <div class="form-floating">
-                              <input type="text" name="reference_no" id="profession2" placeholder=""
-                                class="form-control" value="" formControlName="reference_no" minlength="3" />
-                              <label class="col-md-12 no-padding" for="profession2">Reference Number:</label>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row g-2 mt-5">
-                      <div class="col-md-12">
-                        <h6>
-                          What is your primary purpose of attending this Summit?
-                          (Choose any 1)<span class="form-label-span" style="color: #ff0000">
-                            *</span>
-                        </h6>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="row m-0 px-3">
-                          <div class="form-check col-md-4 my-3">
-                            <input class="form-check-input" type="radio" formControlName="attendee_purpose"
-                              name="attendee_purpose" id="attending1" value="0" checked />
-                            <label class="form-check-label" for="attending1">
-                              Gathering Knowledge
-                            </label>
-                          </div>
-                          <div class="form-check col-md-4 my-3">
-                            <input class="form-check-input" type="radio" formControlName="attendee_purpose"
-                              name="attendee_purpose" id="attending2" value="1" />
-                            <label class="form-check-label" for="attending2">
-                              Networking
-                            </label>
-                          </div>
-                          <div class="form-check col-md-4 my-3">
-                            <input class="form-check-input" type="radio" formControlName="attendee_purpose"
-                              name="attendee_purpose" id="attending3" value="2" />
-                            <label class="form-check-label" for="attending3">
-                              Speaker Profile
-                            </label>
-                          </div>
-                          <div class="form-check col-md-4 my-3">
-                            <input class="form-check-input" type="radio" formControlName="attendee_purpose"
-                              name="attendee_purpose" id="attending4" value="3" />
-                            <label class="form-check-label" for="attending4">
-                              Working for Peace
-                            </label>
-                          </div>
-                          <div class="form-check col-md-4 my-3">
-                            <input class="form-check-input" type="radio" formControlName="attendee_purpose"
-                              name="attendee_purpose" id="attending5" value="4" />
-                            <label class="form-check-label" for="attending5">
-                              Other
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row g-2 mt-5">
-                      <div class="col-md-12">
-                        <h6>
-                          Which of the 3 levers of the conference interests you
-                          the most? (Choose any 1)<span class="form-label-span" style="color: #ff0000">
-                            *</span>
-                        </h6>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="row m-0 px-3">
-                          <div class="form-check col-md-3 my-3">
-                            <input class="form-check-input" type="radio" name="conference_lever_interest"
-                              formControlName="conference_lever_interest" id="level1" value="0" checked />
-                            <label class="form-check-label" for="level1">
-                              Justice
-                            </label>
-                          </div>
-                          <div class="form-check col-md-3 my-3">
-                            <input class="form-check-input" type="radio" formControlName="conference_lever_interest"
-                              name="conference_lever_interest" id="level2" value="1" />
-                            <label class="form-check-label" for="level2">
-                              Love
-                            </label>
-                          </div>
-                          <div class="form-check col-md-3 my-3">
-                            <input class="form-check-input" formControlName="conference_lever_interest" type="radio"
-                              name="conference_lever_interest" id="level3" value="2" />
-                            <label class="form-check-label" for="level3">
-                              Peace
-                            </label>
-                          </div>
-                          <div class="form-check col-md-3 my-3">
-                            <input class="form-check-input" formControlName="conference_lever_interest" type="radio"
-                              name="conference_lever_interest" id="level3" value="2" />
-                            <label class="form-check-label" for="level3">
-                              All
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="submit-wrapper" class="text-center mt-3">
-                    <!-- ================ ======================= -->
-                    <!-- <input
-                      type="hidden"
-                      name="ttst"
-                      id="st"
-                      value="1692166964"
-                    /> -->
-                    <div class="d-none">
-                      <!-- <input
-                        type="text"
-                        name="middle_name"
-                        id="middle_name"
-                        value=""
-                        autocomplete="mdlnme"
-                      /> -->
-                    </div>
-                    <!-- ================ ======================= -->
-
-                    <!-- <input
-                      type="hidden"
-                      name="frmkey"
-                      value="cad4ec633a6ac6fadbe930f9ac476631"
-                    />
-
-                    <input type="hidden" name="chk_mob_regid" value="0" />
-                    <input type="hidden" name="stepid" value="1" />
-                    <input id="showid" type="hidden" name="showid" value="1" /> -->
-                    <input type="submit" class="btn btn-success" [disabled]="registrationForm.invalid" value="Submit"
-                      name="register" />
                   </div>
                 </div>
               </form>
@@ -958,8 +1445,15 @@
 </div>
 
 <!-- Modal -->
-<div *ngIf="showPopup" [ngStyle]="{ display: display }" class="modal" id="trustUntrust_alert" #trustUntrust_alert
-  tabindex="-1" role="dialog">
+<div
+  *ngIf="showPopup"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content">
       <div class="modal-body pt-5">
@@ -969,12 +1463,12 @@
               Thank you for registering at Global Justice, Love & Peace Summit
             </span> -->
             <p class="m-4" style="height: 36px; font-size: 15px; color: #ffff">
-          Thank you for your interest in attending the Global Justice Love & Peace Summit on Sunday April 13, 2025 at Dubai.
- 
-You will receive an email response within the next 28 hours
- 
-Keep Smiling!
-<a href="mailto:help@justice-love-peace.com">help@justice-love-peace.com</a>
+              Thank you for your interest in attending the Global Justice Love &
+              Peace Summit on Sunday April 13, 2025 at Dubai. You will receive
+              an email response within the next 28 hours Keep Smiling!
+              <a href="mailto:help@justice-love-peace.com"
+                >help@justice-love-peace.com</a
+              >
               <!-- Registration screening is under process. Once validated,
                you will be notified via email about the next steps. -->
               <!-- <br /><br />
@@ -985,8 +1479,12 @@ Keep Smiling!
           </div>
           <div class="col-md-9"></div>
           <div class="col-md-3 mt-2">
-            <a class="btn btn-success w-100 lm-btn" data-dismiss="modal" (click)="closeModal()"
-              style="height: 36px; font-size: 15px; color: #ffff">
+            <a
+              class="btn btn-success w-100 lm-btn"
+              data-dismiss="modal"
+              (click)="closeModal()"
+              style="height: 36px; font-size: 15px; color: #ffff"
+            >
               Close
             </a>
           </div>
