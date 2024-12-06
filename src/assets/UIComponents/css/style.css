@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 9999999;
+  z-index: 999;
 }
 
 header .nav-link,
@@ -90,7 +90,7 @@ header .nav-item .nav-link.active {
   position: absolute;
   /* top: -50px;
   left: -80px; */
-  z-index: 99;
+  z-index: 999;
 }
 
 .index .section1 .cardMain {
@@ -390,7 +390,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
   color: var(--color2);
   position: relative;
-  z-index: 999999;
+  z-index: 9;
 }
 /* index section7 timeline */
 

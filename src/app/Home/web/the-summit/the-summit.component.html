@@ -308,7 +308,7 @@
             <li>www.dr-huzaifa-khorakiwala.care</li>
           </ul>
         </div>
-        <div class="col-7">
+        <div class="col-md-7">
           <div class="row align-items-end">
             <div class="col-md-4">
               <ul class="chairman">
@@ -392,7 +392,7 @@
             </div>
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-md-5">
           <iframe
             width="100%"
             height="300"
@@ -914,9 +914,9 @@
             </div>
           </div>
         </div>
-        <div class="col-12 mt-5">
+        <!-- <div class="col-12 mt-5">
           <button class="btn btn-success">View All Speakers</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
@@ -927,11 +927,11 @@
           <h2>BREAKUP OF INVITED SPEAKERS</h2>
         </div>
         <div class="col-md-4">
-          <img src="assets/UIComponents/images/speakers/pieChart.png" alt="" />
+          <img src="assets/UIComponents/images/speakers/pieChart.png" alt="" class="col-md-10 col-12" />
         </div>
         <div class="col-md-8">
           <table class="table">
-            <tbody>
+            <tbody *ngIf="!isMobileView">
               <tr>
                 <td>
                   <ul>
@@ -1032,6 +1032,111 @@
                 </td>
               </tr>
             </tbody>
+            <tbody *ngIf="isMobileView">
+              <tr>
+                <td>
+                  <ul>
+                    <li>1</li>
+                    <li>UN</li>
+                    <li><span class="un"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>1</li>
+                    <li>
+                      International <br />
+                      Body
+                    </li>
+                    <li><span class="ib"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>2</li>
+                    <li>NGO</li>
+                    <li><span class="ngo"></span></li>
+                  </ul>
+                </td>
+                
+              </tr>
+              <tr>
+                <td>
+                  <ul>
+                    <li>3</li>
+                    <li>Ex Government <br />Head</li>
+                    <li><span class="exG"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>3</li>
+                    <li>Royalty</li>
+                    <li><span class="royal"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>5</li>
+                    <li>
+                      Religious <br />
+                      Leader
+                    </li>
+                    <li><span class="rl"></span></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                
+                <td>
+                  <ul>
+                    <li>6</li>
+                    <li>Noble Peace <br />Prize Laureate</li>
+                    <li><span class="np"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>9</li>
+                    <li>Judiciary</li>
+                    <li><span class="j"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>12</li>
+                    <li>Corporate</li>
+                    <li><span class="co"></span></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <ul>
+                    <li>16</li>
+                    <li>Celebrity</li>
+                    <li><span class="ce"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>17</li>
+                    <li>Sports person</li>
+                    <li><span class="sp"></span></li>
+                  </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>9</li>
+                    <li>
+                      Government <br />
+                      Head of States
+                    </li>
+                    <li><span class="ghs"></span></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -1040,7 +1145,7 @@
   <section class="section section5 p-lg-5 invited" id="6">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12 mb-5">
+        <div class="col-12">
           <h2>Invited Speakers</h2>
         </div>
 
@@ -1305,7 +1410,7 @@
             <img
               src="assets/UIComponents/images/the_summit/map.svg"
               alt=""
-              width="70%"
+              class="col-md-7 col-12"
             />
           </div>
         </div>
@@ -1721,7 +1826,7 @@
           />
         </div>
 
-        <div class="col-12 py-4 text-center">
+        <div class="col-12 text-center">
           <!-- Map Image -->
 
           <!-- Clickable Text -->
@@ -1737,7 +1842,7 @@
                 font-family: Dinpro;
               "
             >
-              <h2 class="col-5 text-white" style="font-size: 30px; font-weight: 400; text-align: left;">
+              <h2 class="col-lg-5 col-12 text-white" style="font-size: 30px; font-weight: 400; text-align: left;">
                 Click on the map and find the route to reach the hotel.
               </h2>
             </a>

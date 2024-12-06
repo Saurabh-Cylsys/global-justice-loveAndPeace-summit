@@ -12,7 +12,7 @@
     background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 75vh; /* Keeps the height relative to the viewport */
+    height: 100vh; /* Keeps the height relative to the viewport */
   }
   .index .section1 .bgColor {
     background-color: hsl(203deg 100% 29% / 60%);
@@ -34,8 +34,11 @@
     display: none;
   }
   .index .section7 table td ul li:nth-child(2) {
-    font-size: 14.57px;
-  }
+    font-size: 9.57px;
+    font-weight: 600;
+    line-height: 19.21px;
+}
+
 
   .cardMain .card-body{
     padding: 10px;
@@ -65,12 +68,51 @@
 }
 
 .index .section7 p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 20px;
 }
 
 .index .section1 .tableBox table tr td p{
   font-size: 12px;
+}
+
+.index .section5 h2, .index .section6 h2{
+  font-size: 18px;
+}
+.index .section1 .cardMain h5{
+  font-size: 14px;
+}
+
+.index .section1 .cardMain .col-4 h6{
+  font-size: 10px;
+}
+.index .section1 .cardMain .col-4 h6 span{
+  font-size: 16px;
+}
+.index .section7 h1 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40.6px;
+}
+.timeline h2, .timeline h3{
+  font-size: 12px;
+}
+.timeline .event{
+  font-size: 12px;
+}
+
+:root{
+  --dotborder: -2px;
+}
+
+.index .section7 table td ul li:nth-child(1){
+  font-size: 25px;
+}
+.index .section7 h2{
+  font-size: 20px;
+}
+.invited table {
+  font-size: 10px;
 }
 }
 
