@@ -392,3 +392,11 @@
     margin: 20px 8px 10px 9px !important;
 
 }
+#passportNo{
+    text-transform: uppercase
+}
+
+.modal-content {
+  
+    background-color: #005A93;
+}

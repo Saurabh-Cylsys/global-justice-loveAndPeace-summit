@@ -78,7 +78,8 @@
 }
 .custom-file-input {
   width: 53%;
-  padding: 7px 14px 15px 99px;}
+  padding: 7px 14px 15px 99px;
+}
 .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }

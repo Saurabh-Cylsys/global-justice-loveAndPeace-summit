@@ -30,7 +30,7 @@
                                 name="registration_index[]"
                                 value="1"
                               />
-                              <div class="row mb-4">
+                              <div class="row mb-5">
                                 <div class="col-md-12">
                                   <h6 class="panel-heading">
                                     Personal Information :
@@ -207,7 +207,7 @@
                                 </div>
                               </div>
 
-                              <div class="row mb-4">
+                              <div class="row mb-5">
                                 <div class="col-md-12">
                                   <h6>Contact Information :</h6>
                                 </div>
@@ -455,7 +455,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="row mb-4">
+                              <div class="row mb-5">
                                 <div class="col-md-12">
                                   <h6>Professional Information :</h6>
                                 </div>
@@ -484,7 +484,6 @@
                                       required
                                       formControlName="profession_1"
                                       minlength="3"
-                                      (keypress)="ValidateAlpha($event)"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.profession_1.errors
@@ -538,7 +537,6 @@
                                       
                                       formControlName="profession_2"
                                       minlength="3"
-                                      (keypress)="ValidateAlpha($event)"
                                                                 />
                                                                 <label
                                     class="col-md-12 no-padding"
@@ -611,7 +609,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="row mb-4">
+                              <div class="row mb-5">
                                 <div class="col-md-12">
                                   <h6>Organization Details :</h6>
                                 </div>
@@ -1045,6 +1043,105 @@
                                   </div>
                                 </div> -->
                               </div>
+                              <div class="row mb-5">
+                                <div class="col-md-12">
+                                  <h6>Additional Details :</h6>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
+                                  <!-- <label
+                                    class="col-md-12 no-padding"
+                                    for="profession1"
+                                    >Profession 1<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  > -->
+                                  <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
+                                      <input
+                                      type="text"
+                                      name="passport_no"
+                                      id="passportNo"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      formControlName="passport_no"
+                                      minlength="3"
+                                   
+                                    />
+                                    <label
+                                    class="col-md-12 no-padding"
+                                    for="profession1"
+                                    >Passport No.</label
+                                  >
+                                    </div>
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('passport_no')?.errors && 
+                                        getcontrol('passport_no')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('passport_no')?.errors?.['required']"
+                                        >Passport Number is required</small
+                                      >
+                                    
+                                    </div> -->
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                                >
+                                  
+                                  <div class="col-md-12 no-padding">
+                                    <div class="form-floating">
+                                    <input
+                                      type="text"
+                                      name="passport_issue_by"
+                                      id="profession2"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      
+                                      formControlName="passport_issue_by"
+                                      minlength="3"
+                                      (keypress)="ValidateAlpha($event)"
+                                                                />
+                                                                <label
+                                    class="col-md-12 no-padding"
+                                    for="profession2"
+                                    >Passport Issue By</label
+                                  >
+                                                              </div>
+                                    <!-- <div
+                                      *ngIf="
+                                        getcontrol('last_name')?.errors &&
+                                        getcontrol('last_name')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['required']"
+                                        >Last name is required</small
+                                      >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('last_name')?.errors?.['minlength']"
+                                        >Last name must be at least 3 characters
+                                        long.</small
+                                      >
+                                    </div> -->
+                                    <div class="help-block with-errors"></div>
+                                  </div>
+                                </div>
+
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1096,6 +1193,33 @@
                             Online
                           </label>
                         </div>
+                        <div class="form-check m-3">
+                        </div>
+                        <div
+                        class="form-group col-md-3 col-sm-3 mb-4 ms-5"
+                      >
+                        
+                        <div class="col-md-12 no-padding">
+                          <div class="form-floating">
+                          <input
+                            type="text"
+                            name="reference_no"
+                            id="profession2"
+                            placeholder=""
+                            class="form-control"
+                            value=""
+                            formControlName="reference_no"
+                            minlength="3"
+                                                      />
+                                                      <label
+                          class="col-md-12 no-padding"
+                          for="profession2"
+                          >Reference Number:</label
+                        >
+                                                    </div>
+                        
+                        </div>
+                      </div>
                       </div>
                     </div>
 
@@ -1302,25 +1426,25 @@
       <div class="modal-body pt-5">
         <div class="row">
           <div>
-            <span class="m-4 font-weight-bold">
+            <!-- <span class="m-4 font-weight-bold">
               Thank you for registering at Global Justice, Love & Peace Summit
-            </span>
-            <p class="m-4">
-              Your registration screening is under process once validated you
-              will receive your entry badge on Email.​
-              <br /><br />
+            </span> -->
+            <p class="m-4" style="height: 36px; font-size: 15px; color: #ffff">
+              Registration screening is under process. Once validated,
+               you will be notified via email about the next steps.
+              <!-- <br /><br />
               Regards,​
               <br />
-              Team Global Justice, Love & Peace Summit Conference​
+              Global Justice, Love & Peace Summit Conference​ -->
             </p>
           </div>
           <div class="col-md-9"></div>
           <div class="col-md-3 mt-2">
             <a
-              class="btn btn-primary w-100 lm-btn"
+              class="btn btn-success w-100 lm-btn"
               data-dismiss="modal"
               (click)="closeModal()"
-              style="height: 36px; font-size: 15px"
+              style="height: 36px; font-size: 15px; color: #ffff"
             >
               Close
             </a>
