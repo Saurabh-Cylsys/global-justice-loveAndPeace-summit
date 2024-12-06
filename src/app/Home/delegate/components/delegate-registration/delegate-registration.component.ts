@@ -142,6 +142,11 @@ console.log(indiaCodeObject);
     });
   }
 
+    extractCountryCode(inputString: string): string | null {
+    const countryCodeMatch = inputString.match(/\(\+(\d+)\)/);
+    return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
+  }
+
 //   getAllCountries() {
 //     this.DelegateService.getAllCountries().subscribe((res: any) => {
 //       console.log("CountryData1", res.data);
@@ -296,10 +301,10 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
 
   submitData(): void {
     
-    this.registrationForm.patchValue({
-      country_code :this.registrationForm.value.mobile_number.dialCode,
-      mobile_number :this.registrationForm.value.mobile_number.number
-    })
+    // this.registrationForm.patchValue({
+    //   country_code :this.registrationForm.value.mobile_number.dialCode,
+    //   mobile_number :this.registrationForm.value.mobile_number.number
+    // })
     console.log(this.registrationForm.value);
 
     this.submitted = true;

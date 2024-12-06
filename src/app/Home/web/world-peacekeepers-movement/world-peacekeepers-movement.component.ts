@@ -76,30 +76,8 @@ isCheckEmail:boolean=true;
  
   ngOnInit(): void {
 
-    // this.getAllCountrycode()
-    const inputElement = document.getElementById('phone') as HTMLInputElement;
-    console.log(inputElement,'inputElement');
-    
-    if (inputElement) {
-      
-      const data =
-    int1TelInput(inputElement,{
-    initialCountry: 'ae',
-    separateDialCode:true,
-    utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
-    });
-    inputElement.addEventListener('countrychange', () => {
-      console.log(data);
-      
-      this.countryData =  int1TelInput(inputElement,{
-        initialCountry: 'ae',
-        separateDialCode:true,
-        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
-        }).getSelectedCountryData();
-      console.log('Selected Country Code:', this.countryData.dialCode);
-      console.log('Selected Country ISO Code:', this.countryData.iso2);
-    });
-  }
+    this.getAllCountrycode()
+
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
@@ -254,6 +232,8 @@ isCheckEmail:boolean=true;
     if (file) {
       this.selectedFile = file;
       this.is_selectedFile =true;
+    } else {
+      this.selectedFile = null; // Reset if no file is selected
     }
   }
 
@@ -261,7 +241,7 @@ isCheckEmail:boolean=true;
     const countryCodeMatch = inputString.match(/\(\+(\d+)\)/);
     return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
   }
-  submitData(): void {
+  submitData(fileInput: HTMLInputElement): void {
 
     console.log(this.peacekeepersForm.value.mobile_number.number,this.peacekeepersForm.value.mobile_number.dialCode)
   
@@ -309,6 +289,8 @@ this.peacekeeperBadgeId = response.peacekeeper_id
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'success')
       this.peacekeepersForm.reset();
+      this.selectedFile = null;
+      fileInput.value = '';
     } else {
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'error')

@@ -215,25 +215,49 @@
                                 <div
                                   class="form-group fg-mobile col-md-6 col-sm-4 my-3"
                                 >
-                                  <div class="row no-padding">
-                                    <div
-                                      class="form-group form-group-inner mobile-number"
-                                    >
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="mobile1"
-                                        >Mobile Number<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
+                                  <div class=" row no-padding">
+                                     
                                       <div
-                                        class="form-floating"
-                                        style="margin: -13px 0 0 0"
+                                        class="form-floating col-md-3"
+                                        
                                       >
-                                        <ngx-intl-tel-input
+                                 
+                                      <select
+                                        formControlName="country_code"
+                                        class="form-control"
+                                        required
+                                        data-error="Please enter code"
+                                      >
+                                        <option selected value="" disabled>
+                                          --Please select--
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let code of code;
+                                            let j = index
+                                          "
+                                          [value]="code.country_mobile_code"
+                                        >
+                                          {{ code.country_mobile_code }}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('country_code')?.errors &&
+                                          getcontrol('country_code')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('country_code')?.errors?.['required']"
+                                          >Country code is required</small
+                                        >
+                                      </div>
+                                      <div class="help-block with-errors"></div>
+
+
+
+                                        <!-- <ngx-intl-tel-input
                                           class="custom-width-container"
                                           [preferredCountries]="[
                                             CountryISO.India,
@@ -256,14 +280,13 @@
                                           name="mobile_number"
                                           id="number_mobile1"
                                           formControlName="mobile_number"
-                                        ></ngx-intl-tel-input>
+                                        ></ngx-intl-tel-input> -->
                                       </div>
-                                    </div>
                                     <div
-                                      class="form-group form-group-inner mobile-number"
+                                      class="form-group form-group-inner mobile-number col-md-8"
                                     >
-                                      <div class="form-floating">
-                                        <!-- <input
+                                      <div class="form-floating ">
+                                        <input
                                         type="text"
                                         name="mobile_number[1]"
                                         id="number_mobile1"
@@ -285,7 +308,17 @@
                                           'is-invalid':
                                             submitted && f.mobile_number.errors
                                         }"
-                                      /> -->
+                                      />
+                                      <label
+                                        class="col-md-12 no-padding"
+                                        for="mobile1"
+                                        >Mobile Number<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                       </div>
                                       <div class="help-block with-errors"></div>
                                       <div

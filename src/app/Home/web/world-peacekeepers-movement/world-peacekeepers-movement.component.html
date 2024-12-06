@@ -254,7 +254,7 @@
           <div class="col-md-8">
             <form
               [formGroup]="peacekeepersForm"
-              (ngSubmit)="submitData()"
+              (ngSubmit)="submitData(fileInput)"
               style="position: relative; z-index: 1"
             >
               <div class="row g-2">
@@ -372,20 +372,20 @@
 
 
                 <div class="col-md">
-                  <label
+                  <!-- <label
                   class="col-md-12 no-padding"
                   for="mobile1"
-                  >Mobile Number<span
+                  >Country Code<span
                     class="form-label-span"
                     style="color: #ff0000"
                   >
                     *</span
                   ></label
-                >
+                > -->
                 <div
                   class="row no-padding "
                 >
-                  <!-- <div
+                  <div
                     class="form-group form-group-inner mobile-code col-3"
                   >
                   <div class="form-floating">
@@ -421,11 +421,11 @@
                       >
                     </div>
                     <div class="help-block with-errors"></div>
-                  </div> -->
+                  </div>
                   <div
-                    class="form-group form-group-inner mobile-number col-9 w-100"
+                    class="form-group form-group-inner mobile-number col-9"
                   >
-                  <ngx-intl-tel-input
+                  <!-- <ngx-intl-tel-input
                   class="custom-width-container"
                     [preferredCountries]="[
                       CountryISO.India,
@@ -446,8 +446,9 @@
                     name="mobile_number"
                     formControlName="mobile_number"
                   
-                  ></ngx-intl-tel-input>
-                    <!-- <input
+                  ></ngx-intl-tel-input> -->
+                  <div class="form-floating">
+                    <input
                       type="text"
                       name="mobile_number[1]"
                       id="number_mobile1"
@@ -463,7 +464,15 @@
                       formControlName="mobile_number"
                       (keypress)="keyPressNumbers($event)"
                  
-                    /> -->
+                    />
+                    <label for="mobilenumber"
+                      >Mobile Number :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
+                    >
                     <div
                       *ngIf="
                         getcontrol('mobile_number')?.errors &&
@@ -481,7 +490,8 @@
                         >Mobile number must be at least 10
                         digit long.</small
                       >
-                                        </div>
+                    </div>
+                  </div>
                   </div>
                
                 </div>
@@ -556,6 +566,7 @@
                       accept="image/jpg,image/png,image/jpeg"
                       name="profile_picture"
                       id="title"
+                      #fileInput
                       (change)="onFileChange($event)"
                     />
                   </div>
