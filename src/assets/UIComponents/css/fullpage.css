@@ -23,7 +23,7 @@
   .navbarDots {
     position: fixed;
     top: 50%;
-    right: 30px;
+    right: 10px;
     transform: translateY(-50%);
     z-index: 1000;
   }
