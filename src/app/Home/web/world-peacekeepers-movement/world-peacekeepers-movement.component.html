@@ -326,16 +326,7 @@
 
               <div class="row g-2 mt-5">
                 <div class="col-md">
-                  <label
-                  class="col-md-12 no-padding"
-                  for="mobile1"
-                  ><span
-                    class="form-label-span"
-                    style="color: #ff0000"
-                  >
-                    </span
-                  ></label
-                >
+            
                   <div class="form-floating">
                     <input
                       type="email"
@@ -486,15 +477,7 @@
                         >Mobile number must be at least 10
                         digit long.</small
                       >
-                      <small
-                        class="text-danger"
-                        *ngIf="getcontrol('mobile_number')?.errors?.['repeatingDigits']"
-                      >
-                        Mobile number cannot contain repeating
-                        digits.
-                      </small>
-                      
-                    </div>
+                                        </div>
                   </div>
                
                 </div>
@@ -527,7 +510,7 @@
 
                   <div class="col-md-12">
                     <label class="containerCheck">
-                      <input type="checkbox">
+                      <input type="checkbox" formControlName="Check_email">
                       <span class="checkmark"></span>
                       Do you want the email or phone number written on the badge? If yes, please tick the checkbox.
                     </label>
@@ -593,6 +576,8 @@
                   <button 
                     type="submit"
                     class="btn btn-success text-white col-1 text-center"
+                    [disabled]="this.peacekeepersForm.invalid"
+
                   >
                     Save
                   </button>
@@ -603,22 +588,13 @@
           <div class="col-md-4">
             <ul class="list-unstyled text-center badge">
               <div>
-                <ng-template #contentTemplate  >
-                  <div style="text-align: center;">
-                    <img src="assets/UIComponents/images/join-us.png" alt="" />
-        
-                  </div>
-                </ng-template>
-              
-                <div id="capture" >
-                  <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-                </div>
-              
+                <img src="assets/UIComponents/images/join-us.png" alt="" />
+
                 <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
               </div>
               <li>
-                <button [disabled]="!submitted" class="btn btn-success" (click)="downloadImage()">
-                  download your badge now
+                <button [disabled]="!submitted" class="btn btn-success" (click)="openPopup()">
+                  Preview your Badge
                   <img src="assets/UIComponents/images/download.svg" alt="" />
                 </button>
               </li>
@@ -694,3 +670,93 @@
     </section>
   </div>
 </main>
+<!-- Modal -->
+
+
+
+<div
+  *ngIf="showPopup"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1">
+    <div class="modal-content">
+   
+            <ng-template #contentTemplate  >
+              <table class="main" style="margin: auto;">
+                <tr>
+                    <td style="position: relative;">
+                        <img src="assets/UIComponents/images/peacekeeperBatch.jpg" height="480px" alt="">
+                        <div style="position: absolute; top: 15px;left: 15px; width: 100%;" >
+                            <h4 style="margin: 0px; text-transform: uppercase">{{peacekeeperData.length!==0?peacekeeperData.Name:'Name to come'}}</h4>
+                            <hr style="margin: 0px; width: 89%; color: #707070; opacity: 0.3;">
+                            <div style="font-size: 13px;">
+                                <label for=""
+                                    style="color: #17598E; "><b>Country
+                                        :</b> </label>
+                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Country:'xxxxxxxxxx'}}</span>
+                                
+                            </div>
+                            <div style="font-size: 13px;" *ngIf="isCheckEmail">
+                                <label for=""
+                                    style="color: #17598E;"><b>Mobile
+                                        :</b> </label>
+                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Phone:'00000 00000'}}</span>
+                            </div>
+                            <div style="font-size: 13px;" *ngIf="isCheckEmail">
+                                <label for=""
+                                    style="color: #17598E; "><b>E-mail
+                                        :</b></label>
+                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Email:'XXXX@Xmail.com'}}</span>
+                            </div>
+                            <div style="font-size: 13px;">
+                                <label for="" style="color: #17598E; "><b>ID
+                                        No. :</b></label>
+                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.ID_NO:'XX000000X'}}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img [src]="fileUrl" alt=""
+                                style="position: absolute;
+                                top: 15px;
+                                right: 20px;
+                                height: 200px;
+                                width: 200px;
+                                border: 2px solid #359138;
+                                border-radius: 50%;">
+                        </div>
+                    </td>
+                </tr>
+            </table>  
+            </ng-template>
+          
+            <div id="capture" >
+              <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+            </div>
+            <div class="col-md-12 row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <button [disabled]="peacekeeperData.length==0"
+                class="btn btn-success w-100 "
+                data-dismiss="modal"
+                (click)="downloadImage()"
+                style="height: 36px; font-size: 15px "
+              >
+              download now  </button>
+              </div>
+              <div class="col-md-4"></div>
+
+          </div>
+
+        </div>
+           
+          </div>
+        </div>
+ 
+
+
+ 

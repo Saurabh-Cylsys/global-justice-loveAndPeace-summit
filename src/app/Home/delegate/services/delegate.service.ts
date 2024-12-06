@@ -37,6 +37,10 @@ export class DelegateService {
 
   }
 
+  getPeacekeeper_Badge(id: any) {
+    return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
+
+  }
 
 
 }

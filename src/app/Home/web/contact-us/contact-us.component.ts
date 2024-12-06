@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-contact-us',
@@ -18,6 +19,20 @@ export class ContactUsComponent {
   reqBody: any;
   submitted = false;
 
+  separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  country_codeList: any;
+  countryCodes: any;
+  country_code: any;
+  selectedCountryISO: any;
+
+  changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
+
   constructor( private formBuilder: FormBuilder, private DelegateService: DelegateService, private SharedService: SharedService, private ngxService: NgxUiLoaderService, private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) {
 
    }
@@ -26,22 +41,21 @@ export class ContactUsComponent {
   }
   get f() { return this.contactUsForm.controls; }
   ngOnInit(): void {
-    this.getAllCountrycode()
+    // this.getAllCountrycode()
 
     this.contactUsForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      countryCode: ['', [Validators.required]],
-      phoneNumber: ['', [
-        Validators.required,
-        Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
-        this.noRepeatingDigits(),  this.containsConsecutiveZeros()
-      ]],
+      countryCode: [''],
+      phoneNumber: ['',[Validators.required]],
       email: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       yourQuestion: [''],
 
     });
+
+    console.log(this.contactUsForm.value,'contect');
+
 
   }
   noRepeatingDigits(): ValidatorFn {
@@ -97,6 +111,10 @@ console.log(indiaCodeObject);
     }
   }
   submitData(): void {
+    this.contactUsForm.patchValue({
+      countryCode :this.contactUsForm.value.phoneNumber.countryCode,
+      phoneNumber :this.contactUsForm.value.phoneNumber.dialCode + ' ' + this.contactUsForm.value.phoneNumber.number
+    })
     console.log(this.contactUsForm.value);
     this.submitted = true;
     if (this.contactUsForm.invalid) {

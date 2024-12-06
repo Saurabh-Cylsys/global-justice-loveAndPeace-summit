@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+
 
 @Component({
   selector: 'app-delegate-registration',
@@ -55,6 +57,19 @@ export class DelegateRegistrationComponent {
   
   othervalcity: any='';
   othervalcity_id:any='';
+
+  separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  country_codeList: any;
+  countryCodes: any;
+  country_code: any;
+  selectedCountryISO: any;
+  changePreferredCountries() {
+		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+	}
   constructor(private datePipe: DatePipe, private formBuilder: FormBuilder, private DelegateService: DelegateService, private SharedService: SharedService, private ngxService: NgxUiLoaderService, private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) {
     this.fullURL = window.location.href;
     console.log('Full URL:', this.fullURL);
@@ -74,11 +89,7 @@ export class DelegateRegistrationComponent {
       last_name: ['', [Validators.required]],
       country_code: ['', [Validators.required]],
 
-      mobile_number: ['+91', [
-        Validators.required,
-        Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
-        this.noRepeatingDigits(), this.containsConsecutiveZeros()
-      ]],
+      mobile_number: ['', [Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       linkedIn_profile:['', [Validators.pattern('https?://.+')]],
       instagram_profile:['', [Validators.pattern('https?://.+')]],
@@ -274,7 +285,6 @@ checkTerms1(evtt: any) {
 
 
 onKeyDown(event: KeyboardEvent, inputValue: string): void {
-  debugger
   // Check if the pressed key is the space bar and the input is empty
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
@@ -282,20 +292,21 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
 }
 
   submitData(): void {
+    
+    this.registrationForm.patchValue({
+      country_code :this.registrationForm.value.mobile_number.dialCode,
+      mobile_number :this.registrationForm.value.mobile_number.number
+    })
     console.log(this.registrationForm.value);
 
     this.submitted = true;
-    if (this.registrationForm.invalid) {
-      return console.log('Invalid Details');
-    }
+    // if (this.registrationForm.invalid) {
+    //   return console.log('Invalid Details');
+    // }
     if (this.submitted) {
-      const { valid } =
-        this.registrationForm;
-      if (valid) {
+
         this.reqBody = {
           ...this.registrationForm.value,
-          refrence_url:this.fullURL,
-      created_by:"user"
         };
         console.log("this.registrationForm.value", this.registrationForm.value);
         this.ngxService.start();
@@ -304,8 +315,9 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
             console.log("result", result);
             this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success')
-           
-            // this.openPopup();
+            this.registrationForm.reset();
+
+            this.openPopup();
            
            
           } else {
@@ -322,10 +334,7 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
           
         }
         );
-      }  
-      else {
-        return this.registrationForm.reset({});
-      }
+     
 
     }
   }
