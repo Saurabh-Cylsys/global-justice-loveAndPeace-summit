@@ -1,8 +1,11 @@
-
 <nav class="navbarDots">
   <ul>
     <li>
-      <a [routerLink]="['/world-peacekeepers-movement']" class="dot active" data-scroll="1">
+      <a
+        [routerLink]="['/world-peacekeepers-movement']"
+        class="dot active"
+        data-scroll="1"
+      >
         <span>The Movement</span>
       </a>
     </li>
@@ -98,9 +101,10 @@
                 <p>
                   Planning yearly summit in Dubai. The <br />
                   1st one is planned on April 13, 2025 <br />
-                  <span style="text-transform: lowercase;">(www.justice-love-peace.com)</span>
+                  <span style="text-transform: lowercase"
+                    >(www.justice-love-peace.com)</span
+                  >
                 </p>
-                
               </li>
             </ul>
           </div>
@@ -130,8 +134,9 @@
                 <p>
                   "Peace is when the love of power <br />
                   succumbs to the power of love" <br />
-                  <span style="text-transform: lowercase;">(www.facebook.com/World Peacekeepers Movement)</span>
-                  
+                  <span style="text-transform: lowercase"
+                    >(www.facebook.com/World Peacekeepers Movement)</span
+                  >
                 </p>
               </li>
             </ul>
@@ -237,7 +242,11 @@
             </ul>
           </div> -->
           <div class="col-md-12">
-            <img src="assets/UIComponents/images/peacekeeper2.svg" alt="" width="100%">
+            <img
+              src="assets/UIComponents/images/peacekeeper2.svg"
+              alt=""
+              width="100%"
+            />
           </div>
         </div>
       </div>
@@ -330,7 +339,6 @@
 
               <div class="row g-2 mt-5">
                 <div class="col-md">
-            
                   <div class="form-floating">
                     <input
                       type="email"
@@ -370,22 +378,17 @@
                   </div>
                 </div>
 
-
                 <div class="col-md">
-                  <label
-                  class="col-md-12 no-padding"
-                  for="mobile1"
-                  >Mobile Number<span
-                    class="form-label-span"
-                    style="color: #ff0000"
+                  <label class="col-md-12 no-padding" for="mobile1"
+                    >Mobile Number<span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    ></label
                   >
-                    *</span
-                  ></label
-                >
-                <div
-                  class="row no-padding "
-                >
-                  <!-- <div
+                  <div class="row no-padding">
+                    <!-- <div
                     class="form-group form-group-inner mobile-code col-3"
                   >
                   <div class="form-floating">
@@ -422,32 +425,31 @@
                     </div>
                     <div class="help-block with-errors"></div>
                   </div> -->
-                  <div
-                    class="form-group form-group-inner mobile-number col-9 w-100"
-                  >
-                  <ngx-intl-tel-input
-                  class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="true"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="10"
-                    [phoneValidation]="true"
-                    name="mobile_number"
-                    formControlName="mobile_number"
-                  
-                  ></ngx-intl-tel-input>
-                    <!-- <input
+                    <div
+                      class="form-group form-group-inner mobile-number col-9 w-100"
+                    >
+                      <ngx-intl-tel-input
+                        class="custom-width-container"
+                        [preferredCountries]="[
+                          CountryISO.India,
+                          CountryISO.UnitedStates,
+                          CountryISO.UnitedKingdom
+                        ]"
+                        [enableAutoCountrySelect]="false"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name
+                        ]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.India"
+                        [maxLength]="10"
+                        [phoneValidation]="true"
+                        name="mobile_number"
+                        formControlName="mobile_number"
+                      ></ngx-intl-tel-input>
+                      <!-- <input
                       type="text"
                       name="mobile_number[1]"
                       id="number_mobile1"
@@ -464,28 +466,26 @@
                       (keypress)="keyPressNumbers($event)"
                  
                     /> -->
-                    <div
-                      *ngIf="
-                        getcontrol('mobile_number')?.errors &&
-                        getcontrol('mobile_number')?.touched
-                      "
-                    >
-                      <small
-                        class="text-danger"
-                        *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                        >Mobile number is required</small
+                      <div
+                        *ngIf="
+                          getcontrol('mobile_number')?.errors &&
+                          getcontrol('mobile_number')?.touched
+                        "
                       >
-                      <small
-                        class="text-danger"
-                        *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                        >Mobile number must be at least 10
-                        digit long.</small
-                      >
-                                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                          >Mobile number is required</small
+                        >
+                        <small
+                          class="text-danger"
+                          *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
+                          >Mobile number must be at least 10 digit long.</small
+                        >
+                      </div>
+                    </div>
                   </div>
-               
-                </div>
-                    <!-- <label for="mobilenumber"
+                  <!-- <label for="mobilenumber"
                       >Mobile Number :<span
                         class="form-label-span"
                         style="color: #ff0000"
@@ -510,16 +510,17 @@
                         >Mobile number must be at least 10 digit long.</small
                       >
                     </div> -->
-                  </div>
-
-                  <div class="col-md-12">
-                    <label class="containerCheck">
-                      <input type="checkbox" formControlName="Check_email">
-                      <span class="checkmark"></span>
-                      Do you want the email or phone number written on the badge? If yes, please tick the checkbox.
-                    </label>
-                  </div>
                 </div>
+
+                <div class="col-md-12">
+                  <label class="containerCheck">
+                    <input type="checkbox" formControlName="Check_email" />
+                    <span class="checkmark"></span>
+                    Do you want the email or phone number written on the badge?
+                    If yes, please tick the checkbox.
+                  </label>
+                </div>
+              </div>
               <!-- </div> -->
 
               <div class="row g-2 mt-5">
@@ -541,9 +542,12 @@
                     /> 
                   </div>-->
                   <label for="" class="imgUpload">Image Upload</label>
-                  <div class="drop-zone" (drop)="onDrop($event)"
-                  (dragover)="onDragOver($event)"
-                  (dragleave)="onDragLeave($event)">
+                  <div
+                    class="drop-zone"
+                    (drop)="onDrop($event)"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                  >
                     <img src="assets/UIComponents/images/upload.svg" alt="" />
                     <span class="drop-zone__prompt"
                       >Drag your Image to start uploading</span
@@ -577,11 +581,10 @@
               </div>
               <div class="row mt-5">
                 <div class="col-md text-center">
-                  <button 
+                  <button
                     type="submit"
                     class="btn btn-success text-white col-1 text-center"
                     [disabled]="this.peacekeepersForm.invalid"
-
                   >
                     Save
                   </button>
@@ -597,15 +600,21 @@
                 <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
               </div>
               <li>
-                <button [disabled]="!submitted" class="btn btn-success" (click)="openPopup()">
+                <button
+                  [disabled]="!submitted"
+                  class="btn btn-success"
+                  (click)="openPopup()"
+                >
                   Preview your Badge
                   <img src="assets/UIComponents/images/download.svg" alt="" />
                 </button>
               </li>
               <li>
                 <h6>ALSO JOIN US ON</h6>
-                <img src="assets/UIComponents/images/fb.png" alt="" />
-                <img src="assets/UIComponents/images/insta.png" alt="" />
+                <a href="https://www.facebook.com/WorldPeacekeepersMovement" target="_blank" rel="noopener noreferrer">
+                <img src="assets/UIComponents/images/fb.png" alt="" /></a>
+                <a href="https://www.instagram.com/worldpeacekeepersmvt/" target="_blank" rel="noopener noreferrer">
+                <img src="assets/UIComponents/images/insta.png" alt="" /></a>
               </li>
             </ul>
           </div>
@@ -637,7 +646,7 @@
         <div class="row justify-content-center h-100">
           <div class="col-md-12 text-center">
             <iframe
-            class="col-md-8 col-12"
+              class="col-md-8 col-12"
               width="928"
               height="522"
               src="https://www.youtube.com/embed/2zG6OIhym60"
@@ -671,13 +680,10 @@
           </div>
         </div>
       </div>
-      
     </section>
   </div>
 </main>
 <!-- Modal -->
-
-
 
 <div
   *ngIf="showPopup"
@@ -690,78 +696,107 @@
 >
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content">
-   
-            <ng-template #contentTemplate  >
-              <table class="main" style="margin: auto;">
-                <tr>
-                    <td style="position: relative;">
-                        <img src="assets/UIComponents/images/peacekeeperBatch.jpg" height="480px" alt="">
-                        <div style="position: absolute; top: 15px;left: 15px; width: 100%;" >
-                            <h4 style="margin: 0px; text-transform: uppercase">{{peacekeeperData.length!==0?peacekeeperData.Name:'Name to come'}}</h4>
-                            <hr style="margin: 0px; width: 89%; color: #707070; opacity: 0.3;">
-                            <div style="font-size: 13px;">
-                                <label for=""
-                                    style="color: #17598E; "><b>Country
-                                        :</b> </label>
-                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Country:'xxxxxxxxxx'}}</span>
-                                
-                            </div>
-                            <div style="font-size: 13px;" *ngIf="isCheckEmail">
-                                <label for=""
-                                    style="color: #17598E;"><b>Mobile
-                                        :</b> </label>
-                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Phone:'00000 00000'}}</span>
-                            </div>
-                            <div style="font-size: 13px;" *ngIf="isCheckEmail">
-                                <label for=""
-                                    style="color: #17598E; "><b>E-mail
-                                        :</b></label>
-                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.Email:'XXXX@Xmail.com'}}</span>
-                            </div>
-                            <div style="font-size: 13px;">
-                                <label for="" style="color: #17598E; "><b>ID
-                                        No. :</b></label>
-                                <span  style="outline: none; border: none;"> {{peacekeeperData.length!==0?peacekeeperData.ID_NO:'XX000000X'}}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <img [src]="fileUrl" alt=""
-                                style="position: absolute;
-                                top: 15px;
-                                right: 20px;
-                                height: 200px;
-                                width: 200px;
-                                border: 2px solid #359138;
-                                border-radius: 50%;">
-                        </div>
-                    </td>
-                </tr>
-            </table>  
-            </ng-template>
-          
-            <div id="capture" >
-              <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
-            </div>
-            <div class="col-md-12 row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                <button [disabled]="peacekeeperData.length==0"
-                class="btn btn-success w-100 "
-                data-dismiss="modal"
-                (click)="downloadImage()"
-                style="height: 36px; font-size: 15px "
+      <ng-template #contentTemplate>
+        <table class="main" style="margin: auto">
+          <tr>
+            <td style="position: relative">
+              <img
+                src="assets/UIComponents/images/peacekeeperBatch.jpg"
+                height="480px"
+                alt=""
+              />
+              <div
+                style="position: absolute; top: 15px; left: 15px; width: 100%"
               >
-              download now  </button>
+                <h4 style="margin: 0px; text-transform: uppercase">
+                  {{
+                    peacekeeperData.length !== 0
+                      ? peacekeeperData.Name
+                      : "Name to come"
+                  }}
+                </h4>
+                <hr
+                  style="margin: 0px; width: 89%; color: #707070; opacity: 0.3"
+                />
+                <div style="font-size: 13px">
+                  <label for="" style="color: #17598e"><b>Country :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{
+                      peacekeeperData.length !== 0
+                        ? peacekeeperData.Country
+                        : "xxxxxxxxxx"
+                    }}</span
+                  >
+                </div>
+                <div style="font-size: 13px" *ngIf="isCheckEmail">
+                  <label for="" style="color: #17598e"><b>Mobile :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{
+                      peacekeeperData.length !== 0
+                        ? peacekeeperData.Phone
+                        : "00000 00000"
+                    }}</span
+                  >
+                </div>
+                <div style="font-size: 13px" *ngIf="isCheckEmail">
+                  <label for="" style="color: #17598e"><b>E-mail :</b></label>
+                  <span style="outline: none; border: none">
+                    {{
+                      peacekeeperData.length !== 0
+                        ? peacekeeperData.Email
+                        : "XXXX@Xmail.com"
+                    }}</span
+                  >
+                </div>
+                <div style="font-size: 13px">
+                  <label for="" style="color: #17598e"><b>ID No. :</b></label>
+                  <span style="outline: none; border: none">
+                    {{
+                      peacekeeperData.length !== 0
+                        ? peacekeeperData.ID_NO
+                        : "XX000000X"
+                    }}</span
+                  >
+                </div>
               </div>
-              <div class="col-md-4"></div>
+              <div>
+                <img
+                  [src]="fileUrl"
+                  alt=""
+                  style="
+                    position: absolute;
+                    top: 15px;
+                    right: 20px;
+                    height: 200px;
+                    width: 200px;
+                    border: 2px solid #359138;
+                    border-radius: 50%;
+                  "
+                />
+              </div>
+            </td>
+          </tr>
+        </table>
+      </ng-template>
 
-          </div>
-
+      <div id="capture">
+        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+      </div>
+      <div class="col-md-12 row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <button
+            [disabled]="peacekeeperData.length == 0"
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="downloadImage()"
+            style="height: 36px; font-size: 15px"
+          >
+            download now
+          </button>
         </div>
-           
-          </div>
-        </div>
- 
-
-
- 
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

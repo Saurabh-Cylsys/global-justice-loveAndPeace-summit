@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 99;
+  z-index: 9999999;
 }
 
 header .nav-link,
@@ -389,6 +389,8 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color2);
+  position: relative;
+  z-index: 999999;
 }
 /* index section7 timeline */
 
