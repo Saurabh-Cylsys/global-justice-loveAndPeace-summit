@@ -700,7 +700,10 @@
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
-          <div class="col-md">
+          <div class="col-md-12">
+            <img src="assets/UIComponents/images/the_summit/sBg6.svg" alt="" width="100%">
+          </div>
+          <!-- <div class="col-md">
             <ul class="p-0 text-center list-unstyled">
               <li class="my-5">
                 <img
@@ -912,7 +915,7 @@
                 </p>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -943,7 +946,10 @@
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
-          <div class="col-md">
+          <div class="col-md-12">
+            <img src="assets/UIComponents/images/the_summit/sBg6.svg" alt="" width="100%">
+          </div>
+          <!-- <div class="col-md">
             <ul class="p-0 text-center list-unstyled">
               <li class="my-5">
                 <img src="assets/UIComponents/images/partners/1.png" alt="" />
@@ -1124,14 +1130,14 @@
                 </p>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
   </div>
 
   <!--  -->
-  <section class="section section7 p-lg-5" id="10" style="height: auto">
+  <section class="section7 p-lg-5 h-auto">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-4 p-lg-5">
@@ -1145,17 +1151,12 @@
             planning of Global Summit
           </p>
 
-          <button
-            class="btn btn-success p-3 position-relative"
-            style="z-index: 9"
-          >
-            DOWNLOAD SCHEDULE
-          </button>
+          <button (click)="downloadPDF()" class="btn btn-success p-3">DOWNLOAD SCHEDULE</button>
         </div>
         <div class="col-md-8">
           <div class="row align-items-end">
             <div class="col-12 px-lg-5 mx-lg-5">
-              <div class="d-flex align-items-center justify-content-between">
+              <div class="d-lg-flex align-items-center justify-content-between">
                 <div class="date">
                   <h3>13 <span>April, Sunday 2025</span></h3>
                   <h5>10:00 AM - 11:00 PM</h5>
@@ -1176,7 +1177,12 @@
             <div class="col-12">
               <div id="timeline-content">
                 <ul class="timeline">
-                  <li class="event" [attr.data-date]="event.time" [attr.data-count]="i + 1" *ngFor="let event of events; let i = index">
+                  <li
+                    class="event"
+                    [attr.data-date]="event.time"
+                    [attr.data-count]="i + 1"
+                    *ngFor="let event of events; let i = index"
+                  >
                     <h3 class="fw-bold">{{ event.title }}</h3>
                   </li>
                   <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
@@ -1213,7 +1219,10 @@
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
-          <div class="col-md">
+          <div class="col-md-12">
+            <img src="assets/UIComponents/images/the_summit/sBg10.svg" alt="" width="100%">
+          </div>
+          <!-- <div class="col-md">
             <ul class="p-0 text-center list-unstyled">
               <li class="my-5">
                 <img src="assets/UIComponents/images/partners/1.png" alt="" />
@@ -1307,7 +1316,7 @@
                 </p>
               </li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
