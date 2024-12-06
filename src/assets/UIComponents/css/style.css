@@ -600,13 +600,13 @@ header .nav-item .nav-link.active {
 .partner .section8 h2 {
   color: var(--color1);
 }
-.partner .section8 {
+/* .partner .section8 {
   background-image: url(../images/partners/banner.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: 82vh;
   padding: 0;
-}
+} */
 
 .partner .section7 {
   background-size: cover;
