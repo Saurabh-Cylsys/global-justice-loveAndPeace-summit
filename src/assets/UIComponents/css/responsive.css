@@ -23,7 +23,7 @@
     /* top: -50px; */
   }
   .index .section4 img {
-    margin: 120px 0 0;
+    margin: 0 0 0;
   }
 
   .index .section1 .tableBox {
@@ -58,5 +58,14 @@
 }
 .partner_carousel ul li img{
   width: 100%;
+}
+
+.awards .section7 .card .card-body ul{
+  display: block;
+}
+
+.index .section7 p {
+  font-size: 13px;
+  line-height: 20px;
 }
 }
