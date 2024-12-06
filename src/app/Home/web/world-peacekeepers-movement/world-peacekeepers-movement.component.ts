@@ -19,10 +19,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
 
   peacekeepersForm: any = FormGroup;
   reqBody: any;
+  formdisplay:boolean=true;
+  showPopup: boolean = false;
+  display:string='';
   code: any;
   submitted = false;
   is_selectedFile = false;
   countryData:any;
+  fileUrl:any
 
   selectedFile: File | null = null;
 
@@ -35,6 +39,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   countryCodes: any;
   country_code: any;
   selectedCountryISO: any;
+peacekeeperData:any = [];
+peacekeeperBadgeId:any
+isCheckEmail:boolean=true;
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -74,7 +81,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
     console.log(inputElement,'inputElement');
     
     if (inputElement) {
-      debugger
+      
       const data =
     int1TelInput(inputElement,{
     initialCountry: 'ae',
@@ -101,7 +108,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
       mobile_number: ['', [Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
-      
+      Check_email:['']
     });
 
     
@@ -147,22 +154,47 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   }
 
   downloadImage() {
-    debugger
+    
     // Capture the template content as an HTML element
     const element:any = document.getElementById('capture');
-
+    
     // Use html2canvas to capture the content of the element
     html2canvas(element).then((canvas) => {
       // Convert the canvas to a data URL (JPEG or PNG)
       const imageUrl = canvas.toDataURL('image/png'); // or 'image/jpeg' for JPEG
-
+      
       // Create a link to download the image
       const link = document.createElement('a');
       link.href = imageUrl;
       link.download = 'template-image.png'; // Set the filename for the download
       link.click();
+      this.display = "none";
+      this.showPopup=false;
+      this.formdisplay=true;
+      
     });
   }
+  openPopup() {
+    if(this.peacekeeperBadgeId){
+      let id = this.peacekeeperBadgeId
+      this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
+      this.peacekeeperData = res.data;
+      this.fileUrl =  this.peacekeeperData.file_urls[0]
+        
+    });
+  }
+  console.log("modal peacekeeperData",this.peacekeeperData);
+    
+  
+    this.showPopup=true;
+    this.display='block'
+    this.formdisplay=false;
+}
+  closeModal() {
+    this.display = "none";
+    this.showPopup=false;
+  }
+  
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
@@ -204,9 +236,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
       const inputString = this.peacekeepersForm.value.country_code;
       const countryCode = this.extractCountryCode(inputString);
       console.log(countryCode); // Output: +91
-    
+      this.isCheckEmail = this.peacekeepersForm.value.Check_email
     this.peacekeepersForm.patchValue({
       is_active :1,
+      Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
       country_code: this.peacekeepersForm.value.mobile_number.countryCode,
       mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + this.peacekeepersForm.value.mobile_number.number
     })
@@ -239,6 +272,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
       if (response.success) {
         this.submitted = true;
       console.log("response", response);
+this.peacekeeperBadgeId = response.peacekeeper_id
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'success')
       this.peacekeepersForm.reset();
