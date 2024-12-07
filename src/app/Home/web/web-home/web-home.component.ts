@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -19,11 +19,15 @@ declare var AOS: any;
 
 
 
-export class WebHomeComponent implements OnInit{
-
+export class WebHomeComponent implements OnInit, OnDestroy{
+  targetDate: Date = new Date('2025-04-13T08:00:00'); // Replace with your target date
+  days: number = 0;
+  hours: number = 0;
+  minutes: number = 0;
+  private timerInterval: any;
   isMobileView = false;
   // headerIcon:any
-  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
+  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService, private cdr: ChangeDetectorRef
   ) {}
   events = [
     { title: 'Registration', time: '10:00 AM - 10:30 AM' },
@@ -44,9 +48,18 @@ export class WebHomeComponent implements OnInit{
 
    this.SharedService.headerIcon =  this._router.routerState.snapshot.url;
 
+   this.updateCountdown();
+    this.timerInterval = setInterval(() => {
+      this.updateCountdown();
+    }, 1000);
+
   }
 
-
+  ngOnDestroy(): void {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+    }
+  }
 
 
 
@@ -59,7 +72,7 @@ export class WebHomeComponent implements OnInit{
 
 
   downloadPDF() {
-    debugger
+    
     const fileUrl = 'assets/UIComponents/files/GJLPS-Collateral-Brochure.pdf'; // Path to your PDF file in the assets folder
     const a = document.createElement('a');
     a.href = fileUrl;
@@ -97,6 +110,24 @@ export class WebHomeComponent implements OnInit{
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  private updateCountdown(): void {
+    
+    const now = new Date().getTime();
+    const targetDate = this.targetDate.getTime();
+    const timeDifference = targetDate - now;
+
+    if (timeDifference > 0) {
+      this.days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      this.hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    } else {
+      this.days = this.hours = this.minutes = 0;
+    }
+
+    console.log('Countdown:', { days: this.days, hours: this.hours, minutes: this.minutes });
+    this.cdr.detectChanges();
   }
 
 }

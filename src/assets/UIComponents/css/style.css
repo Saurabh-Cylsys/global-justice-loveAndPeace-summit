@@ -1436,3 +1436,7 @@ header .nav-item .nav-link.active {
 .btn-success {
   background-color: var(--color3);
 }
+
+.partner_carousel ul li img{
+width: 100%;
+}
