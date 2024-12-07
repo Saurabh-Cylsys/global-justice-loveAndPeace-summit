@@ -43,7 +43,7 @@
   .navbarDots ul li .dot {
     color: #fff;
     display: block;
-    padding: 5px 0;
+    padding: 0 0;
   }
   
   .navbarDots ul li .dot span {
