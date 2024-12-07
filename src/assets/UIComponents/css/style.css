@@ -627,7 +627,7 @@ header .nav-item .nav-link.active {
   border-top: 1px solid var(--color1);
 }
 .awards .section4 h2 {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 30.91px;
   text-align: center;
@@ -857,7 +857,7 @@ header .nav-item .nav-link.active {
 }
 
 .chairman a{
-  color: #000;
+  color: var(--color1);
   text-decoration: none;
 }
 
