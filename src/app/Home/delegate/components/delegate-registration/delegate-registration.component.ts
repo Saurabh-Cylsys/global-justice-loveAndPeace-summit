@@ -105,7 +105,7 @@ export class DelegateRegistrationComponent {
       passport_issue_by: [''],// need 
       pin_code: [null],
       attend_summit: ['0', [Validators.required]],
-      reference_no: [null],// need 
+      reference_no: [],// need 
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: ['0', [Validators.required]],
       created_by: "Admin",
@@ -295,10 +295,13 @@ onKeyDown(event: KeyboardEvent, inputValue: string): void {
 }
 
   submitData(): void {
+    const rawMobileNumber = this.registrationForm.value.mobile_number.number;
+const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+console.log(formattedMobileNumber);
     
     this.registrationForm.patchValue({
       country_code :this.registrationForm.value.mobile_number.dialCode,
-      mobile_number :this.registrationForm.value.mobile_number.number
+      mobile_number :formattedMobileNumber
     })
     console.log(this.registrationForm.value);
 

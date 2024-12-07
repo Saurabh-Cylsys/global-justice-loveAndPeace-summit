@@ -220,7 +220,7 @@
                                       class="form-group form-group-inner mobile-number"
                                     >
                                       <label
-                                        class="col-md-12 no-padding"
+                                        class="col-md-12 no-padding mb-1"
                                         for="mobile1"
                                         >Mobile Number<span
                                           class="form-label-span"
@@ -241,7 +241,7 @@
                                             CountryISO.UnitedKingdom
                                           ]"
                                           [enableAutoCountrySelect]="false"
-                                          [enablePlaceholder]="true"
+                                          [enablePlaceholder]="false"
                                           [searchCountryFlag]="true"
                                           [searchCountryField]="[
                                             SearchCountryField.Iso2,
@@ -252,7 +252,7 @@
                                             CountryISO.India
                                           "
                                           [maxLength]="10"
-                                          [phoneValidation]="true"
+                                          [phoneValidation]="false"
                                           name="mobile_number"
                                           id="number_mobile1"
                                           [separateDialCode]="true"
@@ -1381,6 +1381,7 @@
                                         name="conference_lever_interest"
                                         id="level4"
                                         value="3"
+                                        (click)="openPopup()"
                                       />
                                       <label
                                         class="form-check-label"
@@ -1464,12 +1465,24 @@
               Thank you for registering at Global Justice, Love & Peace Summit
             </span> -->
             <p class="m-4" style="height: 36px; font-size: 15px; color: #ffff">
+              <span class="m-2">
               Thank you for your interest in attending the Global Justice Love &
-              Peace Summit on Sunday April 13, 2025 at Dubai. You will receive
-              an email response within the next 28 hours Keep Smiling!
+              Peace Summit on Sunday April 13, 2025 at Dubai.
+              </span>
+
+              <span class="m-2" >
+              You will receive an email response within the next 28 hours 
+              
+              </span>
+              <span class="m-2">
+
+              Keep Smiling!
+              </span>
+              <span class="m-2" >
               <a href="mailto:help@justice-love-peace.com"
                 >help@justice-love-peace.com</a
               >
+              </span>
               <!-- Registration screening is under process. Once validated,
                you will be notified via email about the next steps. -->
               <!-- <br /><br />
@@ -1479,7 +1492,7 @@
             </p>
           </div>
           <div class="col-md-9"></div>
-          <div class="col-md-3 mt-2">
+          <div class="col-md-3 mt-5">
             <a
               class="btn btn-success w-100 lm-btn"
               data-dismiss="modal"
