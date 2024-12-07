@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 9990;
 }
 
 header .nav-link,
@@ -90,7 +90,7 @@ header .nav-item .nav-link.active {
   position: absolute;
   /* top: -50px;
   left: -80px; */
-  z-index: 999;
+  z-index: 9990;
 }
 
 .index .section1 .cardMain {
@@ -573,7 +573,7 @@ header .nav-item .nav-link.active {
 .offcanvas ul {
   list-style: none;
   padding: 0;
-  line-height: 4;
+  line-height: 3;
   font-size: 16px;
   font-weight: 600;
 }
@@ -1395,4 +1395,9 @@ header .nav-item .nav-link.active {
 }
 .iti.separate-dial-code .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
   width: auto !important;
+}
+
+.form-group label {
+  font-weight: 400 !important;
+  padding-bottom: 10px;
 }
