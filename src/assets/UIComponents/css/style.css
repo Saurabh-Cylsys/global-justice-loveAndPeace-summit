@@ -1394,9 +1394,10 @@ header .nav-item .nav-link.active {
 }
 
 #phone{
-  padding-left: 10px;
-  padding-bottom: 0;
+  /* padding-left: 10px;
+  padding-bottom: 0; */
   border-bottom: none;
+  padding: 1px 10px;
 }
 .iti.separate-dial-code .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
   width: auto !important;
@@ -1409,4 +1410,29 @@ header .nav-item .nav-link.active {
 
 .carousel-control-next, .carousel-control-prev{
   width: 4%;
+}
+
+.head .nav-item:hover{
+  background-color: var(--color3);
+}
+.head .nav-item a{
+  padding: 8px;
+}
+.head .nav-item:hover a{
+  color: var(--color2);
+}
+.head .nav-item.active{
+  background-color: var(--color3);
+}
+
+.head .nav-item.active a{
+  color: var(--color2);
+}
+
+.hover-dropdown-content a{
+  color: var(--color6) !important;
+}
+
+.btn-success {
+  background-color: var(--color3);
 }
