@@ -574,7 +574,7 @@ header .nav-item .nav-link.active {
   list-style: none;
   padding: 0;
   line-height: 4;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
 }
 .offcanvas ul li,
@@ -1270,9 +1270,6 @@ header .nav-item .nav-link.active {
 .hide-logo .logo {
   display: none;
 }
-.iti {
-  width: 100%;
-}
 
 .containerCheck {
   display: block;
@@ -1359,6 +1356,7 @@ header .nav-item .nav-link.active {
     width: 100%;
     display: flex !important;
     align-items:center;
+    border-bottom: 1px dotted;
   }
 .iti .dropdown-menu.show {
   overflow: scroll;
@@ -1380,4 +1378,21 @@ header .nav-item .nav-link.active {
 
 .yT{
   height: 522px;
+}
+
+.iti__flag {
+  display: none;
+}
+.iti__selected-flag{
+  display: flex;
+  align-items: center;
+}
+
+#phone{
+  padding-left: 10px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.iti.separate-dial-code .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
+  width: auto !important;
 }
