@@ -83,7 +83,7 @@
   <ul>
     <li>
       <a [routerLink]="['/the-summit']" class="dot active" data-scroll="1">
-        <span>Highlights of summit</span>
+        <span>Highlights of Summit</span>
       </a>
     </li>
 
@@ -521,11 +521,11 @@
         </div>
 
         <div class="col-md-12" *ngIf="!isMobileView">
-          <div id="carouselExampleDark" class="carousel carousel-dark slide">
+          <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide"  data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="0"
                 class="active"
                 aria-current="true"
@@ -533,13 +533,13 @@
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="1"
                 aria-label="Slide 2"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="2"
                 aria-label="Slide 3"
               ></button>
@@ -551,7 +551,7 @@
               ></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="1000">
+              <div class="carousel-item active" data-bs-interval="2000">
                 <div class="row">
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
@@ -561,8 +561,8 @@
                         />
                         <h5>Kailash Satyarthi</h5>
                         <label for="">(India)</label>
-                        <h6>Nobel Peace Laureate (2014)</h6>
-                        <p>Satyarthi Movement for Global Compassion</p>
+                        <h6>Social Activist</h6>
+                        <p> Nobel Peace Laureate 2014</p>
                       </li>
                     </ul>
                   </div>
@@ -604,7 +604,7 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1000">
+              <div class="carousel-item" data-bs-interval="2000">
                 <div class="row">
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
@@ -626,7 +626,7 @@
                         <h6>Royalty, TV Host, Philanthropist</h6>
                         <!-- <p>Badminton World Champion 2019</p>
                         <label for=""
-                          >(Final conformation based on tournament
+                          >(Final confirmation based on tournament
                           schedule)</label
                         > -->
                       </li>
@@ -642,7 +642,7 @@
                         <label for="">(India)</label>
                         <h6>Industrialist</h6>
                         <p>
-                          Chairman & Managing Director, Godrej Industries Ltd
+                          Chairman & MD, Godrej Industries Ltd
                         </p>
                       </li>
                     </ul>
@@ -669,7 +669,7 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1000">
+              <div class="carousel-item" data-bs-interval="2000">
                 <div class="row">
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
@@ -702,7 +702,7 @@
                         <h6>Sportsperson, Olympic Medallist</h6>
                         <p>Badminton World Champion 2019</p>
                         <label for=""
-                          >(Final conformation based on tournament
+                          >(Final confirmation based on tournament
                           schedule)</label
                         >
                       </li>
@@ -711,16 +711,9 @@
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
-                        <span
-                          style="
-                            width: 60%;
-                            display: block;
-                            border: 1px solid;
-                            height: 15rem;
-                            border-radius: 100%;
-                            margin: auto;
-                          "
-                        ></span>
+                        <img
+                          src="assets/UIComponents/images/speakers/speaker9.png"
+                        />
                         <h5>
                           Romona Murad Dr.,<br />
                           Her Royal Highness Princess Dato Seri
@@ -733,7 +726,7 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item" data-bs-interval="1000">
+              <div class="carousel-item" data-bs-interval="2000">
                 <div class="row justify-content-center">
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
@@ -775,7 +768,7 @@
             <button
               class="carousel-control-prev"
               type="button"
-              data-bs-target="#carouselExampleDark"
+              data-bs-target="#carouselExampleAutoplaying"
               data-bs-slide="prev"
             >
               <span
@@ -787,7 +780,7 @@
             <button
               class="carousel-control-next"
               type="button"
-              data-bs-target="#carouselExampleDark"
+              data-bs-target="#carouselExampleAutoplaying"
               data-bs-slide="next"
             >
               <span
@@ -799,11 +792,11 @@
           </div>
         </div>
         <div class="col-md-12" *ngIf="isMobileView">
-          <div id="carouselExampleDark" class="carousel carousel-dark slide">
+          <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="0"
                 class="active"
                 aria-current="true"
@@ -811,51 +804,63 @@
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="1"
                 aria-label="Slide 2"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="2"
                 aria-label="Slide 3"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="3"
                 aria-label="Slide 4"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="4"
                 aria-label="Slide 5"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="5"
                 aria-label="Slide 6"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="6"
                 aria-label="Slide 7"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="7"
                 aria-label="Slide 8"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleDark"
+                data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide-to="8"
                 aria-label="Slide 9"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide-to="9"
+                aria-label="Slide 10"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide-to="10"
+                aria-label="Slide 11"
               ></button>
             </div>
             <div class="carousel-inner">
@@ -869,65 +874,8 @@
                         />
                         <h5>Kailash Satyarthi</h5>
                         <label for="">(India)</label>
-                        <h6>Nobel Peace Laureate (2014)</h6>
-                        <p>Satyarthi Movement for Global Compassion</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <div class="row">
-                  <div class="col-md-4">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/speakers/speaker2.png"
-                        />
-                        <h5>Nadir Godrej</h5>
-                        <label for="">(India)</label>
-                        <h6>Industrialist</h6>
-                        <p>
-                          Chairman & Managing Director, Godrej Industries Ltd
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <div class="row">
-                  <div class="col-md-4">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/speakers/speaker4.png"
-                        />
-                        <h5>Rui Duarte de Barros</h5>
-                        <label for="">(Guinea-Bissau)</label>
-                        <h6>Politician, Economist</h6>
-                        <p>Prime Minister, Republic of Guimea-Bissau</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <div class="row">
-                  <div class="col-md-4">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/speakers/speaker5.png"
-                        />
-                        <h5>PV Sindhu</h5>
-                        <label for="">(India)</label>
-                        <h6>Sportsperson, Olympic Medallist</h6>
-                        <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final conformation based on tournament
-                          schedule)</label
-                        >
+                        <h6>Social Activist</h6>
+                        <p>Nobel Peace Laureate 2014</p>
                       </li>
                     </ul>
                   </div>
@@ -955,12 +903,13 @@
               </div>
               <div class="carousel-item" data-bs-interval="2000">
                 <div class="row">
+                  
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <span
                           style="
-                            width: 60%;
+                            width: 100%;
                             display: block;
                             border: 1px solid;
                             height: 15rem;
@@ -984,7 +933,56 @@
                       <li class="p-3 text-center">
                         <span
                           style="
-                            width: 60%;
+                            width: 100%;
+                            display: block;
+                            border: 1px solid;
+                            height: 15rem;
+                            border-radius: 100%;
+                            margin: auto;
+                          "
+                        ></span>
+                        <h5>
+                          Mario-Max Schaumburg-Lippe, <br> His Highness Dr. Prince
+                        </h5>
+                        <label for="">(NORWAY)</label>
+                        <h6>Royalty, TV Host, Philanthropist</h6>
+                        <!-- <p>Badminton World Champion 2019</p>
+                        <label for=""
+                          >(Final confirmation based on tournament
+                          schedule)</label
+                        > -->
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="row">
+                  <div class="col-md-4">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/speakers/speaker2.png"
+                        />
+                        <h5>Nadir Godrej</h5>
+                        <label for="">(India)</label>
+                        <h6>Industrialist</h6>
+                        <p>
+                          Chairman & MD, Godrej Industries Ltd
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="row">
+                  <div class="col-md-4">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <span
+                          style="
+                            width: 100%;
                             display: block;
                             border: 1px solid;
                             height: 15rem;
@@ -1008,7 +1006,7 @@
                       <li class="p-3 text-center">
                         <span
                           style="
-                            width: 60%;
+                            width: 100%;
                             display: block;
                             border: 1px solid;
                             height: 15rem;
@@ -1030,9 +1028,68 @@
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/speakers/speaker5.png"
+                        />
+                        <h5>PV Sindhu</h5>
+                        <label for="">(India)</label>
+                        <h6>Sportsperson, Olympic Medallist</h6>
+                        <p>Badminton World Champion 2019</p>
+                        <label for=""
+                          >(Final confirmation based on tournament
+                          schedule)</label
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="row">
+                  
+                  <div class="col-md-4">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/speakers/speaker9.png"
+                        />
+                        <h5>
+                          Romona Murad Dr.,<br />
+                          Her Royal Highness Princess Dato Seri
+                        </h5>
+                        <label for="">(MALAYSIA)</label>
+                        <h6>Royalty, Philanthropist, Peace Activistt</h6>
+                        <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/speakers/speaker4.png"
+                        />
+                        <h5>Rui Duarte de Barros</h5>
+                        <label for="">(Guinea-Bissau)</label>
+                        <h6>Politician, Economist</h6>
+                        <p>Prime Minister, Republic of Guimea-Bissau</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                    <ul class="list-unstyled p-0">
+                      <li class="p-3 text-center">
                         <span
                           style="
-                            width: 60%;
+                            width: 100%;
                             display: block;
                             border: 1px solid;
                             height: 15rem;
