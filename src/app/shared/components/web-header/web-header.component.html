@@ -106,15 +106,15 @@
 
       <div class="collapse navbar-collapse py-3" id="navbarSupportedContent">
         <ul class="navbar-nav m-auto">
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <a
               class="nav-link"
-              routerLinkActive="active"
+              
               [routerLink]="['/webhome']"
               >Home</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <!-- <a
               class="nav-link"
               routerLinkActive="active"
@@ -145,7 +145,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/partners']">
                 Partners
@@ -176,7 +176,7 @@
               >Awards</a
             > -->
 
-            <div class="hover-dropdown">
+            <div class="hover-dropdown" routerLinkActive="active">
               <button
                 class="dropbtn"
                 [routerLink]="['/awards']"
@@ -192,11 +192,11 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
-                routerLinkActive="active"
+                
                 [routerLink]="['/world-peacekeepers-movement']"
               >
                 World Peacekeepers Movement
@@ -220,11 +220,11 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <button
                 class="dropbtn"
-                routerLinkActive="active"
+                
                 [routerLink]="['/DownloadCenter']"
               >
                 Download Center
@@ -232,6 +232,7 @@
               <div class="hover-dropdown-content">
                 <button
                   class="btn btn-success"
+                  (click)="downloadPDF()"
                   style="
                     font-size: 14px;
                     margin: 10px 0;
@@ -275,7 +276,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active">
             <a
               class="nav-link"
               routerLinkActive="active"
@@ -447,6 +448,17 @@
                 Download Center
               </button>
               <div class="hover-dropdown-content">
+                <button
+                  class="btn btn-success"
+                  style="
+                    font-size: 14px;
+                    margin: 10px 0;
+                    text-align: center;
+                    width: 100%;
+                  "
+                >
+                  Download Brochure
+                </button>
                 <a [routerLink]="['/DownloadCenter']">Mission & Pledge</a>
                 <a [routerLink]="['/DownloadCenter']" fragment="dc2"
                   >The Summit of 28</a

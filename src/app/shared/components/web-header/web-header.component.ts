@@ -24,6 +24,17 @@ export class WebHeaderComponent implements OnInit{
     });
   }
 
+  downloadPDF() {
+    debugger
+    const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure.pdf'; // Path to your PDF file in the assets folder
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = 'GJLPS-Brochure.pdf'; // Name of the downloaded file
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   displayMyDIV: boolean = false; // Initialize the visibility property
 
   // toggleVisibility() {
