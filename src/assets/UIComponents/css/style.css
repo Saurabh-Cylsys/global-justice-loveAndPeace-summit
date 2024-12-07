@@ -856,6 +856,11 @@ header .nav-item .nav-link.active {
   padding: 0;
 }
 
+.chairman a{
+  color: #000;
+  text-decoration: none;
+}
+
 .chairman li:nth-child(2) {
   line-height: 3;
   font-size: 14.32px;
@@ -1400,4 +1405,8 @@ header .nav-item .nav-link.active {
 .form-group label {
   font-weight: 400 !important;
   padding-bottom: 10px;
+}
+
+.carousel-control-next, .carousel-control-prev{
+  width: 4%;
 }
