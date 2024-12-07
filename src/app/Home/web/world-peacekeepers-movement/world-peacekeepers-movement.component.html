@@ -270,7 +270,7 @@
           <div class="col-md-8">
             <form
               [formGroup]="peacekeepersForm"
-              (ngSubmit)="submitData()"
+              (ngSubmit)="submitData(fileInput)"
               style="position: relative; z-index: 1"
             >
               <div class="row g-2">
@@ -443,7 +443,7 @@
                           CountryISO.UnitedKingdom
                         ]"
                         [enableAutoCountrySelect]="false"
-                        [enablePlaceholder]="true"
+                        [enablePlaceholder]="false"
                         [searchCountryFlag]="true"
                         [searchCountryField]="[
                           SearchCountryField.Iso2,
@@ -452,7 +452,7 @@
                         [selectFirstCountry]="false"
                         [selectedCountryISO]="CountryISO.India"
                         [maxLength]="10"
-                        [phoneValidation]="true"
+                        [phoneValidation]="false"
                         [separateDialCode]="true"
                         name="mobile_number"
                         formControlName="mobile_number"
@@ -568,6 +568,7 @@
                       accept="image/jpg,image/png,image/jpeg"
                       name="profile_picture"
                       id="title"
+                      #fileInput
                       (change)="onFileChange($event)"
                     />
                   </div>
@@ -590,7 +591,8 @@
               <div class="row mt-lg-5">
                 <div class="col-md text-center">
                   <button
-                    type="submit"
+                   (click)="isCorrect()"
+                   type="button"
                     class="btn btn-success text-white text-center"
                     [disabled]="this.peacekeepersForm.invalid"
                   >
@@ -694,7 +696,142 @@
 <!-- Modal -->
 
 <div
-  *ngIf="showPopup"
+  *ngIf="isPeaceOn == 1"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1">
+    <div class="modal-content">
+        <table class="main" style="margin: auto">
+          <tr>
+            <td style="position: relative; border-radius: 5px;; ">
+              <img
+              src="assets/UIComponents/images/bg2.png"
+              height="350px"
+              alt=""
+            />
+              <div
+                style="position: absolute; top: 15px; left: 15px; width: 100%"
+              >
+                <!-- <h5 style="margin: 0px; text-transform: uppercase">
+                  {{this.peacekeepersForm.value.full_name}}
+                </h5> -->
+                <hr
+                  style="margin: 0px; width: 77%; color: #707070; opacity: 0.3"
+                />
+                <div style="font-size: 18px">
+                  <label for="" style="color: #17598e"><b>Name :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{this.peacekeepersForm.value.full_name}}
+                    </span
+                  >
+                </div>
+                <div style="font-size: 18px">
+                  <label for="" style="color: #17598e"><b>Country :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{this.peacekeepersForm.value.country}}
+                    </span
+                  >
+                </div>
+                <div style="font-size: 18px" >
+                  <label for="" style="color: #17598e"><b>Mobile :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{isMobile}}
+                    </span
+                  >
+                </div>
+                <div style="font-size: 18px">
+                  <label for="" style="color: #17598e"><b>E-mail :</b></label>
+                  <span style="outline: none; border: none">
+                    {{this.peacekeepersForm.value.email_id}}
+                    </span
+                  >
+                </div>
+          
+              </div>
+              <!-- <div>
+                <img
+                  [src]="this.selectedFile?.name"
+                  alt=""
+                  style="
+                    position: absolute;
+                    top: 15px;
+                    right: 20px;
+                    height: 150px;
+                    width: 150px;
+                    border: 2px solid #359138;
+                    border-radius: 50%;
+                  "
+                />
+              </div> -->
+              <div
+                style="position: absolute; top: 15px; left: 15px; width: 100%"
+              >
+                
+                <div style="font-size: 18px;
+    margin-top: 165px;     width: 95%; color: #005A93;
+    ">
+                  <span style="outline: none; border: none"><b>
+                    You have entered the correct information.
+                    Please click the 'OK' button.
+                    <br> If you need to refill the information,
+                     please click the 'Back' button.
+                  </b>
+                                     </span
+                  >
+                </div>
+
+          
+              </div>
+              
+            </td>
+            
+          </tr>
+        </table>
+
+
+      <div class="col-md-12 row ms-2" style="
+    width: 95%;">
+        <div class="col-md-4">
+
+          <button
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="submitData(fileInput)"
+            style="height: 36px; font-size: 15px"
+          >
+            OK
+          </button>
+       
+        </div>
+        <div class="col-md-4"> </div>
+        <div class="col-md-4">
+          <button
+          class="btn btn-success w-100"
+          data-dismiss="modal"
+          (click)="closeModal()"
+          style="height: 36px; font-size: 15px; background-color: #ffff;
+          color: #198754;
+      "
+        >
+          Back
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div
+  *ngIf="isPeaceOn == 0"
   [ngStyle]="{ display: display }"
   class="modal"
   id="trustUntrust_alert"

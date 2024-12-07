@@ -220,7 +220,7 @@
                                       class="form-group form-group-inner mobile-number"
                                     >
                                       <label
-                                        class="col-md-12 no-padding"
+                                        class="col-md-12 no-padding mb-1"
                                         for="mobile1"
                                         >Mobile Number<span
                                           class="form-label-span"
@@ -241,7 +241,7 @@
                                             CountryISO.UnitedKingdom
                                           ]"
                                           [enableAutoCountrySelect]="false"
-                                          [enablePlaceholder]="true"
+                                          [enablePlaceholder]="false"
                                           [searchCountryFlag]="true"
                                           [searchCountryField]="[
                                             SearchCountryField.Iso2,
@@ -252,7 +252,7 @@
                                             CountryISO.India
                                           "
                                           [maxLength]="10"
-                                          [phoneValidation]="true"
+                                          [phoneValidation]="false"
                                           name="mobile_number"
                                           id="number_mobile1"
                                           [separateDialCode]="true"
@@ -973,7 +973,7 @@
                                     ></label
                                   >
                                   <div class="col-md-12 no-padding">
-                                    <span class="required-icon"></span>
+                                    <span class="required-icon">
                                     <input
                                       type="input"
                                       name="field_9"
@@ -1380,7 +1380,7 @@
                                         type="radio"
                                         name="conference_lever_interest"
                                         id="level4"
-                                        value="3"
+                                        value="[0,1,2]"
                                       />
                                       <label
                                         class="form-check-label"
@@ -1457,31 +1457,46 @@
 >
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content">
-      <div class="modal-body pt-5">
+      <div class="modal-body mb-5">
         <div class="row">
           <div>
             <!-- <span class="m-4 font-weight-bold">
               Thank you for registering at Global Justice, Love & Peace Summit
             </span> -->
             <p class="m-4" style="height: 36px; font-size: 15px; color: #ffff">
+            
               Thank you for your interest in attending the Global Justice Love &
-              Peace Summit on Sunday April 13, 2025 at Dubai. You will receive
-              an email response within the next 28 hours Keep Smiling!
-              <a href="mailto:help@justice-love-peace.com"
+              Peace Summit on Sunday April 13, 2025 at Dubai.
+              
+              <br><br>
+              You will receive an email response within the next 28 hours 
+              
+              
+              <br> <br>     
+
+              Keep Smiling!
+              <br><br>
+              
+              <a class="text-white" href="mailto:help@justice-love-peace.com"
                 >help@justice-love-peace.com</a
               >
+            </p>
+              
               <!-- Registration screening is under process. Once validated,
                you will be notified via email about the next steps. -->
               <!-- <br /><br />
               Regards,​
               <br />
               Global Justice, Love & Peace Summit Conference​ -->
-            </p>
           </div>
-          <div class="col-md-9"></div>
-          <div class="col-md-3 mt-2">
+          
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <div class="row">
+          <div class="col-md-5">
             <a
-              class="btn btn-success w-100 lm-btn"
+              class="btn btn-success lm-btn"
               data-dismiss="modal"
               (click)="closeModal()"
               style="height: 36px; font-size: 15px; color: #ffff"
@@ -1490,6 +1505,7 @@
             </a>
           </div>
         </div>
+        
       </div>
       <br />
     </div>

@@ -20,13 +20,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   peacekeepersForm: any = FormGroup;
   reqBody: any;
   formdisplay:boolean=true;
-  showPopup: boolean = false;
+  showPopup: boolean= false;
+  isPeaceOn: number = -1;
   display:string='';
   code: any;
   submitted = false;
   is_selectedFile = false;
   countryData:any;
   fileUrl:any
+  isMobile:any
 
   selectedFile: File | null = null;
 
@@ -219,7 +221,8 @@ isCheckEmail:boolean=true;
   console.log("modal peacekeeperData",this.peacekeeperData);
     
   
-    this.showPopup=true;
+    this.showPopup = true;
+    this.isPeaceOn = 0;
     this.display='block'
     this.formdisplay=false;
 }
@@ -227,7 +230,13 @@ isCheckEmail:boolean=true;
     this.display = "none";
     this.showPopup=false;
   }
-  
+  isCorrect() {
+      this.isMobile = this.peacekeepersForm.value.mobile_number.number
+      this.display = "block";
+      this.showPopup = true;
+      this.isPeaceOn = 1;
+
+    }
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
@@ -261,8 +270,9 @@ isCheckEmail:boolean=true;
     const countryCodeMatch = inputString.match(/\(\+(\d+)\)/);
     return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
   }
-  submitData(): void {
-
+  submitData(fileInput: HTMLInputElement): void {
+    this.display = "none";
+    this.showPopup=false;
     console.log(this.peacekeepersForm.value.mobile_number.number,this.peacekeepersForm.value.mobile_number.dialCode)
   
   
@@ -304,11 +314,15 @@ isCheckEmail:boolean=true;
       
       if (response.success) {
         this.submitted = true;
+        this.ngxService.stop();
       console.log("response", response);
-this.peacekeeperBadgeId = response.peacekeeper_id
-      this.ngxService.stop();
+      this.peacekeeperBadgeId = response.peacekeeper_id
       this.SharedService.ToastPopup('', response.message, 'success')
       this.peacekeepersForm.reset();
+
+      this.selectedFile = null;
+      fileInput.value = '';
+
     } else {
       this.ngxService.stop();
       this.SharedService.ToastPopup('', response.message, 'error')
