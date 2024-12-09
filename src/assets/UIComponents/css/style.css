@@ -642,6 +642,24 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
+
+.awards .section4 h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30.91px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--color1);
+}
+.awards .section4 h3 span {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25.76px;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
 .awards .section4 h6 {
   color: var(--color1);
   font-size: 24px;
@@ -978,6 +996,10 @@ header .nav-item .nav-link.active {
   background-color: var(--color3);
   color: var(--color2);
   width: 70%;
+}
+
+.invited table tbody tr td{
+  border-bottom: 2px solid var(--color2);
 }
 
 .invited table tbody tr:nth-child(odd) td:first-child {
