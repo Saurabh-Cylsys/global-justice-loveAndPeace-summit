@@ -736,7 +736,7 @@
 <div
   *ngIf="isPeaceOn == 1"
   [ngStyle]="{ display: display }"
-  class="modal "
+  class="modal " closeLabel="Close" 
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
@@ -744,6 +744,7 @@
 >
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content">
+      <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
         <table class="main" style="margin: auto">
           <tr>
             <td style="position: relative; border-radius: 5px;; ">
@@ -878,14 +879,17 @@
 <div
   *ngIf="isPeaceOn == 0"
   [ngStyle]="{ display: display}"
-  class="modal "
+  class="modal " closeLabel="Close" 
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
   role="dialog"
 >
-  <div class="modal-dialog come-from-modal new_dialog1">
+  <div class="modal-dialog come-from-modal new_dialog1" >
+
     <div class="modal-content">
+      <button class="modal-close" (click)="closeModal()">X</button>
+
       <ng-template #contentTemplate>
         <table class="main" style="margin: auto">
           <tr>
@@ -913,7 +917,7 @@
                   <span style="outline: none; border: none">
                     {{
                       peacekeeperData.length !== 0
-                        ? peacekeeperData.dob
+                        ? peacekeeperData.DOB
                         : "xx/xx/xxxx"
                     }}</span
                   >
@@ -983,20 +987,34 @@
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>
       <div class="col-md-12 row">
-        <div class="col-md-4"></div>
         <div class="col-md-4">
           <button
-            [disabled]="peacekeeperData.length == 0"
-            class="btn btn-success w-100"
-            data-dismiss="modal"
-            (click)="downloadImage()"
-            style="height: 36px; font-size: 15px"
-          >
-            download now
-          </button>
+          [disabled]="peacekeeperData.length == 0"
+          class="btn btn-success w-100"
+          data-dismiss="modal"
+          (click)="downloadImage()"
+          style="height: 36px; font-size: 15px"
+        >
+          Download now
+        </button>
         </div>
-        <div class="col-md-4"></div>
-      </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+          <button
+          class="btn btn-success w-100"
+          data-dismiss="modal"
+          (click)="closeModal()"
+          style="height: 36px; font-size: 15px; background-color: #ffff;
+          color: #198754;
+      "
+        >
+          Back
+        </button>
+        </div>      </div>
     </div>
   </div>
 </div>
+
+

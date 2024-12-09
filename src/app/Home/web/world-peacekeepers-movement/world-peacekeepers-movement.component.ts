@@ -233,6 +233,7 @@ isCheckEmail:boolean=true;
     this.formdisplay=false;
 }
   closeModal() {
+    debugger
     this.display = "none";
     this.showPopup=false;
   }

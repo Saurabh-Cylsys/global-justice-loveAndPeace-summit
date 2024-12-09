@@ -1465,3 +1465,11 @@ width: 100%;
 .modal{
   background: #000000a1;
 }
+
+.modal-dialog .modal-close{
+  position: absolute;
+  right: 19px;
+  z-index: 1;
+  top: -1.5rem;
+  border-radius: 10px;
+}
