@@ -20,7 +20,7 @@ declare var AOS: any;
 
 
 export class WebHomeComponent implements OnInit, OnDestroy{
-  targetDate: Date = new Date('2025-04-13T09:30:00'); // Replace with your target date
+  targetDate: Date = new Date('2025-04-13T08:00:00'); // Replace with your target date
   days: number = 0;
   hours: number = 0;
   minutes: number = 0;
@@ -113,10 +113,22 @@ export class WebHomeComponent implements OnInit, OnDestroy{
   }
 
   private updateCountdown(): void {
-    
+
     const now = new Date().getTime();
+
+    // Adjust current time to Dubai UTC-1.5
+    const dubaiTimeOffset = 1.5 * 60 * 60 * 1000; // Dubai is UTC-1.5
+    const dubaiNow = now - dubaiTimeOffset;
+  
     const targetDate = this.targetDate.getTime();
-    const timeDifference = targetDate - now;
+    const timeDifference = targetDate - dubaiNow;
+
+
+    
+    // const now = new Date().getTime();
+    
+    // const targetDate = this.targetDate.getTime();
+    // const timeDifference = targetDate - now;
 
     if (timeDifference > 0) {
       this.days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));

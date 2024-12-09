@@ -206,6 +206,53 @@
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
+
+                                <div
+                                class="form-group fg-lname col-md-4 col-sm-3 my-3"
+                              >
+                                <div class="col-md-12 no-padding">
+                                  <div class="form-floating">
+                                    <input
+                                      type="date"
+                              
+                                      name="lname[1]"
+                                      id="lname1"
+                                      placeholder=""
+                                      class="form-control"
+                                      value=""
+                                      required
+                                      formControlName="dob"
+                                      minlength="3"
+                                      (keypress)="ValidateAlpha($event)"
+                                  
+                                    />
+                                    <label
+                                      class="col-md-12 no-padding"
+                                      for="lname1"
+                                      >DOB<span
+                                        class="form-label-span"
+                                        style="color: #ff0000"
+                                      >
+                                        *</span
+                                      ></label
+                                    >
+                                  </div>
+                                  <div
+                                    *ngIf="
+                                      getcontrol('dob')?.errors &&
+                                      getcontrol('dob')?.touched
+                                    "
+                                  >
+                                    <small
+                                      class="text-danger"
+                                      *ngIf="getcontrol('dob')?.errors?.['required']"
+                                      >Date of birth is required</small
+                                    >
+                                
+                                  </div>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
                               </div>
 
                               <div class="row mb-3">
@@ -354,7 +401,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('email_id')?.errors?.['required']"
-                                        >Email is Required.</small
+                                        >Email is required.</small
                                       >
                                       <small
                                         class="text-danger"
@@ -405,7 +452,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']"
-                                        >Please enter valid linkedIn URL.</small
+                                        >Please enter valid linkedIn URL or username. </small
                                       >
                                     </div>
                                   </div>
@@ -448,11 +495,9 @@
                                         getcontrol('instagram_profile')?.touched
                                       "
                                     >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('instagram_profile')?.errors?.['pattern']"
-                                        >Please enter valid Instagram ID.</small
-                                      >
+                                    <span class="text-danger" *ngIf="isInvalidInstagramProfile()">
+                                      Invalid Instagram profile URL or username.
+                                    </span>
                                     </div>
                                   </div>
                                 </div>
@@ -601,7 +646,7 @@
                                       "
                                     >
                                       <!-- <small class="text-danger" *ngIf="getcontrol('website')?.errors?.['required']"> Website Url
-                                                                          is Required.</small> -->
+                                                                          is required.</small> -->
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('website')?.errors?.['pattern']"
@@ -715,7 +760,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('address')?.errors?.['required']"
-                                        >Address is Required.</small
+                                        >Address is required.</small
                                       >
                                       <small
                                         class="text-danger"
@@ -767,7 +812,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('country')?.errors?.['required']"
-                                        >Country is Required.</small
+                                        >Country is required.</small
                                       >
                                     </div>
                                   </div>
@@ -807,7 +852,7 @@
                                     <small
                                       class="text-danger"
                                       *ngIf="getcontrol('country')?.errors?.['required']"
-                                      >Country is Required.</small
+                                      >Country is required.</small
                                     >
                                   </div> -->
                                 </div>
@@ -835,7 +880,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('state')?.errors?.['required']"
-                                        >Address is Required.</small
+                                        >Address is required.</small
                                       >
                                       <small
                                         class="text-danger"
@@ -889,7 +934,7 @@
                                     <small
                                       class="text-danger"
                                       *ngIf="getcontrol('state')?.errors?.['required']"
-                                      >State is Required.</small
+                                      >State is required.</small
                                     >
                                   </div> -->
                                 </div>
@@ -954,7 +999,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('city')?.errors?.['required']"
-                                        >City is Required.</small
+                                        >City is required.</small
                                       >
                                     </div>
                                   </div>
@@ -1004,7 +1049,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('pin_code')?.errors?.['required']"
-                                        >Pin Code is Required.</small
+                                        >Pin Code is required.</small
                                       >
 
                                       <small
@@ -1132,7 +1177,7 @@
                                   <h3>Summit Participation Details :</h3>
                                 </div>
                               </div>
-                              <div class="row g-2 mt-5">
+                              <!-- <div class="row g-2 mt-5">
                                 <div class="col-md-12">
                                   <h6>
                                     You would like to attend the Summit:<span
@@ -1182,9 +1227,9 @@
 
                                   
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="row g-2 mt-3">
+                              <!-- <div class="row g-2 mt-3">
                                 <div class="col-md-12">
                                   <h6>
                                     Do you have a Reference code:
@@ -1209,9 +1254,9 @@
                                     >
                                   </div>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="row g-2 mt-3">
+                              <div class="row g-2 mt-5">
                                 <div class="col-md-12">
                                   <h6>
                                     What is your primary purpose of attending

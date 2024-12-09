@@ -45,7 +45,7 @@ header {
   color: var(--color2);
   position: sticky;
   top: 0;
-  z-index: 9990;
+  z-index: 999;
 }
 
 header .nav-link,
@@ -90,7 +90,7 @@ header .nav-item .nav-link.active {
   position: absolute;
   /* top: -50px;
   left: -80px; */
-  z-index: 9990;
+  z-index: 999;
 }
 
 .index .section1 .cardMain {
@@ -1439,4 +1439,7 @@ header .nav-item .nav-link.active {
 
 .partner_carousel ul li img{
 width: 100%;
+}
+.modal{
+  background: #000000a1;
 }
