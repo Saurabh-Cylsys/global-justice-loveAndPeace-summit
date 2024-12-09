@@ -111,9 +111,7 @@
                     placeholder=""
                     required
                     value=""
-                    [ngClass]="{
-                      'is-invalid': submitted && f.last_name.errors
-                    }"
+                 
                   />
                   <label for="FirstName">First Name</label>
 
@@ -248,7 +246,7 @@
                     <small
                       class="text-danger"
                       *ngIf="getcontrol('email')?.errors?.['required']"
-                      >Email is Required.</small
+                      >Email is required.</small
                     >
                     <small
                       class="text-danger"

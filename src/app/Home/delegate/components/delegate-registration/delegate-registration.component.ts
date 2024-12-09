@@ -77,6 +77,12 @@ export class DelegateRegistrationComponent {
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
+  get instagramProfileControl() {
+    return this.registrationForm.get('instagram_profile');
+  }
+  isInvalidInstagramProfile() {
+    return this.instagramProfileControl.hasError('pattern') && this.instagramProfileControl.touched;
+  }
   get f() { return this.registrationForm.controls; }
   ngOnInit(): void {
   
@@ -87,12 +93,14 @@ export class DelegateRegistrationComponent {
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       country_code: ['', [Validators.required]],
 
       mobile_number: ['', [Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      linkedIn_profile:['', [Validators.pattern('https?://.+')]],
-      instagram_profile:['', [Validators.pattern('https?://.+')]],
+      linkedIn_profile:[''],
+      instagram_profile:[''],
+      // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
       profession_1: ['', [Validators.required]],// need 
       profession_2: [''],// need 
       website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
@@ -105,7 +113,7 @@ export class DelegateRegistrationComponent {
       passport_issue_by: [''],// need 
       pin_code: [null],
       attend_summit: ['0', [Validators.required]],
-      reference_no: [],// need 
+      reference_no: ['0'],// need 
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: ['0', [Validators.required]],
       created_by: "Admin",

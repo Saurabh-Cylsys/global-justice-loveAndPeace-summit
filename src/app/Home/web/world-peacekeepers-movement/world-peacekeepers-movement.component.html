@@ -282,6 +282,7 @@
                       formControlName="full_name"
                       name="full_name"
                       id="title"
+                      (keypress)="ValidateAlpha($event)"
                       placeholder=""
                       value=""
                     />
@@ -304,6 +305,40 @@
                         class="text-danger"
                         *ngIf="getcontrol('full_name')?.errors?.['required']"
                         >First name is required</small
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="form-floating">
+                    <input
+                      type="date"
+                      class="form-control"
+                      formControlName="dob"
+                      name="dob"
+                      id="title"
+                      placeholder=""
+                      value=""
+                    />
+                    <label for="title"
+                      >DOB :<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      >
+                    </label>
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        getcontrol('dob')?.errors &&
+                        getcontrol('dob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('dob')?.errors?.['required']"
+                        >Date of birth is required</small
                       >
                     </div>
                   </div>
@@ -337,11 +372,13 @@
                       <small
                         class="text-danger"
                         *ngIf="getcontrol('country')?.errors?.['required']"
-                        >Country is Required.</small
+                        >Country is required.</small
                       >
                     </div>
                   </div>
                 </div>
+
+
               </div>
 
               <div class="row g-2 mt-lg-5">
@@ -374,7 +411,7 @@
                       <small
                         class="text-danger"
                         *ngIf="getcontrol('email_id')?.errors?.['required']"
-                        >Email is Required.</small
+                        >Email is required.</small
                       >
                       <small
                         class="text-danger"
@@ -529,6 +566,7 @@
                   </label>
                 </div>
               </div>
+              
               <!-- </div> -->
 
               <div class="row g-2 mt-lg-5">
@@ -584,7 +622,7 @@
                       color: #6d6d6d;
                     "
                   >
-                    Only support .jpg, .png files up to 100mb
+                    Only support .jpg, .png files
                   </p>
                 </div>
               </div>
@@ -698,7 +736,7 @@
 <div
   *ngIf="isPeaceOn == 1"
   [ngStyle]="{ display: display }"
-  class="modal"
+  class="modal "
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
@@ -727,6 +765,13 @@
                   <label for="" style="color: #17598e"><b>Name :</b> </label>
                   <span style="outline: none; border: none">
                     {{this.peacekeepersForm.value.full_name}}
+                    </span
+                  >
+                </div>
+                <div style="font-size: 18px">
+                  <label for="" style="color: #17598e"><b>DOB :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{this.peacekeepersForm.value.dob}}
                     </span
                   >
                 </div>
@@ -832,8 +877,8 @@
 
 <div
   *ngIf="isPeaceOn == 0"
-  [ngStyle]="{ display: display }"
-  class="modal"
+  [ngStyle]="{ display: display}"
+  class="modal "
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
@@ -863,6 +908,16 @@
                 <hr
                   style="margin: 0px; width: 89%; color: #707070; opacity: 0.3"
                 />
+                <div style="font-size: 13px">
+                  <label for="" style="color: #17598e"><b>DOB :</b> </label>
+                  <span style="outline: none; border: none">
+                    {{
+                      peacekeeperData.length !== 0
+                        ? peacekeeperData.dob
+                        : "xx/xx/xxxx"
+                    }}</span
+                  >
+                </div>
                 <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">

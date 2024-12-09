@@ -105,6 +105,7 @@ isCheckEmail:boolean=true;
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
+      dob: ['', [Validators.required]],
       country: ['', [Validators.required]],
       country_code: [''],
       mobile_number: ['', [Validators.required]],
@@ -202,10 +203,15 @@ isCheckEmail:boolean=true;
       })
       .finally(() => {
         // this.isLoading = false; // Hide the spinner if added
-        this.showPopup = false;
+        this.display = "none";
+        this.showPopup=false;
       });
-
-
+      setTimeout(() => {
+        this.display = "none";
+        this.showPopup=false;
+  
+      }, 1000);
+   
 
   }
   openPopup() {
@@ -266,10 +272,21 @@ isCheckEmail:boolean=true;
     }
   }
 
+  ValidateAlpha(event: any) {
+    var keyCode = (event.which) ? event.which : event.keyCode
+
+    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
+      return false;
+    return true;
+
+  }
+
   extractCountryCode(inputString: string): string | null {
     const countryCodeMatch = inputString.match(/\(\+(\d+)\)/);
     return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
   }
+
+  
   submitData(fileInput: HTMLInputElement): void {
     this.display = "none";
     this.showPopup=false;
@@ -279,12 +296,18 @@ isCheckEmail:boolean=true;
       // const inputString = this.peacekeepersForm.value.country_code;
       // const countryCode = this.extractCountryCode(inputString);
       // console.log(countryCode); // Output: +91
+
+      const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
+      const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+      console.log(formattedMobileNumber);
+          
+
       this.isCheckEmail = this.peacekeepersForm.value.Check_email
     this.peacekeepersForm.patchValue({
       is_active :1,
       Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
       country_code: this.peacekeepersForm.value.mobile_number.countryCode,
-      mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + this.peacekeepersForm.value.mobile_number.number
+      mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
     })
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {

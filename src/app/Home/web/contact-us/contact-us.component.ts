@@ -111,9 +111,14 @@ console.log(indiaCodeObject);
     }
   }
   submitData(): void {
+
+    const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;
+    const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+    console.log(formattedMobileNumber);
+        
     this.contactUsForm.patchValue({
       countryCode :this.contactUsForm.value.phoneNumber.countryCode,
-      phoneNumber :this.contactUsForm.value.phoneNumber.dialCode + ' ' + this.contactUsForm.value.phoneNumber.number
+      phoneNumber :this.contactUsForm.value.phoneNumber.dialCode + ' ' + formattedMobileNumber
     })
     console.log(this.contactUsForm.value);
     this.submitted = true;
@@ -121,9 +126,7 @@ console.log(indiaCodeObject);
       return console.log('Invalid Details');
     }
     if (this.submitted) {
-      const { valid } =
-        this.contactUsForm;
-      if (valid) {
+     
         this.reqBody = {
           ...this.contactUsForm.value,
         };
@@ -133,6 +136,7 @@ console.log(indiaCodeObject);
           if (result.success) {
             console.log("result", result);
             this.ngxService.stop();
+            this.contactUsForm.reset();
             this.SharedService.ToastPopup('', result.message, 'success')        
            
           } 
@@ -145,10 +149,7 @@ console.log(indiaCodeObject);
           
         }
         );
-      }  
-      else {
-        return this.contactUsForm.reset({});
-      }
+     
 
     }
   }
