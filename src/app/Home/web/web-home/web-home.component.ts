@@ -138,7 +138,7 @@ export class WebHomeComponent implements OnInit, OnDestroy{
       this.days = this.hours = this.minutes = 0;
     }
 
-    console.log('Countdown:', { days: this.days, hours: this.hours, minutes: this.minutes });
+    // console.log('Countdown:', { days: this.days, hours: this.hours, minutes: this.minutes });
     this.cdr.detectChanges();
   }
 

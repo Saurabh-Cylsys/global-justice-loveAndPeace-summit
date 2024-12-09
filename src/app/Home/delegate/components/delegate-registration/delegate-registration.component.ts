@@ -98,8 +98,8 @@ export class DelegateRegistrationComponent {
 
       mobile_number: ['', [Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      linkedIn_profile:[''],
-      instagram_profile:[''],
+      linkedIn_profile:['', [Validators.pattern('https?://.+')]],
+      instagram_profile:['', [Validators.pattern('https?://.+')]],
       // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
       profession_1: ['', [Validators.required]],// need 
       profession_2: [''],// need 
