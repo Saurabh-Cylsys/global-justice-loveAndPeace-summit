@@ -20,7 +20,7 @@ declare var AOS: any;
 
 
 export class WebHomeComponent implements OnInit, OnDestroy{
-  targetDate: Date = new Date('2025-04-13T08:00:00'); // Replace with your target date
+  targetDate: Date = new Date('2025-04-13T09:30:00'); // Replace with your target date
   days: number = 0;
   hours: number = 0;
   minutes: number = 0;
