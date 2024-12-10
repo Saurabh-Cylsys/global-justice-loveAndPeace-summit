@@ -223,6 +223,7 @@
                                       required
                                       formControlName="dob"
                                       minlength="3"
+                                      (ngModelChange)="onDateChange($event)"
                                       (keypress)="ValidateAlpha($event)"
                                   
                                     />
@@ -1229,7 +1230,7 @@
                                 </div>
                               </div> -->
 
-                              <!-- <div class="row g-2 mt-3">
+                              <div class="row g-2 mt-5">
                                 <div class="col-md-12">
                                   <h6>
                                     Do you have a Reference code:
@@ -1254,9 +1255,9 @@
                                     >
                                   </div>
                                 </div>
-                              </div> -->
+                              </div>
 
-                              <div class="row g-2 mt-5">
+                              <div class="row g-2 mt-3">
                                 <div class="col-md-12">
                                   <h6>
                                     What is your primary purpose of attending

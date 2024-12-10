@@ -67,6 +67,8 @@ export class DelegateRegistrationComponent {
   countryCodes: any;
   country_code: any;
   selectedCountryISO: any;
+  formattedDate: string = '';
+
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
@@ -113,7 +115,7 @@ export class DelegateRegistrationComponent {
       passport_issue_by: [''],// need 
       pin_code: [null],
       attend_summit: ['0', [Validators.required]],
-      reference_no: ['0'],// need 
+      reference_no: [''],// need 
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: ['0', [Validators.required]],
       created_by: "Admin",
@@ -148,6 +150,13 @@ console.log(indiaCodeObject);
     }, (err: any) => {
       console.log("error", err);
     });
+  }
+
+  onDateChange(event: string): void {
+    // Convert the date format
+    const parsedDate = new Date(event);
+    this.formattedDate = this.datePipe.transform(parsedDate, 'dd/MM/yyyy') || '';
+
   }
 
 //   getAllCountries() {
@@ -309,7 +318,8 @@ console.log(formattedMobileNumber);
     
     this.registrationForm.patchValue({
       country_code :this.registrationForm.value.mobile_number.dialCode,
-      mobile_number :formattedMobileNumber
+      mobile_number :formattedMobileNumber,
+      // dob: this.formattedDate
     })
     console.log(this.registrationForm.value);
 
