@@ -126,12 +126,12 @@
         <div class="col-12">
           <h2>Invited Corporate Partners</h2>
         </div>
-        <div class="col-12 py-4 partner_carousel">
+        <div class="col-12 py-4 partner_carousel" *ngIf="!isMobileView">
           <div
             id="carouselExampleSlidesOnly"
             class="carousel slide"
             data-bs-ride="carousel"
-            *ngIf="!isMobileView"
+            
           >
             <div class="carousel-indicators">
               <button
@@ -432,19 +432,19 @@
               </div>
             </div>
           </div>
+        </div>
+        
 
-          <!-- mobile view -->
-
+        <div class="col-md-12" *ngIf="isMobileView">
           <div
-            id="carouselExampleSlidesOnly mobileScroll"
-            class="carousel slide"
+            id="partner_carousel"
+            class="carousel carousel-dark slide"
             data-bs-ride="carousel"
-            *ngIf="isMobileView"
           >
             <div class="carousel-indicators">
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="0"
                 class="active"
                 aria-current="true"
@@ -452,31 +452,31 @@
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="1"
                 aria-label="Slide 2"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="2"
                 aria-label="Slide 3"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="3"
                 aria-label="Slide 4"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="4"
                 aria-label="Slide 5"
               ></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active" data-bs-interval="3000">
                 <div class="row">
                   <div class="col-4">
                     <ul class="list-unstyled p-0">
@@ -538,15 +538,10 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item" data-bs-interval="3000">
                 <div class="row">
                   <div class="col-4">
                     <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
-                        />
-                      </li>
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
@@ -557,15 +552,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486077.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486078.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486079.svg"
@@ -576,15 +571,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486080.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486081.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486082.svg"
@@ -595,20 +590,19 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486083.svg"
                         />
                       </li>
-                      
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486084.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486085.svg"
@@ -619,16 +613,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486086.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
-                      
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486087.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486088.svg"
@@ -639,16 +632,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486089.svg"
                         />
                       </li>
-                      
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486090.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486091.svg"
@@ -659,20 +651,19 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486092.svg"
                         />
                       </li>
-                      
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486093.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486094.svg"
@@ -683,15 +674,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486095.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486096.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486097.svg"
@@ -702,15 +693,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486098.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486099.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486100.svg"
@@ -721,34 +712,24 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
-                        />
-                      </li>
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486102.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486103.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486104.svg"
@@ -759,16 +740,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486105.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486106.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
-
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486107.svg"
@@ -779,9 +759,23 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486108.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486109.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486110.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486111.svg"
                         />
                       </li>
                     </ul>
