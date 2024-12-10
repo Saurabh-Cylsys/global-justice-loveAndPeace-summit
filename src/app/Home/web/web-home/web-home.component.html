@@ -1,5 +1,3 @@
-
-
 <main class="index">
   <section class="mainSec">
     <div class="container-fluid section1 position-relative">
@@ -21,7 +19,7 @@
               <div class="row">
                 <div class="col-12">
                   <!-- <h5>Start from 8am on 13th April</h5> -->
-                   <h5>Dubai 13 April 2025</h5>
+                  <h5>Dubai 13 April 2025</h5>
                   <p>Sunday</p>
                 </div>
                 <div class="col-4">
@@ -38,7 +36,7 @@
                   <div class="card">
                     <div class="card-body p-1">
                       <h6>
-                        <span id="hours">{{hours}}</span> <br />
+                        <span id="hours">{{ hours }}</span> <br />
                         Hours
                       </h6>
                     </div>
@@ -48,7 +46,7 @@
                   <div class="card">
                     <div class="card-body p-1">
                       <h6>
-                        <span id="minutes">{{minutes}}</span> <br />
+                        <span id="minutes">{{ minutes }}</span> <br />
                         Minutes
                       </h6>
                     </div>
@@ -122,7 +120,8 @@
                 <div class="card-body">
                   <h2 class="cardHead">SPEAKERS</h2>
                   <p class="cardP">
-                    Crème deLa Crème speakers of international standing
+                    Crème de La Crème Peace Speakers (Ambassadors) of
+                    International Standing
                   </p>
                 </div>
               </div>
@@ -137,8 +136,8 @@
                 <div class="card-body">
                   <h2 class="cardHead">Networking</h2>
                   <p class="cardP">
-                    Unique structured networking through app, & face to face,
-                    starting from pre-event, during event, & post event.
+                    Unique structured networking through app & face to face,
+                    starting from pre-event, during event, & post event through
                     <span class="highlights">110</span> Networking Tables
                   </p>
                 </div>
@@ -154,8 +153,8 @@
                 <div class="card-body">
                   <h2 class="cardHead">Awards</h2>
                   <p class="cardP">
-                    A glittering ceremony worthy of the highest international
-                    Awardees.
+                    A glittering ceremony worthy of the highest Global Justice,
+                    Love & Peace Champions through
                     <span class="highlights">28</span> Awards.
                   </p>
                 </div>
@@ -170,7 +169,10 @@
               <div class="card">
                 <div class="card-body">
                   <h2 class="cardHead">DELEGATES</h2>
-                  <p class="cardP">2800 delegates</p>
+                  <p class="cardP">
+                    2800 Peacekeeper <br />
+                    (Delegates)
+                  </p>
                 </div>
               </div>
             </div>
@@ -185,7 +187,7 @@
                   <h2 class="cardHead">CREDIBILITY</h2>
                   <p class="cardP">
                     Organised by Dr. Huzaifa Khorakiwala (check his profile in
-                    PDF, & Website)
+                    Brochure PDF & Website)
                   </p>
                 </div>
               </div>
@@ -198,10 +200,9 @@
               <span class="mb-3 count">6</span>
               <div class="card">
                 <div class="card-body">
-                  <h2 class="cardHead">AMBASSADORS</h2>
+                  <h2 class="cardHead">PEACEKEEPERS</h2>
                   <p class="cardP">
-                    Each delegate will be made GLOBAL JUSTICE, LOVE & PEACE
-                    AMBASSADOR
+                    Each Delegate will join the I am Peacekeeper movement
                   </p>
                 </div>
               </div>
@@ -217,7 +218,8 @@
                   <h2 class="cardHead">PR</h2>
                   <p class="cardP">
                     Wide scale international PR in offline as well as online
-                    publication
+                    publications with the proposed appointment of one of (the
+                    world’s largest PR agencies)
                   </p>
                 </div>
               </div>
@@ -290,18 +292,18 @@
     </div>
   </section> -->
 
-  <section class="section5 p-lg-5  partner_carousel">
+  <section class="section5 p-lg-5 partner_carousel">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <h2>Invited Corporate Partners</h2>
         </div>
-        <div class="col-12 py-4 partner_carousel">
+        <div class="col-12 py-4 partner_carousel" *ngIf="!isMobileView">
           <div
             id="carouselExampleSlidesOnly"
             class="carousel slide"
             data-bs-ride="carousel"
-            *ngIf="!isMobileView"
+            
           >
             <div class="carousel-indicators">
               <button
@@ -602,19 +604,19 @@
               </div>
             </div>
           </div>
+        </div>
+        
 
-          <!-- mobile view -->
-
+        <div class="col-md-12" *ngIf="isMobileView">
           <div
-            id="carouselExampleSlidesOnly mobileScroll"
-            class="carousel slide"
+            id="partner_carousel"
+            class="carousel carousel-dark slide"
             data-bs-ride="carousel"
-            *ngIf="isMobileView"
           >
-            <div class="carousel-indicators">
+            <div class="carousel-indicators m-0">
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="0"
                 class="active"
                 aria-current="true"
@@ -622,31 +624,31 @@
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="1"
                 aria-label="Slide 2"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="2"
                 aria-label="Slide 3"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="3"
                 aria-label="Slide 4"
               ></button>
               <button
                 type="button"
-                data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-target="#partner_carousel"
                 data-bs-slide-to="4"
                 aria-label="Slide 5"
               ></button>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active" data-bs-interval="3000">
                 <div class="row">
                   <div class="col-4">
                     <ul class="list-unstyled p-0">
@@ -708,15 +710,10 @@
                   </div>
                 </div>
               </div>
-              <div class="carousel-item">
+              <div class="carousel-item" data-bs-interval="3000">
                 <div class="row">
                   <div class="col-4">
                     <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
-                        />
-                      </li>
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486076.svg"
@@ -727,15 +724,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486077.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486078.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486079.svg"
@@ -746,15 +743,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486080.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486081.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486082.svg"
@@ -765,19 +762,19 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486083.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486084.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486085.svg"
@@ -788,15 +785,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486086.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486087.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486088.svg"
@@ -807,15 +804,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486089.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486090.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486091.svg"
@@ -826,19 +823,19 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486092.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486093.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486094.svg"
@@ -849,15 +846,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486095.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486096.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486097.svg"
@@ -868,15 +865,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486098.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486099.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486100.svg"
@@ -887,33 +884,24 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="row">
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
-                      <li class="p-3 text-center">
-                        <img
-                          src="assets/UIComponents/images/partnersLogo/Group 1707486101.svg"
-                        />
-                      </li>
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486102.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item" data-bs-interval="3000">
+                <div class="row">
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486103.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486104.svg"
@@ -924,15 +912,15 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486105.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486106.svg"
                         />
                       </li>
-                    </ul>
-                  </div>
-                  <div class="col-4">
-                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486107.svg"
@@ -943,9 +931,23 @@
                           src="assets/UIComponents/images/partnersLogo/Group 1707486108.svg"
                         />
                       </li>
+                    </ul>
+                  </div>
+                  <div class="col-4">
+                    <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
                           src="assets/UIComponents/images/partnersLogo/Group 1707486109.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486110.svg"
+                        />
+                      </li>
+                      <li class="p-3 text-center">
+                        <img
+                          src="assets/UIComponents/images/partnersLogo/Group 1707486111.svg"
                         />
                       </li>
                     </ul>
@@ -959,16 +961,20 @@
     </div>
   </section>
 
-  <section class="section6 p-lg-5  speakers">
+  <section class="section6 p-lg-5 speakers">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <h2>Speakers (Peace Ambassadors)</h2>
-          <h4>All with written Confirmations</h4>
+          <h6>Names in Alphabetic Order; All with Written Confirmations</h6>
         </div>
 
         <div class="col-md-12" *ngIf="!isMobileView">
-          <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide"  data-bs-ride="carousel">
+          <div
+            id="carouselExampleAutoplaying"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
             <div class="carousel-indicators">
               <button
                 type="button"
@@ -1053,7 +1059,8 @@
                           src="assets/UIComponents/images/speakers/speaker11.png"
                         />
                         <h5>
-                          Mario-Max Schaumburg-Lippe, <br> His Highness Dr. Prince
+                          Mario-Max Schaumburg-Lippe, <br />
+                          His Highness Dr. Prince
                         </h5>
                         <label for="">(NORWAY)</label>
                         <h6>Royalty, TV Host, Philanthropist</h6>
@@ -1074,9 +1081,7 @@
                         <h5>Nadir Godrej</h5>
                         <label for="">(India)</label>
                         <h6>Industrialist</h6>
-                        <p>
-                          Chairman & MD, Godrej Industries Ltd
-                        </p>
+                        <p>Chairman & MD, Godrej Industries Ltd</p>
                       </li>
                     </ul>
                   </div>
@@ -1225,8 +1230,12 @@
           </div>
         </div>
         <div class="col-md-12" *ngIf="isMobileView">
-          <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
+          <div
+            id="carouselExampleAutoplaying"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators m-0">
               <button
                 type="button"
                 data-bs-target="#carouselExampleAutoplaying"
@@ -1336,7 +1345,6 @@
               </div>
               <div class="carousel-item" data-bs-interval="3000">
                 <div class="row">
-                  
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
@@ -1361,7 +1369,8 @@
                           src="assets/UIComponents/images/speakers/speaker11.png"
                         />
                         <h5>
-                          Mario-Max Schaumburg-Lippe, <br> His Highness Dr. Prince
+                          Mario-Max Schaumburg-Lippe, <br />
+                          His Highness Dr. Prince
                         </h5>
                         <label for="">(NORWAY)</label>
                         <h6>Royalty, TV Host, Philanthropist</h6>
@@ -1386,9 +1395,7 @@
                         <h5>Nadir Godrej</h5>
                         <label for="">(India)</label>
                         <h6>Industrialist</h6>
-                        <p>
-                          Chairman & MD, Godrej Industries Ltd
-                        </p>
+                        <p>Chairman & MD, Godrej Industries Ltd</p>
                       </li>
                     </ul>
                   </div>
@@ -1465,7 +1472,6 @@
               </div>
               <div class="carousel-item" data-bs-interval="3000">
                 <div class="row">
-                  
                   <div class="col-md-4">
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
@@ -1605,7 +1611,10 @@
                 </ul>
               </div>
 
-              <a href="assets/UIComponents/images/GJLPS-Collateral-Brochure.pdf" class="text-decoration-none"  target="_blank"
+              <a
+                href="assets/UIComponents/images/GJLPS-Collateral-Brochure.pdf"
+                class="text-decoration-none"
+                target="_blank"
                 ><b style="color: rgba(3, 192, 75, 0.623)">See More...</b></a
               >
               <!-- <a type="link" h  data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor: pointer;">
@@ -1653,9 +1662,10 @@
             >
               <h2
                 class="col-lg-5 text-white"
-                style="font-size: 30px; font-weight: 400; text-align: left;"
+                style="font-size: 30px; font-weight: 400; text-align: left"
               >
-                Click <span style="text-decoration: underline">here</span> to find the route to reach the hotel.
+                Click <span style="text-decoration: underline">here</span> to
+                find the route to reach the hotel.
               </h2>
             </a>
           </p>

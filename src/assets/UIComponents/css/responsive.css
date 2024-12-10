@@ -6,6 +6,12 @@
     /* left: -50px;  */
   }
 }
+
+@media (max-width: 1024px){
+.awards .section7 .card .card-body h3{
+  font-size: 17px;
+}
+}
 @media (max-width: 768px) {
   .index .section1 {
     background: url(../images/index/bannermob.gif);
