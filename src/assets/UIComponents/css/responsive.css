@@ -130,7 +130,9 @@
   }
 
   .chairman{
-    border-top: 1px solid #0000005c;
+    border-bottom: 1px solid #0000005c;
+    padding-block: 15px;
+    /* margin: 0; */
   }
   .awards .section7 .lastP{
     font-size: 15px;
