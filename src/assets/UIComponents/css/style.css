@@ -1473,3 +1473,7 @@ width: 100%;
   top: -1.5rem;
   border-radius: 10px;
 }
+
+.come-from-modal .modal-content{
+  background-image: url(../../../assets/UIComponents/images/bg2.png);
+}
