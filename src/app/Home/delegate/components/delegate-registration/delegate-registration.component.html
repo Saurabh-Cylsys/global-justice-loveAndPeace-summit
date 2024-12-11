@@ -731,7 +731,7 @@
                                         value=""
                                         required
                                         [(ngModel)]="address"
-                                        (keydown)="onKeyDown($event, address)"
+                                        (keypress)="ValidateAlpha($event)"
                                         formControlName="address"
                                         minlength="5"
                                         [ngClass]="{
