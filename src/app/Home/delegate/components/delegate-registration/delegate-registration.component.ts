@@ -114,7 +114,7 @@ export class DelegateRegistrationComponent {
       passport_no: [''],// need 
       passport_issue_by: [''],// need 
       pin_code: [null],
-      attend_summit: ['0', [Validators.required]],
+      // attend_summit: ['0', [Validators.required]],
       reference_no: [''],// need 
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: ['0', [Validators.required]],
