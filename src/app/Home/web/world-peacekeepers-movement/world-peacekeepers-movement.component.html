@@ -287,7 +287,7 @@
                       value=""
                     />
                     <label for="title"
-                      >Name :<span
+                      >Full Name :<span
                         class="form-label-span"
                         style="color: #ff0000"
                       >
@@ -304,7 +304,7 @@
                       <small
                         class="text-danger"
                         *ngIf="getcontrol('full_name')?.errors?.['required']"
-                        >First name is required</small
+                        >Name is required</small
                       >
                     </div>
                   </div>
@@ -901,11 +901,11 @@
               <div
                 style="position: absolute; top: 15px; left: 15px; width: 100%"
               >
-                <h4 style="margin: 0px; text-transform: uppercase">
+                <h4 style="margin: 0px; font-size: 14px; text-transform: uppercase">
                   {{
                     peacekeeperData.length !== 0
                       ? peacekeeperData.Name
-                      : "Name to come"
+                      : "Name"
                   }}
                 </h4>
                 <hr
