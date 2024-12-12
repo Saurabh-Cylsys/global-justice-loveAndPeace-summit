@@ -489,8 +489,12 @@
                         [selectFirstCountry]="false"
                         [selectedCountryISO]="CountryISO.India"
                         [maxLength]="10"
+                        [minlength]="10"
                         [phoneValidation]="false"
                         [separateDialCode]="true"
+                        pattern=".{8,12}"
+                        minlength="10"
+                        maxlength="10"
                         name="mobile_number"
                         formControlName="mobile_number"
                       ></ngx-intl-tel-input>
@@ -769,13 +773,13 @@
                     </span
                   >
                 </div>
-                <div style="font-size: 18px">
+                <!-- <div style="font-size: 18px">
                   <label for="" style="color: #17598e"><b>DOB :</b> </label>
                   <span style="outline: none; border: none">
                     {{this.peacekeepersForm.value.dob}}
                     </span
                   >
-                </div>
+                </div> -->
                 <div style="font-size: 18px">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">
@@ -912,7 +916,7 @@
                 <hr
                   style="margin: 0px; width: 89%; color: #707070; opacity: 0.3"
                 />
-                <div style="font-size: 13px">
+                <!-- <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>DOB :</b> </label>
                   <span style="outline: none; border: none">
                     {{
@@ -921,7 +925,7 @@
                         : "xx/xx/xxxx"
                     }}</span
                   >
-                </div>
+                </div> -->
                 <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">

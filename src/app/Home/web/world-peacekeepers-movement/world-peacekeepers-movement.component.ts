@@ -124,7 +124,33 @@ isCheckEmail:boolean=true;
 //     errors: control?.errors,
 //   });
 // });
+
     
+  }
+
+  dobValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const inputDate = new Date(control.value);
+    const today = new Date();
+
+    if (!control.value) {
+      return null; // No validation error if input is empty
+    }
+
+    // Calculate age
+    const age = today.getFullYear() - inputDate.getFullYear();
+    const monthDiff = today.getMonth() - inputDate.getMonth();
+    const dayDiff = today.getDate() - inputDate.getDate();
+
+    // Check if the age is less than 18
+    if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {
+      return { underage: true }; // Fail if under 18
+    }
+
+    return null; // Valid if 18 or older
+  }
+
+  get dob() {
+    return this.peacekeepersForm.get('dob');
   }
 
   onDrop(event: DragEvent) {
