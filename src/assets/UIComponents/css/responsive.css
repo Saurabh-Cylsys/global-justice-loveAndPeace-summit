@@ -166,10 +166,26 @@
   .delegate-form form h6{
     font-size: 16px;
   }
+  .pix{
+    height: 200px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 375px) {
+  .pix{
+    height: 150px;
+    width: 150px;
+  }
 }
 
 @media (max-width: 320px) {
   .index .section1 .tableBox table tr td p {
     font-size: 10px;
+  }
+
+  .pix{
+    height: 100px;
+    width: 100px;
   }
 }
