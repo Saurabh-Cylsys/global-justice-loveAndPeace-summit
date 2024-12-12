@@ -1477,3 +1477,8 @@ width: 100%;
 .come-from-modal .modal-content{
   background-image: url(../../../assets/UIComponents/images/bg2.png);
 }
+
+.pix{
+  height: 200px;
+  width: 200px;
+}
