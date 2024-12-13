@@ -986,18 +986,20 @@ header .nav-item .nav-link.active {
   height: 65vh;
 }
 
+
 .invited table thead tr th:first-child {
+  border-top-left-radius: 10px;
   background-color: var(--color1);
   color: var(--color2);
   width: 30%;
 }
 
 .invited table thead tr th:last-child {
+  border-top-right-radius: 10px;
   background-color: var(--color3);
   color: var(--color2);
   width: 70%;
 }
-
 .invited table tbody tr td{
   border-bottom: 2px solid var(--color2);
 }
