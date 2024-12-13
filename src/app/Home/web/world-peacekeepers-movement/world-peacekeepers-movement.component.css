@@ -1,3 +1,6 @@
+/* .delegate-form form{
+  font-size: 18px;
+} */
 .delegate-form form .form-control, .delegate-form form .form-select {
   border-top: none;
   border-left: none;
@@ -116,3 +119,8 @@
   background-clip: padding-box;
   border: none;
 } */
+
+
+.bgModal .modal-content{
+  background-image: none;
+}

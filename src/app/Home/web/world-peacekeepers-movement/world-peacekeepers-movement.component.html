@@ -888,7 +888,7 @@
   tabindex="-1"
   role="dialog"
 >
-  <div class="modal-dialog come-from-modal new_dialog1" >
+  <div class="modal-dialog come-from-modal new_dialog1 bgModal" >
 
     <div class="modal-content">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
@@ -898,9 +898,8 @@
           <tr>
             <td style="position: relative">
               <img
-                src="assets/UIComponents/images/peacekeeperBatch.jpg"
-                height="480px"
-                class="w-100"
+                src="assets/UIComponents/images/peacekeeperBatch.png"
+                class="w-100 cpImg"
                 alt=""
               />
               <div
@@ -914,7 +913,7 @@
                   }}
                 </h4>
                 <hr
-                  style="margin: 0px; width: 89%; color: #707070; opacity: 0.3"
+                  style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
                 />
                 <!-- <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>DOB :</b> </label>
@@ -977,6 +976,7 @@
                     right: 20px;
                     border: 2px solid #359138;
                     border-radius: 50%;
+                    background-color: #fff;
                   "
                 />
               </div>
@@ -988,9 +988,9 @@
       <div id="capture">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>
-      <div class="col-md-12 row ms-2" style="
+      <div class="col-md-12 row ms-2 my-3" style="
     width: 95%;">
-        <div class="col-md-4">
+        <div class="col-6">
           <button
           [disabled]="peacekeeperData.length == 0"
           class="btn btn-success w-100"
@@ -1001,10 +1001,7 @@
           Download now
         </button>
         </div>
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
+        <div class="col-6">
           <button
           class="btn btn-success w-100"
           data-dismiss="modal"
