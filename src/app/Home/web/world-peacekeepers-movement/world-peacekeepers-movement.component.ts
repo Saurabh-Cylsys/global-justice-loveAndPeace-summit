@@ -78,7 +78,7 @@ isCheckEmail:boolean=true;
  
   ngOnInit(): void {
 
-    // this.getAllCountrycode()
+    this.getAllCountrycode()
     const inputElement = document.getElementById('phone') as HTMLInputElement;
     console.log(inputElement,'inputElement');
     
@@ -271,18 +271,19 @@ isCheckEmail:boolean=true;
 
     }
   getAllCountrycode() {
+    debugger
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
       this.code = res.data;
       // Define the country name you want to find (e.g., "India (+91)")
-  const countryToFind = "India (+91)";
+  const countryToFind = "India";
   
   // Find the object that matches the country name
-  const indiaCodeObject =  this.code.find((item:any) => item.country_mobile_code === countryToFind);
+  const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
   console.log(indiaCodeObject);
   
       this.peacekeepersForm.patchValue({
-        country_code :indiaCodeObject.country_mobile_code
+        country :indiaCodeObject.name
       })
     }, (err: any) => {
       console.log("error", err);
@@ -333,7 +334,7 @@ isCheckEmail:boolean=true;
     this.peacekeepersForm.patchValue({
       is_active :1,
       Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
-      country_code: this.peacekeepersForm.value.mobile_number.countryCode,
+      // country_code: this.peacekeepersForm.value.mobile_number.countryCode,
       mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
     })
     console.log(this.peacekeepersForm.value);
@@ -398,6 +399,20 @@ keyPressNumbers(event: any) {
   } else {
     return true;
   }
+}
+
+getCountrycode(code: any){
+  debugger
+  let countryName = this.peacekeepersForm.value.country;
+  const indiaCodeObject =  code.find((item:any) => item.name === countryName);
+  console.log(indiaCodeObject);
+  
+  this.peacekeepersForm.patchValue({
+    // is_active :1,
+    // Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
+    country_code: indiaCodeObject.code
+    // mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
+  })
 }
 
 }

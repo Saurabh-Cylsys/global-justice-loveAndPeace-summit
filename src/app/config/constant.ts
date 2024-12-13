@@ -47,7 +47,7 @@ export class Constants {
  
     public readonly API_ENDPOINT_getdates:string = 'getDates'
     public readonly API_ENDPOINT_GET_SPEAKERS:string = 'invite_speakers'
-    public readonly API_ENDPOINT_GET_getAllCountrycode:string = 'getAll/countrycode'
+    public readonly API_ENDPOINT_GET_getAllCountrycode:string = 'getcountry'
     public readonly API_ENDPOINT_GET_ALL_COUNTRY:string = 'getcountry'
     public readonly API_ENDPOINT_GET_ALL_STATES:string = 'getstate'
     public readonly API_ENDPOINT_GET_ALL_CITIES:string = 'getcity'

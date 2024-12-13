@@ -53,7 +53,7 @@
 </nav>
 <main class="index theSumit" id="fullpage">
   <div class="section partner" id="1">
-    <section class="section7 ">
+    <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
           <div class="col-md-12 p-0">
@@ -153,7 +153,7 @@
     </section>
   </div>
   <div class="section partner" id="2">
-    <section class="section7 ">
+    <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
           <!-- <div class="col-md">
@@ -261,7 +261,7 @@
   </div>
 
   <div class="section partner delegate-form" id="3">
-    <section class="section7 ">
+    <section class="section7">
       <div class="container-fluid h-100 p-lg-5">
         <div class="row justify-content-center h-100">
           <div class="col-md-12 mb-lg-5">
@@ -278,7 +278,7 @@
                   <div class="form-floating">
                     <input
                       type="text"
-                      class="form-control"
+                      class="form-control w-100"
                       formControlName="full_name"
                       name="full_name"
                       id="title"
@@ -313,7 +313,7 @@
                   <div class="form-floating">
                     <input
                       type="date"
-                      class="form-control"
+                      class="form-control w-100 text-start"
                       formControlName="dob"
                       name="dob"
                       id="title"
@@ -331,8 +331,7 @@
                     <div
                       class="text-danger"
                       *ngIf="
-                        getcontrol('dob')?.errors &&
-                        getcontrol('dob')?.touched
+                        getcontrol('dob')?.errors && getcontrol('dob')?.touched
                       "
                     >
                       <small
@@ -345,45 +344,57 @@
                 </div>
 
                 <div class="col-md">
-                  <div class="form-floating">
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="country"
-                      name="country"
-                      id="country"
-                      placeholder=""
-                      value=""
-                    />
-                    <label for="LastName"
-                      >Country :<span
-                        class="form-label-span"
-                        style="color: #ff0000"
-                      >
-                        *</span
-                      ></label
+                  <label class="col-md-12 no-padding" for="mobile1"
+                    >Country<span
+                      class="form-label-span"
+                      style="color: #ff0000"
                     >
+                      *</span
+                    ></label
+                  >
+                  <div class="row no-padding">
                     <div
-                      *ngIf="
-                        getcontrol('country')?.errors &&
-                        getcontrol('country')?.touched
-                      "
+                      class="form-group form-group-inner mobile-number col-9 w-100"
                     >
-                      <small
-                        class="text-danger"
-                        *ngIf="getcontrol('country')?.errors?.['required']"
-                        >Country is required.</small
+                      <select
+                        formControlName="country"
+                        class="form-select w-100 pt-1 pb-0"
+                        required
+                        data-error="Please select country"
+                        (change)="getCountrycode(code)"
                       >
+                        <option selected value="" disabled>
+                          --Please select country--
+                        </option>
+                        <option
+                          *ngFor="let code of code; let j = index"
+                          [value]="code.name"
+                        >
+                          {{ code.name }}
+                        </option>
+                      </select>
+
+                      <div
+                        *ngIf="
+                          getcontrol('country')?.errors &&
+                          getcontrol('country')?.touched
+                        "
+                      >
+                        <small
+                          class="text-danger"
+                          *ngIf="getcontrol('country')?.errors?.['required']"
+                          >Country is required</small
+                        >
+                      </div>
+                      <div class="help-block with-errors"></div>
                     </div>
                   </div>
                 </div>
-
-
               </div>
 
               <div class="row g-2 mt-lg-5">
                 <div class="col-md my-3 my-lg-0">
-                  <div class="form-floating">
+                  <!-- <div class="form-floating">
                     <input
                       type="email"
                       class="form-control"
@@ -419,6 +430,49 @@
                         >Please enter valid email address.</small
                       >
                     </div>
+                  </div> -->
+                  <div class="form-floating">
+                    <input
+                      type="email"
+                      class="form-control w-100"
+                      formControlName="email_id"
+                      name="email_id"
+                      id="email"
+                      pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+                      placeholder="Enter your email"
+                      required
+                    />
+                    <label for="email">
+                      E-Mail:
+                      <span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      >
+                    </label>
+                    <div
+                      *ngIf="
+                        getcontrol('email_id')?.errors &&
+                        getcontrol('email_id')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('email_id')?.errors?.['required']"
+                      >
+                        Email is required.
+                      </small>
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('email_id')?.errors?.['email']"
+                      >
+                        Please enter a valid email address.
+                      </small>
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('email_id')?.errors?.['pattern']"
+                      >
+                        Please match the required email format.
+                      </small>
+                    </div>
                   </div>
                 </div>
 
@@ -431,7 +485,7 @@
                       *</span
                     ></label
                   >
-                  <div class="row no-padding ">
+                  <div class="row no-padding">
                     <!-- <div
                     class="form-group form-group-inner mobile-code col-3"
                   >
@@ -570,7 +624,7 @@
                   </label>
                 </div>
               </div>
-              
+
               <!-- </div> -->
 
               <div class="row g-2 mt-lg-5">
@@ -633,8 +687,8 @@
               <div class="row mt-lg-5">
                 <div class="col-md text-center">
                   <button
-                   (click)="isCorrect()"
-                   type="button"
+                    (click)="isCorrect()"
+                    type="button"
                     class="btn btn-success text-white text-center"
                     [disabled]="this.peacekeepersForm.invalid"
                   >
@@ -647,7 +701,11 @@
           <div class="col-md-4 text-lg-end">
             <ul class="list-unstyled text-center badge">
               <div>
-                <img src="assets/UIComponents/images/join-us.png" alt="" width="100%" />
+                <img
+                  src="assets/UIComponents/images/join-us.png"
+                  alt=""
+                  width="100%"
+                />
 
                 <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
               </div>
@@ -663,10 +721,20 @@
               </li>
               <li>
                 <h6>ALSO JOIN US ON</h6>
-                <a href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit/about" target="_blank" rel="noopener noreferrer">
-                <img src="assets/UIComponents/images/fb.png" alt="" /></a>
-                <a href="https://www.instagram.com/globaljusticelovepeacesummit/profilecard/?igsh=dXB6ZzNwYjBwYnVv" target="_blank" rel="noopener noreferrer">
-                <img src="assets/UIComponents/images/insta.png" alt="" /></a>
+                <a
+                  href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit/about"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="assets/UIComponents/images/fb.png" alt=""
+                /></a>
+                <a
+                  href="https://www.instagram.com/globaljusticelovepeacesummit/profilecard/?igsh=dXB6ZzNwYjBwYnVv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src="assets/UIComponents/images/insta.png" alt=""
+                /></a>
               </li>
             </ul>
           </div>
@@ -700,7 +768,6 @@
             <iframe
               class="col-md-8 col-12 yT"
               width="928"
-              
               src="https://www.youtube.com/embed/2zG6OIhym60"
               title="Bringing World Peace"
               frameborder="0"
@@ -740,7 +807,8 @@
 <div
   *ngIf="isPeaceOn == 1"
   [ngStyle]="{ display: display }"
-  class="modal " closeLabel="Close" 
+  class="modal"
+  closeLabel="Close"
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
@@ -749,61 +817,54 @@
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content p-3">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
-        <table class="main" style="margin: auto">
-          <tr>
-            <td>
-              <!-- <img
+      <table class="main" style="margin: auto">
+        <tr>
+          <td>
+            <!-- <img
               src="assets/UIComponents/images/bg2.png"
               height="350px"
               alt=""
             /> -->
-              <div
-                
-              >
-                <!-- <h5 style="margin: 0px; text-transform: uppercase">
+            <div>
+              <!-- <h5 style="margin: 0px; text-transform: uppercase">
                   {{this.peacekeepersForm.value.full_name}}
                 </h5> -->
-                <!-- <hr
+              <!-- <hr
                   style="margin: 0px; width: 77%; color: #707070; opacity: 0.3"
                 /> -->
-                <div style="font-size: 18px">
-                  <label for="" style="color: #17598e"><b>Name :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{this.peacekeepersForm.value.full_name}}
-                    </span
-                  >
-                </div>
-                <!-- <div style="font-size: 18px">
+              <div style="font-size: 18px">
+                <label for="" style="color: #17598e"><b>Name :</b> </label>
+                <span style="outline: none; border: none">
+                  {{ this.peacekeepersForm.value.full_name }}
+                </span>
+              </div>
+              <!-- <div style="font-size: 18px">
                   <label for="" style="color: #17598e"><b>DOB :</b> </label>
                   <span style="outline: none; border: none">
                     {{this.peacekeepersForm.value.dob}}
                     </span
                   >
                 </div> -->
-                <div style="font-size: 18px">
-                  <label for="" style="color: #17598e"><b>Country :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{this.peacekeepersForm.value.country}}
-                    </span
-                  >
-                </div>
-                <div style="font-size: 18px" >
-                  <label for="" style="color: #17598e"><b>Mobile :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{isMobile}}
-                    </span
-                  >
-                </div>
-                <div style="font-size: 18px">
-                  <label for="" style="color: #17598e"><b>E-mail :</b></label>
-                  <span style="outline: none; border: none">
-                    {{this.peacekeepersForm.value.email_id}}
-                    </span
-                  >
-                </div>
-          
+              <div style="font-size: 18px">
+                <label for="" style="color: #17598e"><b>Country :</b> </label>
+                <span style="outline: none; border: none">
+                  {{ this.peacekeepersForm.value.country }}
+                </span>
               </div>
-              <!-- <div>
+              <div style="font-size: 18px">
+                <label for="" style="color: #17598e"><b>Mobile :</b> </label>
+                <span style="outline: none; border: none">
+                  {{ isMobile }}
+                </span>
+              </div>
+              <div style="font-size: 18px">
+                <label for="" style="color: #17598e"><b>E-mail :</b></label>
+                <span style="outline: none; border: none">
+                  {{ this.peacekeepersForm.value.email_id }}
+                </span>
+              </div>
+            </div>
+            <!-- <div>
                 <img
                   [src]="this.selectedFile?.name"
                   alt=""
@@ -818,36 +879,32 @@
                   "
                 />
               </div> -->
+            <div>
               <div
-                
+                style="
+                  font-size: 18px;
+                  margin-block: 50px;
+                  width: 95%;
+                  color: #005a93;
+                "
               >
-                
-                <div style="font-size: 18px;
-    margin-block: 50px;     width: 95%; color: #005A93;
-    ">
-                  <span style="outline: none; border: none"><b>
-                    You have entered the correct information.
-                    Please click the 'OK' button.
-                    <br> If you need to refill the information,
-                     please click the 'Back' button.
+                <span style="outline: none; border: none"
+                  ><b>
+                    You have entered the correct information. Please click the
+                    'OK' button.
+                    <br />
+                    If you need to refill the information, please click the
+                    'Back' button.
                   </b>
-                                     </span
-                  >
-                </div>
-
-          
+                </span>
               </div>
-              
-            </td>
-            
-          </tr>
-        </table>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-
-      <div class="col-md-12 row ms- mb-4" style="
-    width: 95%;">
+      <div class="col-md-12 row ms- mb-4" style="width: 95%">
         <div class="col-md-4 col-6">
-
           <button
             class="btn btn-success w-100"
             data-dismiss="modal"
@@ -856,40 +913,38 @@
           >
             OK
           </button>
-       
         </div>
         <div class="col-md-4 col-6">
           <button
-          class="btn btn-success w-100"
-          data-dismiss="modal"
-          (click)="closeModal()"
-          style="height: 36px; font-size: 15px; background-color: #ffff;
-          color: #198754;
-      "
-        >
-          Back
-        </button>
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="closeModal()"
+            style="
+              height: 36px;
+              font-size: 15px;
+              background-color: #ffff;
+              color: #198754;
+            "
+          >
+            Back
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
-
 <div
   *ngIf="isPeaceOn == 0"
-  [ngStyle]="{ display: display}"
-  class="modal " closeLabel="Close" 
+  [ngStyle]="{ display: display }"
+  class="modal"
+  closeLabel="Close"
   id="trustUntrust_alert"
   #trustUntrust_alert
   tabindex="-1"
   role="dialog"
 >
-  <div class="modal-dialog come-from-modal new_dialog1" >
-
+  <div class="modal-dialog come-from-modal new_dialog1 bgModal">
     <div class="modal-content">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
@@ -899,22 +954,25 @@
             <td style="position: relative">
               <img
                 src="assets/UIComponents/images/peacekeeperBatch.jpg"
-                height="480px"
-                class="w-100"
+                class="w-100 cpImg"
                 alt=""
               />
               <div
                 style="position: absolute; top: 15px; left: 15px; width: 54%"
               >
-                <h4 style="margin: 0px; font-size: 14px; text-transform: uppercase">
+                <h4 class="fw-bold"
+                  style="
+                    margin: 0px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                  "
+                >
                   {{
-                    peacekeeperData.length !== 0
-                      ? peacekeeperData.Name
-                      : "Name"
+                    peacekeeperData.length !== 0 ? peacekeeperData.Name : "Name"
                   }}
                 </h4>
                 <hr
-                  style="margin: 0px; width: 89%; color: #707070; opacity: 0.3"
+                  style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
                 />
                 <!-- <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>DOB :</b> </label>
@@ -968,7 +1026,8 @@
                 </div>
               </div>
               <div>
-                <img class="pix"
+                <img
+                  class="pix"
                   [src]="fileUrl"
                   alt=""
                   style="
@@ -977,6 +1036,7 @@
                     right: 20px;
                     border: 2px solid #359138;
                     border-radius: 50%;
+                    background-color: #fff;
                   "
                 />
               </div>
@@ -988,36 +1048,34 @@
       <div id="capture">
         <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
       </div>
-      <div class="col-md-12 row ms-2" style="
-    width: 95%;">
-        <div class="col-md-4">
+      <div class="col-md-12 row ms-2 my-3" style="width: 95%">
+        <div class="col-6">
           <button
-          [disabled]="peacekeeperData.length == 0"
-          class="btn btn-success w-100"
-          data-dismiss="modal"
-          (click)="downloadImage()"
-          style="height: 36px; font-size: 15px"
-        >
-          Download now
-        </button>
+            [disabled]="peacekeeperData.length == 0"
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="downloadImage()"
+            style="height: 36px; font-size: 15px"
+          >
+            Download now
+          </button>
         </div>
-        <div class="col-md-4">
-
-        </div>
-        <div class="col-md-4">
+        <div class="col-6">
           <button
-          class="btn btn-success w-100"
-          data-dismiss="modal"
-          (click)="closeModal()"
-          style="height: 36px; font-size: 15px; background-color: #ffff;
-          color: #198754;
-      "
-        >
-          Close
-        </button>
-        </div>      </div>
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="closeModal()"
+            style="
+              height: 36px;
+              font-size: 15px;
+              background-color: #ffff;
+              color: #198754;
+            "
+          >
+            Close
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-

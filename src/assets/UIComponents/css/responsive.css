@@ -168,15 +168,21 @@
     font-size: 16px;
   }
   .pix{
-    height: 200px;
-    width: 200px;
+    height: 130px;
+    width: 130px;
+  }
+  /* .cpImg{
+    height: auto;
+  } */
+  .contact-info{
+    height: 110%;
   }
 }
 
 @media (max-width: 375px) {
   .pix{
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
   }
 }
 
@@ -186,7 +192,7 @@
   }
 
   .pix{
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
   }
 }
