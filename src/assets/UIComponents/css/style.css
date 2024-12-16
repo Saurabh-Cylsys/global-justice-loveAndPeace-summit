@@ -352,7 +352,7 @@ header .nav-item .nav-link.active {
 }
 
 .index .section7 label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 30px;
   letter-spacing: 0.04em;
@@ -1340,6 +1340,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #6d6d6d;
+  border-radius: 5px;
 }
 
 /* On mouse-over, add a grey background color */
