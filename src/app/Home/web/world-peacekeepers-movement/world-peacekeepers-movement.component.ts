@@ -279,12 +279,12 @@ isCheckEmail:boolean=true;
   const countryToFind = "India";
   
   // Find the object that matches the country name
-  const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
-  console.log(indiaCodeObject);
+  // const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
+  // console.log(indiaCodeObject);
   
-      this.peacekeepersForm.patchValue({
-        country :indiaCodeObject.name
-      })
+  //     this.peacekeepersForm.patchValue({
+  //       country :indiaCodeObject.name
+  //     })
     }, (err: any) => {
       console.log("error", err);
     });
