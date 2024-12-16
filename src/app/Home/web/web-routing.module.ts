@@ -64,7 +64,7 @@ const routes: Routes = [
       {path:'accessibility',component:AccessibilityComponent},
       {path:'cookie-policy',component:CookiePolicyComponent},
       {path:'terms-of-use',component:TermsOfUseComponent},
-      {path:'visitor-terms-onditions',component:VisitorTermsOnditionsComponent},
+      {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent},
       
       
       {path:'', redirectTo:'webhome', pathMatch:'full'}
