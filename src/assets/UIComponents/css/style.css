@@ -352,7 +352,7 @@ header .nav-item .nav-link.active {
 }
 
 .index .section7 label {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 30px;
   letter-spacing: 0.04em;
@@ -1246,12 +1246,15 @@ header .nav-item .nav-link.active {
 }
 
 .footerLinks ul li {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 30.91px;
   text-align: justify;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+.footerLinks ul li h3, .footerLinks ol li h3{
+  font-size: 20px;
 }
 
 .footerLinks ul li span {
@@ -1264,12 +1267,16 @@ header .nav-item .nav-link.active {
 }
 
 .footerLinks ol li {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 30.91px;
   text-align: justify;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+
+.footerLinks a{
+  color: var(--color6);
 }
 
 .carousel-indicators {
@@ -1340,6 +1347,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #6d6d6d;
+  border-radius: 5px;
 }
 
 /* On mouse-over, add a grey background color */

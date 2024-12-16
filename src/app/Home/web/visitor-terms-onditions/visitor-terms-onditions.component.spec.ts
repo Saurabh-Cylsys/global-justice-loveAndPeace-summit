@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions.component';
+import { VisitorTermsOnditionsComponent } from './visitor-terms-conditions.component';
 
 describe('VisitorTermsOnditionsComponent', () => {
   let component: VisitorTermsOnditionsComponent;
