@@ -33,6 +33,7 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
+import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -65,6 +66,7 @@ import { IntlInputPhoneModule } from 'intl-input-phone';
     CookiePolicyComponent,
     TermsOfUseComponent,
     VisitorTermsOnditionsComponent,
+    ChairmanCornerComponent,
   
     // WhoShouldAttendAndWhyComponent,
     
