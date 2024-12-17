@@ -304,9 +304,18 @@
                                           name="mobile_number"
                                           id="number_mobile1"
                                           [separateDialCode]="true"
+                                          [(ngModel)]="mobile_number"
                                           formControlName="mobile_number"
+                                          (keypress)="keyPressNumbers($event,mobile_number)"
                                         ></ngx-intl-tel-input>
                                       </div>
+                                      <small
+                                      class="text-danger"
+                                      *ngIf="mobile_numberVal"
+                                      >Mobile number must be at least 10
+                                      digit long.</small
+                                    > 
+                                      
                                     </div>
                                     <div
                                       class="form-group form-group-inner mobile-number"
@@ -335,6 +344,7 @@
                                             submitted && f.mobile_number.errors
                                         }"
                                       /> -->
+                                  
                                       </div>
                                       <div class="help-block with-errors"></div>
                                       <div
@@ -348,12 +358,12 @@
                                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                                           >Mobile number is required</small
                                         >
-                                        <small
+                                        <!-- <small
                                           class="text-danger"
                                           *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
                                           >Mobile number must be at least 10
                                           digit long.</small
-                                        >
+                                        > -->
                                       </div>
                                     </div>
                                   </div>

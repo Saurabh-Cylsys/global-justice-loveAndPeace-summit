@@ -543,13 +543,12 @@
                         [selectFirstCountry]="false"
                         [selectedCountryISO]="CountryISO.UnitedArabEmirates "
                         [maxLength]="10"
-                        [minlength]="10"
                         [phoneValidation]="false"
                         [separateDialCode]="true"
                         pattern=".{8,12}"
-                        minlength="10"
+                        minlength="10" [(ngModel)]="mobile_number"
                         maxlength="10"
-                        name="mobile_number"
+                        name="mobile_number"(keypress)="keyPressNumbers($event, mobile_number)"
                         formControlName="mobile_number"
                       ></ngx-intl-tel-input>
                       <!-- <input
@@ -569,6 +568,11 @@
                       (keypress)="keyPressNumbers($event)"
                  
                     /> -->
+                       <small
+                          class="text-danger"
+                          *ngIf="mobile_numberVal"
+                          >Mobile number must be at least 10 digit long.</small
+                        >
                       <div
                         *ngIf="
                           getcontrol('mobile_number')?.errors &&
@@ -580,11 +584,7 @@
                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                           >Mobile number is required</small
                         >
-                        <small
-                          class="text-danger"
-                          *ngIf="getcontrol('mobile_number')?.errors?.['minLength']"
-                          >Mobile number must be at least 10 digit long.</small
-                        >
+                     
                       </div>
                     </div>
                   </div>
@@ -691,7 +691,7 @@
                     (click)="isCorrect()"
                     type="button"
                     class="btn btn-success text-white text-center"
-                    [disabled]="this.peacekeepersForm.invalid"
+                    [disabled]="!mobile_numberVal && this.peacekeepersForm.invalid"
                   >
                     Save
                   </button>

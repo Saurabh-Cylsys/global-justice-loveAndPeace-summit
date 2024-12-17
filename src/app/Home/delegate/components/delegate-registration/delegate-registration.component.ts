@@ -41,6 +41,7 @@ export class DelegateRegistrationComponent {
   first_name: string = '';
   last_name: string = '';
   mobile_number: string = '';
+  mobile_numberVal:boolean= false;
   email_id: string = '';
   linkedIn_profile: string = '';
   instagram_profile: string = '';
@@ -246,15 +247,21 @@ console.log(indiaCodeObject);
   }
 
 
-  keyPressNumbers(event: any) {
-    var charCode = (event.which) ? event.which : event.keyCode;
-    // Only Numbers 0-9
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
-    }
+
+  keyPressNumbers(event: KeyboardEvent, inputValue: any) {
+    debugger
+    if(inputValue !== null){
+      
+      if(inputValue.number.length<10){
+        this.mobile_numberVal = true;
+        // event.preventDefault()
+      } else {
+        this.mobile_numberVal = false;
+      }
+      
+     }
+  
+   
   }
 
 
