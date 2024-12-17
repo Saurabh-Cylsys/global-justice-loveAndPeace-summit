@@ -275,6 +275,23 @@
           </div>
         </li>
         <li class="nav-item" routerLinkActive="active">
+          <div class="hover-dropdown">
+            <button class="dropbtn" [routerLink]="['/chairman-corner']">
+              Chairman’s Corner
+            </button>
+            <div class="hover-dropdown-content">
+              <a [routerLink]="['/chairman-corner']">Videos</a>
+              <a [routerLink]="['/chairman-corner']" fragment="cc2"
+                >Messages</a
+              >
+              <a [routerLink]="['/chairman-corner']" fragment="cc3"
+                >Songs</a
+              >
+              
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
           <a
             class="nav-link"
             routerLinkActive="active"
