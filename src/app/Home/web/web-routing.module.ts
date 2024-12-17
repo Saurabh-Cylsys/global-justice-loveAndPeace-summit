@@ -27,6 +27,7 @@ import { AccessibilityComponent } from './accessibility/accessibility.component'
 import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
+import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,7 @@ const routes: Routes = [
       {path:'cookie-policy',component:CookiePolicyComponent},
       {path:'terms-of-use',component:TermsOfUseComponent},
       {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent},
+      {path:'chairman-corner',component:ChairmanCornerComponent},
       
       
       {path:'', redirectTo:'webhome', pathMatch:'full'}
