@@ -49,12 +49,25 @@
                   />www.justice-love-peace.com
                 </li>
               </ul>
-              <div class="row mb-lg-0 mb-3" style="position: absolute; bottom: 0%">
+              <div
+                class="row mb-lg-0 mb-3"
+                style="position: absolute; bottom: 0%"
+              >
                 <div class="col-md">
-                  <a href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit/about" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/UIComponents/images/fb.png" alt="" /></a>
-                  <a href="https://www.instagram.com/globaljusticelovepeacesummit/profilecard/?igsh=dXB6ZzNwYjBwYnVv" target="_blank" rel="noopener noreferrer">
-                  <img src="assets/UIComponents/images/insta.png" alt="" /></a>
+                  <a
+                    href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit/about"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src="assets/UIComponents/images/fb.png" alt=""
+                  /></a>
+                  <a
+                    href="https://www.instagram.com/globaljusticelovepeacesummit/profilecard/?igsh=dXB6ZzNwYjBwYnVv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src="assets/UIComponents/images/insta.png" alt=""
+                  /></a>
                 </div>
               </div>
             </div>
@@ -111,7 +124,6 @@
                     placeholder=""
                     required
                     value=""
-                 
                   />
                   <label for="FirstName">First Name</label>
 
@@ -160,7 +172,7 @@
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
-              
+
               <div class="mb-4 col-md-6">
                 <label for="mobileNomber">Phone Number</label>
                 <div class="form-floating">
@@ -181,8 +193,11 @@
                     ]"
                     [selectFirstCountry]="false"
                     [selectedCountryISO]="CountryISO.India"
+                    [maxLength]="10"
+                    [minlength]="10"
                     [phoneValidation]="false"
                     [separateDialCode]="true"
+                    pattern=".{8,12}"
                     formControlName="phoneNumber"
                     name="phoneNumber"
                   ></ngx-intl-tel-input>
@@ -200,7 +215,6 @@
                     maxlength="15"
                     value=""
                   /> -->
-                  
 
                   <!-- <div class="help-block with-errors"></div> -->
                   <div
@@ -229,6 +243,7 @@
                     class="form-control"
                     id="email"
                     placeholder=""
+                    pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                     formControlName="email"
                     required
                     name="email"
@@ -239,8 +254,7 @@
                   <div class="help-block with-errors"></div>
                   <div
                     *ngIf="
-                      getcontrol('email')?.errors &&
-                      getcontrol('email')?.touched
+                      getcontrol('email')?.errors && getcontrol('email')?.dirty
                     "
                   >
                     <small
@@ -253,6 +267,12 @@
                       *ngIf="getcontrol('email')?.errors?.['email']"
                       >Please enter valid email address.</small
                     >
+                    <small
+                      class="text-danger"
+                      *ngIf="getcontrol('email')?.errors?.['pattern']"
+                    >
+                      Please match the required email format.
+                    </small>
                   </div>
                 </div>
               </div>
@@ -277,7 +297,7 @@
                   </select>
                 </div>
               </div> -->
-              
+
               <div class="mb-4 col-md-12">
                 <div class="form-group">
                   <label for="question">Your Query</label>

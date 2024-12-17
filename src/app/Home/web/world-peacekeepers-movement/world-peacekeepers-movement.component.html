@@ -451,7 +451,7 @@
                     <div
                       *ngIf="
                         getcontrol('email_id')?.errors &&
-                        getcontrol('email_id')?.touched
+                        getcontrol('email_id')?.dirty
                       "
                     >
                       <small
@@ -582,7 +582,7 @@
                         >
                         <small
                           class="text-danger"
-                          *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
+                          *ngIf="getcontrol('mobile_number')?.errors?.['minLength']"
                           >Mobile number must be at least 10 digit long.</small
                         >
                       </div>
