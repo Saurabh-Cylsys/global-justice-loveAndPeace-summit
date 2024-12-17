@@ -29,6 +29,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   countryData:any;
   fileUrl:any
   isMobile:any
+  mobile_number: string = '';
+  mobile_numberVal:boolean= false;
 
   selectedFile: File | null = null;
 
@@ -79,6 +81,7 @@ isCheckEmail:boolean=true;
   ngOnInit(): void {
 
     this.getAllCountrycode()
+    this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
     console.log(inputElement,'inputElement');
     
@@ -108,7 +111,10 @@ isCheckEmail:boolean=true;
       dob: ['', [Validators.required]],
       country: ['', [Validators.required]],
       country_code: [''],
-      mobile_number: ['', [Validators.required]],
+      mobile_number: ['', [Validators.required,
+        Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
+        this.noRepeatingDigits(), this.containsConsecutiveZeros()
+      ]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
       Check_email:['']
@@ -127,6 +133,41 @@ isCheckEmail:boolean=true;
 
     
   }
+
+  onKeyDown(event: KeyboardEvent, inputValue: string): void {
+    // Check if the pressed key is the space bar and the input is empty
+    if (event.key === ' ' && inputValue.trim() === '') {
+      event.preventDefault(); // Prevent the space character from being typed
+    }
+  }
+
+
+
+  containsConsecutiveZeros(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value as string;
+      if (value && /000000/.test(value)) {
+        return { containsConsecutiveZeros: true };
+      }
+      return null;
+    };
+  }
+
+  
+  noRepeatingDigits(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value as string;
+      if (value && value.length === 10) {
+        // Check for repeating digits
+        const repeatingDigits = /(.)\1{5,}/.test(value);
+        if (repeatingDigits) {
+          return { repeatingDigits: true };
+        }
+      }
+      return null;
+    };
+  }
+
 
   dobValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const inputDate = new Date(control.value);
@@ -259,7 +300,7 @@ isCheckEmail:boolean=true;
     this.formdisplay=false;
 }
   closeModal() {
-    debugger
+    
     this.display = "none";
     this.showPopup=false;
   }
@@ -271,7 +312,7 @@ isCheckEmail:boolean=true;
 
     }
   getAllCountrycode() {
-    debugger
+    
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
       this.code = res.data;
@@ -292,7 +333,7 @@ isCheckEmail:boolean=true;
   // profile_picture:[''],
 
   onFileChange(event: any): void {
-    debugger
+    
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
@@ -390,19 +431,26 @@ isCheckEmail:boolean=true;
   );
 }
 
-keyPressNumbers(event: any) {
-  var charCode = (event.which) ? event.which : event.keyCode;
-  // Only Numbers 0-9
-  if ((charCode < 48 || charCode > 57)) {
-    event.preventDefault();
-    return false;
-  } else {
-    return true;
-  }
+
+
+keyPressNumbers(event: KeyboardEvent, inputValue: any) {
+  // debugger
+  if(inputValue !== null){
+    
+    if(inputValue.number.length<10){
+      this.mobile_numberVal = true;
+      // event.preventDefault()
+    } else {
+      this.mobile_numberVal = false;
+    }
+    
+   }
+
+ 
 }
 
 getCountrycode(code: any){
-  debugger
+  
   let countryName = this.peacekeepersForm.value.country;
   const indiaCodeObject =  code.find((item:any) => item.name === countryName);
   console.log(indiaCodeObject);
