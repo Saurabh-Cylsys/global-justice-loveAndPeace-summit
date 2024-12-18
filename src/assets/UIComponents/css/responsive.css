@@ -5,9 +5,30 @@
     top: -50px;
     /* left: -50px;  */
   }
+  
 }
-
+@media (max-width: 1440px) {
+  .index .section1 .logo {
+    position: relative;
+    top: -50px;
+    /* left: -50px;  */
+  }
+  .head ul li a, .head ul li .dropbtn{
+    font-size: 14px;
+  }
+  
+}
+@media (max-width: 1228.80px){
+  .head ul li a, .head ul li .dropbtn{
+    font-size: 12px;
+  }}
 @media (max-width: 1024px){
+  .head ul li a, .head ul li .dropbtn{
+    font-size: 10px;
+  }
+  .index .section2 .mainCard .cardP{
+    font-size: 12px;
+  }
 .awards .section7 .card .card-body h3{
   font-size: 17px;
 }
@@ -176,6 +197,15 @@
   } */
   .contact-info{
     height: 110%;
+  }
+
+  .count{
+    width: 25px;
+    height: 25px;
+  }
+
+  .footerLinks ul li{
+    font-size: 14px;
   }
 }
 

@@ -1168,8 +1168,8 @@ header .nav-item .nav-link.active {
 .dropbtn {
   background-color: transparent;
   color: white;
-  padding: 8px;
-  font-size: 16px;
+  /* padding: 8px; */
+  /* font-size: 16px; */
   border: 1px solid var(--color2);
 }
 
@@ -1452,9 +1452,9 @@ header .nav-item .nav-link.active {
 .head .nav-item:hover{
   background-color: var(--color3);
 }
-.head .nav-item a{
-  padding: 8px;
-}
+/* .head .nav-item a{
+  padding: 6.5px;
+} */
 .head .nav-item:hover a{
   color: var(--color2);
 }
@@ -1500,4 +1500,15 @@ width: 100%;
 
 .cpImg{
   height: 480px;
+}
+
+.head ul li a, .head ul li .dropbtn,.head form, .head form a{
+  font-weight: 400;
+  font-size: 14px;
+  padding: 6.5px;
+  letter-spacing: 1px;
+}
+
+.head form a{
+  font-weight: 400 !important;
 }

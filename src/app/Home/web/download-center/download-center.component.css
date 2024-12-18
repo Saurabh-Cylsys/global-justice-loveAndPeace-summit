@@ -358,3 +358,8 @@ hr {
     
     border-style: dashed;
 }
+
+.poen p{
+    text-align: start;
+    font-size: 16px;
+}
