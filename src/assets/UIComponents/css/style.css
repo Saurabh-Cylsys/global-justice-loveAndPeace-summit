@@ -341,6 +341,10 @@ header .nav-item .nav-link.active {
   margin-block: 1rem;
 }
 
+.speakers img {
+  width: 60%;
+}
+
 /* index section7 */
 
 .index .section7 {
