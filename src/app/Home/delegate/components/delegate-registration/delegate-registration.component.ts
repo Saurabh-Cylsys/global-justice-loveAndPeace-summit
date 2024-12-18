@@ -392,7 +392,7 @@ closeModal() {
   this.showPopup=false;
   this.formdisplay=true;
   this.registrationForm.reset({});
-  this.router.navigateByUrl('/webhome')
+  this.router.navigateByUrl('/home')
 }
 
 

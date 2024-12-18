@@ -22,7 +22,7 @@
     <ul>
       <li>
         <a
-          [routerLink]="['/webhome']"
+          [routerLink]="['/home']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Home</a
@@ -103,7 +103,7 @@
 <!-- header start -->
 <header
   class="head"
-  [class.hide-logo]="_router.url === '/webhome'"
+  [class.hide-logo]="_router.url === '/home'"
   *ngIf="!isMobileView"
 >
   <div class="container-fluid">
@@ -112,7 +112,7 @@
         <a
           class="navbar-brand logo"
           *ngIf="!isHomePage"
-          [routerLink]="['/webhome']"
+          [routerLink]="['/home']"
         >
           <img
             src="assets/UIComponents/images/logo.gif"
@@ -126,7 +126,7 @@
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" [routerLink]="['/webhome']">Home</a>
+            <a class="nav-link" [routerLink]="['/home']">Home</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
             <!-- <a
@@ -313,10 +313,12 @@
       </div>
       <div class="col-md-3">
         <form class="d-flex justify-content-end" role="search">
+          <!-- [routerLink]="['/delegate-registration']" -->
           <a
             type="btn"
             class="btn btn-success me-2"
-            [routerLink]="['/delegate-registration']"
+            (click)="navigateUrl()"
+
             >Register As a Delegate</a
           >
           <select name="" id="" class="">
@@ -332,7 +334,7 @@
     <div class="container-fluid">
       <a
         class="navbar-brand logo"
-        [routerLink]="['/webhome']"
+        [routerLink]="['/home']"
         style="width: 100px"
       >
         <img src="assets/UIComponents/images/logo.gif" alt="" width="100%" />
@@ -355,7 +357,7 @@
             <a
               class="nav-link"
               routerLinkActive="active"
-              [routerLink]="['/webhome']"
+              [routerLink]="['/home']"
               >Home</a
             >
           </li>
@@ -530,10 +532,11 @@
           </li>
         </ul>
         <form class="d-flex" role="search">
+          <!-- [routerLink]="['/delegate-registration']" -->
           <a
             type="btn"
             class="btn btn-success me-2"
-            [routerLink]="['/delegate-registration']"
+            (click)="navigateUrl()"
             >Register As a Delegate</a
           >
           <select name="" id="" class="">
