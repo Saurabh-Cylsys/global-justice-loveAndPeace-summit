@@ -362,7 +362,7 @@ checkTerms1(evtt: any) {
         // this.SharedService.ToastPopup('Delegate added successfully','', 'success')
         this.SharedService.ToastPopup('', res.message, 'success')
         // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        //   this.router.navigateByUrl('/webhome');
+        //   this.router.navigateByUrl('/home');
 
         // });  
         this.openPopup();
@@ -396,7 +396,7 @@ closeModal() {
   this.showPopup=false;
   this.formdisplay=true;
   this.PartnerForm.reset({});
-  this.router.navigateByUrl('/webhome');
+  this.router.navigateByUrl('/home');
 
 }
 }

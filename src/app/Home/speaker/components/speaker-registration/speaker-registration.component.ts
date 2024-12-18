@@ -396,7 +396,7 @@ console.log(indiaCodeObject);
         // this.SharedService.ToastPopup('Delegate added successfully','', 'success')
         this.SharedService.ToastPopup('', res.message, 'success')
         // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        //   this.router.navigateByUrl('/webhome');
+        //   this.router.navigateByUrl('/home');
         // });
         this.openPopup();
       } else {
@@ -429,7 +429,7 @@ closeModal() {
   this.showPopup=false;
   this.formdisplay=true;
   this.speakerForm.reset({});
-  this.router.navigateByUrl('/webhome');
+  this.router.navigateByUrl('/home');
 
 }
 }

@@ -11,6 +11,7 @@ export class WebHeaderComponent implements OnInit{
   headerIcon:any;
   isHomePage: boolean = false;
   isMobileView = false;
+  ReferenceCode:any = '';
   constructor(public _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
   ngOnInit(): void {
@@ -20,8 +21,14 @@ export class WebHeaderComponent implements OnInit{
     console.log(this._activeRouter.url,'WebHeaderComponent initialized');
 
     this._router.events.subscribe(() => {
-      this.isHomePage = this._router.url === '/webhome';
+      this.isHomePage = this._router.url === '/home';
     });
+  }
+
+  navigateUrl() {
+    debugger
+    this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
+
   }
 
   downloadPDF() {
@@ -84,7 +91,7 @@ export class WebHeaderComponent implements OnInit{
   }
 
   // refreshPage() {
-  //   this._router.navigate(['/webhome']).then(() => {
+  //   this._router.navigate(['/home']).then(() => {
   //     console.log("test");
   //     location.reload();
   //   });
@@ -92,9 +99,9 @@ export class WebHeaderComponent implements OnInit{
 
   refreshPage(route: string) {
     switch (route) {
-      case 'webhome':
-        this._router.navigate(['/webhome']).then(() => {
-          console.log("Navigated to 'webhome'");
+      case 'home':
+        this._router.navigate(['/home']).then(() => {
+          console.log("Navigated to 'home'");
           location.reload();
         });
         break;
