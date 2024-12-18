@@ -91,15 +91,15 @@ export class DelegateRegistrationComponent {
   
     // this.getdates()
     // this.getAllCountries()
-    this.getAllCountrycode()
+    // this.getAllCountrycode()
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       dob: ['', [Validators.required]],
-      country_code: ['', [Validators.required]],
+      country_code: [''],
 
-      mobile_number: ['', [Validators.required]],
+      mobile_number: ['', [ Validators.minLength(10), Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       linkedIn_profile:['', [Validators.pattern('https?://.+')]],
       instagram_profile:['', [Validators.pattern('https?://.+')]],
@@ -249,7 +249,6 @@ console.log(indiaCodeObject);
 
 
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    debugger
     if(inputValue !== null){
       
       if(inputValue.number.length<10){
@@ -260,7 +259,6 @@ console.log(indiaCodeObject);
       }
       
      }
-  
    
   }
 
@@ -311,14 +309,23 @@ checkTerms1(evtt: any) {
 }
 
 
-onKeyDown(event: KeyboardEvent, inputValue: string): void {
+onKeyDown(event: KeyboardEvent, inputValue: any): void {
   // Check if the pressed key is the space bar and the input is empty
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
+  }else  if (event.code === 'Backspace') {
+    if(inputValue.number.length<10){
+      this.mobile_numberVal = true;
+      // event.preventDefault()
+    } else {
+      this.mobile_numberVal = false;
+    }
   }
+
 }
 
   submitData(): void {
+    debugger
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
 const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 console.log(formattedMobileNumber);

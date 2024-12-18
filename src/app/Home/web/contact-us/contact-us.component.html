@@ -198,9 +198,21 @@
                     [phoneValidation]="false"
                     [separateDialCode]="true"
                     pattern=".{8,12}"
+                    [(ngModel)]="mobile_number"
+
                     formControlName="phoneNumber"
                     name="phoneNumber"
+                    (keydown)="
+                    onKeyDown($event, mobile_number)
+                  "
+                    (keypress)="keyPressNumbers($event, mobile_number)"
                   ></ngx-intl-tel-input>
+                  <small
+                  class="text-danger"
+                  *ngIf="mobile_numberVal"
+                  >Mobile number must be at least 10
+                  digit long.</small
+                > 
                   <!-- <input
                     type="tel"
                     class="form-control"
@@ -259,7 +271,7 @@
                   >
                     <small
                       class="text-danger"
-                      *ngIf="getcontrol('email')?.errors?.['required']"
+                      *ngIf="getcontrol('email')?.errors?.['required'] && getcontrol('email')?.touched"
                       >Email is required.</small
                     >
                     <small

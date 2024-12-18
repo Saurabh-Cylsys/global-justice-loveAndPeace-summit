@@ -28,6 +28,9 @@ export class ContactUsComponent {
   countryCodes: any;
   country_code: any;
   selectedCountryISO: any;
+  mobile_number: string = '';
+  mobile_numberVal:boolean= false;
+
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -48,7 +51,7 @@ export class ContactUsComponent {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       countryCode: [''],
-      phoneNumber: ['',[Validators.required]],
+      phoneNumber: ['',[Validators.required, Validators.minLength(10)]],
       email: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       yourQuestion: [''],
 
@@ -100,16 +103,38 @@ console.log(indiaCodeObject);
     });
   }
 
-  keyPressNumbers(event: any) {
-    var charCode = (event.which) ? event.which : event.keyCode;
-    // Only Numbers 0-9
-    if ((charCode < 48 || charCode > 57)) {
-      event.preventDefault();
-      return false;
-    } else {
-      return true;
+  onKeyDown(event: KeyboardEvent, inputValue: any): void {
+    // Check if the pressed key is the space bar and the input is empty
+    if (event.key === ' ' && event.code === 'Space') {
+      event.preventDefault(); // Prevent the space character from being typed
+    }else  if (event.code === 'Backspace') {
+      if(inputValue.number.length<10){
+        this.mobile_numberVal = true;
+        // event.preventDefault()
+      } else {
+        this.mobile_numberVal = false;
+      }
     }
+  
   }
+
+ 
+  keyPressNumbers(event: KeyboardEvent, inputValue: any) {
+    debugger
+    if(inputValue !== null){
+      
+      if(inputValue.number.length<10){
+        this.mobile_numberVal = true;
+        // event.preventDefault()
+      } else {
+        this.mobile_numberVal = false;
+      }
+      
+     }
+   
+  }
+
+
   submitData(): void {
 
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;

@@ -548,7 +548,10 @@
                         pattern=".{8,12}"
                         minlength="10" [(ngModel)]="mobile_number"
                         maxlength="10"
-                        name="mobile_number"(keypress)="keyPressNumbers($event, mobile_number)"
+                        name="mobile_number" (keydown)="
+                        onKeyDown($event, mobile_number)
+                      "
+                        (keypress)="keyPressNumbers($event, mobile_number)"
                         formControlName="mobile_number"
                       ></ngx-intl-tel-input>
                       <!-- <input
