@@ -134,10 +134,17 @@ isCheckEmail:boolean=true;
     
   }
 
-  onKeyDown(event: KeyboardEvent, inputValue: string): void {
+  onKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
     if (event.key === ' ' && inputValue.trim() === '') {
       event.preventDefault(); // Prevent the space character from being typed
+    }else  if (event.code === 'Backspace') {
+      if(inputValue.number.length<=10){
+        this.mobile_numberVal = true;
+        // event.preventDefault()
+      } else {
+        this.mobile_numberVal = false;
+      }
     }
   }
 

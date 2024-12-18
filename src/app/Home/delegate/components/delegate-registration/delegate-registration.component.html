@@ -159,7 +159,6 @@
                                       <input
                                         type="text"
                                         [(ngModel)]="last_name"
-                                        (keydown)="onKeyDown($event, last_name)"
                                         name="lname[1]"
                                         id="lname1"
                                         placeholder=""
@@ -306,6 +305,9 @@
                                           [separateDialCode]="true"
                                           [(ngModel)]="mobile_number"
                                           formControlName="mobile_number"
+                                          (keydown)="
+                                          onKeyDown($event, mobile_number)
+                                        "
                                           (keypress)="keyPressNumbers($event,mobile_number)"
                                         ></ngx-intl-tel-input>
                                       </div>
@@ -383,7 +385,6 @@
                                         value=""
                                         required
                                         [(ngModel)]="email_id"
-                                        (keydown)="onKeyDown($event, email_id)"
                                         data-error="Please enter valid email id"
                                         formControlName="email_id"
                                         [ngClass]="{
