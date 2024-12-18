@@ -35,7 +35,7 @@ const routes: Routes = [
     component: WebMainComponent,
 
     children:[
-      {path:'webhome',component:WebHomeComponent},
+      {path:'home',component:WebHomeComponent},
       { path: 'AgendaPharma', component: AgendaPharmaPreconnectComponent },
       { path: 'Faqs', component: FaqsComponent },
       { path: 'OurLengcy', component: OurLengcyComponent },
@@ -69,7 +69,7 @@ const routes: Routes = [
       {path:'chairman-corner',component:ChairmanCornerComponent},
       
       
-      {path:'', redirectTo:'webhome', pathMatch:'full'}
+      {path:'', redirectTo:'home', pathMatch:'full'}
     ]
   }
 

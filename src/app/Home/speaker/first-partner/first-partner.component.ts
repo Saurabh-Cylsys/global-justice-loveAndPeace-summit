@@ -133,8 +133,8 @@ export class FirstPartnerComponent {
           this.ngxService.stop();
           // this.SharedService.ToastPopup('', res.message, 'success');
           // this.form.reset(); 
-          // this.router.navigateByUrl('/webhome', { skipLocationChange: true }).then(() => {
-          //   this.router.navigateByUrl('/webhome');
+          // this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+          //   this.router.navigateByUrl('/home');
           // });
         } else {
           this.ngxService.stop();

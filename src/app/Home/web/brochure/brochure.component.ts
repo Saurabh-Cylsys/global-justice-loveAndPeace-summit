@@ -172,8 +172,8 @@ export class BrochureComponent {
         this.ngxService.stop();
         this.SharedService.ToastPopup('', res.message, 'success')
         this.downloadBadge();
-        this.router.navigateByUrl('/webhome', { skipLocationChange: true }).then(() => {
-          this.router.navigateByUrl('/webhome');
+        this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+          this.router.navigateByUrl('/home');
         });
       } else {
         this.ngxService.stop();
