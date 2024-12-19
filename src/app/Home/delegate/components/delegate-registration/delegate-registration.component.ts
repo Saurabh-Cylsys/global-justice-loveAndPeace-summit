@@ -251,7 +251,7 @@ console.log(indiaCodeObject);
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
       
-      if(inputValue.number.length<10){
+      if(inputValue.number.length<9){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
@@ -309,17 +309,24 @@ checkTerms1(evtt: any) {
 }
 
 
-onKeyDown(event: KeyboardEvent, inputValue: any): void {
+onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
   // Check if the pressed key is the space bar and the input is empty
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
   }else  if (event.code === 'Backspace') {
-    if(inputValue.number.length<10){
+    if(inputValue.number.length<9){
       this.mobile_numberVal = true;
       // event.preventDefault()
     } else {
       this.mobile_numberVal = false;
     }
+  }
+
+}
+onKeyDown(event: KeyboardEvent, inputValue: any): void {
+  // Check if the pressed key is the space bar and the input is empty
+  if (event.key === ' ' && event.code === 'Space') {
+    event.preventDefault(); // Prevent the space character from being typed
   }
 
 }

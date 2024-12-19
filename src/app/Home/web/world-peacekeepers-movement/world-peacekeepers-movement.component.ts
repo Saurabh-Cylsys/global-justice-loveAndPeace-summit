@@ -134,19 +134,6 @@ isCheckEmail:boolean=true;
     
   }
 
-  onKeyDown(event: KeyboardEvent, inputValue: any): void {
-    // Check if the pressed key is the space bar and the input is empty
-    if (event.key === ' ' && inputValue.trim() === '') {
-      event.preventDefault(); // Prevent the space character from being typed
-    }else  if (event.code === 'Backspace') {
-      if(inputValue.number.length<=10){
-        this.mobile_numberVal = true;
-        // event.preventDefault()
-      } else {
-        this.mobile_numberVal = false;
-      }
-    }
-  }
 
 
 
@@ -444,7 +431,7 @@ keyPressNumbers(event: KeyboardEvent, inputValue: any) {
   // debugger
   if(inputValue !== null){
     
-    if(inputValue.number.length<10){
+    if(inputValue.number.length<9){
       this.mobile_numberVal = true;
       // event.preventDefault()
     } else {
@@ -455,6 +442,29 @@ keyPressNumbers(event: KeyboardEvent, inputValue: any) {
 
  
 }
+
+onKeyDown(event: KeyboardEvent, inputValue: any): void {
+  // Check if the pressed key is the space bar and the input is empty
+  if (event.key === ' ' && inputValue.trim() === '') {
+    event.preventDefault(); // Prevent the space character from being typed
+  }
+}
+
+onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
+  // Check if the pressed key is the space bar and the input is empty
+  if (event.key === ' ' && inputValue.trim() === '') {
+    event.preventDefault(); // Prevent the space character from being typed
+  }else  if (event.code === 'Backspace') {
+    if(inputValue.number.length<9){
+      this.mobile_numberVal = true;
+      // event.preventDefault()
+    } else {
+      this.mobile_numberVal = false;
+    }
+  }
+}
+
+
 
 getCountrycode(code: any){
   
