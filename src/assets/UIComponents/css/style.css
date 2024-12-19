@@ -449,7 +449,6 @@ header .nav-item .nav-link.active {
   border-top-right-radius: var(--radius);
   background: rgba(255, 255, 255, 0.03); /* fade equivalent */
   color: var(--color6); /* fade equivalent */
-  font-family: var(--font-text);
   /* margin: auto; */
   letter-spacing: 0.5px;
   position: relative;
@@ -515,7 +514,7 @@ header .nav-item .nav-link.active {
   font-weight: 600;
   font-size: 0.9em;
   min-width: var(--date);
-  font-family: var(--font-title);
+ 
 }
 
 .timeline .event::after {
@@ -1244,7 +1243,7 @@ header .nav-item .nav-link.active {
   font-size: 20px;
   font-weight: 500;
   line-height: 30.91px;
-  text-align: justify;
+  /* text-align: justify; */
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
@@ -1253,7 +1252,7 @@ header .nav-item .nav-link.active {
   font-size: 20px;
   font-weight: 700;
   line-height: 30.91px;
-  text-align: justify;
+  /* text-align: justify; */
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
@@ -1274,7 +1273,7 @@ header .nav-item .nav-link.active {
   font-size: 20px;
   font-weight: 700;
   line-height: 30.91px;
-  text-align: justify;
+  /* text-align: justify; */
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
@@ -1419,7 +1418,7 @@ header .nav-item .nav-link.active {
 }
 
 .yT{
-  height: 522px;
+  height: 360px;
 }
 
 .iti__flag {
