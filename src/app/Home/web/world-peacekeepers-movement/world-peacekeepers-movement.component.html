@@ -441,6 +441,9 @@
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
                       required
+                      (keydown)="
+                        onKeyDown($event, mobile_number)
+                      "
                     />
                     <label for="email">
                       E-Mail:
@@ -549,7 +552,7 @@
                         minlength="10" [(ngModel)]="mobile_number"
                         maxlength="10"
                         name="mobile_number" (keydown)="
-                        onKeyDown($event, mobile_number)
+                        onMobileKeyDown($event, mobile_number)
                       "
                         (keypress)="keyPressNumbers($event, mobile_number)"
                         formControlName="mobile_number"
