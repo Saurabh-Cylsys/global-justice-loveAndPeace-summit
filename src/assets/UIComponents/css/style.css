@@ -178,7 +178,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
 }
 
-.index .section1 .tableBox table tr td p span{
+.index .section1 .tableBox table tr td p span {
   font-weight: 400;
 }
 
@@ -323,7 +323,7 @@ header .nav-item .nav-link.active {
   margin-block: 1rem;
 }
 
-.speakers label{
+.speakers label {
   text-transform: uppercase;
 }
 
@@ -514,7 +514,6 @@ header .nav-item .nav-link.active {
   font-weight: 600;
   font-size: 0.9em;
   min-width: var(--date);
- 
 }
 
 .timeline .event::after {
@@ -823,6 +822,12 @@ header .nav-item .nav-link.active {
   background-size: 100% 100%;
   position: relative;
   height: 100%;
+  border-radius: 10px;
+}
+
+.contact-info .contactBg {
+  background: linear-gradient(0deg, rgba(0, 90, 147, 0.8), rgba(0, 0, 0, 0.4));
+  border-radius: 10px;
 }
 
 .contact-info h2 {
@@ -837,8 +842,8 @@ header .nav-item .nav-link.active {
 
 .contact-info h3 {
   color: var(--color2);
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   line-height: 30.91px;
   text-align: left;
   text-underline-position: from-font;
@@ -846,14 +851,30 @@ header .nav-item .nav-link.active {
   margin: 0;
 }
 
+.contact-info .contactBg h3::before {
+  content: " ";
+  background-color: #fff;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%; /* Circular shape */
+  display: inline-block; /* Ensures it displays properly */
+  margin-right: 8px; /* Optional: Adds spacing between the pseudo-element and text */
+  vertical-align: middle; /* Aligns it with the text */
+}
+
+
 .contact-info p {
   color: var(--color2) !important;
-  font-size: 12px !important;
-  font-weight: 400 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   line-height: 15.46px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+.contact-info p img {
+  width: 20px;
+  height: 20px;
 }
 .contact-info ul {
   list-style: none;
@@ -869,7 +890,11 @@ header .nav-item .nav-link.active {
   color: var(--color2);
 }
 .contact-info ul li img {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.contact-info .contactBg .border-bottom{
+  border-bottom-style: dotted !important;
 }
 
 .chairman {
@@ -878,7 +903,7 @@ header .nav-item .nav-link.active {
   padding: 0;
 }
 
-.chairman a{
+.chairman a {
   color: var(--color1);
   text-decoration: none;
 }
@@ -990,7 +1015,6 @@ header .nav-item .nav-link.active {
   height: 65vh;
 }
 
-
 .invited table thead tr th:first-child {
   border-top-left-radius: 10px;
   background-color: var(--color1);
@@ -1004,7 +1028,7 @@ header .nav-item .nav-link.active {
   color: var(--color2);
   width: 70%;
 }
-.invited table tbody tr td{
+.invited table tbody tr td {
   border-bottom: 2px solid var(--color2);
 }
 
@@ -1047,7 +1071,7 @@ header .nav-item .nav-link.active {
   width: 100%;
 }
 
-.partner_carousel .carousel-item ul{
+.partner_carousel .carousel-item ul {
   display: flex;
   align-items: center;
 }
@@ -1256,7 +1280,8 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
-.footerLinks ul li h3, .footerLinks ol li h3{
+.footerLinks ul li h3,
+.footerLinks ol li h3 {
   font-size: 20px;
 }
 
@@ -1278,7 +1303,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
 }
 
-.footerLinks a{
+.footerLinks a {
   color: var(--color6);
 }
 
@@ -1385,28 +1410,32 @@ header .nav-item .nav-link.active {
   transform: rotate(45deg);
 }
 
-.list, .list:focus{
+.list,
+.list:focus {
   outline: none;
   box-shadow: none;
 }
 
-  .hide-logo .logo {
-    display: none;
-  }
-  .iti {
-    width: 100%;
-    display: flex !important;
-    align-items:center;
-    border-bottom: 1px dotted;
-  }
+.hide-logo .logo {
+  display: none;
+}
+.iti {
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  border-bottom: 1px dotted;
+}
 .iti .dropdown-menu.show {
   overflow: scroll;
   height: 50vh;
 }
 
-.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
-  color: rgba(var(--bs-body-color-rgb), .65);
-  transform: scale(.85) translateY(-1.5rem) translateX(.15rem);
+.form-floating > .form-control-plaintext ~ label,
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  color: rgba(var(--bs-body-color-rgb), 0.65);
+  transform: scale(0.85) translateY(-1.5rem) translateX(0.15rem);
 }
 
 .delegate-form .section7 {
@@ -1417,25 +1446,28 @@ header .nav-item .nav-link.active {
   height: auto;
 }
 
-.yT{
+.yT {
   height: 360px;
 }
 
 .iti__flag {
   display: none;
 }
-.iti__selected-flag{
+.iti__selected-flag {
   display: flex;
   align-items: center;
 }
 
-#phone{
+#phone {
   /* padding-left: 10px;
   padding-bottom: 0; */
   border-bottom: none;
   padding: 1px 10px;
 }
-.iti.separate-dial-code .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag, .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
+.iti.separate-dial-code .iti__selected-flag,
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag,
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag,
+.iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
   width: auto !important;
 }
 
@@ -1444,28 +1476,29 @@ header .nav-item .nav-link.active {
   padding-bottom: 10px;
 }
 
-.carousel-control-next, .carousel-control-prev{
+.carousel-control-next,
+.carousel-control-prev {
   width: 4%;
 }
 
-.head .nav-item:hover{
+.head .nav-item:hover {
   background-color: var(--color3);
 }
 /* .head .nav-item a{
   padding: 6.5px;
 } */
-.head .nav-item:hover a{
+.head .nav-item:hover a {
   color: var(--color2);
 }
-.head .nav-item.active{
+.head .nav-item.active {
   background-color: var(--color3);
 }
 
-.head .nav-item.active a{
+.head .nav-item.active a {
   color: var(--color2);
 }
 
-.hover-dropdown-content a{
+.hover-dropdown-content a {
   color: var(--color6) !important;
 }
 
@@ -1473,14 +1506,14 @@ header .nav-item .nav-link.active {
   background-color: var(--color3);
 }
 
-.partner_carousel ul li img{
-width: 100%;
+.partner_carousel ul li img {
+  width: 100%;
 }
-.modal{
+.modal {
   background: #000000a1;
 }
 
-.modal-dialog .modal-close{
+.modal-dialog .modal-close {
   position: absolute;
   right: 19px;
   z-index: 1;
@@ -1488,26 +1521,29 @@ width: 100%;
   border-radius: 10px;
 }
 
-.come-from-modal .modal-content{
+.come-from-modal .modal-content {
   background-image: url(../../../assets/UIComponents/images/bg2.png);
 }
 
-.pix{
+.pix {
   height: 150px;
   width: 150px;
 }
 
-.cpImg{
+.cpImg {
   height: 480px;
 }
 
-.head ul li a, .head ul li .dropbtn,.head form, .head form a{
+.head ul li a,
+.head ul li .dropbtn,
+.head form,
+.head form a {
   font-weight: 400;
   font-size: 14px;
   padding: 6.5px;
   letter-spacing: 1px;
 }
 
-.head form a{
+.head form a {
   font-weight: 400 !important;
 }
