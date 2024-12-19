@@ -27,7 +27,8 @@ export class WebHeaderComponent implements OnInit{
 
   navigateUrl() {
     debugger
-    this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
+    // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
+    this._router.navigate(['/delegate-registration']);
 
   }
 

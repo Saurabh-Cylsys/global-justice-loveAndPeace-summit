@@ -203,7 +203,7 @@
                     formControlName="phoneNumber"
                     name="phoneNumber"
                     (keydown)="
-                    onKeyDown($event, mobile_number)
+                    onMobileKeyDown($event, mobile_number)
                   "
                     (keypress)="keyPressNumbers($event, mobile_number)"
                   ></ngx-intl-tel-input>
@@ -258,6 +258,9 @@
                     pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                     formControlName="email"
                     required
+                    (keydown)="
+                    onKeyDown($event, mobile_number)
+                  "
                     name="email"
                     value=""
                   />
