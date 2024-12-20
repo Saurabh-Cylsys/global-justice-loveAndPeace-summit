@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -23,6 +24,21 @@ export class WebHeaderComponent implements OnInit{
     this._router.events.subscribe(() => {
       this.isHomePage = this._router.url === '/home';
     });
+
+    this._router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this._activeRouter.fragment.subscribe((fragment) => {
+          if (fragment) {
+            setTimeout(() => {
+              const element = document.getElementById(fragment);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 0); // Delay ensures DOM is rendered
+          }
+        });
+      });
   }
 
   navigateUrl() {
@@ -200,4 +216,17 @@ export class WebHeaderComponent implements OnInit{
   onResize(event: any): void {
     this.checkWindowSize();
   }
+
+
+
+  //   ngAfterViewInit(): void {
+  //   this._activeRouter.fragment.subscribe((fragment) => {
+  //     if (fragment) {
+  //       const element = document.getElementById(fragment);
+  //       if (element) {
+  //         element.scrollIntoView({ behavior: 'smooth' });
+  //       }
+  //     }
+  //   });
+  // }
 }
