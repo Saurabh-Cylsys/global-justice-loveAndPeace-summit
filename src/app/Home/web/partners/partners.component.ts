@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import {ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-partners',
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class PartnersComponent {
   isMobileView = false;
   // headerIcon:any
-  constructor( private SharedService: SharedService
+  constructor( private SharedService: SharedService, private ActivatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +31,17 @@ export class PartnersComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  ngAfterViewInit(): void {
+    this.ActivatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
   }
 
 }

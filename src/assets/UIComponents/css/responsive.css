@@ -211,6 +211,11 @@
   .contact-info h3, .contact-info p{
     font-size: 12px !important;
   }
+  .indexSec2 h2{
+    font-size: 18px !important;
+    line-height: 28.52px !important;
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 375px) {

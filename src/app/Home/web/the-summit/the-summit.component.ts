@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, Abstrac
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { DelegateService } from '../../delegate/services/delegate.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-the-summit',
@@ -28,6 +28,7 @@ export class TheSummitComponent implements OnInit{
      private DelegateService: DelegateService,
      private SharedService: SharedService, 
      private ngxService: NgxUiLoaderService, 
+     private ActivatedRoute: ActivatedRoute,
      private router: Router) {
 
    }
@@ -70,5 +71,16 @@ export class TheSummitComponent implements OnInit{
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  ngAfterViewInit(): void {
+    this.ActivatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
   }
 }
