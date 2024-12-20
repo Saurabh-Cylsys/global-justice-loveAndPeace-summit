@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -30,6 +30,75 @@ export class ContactUsComponent {
   selectedCountryISO: any;
   mobile_number: string = '';
   mobile_numberVal:boolean= false;
+  isMobileView = false;
+
+  data: any[] = [
+    { "No": 1, "Country_Name": "Angola", "Peacekeeper_Name": "Alceu Da Silva Moreira" },
+    { "No": 2, "Country_Name": "Argentina", "Peacekeeper_Name": "Juan Cruz" },
+    { "No": 3, "Country_Name": "Armenia", "Peacekeeper_Name": "Adel Forian" },
+    { "No": 4, "Country_Name": "Australia", "Peacekeeper_Name": "Leona Tan" },
+    { "No": 5, "Country_Name": "Bahrain", "Peacekeeper_Name": "Denzil Britto" },
+    { "No": 6, "Country_Name": "Baluchistan", "Peacekeeper_Name": "Sulaiman Baluch" },
+    { "No": 7, "Country_Name": "Bangladesh", "Peacekeeper_Name": "Gulam Oyes" },
+    { "No": 8, "Country_Name": "Botswana", "Peacekeeper_Name": "Mthabisi Bokete" },
+    { "No": 9, "Country_Name": "Brazil", "Peacekeeper_Name": "Willyan Garcia" },
+    { "No": 10, "Country_Name": "Cameroon", "Peacekeeper_Name": "Willy Nna" },
+    { "No": 11, "Country_Name": "Canada", "Peacekeeper_Name": "Eunice Marcia" },
+    { "No": 12, "Country_Name": "China", "Peacekeeper_Name": "Jen Feng" },
+    { "No": 13, "Country_Name": "Colombia", "Peacekeeper_Name": "Juan Jacobo Trejos" },
+    { "No": 14, "Country_Name": "DRC", "Peacekeeper_Name": "Israel Ntanga" },
+    { "No": 15, "Country_Name": "Ecuador", "Peacekeeper_Name": "Manuela Purtschert" },
+    { "No": 16, "Country_Name": "Egypt", "Peacekeeper_Name": "Anthony Dawood" },
+    { "No": 17, "Country_Name": "France", "Peacekeeper_Name": "Arnaud Marolleau" },
+    { "No": 18, "Country_Name": "Germany", "Peacekeeper_Name": "Clinton Khor" },
+    { "No": 19, "Country_Name": "Guatemala", "Peacekeeper_Name": "Jose Chavez" },
+    { "No": 20, "Country_Name": "Hungary", "Peacekeeper_Name": "Tamas Szente" },
+    { "No": 21, "Country_Name": "Iceland", "Peacekeeper_Name": "Magaret Jones" },
+    { "No": 22, "Country_Name": "India", "Peacekeeper_Name": "Erica Jean" },
+    { "No": 23, "Country_Name": "Indonesia", "Peacekeeper_Name": "Monica Witanto" },
+    { "No": 24, "Country_Name": "Israel", "Peacekeeper_Name": "Moran Farhi" },
+    { "No": 25, "Country_Name": "Italy", "Peacekeeper_Name": "Katiuscia Vaccarini" },
+    { "No": 26, "Country_Name": "Ivory Coast", "Peacekeeper_Name": "Marie-Laure" },
+    { "No": 27, "Country_Name": "Jamaica", "Peacekeeper_Name": "Rowdean Kurasch Macharzina" },
+    { "No": 28, "Country_Name": "Japan", "Peacekeeper_Name": "Nupur" },
+    { "No": 29, "Country_Name": "Kazakhstan", "Peacekeeper_Name": "Mallika" },
+    { "No": 30, "Country_Name": "Kenya", "Peacekeeper_Name": "Ruth Kimani" },
+    { "No": 31, "Country_Name": "Kyrgyzstan", "Peacekeeper_Name": "Viktor Pisarev" },
+    { "No": 32, "Country_Name": "Latvia", "Peacekeeper_Name": "Janis Zvirgzdins" },
+    { "No": 33, "Country_Name": "Lebanon", "Peacekeeper_Name": "Elissa Hajje" },
+    { "No": 34, "Country_Name": "Liberia", "Peacekeeper_Name": "J Aaron Wright Sr" },
+    { "No": 35, "Country_Name": "Lithuania", "Peacekeeper_Name": "Justina Kosinskiene" },
+    { "No": 36, "Country_Name": "Malaysia", "Peacekeeper_Name": "Anitha" },
+    { "No": 37, "Country_Name": "Mauritius", "Peacekeeper_Name": "Shameemah Sookoor" },
+    { "No": 38, "Country_Name": "Mexico", "Peacekeeper_Name": "Sofia Arellano" },
+    { "No": 39, "Country_Name": "Morocco", "Peacekeeper_Name": "Yassmine Nacer" },
+    { "No": 40, "Country_Name": "Mozambique", "Peacekeeper_Name": "Clesia Jamila Paulo" },
+    { "No": 41, "Country_Name": "Namibia", "Peacekeeper_Name": "Dr. Brian Nalisia" },
+    { "No": 42, "Country_Name": "Nigeria", "Peacekeeper_Name": "Osawaru Henry Agho" },
+    { "No": 43, "Country_Name": "Oman", "Peacekeeper_Name": "Sagar Akram" },
+    { "No": 44, "Country_Name": "Papua New Guinea", "Peacekeeper_Name": "Daniel Buburuv" },
+    { "No": 45, "Country_Name": "Peru", "Peacekeeper_Name": "Fiorella Vigo Moran" },
+    { "No": 46, "Country_Name": "Philippines", "Peacekeeper_Name": "John Usman" },
+    { "No": 47, "Country_Name": "Poland", "Peacekeeper_Name": "Alseksandra" },
+    { "No": 48, "Country_Name": "Portugal", "Peacekeeper_Name": "Fillipe" },
+    { "No": 49, "Country_Name": "Qatar", "Peacekeeper_Name": "Fawad Dadarkar" },
+    { "No": 50, "Country_Name": "Romania", "Peacekeeper_Name": "Timea Ban" },
+    { "No": 51, "Country_Name": "Russia", "Peacekeeper_Name": "Natalia Bukharova" },
+    { "No": 52, "Country_Name": "Slovakia", "Peacekeeper_Name": "Miroslava Spackova" },
+    { "No": 53, "Country_Name": "South Africa", "Peacekeeper_Name": "Alpha Barry" },
+    { "No": 54, "Country_Name": "Spain", "Peacekeeper_Name": "Elisabeth" },
+    { "No": 55, "Country_Name": "Sri Lanka", "Peacekeeper_Name": "Inoka Thilakaratne" },
+    { "No": 56, "Country_Name": "Sweden", "Peacekeeper_Name": "Jaya Jankert" },
+    { "No": 57, "Country_Name": "Switzerland", "Peacekeeper_Name": "Christina Michelle" },
+    { "No": 58, "Country_Name": "The UK", "Peacekeeper_Name": "Catherine Paton" },
+    { "No": 59, "Country_Name": "Turkey", "Peacekeeper_Name": "Busra" },
+    { "No": 60, "Country_Name": "USA", "Peacekeeper_Name": "Michelle" },
+    { "No": 61, "Country_Name": "UAE", "Peacekeeper_Name": "Harshita Godhwani" },
+    { "No": 62, "Country_Name": "Uganda", "Peacekeeper_Name": "Jamadah" },
+    { "No": 63, "Country_Name": "Uzbekistan", "Peacekeeper_Name": "Alan" },
+    { "No": 64, "Country_Name": "Zambia", "Peacekeeper_Name": "Mathews" }
+  ]
+  ;
 
 
   changePreferredCountries() {
@@ -45,6 +114,7 @@ export class ContactUsComponent {
   get f() { return this.contactUsForm.controls; }
   ngOnInit(): void {
     // this.getAllCountrycode()
+    this.checkWindowSize();
 
     this.contactUsForm = this.formBuilder.group({
       title: ['', [Validators.required]],
@@ -185,5 +255,18 @@ console.log(indiaCodeObject);
 
     }
   }
-
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+// Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
 }

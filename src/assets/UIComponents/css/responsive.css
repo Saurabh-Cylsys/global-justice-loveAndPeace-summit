@@ -195,9 +195,9 @@
   /* .cpImg{
     height: auto;
   } */
-  .contact-info{
+  /* .contact-info{
     height: 110%;
-  }
+  } */
 
   .count{
     width: 25px;
@@ -206,6 +206,10 @@
 
   .footerLinks ul li{
     font-size: 14px;
+  }
+
+  .contact-info h3, .contact-info p{
+    font-size: 12px !important;
   }
 }
 

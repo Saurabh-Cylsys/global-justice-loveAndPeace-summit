@@ -1,59 +1,105 @@
+<!-- modal start -->
+<div
+  class="modal fade"
+  id="international_committee"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          INTERNATIONAL RELATIONS COMMITTEE
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Country Name</th>
+                    <th>Peacekeeper Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of data">
+                    <td>{{ row.No }}</td>
+                    <td>{{ row.Country_Name }}</td>
+                    <td>{{ row.Peacekeeper_Name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal end -->
+
 <main class="index delegate-form">
   <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
     <section class="section7 p-lg-5">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12">
-            <h2>Contact Us</h2>
-            <p class="text-center">
-              We are here to help and answer any questions that you might have.
-              Feel free to share your queries here. <br />
-              Look forward to hearing from you.
-            </p>
-          </div>
           <div class="col-md-5">
             <div class="row mb-lg-0 mb-3">
               <div class="col-md-12 text-center my-3">
-                <a class="mx-2"
-                  href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit/about"
+                <a
+                  class="mx-2"
+                  href="https://www.facebook.com/GlobalJusticeLoveandPeaceSummit
+                  "
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img src="assets/UIComponents/images/fb.svg" alt=""
                 /></a>
-                <a class="mx-2"
-                  href="https://www.instagram.com/globaljusticelovepeacesummit/profilecard/?igsh=dXB6ZzNwYjBwYnVv"
+                <a
+                  class="mx-2"
+                  href="https://www.instagram.com/globaljusticelovepeacesummit/
+                  "
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img src="assets/UIComponents/images/insta.svg" alt=""
                 /></a>
-                <a class="mx-2"
+                <a
+                  class="mx-2"
                   href="https://www.youtube.com/@GlobalJusticeLovePeaceSummit/videos"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src="assets/UIComponents/images/youtube.svg"
-                    alt=""
+                  <img src="assets/UIComponents/images/youtube.svg" alt=""
                 /></a>
-                <a class="mx-2"
+                <a
+                  class="mx-2"
                   href="https://wa.me/+91 9324064978"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src="assets/UIComponents/images/whatsApp.svg"
-                    alt=""
+                  <img src="assets/UIComponents/images/whatsApp.svg" alt=""
                 /></a>
-                <a class="mx-2"
+                <a
+                  class="mx-2"
                   href="https://www.linkedin.com/company/global-justice-love-peace-summit-2025/posts/?feedView=all"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    src="assets/UIComponents/images/linkedIn.svg"
-                    alt=""
+                  <img src="assets/UIComponents/images/linkedIn.svg" alt=""
                 /></a>
               </div>
 
@@ -165,14 +211,35 @@
                       </li>
                     </ul>
 
-                    <button class="btn btn-success mt-lg-4">International Committee</button>
+                    <button
+                      class="btn btn-success mt-lg-4"
+                      data-bs-toggle="modal"
+                      data-bs-target="#international_committee"
+                    >
+                      International Committee
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-7 px-lg-5">
-            <div class="row g-2 mt-5">
+          <div class="col-md-7 px-lg-5 contactUs">
+            <div class="row g-2">
+              <div class="col-md-12 mb-4">
+                <h2>Contact Us</h2>
+                <p class="text-center" *ngIf="!isMobileView">
+                  We are here to help and answer any questions that you might
+                  have.<br />
+                  Feel free to share your queries here. Look forward to hearing
+                  from you.
+                </p>
+                <p class="text-center" *ngIf="isMobileView">
+                  We are here to help and answer any questions that you might
+                  have.
+                  Feel free to share your queries here. Look forward to hearing
+                  from you.
+                </p>
+              </div>
               <div class="mb-4 col-md-4">
                 <div class="form-floating">
                   <select
