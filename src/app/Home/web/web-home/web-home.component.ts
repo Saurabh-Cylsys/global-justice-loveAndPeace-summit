@@ -231,4 +231,14 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     this.cdr.detectChanges();
   }
 
+  ngAfterViewInit(): void {
+    this._activeRouter.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
 }

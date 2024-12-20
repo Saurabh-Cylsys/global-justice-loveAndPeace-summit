@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -12,6 +13,52 @@ export class WebHeaderComponent implements OnInit{
   isHomePage: boolean = false;
   isMobileView = false;
   ReferenceCode:any = '';
+  summitLinks = [
+    { label: 'Highlights of Summit', fragment: undefined },
+    { label: 'Chairman', fragment: 'ts2' },
+    { label: 'Speakers (Peace Ambassadors)', fragment: 'ts3' },
+    { label: 'Delegates', fragment: 'ts4' },
+    { label: 'Goals of Summit', fragment: 'ts5' },
+    { label: 'Agenda', fragment: 'ts6' },
+    { label: 'Themes', fragment: 'ts7' },
+    { label: 'Structured Networking', fragment: 'ts8' },
+    { label: 'Venue', fragment: 'ts9' }
+  ];
+  partnersLinks = [
+    { label: 'Corporate Partners', fragment: undefined },
+    { label: 'Causes we Support', fragment: 'p2' },
+    { label: 'Event, Media & PR Agency', fragment: 'p3' },
+    { label: 'Service Partners', fragment: 'p4' },
+  ];
+  awardsLinks = [
+    { label: 'Award Categories', fragment: undefined },
+    { label: 'Awards Research Committee', fragment: 'aw2' },
+  ];
+  peacekeeperLinks = [
+    { label: 'The Movement', fragment: undefined },
+    { label: 'I am Peacekeeper', fragment: 'pe2' },
+    { label: 'Sign Up Now', fragment: 'pe3' },
+    { label: '7 Peace Values', fragment: 'pe4' },
+    { label: 'Song and Graphics', fragment: 'pe5' },
+  ];
+  downloadLinks = [
+    { label: 'Mission & Pledge', fragment: undefined },
+    { label: 'The Summit of 28', fragment: 'dc2' },
+    { label: 'The Number 28', fragment: 'dc3' },
+    { label: '7 Pillars of Justice', fragment: 'dc4' },
+    { label: '7 Causes of world conflict', fragment: 'dc5' },
+    { label: '7 Quotes of inner peace', fragment: 'dc6' },
+    { label: '28 Gems of world peace', fragment: 'dc7' },
+    { label: 'We are One', fragment: 'dc8' },
+    { label: 'Chairs for Delegates', fragment: 'dc9' },
+    { label: '28 Poems', fragment: 'dc10' },
+    { label: '28 Sayings', fragment: 'dc11' },
+  ];
+  chairmanLinks = [
+    { label: 'Videos', fragment: undefined },
+    { label: 'Messages', fragment: 'cc2' },
+    { label: 'Songs', fragment: 'cc3' },
+  ];
   constructor(public _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
   ) {}
   ngOnInit(): void {
@@ -23,6 +70,8 @@ export class WebHeaderComponent implements OnInit{
     this._router.events.subscribe(() => {
       this.isHomePage = this._router.url === '/home';
     });
+
+   
   }
 
   navigateUrl() {
@@ -200,4 +249,17 @@ export class WebHeaderComponent implements OnInit{
   onResize(event: any): void {
     this.checkWindowSize();
   }
+
+
+
+  //   ngAfterViewInit(): void {
+  //   this._activeRouter.fragment.subscribe((fragment) => {
+  //     if (fragment) {
+  //       const element = document.getElementById(fragment);
+  //       if (element) {
+  //         element.scrollIntoView({ behavior: 'smooth' });
+  //       }
+  //     }
+  //   });
+  // }
 }

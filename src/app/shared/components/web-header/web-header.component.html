@@ -129,36 +129,22 @@
             <a class="nav-link" [routerLink]="['/home']">Home</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <!-- <a
-            class="nav-link"
-            routerLinkActive="active"
-            
-            >The Summit</a
-          > -->
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/the-summit']">
+              <button
+                class="dropbtn"
+                routerLinkActive="active"
+                [routerLink]="['/the-summit']"
+              >
                 The Summit
               </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/the-summit']">Highlights of Summit</a>
-                <a [routerLink]="['/the-summit']" fragment="2">Chairman</a>
-                <!-- <a [routerLink]="['/the-summit']" fragment="3">Chief Guest</a> -->
-                <a [routerLink]="['/the-summit']" fragment="4"
-                  >Speakers (Peace Ambassadors)</a
+                <a
+                  *ngFor="let link of summitLinks"
+                  [routerLink]="['/the-summit']"
+                  [fragment]="link.fragment || undefined"
                 >
-                <!-- <a [routerLink]="['/the-summit']" fragment="5">Breakup of Invited Speakers</a>
-              <a [routerLink]="['/the-summit']" fragment="6">Invited Speakers</a>
-              <a [routerLink]="['/the-summit']" fragment="7">Benefits for Registration</a> -->
-                <a [routerLink]="['/the-summit']" fragment="8">Delegates</a>
-                <a [routerLink]="['/the-summit']" fragment="9"
-                  >Goals of Summit</a
-                >
-                <a [routerLink]="['/the-summit']" fragment="10">Agenda</a>
-                <a [routerLink]="['/the-summit']" fragment="11">Themes</a>
-                <a [routerLink]="['/the-summit']" fragment="12"
-                  >Structured Networking</a
-                >
-                <a [routerLink]="['/the-summit']" fragment="13">Venue</a>
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
@@ -168,30 +154,19 @@
                 Partners
               </button>
               <div class="hover-dropdown-content">
-                <a routerLinkActive="active" [routerLink]="['/partners']"
-                  >Corporate Partners</a
+                
+                <a
+                  *ngFor="let link of partnersLinks"
+                  [routerLink]="['/partners']"
+                  [fragment]="link.fragment || undefined"
                 >
-                <!-- <a [routerLink]="['/partners']" fragment="2">Invited Corporate Partners</a>
-              <a [routerLink]="['/partners']" fragment="3">28% Profit</a> -->
-                <a [routerLink]="['/partners']" fragment="3"
-                  >Causes we Support</a
-                >
-                <a [routerLink]="['/partners']" fragment="5"
-                  >Event, Media & PR Agency</a
-                >
-                <!-- <a [routerLink]="['/partners']" fragment="6">Dubai</a> -->
-                <a [routerLink]="['/partners']" fragment="6"
-                  >Service Partners</a
-                >
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            <!-- <a
-            class="nav-link"
             
-            >Awards</a
-          > -->
 
             <div class="hover-dropdown" routerLinkActive="active">
               <button
@@ -202,10 +177,13 @@
                 Awards
               </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/awards']">Award Categories</a>
-                <a [routerLink]="['/awards']" fragment="2"
-                  >Awards Research Committee</a
+                <a
+                  *ngFor="let link of awardsLinks"
+                  [routerLink]="['/awards']"
+                  [fragment]="link.fragment || undefined"
                 >
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
@@ -218,21 +196,14 @@
                 I-am-Peacekeeper Movement
               </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/world-peacekeepers-movement']"
-                  >The Movement</a
+                
+                <a
+                  *ngFor="let link of peacekeeperLinks"
+                  [routerLink]="['/world-peacekeepers-movement']"
+                  [fragment]="link.fragment || undefined"
                 >
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="2"
-                  >I am Peacekeeper</a
-                >
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="3"
-                  >Sign Up Now</a
-                >
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="4"
-                  >7 Peace Values</a
-                >
-                <a [routerLink]="['/world-peacekeepers-movement']" fragment="5"
-                  >Song and Graphics</a
-                >
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
@@ -255,37 +226,13 @@
                 >
                   Download Brochure
                 </button>
-                <a [routerLink]="['/DownloadCenter']">Mission & Pledge</a>
-                <a [routerLink]="['/DownloadCenter']" fragment="dc2"
-                  >The Summit of 28</a
+                <a
+                  *ngFor="let link of downloadLinks"
+                  [routerLink]="['/DownloadCenter']"
+                  [fragment]="link.fragment || undefined"
                 >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc3"
-                  >The Number 28</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc4"
-                  >7 Pillars of Justice</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc5"
-                  >7 Causes of world conflict</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc6"
-                  >7 Quotes of inner peace</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc7"
-                  >28 Gems of world peace</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc8"
-                  >We are One</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc9"
-                  >Chairs for Delegates</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc10"
-                  >28 Poems</a
-                >
-                <a [routerLink]="['/DownloadCenter']" fragment="dc11"
-                  >28 Sayings</a
-                >
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
@@ -295,11 +242,13 @@
                 Chairman’s Corner
               </button>
               <div class="hover-dropdown-content">
-                <a [routerLink]="['/chairman-corner']">Videos</a>
-                <a [routerLink]="['/chairman-corner']" fragment="cc2"
-                  >Messages</a
+                <a
+                  *ngFor="let link of chairmanLinks"
+                  [routerLink]="['/chairman-corner']"
+                  [fragment]="link.fragment || undefined"
                 >
-                <a [routerLink]="['/chairman-corner']" fragment="cc3">Songs</a>
+                  {{ link.label }}
+                </a>
               </div>
             </div>
           </li>
@@ -316,11 +265,7 @@
       <div class="col-md-2">
         <form class="d-flex justify-content-end" role="search">
           <!-- [routerLink]="['/delegate-registration']" -->
-          <a
-            type="btn"
-            class="btn btn-success me-2"
-            (click)="navigateUrl()"
-
+          <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
           <select name="" id="" class="">
