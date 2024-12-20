@@ -1569,13 +1569,84 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
 }
 
-.contactUs p{
-font-size: 16px !important;
-font-weight: 400 !important;
-line-height: 20.61px !important;
-text-align: center !important;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
-color: #717171 !important;
+.contactUs p {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 20.61px !important;
+  text-align: center !important;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #717171 !important;
+}
 
+.confirmation {
+  border-radius: 10px;
+}
+.confirmation table {
+  text-align: start;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.confirmation table tr th {
+  white-space: pre;
+  text-align: center;
+  color: #fff;
+}
+
+.confirmation table tr th:nth-child(1) {
+  background-color: #d9d9d9;
+  text-align: left;
+}
+.confirmation table tr th:nth-child(2) {
+  background-color: #446aa0;
+}
+.confirmation table tr th:nth-child(3) {
+  background-color: #6ca357;
+}
+.confirmation table tr th:nth-child(4) {
+  background-color: #646363;
+}
+.confirmation table tr td {
+  background-color: transparent;
+}
+
+.confirmation table tr td:nth-child(2) {
+  font-weight: 600;
+}
+
+.indexSec2 ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.indexSec2 ul li {
+  margin-inline: 15px;
+  color: #4a4a49;
+  font-weight: 600;
+}
+
+.indexSec2 ul li::marker {
+  color: #008a3b;
+}
+
+.indexSec2 p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 73px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.indexSec2 h2 {
+  font-size: 28px !important;
+}
+
+.indexSec2 hr{
+  border-color: #005A93;
+  border-style: dashed;
+  margin: 0;
+  border-width: 1.2px;
 }
