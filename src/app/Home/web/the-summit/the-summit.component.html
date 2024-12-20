@@ -1,88 +1,7 @@
-<!-- <div class="floating_dots">
-  <ul>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        checked
-        [routerLink]="['/the-summit']"
-      />
-      <p> Highlights of summit</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        id=""
-        [routerLink]="['/the-summit']"
-        fragment="2"
-      />
-      <p> Chairman</p>
-    </li>
-    
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="4"
-      />
-        <p> Speakers</p>
-    </li>
-    
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="8"
-      />
-        <p> Delegates</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="9"
-      />
-        <p> Goals of Summit</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="10"
-      />
-        <p> Agenda</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="11"
-      />
-        <p>Structured networking</p>
-    </li>
-    <li>
-      <input
-        type="radio"
-        name="summit"
-        [routerLink]="['/the-summit']"
-        fragment="12"
-      />
-        <p>Venue</p>
-    </li>
-  </ul>
-</div> -->
-
 <nav class="navbarDots">
   <ul>
     <li>
-      <a [routerLink]="['/the-summit']" class="dot active" data-scroll="1">
+      <a [routerLink]="['/the-summit']" class="dot active" data-scroll="ts1">
         <span>Highlights of Summit</span>
       </a>
     </li>
@@ -90,9 +9,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="2"
+        fragment="ts2"
         class="dot"
-        data-scroll="2"
+        data-scroll="ts2"
       >
         <span>Chairman</span>
       </a>
@@ -101,9 +20,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="4"
+        fragment="ts3"
         class="dot"
-        data-scroll="4"
+        data-scroll="ts3"
       >
         <span>Speakers (Peace Ambassadors)</span>
       </a>
@@ -112,9 +31,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="8"
+        fragment="ts4"
         class="dot"
-        data-scroll="8"
+        data-scroll="ts4"
       >
         <span>Delegates</span>
       </a>
@@ -123,9 +42,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="9"
+        fragment="ts5"
         class="dot"
-        data-scroll="9"
+        data-scroll="ts5"
       >
         <span>Goals of Summit</span>
       </a>
@@ -133,9 +52,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="10"
+        fragment="ts6"
         class="dot"
-        data-scroll="10"
+        data-scroll="ts6"
       >
         <span>Agenda</span>
       </a>
@@ -143,9 +62,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="11"
+        fragment="ts7"
         class="dot"
-        data-scroll="11"
+        data-scroll="ts7"
       >
         <span>Themes</span>
       </a>
@@ -153,9 +72,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="12"
+        fragment="ts8"
         class="dot"
-        data-scroll="12"
+        data-scroll="ts8"
       >
         <span>Structured Networking</span>
       </a>
@@ -163,9 +82,9 @@
     <li>
       <a
         [routerLink]="['/the-summit']"
-        fragment="13"
+        fragment="ts9"
         class="dot"
-        data-scroll="13"
+        data-scroll="ts9"
       >
         <span>Venue</span>
       </a>
@@ -176,7 +95,7 @@
 <!-- main body -->
 
 <main class="index theSumit" id="summitPage">
-  <section class="section section2 p-lg-5 py-5" id="1">
+  <section class="section section6 section2 p-lg-5 py-5" id="ts1">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3 my-3">
@@ -304,7 +223,7 @@
       </div>
     </div>
   </section>
-  <section class="section section5 px-lg-3 py-5" id="2">
+  <section class="section section5 px-lg-3 py-5" id="ts2">
     <div class="container-fluid">
       <div class="row align-items-center">
         <!-- <div class="col-12 mb-5">
@@ -476,58 +395,8 @@
       </div>
     </div>
   </section>
-  <!-- <section class="section section3 mt-5 p-lg-5 py-5" id="3" style="height: 80vh">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2>Chief Guest</h2>
-          <img
-              src="assets/UIComponents/images/index/chief_guest.png"
-              alt=""
-              class="mt-4 mb-3"
-              width="70%"
-            />
-        </div>
-      </div>
-    </div>
-    <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h3>About The Proposed Chief Guest</h3>
-            <p>
-              His Highness Sheikh Mohammed bin Rashid Al Maktoum ( born 15
-              July 1949) <br />
-              is an Emirati politician and royal who is the current ruler of
-              Dubai, and serves as the vice president and prime minister.
-              Sheikh Mohammed <br />
-              succeeded his brother Maktoum bin Rashid Al Maktoum as UAE vice
-              president and ruler of Dubai following the latter’s death in
-              2006.
-            </p>
-            <p>
-              He oversaw the growth of Dubai into a global city, as well as
-              the launch of a number of government-owned enterprises including
-              Emirates <br />
-              Airline, DP World, and the Jumeirah Group. Some of these are
-              held by Dubai Holding. Sheikh Mohammed has overseen the
-              development of <br />
-              certain projects in Dubai, such as the Palm Islands and the Burj
-              Al Arab hotel, as well as Burj Khalifa, the tallest building in
-              the world.
-            </p>
-            <p>
-              Sheikh Mohammed is the absolute ruler of Dubai and the prime
-              minister of the UAE, a position appointed by the president.
-              <br />
-              His Highness Sheikh Mohammed bin Rashid Al Maktoum holds a
-              legendary position in today’s international politics & world
-              affairs.
-            </p>
-          </div>
-        </div>
-      </div>
-  </section> -->
-  <section class="section section6 p-lg-5 py-5 speakers" id="4">
+  
+  <section class="section section6 p-lg-5 py-5 speakers" id="ts3">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
@@ -1317,231 +1186,8 @@
       </div>
     </div>
   </section>
-  <!-- <section class="section section7 p-lg-5" id="5">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12">
-          <h2>BREAKUP OF INVITED SPEAKERS</h2>
-        </div>
-        <div class="col-md-4">
-          <img
-            src="assets/UIComponents/images/speakers/pieChart.png"
-            alt=""
-            class="col-md-10 col-12"
-          />
-        </div>
-        <div class="col-md-8">
-          <table class="table">
-            <tbody *ngIf="!isMobileView">
-              <tr>
-                <td>
-                  <ul>
-                    <li>1</li>
-                    <li>UN</li>
-                    <li><span class="un"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>1</li>
-                    <li>
-                      International
-                      Body
-                    </li>
-                    <li><span class="ib"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>2</li>
-                    <li>NGO</li>
-                    <li><span class="ngo"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>3</li>
-                    <li>Ex Government Head</li>
-                    <li><span class="exG"></span></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <ul>
-                    <li>3</li>
-                    <li>Royalty</li>
-                    <li><span class="royal"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>5</li>
-                    <li>
-                      Religious 
-                      Leader
-                    </li>
-                    <li><span class="rl"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>6</li>
-                    <li>Noble Peace Prize Laureate</li>
-                    <li><span class="np"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>9</li>
-                    <li>Judiciary</li>
-                    <li><span class="j"></span></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <ul>
-                    <li>12</li>
-                    <li>Corporate</li>
-                    <li><span class="co"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>16</li>
-                    <li>Celebrity</li>
-                    <li><span class="ce"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>17</li>
-                    <li>Sports person</li>
-                    <li><span class="sp"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>9</li>
-                    <li>
-                      Government 
-                      Head of States
-                    </li>
-                    <li><span class="ghs"></span></li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-            <tbody *ngIf="isMobileView">
-              <tr>
-                <td>
-                  <ul>
-                    <li>1</li>
-                    <li>UN</li>
-                    <li><span class="un"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>1</li>
-                    <li>
-                      International <br />
-                      Body
-                    </li>
-                    <li><span class="ib"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>2</li>
-                    <li>NGO</li>
-                    <li><span class="ngo"></span></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <ul>
-                    <li>3</li>
-                    <li>Ex Government <br />Head</li>
-                    <li><span class="exG"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>3</li>
-                    <li>Royalty</li>
-                    <li><span class="royal"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>5</li>
-                    <li>
-                      Religious <br />
-                      Leader
-                    </li>
-                    <li><span class="rl"></span></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <ul>
-                    <li>6</li>
-                    <li>Noble Peace <br />Prize Laureate</li>
-                    <li><span class="np"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>9</li>
-                    <li>Judiciary</li>
-                    <li><span class="j"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>12</li>
-                    <li>Corporate</li>
-                    <li><span class="co"></span></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <ul>
-                    <li>16</li>
-                    <li>Celebrity</li>
-                    <li><span class="ce"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>17</li>
-                    <li>Sports person</li>
-                    <li><span class="sp"></span></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li>9</li>
-                    <li>
-                      Government <br />
-                      Head of States
-                    </li>
-                    <li><span class="ghs"></span></li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section> -->
-  <section class="section section5 p-lg-5 invited" id="6">
+  
+  <section class=" section5 p-lg-5 invited" >
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12">
@@ -1569,8 +1215,8 @@
       </div>
     </div>
   </section>
-  <!--  -->
-  <div class="section partner" id="7">
+  
+  <div class=" partner">
     <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -1798,7 +1444,7 @@
       </div>
     </section>
   </div>
-  <div class="section partner" id="8">
+  <div class="section partner" id="ts4">
     <section class="section7 py-lg-5">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -1820,7 +1466,7 @@
       </div>
     </section>
   </div>
-  <div class="section partner" id="9">
+  <div class="section partner" id="ts5">
     <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -2018,8 +1664,8 @@
     </section>
   </div>
 
-  <!--  -->
-  <section class="section section7 p-lg-5 h-auto" id="10">
+  
+  <section class="section section7 p-lg-5 h-auto" id="ts6">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-4 p-lg-5">
@@ -2098,7 +1744,7 @@
       </div>
     </div>
   </section>
-  <div class="section" id="11">
+  <div class="section" id="ts7">
   <section class=" section7">
     <div class="container-fluid h-100">
       <div class="row h-100">
@@ -2127,8 +1773,8 @@
     </div>
   </section>
 </div>
-  <!--  -->
-  <div class="section partner" id="12">
+  
+  <div class="section partner" id="ts8">
     <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
@@ -2238,8 +1884,8 @@
       </div>
     </section>
   </div>
-  <!--  -->
-  <section class="section section8 p-lg-5 py-5" id="13">
+  
+  <section class="section section8 p-lg-5 py-5" id="ts9">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 py-4 position-relative">
