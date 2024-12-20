@@ -821,7 +821,7 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
-  height: 100%;
+  height: auto I !important;
   border-radius: 10px;
 }
 
@@ -862,7 +862,6 @@ header .nav-item .nav-link.active {
   vertical-align: middle; /* Aligns it with the text */
 }
 
-
 .contact-info p {
   color: var(--color2) !important;
   font-size: 16px !important;
@@ -893,7 +892,7 @@ header .nav-item .nav-link.active {
   margin-right: 5px;
 }
 
-.contact-info .contactBg .border-bottom{
+.contact-info .contactBg .border-bottom {
   border-bottom-style: dotted !important;
 }
 
@@ -1546,4 +1545,37 @@ header .nav-item .nav-link.active {
 
 .head form a {
   font-weight: 400 !important;
+}
+
+#international_committee .modal-content {
+  background: linear-gradient(180deg, #ffffff 0%, #e8f0cc 100%);
+}
+
+#international_committee table th,
+#international_committee table td {
+  background-color: transparent;
+}
+
+.contactUs h2 {
+  background: linear-gradient(90.68deg, #07528c 0.59%, #128940 94.95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 64.4px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.contactUs p{
+font-size: 16px !important;
+font-weight: 400 !important;
+line-height: 20.61px !important;
+text-align: center !important;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color: #717171 !important;
+
 }
