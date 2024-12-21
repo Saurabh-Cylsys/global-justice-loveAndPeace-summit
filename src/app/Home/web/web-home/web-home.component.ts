@@ -30,9 +30,9 @@ export class WebHomeComponent implements OnInit, OnDestroy{
   data: any[] = [
     {
       "S_No": 1,
-      "Name": "Jose Manuel Ramos-Horta, His Excellency",
-      "Country": "EAST TIMOR",
-      "Credentials": "President of East Timor, Nobel Peace Laureate 1996"
+      "Name": "Habil Khorakiwala, Dr.",
+      "Country": "INDIA",
+      "Credentials": "Industrialist : Chairman, Wockhardt Group"
     },
     {
       "S_No": 2,
@@ -66,48 +66,54 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     },
     {
       "S_No": 7,
+      "Name": "Mary Kom",
+      "Country": "INDIA",
+      "Credentials": "Boxer, 6 times World Champion"
+    },
+    {
+      "S_No": 8,
       "Name": "Nadir Godrej",
       "Country": "INDIA",
       "Credentials": "Industrialist, Chairman, Godrej Industries"
     },
     {
-      "S_No": 8,
+      "S_No": 9,
       "Name": "Ouided Bouchamaoui",
       "Country": "TUNISIA",
       "Credentials": "Nobel Peace Laureate 2015"
     },
     {
-      "S_No": 9,
+      "S_No": 10,
       "Name": "Paco Soleil",
       "Country": "SPAIN",
       "Credentials": "Artist, Peace Painter (live performance)"
     },
     {
-      "S_No": 10,
+      "S_No": 11,
       "Name": "P V Sindhu",
       "Country": "INDIA",
       "Credentials": "Badminton World Champion (2019) (final confirmation based on tournament schedule)"
     },
     {
-      "S_No": 11,
+      "S_No": 12,
       "Name": "Rina Telesphore, Dr, His Royal Highness, The Prince",
       "Country": "MADAGASCAR",
       "Credentials": "Royalty, Pastor, Philanthropist"
     },
     {
-      "S_No": 12,
+      "S_No": 13,
       "Name": "Romona Murad Dr., Her Royal Highness Princess Dato Seri",
       "Country": "MALAYSIA",
       "Credentials": "Royalty, Philanthropist, Peace Activist"
     },
     {
-      "S_No": 13,
+      "S_No": 14,
       "Name": "Rui Duarte de Barros, His Excellency",
       "Country": "GUINEA BISSAU",
       "Credentials": "Prime Minister"
     },
     {
-      "S_No": 14,
+      "S_No": 15,
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
