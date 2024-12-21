@@ -8,11 +8,11 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css'],
 })
-export class WebHeaderComponent implements OnInit{
-  headerIcon:any;
+export class WebHeaderComponent implements OnInit {
+  headerIcon: any;
   isHomePage: boolean = false;
   isMobileView = false;
-  ReferenceCode:any = '';
+  ReferenceCode: any = '';
   summitLinks = [
     { label: 'Highlights of Summit', fragment: undefined },
     { label: 'Chairman', fragment: 'ts2' },
@@ -22,7 +22,7 @@ export class WebHeaderComponent implements OnInit{
     { label: 'Agenda', fragment: 'ts6' },
     { label: 'Themes', fragment: 'ts7' },
     { label: 'Structured Networking', fragment: 'ts8' },
-    { label: 'Venue', fragment: 'ts9' }
+    { label: 'Venue', fragment: 'ts9' },
   ];
   partnersLinks = [
     { label: 'Corporate Partners', fragment: undefined },
@@ -59,30 +59,30 @@ export class WebHeaderComponent implements OnInit{
     { label: 'Messages', fragment: 'cc2' },
     { label: 'Songs', fragment: 'cc3' },
   ];
-  constructor(public _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService
+  constructor(
+    public _router: Router,
+    private _activeRouter: ActivatedRoute,
+    private SharedService: SharedService
   ) {}
   ngOnInit(): void {
     this.checkWindowSize();
     this.headerIcon = this.SharedService.headerIcon;
-    console.log(this.headerIcon,"hhhhhh");
-    console.log(this._activeRouter.url,'WebHeaderComponent initialized');
+    console.log(this.headerIcon, 'hhhhhh');
+    console.log(this._activeRouter.url, 'WebHeaderComponent initialized');
 
     this._router.events.subscribe(() => {
       this.isHomePage = this._router.url === '/home';
     });
-
-   
   }
 
   navigateUrl() {
-    debugger
+    debugger;
     // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
     this._router.navigate(['/delegate-registration']);
-
   }
 
   downloadPDF() {
-    debugger
+    debugger;
     const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure.pdf'; // Path to your PDF file in the assets folder
     const a = document.createElement('a');
     a.href = fileUrl;
@@ -250,16 +250,14 @@ export class WebHeaderComponent implements OnInit{
     this.checkWindowSize();
   }
 
-
-
-  //   ngAfterViewInit(): void {
-  //   this._activeRouter.fragment.subscribe((fragment) => {
-  //     if (fragment) {
-  //       const element = document.getElementById(fragment);
-  //       if (element) {
-  //         element.scrollIntoView({ behavior: 'smooth' });
-  //       }
-  //     }
-  //   });
-  // }
+    ngAfterViewInit(): void {
+    this._activeRouter.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
 }
