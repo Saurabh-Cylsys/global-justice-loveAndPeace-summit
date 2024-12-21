@@ -1,3 +1,8 @@
+:root,
+[data-bs-theme="light"] {
+  
+  --gradient5: linear-gradient(180deg, #ffffff00 22%, #004e8a87 100%);
+}
 /* Add media queries for finer control on smaller devices */
 @media (min-width: 1440px) {
   .index .section1 .logo {
@@ -41,10 +46,10 @@
     background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 100vh; /* Keeps the height relative to the viewport */
+    height: 80vh; /* Keeps the height relative to the viewport */
   }
   .index .section1 .bgColor {
-    background-color: hsl(203deg 100% 29% / 60%);
+    background: var(--gradient5);
   }
 
   .index .section1 .logo {
@@ -55,10 +60,10 @@
     margin: 0 0 0;
   }
 
-  .index .section1 .tableBox {
+  /* .index .section1 .tableBox {
     left: 0;
     position: relative;
-  }
+  } */
 
   .navbarDots {
     display: none;
@@ -233,6 +238,14 @@
   .indexSec2 p{
     line-height: 25px;
   }
+
+  .index .section1 .cardMain {
+    background-color: #005a9394;
+    border: none;
+    box-shadow: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
 }
 
 @media (max-width: 375px) {

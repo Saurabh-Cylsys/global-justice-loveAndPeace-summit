@@ -19,6 +19,7 @@
   --gradient2: linear-gradient(180deg, #ffffff 0%, #128940 100%);
   --gradient3: linear-gradient(180deg, #ffffff 22%, #e8f0cc 100%);
   --gradient4: linear-gradient(277.3deg, #128940 6.75%, #12c450 95.73%);
+  --gradient5: linear-gradient(180deg, #ffffff 22%, #004e8a 100%);
 
   /* timeline */
 
@@ -84,7 +85,7 @@ header .nav-item .nav-link.active {
   background-size: 90% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
-  height: 100vh; /* Keeps the height relative to the viewport */
+  height: 90vh; /* Keeps the height relative to the viewport */
 }
 .index .section1 .logo {
   position: absolute;
@@ -794,7 +795,7 @@ header .nav-item .nav-link.active {
   border-radius: 0 !important;
   background-color: transparent;
   color: var(--color6);
-  width: 90%;
+  /* width: 90%; */
 }
 
 .delegate-form form .form-control:focus,
