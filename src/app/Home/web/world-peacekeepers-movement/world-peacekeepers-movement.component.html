@@ -56,98 +56,122 @@
     <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
-          <div class="col-md-12 p-0">
+          <div class="col-md-12 p-0" *ngIf="isMobileView">
             <img
               src="assets/UIComponents/images/peacekeeper1.svg"
               alt=""
               width="100%"
             />
           </div>
-          <!-- <div class="col-4 col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/1.png" alt="" />
+          <div class="col-md-12" *ngIf="!isMobileView">
+            <div class="row">
+              <div class="col-4 col-md">
+                <ul class="p-0 text-center list-unstyled">
+                  <li class="my-lg-5">
+                    <span class="count mx-auto">1</span>
 
-                <p>
-                  Founded by Dr. Huzaifa Khorakiwala <br />
-                  (www.dr-huzaifa-khorakiwala.care )
-                </p>
-              </li>
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/2.png" alt="" />
+                    <p>
+                      Founded by Dr. Huzaifa Khorakiwala <br />
+                      (www.dr-huzaifa-khorakiwala.care )
+                    </p>
+                  </li>
+                  <li class="my-lg-5">
+                    <span class="count mx-auto">2</span>
 
-                <p>
-                  To spread world peace through the <br />
-                  formation of the world’s largest <br />
-                  army – The World Peace Army <br />
-                  (online army)
-                </p>
-              </li>
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/3.png" alt="" />
+                    <p>
+                      To spread world peace through the <br />
+                      formation of the world’s largest <br />
+                      army – The World Peace Army <br />
+                      (online army)
+                    </p>
+                  </li>
+                  <li class="my-lg-5">
+                    <!-- <img
+                      src="assets/UIComponents/images/partners/3.png"
+                      alt=""
+                    /> -->
+                    <span class="count mx-auto">3</span>
 
-                <p>
-                  Online movement comprising <br />
-                  of more than 1.8 million <br />
-                  peacekeepers
-                </p>
-              </li>
-            </ul>
+                    <p>
+                      Online movement comprising <br />
+                      of more than 1.8 million <br />
+                      peacekeepers
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-4 col-md-5">
+                <ul
+                  class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+                >
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/world-peacemaker.svg"
+                      alt=""
+                      width="100%"
+                    />
+                  </li>
+                  <li>
+                    <!-- <img
+                      src="assets/UIComponents/images/partners/7.png"
+                      alt=""
+                    /> -->
+                    <span class="count mx-auto">7</span>
+                    <p>
+                      Planning yearly summit in Dubai. The <br />
+                      1st one is planned on April 13, 2025 <br />
+                      <span style="text-transform: lowercase"
+                        >(www.justice-love-peace.com)</span
+                      >
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-4 col-md">
+                <ul class="p-0 text-center list-unstyled">
+                  <li class="my-lg-5">
+                    <!-- <img
+                      src="assets/UIComponents/images/partners/4.png"
+                      alt=""
+                    /> -->
+                    <span class="count mx-auto">4</span>
+                    <p>
+                      Based on 7 Human Values - Gratitude, <br />
+                      Forgiveness, Love, Humility, Giving, <br />
+                      Patience & Truth
+                    </p>
+                  </li>
+                  <li class="my-lg-5">
+                    <!-- <img
+                      src="assets/UIComponents/images/partners/5.png"
+                      alt=""
+                    /> -->
+                    <span class="count mx-auto">5</span>
+                    <p>
+                      World Peace Triangle-Peace with Oneself, Peace with Law,
+                      Peace with People, Peace with Nations (Total: 28 Peace
+                      Gems)
+                    </p>
+                  </li>
+                  <li class="my-lg-5">
+                    <!-- <img
+                      src="assets/UIComponents/images/partners/6.png"
+                      alt=""
+                    /> -->
+                    <span class="count mx-auto">6</span>
+                    <p>
+                      "Peace is when the love of power <br />
+                      succumbs to the power of love" <br />
+                      <span style="text-transform: lowercase"
+                        >(www.facebook.com/WorldPeacekeepers Movement)</span
+                      >
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="col-4 col-md-5">
-            <ul class="p-0 text-center list-unstyled">
-              <li>
-                <img
-                  src="assets/UIComponents/images/world-peacemaker.svg"
-                  alt=""
-                  class="col-md-7 col-12"
-                />
-              </li>
-              <li>
-                <img src="assets/UIComponents/images/partners/7.png" alt="" />
-                <p>
-                  Planning yearly summit in Dubai. The <br />
-                  1st one is planned on April 13, 2025 <br />
-                  <span style="text-transform: lowercase"
-                    >(www.justice-love-peace.com)</span
-                  >
-                </p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-4 col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/4.png" alt="" />
-
-                <p>
-                  Based on 7 Human Values - Gratitude, <br />
-                  Forgiveness, Love, Humility, Giving, <br />
-                  Patience & Truth
-                </p>
-              </li>
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/5.png" alt="" />
-
-                <p>
-                  World Peace Triangle-Peace with Oneself, Peace with Law, Peace
-                  with People, Peace with Nations (Total: 28 Peace Gems)
-                </p>
-              </li>
-              <li class="my-lg-5">
-                <img src="assets/UIComponents/images/partners/6.png" alt="" />
-
-                <p>
-                  "Peace is when the love of power <br />
-                  succumbs to the power of love" <br />
-                  <span style="text-transform: lowercase"
-                    >(www.facebook.com/World Peacekeepers Movement)</span
-                  >
-                </p>
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </section>
@@ -156,104 +180,110 @@
     <section class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
-          <!-- <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/1.png" alt="" />
-
-                <p>
-                  Our mission is to <br />
-                  spread world peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/2.png" alt="" />
-
-                <p>
-                  We believe inner peace is the <br />
-                  foundation of world peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/3.png" alt="" />
-
-                <p>
-                  We wish each other depending on the day <br />
-                  of the week, hence on Wednesday we wish <br />
-                  each other, “Happy Love Day” & so on
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5">
-            <ul class="p-0 text-center list-unstyled">
-              <li>
-                <img
-                  src="assets/UIComponents/images/7.png"
-                  alt=""
-                  class="col-4"
-                />
-                <p
-                  style="
-                    font-size: 28px;
-                    font-weight: 700;
-                    line-height: 40px;
-                    text-align: center;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #005fa5;
-                  "
-                >
-                  MEANINGS OF I AM PEACEKEEPER
-                </p>
-              </li>
-              <li>
-                <img src="assets/UIComponents/images/partners/7.png" alt="" />
-
-                <p>
-                  “Peace is when the power of love <br />
-                  overpowers the love for power”
-                </p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/4.png" alt="" />
-
-                <p>
-                  We subscribe to the 7 human values <br />
-                  of Gratitude, Forgiveness, Love, <br />
-                  Humility, Giving, Patience & Truth
-                </p>
-              </li>
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/5.png" alt="" />
-
-                <p>
-                  Each human value represents one day <br />
-                  of the week, with Monday represented <br />
-                  by Gratitude & so on
-                </p>
-              </li>
-              <li class="my-5">
-                <img src="assets/UIComponents/images/partners/6.png" alt="" />
-
-                <p>
-                  Inner peace comes through the <br />
-                  practise of human values
-                </p>
-              </li>
-            </ul>
-          </div> -->
-          <div class="col-md-12 p-0">
+          
+          <div class="col-md-12 p-0" *ngIf="isMobileView">
             <img
               src="assets/UIComponents/images/peacekeeper2.svg"
               alt=""
               width="100%"
             />
+          </div>
+
+          <div class="col-md-12" *ngIf="!isMobileView">
+            <div class="row">
+              <div class="col-md">
+                <ul class="p-0 text-center list-unstyled">
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/1.png" alt="" />
+    
+                    <p>
+                      Our mission is to <br />
+                      spread world peace
+                    </p>
+                  </li>
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/2.png" alt="" />
+    
+                    <p>
+                      We believe inner peace is the <br />
+                      foundation of world peace
+                    </p>
+                  </li>
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/3.png" alt="" />
+    
+                    <p>
+                      We wish each other depending on the day <br />
+                      of the week, hence on Wednesday we wish <br />
+                      each other, “Happy Love Day” & so on
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-5">
+                <ul class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100">
+                  <li>
+                    <img
+                      src="assets/UIComponents/images/7.png"
+                      alt=""
+                      class="col-4"
+                    />
+                    <p
+                      style="
+                        font-size: 28px;
+                        font-weight: 700;
+                        line-height: 40px;
+                        text-align: center;
+                        text-underline-position: from-font;
+                        text-decoration-skip-ink: none;
+                        color: #005fa5;
+                      "
+                    >
+                      MEANINGS OF I AM PEACEKEEPER
+                    </p>
+                  </li>
+                  <li>
+                    <img src="assets/UIComponents/images/partners/7.png" alt="" />
+    
+                    <p>
+                      “Peace is when the power of love <br />
+                      overpowers the love for power”
+                    </p>
+                  </li>
+                </ul>
+              </div>
+    
+              <div class="col-md">
+                <ul class="p-0 text-center list-unstyled">
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/4.png" alt="" />
+    
+                    <p>
+                      We subscribe to the 7 human values <br />
+                      of Gratitude, Forgiveness, Love, <br />
+                      Humility, Giving, Patience & Truth
+                    </p>
+                  </li>
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/5.png" alt="" />
+    
+                    <p>
+                      Each human value represents one day <br />
+                      of the week, with Monday represented <br />
+                      by Gratitude & so on
+                    </p>
+                  </li>
+                  <li class="my-5">
+                    <img src="assets/UIComponents/images/partners/6.png" alt="" />
+    
+                    <p>
+                      Inner peace comes through the <br />
+                      practise of human values
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -441,9 +471,7 @@
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
                       required
-                      (keydown)="
-                        onKeyDown($event, mobile_number)
-                      "
+                      (keydown)="onKeyDown($event, mobile_number)"
                     />
                     <label for="email">
                       E-Mail:
@@ -544,16 +572,16 @@
                           SearchCountryField.Name
                         ]"
                         [selectFirstCountry]="false"
-                        [selectedCountryISO]="CountryISO.UnitedArabEmirates "
+                        [selectedCountryISO]="CountryISO.UnitedArabEmirates"
                         [maxLength]="10"
                         [phoneValidation]="false"
                         [separateDialCode]="true"
                         pattern=".{8,12}"
-                        minlength="10" [(ngModel)]="mobile_number"
+                        minlength="10"
+                        [(ngModel)]="mobile_number"
                         maxlength="10"
-                        name="mobile_number" (keydown)="
-                        onMobileKeyDown($event, mobile_number)
-                      "
+                        name="mobile_number"
+                        (keydown)="onMobileKeyDown($event, mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
                         formControlName="mobile_number"
                       ></ngx-intl-tel-input>
@@ -574,13 +602,10 @@
                       (keypress)="keyPressNumbers($event)"
                  
                     /> -->
-                       <small
-                          class="text-danger"
-                          *ngIf="mobile_numberVal"
-                          > 
-                           (Country code + Mobile number) will be 7 to 15 digits based on country.
-                         </small
-                        >
+                      <small class="text-danger" *ngIf="mobile_numberVal">
+                        (Country code + Mobile number) will be 7 to 15 digits
+                        based on country.
+                      </small>
                       <div
                         *ngIf="
                           getcontrol('mobile_number')?.errors &&
@@ -592,7 +617,6 @@
                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                           >Mobile number is required</small
                         >
-                     
                       </div>
                     </div>
                   </div>
@@ -694,12 +718,18 @@
               </div>
               <div class="row">
                 <div class="col-md text-center">
-                  <p class="fs-6">By clicking Save, I express my solidarity to spread World Peace and express my willingness to receive promotional material from the I-am-Peacekeeper Movement</p>
+                  <p class="fs-6">
+                    By clicking Save, I express my solidarity to spread World
+                    Peace and express my willingness to receive promotional
+                    material from the I-am-Peacekeeper Movement
+                  </p>
                   <button
                     (click)="isCorrect()"
                     type="button"
                     class="btn btn-success text-white text-center"
-                    [disabled]="!mobile_numberVal && this.peacekeepersForm.invalid"
+                    [disabled]="
+                      !mobile_numberVal && this.peacekeepersForm.invalid
+                    "
                   >
                     Save
                   </button>
@@ -786,11 +816,21 @@
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
-              style="border-radius: 10px;"
+              style="border-radius: 10px"
             ></iframe>
           </div>
           <div class="col-md-6 text-center">
-            <iframe class="yT" width="100%" src="https://www.youtube.com/embed/xFb9jkONSEM" title="MERRY CHRISTMAS AND HAPPY NEW YEAR SONG" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 10px;"></iframe>
+            <iframe
+              class="yT"
+              width="100%"
+              src="https://www.youtube.com/embed/xFb9jkONSEM"
+              title="MERRY CHRISTMAS AND HAPPY NEW YEAR SONG"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              style="border-radius: 10px"
+            ></iframe>
           </div>
           <div class="col-md-4 p-lg-5 m-lg-0 m-3">
             <img
@@ -848,7 +888,7 @@
               <!-- <hr
                   style="margin: 0px; width: 77%; color: #707070; opacity: 0.3"
                 /> -->
-              <div  >
+              <div>
                 <label for="" style="color: #17598e"><b>Name :</b> </label>
                 <span style="outline: none; border: none">
                   {{ this.peacekeepersForm.value.full_name }}
@@ -861,19 +901,19 @@
                     </span
                   >
                 </div> -->
-              <div >
+              <div>
                 <label for="" style="color: #17598e"><b>Country :</b> </label>
                 <span style="outline: none; border: none">
                   {{ this.peacekeepersForm.value.country }}
                 </span>
               </div>
-              <div >
+              <div>
                 <label for="" style="color: #17598e"><b>Mobile :</b> </label>
                 <span style="outline: none; border: none">
                   {{ isMobile }}
                 </span>
               </div>
-              <div >
+              <div>
                 <label for="" style="color: #17598e"><b>E-mail :</b></label>
                 <span style="outline: none; border: none">
                   {{ this.peacekeepersForm.value.email_id }}
@@ -881,19 +921,19 @@
               </div>
             </div>
             <div>
-                <img
+              <img
                 [src]="previewUrl"
-                  alt=""
-                  style="
-                    position: absolute;
-                    top: 15px;
-                    right: 20px;
+                alt=""
+                style="
+                  position: absolute;
+                  top: 15px;
+                  right: 20px;
 
-                    border: 2px solid #359138;
-                    border-radius: 50%;
-                  "
-                />
-              </div>
+                  border: 2px solid #359138;
+                  border-radius: 50%;
+                "
+              />
+            </div>
             <div>
               <div
                 style="
@@ -975,7 +1015,8 @@
               <div
                 style="position: absolute; top: 15px; left: 15px; width: 54%"
               >
-                <h4 class="fw-bold"
+                <h4
+                  class="fw-bold"
                   style="
                     margin: 0px;
                     font-size: 14px;
