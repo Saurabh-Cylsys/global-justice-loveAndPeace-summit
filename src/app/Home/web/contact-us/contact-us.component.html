@@ -371,7 +371,9 @@
                     (keypress)="keyPressNumbers($event, mobile_number)"
                   ></ngx-intl-tel-input>
                   <small class="text-danger" *ngIf="mobile_numberVal"
-                    >Mobile number must be at least 10 digit long.</small
+                    >
+                    (Country code + Mobile number) will be 7 to 15 digits based on country.
+                   </small
                   >
                   <!-- <input
                     type="tel"

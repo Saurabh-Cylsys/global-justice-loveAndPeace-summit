@@ -99,7 +99,7 @@ export class DelegateRegistrationComponent {
       dob: ['', [Validators.required]],
       country_code: [''],
 
-      mobile_number: ['', [ Validators.minLength(10), Validators.required]],
+      mobile_number: ['', [ Validators.minLength(7), Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       linkedIn_profile:['', [Validators.pattern('https?://.+')]],
       instagram_profile:['', [Validators.pattern('https?://.+')]],
@@ -251,7 +251,7 @@ console.log(indiaCodeObject);
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
       
-      if(inputValue.number.length<9){
+      if(inputValue.number.length<6){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
@@ -310,16 +310,21 @@ checkTerms1(evtt: any) {
 
 
 onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
+  console.log(this.registrationForm);
+  if(inputValue!==null){
+
+  
   // Check if the pressed key is the space bar and the input is empty
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
   }else  if (event.code === 'Backspace') {
-    if(inputValue.number.length<9){
+    if(inputValue.number.length<6){
       this.mobile_numberVal = true;
       // event.preventDefault()
     } else {
       this.mobile_numberVal = false;
     }
+  }
   }
 
 }

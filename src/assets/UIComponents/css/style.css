@@ -1651,3 +1651,13 @@ header .nav-item .nav-link.active {
   margin: 0;
   border-width: 1.2px;
 }
+
+
+.preview {
+  font-size: 15px;
+}
+
+.preview img{
+  width: 100px;
+  height: 100px;
+}

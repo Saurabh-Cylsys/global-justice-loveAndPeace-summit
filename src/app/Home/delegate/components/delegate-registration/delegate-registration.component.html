@@ -315,9 +315,13 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="mobile_numberVal"
-                                        >Mobile number must be at least 10 digit
-                                        long.</small
-                                      >
+                                        >
+                                     (Country code + Mobile number) will be 7 to 15 digits based on country.
+                                        
+                                        </small
+                                        >
+                                        <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
+                                          long.</p> -->
                                     </div>
                                     <div
                                       class="form-group form-group-inner mobile-number"
@@ -354,16 +358,22 @@
                                           getcontrol('mobile_number')?.touched
                                         "
                                       >
-                                        <small
+                                        <!-- <small
                                           class="text-danger"
                                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                                           >Mobile number is required</small
                                         >
-                                        <!-- <small
+                                        <small
                                           class="text-danger"
                                           *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                                          >Mobile number must be at least 10
-                                          digit long.</small
+                                          >
+                                          <b>Note:-</b>
+                                      
+                                          <p class="text-danger mb-1">(Country code + Mobile number) will be 7 to 15 digits based on country.</p>
+                                       
+                                         
+                                          
+                                          </small
                                         > -->
                                       </div>
                                     </div>
@@ -700,15 +710,16 @@
                                       <label
                                         class="col-md-12 no-padding"
                                         for="organization"
-                                        >Organization Name<span
+                                        >Organization Name
+                                        <!-- <span
                                           class="form-label-span"
                                           style="color: #ff0000"
                                         >
-                                          *</span
-                                        ></label
+                                          *</span >-->
+                                        </label
                                       >
                                     </div>
-                                    <div class="help-block with-errors"></div>
+                                    <!-- <div class="help-block with-errors"></div>
                                     <div
                                       *ngIf="
                                         getcontrol('organization_name')
@@ -727,7 +738,7 @@
                                         >organization name must be at least 3
                                         characters long.</small
                                       >
-                                    </div>
+                                    </div> -->
                                   </div>
                                 </div>
                                 <div

@@ -42,10 +42,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   country_codeList: any;
   countryCodes: any;
   country_code: any;
+  defaultCountryISO: any;
   selectedCountryISO: any;
 peacekeeperData:any = [];
 peacekeeperBadgeId:any
 isCheckEmail:boolean=true;
+previewUrl: string | null = null; // Add this to your component
+
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -59,11 +62,7 @@ isCheckEmail:boolean=true;
        private ngxService: NgxUiLoaderService,
         private router: Router,
     private route: ActivatedRoute) {
-    //   this.configOption.SelectorClass = "OptionType3";
-    //   this.configOption.OptionTextTypes = [];
-    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.Flag);
-    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.CountryName);
-    // this.configOption.OptionTextTypes.push(ContentOptionsEnum.CountryPhoneCode);
+         this.defaultCountryISO = CountryISO.UnitedArabEmirates
     }
   
    getcontrol(name: any): AbstractControl | null {
@@ -120,18 +119,7 @@ isCheckEmail:boolean=true;
       Check_email:['']
     });
 
-    
-//     console.log('Form Controls:', this.peacekeepersForm.controls);
-// Object.keys(this.peacekeepersForm.controls).forEach((key) => {
-//   const control = this.peacekeepersForm.get(key);
-//   console.log(`${key}:`, {
-//     value: control?.value,
-//     valid: control?.valid,
-//     errors: control?.errors,
-//   });
-// });
-
-    
+     
   }
 
 
@@ -299,7 +287,7 @@ isCheckEmail:boolean=true;
     this.showPopup=false;
   }
   isCorrect() {
-      this.isMobile = this.peacekeepersForm.value.mobile_number.number
+      this.isMobile = this.peacekeepersForm.value.mobile_number.dialCode + " " + this.peacekeepersForm.value.mobile_number.number
       this.display = "block";
       this.showPopup = true;
       this.isPeaceOn = 1;
@@ -333,7 +321,14 @@ isCheckEmail:boolean=true;
       this.selectedFile = file;
       this.is_selectedFile =true;
     }
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.previewUrl = e.target.result; // Set the preview URL
+    };
+    reader.readAsDataURL(file);
+    console.log('Selected file:', this.selectedFile);
   }
+  
 
   ValidateAlpha(event: any) {
     var keyCode = (event.which) ? event.which : event.keyCode
