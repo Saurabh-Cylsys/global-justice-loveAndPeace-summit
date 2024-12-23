@@ -167,6 +167,7 @@ header .nav-item .nav-link.active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-shadow: 0px 1.11px 4.44px #000000;
 }
 
 .index .section1 .tableBox table tr td p {
@@ -177,11 +178,13 @@ header .nav-item .nav-link.active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  /* text-shadow: 0px 1.11px 4.44px #00000099; */
+  text-shadow: 0px 1.11px 4.44px #000000;
 }
 
-.index .section1 .tableBox table tr td p span {
+/* .index .section1 .tableBox table tr td p span {
   font-weight: 400;
-}
+} */
 
 /* index section2 */
 
@@ -1642,7 +1645,7 @@ header .nav-item .nav-link.active {
 }
 
 .indexSec2 h2 {
-  font-size: 28px !important;
+  font-size: 26px !important;
 }
 
 .indexSec2 hr{
