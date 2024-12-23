@@ -69,11 +69,19 @@ export class DelegateRegistrationComponent {
   country_code: any;
   selectedCountryISO: any;
   formattedDate: string = '';
+  referralCode:any='';
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
-  constructor(private datePipe: DatePipe, private formBuilder: FormBuilder, private DelegateService: DelegateService, private SharedService: SharedService, private ngxService: NgxUiLoaderService, private router: Router, private httpClient: HttpClient,private route: ActivatedRoute) {
+  constructor(private datePipe: DatePipe,
+     private formBuilder: FormBuilder, 
+     private DelegateService: DelegateService, 
+     private SharedService: SharedService, 
+     private ngxService: NgxUiLoaderService, 
+     private router: Router, 
+     private httpClient: HttpClient,
+     private route: ActivatedRoute) {
     this.fullURL = window.location.href;
     console.log('Full URL:', this.fullURL);
    }
@@ -88,10 +96,30 @@ export class DelegateRegistrationComponent {
   }
   get f() { return this.registrationForm.controls; }
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params:any) => {
+      if(params){
+        this.referralCode = params.code;
+      }
+      if(this.referralCode){
+
+        console.log(this.referralCode,'referralCode..........');
+      }
+      
+    });
+    
+    this.createForm();
   
+
+
     // this.getdates()
     // this.getAllCountries()
     // this.getAllCountrycode()
+
+ 
+
+  }
+
+  createForm(){
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
@@ -116,16 +144,13 @@ export class DelegateRegistrationComponent {
       passport_issue_by: [''],// need 
       pin_code: [null],
       // attend_summit: ['0', [Validators.required]],
-      reference_no: [''],// need 
+      reference_no: [this.referralCode?this.referralCode:''],// need 
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: ['0', [Validators.required]],
       created_by: "Admin",
       status: ['0'],
     });
-
   }
-
-
 //   getdates(){
 //     this.DelegateService.getdates().subscribe((res: any) => {
 //       console.log("dates", res.data);

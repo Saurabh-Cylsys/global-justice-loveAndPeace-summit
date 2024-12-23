@@ -182,6 +182,8 @@ console.log(indiaCodeObject);
 
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
+    if(inputValue!==null){
+
     if (event.key === ' ' && event.code === 'Space') {
       event.preventDefault(); // Prevent the space character from being typed
     }else  if (event.code === 'Backspace') {
@@ -192,12 +194,12 @@ console.log(indiaCodeObject);
         this.mobile_numberVal = false;
       }
     }
+  }
   
   }
 
  
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    debugger
     if(inputValue !== null){
       
       if(inputValue.number.length<9){

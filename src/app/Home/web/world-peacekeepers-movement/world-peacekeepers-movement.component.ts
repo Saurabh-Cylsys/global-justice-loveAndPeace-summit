@@ -447,6 +447,8 @@ onKeyDown(event: KeyboardEvent, inputValue: any): void {
 
 onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
   // Check if the pressed key is the space bar and the input is empty
+  if(inputValue!==null){
+
   if (event.key === ' ' && inputValue.trim() === '') {
     event.preventDefault(); // Prevent the space character from being typed
   }else  if (event.code === 'Backspace') {
@@ -457,6 +459,7 @@ onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
       this.mobile_numberVal = false;
     }
   }
+}
 }
 
 
