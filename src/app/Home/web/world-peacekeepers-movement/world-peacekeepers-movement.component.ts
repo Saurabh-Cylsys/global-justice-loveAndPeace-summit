@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -49,6 +49,8 @@ peacekeeperBadgeId:any
 isCheckEmail:boolean=true;
 previewUrl: string | null = null; // Add this to your component
 
+isMobileView = false;
+
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -78,7 +80,7 @@ previewUrl: string | null = null; // Add this to your component
       }
  
   ngOnInit(): void {
-
+    this.checkWindowSize();
     this.getAllCountrycode()
     this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
@@ -488,6 +490,20 @@ ngAfterViewInit(): void {
     }
   });
 }
+checkWindowSize(): void {
+  if (window.innerWidth <= 767) {
+    this.SharedService.isMobileView.next(true);
+    this.isMobileView = true;
+  } else {
+    this.SharedService.isMobileView.next(false);
+    this.isMobileView = false;
+  }
+}
 
+// Listen to window resize events
+@HostListener('window:resize', ['$event'])
+onResize(event: any): void {
+  this.checkWindowSize();
+}
 }
 
