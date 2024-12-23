@@ -253,6 +253,13 @@
     height: 100px;
     width: 100px;
   }
+  .preview {
+    font-size: 11px;
+  }
+  .preview img{
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @media (max-width: 320px) {
