@@ -117,6 +117,12 @@ export class WebHomeComponent implements OnInit, OnDestroy{
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
+    },
+    {
+      "S_No": 16,
+      "Name": "Venkatramani R",
+      "Country": "INDIA",
+      "Credentials": "The Attorney General of India"
     }
   ]
   

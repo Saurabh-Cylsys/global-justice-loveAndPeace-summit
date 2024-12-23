@@ -167,7 +167,7 @@ header .nav-item .nav-link.active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  text-shadow: 0px 1.11px 4.44px #000000;
+  text-shadow: 0px 1.11px 4.44px #ffffff50;
 }
 
 .index .section1 .tableBox table tr td p {
@@ -405,6 +405,7 @@ header .nav-item .nav-link.active {
 /* index section 8 */
 
 .index .section8 {
+  background-image: url(../images/venueBg.png);;
   background-color: var(--color1);
 }
 
@@ -766,9 +767,7 @@ header .nav-item .nav-link.active {
 
 /* delegate-form css */
 
-.delegate-form .section7 {
-  height: auto;
-}
+
 .delegate-form h2 {
   font-size: 50px;
   font-weight: 700;
@@ -1624,6 +1623,7 @@ header .nav-item .nav-link.active {
   align-items: center;
   justify-content: center;
   margin: 0;
+  justify-content: space-evenly;
 }
 .indexSec2 ul li {
   margin-inline: 15px;
@@ -1663,4 +1663,15 @@ header .nav-item .nav-link.active {
 .preview img{
   width: 100px;
   height: 100px;
+}
+
+.refLabel{
+  font-size: 16px !important;
+  /* color: #005A93B2 !important; */
+  font-weight: 500 !important;
+  line-height: 22.04px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  
 }
