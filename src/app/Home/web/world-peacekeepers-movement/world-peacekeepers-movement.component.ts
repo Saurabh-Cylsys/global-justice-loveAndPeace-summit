@@ -387,6 +387,8 @@ isMobileView = false;
     formData.append('profile_picture', this.selectedFile, this.selectedFile.name);
   }
   console.log("this.peacekeepersForm", formData);
+  console.log("window.location.origin", window.location.origin);
+  formData.append('url', window.location.origin !=='http://localhost:4200'? window.location.origin:'');
   
   // Show loader
   this.ngxService.start();
