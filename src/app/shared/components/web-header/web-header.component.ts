@@ -26,9 +26,9 @@ export class WebHeaderComponent implements OnInit {
   ];
   partnersLinks = [
     { label: 'Corporate Partners', fragment: undefined },
-    { label: 'Causes we Support', fragment: 'p2' },
-    { label: 'Event, Media & PR Agency', fragment: 'p3' },
-    { label: 'Service Partners', fragment: 'p4' },
+    { label: 'Causes we Support', fragment: 'p3' },
+    { label: 'Event, Media & PR Agency', fragment: 'p4' },
+    { label: 'Service Partners', fragment: 'p5' },
   ];
   awardsLinks = [
     { label: 'Award Categories', fragment: undefined },
