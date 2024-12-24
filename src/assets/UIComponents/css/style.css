@@ -1597,6 +1597,15 @@ header .nav-item .nav-link.active {
   color: #fff;
 }
 
+.confirmation tbody, .confirmation td, .confirmation tr{
+  border-style: dashed;
+  border-color: var(--color1);
+}
+
+.confirmation thead tr, .confirmation thead tr th{
+  border: none;
+}
+
 .confirmation table tr th:nth-child(1) {
   background-color: #d9d9d9;
   text-align: left;
