@@ -1,4 +1,4 @@
-<nav class="navbarDots">
+<nav class="navbarDots" id="navbar-example2">
   <ul>
     <li>
       <a [routerLink]="['/the-summit']" class="dot active" data-scroll="ts1">
@@ -93,9 +93,14 @@
 </nav>
 
 <!-- main body -->
-
-<main class="index theSumit" id="summitPage">
-  <section class="section6 section2 p-lg-5 py-5">
+<div
+  data-bs-spy="scroll"
+  data-bs-target="#navbar-example2"
+  data-bs-root-margin="0px 0px -40%"
+  data-bs-smooth-scroll="true"
+  tabindex="0"
+>
+  <div class="section6 section2 p-lg-5 py-5">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3 my-3">
@@ -225,13 +230,13 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="section5 px-lg-3 py-5" id="ts2">
+  </div>
+  <div class="section section5 px-lg-3 py-5" id="ts2">
     <div class="container-fluid">
       <div class="row align-items-center">
         <!-- <div class="col-12 mb-5">
-          <h2>Chairman</h2>
-        </div> -->
+      <h2>Chairman</h2>
+    </div> -->
         <div class="col-12">
           <ul class="chairman">
             <li>
@@ -239,8 +244,6 @@
                 loading="eager"
                 src="assets/UIComponents/images/Dr-Huz.svg"
                 alt=""
-                id="ts2"
-                class="section"
               />
             </li>
             <li>DR. HUZAIFA KHORAKIWALA</li>
@@ -409,17 +412,17 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="section" id="ts3">
-    <div class=" section6 p-lg-5 py-5 speakers">
+  <div class="section" id="ts3">
+    <div class="section6 p-lg-5 py-5 speakers">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <h2>Speakers (Peace Ambassadors)</h2>
             <h6>Names in Alphabetic Order; All with Written Confirmations</h6>
           </div>
-  
+
           <div class="col-md-12" *ngIf="!isMobileView">
             <div
               id="carouselExampleAutoplaying"
@@ -466,7 +469,7 @@
                   aria-label="Slide 6"
                 ></button>
               </div>
-              <div class="carousel-inner" style="height: 72vh;">
+              <div class="carousel-inner" style="height: 72vh">
                 <div class="carousel-item active" data-bs-interval="3000">
                   <div class="row">
                     <div class="col-md-4">
@@ -482,17 +485,15 @@
                               margin: auto;
                             "
                           ></span>
-  
+
                           <h5>Habil Khorakiwala, Dr.</h5>
                           <label for="">(INDIA)</label>
-                          <h6>
-                            Industrialist : Chairman, Wockhardt Group
-                          </h6>
+                          <h6>Industrialist : Chairman, Wockhardt Group</h6>
                           <!-- <p></p> -->
                           <!-- <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >  -->
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      >  -->
                         </li>
                       </ul>
                     </div>
@@ -516,7 +517,7 @@
                             src="assets/UIComponents/images/speakers/speaker3.png"
                           />
                           <h5>Leymah Gbowee</h5>
-  
+
                           <label>(LIBERIA)</label>
                           <h6>Nobel Peace Laureate 2011</h6>
                         </li>
@@ -554,8 +555,8 @@
                           ></span>
                           <h5>
                             Mahawa Simou Diouf, <br />
-                            Judge President of the Court of Justice of WAEMU (West
-                            African Monetary & Economic Union)
+                            Judge President of the Court of Justice of WAEMU
+                            (West African Monetary & Economic Union)
                           </h5>
                           <label for="">(BURKINA FASO)</label>
                           <h6>
@@ -564,9 +565,9 @@
                           </h6>
                           <!-- <p></p> -->
                           <!-- <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >  -->
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      >  -->
                         </li>
                       </ul>
                     </div>
@@ -590,10 +591,10 @@
                           <label for="">(DENMARK)</label>
                           <h6>Royalty, TV Host, Philanthropist</h6>
                           <!-- <p>Badminton World Champion 2019</p>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          > -->
+                      <label for=""
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      > -->
                         </li>
                       </ul>
                     </div>
@@ -616,9 +617,7 @@
                           ></span>
                           <h5>Mary Kom</h5>
                           <label for="">(India)</label>
-                          <h6>
-                            Boxer, 6 times World Champion
-                          </h6>
+                          <h6>Boxer, 6 times World Champion</h6>
                           <!-- <p></p> -->
                         </li>
                       </ul>
@@ -658,7 +657,6 @@
                         </li>
                       </ul>
                     </div>
-                    
                   </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
@@ -719,14 +717,13 @@
                           <label for="">(MADAGASCAR )</label>
                           <h6>Royalty, Pastor, Philanthropist</h6>
                           <!-- <p>Badminton World Champion 2019</p>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          > -->
+                      <label for=""
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      > -->
                         </li>
                       </ul>
                     </div>
-                    
                   </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="3000">
@@ -797,9 +794,7 @@
                               margin: auto;
                             "
                           ></span>
-                          <h5>
-                            Venkatramani R<br />
-                          </h5>
+                          <h5>Venkatramani R<br /></h5>
                           <label for="">(INDIA)</label>
                           <h6>The Attorney General of India</h6>
                           <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
@@ -842,99 +837,99 @@
               data-bs-ride="carousel"
             >
               <!-- <div class="carousel-indicators m-0">
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="1"
-                  aria-label="Slide 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="2"
-                  aria-label="Slide 3"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="3"
-                  aria-label="Slide 4"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="4"
-                  aria-label="Slide 5"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="5"
-                  aria-label="Slide 6"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="6"
-                  aria-label="Slide 7"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="7"
-                  aria-label="Slide 8"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="8"
-                  aria-label="Slide 9"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="9"
-                  aria-label="Slide 10"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="10"
-                  aria-label="Slide 11"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="11"
-                  aria-label="Slide 12"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="12"
-                  aria-label="Slide 13"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="13"
-                  aria-label="Slide 14"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="14"
-                  aria-label="Slide 15"
-                ></button>
-              </div> -->
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="4"
+              aria-label="Slide 5"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="5"
+              aria-label="Slide 6"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="6"
+              aria-label="Slide 7"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="7"
+              aria-label="Slide 8"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="8"
+              aria-label="Slide 9"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="9"
+              aria-label="Slide 10"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="10"
+              aria-label="Slide 11"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="11"
+              aria-label="Slide 12"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="12"
+              aria-label="Slide 13"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="13"
+              aria-label="Slide 14"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleAutoplaying"
+              data-bs-slide-to="14"
+              aria-label="Slide 15"
+            ></button>
+          </div> -->
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
                   <div class="row">
@@ -951,17 +946,15 @@
                               margin: auto;
                             "
                           ></span>
-  
+
                           <h5>Habil Khorakiwala, Dr.</h5>
                           <label for="">(INDIA)</label>
-                          <h6>
-                            Industrialist : Chairman, Wockhardt Group
-                          </h6>
+                          <h6>Industrialist : Chairman, Wockhardt Group</h6>
                           <!-- <p></p> -->
                           <!-- <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >  -->
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      >  -->
                         </li>
                       </ul>
                     </div>
@@ -992,7 +985,7 @@
                             src="assets/UIComponents/images/speakers/speaker3.png"
                           />
                           <h5>Leymah Gbowee</h5>
-  
+
                           <label>(LIBERIA)</label>
                           <h6>Nobel Peace Laureate 2011</h6>
                         </li>
@@ -1033,8 +1026,8 @@
                           ></span>
                           <h5>
                             Mahawa Simou Diouf, <br />
-                            Judge President of the Court of Justice of WAEMU (West
-                            African Monetary & Economic Union)
+                            Judge President of the Court of Justice of WAEMU
+                            (West African Monetary & Economic Union)
                           </h5>
                           <label for="">(BURKINA FASO)</label>
                           <h6>
@@ -1042,9 +1035,9 @@
                             Africa
                           </h6>
                           <!-- <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >  -->
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      >  -->
                         </li>
                       </ul>
                     </div>
@@ -1072,10 +1065,10 @@
                           <label for="">(DENMARK)</label>
                           <h6>Royalty, TV Host, Philanthropist</h6>
                           <!-- <p>Badminton World Champion 2019</p>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          > -->
+                      <label for=""
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      > -->
                         </li>
                       </ul>
                     </div>
@@ -1098,9 +1091,7 @@
                           ></span>
                           <h5>Mary Kom</h5>
                           <label for="">(India)</label>
-                          <h6>
-                            Boxer, 6 times World Champion
-                          </h6>
+                          <h6>Boxer, 6 times World Champion</h6>
                           <!-- <p></p> -->
                         </li>
                       </ul>
@@ -1214,10 +1205,10 @@
                           <label for="">(MADAGASCAR )</label>
                           <h6>Royalty, Pastor, Philanthropist</h6>
                           <!-- <p>Badminton World Champion 2019</p>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          > -->
+                      <label for=""
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      > -->
                         </li>
                       </ul>
                     </div>
@@ -1298,17 +1289,15 @@
                               margin: auto;
                             "
                           ></span>
-  
-                          <h5>
-                            Venkatramani R<br />
-                          </h5>
+
+                          <h5>Venkatramani R<br /></h5>
                           <label for="">(INDIA)</label>
                           <h6>The Attorney General of India</h6>
                           <!-- <p></p> -->
                           <!-- <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >  -->
+                        >(Final confirmation based on tournament
+                        schedule)</label
+                      >  -->
                         </li>
                       </ul>
                     </div>
@@ -1342,19 +1331,19 @@
             </div>
           </div>
           <!-- <div class="col-12 mt-5">
-            <button class="btn btn-success">View All Speakers</button>
-          </div> -->
+        <button class="btn btn-success">View All Speakers</button>
+      </div> -->
         </div>
       </div>
     </div>
-  
+
     <div class="section5 p-lg-5 invited">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-12">
             <h2>Invited Speakers</h2>
           </div>
-  
+
           <div class="col-12">
             <div class="table-responsive">
               <table class="table">
@@ -1376,7 +1365,7 @@
         </div>
       </div>
     </div>
-  
+
     <div class="partner">
       <div class="container-fluid">
         <div class="row">
@@ -1390,235 +1379,235 @@
             />
           </div>
           <!-- <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit1.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  NETWORKING
-                </h6>
-                <p>
-                  Networking with fellow Ambassadors <br />
-                  Through structured networking <br />
-                  Format consisting of 280 tables
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit2.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  CHARITY
-                </h6>
-                <p>
-                  Feel peace at 28% profits going to “The <br />
-                  World Peacekeepers Movement” to <br />
-                  spread world peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit3.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  SPIRITUALITY
-                </h6>
-                <p>
-                  Hear world’s top leaders, including religious <br />
-                  leaders in the world & broaden your <br />
-                  spirituality
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5">
-            <ul class="p-0 text-center list-unstyled">
-              <li>
-                <img loading="eager"
-                  src="assets/UIComponents/images/7.png"
-                  alt=""
-                  class="col-4"
-                />
-                <p
-                  style="
-                    font-size: 28px;
-                    font-weight: 700;
-                    line-height: 40px;
-                    text-align: center;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #005fa5;
-                  "
-                >
-                  BENEFITS FOR REGISTERING AS GLOBAL <br />
-                  JUSTICE, LOVE & PEACE AMBASSADOR <br />
-                  (Delegates)
-                </p>
-              </li>
-              <li>
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit7.svg"
-                  alt=""
-                  width="13%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  CELEBRITIES
-                </h6>
-                <p>
-                  Listen & mingle with <br />
-                  world’s top celebrities
-                </p>
-              </li>
-            </ul>
-          </div>
-  
-          <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit4.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  AMBASSADOR
-                </h6>
-                <p>
-                  Be a Global Justice, Love & peace Ambassadors <br />
-                  & play your part in spreading world peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit5.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  JOY
-                </h6>
-                <p>
-                  Feel inner joy at being part of world’s <br />
-                  biggest, private peace movement
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager"
-                  src="assets/UIComponents/images/the_summit/benefit6.svg"
-                  alt=""
-                  width="20%"
-                />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  INCOME
-                </h6>
-                <p>
-                  Find a way to increase your earnings <br />
-                  through better networking
-                </p>
-              </li>
-            </ul>
-          </div> -->
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit1.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              NETWORKING
+            </h6>
+            <p>
+              Networking with fellow Ambassadors <br />
+              Through structured networking <br />
+              Format consisting of 280 tables
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit2.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              CHARITY
+            </h6>
+            <p>
+              Feel peace at 28% profits going to “The <br />
+              World Peacekeepers Movement” to <br />
+              spread world peace
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit3.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              SPIRITUALITY
+            </h6>
+            <p>
+              Hear world’s top leaders, including religious <br />
+              leaders in the world & broaden your <br />
+              spirituality
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <ul class="p-0 text-center list-unstyled">
+          <li>
+            <img loading="eager"
+              src="assets/UIComponents/images/7.png"
+              alt=""
+              class="col-4"
+            />
+            <p
+              style="
+                font-size: 28px;
+                font-weight: 700;
+                line-height: 40px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #005fa5;
+              "
+            >
+              BENEFITS FOR REGISTERING AS GLOBAL <br />
+              JUSTICE, LOVE & PEACE AMBASSADOR <br />
+              (Delegates)
+            </p>
+          </li>
+          <li>
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit7.svg"
+              alt=""
+              width="13%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              CELEBRITIES
+            </h6>
+            <p>
+              Listen & mingle with <br />
+              world’s top celebrities
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit4.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              AMBASSADOR
+            </h6>
+            <p>
+              Be a Global Justice, Love & peace Ambassadors <br />
+              & play your part in spreading world peace
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit5.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              JOY
+            </h6>
+            <p>
+              Feel inner joy at being part of world’s <br />
+              biggest, private peace movement
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager"
+              src="assets/UIComponents/images/the_summit/benefit6.svg"
+              alt=""
+              width="20%"
+            />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              INCOME
+            </h6>
+            <p>
+              Find a way to increase your earnings <br />
+              through better networking
+            </p>
+          </li>
+        </ul>
+      </div> -->
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="section partner" id="ts4">
-    <section class="section7">
+  <div class="section partner" id="ts4">
+    <div class="section7">
       <div class="container-fluid">
         <div class="row">
           <!-- <div class="col-md-12 text-center">
-            <img
-              loading="eager"
-              src="assets/UIComponents/images/the_summit/delegates.svg"
-              alt=""
-              width="30%"
-            />
-          </div> -->
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/the_summit/delegates.svg"
+          alt=""
+          width="30%"
+        />
+      </div> -->
           <div class="col-md-12 text-center p-0">
             <img
               loading="eager"
@@ -1630,10 +1619,10 @@
           </div>
         </div>
       </div>
-    </section>
-  </section>
-  <section class="section partner" id="ts5">
-    <section class="section7">
+    </div>
+  </div>
+  <div class="section partner" id="ts5">
+    <div class="section7">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12 p-0">
@@ -1646,193 +1635,193 @@
             />
           </div>
           <!-- <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/1.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GENTLENESS
-                </h6>
-                <p>
-                  To spread GENTLENESS <br />
-                  as language of the world
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/2.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GIANT
-                </h6>
-                <p>
-                  To take GIANT steps in <br />
-                  world Justice, Love & Peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/3.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GENEROUS
-                </h6>
-                <p>
-                  To create a GENEROUS culture amongst <br />
-                  the top personalities of the world
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5">
-            <ul class="p-0 text-center list-unstyled">
-              <li>
-                <img loading="eager"
-                  src="assets/UIComponents/images/7.png"
-                  alt=""
-                  class="col-4"
-                />
-                <p
-                  style="
-                    font-size: 28px;
-                    font-weight: 700;
-                    line-height: 40px;
-                    text-align: center;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #005fa5;
-                  "
-                >
-                  GOALS OF THE GLOBAL JUSTICE,<br />
-                  LOVE & PEACE SUMMIT
-                </p>
-              </li>
-              <li>
-                <img loading="eager" src="assets/UIComponents/images/partners/7.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GLORIOUS
-                </h6>
-                <p>
-                  To make this event as the start of a <br />
-                  GLORIOUS chapter in world history
-                </p>
-              </li>
-            </ul>
-          </div>
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/1.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GENTLENESS
+            </h6>
+            <p>
+              To spread GENTLENESS <br />
+              as language of the world
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/2.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GIANT
+            </h6>
+            <p>
+              To take GIANT steps in <br />
+              world Justice, Love & Peace
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/3.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GENEROUS
+            </h6>
+            <p>
+              To create a GENEROUS culture amongst <br />
+              the top personalities of the world
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <ul class="p-0 text-center list-unstyled">
+          <li>
+            <img loading="eager"
+              src="assets/UIComponents/images/7.png"
+              alt=""
+              class="col-4"
+            />
+            <p
+              style="
+                font-size: 28px;
+                font-weight: 700;
+                line-height: 40px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #005fa5;
+              "
+            >
+              GOALS OF THE GLOBAL JUSTICE,<br />
+              LOVE & PEACE SUMMIT
+            </p>
+          </li>
+          <li>
+            <img loading="eager" src="assets/UIComponents/images/partners/7.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GLORIOUS
+            </h6>
+            <p>
+              To make this event as the start of a <br />
+              GLORIOUS chapter in world history
+            </p>
+          </li>
+        </ul>
+      </div>
 
-          <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/4.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GENUINE
-                </h6>
-                <p>
-                  To be GENUINE in our commitments <br />
-                  towards Justice, Love & Peace
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/5.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GRATEFUL
-                </h6>
-                <p>
-                  To spread the message that we should be <br />
-                  GRATEFUL for the blessings, & bounties <br />
-                  in this world
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/6.png" alt="" />
-                <h6
-                  class="w-50 m-auto"
-                  style="
-                    font-size: 20px;
-                    font-weight: 700;
-                    line-height: 25.76px;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #00508c;
-                    border-bottom: 1px solid #4a4a49;
-                  "
-                >
-                  GRACEFUL
-                </h6>
-                <p>
-                  To propagate a life, where we <br />
-                  are GRACEFUL in all our affairs
-                </p>
-              </li>
-            </ul>
-          </div> -->
+      <div class="col-md">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/4.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GENUINE
+            </h6>
+            <p>
+              To be GENUINE in our commitments <br />
+              towards Justice, Love & Peace
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/5.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GRATEFUL
+            </h6>
+            <p>
+              To spread the message that we should be <br />
+              GRATEFUL for the blessings, & bounties <br />
+              in this world
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/6.png" alt="" />
+            <h6
+              class="w-50 m-auto"
+              style="
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 25.76px;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #00508c;
+                border-bottom: 1px solid #4a4a49;
+              "
+            >
+              GRACEFUL
+            </h6>
+            <p>
+              To propagate a life, where we <br />
+              are GRACEFUL in all our affairs
+            </p>
+          </li>
+        </ul>
+      </div> -->
         </div>
       </div>
-    </section>
-  </section>
+    </div>
+  </div>
 
-  <section class="section section7 p-lg-5 h-auto" id="ts6">
+  <div class="section section7 p-lg-5 h-auto" id="ts6">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-4 p-lg-5">
@@ -1890,22 +1879,22 @@
                     <h3 class="fw-bold">{{ event.title }}</h3>
                   </li>
                   <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
-                    <h3>Opening Session</h3>
-                  </li>
-                  <li
-                    class="event"
-                    id="date"
-                    data-date="11:00 AM - 12:30 PM"
-                  >
-                    <h3>Session Theme 1 - JUSTICE</h3>
-                  </li>
+                <h3>Opening Session</h3>
+              </li>
+              <li
+                class="event"
+                id="date"
+                data-date="11:00 AM - 12:30 PM"
+              >
+                <h3>Session Theme 1 - JUSTICE</h3>
+              </li>
 
-                  <li class="event" data-date="12:30 PM - 2:30 PM">
-                    <h3>Launch & Networking</h3>
-                  </li>
-                  <li class="event" data-date="2:30 PM - 4:00 PM">
-                    <h3>Session Theme 2 - LOVE</h3>
-                  </li> -->
+              <li class="event" data-date="12:30 PM - 2:30 PM">
+                <h3>Launch & Networking</h3>
+              </li>
+              <li class="event" data-date="2:30 PM - 4:00 PM">
+                <h3>Session Theme 2 - LOVE</h3>
+              </li> -->
                 </ul>
               </div>
 
@@ -1920,8 +1909,8 @@
         </div>
       </div>
     </div>
-  </section>
-  <section class="section" id="ts7">
+  </div>
+  <div class="section" id="ts7">
     <div class="section7">
       <div class="container-fluid h-100">
         <div class="row h-100">
@@ -1964,10 +1953,10 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="section partner" id="ts8">
-    <section class="section7">
+  <div class="section partner" id="ts8">
+    <div class="section7">
       <div class="container-fluid h-100">
         <div class="row align-items-center justify-content-center h-100">
           <div class="col-md-12 p-0">
@@ -1979,106 +1968,106 @@
             />
           </div>
           <!-- <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/1.png" alt="" />
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/1.png" alt="" />
 
-                <p>
-                  or Delegates to ﬁll short proﬁle while <br />
-                  registering & Peace Ambassadors All <br />
-                  Global Justice, Love
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/2.png" alt="" />
+            <p>
+              or Delegates to ﬁll short proﬁle while <br />
+              registering & Peace Ambassadors All <br />
+              Global Justice, Love
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/2.png" alt="" />
 
-                <p>
-                  This ensures every Delegate can see other <br />
-                  Delegates proﬁle but without Contact <br />
-                  Details
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/3.png" alt="" />
+            <p>
+              This ensures every Delegate can see other <br />
+              Delegates proﬁle but without Contact <br />
+              Details
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/3.png" alt="" />
 
-                <p>
-                  There is a STRUCTURED NETWORKING <br />
-                  room with 110 tables, 55 are pre- <br />booked & 55 are free
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5">
-            <ul class="p-0 text-center list-unstyled">
-              <li>
-                <img loading="eager"
-                  src="assets/UIComponents/images/7.png"
-                  alt=""
-                  class="col-4"
-                />
-                <p
-                  style="
-                    font-size: 28px;
-                    font-weight: 700;
-                    line-height: 40px;
-                    text-align: center;
-                    text-underline-position: from-font;
-                    text-decoration-skip-ink: none;
-                    color: #005fa5;
-                  "
-                >
-                  UNIQUE POINTS OF STRUCTURED <br />
-                  NETWORKING FORMAT
-                </p>
-              </li>
-              <li>
-                <img loading="eager" src="assets/UIComponents/images/partners/7.png" alt="" />
+            <p>
+              There is a STRUCTURED NETWORKING <br />
+              room with 110 tables, 55 are pre- <br />booked & 55 are free
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <ul class="p-0 text-center list-unstyled">
+          <li>
+            <img loading="eager"
+              src="assets/UIComponents/images/7.png"
+              alt=""
+              class="col-4"
+            />
+            <p
+              style="
+                font-size: 28px;
+                font-weight: 700;
+                line-height: 40px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                color: #005fa5;
+              "
+            >
+              UNIQUE POINTS OF STRUCTURED <br />
+              NETWORKING FORMAT
+            </p>
+          </li>
+          <li>
+            <img loading="eager" src="assets/UIComponents/images/partners/7.png" alt="" />
 
-                <p>
-                  “Greet, seat, meet, & hear <br />
-                  the others heart beat”
-                </p>
-              </li>
-            </ul>
-          </div>
+            <p>
+              “Greet, seat, meet, & hear <br />
+              the others heart beat”
+            </p>
+          </li>
+        </ul>
+      </div>
 
-          <div class="col-md">
-            <ul class="p-0 text-center list-unstyled">
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/4.png" alt="" />
+      <div class="col-md">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/4.png" alt="" />
 
-                <p>
-                  If you wish to meet particular Delegates just <br />
-                  send them a private message & book your <br />
-                  table with the time period
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/5.png" alt="" />
+            <p>
+              If you wish to meet particular Delegates just <br />
+              send them a private message & book your <br />
+              table with the time period
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/5.png" alt="" />
 
-                <p>
-                  Unlike other events, here you can have a <br />
-                  more in-depth, & fulﬁlling conversation <br />
-                  with those you want to meet
-                </p>
-              </li>
-              <li class="my-5">
-                <img loading="eager" src="assets/UIComponents/images/partners/6.png" alt="" />
+            <p>
+              Unlike other events, here you can have a <br />
+              more in-depth, & fulﬁlling conversation <br />
+              with those you want to meet
+            </p>
+          </li>
+          <li class="my-5">
+            <img loading="eager" src="assets/UIComponents/images/partners/6.png" alt="" />
 
-                <p>
-                  Hence, you leave the event <br />
-                  with better networks, & <br />
-                  connects
-                </p>
-              </li>
-            </ul>
-          </div> -->
+            <p>
+              Hence, you leave the event <br />
+              with better networks, & <br />
+              connects
+            </p>
+          </li>
+        </ul>
+      </div> -->
         </div>
       </div>
-    </section>
-  </section>
+    </div>
+  </div>
 
-  <section class="section section8 p-lg-5 " id="ts9">
+  <div class="section section8 p-lg-5" id="ts9">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 py-4 position-relative">
@@ -2118,5 +2107,5 @@
         </div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</div>
