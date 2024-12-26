@@ -405,7 +405,7 @@ header .nav-item .nav-link.active {
 /* index section 8 */
 
 .index .section8 {
-  background-image: url(../images/venueBg.png);;
+  background-image: url(../images/venueBg.png);
   background-color: var(--color1);
 }
 
@@ -766,7 +766,6 @@ header .nav-item .nav-link.active {
 }
 
 /* delegate-form css */
-
 
 .delegate-form h2 {
   font-size: 50px;
@@ -1597,12 +1596,15 @@ header .nav-item .nav-link.active {
   color: #fff;
 }
 
-.confirmation tbody, .confirmation td, .confirmation tr{
+.confirmation tbody,
+.confirmation td,
+.confirmation tr {
   border-style: dashed;
   border-color: var(--color1);
 }
 
-.confirmation thead tr, .confirmation thead tr th{
+.confirmation thead tr,
+.confirmation thead tr th {
   border: none;
 }
 
@@ -1657,24 +1659,23 @@ header .nav-item .nav-link.active {
   font-size: 26px !important;
 }
 
-.indexSec2 hr{
-  border-color: #005A93;
+.indexSec2 hr {
+  border-color: #005a93;
   border-style: dashed;
   margin: 0;
   border-width: 1.2px;
 }
 
-
 .preview {
   font-size: 15px;
 }
 
-.preview img{
+.preview img {
   width: 100px;
   height: 100px;
 }
 
-.refLabel{
+.refLabel {
   font-size: 16px !important;
   /* color: #005A93B2 !important; */
   font-weight: 500 !important;
@@ -1682,5 +1683,49 @@ header .nav-item .nav-link.active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  
+}
+
+.poen .card {
+  background: var(--gradient3);
+  height: 100%;
+}
+.poen .card .card-body h5 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25.76px;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--color3);
+}
+.poen .card .card-body p {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #005a93;
+  margin: 20px 0;
+}
+
+.poen .card .card-footer{
+  background-color: transparent;
+  border: none;
+}
+.poen .card .card-footer p{
+font-size: 14px;
+font-weight: 500;
+line-height: 16px;
+text-align: center !important;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+color: var(--color3);
+margin: 0;
+background: var(--gradient3);
+border-top-left-radius: 10px;
+border-bottom-right-radius: 10px;
+}
+
+.poen .card .card-footer p span{
+  color: var(--color6);
 }
