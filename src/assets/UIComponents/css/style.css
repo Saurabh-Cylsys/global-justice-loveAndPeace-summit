@@ -1698,9 +1698,9 @@ header .nav-item .nav-link.active {
   color: var(--color3);
 }
 .poen .card .card-body p {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 15px;
+  line-height: 18px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -1708,24 +1708,72 @@ header .nav-item .nav-link.active {
   margin: 20px 0;
 }
 
-.poen .card .card-footer{
+.poen .card .card-footer {
   background-color: transparent;
   border: none;
 }
-.poen .card .card-footer p{
-font-size: 14px;
-font-weight: 500;
-line-height: 16px;
-text-align: center !important;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
-color: var(--color3);
-margin: 0;
-background: var(--gradient3);
-border-top-left-radius: 10px;
-border-bottom-right-radius: 10px;
+.poen .card .card-footer p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center !important;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--color3);
+  margin: 0;
+  background: var(--gradient3);
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.poen .card .card-footer p span{
+.poen .card .card-footer p span {
   color: var(--color6);
+}
+
+.speakersProfile .modal-content {
+  border-radius: 10px;
+}
+.speakersProfile .modal-content .modal-header,
+.speakersProfile .modal-content .modal-body {
+  background: var(--gradient3);
+}
+
+.speakersProfile .modal-content .modal-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30.91px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: var(--color1);
+}
+
+.speakersProfile .modal-content .modal-header p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 23.18px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+  margin: 0;
+}
+
+.speakersProfile .modal-content .modal-header label {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20.61px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #00000080;
+}
+
+.speakersProfile .modal-content .modal-body p {
+  /* font-size: 18px; */
+  font-weight: 500;
+  line-height: 23.18px;
+  text-align: justify;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
