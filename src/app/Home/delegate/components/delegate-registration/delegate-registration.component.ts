@@ -135,7 +135,7 @@ export class DelegateRegistrationComponent {
       profession_1: ['', [Validators.required]],// need 
       profession_2: [''],// need 
       website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
-      organization_name: [null],// need 
+      organization_name: [''],// need 
       address: ['', [Validators.required]],
       country: ['', [Validators.required]],
       state: [''],
