@@ -1698,9 +1698,9 @@ header .nav-item .nav-link.active {
   color: var(--color3);
 }
 .poen .card .card-body p {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 15px;
+  line-height: 18px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
