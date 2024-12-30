@@ -111,13 +111,37 @@
                       <li>
                         <div class="d-flex border-bottom">
                           <div class="flex-grow-1 ms-3">
+                            <h3>Helpline </h3>
+                            <p>
+                              <img
+                                src="assets/UIComponents/images/contact-us/phone-call.svg"
+                                alt="assets/UIComponents/images/contact-us/phone-call.svg"
+                              />
+                              <a
+                                href="tel:+971543257125"
+                                style="text-decoration: none; color: #fff"
+                                >+971 54 325 7125 </a
+                              >
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex border-bottom">
+                          <div class="flex-grow-1 ms-3">
                             <h3>Secretariat: (All Queries)</h3>
                             <p>
                               <img
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Nikunj Chirde +91 9324064978 (INDIA)
+
+                              Nikunj Chirde
+                              <a
+                                href="tel:+919324064978"
+                                style="text-decoration: none; color: #fff"
+                                >+91 9324064978 </a
+                              >(INDIA)
                             </p>
                           </div>
                         </div>
@@ -131,7 +155,11 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Taiyzun S  +91 9820000882 (INDIA)
+                              Taiyzun S <a
+                              href="tel:+919820000882"
+                              style="text-decoration: none; color: #fff"
+                              >+91 9820000882 </a
+                            >  (INDIA)
                             </p>
                           </div>
                         </div>
@@ -145,7 +173,10 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Rajesh Abraham + 65 97781279 (SINGAPORE)
+                              Rajesh Abraham <a
+                              href="tel:+6597781279"
+                              style="text-decoration: none; color: #fff"
+                              >+ 65 97781279</a>  (SINGAPORE)
                             </p>
                           </div>
                         </div>
@@ -162,7 +193,10 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Farhat +91 9820093869 (INDIA)
+                              Farhat <a
+                              href="tel:+919820093869"
+                              style="text-decoration: none; color: #fff"
+                              >+91 9820093869</a> (INDIA)
                             </p>
                           </div>
                         </div>
@@ -176,7 +210,10 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Prajeep MC + 971 585576540 (UAE)
+                              Prajeep MC <a
+                              href="tel:+971585576540"
+                              style="text-decoration: none; color: #fff"
+                              >+ 971 585576540</a> (UAE)
                             </p>
                           </div>
                         </div>
@@ -190,7 +227,10 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Jason Temasfieldt +36 703591816 (HUNGARY)
+                              Jason Temasfieldt <a
+                              href="tel:+36703591816"
+                              style="text-decoration: none; color: #fff"
+                              >+36 703591816</a> (HUNGARY)
                             </p>
                           </div>
                         </div>
@@ -204,7 +244,10 @@
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
-                              Bindu Nair +971 508722803 (UAE)
+                              Bindu Nair <a
+                              href="tel:+971508722803"
+                              style="text-decoration: none; color: #fff"
+                              >+971 508722803</a> (UAE)
                             </p>
                           </div>
                         </div>
@@ -235,9 +278,8 @@
                 </p>
                 <p class="text-center" *ngIf="isMobileView">
                   We are here to help and answer any questions that you might
-                  have.
-                  Feel free to share your queries here. Look forward to hearing
-                  from you.
+                  have. Feel free to share your queries here. Look forward to
+                  hearing from you.
                 </p>
               </div>
               <div class="mb-4 col-md-4">
@@ -370,11 +412,10 @@
                     (keydown)="onMobileKeyDown($event, mobile_number)"
                     (keypress)="keyPressNumbers($event, mobile_number)"
                   ></ngx-intl-tel-input>
-                  <small class="text-danger" *ngIf="mobile_numberVal"
-                    >
-                    (Country code + Mobile number) will be 7 to 15 digits based on country.
-                   </small
-                  >
+                  <small class="text-danger" *ngIf="mobile_numberVal">
+                    (Country code + Mobile number) will be 7 to 15 digits based
+                    on country.
+                  </small>
                   <!-- <input
                     type="tel"
                     class="form-control"
