@@ -70,6 +70,8 @@ export class DelegateRegistrationComponent {
   selectedCountryISO: any;
   formattedDate: string = '';
   referralCode:any='';
+  conferenceInterest:any
+  conferenceInterestArr:any
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -136,7 +138,7 @@ export class DelegateRegistrationComponent {
       profession_2: [''],// need 
       website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
       organization_name: [''],// need 
-      address: ['', [Validators.required]],
+      address: [''],
       country: ['', [Validators.required]],
       state: [''],
       city: ['', [Validators.required]],
@@ -146,7 +148,7 @@ export class DelegateRegistrationComponent {
       // attend_summit: ['0', [Validators.required]],
       reference_no: [this.referralCode?this.referralCode:''],// need 
       attendee_purpose: ['0', [Validators.required]],
-      conference_lever_interest: ['0', [Validators.required]],
+      conference_lever_interest: ['', [Validators.required]],
       created_by: "Admin",
       status: ['0'],
     });
@@ -193,6 +195,16 @@ console.log(indiaCodeObject);
 //       console.log("error", err);
 //     });
 //   }
+
+attendeeSummit(attendee:any){
+  debugger
+  this.conferenceInterestArr.push(attendee)
+  console.log(this.conferenceInterestArr);
+  
+  this.registrationForm.patchValue({
+    conference_lever_interest: this.conferenceInterestArr
+  })
+}
 
   changeCountry(e: any) {
     
