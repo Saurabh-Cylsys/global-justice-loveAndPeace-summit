@@ -206,6 +206,9 @@
   /* .contact-info{
     height: 110%;
   } */
+  .helpline {
+    font-size: 18px !important;
+  }
 
   .count {
     width: 25px;
@@ -247,6 +250,8 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+
 }
 
 @media (max-width: 375px) {
