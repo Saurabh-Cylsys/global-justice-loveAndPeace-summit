@@ -750,7 +750,7 @@
             </div>
             <li>
               <button
-                [disabled]="!submitted"
+              [disabled]="!submitted"
                 class="btn btn-success"
                 (click)="openPopup()"
               >
@@ -984,6 +984,10 @@
         </div>
       </div>
     </div>
+    <!-- <div class="col-12 text-center qr-code-section" style="margin: -128px 22px 9px 55px;" *ngIf="qrCodeData">
+      <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
+ 
+  </div> -->
   </div>
 </div>
 
@@ -1094,7 +1098,8 @@
                   "
                 />
               </div>
-            </td>
+          
+            </td>          
           </tr>
         </table>
       </ng-template>

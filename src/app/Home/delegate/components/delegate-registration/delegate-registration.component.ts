@@ -70,6 +70,13 @@ export class DelegateRegistrationComponent {
   selectedCountryISO: any;
   formattedDate: string = '';
   referralCode:any='';
+  conferenceInterest:any
+  conferenceInterestArr:any
+  interests = [
+    { value: 'Justice', label: 'Justice' },
+    { value: 'Love', label: 'Love' },
+    { value: 'Peace', label: 'Peace' }
+  ];
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -121,7 +128,7 @@ export class DelegateRegistrationComponent {
 
   createForm(){
     this.registrationForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
+      title: [''],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
       dob: ['', [Validators.required]],
@@ -136,7 +143,7 @@ export class DelegateRegistrationComponent {
       profession_2: [''],// need 
       website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
       organization_name: [''],// need 
-      address: ['', [Validators.required]],
+      address: [''],
       country: ['', [Validators.required]],
       state: [''],
       city: ['', [Validators.required]],
@@ -146,7 +153,9 @@ export class DelegateRegistrationComponent {
       // attend_summit: ['0', [Validators.required]],
       reference_no: [this.referralCode?this.referralCode:''],// need 
       attendee_purpose: ['0', [Validators.required]],
-      conference_lever_interest: ['0', [Validators.required]],
+      conference_lever_interest: ['', [Validators.required]], // Initialize as empty array
+      // conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
+
       created_by: "Admin",
       status: ['0'],
     });
@@ -159,6 +168,21 @@ export class DelegateRegistrationComponent {
 //       console.log("error", err);
 //     });
 //   }
+
+onCheckboxChange(event: any) {
+  const conferenceLeverInterest = this.registrationForm.get('conference_lever_interest');
+  if (conferenceLeverInterest) {
+    const currentValues = conferenceLeverInterest.value || [];
+    if (event.target.checked) {
+      // Add the value if checked
+      conferenceLeverInterest.setValue([...currentValues, event.target.value]);
+    } else {
+      // Remove the value if unchecked
+      conferenceLeverInterest.setValue(currentValues.filter((v: string) => v !== event.target.value));
+    }
+    conferenceLeverInterest.markAsTouched(); // Mark control as touched
+  }
+}
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
       console.log("code", res.data);
@@ -193,6 +217,8 @@ console.log(indiaCodeObject);
 //       console.log("error", err);
 //     });
 //   }
+
+
 
   changeCountry(e: any) {
     

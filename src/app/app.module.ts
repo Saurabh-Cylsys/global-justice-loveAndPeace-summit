@@ -21,6 +21,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { Constants } from './config/constant';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 // import { HeaderComponent } from './shared/components/header/header.component';
@@ -42,7 +43,9 @@ import { SharedModule } from './shared/shared.module';
     ToastrModule.forRoot(),
     NgxUiLoaderModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule,SharedModule
+    FormsModule, ReactiveFormsModule,SharedModule,
+    QRCodeModule
+
 
   ],
 
