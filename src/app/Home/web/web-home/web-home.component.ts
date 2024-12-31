@@ -75,7 +75,7 @@ export class WebHomeComponent implements OnInit, OnDestroy{
       "S_No": 8,
       "Name": "Lokesh Ji Muni Acharya, His Holiness",
       "Country": "INDIA",
-      "Credentials": "Jain religion spiritual leader"
+      "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
     },
     {
       "S_No": 9,
@@ -109,64 +109,79 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     },
     {
       "S_No": 14,
+      "Name": "Oheneba Nana Kwame Obeng 2, His Royal Highness",
+      "Country": "GHANA",
+      "Credentials": "Royalty, The Royal House of Sefwi Obeng-Mim"
+    },
+    {
+      "S_No": 15,
       "Name": "Ouided Bouchamaoui",
       "Country": "TUNISIA",
       "Credentials": "Nobel Peace Laureate 2015"
     },
     {
-      "S_No": 15,
+      "S_No": 16,
       "Name": "Paco Soleil",
       "Country": "SPAIN",
       "Credentials": "Artist, Peace Painter (live performance)"
     },
     {
-      "S_No": 16,
+      "S_No": 17,
       "Name": "P V Sindhu",
       "Country": "INDIA",
       "Credentials": "Badminton World Champion (2019) (final confirmation based on tournament schedule)"
     },
     {
-      "S_No": 17,
+      "S_No": 18,
       "Name": "Rina Telesphore, Dr, His Royal Highness, The Prince",
       "Country": "MADAGASCAR",
       "Credentials": "Royalty, Pastor, Philanthropist"
     },
     {
-      "S_No": 18,
+      "S_No": 19,
       "Name": "Romona Murad Dr., Her Royal Highness Princess Dato Seri",
       "Country": "MALAYSIA",
       "Credentials": "Royalty, Philanthropist, Peace Activist"
     },
     {
-      "S_No": 19,
+      "S_No": 20,
       "Name": "Rui Duarte de Barros, His Excellency",
       "Country": "GUINEA BISSAU",
       "Credentials": "Prime Minister"
     },
     {
-      "S_No": 20,
+      "S_No": 21,
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
     },
     {
-      "S_No": 21,
+      "S_No": 22,
       "Name": "Tehemton  Burjor Mirza, Dastur",
       "Country": "INDIA",
       "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
     },
     {
-      "S_No": 22,
+      "S_No": 23,
       "Name": "Venkatramani R, Honorable",
       "Country": "INDIA",
       "Credentials": "The Attorney General of India"
     },
     {
-      "S_No": 23,
+      "S_No": 24,
       "Name": "Zayed Khan",
       "Country": "INDIA",
       "Credentials": "Producer & Actor"
     }
+  ]
+
+  joinOnline: any[] = [
+    {
+      "S_No": 1,
+      "Name": "Jose Manuel Ramos Horta, His Excellency",
+      "Country": "EAST TIMOR",
+      "Credentials": "President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)"
+    },
   ]
   
   

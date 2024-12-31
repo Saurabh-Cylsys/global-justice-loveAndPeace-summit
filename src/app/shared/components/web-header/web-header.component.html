@@ -28,29 +28,89 @@
           >Home</a
         >
       </li>
-      <li>
+      <li
+      >
         <a
           [routerLink]="['/the-summit']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >The Summit</a
         >
+        <div class="dropdown">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of summitLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li>
+      <li
+      >
         <a
           [routerLink]="['/partners']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Partners</a
         >
+        <div class="dropdown">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of partnersLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li>
+      <li
+      >
         <a
           [routerLink]="['/awards']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Awards</a
         >
+        <div class="dropdown w-75">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of awardsLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
         <a
@@ -59,6 +119,25 @@
           data-bs-dismiss="offcanvas"
           >I-am-Peacekeeper Movement</a
         >
+        <div class="dropdown ">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of peacekeeperLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
         <a
@@ -67,6 +146,25 @@
           data-bs-dismiss="offcanvas"
           >Download Center</a
         >
+        <div class="dropdown">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of downloadLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
         <a
@@ -76,6 +174,25 @@
         >
           Chairman’s Corner</a
         >
+        <div class="dropdown">
+          <button
+            class="btn text-white dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ></button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let link of chairmanLinks">
+              <a
+                class="text-dark"
+                [routerLink]="['/the-summit']"
+                [fragment]="link.fragment || undefined"
+              >
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       <li>
         <a
@@ -85,10 +202,13 @@
           >Contact Us</a
         >
       </li>
-      <li>
+      <li style="display: flex">
+        <a type="btn" class="btn btn-success" (click)="downloadPDF()"
+          >Download Brochure</a
+        >
         <a
           type="btn"
-          class="btn btn-success"
+          class="btn btn-success ms-2"
           [routerLink]="['/delegate-registration']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
@@ -121,7 +241,7 @@
           />
         </a>
       </div>
-      <div class="col-md" >
+      <div class="col-md">
         <ul
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
@@ -154,7 +274,6 @@
                 Partners
               </button>
               <div class="hover-dropdown-content">
-                
                 <a
                   *ngFor="let link of partnersLinks"
                   [routerLink]="['/partners']"
@@ -166,8 +285,6 @@
             </div>
           </li>
           <li class="nav-item">
-            
-
             <div class="hover-dropdown" routerLinkActive="active">
               <button
                 class="dropbtn"
@@ -196,7 +313,6 @@
                 I-am-Peacekeeper Movement
               </button>
               <div class="hover-dropdown-content">
-                
                 <a
                   *ngFor="let link of peacekeeperLinks"
                   [routerLink]="['/world-peacekeepers-movement']"
@@ -268,7 +384,11 @@
           <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
-          <select name="" id="" class="form-select w-auto bg-transparent text-white">
+          <select
+            name=""
+            id=""
+            class="form-select w-auto bg-transparent text-white"
+          >
             <option value="">Eng</option>
           </select>
         </form>

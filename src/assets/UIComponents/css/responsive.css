@@ -250,7 +250,13 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-
+.organiserUL ul{
+  font-size: 12px;
+  margin: 0 0 15px;
+}
+.offcanvas ul li, .offcanvas ul li a, .percent28 ul li{
+  font-size: 12px;
+}
 
 }
 
@@ -266,6 +272,7 @@
     width: 80px;
     height: 80px;
   }
+  
 }
 
 @media (max-width: 320px) {
