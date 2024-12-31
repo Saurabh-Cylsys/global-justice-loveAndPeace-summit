@@ -1781,3 +1781,11 @@ header .nav-item .nav-link.active {
 .helpline {
   font-size: 20px !important;
 }
+
+.confirmation table thead tr th:nth-child(1){
+  width: 10px;
+}
+
+.confirmation table thead tr th:nth-child(2){
+  width: 40rem;
+}
