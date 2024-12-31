@@ -46,12 +46,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit{
   selectedCountryISO: any;
 peacekeeperData:any = [];
 peacekeeperBadgeId:any
+peacekeeperBadgeResponse:any
 isCheckEmail:boolean=true;
 previewUrl: string | null = null; // Add this to your component
 
 isMobileView = false;
-qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
-
+// qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
+qrCodeData: string | null = null;
+qrCodeImg:any
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -267,16 +269,21 @@ qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
 
   }
   openPopup() {
-    // this.peacekeeperBadgeId = 66
+    // this.peacekeeperBadgeId = 81
     if(this.peacekeeperBadgeId){
       let id = this.peacekeeperBadgeId
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
       this.peacekeeperData = res.data;
+      this.qrCodeImg = res.QR_code
       this.fileUrl =  this.peacekeeperData.file_urls[0]
+      console.log("modal peacekeeperData",res.QR_code);
+      
+      // const qrCodeValue = this.peacekeeperData.QR_code;
+      // this.qrCodeData = qrCodeValue ? qrCodeValue: null;
+      // console.log(this.qrCodeData, 'QRcode');
         
     });
   }
-  console.log("modal peacekeeperData",this.peacekeeperData);
     
   
     this.showPopup = true;
@@ -402,9 +409,10 @@ qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
         this.submitted = true;
         this.ngxService.stop();
       console.log("response", response);
-      const qrCodeValue = response['Data'].url;
-      this.qrCodeData = qrCodeValue ? qrCodeValue: null;
-      console.log(this.qrCodeData, 'QRcode');
+      // this.peacekeeperBadgeResponse = response.QR_code
+      this.peacekeeperBadgeResponse = 'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png'
+     
+ 
   
       this.peacekeeperBadgeId = response.peacekeeper_id
       this.SharedService.ToastPopup('', response.message, 'success')

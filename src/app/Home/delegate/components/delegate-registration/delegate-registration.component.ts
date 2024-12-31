@@ -153,8 +153,7 @@ export class DelegateRegistrationComponent {
       // attend_summit: ['0', [Validators.required]],
       reference_no: [this.referralCode?this.referralCode:''],// need 
       attendee_purpose: ['0', [Validators.required]],
-      conference_lever_interest: ['', [Validators.required]], // Initialize as empty array
-      // conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
+      conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
 
       created_by: "Admin",
       status: ['0'],
