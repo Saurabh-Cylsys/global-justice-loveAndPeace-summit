@@ -984,10 +984,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-12 text-center qr-code-section" style="margin: -128px 22px 9px 55px;" *ngIf="qrCodeData">
-      <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'"></qrcode>
  
-  </div> -->
   </div>
 </div>
 
@@ -1006,11 +1003,200 @@
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
       <ng-template #contentTemplate>
+<!-- 
+        <table
+        width="100%"
+        border="0"
+        cellspacing="0"
+        cellpadding="0"
+        align="center"
+        style="
+          font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        "
+      >
+        <tbody>
+          <tr>
+            <td>
+              <table
+                width="610"
+                border="0"
+                cellspacing="0"
+                cellpadding="5"
+                align="center"
+                style="
+                  background-image: url(assets/UIComponents/images/newPeacekeeperBatch.png);
+                  background-size: 100% 100%;
+                  height: 40rem;
+                  position: relative;
+                "
+              >
+                <tbody>
+                  <tr>
+                    <td>
+                      <table
+                        style="
+                          padding: 0 50px;
+                          position: absolute;
+                          top: 0;
+                          width: 100%;
+                          left: 0;
+                        "
+                      >
+                        <tbody>
+                          <tr>
+                            <td>
+                              <table
+                                width="100%"
+                                border="0"
+                                cellspacing="0"
+                                cellpadding="0"
+                              >
+                                <tbody>
+                                  <tr>
+                                    <td
+                                      style="
+                                        font-size: 18px;
+                                        line-height: 25px;
+                                        font-family: Gotham, 'Helvetica Neue',
+                                          Helvetica, Arial, sans-serif;
+                                      "
+                                    >
+                                      <h4
+                                        class="fw-bold"
+                                        style="
+                                          margin: 0px;
+                                          font-size: 14px;
+                                          text-transform: uppercase;
+                                        "
+                                      >
+                                      {{
+                                         peacekeeperData.Name 
+                                      }}                                      </h4>
+                                      <hr
+                                        style="
+                                          margin: 0px;
+                                          color: #707070;
+                                          opacity: 0.3;
+                                        "
+                                      />
+                                      <div style="font-size: 13px">
+                                        <label for="" style="color: #17598e"
+                                          ><b>Country :</b></label
+                                        ><span
+                                          style="outline: none; border: none"
+                                        >
+                                          {{peacekeeperData.Country}}</span
+                                        >
+                                      </div>
+                                      <div
+                                        style="font-size: 13px"
+                                        class="ng-star-inserted" *ngIf="isCheckEmail"
+                                      >
+                                        <label for="" style="color: #17598e"
+                                          ><b>Mobile :</b></label
+                                        ><span
+                                          style="outline: none; border: none"
+                                        >
+                                          {{peacekeeperData.Phone}}</span
+                                        >
+                                      </div>
+                              
+                                      <div
+                                        style="font-size: 13px"
+                                        class="ng-star-inserted"*ngIf="isCheckEmail"
+                                      >
+                                        <label for="" style="color: #17598e"
+                                          ><b>E-mail :</b></label
+                                        ><span
+                                          style="outline: none; border: none"
+                                        >
+                                          {{peacekeeperData.Email}}</span
+                                        >
+                                      </div>
+                            
+                                      <div style="font-size: 13px">
+                                        <label for="" style="color: #17598e"
+                                          ><b>ID No. :</b></label
+                                        ><span
+                                          style="outline: none; border: none"
+                                        >
+                                         {{peacekeeperData.ID_NO}}</span
+                                        >
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td
+                              style="
+                                border: 1px solid green;
+                                border-radius: 50%;
+                                height: 150px;
+                                width: 150px;
+                              "
+                            >
+                            <img
+                            class="pix"
+                            [src]="fileUrl"
+                            alt=""
+                            
+                          />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table
+                        style="
+                          padding: 25px 140px;
+                          position: absolute;
+                          bottom: 0;
+                          width: 100%;
+                          left: 0;
+                        "
+                      >
+                        <tbody>
+                          <tr>
+                            <td style="width: 3rem"></td>
+                            <td
+                              
+                            >
+                            <img
+                            class="pix"
+                            [src]="peacekeeperBadgeResponse"
+                            alt=""
+                            [width]="100"
+                            style="
+                                border: 1px solid green;
+                                /* border-radius: 50%; */
+                                height: 150px;
+                                width: 30px;
+                              "
+                          />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br /><br />
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
+
+
         <table class="main" style="margin: auto">
           <tr>
             <td style="position: relative">
               <img
-                src="assets/UIComponents/images/peacekeeperBatch.png"
+                src="assets/UIComponents/images/newPeacekeeperBatch.png"
                 class="w-100 cpImg"
                 alt=""
               />
@@ -1032,16 +1218,7 @@
                 <hr
                   style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
                 />
-                <!-- <div style="font-size: 13px">
-                  <label for="" style="color: #17598e"><b>DOB :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{
-                      peacekeeperData.length !== 0
-                        ? peacekeeperData.DOB
-                        : "xx/xx/xxxx"
-                    }}</span
-                  >
-                </div> -->
+               
                 <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">
@@ -1096,10 +1273,21 @@
                     border-radius: 50%;
                     background-color: #fff;
                   "
-                />
+                />    
               </div>
+              <div class="col-12 text-center qr-code-section" style="position: relative;"  >
+         <!-- <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'" style=" position: absolute;top: -127px;"></qrcode> -->
+         <img
+         class="pix"
+         [src]="qrCodeImg"
+         alt=""
+         style="
+           position: absolute;top: -127px;
+         "
+       />  
+     </div>    
           
-            </td>          
+            </td>  
           </tr>
         </table>
       </ng-template>
