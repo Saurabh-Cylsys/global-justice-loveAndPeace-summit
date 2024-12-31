@@ -48,16 +48,17 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     },
     {
       "S_No": 4,
+      "Name": "Feizi Masrour Milani, Dr.",
+      "Country": "BRAZIL",
+      "Credentials": "Elected Representative, National Spiritual Assembly of the Bahais of Brazil"
+    },
+    {
+      "S_No": 5,
       "Name": "Habil Khorakiwala, Dr.",
       "Country": "INDIA",
       "Credentials": "Industrialist : Chairman, Wockhardt Group"
     },
-    {
-      "S_No": 5,
-      "Name": "Heidi Masrour Milani, Dr.",
-      "Country": "BRAZIL ",
-      "Credentials": "Elected Representative, National Spiritual Assembly of the Bahais of Brazil"
-    },
+    
     {
       "S_No": 6,
       "Name": "Kailash Satyarthi",
@@ -159,6 +160,12 @@ export class WebHomeComponent implements OnInit, OnDestroy{
       "Name": "Venkatramani R, Honorable",
       "Country": "INDIA",
       "Credentials": "The Attorney General of India"
+    },
+    {
+      "S_No": 23,
+      "Name": "Zayed Khan",
+      "Country": "INDIA",
+      "Credentials": "Producer & Actor"
     }
   ]
   
