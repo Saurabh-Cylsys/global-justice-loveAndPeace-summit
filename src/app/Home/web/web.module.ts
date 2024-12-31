@@ -34,6 +34,7 @@ import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visito
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
+import { QRCodeModule } from 'angularx-qrcode';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -67,7 +68,7 @@ import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.compo
     TermsOfUseComponent,
     VisitorTermsOnditionsComponent,
     ChairmanCornerComponent,
-  
+
     // WhoShouldAttendAndWhyComponent,
     
   ],
@@ -78,6 +79,7 @@ import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.compo
     FormsModule,
    ReactiveFormsModule, 
     NgxIntlTelInputModule ,
+    QRCodeModule,
    IntlInputPhoneModule
   ]
 })

@@ -8,7 +8,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import html2canvas from 'html2canvas';
 import int1TelInput from 'intl-tel-input';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -50,6 +50,7 @@ isCheckEmail:boolean=true;
 previewUrl: string | null = null; // Add this to your component
 
 isMobileView = false;
+qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
 
 
   changePreferredCountries() {
@@ -266,7 +267,7 @@ isMobileView = false;
 
   }
   openPopup() {
-    // this.peacekeeperBadgeId = 47
+    // this.peacekeeperBadgeId = 66
     if(this.peacekeeperBadgeId){
       let id = this.peacekeeperBadgeId
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
@@ -387,8 +388,8 @@ isMobileView = false;
     formData.append('profile_picture', this.selectedFile, this.selectedFile.name);
   }
   console.log("this.peacekeepersForm", formData);
-  console.log("window.location.origin", window.location.origin);
-  formData.append('url', window.location.origin !=='http://localhost:4200'? window.location.origin:'');
+  console.log("window.location.origin", environment.domainUrl);
+  formData.append('url', environment.domainUrl);
   
   // Show loader
   this.ngxService.start();
@@ -401,6 +402,10 @@ isMobileView = false;
         this.submitted = true;
         this.ngxService.stop();
       console.log("response", response);
+      const qrCodeValue = response['Data'].url;
+      this.qrCodeData = qrCodeValue ? qrCodeValue: null;
+      console.log(this.qrCodeData, 'QRcode');
+  
       this.peacekeeperBadgeId = response.peacekeeper_id
       this.SharedService.ToastPopup('', response.message, 'success')
       this.peacekeepersForm.reset();
@@ -507,5 +512,58 @@ checkWindowSize(): void {
 onResize(event: any): void {
   this.checkWindowSize();
 }
+
+
+downloadQRCode(parent:any) {
+  // debugger
+console.log(parent);
+
+  let parentElement = null
+
+  if (parent.elementType === "canvas") {
+    // fetches base 64 data from canvas
+    parentElement = parent.qrcElement.nativeElement
+      .querySelector("canvas")
+      .toDataURL("image/png")
+  } else if (this.qrCodeData === "img" || this.qrCodeData === "url") {
+    // fetches base 64 data from image
+    // parentElement contains the base64 encoded image src
+    // you might use to store somewhere
+    parentElement = parent.qrcElement.nativeElement.querySelector("img").src
+  } else {
+    alert("Set elementType to 'canvas', 'img' or 'url'.")
+  }
+
+  if (parentElement) {
+    // converts base 64 encoded image to blobData
+    let blobData = this.convertBase64ToBlob(parentElement)
+    // saves as image
+    const blob = new Blob([blobData], { type: "image/png" })
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement("a")
+    link.href = url
+    // name of the file
+    link.download = "qrcode"
+    link.click()
+  }
+}
+
+private convertBase64ToBlob(Base64Image: any) {
+  // SPLIT INTO TWO PARTS
+  const parts = Base64Image.split(';base64,');
+  // HOLD THE CONTENT TYPE
+  const imageType = parts[0].split(':')[1];
+  // DECODE BASE64 STRING
+  const decodedData = window.atob(parts[1]);
+  // CREATE UNIT8ARRAY OF SIZE SAME AS ROW DATA LENGTH
+  const uInt8Array = new Uint8Array(decodedData.length);
+  // INSERT ALL CHARACTER CODE INTO UINT8ARRAY
+  for (let i = 0; i < decodedData.length; ++i) {
+    uInt8Array[i] = decodedData.charCodeAt(i);
+  }
+  // RETURN BLOB IMAGE AFTER CONVERSION
+  return new Blob([uInt8Array], { type: imageType });
+}
+
 }
 
