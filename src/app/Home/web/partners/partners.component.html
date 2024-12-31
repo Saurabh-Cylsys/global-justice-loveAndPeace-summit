@@ -56,7 +56,7 @@
           loading="lazy"
           src="assets/UIComponents/images/partners/partnerBg1.svg"
           alt="Partner Background"
-          class="img-fluid"
+          class="img-fluid w-100"
         />
       </div>
 
@@ -873,10 +873,22 @@
 </section>
 <section id="p3" class="section section9 py-lg-5">
   <div class="container-fluid h-100">
-    <div class="row align-items-center justify-content-center h-100">
-      <div class="col-md">
+    <div class="row align-items-center justify-content-center h-100 percent28">
+      <div class="col-md-12" *ngIf="isMobileView">
         <ul class="p-0 text-center list-unstyled">
-          <li class="my-5">
+          <li>
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/partners/28.svg"
+              alt=""
+              class="col-7"
+            />
+          </li>
+        </ul>
+      </div>
+      <div class="col-md col-6">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/1svg.svg"
@@ -884,7 +896,7 @@
             />
             <p>7 Peace Cafees</p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/2svg.svg"
@@ -897,7 +909,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5" *ngIf="!isMobileView">
         <ul class="p-0 text-center list-unstyled">
           <li>
             <img
@@ -909,10 +921,9 @@
           </li>
         </ul>
       </div>
-
-      <div class="col-md">
+      <div class="col-md col-6">
         <ul class="p-0 text-center list-unstyled">
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/3svg.svg"
@@ -920,7 +931,7 @@
             />
             <p>7 Peace Symbols Sculpture</p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/4svg.svg"
@@ -936,10 +947,33 @@
     </div>
   </div>
   <div class="container-fluid h-100 mt-5 border-top">
-    <div class="row align-items-center justify-content-center h-100">
-      <div class="col-md">
+    <div class="row align-items-center justify-content-center h-100 percent28">
+      <div class="col-md-5" *ngIf="isMobileView">
         <ul class="p-0 text-center list-unstyled">
-          <li class="my-5">
+          <li>
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/partners/2.8.svg"
+              alt=""
+              class="col-6"
+            />
+          </li>
+          <li class="my-lg-5" *ngIf="!isMobileView">
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/partners/7.png"
+              alt=""
+            />
+            <p>
+              TRAINING YOUTH FOR <br />
+              HIGHER SKILLS
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md col-6">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/1.png"
@@ -950,7 +984,7 @@
               DEVELOPMENT
             </p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/2.png"
@@ -961,7 +995,7 @@
               GIRL CHILD
             </p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/3.png"
@@ -974,7 +1008,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-5" *ngIf="!isMobileView">
         <ul class="p-0 text-center list-unstyled">
           <li>
             <img
@@ -997,10 +1031,9 @@
           </li>
         </ul>
       </div>
-
-      <div class="col-md">
+      <div class="col-md col-6">
         <ul class="p-0 text-center list-unstyled">
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/4.png"
@@ -1011,7 +1044,7 @@
               ON HEALTH AND NUTRITION
             </p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/5.png"
@@ -1022,7 +1055,7 @@
               DEVELOPING COUNTRIES
             </p>
           </li>
-          <li class="my-5">
+          <li class="my-lg-5">
             <img
               loading="lazy"
               src="assets/UIComponents/images/partners/6.png"
@@ -1031,6 +1064,21 @@
             <p>
               IMPROVING LITERACY BY <br />
               CREATING LIBRARIES
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5" *ngIf="isMobileView">
+        <ul class="p-0 text-center list-unstyled">
+          <li class="my-5">
+            <img
+              loading="lazy"
+              src="assets/UIComponents/images/partners/7.png"
+              alt=""
+            />
+            <p>
+              TRAINING YOUTH FOR <br />
+              HIGHER SKILLS
             </p>
           </li>
         </ul>
