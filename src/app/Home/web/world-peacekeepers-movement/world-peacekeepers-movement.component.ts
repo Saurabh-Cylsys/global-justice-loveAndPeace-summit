@@ -285,7 +285,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   }
   openPopup() {
-    this.peacekeeperBadgeId = 117
+    // this.peacekeeperBadgeId = 117
     if (this.peacekeeperBadgeId) {
       let id = this.peacekeeperBadgeId
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
