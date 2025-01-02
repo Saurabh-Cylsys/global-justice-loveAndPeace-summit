@@ -565,3 +565,7 @@
   margin-bottom: 15px;
   text-align: center;
 }
+
+.offcanvas-body ul li .dropdown .dropdown-menu{
+  width: 300px;
+}
