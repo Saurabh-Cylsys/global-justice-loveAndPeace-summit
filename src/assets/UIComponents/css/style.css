@@ -1785,3 +1785,8 @@ header .nav-item .nav-link.active {
   font-size: 20px !important;
 }
 
+
+.pix2{
+  position: absolute;
+  top: -127px;
+}
