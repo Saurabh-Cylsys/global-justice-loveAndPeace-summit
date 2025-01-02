@@ -996,7 +996,7 @@
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
       <ng-template #contentTemplate>
-<!-- 
+        <!-- 
         <table
         width="100%"
         border="0"
@@ -1184,8 +1184,7 @@
         </tbody>
       </table> -->
 
-
-        <table class="main" style="margin: auto">
+        <table class="main w-100" style="margin: auto">
           <tr>
             <td style="position: relative">
               <img
@@ -1211,7 +1210,7 @@
                 <hr
                   style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
                 />
-               
+
                 <div style="font-size: 13px">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">
@@ -1266,21 +1265,16 @@
                     border-radius: 50%;
                     background-color: #fff;
                   "
-                />    
+                />
               </div>
-              <div class="col-12 text-center qr-code-section" style="position: relative;"  >
-         <!-- <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'" style=" position: absolute;top: -127px;"></qrcode> -->
-         <img
-         class="pix"
-         [src]="qrCodeImg"
-         alt=""
-         style="
-           position: absolute;top: -127px;
-         "
-       />  
-     </div>    
-          
-            </td>  
+              <div
+                class="col-12 text-center qr-code-section"
+                style="position: relative"
+              >
+                <!-- <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'" style=" position: absolute;top: -127px;"></qrcode> -->
+                <img class="pix pix2" [src]="qrCodeImg" alt="" />
+              </div>
+            </td>
           </tr>
         </table>
       </ng-template>
