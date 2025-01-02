@@ -274,6 +274,9 @@
   .cpImg {
     height: 340px;
   }
+  .bgModal .modal-content .badgeModal{
+    font-size: 11px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -298,6 +301,9 @@
   .pix2 {
     top: -103px;
   }
+  .bgModal .modal-content .badgeModal{
+    font-size: 11px;
+    }
 }
 
 @media (max-width: 320px) {
@@ -319,4 +325,7 @@
     top: -127px;
     top: -100px;
   }
+  .bgModal .modal-content .badgeModal{
+    font-size: 10px;
+    }
 }

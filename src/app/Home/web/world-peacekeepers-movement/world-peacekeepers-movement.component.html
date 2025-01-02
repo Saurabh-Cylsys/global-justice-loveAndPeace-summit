@@ -690,15 +690,16 @@
                   <span>or</span>
                   <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
                   <input
-                    class="custom-file-input col-md-5 col-12"
-                    type="file"
-                    accept="image/jpg,image/png,image/jpeg"
-                    name="profile_picture"
-                    id="title"
-                    #fileInput
-                    (change)="onFileChange($event)"
+                  class="custom-file-input col-md-5 col-12"
+                  type="file"
+                  accept="image/jpg,image/png,image/jpeg"
+                  name="profile_picture"
+                  #fileInput
+                  (change)="onFileChange($event)"
                   />
+                  
                 </div>
+                <!-- <p *ngIf="selectedFile" class="file-name">Selected file: {{ selectedFile.name }}</p> -->
                 <p
                   style="
                     font-size: 16px;
@@ -727,7 +728,7 @@
                   type="button"
                   class="btn btn-success text-white text-center"
                   [disabled]="
-                    !mobile_numberVal && this.peacekeepersForm.invalid
+                    this.peacekeepersForm.invalid  && !mobile_numberVal && !is_selectedFile 
                   "
                 >
                   Save
@@ -749,8 +750,8 @@
               <!-- <button style="float: right;" (click)="downloadImage()">Download as Image</button> -->
             </div>
             <li>
-              <button
               [disabled]="!submitted"
+              <button
                 class="btn btn-success"
                 (click)="openPopup()"
               >
@@ -904,9 +905,9 @@
                   {{ isMobile }}
                 </span>
               </div>
-              <div>
+              <div style="width: 67%;">
                 <label for="" style="color: #17598e"><b>E-mail :</b></label>
-                <span style="outline: none; border: none">
+                <span style="outline: none; border: none;  ">
                   {{ this.peacekeepersForm.value.email_id }}
                 </span>
               </div>
@@ -1203,52 +1204,35 @@
                     text-transform: uppercase;
                   "
                 >
-                  {{
-                    peacekeeperData.length !== 0 ? peacekeeperData.Name : "Name"
-                  }}
+                  {{ peacekeeperData.Name  }}
                 </h4>
                 <hr
                   style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
                 />
 
-                <div style="font-size: 13px">
+                <div class="badgeModal">
                   <label for="" style="color: #17598e"><b>Country :</b> </label>
                   <span style="outline: none; border: none">
-                    {{
-                      peacekeeperData.length !== 0
-                        ? peacekeeperData.Country
-                        : "xxxxxxxxxx"
-                    }}</span
+                    {{peacekeeperData.Country}}</span
                   >
                 </div>
-                <div style="font-size: 13px" *ngIf="isCheckEmail">
+                <div class="badgeModal" *ngIf="isCheckEmail">
                   <label for="" style="color: #17598e"><b>Mobile :</b> </label>
                   <span style="outline: none; border: none">
-                    {{
-                      peacekeeperData.length !== 0
-                        ? peacekeeperData.Phone
-                        : "00000 00000"
-                    }}</span
+                    {{peacekeeperData.Phone }}</span
                   >
                 </div>
-                <div style="font-size: 13px" *ngIf="isCheckEmail">
+                <div class="badgeModal" *ngIf="isCheckEmail">
                   <label for="" style="color: #17598e"><b>E-mail :</b></label>
-                  <span style="outline: none; border: none">
-                    {{
-                      peacekeeperData.length !== 0
-                        ? peacekeeperData.Email
-                        : "XXXX@Xmail.com"
-                    }}</span
+                  <span style="outline: none; border: none;"
+                  >
+                    {{ peacekeeperData.Email }}</span
                   >
                 </div>
-                <div style="font-size: 13px">
+                <div class="badgeModal">
                   <label for="" style="color: #17598e"><b>ID No. :</b></label>
                   <span style="outline: none; border: none">
-                    {{
-                      peacekeeperData.length !== 0
-                        ? peacekeeperData.ID_NO
-                        : "XX000000X"
-                    }}</span
+                    {{ peacekeeperData.ID_NO}}</span
                   >
                 </div>
               </div>

@@ -1790,3 +1790,6 @@ header .nav-item .nav-link.active {
   position: absolute;
   top: -127px;
 }
+.bgModal .modal-content .badgeModal{
+  font-size: 13px;
+  }
