@@ -174,25 +174,6 @@
         >
           Chairman’s Corner</a
         >
-        <div class="dropdown">
-          <button
-            class="btn text-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of chairmanLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/the-summit']"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
-        </div>
       </li>
       <li>
         <a
@@ -354,18 +335,12 @@
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
-              <button class="dropbtn" [routerLink]="['/chairman-corner']">
-                Chairman’s Corner
-              </button>
-              <div class="hover-dropdown-content">
-                <a
-                  *ngFor="let link of chairmanLinks"
-                  [routerLink]="['/chairman-corner']"
-                  [fragment]="link.fragment || undefined"
-                >
-                  {{ link.label }}
-                </a>
-              </div>
+              <a
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLink]="['/chairman-corner']"
+              >Chairman’s Corner</a
+            >
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
