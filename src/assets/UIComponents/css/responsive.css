@@ -277,6 +277,10 @@
   .bgModal .modal-content .badgeModal{
     font-size: 11px;
     }
+
+    #cc1{
+      height: auto;
+    }
 }
 
 @media (max-width: 375px) {
