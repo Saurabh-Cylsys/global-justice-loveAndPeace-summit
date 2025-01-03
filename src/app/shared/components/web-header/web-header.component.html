@@ -28,8 +28,7 @@
           >Home</a
         >
       </li>
-      <li
-      >
+      <li>
         <a
           [routerLink]="['/the-summit']"
           aria-label="Close"
@@ -56,8 +55,7 @@
           </ul>
         </div>
       </li>
-      <li
-      >
+      <li>
         <a
           [routerLink]="['/partners']"
           aria-label="Close"
@@ -84,8 +82,7 @@
           </ul>
         </div>
       </li>
-      <li
-      >
+      <li>
         <a
           [routerLink]="['/awards']"
           aria-label="Close"
@@ -119,7 +116,7 @@
           data-bs-dismiss="offcanvas"
           >I-am-Peacekeeper Movement</a
         >
-        <div class="dropdown ">
+        <div class="dropdown">
           <button
             class="btn text-white dropdown-toggle"
             type="button"
@@ -184,7 +181,12 @@
         >
       </li>
       <li style="display: flex">
-        <a type="btn" class="btn btn-success" (click)="downloadPDF()"
+        <a
+          type="btn"
+          class="btn btn-success"
+          [routerLink]="['/download-brochure']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
           >Download Brochure</a
         >
         <a
@@ -336,11 +338,11 @@
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
               <a
-              class="nav-link"
-              routerLinkActive="active"
-              [routerLink]="['/chairman-corner']"
-              >Chairman’s Corner</a
-            >
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLink]="['/chairman-corner']"
+                >Chairman’s Corner</a
+              >
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
@@ -359,13 +361,32 @@
           <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
-          <select
+          <!-- <select
             name=""
             id=""
             class="form-select w-auto bg-transparent text-white"
           >
             <option value="">Eng</option>
-          </select>
+          </select> -->
+          <a
+            class="nav-link"
+            routerLinkActive="active"
+            style="
+              border: 1px solid #fff;
+              border-radius: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
+            [routerLink]="['/download-brochure']"
+            ><img
+              src="assets/UIComponents/images/download2.svg"
+              alt=""
+              class="w-75"
+          /></a>
         </form>
       </div>
     </div>
