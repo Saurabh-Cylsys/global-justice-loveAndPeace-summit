@@ -230,6 +230,8 @@
                                         required
                                         formControlName="dob"
                                         minlength="3"
+                                        [attr.min]="minDate"
+                                        [attr.max]="maxDate"
                                         (ngModelChange)="onDateChange($event)"
                                       />
                                       <label

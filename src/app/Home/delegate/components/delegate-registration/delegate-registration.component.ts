@@ -72,6 +72,8 @@ export class DelegateRegistrationComponent {
   referralCode:any='';
   conferenceInterest:any
   conferenceInterestArr:any
+  minDate: string| null = null;
+  maxDate: string | null = null;
   interests = [
     { value: 'Justice', label: 'Justice' },
     { value: 'Love', label: 'Love' },
@@ -102,7 +104,13 @@ export class DelegateRegistrationComponent {
     return this.instagramProfileControl.hasError('pattern') && this.instagramProfileControl.touched;
   }
   get f() { return this.registrationForm.controls; }
+
+
+
+
   ngOnInit(): void {
+  this.dobValidator();
+
     this.route.queryParams.subscribe((params:any) => {
       if(params){
         this.referralCode = params.code;
@@ -167,6 +175,20 @@ export class DelegateRegistrationComponent {
 //       console.log("error", err);
 //     });
 //   }
+
+dobValidator() {
+  const today = new Date();
+
+const minYear = today.getFullYear() - 120; // 120 years ago
+const eighteenYearsAgo = new Date(
+  today.getFullYear() - 18,
+  today.getMonth(),
+  today.getDate()
+);
+this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
+this.minDate = `${minYear}-01-01`; // Set
+ 
+}
 
 onCheckboxChange(event: any) {
   const conferenceLeverInterest = this.registrationForm.get('conference_lever_interest');
