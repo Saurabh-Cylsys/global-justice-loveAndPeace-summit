@@ -220,39 +220,32 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   downloadImage() {
 
-    if(this.convertedImage){
-       const link = document.createElement('a');
-        link.href = this.convertedImage;
-        link.download = 'peacekeeper-card.png'; // Set the filename
-        link.click();
+   const element: HTMLElement | null = document.getElementById('capture');
+    if (!element) {
+      console.error('Element not found for capturing!');
+      return;
     }
 
-    // const element: HTMLElement | null = document.getElementById('capture');
-    // if (!element) {
-    //   console.error('Element not found for capturing!');
-    //   return;
-    // }
 
-
-    // html2canvas(element, {
-    //   useCORS: true, // Ensures cross-origin images are captured
-    //   scale: 2,    // Improves image quality
-    // })
-    //   .then((canvas) => {
-    //     const imageUrl = canvas.toDataURL('image/png');
-    //     // const link = document.createElement('a');
-    //     // link.href = imageUrl;
-    //     // link.download = 'peacekeeper-card.png'; // Set the filename
-    //     // link.click();
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error capturing the image:', error);
-    //   })
-    //   .finally(() => {
-    //     // this.isLoading = false; // Hide the spinner if added
-    //     this.display = "none";
-    //     this.showPopup = false;
-    //   });
+    html2canvas(element, {
+      useCORS: true, // Ensures cross-origin images are captured
+      scale: 2,    // Improves image quality
+    })
+      .then((canvas) => {
+        const imageUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = imageUrl;
+        link.download = 'peacekeeper-card.png'; // Set the filename
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Error capturing the image:', error);
+      })
+      .finally(() => {
+        // this.isLoading = false; // Hide the spinner if added
+        this.display = "none";
+        this.showPopup = false;
+      });
     setTimeout(() => {
       this.display = "none";
       this.showPopup = false;
@@ -270,9 +263,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.qrCodeImg = res.QR_code
         this.fileUrl = this.peacekeeperData.file_urls[0]
         console.log("modal peacekeeperData", this.peacekeeperData);
-setTimeout(() => {
-  this.readyImage();
-}, 1000);
         // const qrCodeValue = this.peacekeeperData.QR_code;
         // this.qrCodeData = qrCodeValue ? qrCodeValue: null;
         // console.log(this.qrCodeData, 'QRcode');
