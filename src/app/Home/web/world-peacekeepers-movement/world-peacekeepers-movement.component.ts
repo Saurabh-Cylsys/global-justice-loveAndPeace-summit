@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   display: string = '';
   code: any;
   submitted = false;
-  is_selectedFile:boolean = false;
+  is_selectedFile: boolean = false;
   countryData: any;
   fileUrl: any
   isMobile: any
@@ -54,7 +54,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   // qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
   qrCodeData: string | null = null;
   qrCodeImg: any
-
+  convertedImage: string | null = null;
+  minDate: string| null = null;
+  maxDate: string | null = null;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -86,8 +88,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.mobile_numberVal ,this.is_selectedFile ,this.peacekeepersForm.invalid);
-    
+  this.dobValidator();
+    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+
     this.checkWindowSize();
     this.getAllCountrycode()
     this.mobile_numberVal = false;
@@ -160,26 +163,18 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     };
   }
 
-
-  dobValidator(control: AbstractControl): { [key: string]: boolean } | null {
-    const inputDate = new Date(control.value);
+  dobValidator() {
     const today = new Date();
 
-    if (!control.value) {
-      return null; // No validation error if input is empty
-    }
-
-    // Calculate age
-    const age = today.getFullYear() - inputDate.getFullYear();
-    const monthDiff = today.getMonth() - inputDate.getMonth();
-    const dayDiff = today.getDate() - inputDate.getDate();
-
-    // Check if the age is less than 18
-    if (age < 18 || (age === 18 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)))) {
-      return { underage: true }; // Fail if under 18
-    }
-
-    return null; // Valid if 18 or older
+  const minYear = today.getFullYear() - 120; // 120 years ago
+  const eighteenYearsAgo = new Date(
+    today.getFullYear() - 18,
+    today.getMonth(),
+    today.getDate()
+  );
+  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
+  this.minDate = `${minYear}-01-01`; // Set
+   
   }
 
   get dob() {
@@ -211,8 +206,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   // Handle the file selection from the input element
   onFileSelect(event: Event) {
-    
-    console.log(this.mobile_numberVal ,this.is_selectedFile ,this.peacekeepersForm.invalid);
+
+    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -225,57 +220,39 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   downloadImage() {
 
-    // // Capture the template content as an HTML element
-    // const element:any = document.getElementById('capture');
-
-    // // Use html2canvas to capture the content of the element
-    // html2canvas(element).then((canvas) => {
-    //   // Convert the canvas to a data URL (JPEG or PNG)
-    //   const imageUrl = canvas.toDataURL('image/png'); // or 'image/jpeg' for JPEG
-
-    //   // Create a link to download the image
-    //   const link = document.createElement('a');
-    //   link.href = imageUrl;
-    //   link.download = 'template-image.png'; // Set the filename for the download
-    //   link.click();
-    //   this.display = "none";
-    //   this.showPopup=false;
-    //   this.formdisplay=true;
-
-    // });
-
-
-    const element: HTMLElement | null = document.getElementById('capture');
-    if (!element) {
-      console.error('Element not found for capturing!');
-      return;
-    }
-    const rect = element.getBoundingClientRect(); // Get the actual dimensions of the element
-    const width = rect.width;
-    const height = rect.height;
-    // this.isLoading = true; // Show a loading spinner if needed
-
-    html2canvas(element, {
-      useCORS: true, // Ensures cross-origin images are captured
-      scale: 2, 
-      width,         // Match the element's width
-      height,        // Match the element's height     // Improves image quality
-    })
-      .then((canvas) => {
-        const imageUrl = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.href = imageUrl;
+    if(this.convertedImage){
+       const link = document.createElement('a');
+        link.href = this.convertedImage;
         link.download = 'peacekeeper-card.png'; // Set the filename
         link.click();
-      })
-      .catch((error) => {
-        console.error('Error capturing the image:', error);
-      })
-      .finally(() => {
-        // this.isLoading = false; // Hide the spinner if added
-        this.display = "none";
-        this.showPopup = false;
-      });
+    }
+
+    // const element: HTMLElement | null = document.getElementById('capture');
+    // if (!element) {
+    //   console.error('Element not found for capturing!');
+    //   return;
+    // }
+
+
+    // html2canvas(element, {
+    //   useCORS: true, // Ensures cross-origin images are captured
+    //   scale: 2,    // Improves image quality
+    // })
+    //   .then((canvas) => {
+    //     const imageUrl = canvas.toDataURL('image/png');
+    //     // const link = document.createElement('a');
+    //     // link.href = imageUrl;
+    //     // link.download = 'peacekeeper-card.png'; // Set the filename
+    //     // link.click();
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error capturing the image:', error);
+    //   })
+    //   .finally(() => {
+    //     // this.isLoading = false; // Hide the spinner if added
+    //     this.display = "none";
+    //     this.showPopup = false;
+    //   });
     setTimeout(() => {
       this.display = "none";
       this.showPopup = false;
@@ -285,18 +262,21 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   }
   openPopup() {
-    // this.peacekeeperBadgeId = 117
+    // this.peacekeeperBadgeId = 124
     if (this.peacekeeperBadgeId) {
       let id = this.peacekeeperBadgeId
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code
         this.fileUrl = this.peacekeeperData.file_urls[0]
-        console.log("modal peacekeeperData", res.QR_code);
-
+        console.log("modal peacekeeperData", this.peacekeeperData);
+setTimeout(() => {
+  this.readyImage();
+}, 1000);
         // const qrCodeValue = this.peacekeeperData.QR_code;
         // this.qrCodeData = qrCodeValue ? qrCodeValue: null;
         // console.log(this.qrCodeData, 'QRcode');
+
 
       });
     }
@@ -306,6 +286,35 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.isPeaceOn = 0;
     this.display = 'block'
     this.formdisplay = false;
+  }
+  readyImage(){
+    if (this.peacekeeperData) {
+      const element: HTMLElement | null = document.getElementById('capture');
+      if (!element) {
+        console.error('Element not found for capturing!');
+        return;
+      }
+
+      html2canvas(element, {
+        useCORS: true, // Ensures cross-origin images are captured
+        scale: 2,    // Improves image quality
+      })
+        .then((canvas) => {
+          this.convertedImage = canvas.toDataURL('image/png');
+          // const link = document.createElement('a');
+          // link.href = this.convertedImage;
+          // link.download = 'peacekeeper-card.png'; // Set the filename
+          // link.click();
+        })
+        .catch((error) => {
+          console.error('Error capturing the image:', error);
+        })
+        .finally(() => {
+          // this.isLoading = false; // Hide the spinner if added
+          console.log('converted image', this.convertedImage);
+
+        });
+    }
   }
   closeModal() {
 
@@ -341,8 +350,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   // profile_picture:[''],
 
   onFileChange(event: any): void {
-    
-    console.log(this.mobile_numberVal ,this.is_selectedFile ,this.peacekeepersForm.invalid);
+
+    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
     const file = event.target.files[0];
     if (file) {
@@ -374,6 +383,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   submitData(fileInput: HTMLInputElement): void {
+    this.convertedImage = '';
     this.display = "none";
     this.showPopup = false;
     console.log(this.peacekeepersForm.value.mobile_number.number, this.peacekeepersForm.value.mobile_number.dialCode)
@@ -434,10 +444,12 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
           this.peacekeeperBadgeId = response.peacekeeper_id
           this.SharedService.ToastPopup('', response.message, 'success')
+          this.is_selectedFile = false
           this.peacekeepersForm.reset();
 
           this.selectedFile = null;
           fileInput.value = '';
+          this.previewUrl = '';
 
         } else {
           this.ngxService.stop();
@@ -445,6 +457,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
         }
       }, (err) => {
+
+        const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
+    const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+    console.log(formattedMobileNumber);
+
+
+    this.peacekeepersForm.patchValue({
+      mobile_number: formattedMobileNumber
+    })
         this.ngxService.stop();
 
 

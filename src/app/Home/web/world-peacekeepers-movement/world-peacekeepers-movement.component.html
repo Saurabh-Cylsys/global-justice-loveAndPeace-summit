@@ -348,6 +348,8 @@
                     id="title"
                     placeholder=""
                     value=""
+                    [attr.min]="minDate"
+                    [attr.max]="maxDate"
                   />
                   <label for="title"
                     >DOB :<span
@@ -387,7 +389,8 @@
                   >
                     <select
                       formControlName="country"
-                      class="form-select w-100 pt-1 pb-0"
+                      style="cursor: pointer;"
+                      class="form-select w-100 pt-1 pb-0 curs"
                       required
                       data-error="Please select country"
                       (change)="getCountrycode(code)"
@@ -982,22 +985,7 @@
   </div>
 </div>
 
-<div
-  *ngIf="isPeaceOn == 0"
-  [ngStyle]="{ display: display }"
-  class="modal"
-  closeLabel="Close"
-  id="trustUntrust_alert"
-  #trustUntrust_alert
-  tabindex="-1"
-  role="dialog"
->
-  <div class="modal-dialog come-from-modal new_dialog1 bgModal">
-    <div class="modal-content">
-      <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
-
-      <ng-template #contentTemplate>
-        <!-- 
+<!-- 
         <table
         width="100%"
         border="0"
@@ -1185,6 +1173,22 @@
         </tbody>
       </table> -->
 
+
+<div
+  *ngIf="isPeaceOn == 0"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1 bgModal">
+    <div class="modal-content">
+      <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
+
+      <ng-template #contentTemplate>
         <table class="main w-100" style="margin: auto">
           <tr>
             <td style="position: relative">
@@ -1255,7 +1259,6 @@
                 class="col-12 text-center qr-code-section"
                 style="position: relative"
               >
-                <!-- <qrcode [qrdata]="qrCodeData" [width]="100" [errorCorrectionLevel]="'M'" style=" position: absolute;top: -127px;"></qrcode> -->
                 <img class="pix pix2" [src]="qrCodeImg" alt="" />
               </div>
             </td>
@@ -1293,7 +1296,7 @@
             Close
           </button>
         </div>
-      </div>
-    </div>
+      </div> 
+  </div>
   </div>
 </div>

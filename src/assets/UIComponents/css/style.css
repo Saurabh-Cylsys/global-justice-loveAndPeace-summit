@@ -1470,6 +1470,7 @@ header .nav-item .nav-link.active {
 .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag,
 .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-4 .iti__selected-flag {
   width: auto !important;
+  cursor: pointer !important;
 }
 
 .form-group label {
