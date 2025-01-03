@@ -28,6 +28,7 @@ import { CookiePolicyComponent } from './cookie-policy/cookie-policy.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
+import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,7 @@ const routes: Routes = [
       {path:'terms-of-use',component:TermsOfUseComponent},
       {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent},
       {path:'chairman-corner',component:ChairmanCornerComponent},
+      {path:'download-brochure',component:DownloadBrochureComponent},
       
       
       {path:'', redirectTo:'home', pathMatch:'full'}

@@ -35,6 +35,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -68,6 +69,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     TermsOfUseComponent,
     VisitorTermsOnditionsComponent,
     ChairmanCornerComponent,
+    DownloadBrochureComponent,
 
     // WhoShouldAttendAndWhyComponent,
     
