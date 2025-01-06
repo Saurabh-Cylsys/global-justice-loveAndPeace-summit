@@ -1,8 +1,10 @@
 ul{
   list-style: none;
+  padding: 0;
 }
 ul li{
-  line-height: 3rem;
+  line-height: 2rem;
+  margin: 10px 0;
 }
 a{
   text-decoration: none;
