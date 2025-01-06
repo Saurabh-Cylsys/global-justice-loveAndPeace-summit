@@ -19,7 +19,7 @@
     ></button>
   </div>
   <div class="offcanvas-body mt-5">
-    <ul>
+    <ul class="m-0">
       <li>
         <a
           [routerLink]="['/home']"
@@ -28,151 +28,211 @@
           >Home</a
         >
       </li>
-      <li>
-        <a
-          [routerLink]="['/the-summit']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-          >The Summit</a
-        >
-        <div class="dropdown">
+    </ul>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
           <button
-            class="btn text-white dropdown-toggle"
+            class="accordion-button collapsed"
             type="button"
-            data-bs-toggle="dropdown"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne"
             aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of summitLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/the-summit']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+            aria-controls="flush-collapseOne"
+          >
+            <a
+              [routerLink]="['/the-summit']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+            >
+              The Summit</a
+            >
+          </button>
+        </h2>
+        <div
+          id="flush-collapseOne"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of summitLinks">
+                <a
+                  class="text-dark"
+                  [routerLink]="['/the-summit']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </li>
-      <li>
-        <a
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo"
+            aria-expanded="false"
+            aria-controls="flush-collapseTwo"
+          >
+          <a
           [routerLink]="['/partners']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Partners</a
         >
-        <div class="dropdown">
-          <button
-            class="btn text-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of partnersLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/partners']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+          </button>
+        </h2>
+        <div
+          id="flush-collapseTwo"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of partnersLinks">
+                <a
+                  class="text-dark"
+                  [routerLink]="['/partners']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </li>
-      <li>
-        <a
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree"
+            aria-expanded="false"
+            aria-controls="flush-collapseThree"
+          >
+          <a
           [routerLink]="['/awards']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Awards</a
         >
-        <div class="dropdown w-75">
-          <button
-            class="btn text-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of awardsLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/awards']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+          </button>
+        </h2>
+        <div
+          id="flush-collapseThree"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of awardsLinks">
+                <a
+                  class="text-dark"
+                  [routerLink]="['/awards']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </li>
-      <li>
-        <a
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFour"
+            aria-expanded="false"
+            aria-controls="flush-collapseFour"
+          >
+          <a
           [routerLink]="['/world-peacekeepers-movement']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >I-am-Peacekeeper Movement</a
         >
-        <div class="dropdown">
-          <button
-            class="btn text-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of peacekeeperLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/world-peacekeepers-movement']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+          </button>
+        </h2>
+        <div
+          id="flush-collapseFour"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of peacekeeperLinks">
+                <a
+                  class="text-dark"
+                  [routerLink]="['/world-peacekeepers-movement']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </li>
-      <li>
-        <a
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFive"
+            aria-expanded="false"
+            aria-controls="flush-collapseFive"
+          >
+          <a
           [routerLink]="['/DownloadCenter']"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Download Center</a
         >
-        <div class="dropdown">
-          <button
-            class="btn text-white dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          ></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let link of downloadLinks">
-              <a
-                class="text-dark"
-                [routerLink]="['/DownloadCenter']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-                [fragment]="link.fragment || undefined"
-              >
-                {{ link.label }}
-              </a>
-            </li>
-          </ul>
+          </button>
+        </h2>
+        <div
+          id="flush-collapseFive"
+          class="accordion-collapse collapse"
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <ul>
+              <li *ngFor="let link of downloadLinks">
+                <a
+                  class="text-dark"
+                  [routerLink]="['/DownloadCenter']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                  [fragment]="link.fragment || undefined"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </li>
+      </div>
+    </div>
+    <ul>
       <li>
         <a
           [routerLink]="['/chairman-corner']"

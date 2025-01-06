@@ -569,3 +569,67 @@
 .offcanvas-body ul li .dropdown .dropdown-menu{
   width: 300px;
 }
+
+.accordion {
+  --bs-accordion-bg: transparent;
+}
+.accordion-button:not(.collapsed){
+  background-color: transparent;
+}
+.accordion-item{
+  background-color: transparent;
+  border: none;
+}
+
+.accordion-item .accordion-body{
+  padding: 0;
+}
+
+.accordion-button{
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+}
+
+.accordion-button:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.accordion-button a{
+  list-style: none;
+  padding: 0;
+  line-height: 3;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.accordion-body ul li{
+  border-bottom: 1px solid #005a93;
+}
+
+.accordion-body ul li a{
+  color: #005a93  !important;
+  font-weight: 400 !important;
+}
+
+.accordion-button::after {
+  flex-shrink: 0;
+  width: var(--bs-accordion-btn-icon-width);
+  height: var(--bs-accordion-btn-icon-width);
+  margin-left: auto;
+  content: "";
+  background-image: var(--bs-accordion-btn-icon);
+  background-repeat: no-repeat;
+  background-size: var(--bs-accordion-btn-icon-width);
+  filter: invert(1) brightness(2); /* Inverts black to white */
+  transition: var(--bs-accordion-btn-icon-transition);
+}
+
+.accordion-body ul {
+  background-color: #fff;
+  padding: 0 10px;
+}
