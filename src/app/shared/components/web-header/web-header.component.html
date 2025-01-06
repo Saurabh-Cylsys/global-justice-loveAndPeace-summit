@@ -47,6 +47,8 @@
               <a
                 class="text-dark"
                 [routerLink]="['/the-summit']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
                 [fragment]="link.fragment || undefined"
               >
                 {{ link.label }}
@@ -73,7 +75,9 @@
             <li *ngFor="let link of partnersLinks">
               <a
                 class="text-dark"
-                [routerLink]="['/the-summit']"
+                [routerLink]="['/partners']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
                 [fragment]="link.fragment || undefined"
               >
                 {{ link.label }}
@@ -100,7 +104,9 @@
             <li *ngFor="let link of awardsLinks">
               <a
                 class="text-dark"
-                [routerLink]="['/the-summit']"
+                [routerLink]="['/awards']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
                 [fragment]="link.fragment || undefined"
               >
                 {{ link.label }}
@@ -127,7 +133,9 @@
             <li *ngFor="let link of peacekeeperLinks">
               <a
                 class="text-dark"
-                [routerLink]="['/the-summit']"
+                [routerLink]="['/world-peacekeepers-movement']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
                 [fragment]="link.fragment || undefined"
               >
                 {{ link.label }}
@@ -154,7 +162,9 @@
             <li *ngFor="let link of downloadLinks">
               <a
                 class="text-dark"
-                [routerLink]="['/the-summit']"
+                [routerLink]="['/DownloadCenter']"
+          aria-label="Close"
+          data-bs-dismiss="offcanvas"
                 [fragment]="link.fragment || undefined"
               >
                 {{ link.label }}

@@ -1786,25 +1786,42 @@ header .nav-item .nav-link.active {
   font-size: 20px !important;
 }
 
-
-.pix2{
+.pix2 {
   position: absolute;
   top: -127px;
 }
-.bgModal .modal-content .badgeModal{
+.bgModal .modal-content .badgeModal {
   font-size: 13px;
-  }
+}
 
+/* #cc2 {
+  height: 88vh;
+} */
 
-  #cc1{
-    height: 88vh;
-  }
+.mobCarousal {
+  width: 240px;
+  display: block;
+  border: 1px solid;
+  height: 240px;
+  border-radius: 100%;
+  margin: auto;
+}
 
-  .mobCarousal {
-    width: 240px;
-    display: block;
-    border: 1px solid;
-    height: 240px;
-    border-radius: 100%;
-    margin: auto;
-  }
+/* .vms ul li{
+    line-height: 2rem;
+  } */
+
+.vms ul li a {
+  font-family: DINPro;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23.18px;
+  text-align: justified;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: auto;
+  color: var(--color1) !important;
+  display: flex;
+  align-items: flex-start;
+}
