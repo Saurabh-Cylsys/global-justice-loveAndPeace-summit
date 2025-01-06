@@ -274,13 +274,26 @@
   .cpImg {
     height: 340px;
   }
-  .bgModal .modal-content .badgeModal{
+  .bgModal .modal-content .badgeModal {
     font-size: 11px;
-    }
+  }
 
-    #cc1{
-      height: auto;
-    }
+  #cc1 {
+    height: auto;
+  }
+
+  .speakersProfile .modal-header h1.fs-5,
+  .speakersProfile .modal-header p {
+    font-size: 12px !important;
+  }
+  .mobCarousal {
+    width: 170px;
+    display: block;
+    border: 1px solid;
+    height: 170px;
+    border-radius: 100%;
+    margin: auto;
+  }
 }
 
 @media (max-width: 375px) {
@@ -305,9 +318,9 @@
   .pix2 {
     top: -103px;
   }
-  .bgModal .modal-content .badgeModal{
+  .bgModal .modal-content .badgeModal {
     font-size: 11px;
-    }
+  }
 }
 
 @media (max-width: 320px) {
@@ -329,7 +342,7 @@
     top: -127px;
     top: -100px;
   }
-  .bgModal .modal-content .badgeModal{
+  .bgModal .modal-content .badgeModal {
     font-size: 10px;
-    }
+  }
 }

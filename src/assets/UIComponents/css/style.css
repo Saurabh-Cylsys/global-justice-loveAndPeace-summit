@@ -1612,7 +1612,7 @@ header .nav-item .nav-link.active {
 .confirmation table tr th:nth-child(1) {
   background-color: #d9d9d9;
   text-align: left;
-  width: 10rem;
+  width: 3rem;
 }
 .confirmation table tr th:nth-child(2) {
   background-color: #446aa0;
@@ -1798,4 +1798,13 @@ header .nav-item .nav-link.active {
 
   #cc1{
     height: 88vh;
+  }
+
+  .mobCarousal {
+    width: 240px;
+    display: block;
+    border: 1px solid;
+    height: 240px;
+    border-radius: 100%;
+    margin: auto;
   }
