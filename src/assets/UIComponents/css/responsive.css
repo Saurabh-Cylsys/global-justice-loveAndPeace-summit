@@ -281,6 +281,10 @@
     #cc1{
       height: auto;
     }
+
+    .speakersProfile .modal-header h1.fs-5, .speakersProfile .modal-header p{
+      font-size: 12px !important;
+    }
 }
 
 @media (max-width: 375px) {
