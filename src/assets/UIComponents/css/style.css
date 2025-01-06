@@ -1799,3 +1799,12 @@ header .nav-item .nav-link.active {
   #cc1{
     height: 88vh;
   }
+
+  .mobCarousal {
+    width: 240px;
+    display: block;
+    border: 1px solid;
+    height: 240px;
+    border-radius: 100%;
+    margin: auto;
+  }
