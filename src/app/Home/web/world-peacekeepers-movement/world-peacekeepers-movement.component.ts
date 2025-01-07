@@ -71,7 +71,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates
-    this.is_selectedFile = false;
+    // this.is_selectedFile = false;
 
   }
 
@@ -129,7 +129,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       ]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
-      Check_email: ['']
+      Check_email: [''],
+      File: ['', [Validators.required]]
     });
 
 
@@ -185,7 +186,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
-      this.is_selectedFile = true;
+      // this.is_selectedFile = true;
       console.log('Dropped file:', this.selectedFile);
 
       // Update the input field with the file name
@@ -212,7 +213,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       this.selectedFile = target.files[0];
-      this.is_selectedFile = true;
+      // this.is_selectedFile = true;
 
       console.log('Selected file:', this.selectedFile);
     }
@@ -356,7 +357,7 @@ setTimeout(() => {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
-      this.is_selectedFile = true;
+      // this.is_selectedFile = true;
     }
     const reader = new FileReader();
     reader.onload = (e: any) => {
@@ -444,7 +445,7 @@ setTimeout(() => {
 
           this.peacekeeperBadgeId = response.peacekeeper_id
           this.SharedService.ToastPopup('', response.message, 'success')
-          this.is_selectedFile = false
+          // this.is_selectedFile = false
           this.peacekeepersForm.reset();
 
           this.selectedFile = null;
