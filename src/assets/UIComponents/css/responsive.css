@@ -294,6 +294,9 @@
     border-radius: 100%;
     margin: auto;
   }
+  .speakersProfile .modal-content .modal-body p{
+    text-align: left;
+  }
 }
 
 @media (max-width: 375px) {
