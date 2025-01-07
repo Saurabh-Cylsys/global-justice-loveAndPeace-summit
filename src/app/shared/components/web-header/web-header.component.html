@@ -57,6 +57,8 @@
           <div class="accordion-body">
             <ul>
               <li *ngFor="let link of summitLinks">
+                <!-- (click)="refreshPage('summit',link.fragment)" -->
+
                 <a
                   class="text-dark"
                   [routerLink]="['/the-summit']"

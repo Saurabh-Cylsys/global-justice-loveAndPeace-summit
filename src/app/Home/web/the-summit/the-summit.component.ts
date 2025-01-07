@@ -3,21 +3,24 @@ import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, Abstrac
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { DelegateService } from '../../delegate/services/delegate.service';
-import {ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-the-summit',
   templateUrl: './the-summit.component.html',
   styleUrls: ['./the-summit.component.css']
 })
-export class TheSummitComponent implements OnInit{
+export class TheSummitComponent implements OnInit {
   isMobileView = false;
+  showPopup: boolean = false;
+  isSpeaker: string = '';
+  display: string = '';
 
   events = [
     { title: 'Registration', time: '10:00 AM - 10:30 AM' },
     { title: 'Opening Session', time: '10:30 AM - 11:00 AM' },
     { title: 'Session Theme 1 - JUSTICE', time: '11:00 AM - 12:30 PM' },
-    { title: 'Launch & Networking', time: '12:30 PM - 2:30 PM' },
+    { title: 'Lunch & Networking', time: '12:30 PM - 2:30 PM' },
     { title: 'Session Theme 2 - LOVE', time: '2:30 PM - 4:00 PM' },
   ];
 
@@ -25,25 +28,43 @@ export class TheSummitComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-     private DelegateService: DelegateService,
-     private SharedService: SharedService, 
-     private ngxService: NgxUiLoaderService, 
-     private ActivatedRoute: ActivatedRoute,
-     private router: Router) {
+    private DelegateService: DelegateService,
+    private SharedService: SharedService,
+    private ngxService: NgxUiLoaderService,
+    private ActivatedRoute: ActivatedRoute,
+    private router: Router) {
 
-   }
-   ngOnInit(): void {
+  }
+  ngOnInit(): void {
     this.checkWindowSize();
 
     this.getInviteSpeakers()
-   }
-    getInviteSpeakers(){
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.handleFragment();
+      }
+    });
+  }
+  getInviteSpeakers() {
     this.DelegateService.getSpeakers().subscribe((res: any) => {
       console.log("speakers", res.data);
-      this.speakers =res.data;
-    }, (err:any) => {
+      this.speakers = res.data;
+    }, (err: any) => {
       console.log("error", err);
     });
+  }
+  clickToView(viewToId: any) {
+    
+    console.log('id', viewToId);
+    this.isSpeaker = viewToId;
+    this.display = 'block';
+    this.showPopup = true;
+  }
+
+  closeModal() {
+
+    this.display = "none";
+    this.showPopup = false;
   }
 
   downloadPDF() {
@@ -73,14 +94,32 @@ export class TheSummitComponent implements OnInit{
     this.checkWindowSize();
   }
 
+
+ 
   ngAfterViewInit(): void {
+    // Handle fragment on initial load
+    this.handleFragment();
+  }
+ 
+  private handleFragment(): void {
     this.ActivatedRoute.fragment.subscribe((fragment) => {
       if (fragment) {
-        const element = document.getElementById(fragment);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        this.scrollToElement(fragment);
       }
     });
   }
+ 
+  private scrollToElement(fragment: string): void {
+    const element = document.getElementById(fragment);
+    if (element) {
+      // Ensure smooth scrolling to the target section
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Retry mechanism in case the element is not yet available
+      setTimeout(() => {
+        this.scrollToElement(fragment);
+      }, 100);
+    }
+  }
+
 }

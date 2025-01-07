@@ -237,7 +237,8 @@
             <img
               data-bs-toggle="modal"
               data-bs-target="#chairman"
-              style="cursor: pointer"
+              (click)="clickToView('chairman')"
+             style="cursor: pointer"
               loading="lazy"
               src="assets/UIComponents/images/Dr-Huz.svg"
               alt=""
@@ -567,8 +568,7 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#habil"
+                        (click)="clickToView('habil')"
                           style="cursor: pointer"
                           src="assets/UIComponents/images/speakers/speaker7.png"
                         />
@@ -718,8 +718,8 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#nadir"
+                        (click)="clickToView('nadir')"
+
                           style="cursor: pointer"
                           src="assets/UIComponents/images/speakers/speaker2.png"
                         />
@@ -792,8 +792,8 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#rina"
+
+                          (click)="clickToView('rina')"
                           style="cursor: pointer"
                           src="assets/UIComponents/images/speakers/speaker6.png"
                         />
@@ -814,8 +814,8 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#romona"
+                  
+                          (click)="clickToView('romona')"
                           style="cursor: pointer"
                           src="assets/UIComponents/images/speakers/speaker9.png"
                         />
@@ -1055,8 +1055,8 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#habil"
+
+                        (click)="clickToView('habil')"
                           style="cursor: pointer"
                           src="assets/UIComponents/images/speakers/speaker7.png"
                         />
@@ -1228,8 +1228,7 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#nadir"
+                          (click)="clickToView('nadir')"
                           src="assets/UIComponents/images/speakers/speaker2.png"
                         />
                         <h5>Nadir Godrej</h5>
@@ -1311,8 +1310,7 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#rina"
+                          (click)="clickToView('rina')"
                           src="assets/UIComponents/images/speakers/speaker6.png"
                         />
                         <h5>
@@ -1336,8 +1334,8 @@
                     <ul class="list-unstyled p-0">
                       <li class="p-3 text-center">
                         <img
-                          data-bs-toggle="modal"
-                          data-bs-target="#romona"
+
+                          (click)="clickToView('romona')"
                           src="assets/UIComponents/images/speakers/speaker9.png"
                         />
                         <h5>
@@ -2495,11 +2493,13 @@
 
 <!-- Modal -->
 <div
-  class="modal fade speakersProfile"
-  id="nadir"
+  *ngIf="isSpeaker == 'nadir'"
+  [ngStyle]="{ display: display }"
+  class="modal speakersProfile"
+  #nadir
   tabindex="-1"
-  aria-labelledby="nadirLabel"
   aria-hidden="true"
+  role="modal"
 >
   <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
@@ -2523,6 +2523,7 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
+            (click)="closeModal()"
             aria-label="Close"
           ></button>
         </div>
@@ -2570,11 +2571,15 @@
 </div>
 
 <div
-  class="modal fade speakersProfile"
-  id="romona"
+*ngIf="isSpeaker == 'romona'"
+  [ngStyle]="{ display: display }"
+  class="modal speakersProfile"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
   tabindex="-1"
-  aria-labelledby="romonaLabel"
-  aria-hidden="true"
+  role="dialog"
+  
 >
   <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
@@ -2603,6 +2608,7 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
+            (click)="closeModal()"
             aria-label="Close"
           ></button>
         </div>
@@ -2713,11 +2719,15 @@
 </div>
 
 <div
-  class="modal fade speakersProfile"
-  id="rina"
+
+*ngIf="isSpeaker == 'rina'"
+  [ngStyle]="{ display: display }"
+  class="modal speakersProfile"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
   tabindex="-1"
-  aria-labelledby="rinaLabel"
-  aria-hidden="true"
+  role="dialog"
 >
   <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
@@ -2743,6 +2753,7 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
+            (click)="closeModal()"
             aria-label="Close"
           ></button>
         </div>
@@ -2819,11 +2830,14 @@
 </div>
 
 <div
-  class="modal fade speakersProfile"
-  id="chairman"
+*ngIf="isSpeaker == 'chairman'"
+  [ngStyle]="{ display: display }"
+  class="modal speakersProfile"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
   tabindex="-1"
-  aria-labelledby="chairmanLabel"
-  aria-hidden="true"
+  role="dialog"
 >
   <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
@@ -2849,6 +2863,7 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
+            (click)="closeModal()"
             aria-label="Close"
           ></button>
         </div>
@@ -2979,11 +2994,14 @@
 </div>
 
 <div
-  class="modal fade speakersProfile"
-  id="habil"
+*ngIf="isSpeaker == 'habil'"
+  [ngStyle]="{ display: display }"
+  class="modal speakersProfile"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
   tabindex="-1"
-  aria-labelledby="habilLabel"
-  aria-hidden="true"
+  role="dialog"
 >
   <div
     class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg"
@@ -3009,6 +3027,7 @@
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
+            (click)="closeModal()"
             aria-label="Close"
           ></button>
         </div>

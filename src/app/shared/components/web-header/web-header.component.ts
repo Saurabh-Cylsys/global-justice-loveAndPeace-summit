@@ -81,6 +81,10 @@ export class WebHeaderComponent implements OnInit {
     this._router.navigate(['/delegate-registration']);
   }
 
+  scrollById(route:any,id:any){
+    this._router.navigate([route],{ queryParams: { id: id }});
+
+  }
   downloadPDF() {
     debugger;
     const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure-english.pdf'; // Path to your PDF file in the assets folder
@@ -147,10 +151,10 @@ export class WebHeaderComponent implements OnInit {
   //   });
   // }
 
-  refreshPage(route: string) {
+  refreshPage(route: string,fragment: string | undefined) {
     switch (route) {
-      case 'home':
-        this._router.navigate(['/home']).then(() => {
+      case 'summit':
+        this._router.navigate(['/the-summit'],{ fragment }).then(() => {
           console.log("Navigated to 'home'");
           location.reload();
         });
