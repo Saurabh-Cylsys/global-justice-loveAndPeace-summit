@@ -697,7 +697,9 @@
                   class="custom-file-input col-md-5 col-12"
                   type="file"
                   accept="image/jpg,image/png,image/jpeg"
+                  formControlName="File"
                   name="profile_picture"
+                  
                   #fileInput
                   (change)="onFileChange($event)"
                   />
@@ -732,8 +734,7 @@
                   type="button"
                   class="btn btn-success text-white text-center"
                   [disabled]="
-                    this.peacekeepersForm.invalid  && !mobile_numberVal && !is_selectedFile 
-                  "
+                    this.peacekeepersForm.invalid"
                 >
                   Save
                 </button>
