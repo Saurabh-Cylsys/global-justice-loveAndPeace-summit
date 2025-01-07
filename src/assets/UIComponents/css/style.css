@@ -1843,3 +1843,50 @@ header .nav-item .nav-link.active {
     height: auto; 
   }
 }
+
+#p4 h3, #p4 p{
+  color: var(--color1);
+}
+
+#p4 h3{
+font-size: 70px;
+font-weight: 700;
+line-height: 90.16px;
+text-align: center;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
+
+}
+
+#p4 p{
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 64.4px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  
+}
+
+
+#downloadBg{
+  background-image: url(../../../assets/UIComponents/images/downloadBg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+#dcBg3{
+  background-image: url(../../../assets/UIComponents/images/dcBg3.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+#dcBg4{
+  background-image: url(../../../assets/UIComponents/images/dcBg4.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}

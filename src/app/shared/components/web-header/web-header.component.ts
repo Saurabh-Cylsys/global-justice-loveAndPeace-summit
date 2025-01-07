@@ -87,7 +87,7 @@ export class WebHeaderComponent implements OnInit {
   }
   downloadPDF() {
     debugger;
-    const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure-english.pdf'; // Path to your PDF file in the assets folder
+    const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure-01-ENGLISH-241227.pdf'; // Path to your PDF file in the assets folder
     const a = document.createElement('a');
     a.href = fileUrl;
     a.download = 'GJLPS-Brochure-english.pdf'; // Name of the downloaded file
