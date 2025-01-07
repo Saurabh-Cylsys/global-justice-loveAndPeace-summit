@@ -297,6 +297,30 @@
   .speakersProfile .modal-content .modal-body p{
     text-align: left;
   }
+
+  #p4 h3{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 90.16px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    
+    }
+    
+    #p4 p{
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 64.4px;
+      text-align: center;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+      
+    }
+
+    #dc1, #dc3, #dc4{
+      height: 35vh;
+    }
 }
 
 @media (max-width: 375px) {
@@ -324,6 +348,9 @@
   .bgModal .modal-content .badgeModal {
     font-size: 11px;
   }
+  #dc1, #dc3, #dc4{
+    height: 28vh;
+  }
 }
 
 @media (max-width: 320px) {
@@ -347,5 +374,8 @@
   }
   .bgModal .modal-content .badgeModal {
     font-size: 10px;
+  }
+  #dc1, #dc3, #dc4{
+    height: 28vh;
   }
 }
