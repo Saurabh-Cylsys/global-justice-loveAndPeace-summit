@@ -321,6 +321,10 @@
     #dc1, #dc3, #dc4{
       height: 35vh;
     }
+
+    .speakers .editYear{
+      font-size: 20px;
+    }
 }
 
 @media (max-width: 375px) {
