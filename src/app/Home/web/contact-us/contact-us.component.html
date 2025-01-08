@@ -299,7 +299,7 @@
               </div>
               <div class="mb-4 col-md-4">
                 <div class="form-floating">
-                  <select
+                  <!-- <select
                     name="nametitle[1]"
                     id="nametitle1"
                     class="form-control"
@@ -320,8 +320,31 @@
                     <option value="Hon">Hon</option>
                     <option value="Lord">Lord</option>
                   </select>
-                  <label for="title">Title</label>
-                  <div
+                  <label for="title">Title</label> -->
+                  <input
+                  type="text"
+                  name="fname[1]"
+                  id="fname1"
+                  placeholder=""
+                  class="form-control"
+                  value=""
+                  [maxlength]="7"
+                  data-error="Please select option"
+                  formControlName="title"
+                  />
+                  <label
+                    class="col-md-12 no-padding"
+                    for="nametitle1"
+                    >Title
+                    <!-- <span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    > -->
+                    </label
+                  >
+                  <!-- <div
                     *ngIf="
                       getcontrol('title')?.errors &&
                       getcontrol('title')?.touched
@@ -332,7 +355,7 @@
                       *ngIf="getcontrol('title')?.errors?.['required']"
                       >Title is required</small
                     >
-                  </div>
+                  </div> -->
                   <div class="help-block with-errors"></div>
                 </div>
               </div>
