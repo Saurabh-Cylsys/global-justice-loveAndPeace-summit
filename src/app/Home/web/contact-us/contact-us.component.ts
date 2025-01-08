@@ -117,7 +117,7 @@ export class ContactUsComponent {
     this.checkWindowSize();
 
     this.contactUsForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
+      title: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       countryCode: [''],
