@@ -1218,11 +1218,12 @@
           <tr>
             <td style="position: relative">
               <img
-                src="assets/UIComponents/images/newPeacekeeperBatch.png"
+                [src]="peacekeeperBadge"
                 class="w-100 cpImg"
                 alt=""
+                width="100px"
               />
-              <div
+              <!-- <div
                 style="position: absolute; top: 15px; left: 15px; width: 54%"
               >
                 <h4
@@ -1284,7 +1285,7 @@
                 style="position: relative"
               >
                 <img class="pix pix2" [src]="qrCodeImg" alt="" />
-              </div>
+              </div> -->
             </td>
           </tr>
         </table>
@@ -1296,7 +1297,6 @@
       <div class="col-md-12 row ms-2 my-3" style="width: 95%">
         <div class="col-6">
           <button
-            [disabled]="peacekeeperData.length == 0"
             class="btn btn-success w-100"
             data-dismiss="modal"
             (click)="downloadImage()"
