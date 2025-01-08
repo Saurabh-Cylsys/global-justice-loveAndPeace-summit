@@ -47,6 +47,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   peacekeeperData: any = [];
   peacekeeperBadgeId: any
   peacekeeperBadgeResponse: any
+  peacekeeperBadge: any
   isCheckEmail: boolean = true;
   previewUrl: string | null = null; // Add this to your component
 
@@ -55,7 +56,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   qrCodeData: string | null = null;
   qrCodeImg: any
   convertedImage: string | null = null;
-  minDate: string| null = null;
+  minDate: string | null = null;
   maxDate: string | null = null;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -88,7 +89,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.dobValidator();
+    this.dobValidator();
     console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
     this.checkWindowSize();
@@ -167,15 +168,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   dobValidator() {
     const today = new Date();
 
-  const minYear = today.getFullYear() - 120; // 120 years ago
-  const eighteenYearsAgo = new Date(
-    today.getFullYear() - 18,
-    today.getMonth(),
-    today.getDate()
-  );
-  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
-  this.minDate = `${minYear}-01-01`; // Set
-   
+    const minYear = today.getFullYear() - 120; // 120 years ago
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+    this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
+    this.minDate = `${minYear}-01-01`; // Set
+
   }
 
   get dob() {
@@ -221,11 +222,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   downloadImage() {
 
-    if(this.convertedImage){
-       const link = document.createElement('a');
-        link.href = this.convertedImage;
-        link.download = 'peacekeeper-card.png'; // Set the filename
-        link.click();
+    if (this.convertedImage) {
+      const link = document.createElement('a');
+      link.href = this.convertedImage;
+      link.download = 'peacekeeper-card.png'; // Set the filename
+      link.click();
     }
 
     // const element: HTMLElement | null = document.getElementById('capture');
@@ -271,15 +272,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.qrCodeImg = res.QR_code
         this.fileUrl = this.peacekeeperData.file_urls[0]
         console.log("modal peacekeeperData", this.peacekeeperData);
-setTimeout(() => {
-  this.readyImage();
-}, 1000);
-        // const qrCodeValue = this.peacekeeperData.QR_code;
-        // this.qrCodeData = qrCodeValue ? qrCodeValue: null;
-        // console.log(this.qrCodeData, 'QRcode');
-
-
-      });
+        setTimeout(() => {
+          this.readyImage();
+        }, 1000);
+       });
     }
 
 
@@ -288,7 +284,7 @@ setTimeout(() => {
     this.display = 'block'
     this.formdisplay = false;
   }
-  readyImage(){
+  readyImage() {
     if (this.peacekeeperData) {
       const element: HTMLElement | null = document.getElementById('capture');
       if (!element) {
@@ -440,7 +436,7 @@ setTimeout(() => {
           console.log("response", response);
           // this.peacekeeperBadgeResponse = response.QR_code
           this.peacekeeperBadgeResponse = 'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png'
-
+          this.peacekeeperBadge = response.batch;
 
 
           this.peacekeeperBadgeId = response.peacekeeper_id
@@ -460,13 +456,13 @@ setTimeout(() => {
       }, (err) => {
 
         const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
-    const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-    console.log(formattedMobileNumber);
+        const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+        console.log(formattedMobileNumber);
 
 
-    this.peacekeepersForm.patchValue({
-      mobile_number: formattedMobileNumber
-    })
+        this.peacekeepersForm.patchValue({
+          mobile_number: formattedMobileNumber
+        })
         this.ngxService.stop();
 
 
