@@ -58,6 +58,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   convertedImage: string | null = null;
   minDate: string | null = null;
   maxDate: string | null = null;
+  isDragging = false;
+
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -183,31 +185,42 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     return this.peacekeepersForm.get('dob');
   }
 
-  onDrop(event: DragEvent) {
+  onDrop(event: DragEvent): void {
     event.preventDefault();
+    this.isDragging = false;
+
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
       console.log('Dropped file:', this.selectedFile);
 
-      // Update the input field with the file name
-      // const fileInput = document.getElementById('isImage') as HTMLInputElement;
-      // this.renderer.setProperty(fileInput, 'value', this.selectedFile.name);
+        // Update the input field's value programmatically
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput) {
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(this.selectedFile);
+      fileInput.files = dataTransfer.files; // Set the dropped file to the input
     }
+      }
   }
 
-  onDragOver(event: DragEvent) {
+  onDragOver(event: DragEvent): void {
+
     event.preventDefault();
+    this.isDragging = true;
+
     // Add a visual cue for the drag-over state (e.g., border highlight)
   }
 
-  onDragLeave(event: DragEvent) {
+  onDragLeave(event: DragEvent): void {
     event.preventDefault();
+    this.isDragging = false;
+
     // Remove the visual cue for the drag-over state
   }
 
   // Handle the file selection from the input element
-  onFileSelect(event: Event) {
+  onFileSelect(event: Event): void {
 
     console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 

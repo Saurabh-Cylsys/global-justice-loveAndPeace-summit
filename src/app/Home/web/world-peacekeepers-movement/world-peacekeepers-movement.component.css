@@ -125,3 +125,6 @@
   background-image: none;
 }
 
+.drop-zone-hover {
+  border-color: #007bff;
+}
