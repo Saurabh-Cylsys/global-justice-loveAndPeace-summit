@@ -1190,7 +1190,8 @@ header .nav-item .nav-link.active {
 }
 
 .partner1 .section7 {
-  background-image: url(../images/bg2.png);
+  /* background-image: url(../images/bg2.png); */
+  background-image: url(../images/index/banner2.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: auto;
