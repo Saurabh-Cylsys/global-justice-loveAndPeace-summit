@@ -133,7 +133,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of speakersList">
+
+                      <!-- <tr *ngFor="let row of speakersList">
+                        <td>{{ row.S_No }}</td>
+                        <td>{{ row.Name }}</td>
+                        <td>{{ row.Country }}</td>
+                        <td>{{ row.Credentials }}</td>
+                      </tr> -->                      
+
+                      <tr *ngFor="let row of data">
                         <td>{{ row.S_No }}</td>
                         <td>{{ row.Name }}</td>
                         <td>{{ row.Country }}</td>
