@@ -139,6 +139,7 @@
 
   :root {
     --dotborder: -2px;
+    --spacing: 20px;
   }
 
   .index .section7 table td ul li:nth-child(1) {
@@ -329,6 +330,7 @@
     .index .section7{
       background-image: var(--gradient3);
     }
+  
 }
 
 @media (max-width: 375px) {
