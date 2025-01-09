@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { WebService } from '../webz-services/web.service';
 
 declare var AOS: any;
 
@@ -26,7 +27,7 @@ export class WebHomeComponent implements OnInit, OnDestroy{
   minutes: number = 0;
   private timerInterval: any;
   isMobileView = false;
-
+  speakersList: any[] = [];
   data: any[] = [
     {
       "S_No": 1,
@@ -261,11 +262,18 @@ export class WebHomeComponent implements OnInit, OnDestroy{
       "Credentials": "President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)"
     },
   ]
-  
+ 
   
   // headerIcon:any
-  constructor(private _router: Router,private _activeRouter:ActivatedRoute, private SharedService: SharedService, private cdr: ChangeDetectorRef
+  constructor(
+    private _router: Router,
+    private _activeRouter:ActivatedRoute, 
+    private SharedService: SharedService, 
+    private cdr: ChangeDetectorRef,
+    private webService:WebService
   ) {}
+
+  
   events = [
     { title: 'Registration', time: '10:00 AM - 10:30 AM' },
     { title: 'Opening Session', time: '10:30 AM - 11:00 AM' },
@@ -282,8 +290,8 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     })
 
     console.log("home");
-
-   this.SharedService.headerIcon =  this._router.routerState.snapshot.url;
+    this.speakersList = this.webService.speakersList;
+    this.SharedService.headerIcon =  this._router.routerState.snapshot.url;
 
    this.updateCountdown();
     this.timerInterval = setInterval(() => {

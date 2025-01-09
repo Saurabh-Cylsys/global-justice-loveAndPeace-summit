@@ -4,6 +4,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { WebService } from '../webz-services/web.service';
 
 @Component({
   selector: 'app-the-summit',
@@ -15,6 +16,8 @@ export class TheSummitComponent implements OnInit {
   showPopup: boolean = false;
   isSpeaker: string = '';
   display: string = '';
+  speakersList: any[] = [];
+  isMobilespeakersList: any[] = [];
 
   events = [
     { title: 'Registration', time: '10:00 AM - 10:30 AM' },
@@ -32,10 +35,17 @@ export class TheSummitComponent implements OnInit {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private ActivatedRoute: ActivatedRoute,
+    private webService:WebService,
     private router: Router) {
 
   }
   ngOnInit(): void {
+
+    this.isMobilespeakersList = this.webService.speakersList;
+
+    this.speakersList = this.webService.getSpeakersListData();
+    console.log('list', this.speakersList);
+    
     this.checkWindowSize();
 
     this.getInviteSpeakers()
