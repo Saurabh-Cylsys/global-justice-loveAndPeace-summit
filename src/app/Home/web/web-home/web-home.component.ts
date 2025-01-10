@@ -28,6 +28,9 @@ export class WebHomeComponent implements OnInit, OnDestroy{
   private timerInterval: any;
   isMobileView = false;
   speakersList: any[] = [];
+  visibleCount: number = 5; // Initial number of events to show
+  isVisibleCount: boolean = false; 
+
   data: any[] = [
     {
       "S_No": 1,
@@ -280,6 +283,12 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     { title: 'Session Theme 1 - JUSTICE', time: '11:00 AM - 12:30 PM' },
     { title: 'Lunch & Networking', time: '12:30 PM - 2:30 PM' },
     { title: 'Session Theme 2 - LOVE', time: '2:30 PM - 4:00 PM' },
+    { title: 'Tea & Networking', time: '4:00 PM - 4:45 PM' },
+    { title: 'Session Theme 3 - PEACE', time: '4:45 PM - 6:15 PM' },
+    { title: 'Tea & Networking', time: '6:15 PM - 7:15 PM' },
+    { title: 'Awards', time: '7:15 PM - 8:15 PM' },
+    { title: 'Closing Session', time: '8:15 PM - 9:00 PM' },
+    { title: 'Dinner & Networking', time: '9:00 PM - 11:00 PM' },
   ];
   ngOnInit(): void {
     this.checkWindowSize();
@@ -306,7 +315,21 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     }
   }
 
-
+  showMore(value:boolean) {
+        if(value == true){
+      this.isVisibleCount = true;
+      this.visibleCount += 6; // Increment the count to show more events
+    }else{
+      this.isVisibleCount = false;
+      this.visibleCount = 5; 
+      
+      
+      const element = document.getElementById('event1');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
 
 
   toggle() {

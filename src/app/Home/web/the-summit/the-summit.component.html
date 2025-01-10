@@ -2708,9 +2708,9 @@
       </div>
     </div>
   </div>
-  <div class="section section7 p-lg-5 scroll" id="ts6">
-    <div class="container-fluid h-100">
-      <div class="row h-100">
+  <div class="section section7 p-lg-5" id="ts6">
+    <div class="container-fluid"[ngClass]="isVisibleCount == false?'h-100':'h-250'">
+      <div class="row "[ngClass]="isVisibleCount == false?'h-100':'h-250'">
         <div class="col-md-4 p-lg-5">
           <label for="" class="mb-3">SCHEDULE</label>
           <h1 class="mb-3">
@@ -2758,13 +2758,13 @@
               <div id="timeline-content">
                 <ul class="timeline">
                   <li
-                    class="event"
-                    [attr.data-date]="event.time"
-                    [attr.data-count]="i + 1"
-                    *ngFor="let event of events; let i = index"
-                  >
-                    <h3 class="fw-bold">{{ event.title }}</h3>
-                  </li>
+                  class="event"
+                  [attr.data-date]="event.time"
+                  [attr.data-count]="i + 1"
+                  *ngFor="let event of events | slice:0:visibleCount; let i = index"
+                >
+                  <h3 class="fw-bold">{{ event.title }}</h3>
+                </li>
                   <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
                   <h3>Opening Session</h3>
                 </li>
@@ -2786,11 +2786,19 @@
               </div>
 
               <a
+              class="text-decoration-none"
+              style="cursor: pointer;"
+              (click)="showMore(!isVisibleCount?true:false)"
+            >
+              <b style="color: rgba(3, 192, 75, 0.623)">{{isVisibleCount == false? 'See More...':'Less...'}}</b>
+            </a>
+
+              <!-- <a
                 href="assets/UIComponents/images/GJLPS-Collateral-Brochure.pdf"
                 class="text-decoration-none"
                 target="_blank"
                 ><b style="color: rgba(3, 192, 75, 0.623)">See More...</b></a
-              >
+              > -->
             </div>
           </div>
         </div>
