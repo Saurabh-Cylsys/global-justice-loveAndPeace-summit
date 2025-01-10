@@ -319,9 +319,9 @@
       
     }
 
-    #dc1, #dc3, #dc4{
+    /* #dc1, #dc3, #dc4{
       height: 35vh;
-    }
+    } */
 
     .speakers .editYear{
       font-size: 20px;
@@ -358,9 +358,9 @@
   .bgModal .modal-content .badgeModal {
     font-size: 11px;
   }
-  #dc1, #dc3, #dc4{
+  /* #dc1, #dc3, #dc4{
     height: 28vh;
-  }
+  } */
 }
 
 @media (max-width: 320px) {
@@ -385,7 +385,7 @@
   .bgModal .modal-content .badgeModal {
     font-size: 10px;
   }
-  #dc1, #dc3, #dc4{
+  /* #dc1, #dc3, #dc4{
     height: 28vh;
-  }
+  } */
 }

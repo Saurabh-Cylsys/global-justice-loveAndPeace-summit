@@ -1915,3 +1915,7 @@ header .nav-item .nav-link.active {
   width: 100%;
   height: 100%;
 }
+
+.welcome{
+  background-image: var(--gradient3);
+}
