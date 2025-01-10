@@ -117,13 +117,13 @@
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-12 p-0 h-100">
-          <!-- <img
-          src="assets/UIComponents/images/download center/download.svg"
-          alt=""
-          width="100%"
-          height="100%"
-        /> -->
-          <div id="downloadBg"></div>
+          <img
+            src="assets/UIComponents/images/downloadBg.png"
+            alt=""
+            width="100%"
+            height="100%"
+          />
+          <!-- <div id="downloadBg"></div> -->
         </div>
       </div>
     </div>
@@ -165,255 +165,649 @@
   </div>
   <div class="section section7 scroll" id="dc4">
     <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col-md-12 p-0 h-100">
-          <img
-            src="assets/UIComponents/images/dcBg4.png"
-            alt=""
-            width="100%"
-            height="100%"
-            class="p-lg-5"
-          />
-          <!-- <div id="dcBg4"></div> -->
-        </div>
-        <!-- <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/reaward.png" alt="" />
-              <p>
+      <div class="row align-items-center justify-content-center h-100">
+        <div class="col-md-12 py-4" *ngIf="isMobileView">
+          <div class="row">
+            <div class="col-12 text-center m-auto pb-3">
+              <img
+                src="assets/UIComponents/images/download center/pillars.svg"
+                alt=""
+                width="75%"
+              />
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/reaward.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
                 REWARD <br />
                 THE GOOD
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/punish.png" alt="" />
-              <p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/punish.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
                 PUNISH THE <br />
                 WRONG
               </p>
-            </li>
-            <li class="my-5">
+            </div>
+            <div class="col-4 text-center m-auto">
               <img
-                src="assets/UIComponents/images/download center/speak up.png"
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/speak_up.png"
                 alt=""
+                width="80px"
               />
-              <p>
+
+              <p class="text-center">
                 SPEAK UP FOR <br />
                 TRUTH
               </p>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <ul class="p-0 text-center list-unstyled">
-            <li>
+            </div>
+            <div class="col-4 text-center m-auto">
               <img
-                src="assets/UIComponents/images/download center/pillars.png"
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/time.png"
                 alt=""
-                class="col-7"
+                width="80px"
               />
-            </li>
-            <li class="mt-5">
-              <img src="assets/UIComponents/images/download center/time.png" alt="" />
-              <p>
-                GIVE VERDICT THROUGH PATIENCE & DEEP <br />ANALYSIS BUT DO
-                NOT DELAY IT
-              </p>
-            </li>
-          </ul>
-        </div>
 
-        <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/evil.png" alt="" />
-              <p>
+              <p class="text-center">
+                GIVE VERDICT THROUGH PATIENCE & DEEP <br />
+                ANALYSIS BUT DO NOT DELAY IT
+              </p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/evil.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
                 DO NOT SUPPORT <br />
                 EVIL OR WICKED
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/justice.png" alt="" />
-              <p>
-                DO NOT BRIBE TO <br />
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/justice.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                DO NOT BRIBE TO<br />
                 DO IN JUSTICE
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/poor.png" alt="" />
-              <p>
-                FIGHT FOR THE <br />
-                POOR
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/poor.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                FIGHT FOR <br />
+                THE POOR
               </p>
-            </li>
-          </ul>
-        </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12" *ngIf="!isMobileView">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/reaward.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    REWARD <br />
+                    THE GOOD
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/punish.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    PUNISH THE <br />
+                    WRONG
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/speak_up.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    SPEAK UP FOR <br />
+                    TRUTH
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul
+                class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+              >
+                <li>
+                  <img
+                    src="assets/UIComponents/images/download center/pillars.svg"
+                    alt=""
+                    width="90%"
+                  />
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/time.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    GIVE VERDICT THROUGH PATIENCE & DEEP <br />
+                    ANALYSIS BUT DO NOT DELAY IT
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/evil.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    DO NOT SUPPORT <br />
+                    EVIL OR WICKED
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/justice.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    DO NOT BRIBE TO<br />
+                    DO IN JUSTICE
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/poor.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    FIGHT FOR <br />
+                    THE POOR
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="section section7 scroll" id="dc5">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
-        <div class="col-md-12 p-0 h-100">
-          <img
-            src="assets/UIComponents/images/dcBg5.svg"
-            alt=""
-            width="100%"
-            height="100%"
-            class="p-lg-5 py-5"
-          />
-        </div>
-        <!-- <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/religen.png" alt="" />
-              <p>Religion</p>
-            </li>
-            <li class="my-5">
+        <div class="col-md-12 py-4" *ngIf="isMobileView">
+          <div class="row">
+            <div class="col-12 text-center m-auto pb-3">
               <img
+                src="assets/UIComponents/images/download center/causes.svg"
+                alt=""
+                width="75%"
+              />
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/religen.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">Religion</p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/politics.png"
                 alt=""
+                width="80px"
               />
-              <p>Politics</p>
-            </li>
-            <li class="my-5">
+
+              <p class="text-center">Politics</p>
+            </div>
+            <div class="col-4 text-center m-auto">
               <img
+                _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/intolarance.png"
                 alt=""
+                width="80px"
               />
-              <p>Intolerance</p>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <ul class="p-0 text-center list-unstyled">
-            <li>
-              <img
-                src="assets/UIComponents/images/download center/7.png"
-                alt=""
-                class="col-7 w-50"
-              />
-            </li>
-            <li class="mt-5">
-              <img src="assets/UIComponents/images/download center/msg.png" alt="" />
-              <p>Misunderstandings</p>
-            </li>
-          </ul>
-        </div>
 
-        <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/race.png" alt="" />
-              <p>Race</p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/greed.png" alt="" />
-              <p>Greed</p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/lack.png" alt="" />
-              <p>Lack of spirituality</p>
-            </li>
-          </ul>
-        </div> -->
+              <p class="text-center">Intolerance</p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/race.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">Race</p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/greed.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">Greed</p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/lack.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                Lack of <br />
+                spirituality
+              </p>
+            </div>
+            <div class="col-4 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/msg.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">Misunderstandings</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5" *ngIf="!isMobileView">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/religen.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Religion</p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/politics.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Politics</p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/intolarance.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Intolerance</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul
+                class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+              >
+                <li>
+                  <img
+                    src="assets/UIComponents/images/download center/causes.svg"
+                    alt=""
+                    width="90%"
+                  />
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/msg.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Misunderstandings</p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/race.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Race</p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/greed.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Greed</p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/lack.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">Lack of spirituality</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="section section7 scroll" id="dc6">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
-        <div class="col-md-12 p-0 h-100">
-          <img
-            src="assets/UIComponents/images/dcBg6.svg"
-            alt=""
-            width="100%"
-            height="100%"
-            class="p-lg-5 py-5"
-          />
-        </div>
-        <!-- <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.1.png" alt="" />
-              <p>
-                <b>GRATITUDE</b><br />
+        <div class="col-md-12 py-4" *ngIf="isMobileView">
+          <div class="row">
+            <div class="col-12 text-center m-auto pb-3">
+              <img
+                src="assets/UIComponents/images/download center/quotes.svg"
+                alt=""
+                width="75%"
+              />
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes1.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>GRATITUDE</b> <br />
                 Increases blessing
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.2.png" alt="" />
-              <p>
-                <b> FORGIVENESS</b><br />
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes2.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>FORGIVENESS</b><br />
                 is a divine attribute
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.3.png" alt="" />
-              <p>
-                <b>LOVING</b><br />
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes3.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>LOVING</b> <br />
                 one another is half of wisdom
               </p>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <ul class="p-0 text-center list-unstyled">
-            <li>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
               <img
-                src="assets/UIComponents/images/download center/7-1.png"
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes4.png"
                 alt=""
+                width="80px"
               />
-            </li>
-            <li class="mt-5">
-              <img
-                src="assets/UIComponents/images/download center/humunity.png"
-                alt=""
-              />
-              <p>
-                <b>HUMILITY</b><br />
-                is the best dress
-              </p>
-            </li>
-          </ul>
-        </div>
 
-        <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.4.png" alt="" />
-              <p>
-                <b> TRUTH</b><br />
+              <p class="text-center">
+                <b>TRUTH</b> <br />
                 is the harmony of <br />
                 thoughts, words & actions
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.5.png" alt="" />
-              <p>
-                <b> PATIENCE </b><br />
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes5.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>PATIENCE</b> <br />
                 is half of faith
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/7.6.png" alt="" />
-              <p>
-                A life of GIVING is the <br />
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/quotes6.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                A life of <b>GIVING</b> is the <br />
                 only life worth living
               </p>
-            </li>
-          </ul>
-        </div> -->
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/humunity.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>HUMILITY</b> <br />
+                is the best dress
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5" *ngIf="!isMobileView">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes1.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>GRATITUDE</b> <br />
+                    Increases blessing
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes2.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>FORGIVENESS</b><br />
+                    is a divine attribute
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes3.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>LOVING</b> <br />
+                    one another is half of wisdom
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul
+                class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+              >
+                <li>
+                  <img
+                    src="assets/UIComponents/images/download center/quotes.svg"
+                    alt=""
+                    width="90%"
+                  />
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/humunity.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>HUMILITY</b> <br />
+                    is the best dress
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes4.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>TRUTH</b> <br />
+                    is the harmony of <br />
+                    thoughts, words & actions
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes5.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>PATIENCE</b> <br />
+                    is half of faith
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/quotes6.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    A life of <b>GIVING</b> is the <br />
+                    only life worth living
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="section section7 py-lg-5" id="dc7">
+  <div class="section section7 py-lg-5 py-5" id="dc7">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="text-center">
           <img
             src="assets/UIComponents/images/download center/header-1.png"
-            class="w-25"
+            class="col-md-3 col-10"
             alt=""
           />
         </div>
@@ -585,7 +979,7 @@
             />
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <li class="my-1">
                 <h4>
                   <img
@@ -607,7 +1001,7 @@
             </ul>
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <!-- <li class="my-1">
                 <h4>
                   <img
@@ -638,7 +1032,7 @@
             </ul>
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <!-- <li class="my-1">
                 <h4>
                   <img
@@ -671,7 +1065,7 @@
             />
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <li class="my-1">
                 <h4>
                   <img
@@ -702,7 +1096,7 @@
             </ul>
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <li class="my-1">
                 <h4>
                   <img
@@ -724,7 +1118,7 @@
             </ul>
           </div>
           <div class="col-md-2">
-            <ul class="p-0 list-unstyled mt-5">
+            <ul class="p-0 list-unstyled mt-lg-5 m-0">
               <li class="my-1">
                 <h4>
                   <img
@@ -755,7 +1149,7 @@
         <div class="text-center">
           <img
             src="assets/UIComponents/images/download center/header-2.svg"
-            class="w-25"
+            class="col-md-3 col-10"
             alt=""
           />
         </div>
@@ -773,7 +1167,9 @@
               </li>
 
               <li class="my-2">
-                <h2><b style="color: #00508c">meanings</b></h2>
+                <h2 style="font-size: 50px">
+                  <b style="color: #00508c">meanings</b>
+                </h2>
               </li>
               <li class="my-4">
                 <h4>
@@ -855,99 +1251,232 @@
   <div class="section section7 scroll" id="dc9">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
-        <div class="col-md-12 p-0 h-100">
-          <img
-            src="assets/UIComponents/images/dcBg8.svg"
-            alt=""
-            width="100%"
-            height="100%"
-            class="p-lg-5 py-4"
-          />
-        </div>
-        <!-- <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-2.png" alt="" />
-              <p>
-                GRATITUDE <br />
-                <small> chair</small>
-              </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-3.png" alt="" />
-              <p>
-                FORGIVENESS <br />
-                <small> chair</small>
-              </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-4.png" alt="" />
-              <p>
-                Love <br />
-                <small> chair</small>
-              </p>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-5">
-          <ul class="p-0 text-center list-unstyled">
-            <li>
-              <img
-                src="assets/UIComponents/images/download center/header-4.png"
+        <div class="col-md-12 py-4" *ngIf="isMobileView">
+          <div class="row">
+            <div class="col-12 text-center m-auto pb-3">
+            <img
+                src="assets/UIComponents/images/download center/chair.svg"
                 alt=""
-                class="col-7 w-25"
+                width="75%"
               />
-              <p><small>Global Justice, Love & Peace Ambassadors</small></p>
-            </li>
-            <li class="mt-5">
-              <img src="assets/UIComponents/images/download center/chair1.png" alt="" />
-              <p>
-                HUMILITY <br />
-                <small>chair</small>
-              </p>
-            </li>
-            <li class="">
-              <h3>
-                <b style="color: #00508c"
-                  >SELECT THE CHAIR YOU WOULD LIKE TO SIT</b
-                >
-              </h3>
-            </li>
-          </ul>
-        </div>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair1.png"
+                alt=""
+                width="80px"
+              />
 
-        <div class="col-md">
-          <ul class="p-0 text-center list-unstyled">
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-5.png" alt="" />
-              <p>
-                TRUTH<br />
-                <small> chair</small>
+              <p class="text-center">
+                <b>GRATITUDE</b> <br />
+                chair
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-6.png" alt="" />
-              <p>
-                PATIENCE<br />
-                <small> chair</small>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair2.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>FORGIVENESS</b><br />
+                chair
               </p>
-            </li>
-            <li class="my-5">
-              <img src="assets/UIComponents/images/download center/chair-7.png" alt="" />
-              <p>
-                GIVING<br />
-                <small> chair</small>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair3.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>LOVE</b> <br />
+                chair
               </p>
-            </li>
-          </ul>
-        </div> -->
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair4.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>TRUTH</b> <br />
+                chair
+              </p>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair5.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>PATIENCE</b> <br />
+                chair
+              </p>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair6.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>GIVING</b> <br />
+                chair
+              </p>
+            </div>
+            <div class="col-4 my-lg-5 text-center m-auto">
+              <img
+                _ngcontent-uex-c33=""
+                src="assets/UIComponents/images/download center/chair7.png"
+                alt=""
+                width="80px"
+              />
+
+              <p class="text-center">
+                <b>HUMILITY</b> <br />
+                chair
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5" *ngIf="!isMobileView">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair1.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>GRATITUDE</b> <br />
+                    chair
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair2.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>FORGIVENESS</b><br />
+                    chair
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair3.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>LOVE</b> <br />
+                    chair
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul
+                class="p-0 text-center list-unstyled d-flex flex-column align-items-center justify-content-around h-100"
+              >
+                <li>
+                  <img
+                    src="assets/UIComponents/images/download center/chair.svg"
+                    alt=""
+                    width="90%"
+                  />
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair7.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>HUMILITY</b> <br />
+                    chair
+                  </p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <ul class="p-0 text-center list-unstyled">
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair4.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>TRUTH</b> <br />
+                    chair
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair5.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>PATIENCE</b> <br />
+                    chair
+                  </p>
+                </li>
+                <li class="my-lg-5">
+                  <img
+                    _ngcontent-uex-c33=""
+                    src="assets/UIComponents/images/download center/chair6.png"
+                    alt=""
+                    width="80px"
+                  />
+
+                  <p class="text-center">
+                    <b>GIVING</b> <br />
+                    chair
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="section section7 px-lg-5 poen" id="dc10">
+  <div class="section section5  poen" id="dc10">
     <div class="container-fluid h-100">
-      <div class="row h-100">
+      <div class="row h-100 px-lg-5">
         <div class="col-md-12">
           <ul class="p-0 text-center list-unstyled">
             <li>
@@ -1420,6 +1949,11 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center welcome py-2">
+          <img src="assets/UIComponents/images/download center/welcome.png" alt="" class="col-md-4 col-9">
         </div>
       </div>
     </div>

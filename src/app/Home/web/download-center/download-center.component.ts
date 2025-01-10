@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute } from '@angular/router';
-declare var AOS:any;
+import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SharedService } from 'src/app/shared/services/shared.service';
+declare var AOS: any;
 @Component({
   selector: 'app-download-center',
   templateUrl: './download-center.component.html',
-  styleUrls: ['./download-center.component.css']
+  styleUrls: ['./download-center.component.css'],
 })
 export class DownloadCenterComponent {
-  constructor( private router: ActivatedRoute
-  ) {}
+  isMobileView = false;
+  constructor(private router: ActivatedRoute, private SharedService: SharedService,) {}
   ngOnInit(): void {
     AOS.init({
       duration: 1200,
-  })
-  console.log("download center");
-  
+    });
+    console.log('download center');
+    this.checkWindowSize();
   }
 
   ngAfterViewInit(): void {
@@ -26,5 +27,21 @@ export class DownloadCenterComponent {
         }
       }
     });
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
   }
 }
