@@ -82,175 +82,187 @@ export class WebHomeComponent implements OnInit, OnDestroy{
     },
     {
       "S_No": 9,
+      "Name": "Fejzullah Rexhepi, His Excellency",
+      "Country": "KOSOVO ",
+      "Credentials": "President of the Supreme Court of Kosovo"
+    },
+    {
+      "S_No": 10,
       "Name": "Habil Khorakiwala, Dr.",
       "Country": "INDIA",
       "Credentials": "Industrialist : Chairman, Wockhardt Group"
     },
     {
-      "S_No": 10,
+      "S_No": 11,
+      "Name": "Hassan Babacar Jallow, Lord Chief Justice",
+      "Country": "GAMBIA ",
+      "Credentials": "Chief Justice of the Supreme Court of Gambia"
+    },
+    {
+      "S_No": 12,
       "Name": "Helena Lemaletian, Senator, Ambassador",
       "Country": "KENYA",
       "Credentials": "Politician ( Member of Parliament ), Royalty ( Queen of the North Kenya ), Beauty Queen ( Miss Commonwealth Kenya, 2018 )"
     },
     
     {
-      "S_No": 11,
+      "S_No": 13,
       "Name": "Kailash Satyarthi",
       "Country": "INDIA",
       "Credentials": "Social Activist, Nobel Peace Laureate 2014"
     },
     {
-      "S_No": 12,
+      "S_No": 14,
       "Name": "Lech Walesa, Ex-President",
       "Country": "POLAND",
       "Credentials": "Politician, Trade Union Activist : Nobel Peace Laureate 1983"
     },
     {
-      "S_No": 13,
+      "S_No": 15,
       "Name": "Leymah Gbowee",
       "Country": "LIBERIA",
       "Credentials": "Nobel Peace Laureate 2011"
     },
     {
-      "S_No": 14,
+      "S_No": 16,
       "Name": "Lokesh Ji Muni Acharya, His Holiness",
       "Country": "INDIA",
       "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
     },
     {
-      "S_No": 15,
+      "S_No": 17,
       "Name": "Mahawa Simou Diouf, Judge President of the Court of Justice of WAEMU (West African Monetary & Economic Union)",
       "Country": "BURKINA FASO",
       "Credentials": "Head of Association of Judges of 8 countries in West Africa"
     },
     {
-      "S_No": 16,
+      "S_No": 18,
       "Name": "Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince",
       "Country": "DENMARK",
       "Credentials": "Royalty, TV Host, Philanthropist"
     },
     {
-      "S_No": 17,
+      "S_No": 19,
       "Name": "Mary Kom",
       "Country": "INDIA",
       "Credentials": "Boxer, 6 times World Champion"
     },
     {
-      "S_No": 18,
+      "S_No": 20,
       "Name": "Mohammed Abd-Salam, His Excellency, Judge",
       "Country": "EGYPT",
       "Credentials": "Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace"
     },
     {
-      "S_No": 19,
+      "S_No": 21,
       "Name": "Mohammed Asif Ali, Nawabzada",
       "Country": "INDIA",
       "Credentials": "Royalty Heir Apparent to the Prince of Arcot"
     },
     {
-      "S_No": 20,
+      "S_No": 22,
       "Name": "Mohan Mubasinghe, Prof",
       "Country": "SRI LANKA",
       "Credentials": "Nobel Peace Laureate 2007"
     },
     {
-      "S_No": 21,
+      "S_No": 23,
       "Name": "Mustapha Njie",
       "Country": "GAMBIA",
       "Credentials": "Industrialist : Chairman, TAF Global"
     },
     {
-      "S_No": 22,
+      "S_No": 24,
       "Name": "Nadia Murad",
       "Country": "IRAQ",
       "Credentials": "Social Activist : Nobel Peace Laureates 2018"
     },
     {
-      "S_No": 23,
+      "S_No": 25,
       "Name": "Nadir Godrej",
       "Country": "INDIA",
       "Credentials": "Industrialist, Chairman, Godrej Industries"
     },
     {
-      "S_No": 24,
+      "S_No": 26,
       "Name": "Oheneba Nana Kwame Obeng 2, His Royal Highness",
       "Country": "GHANA",
       "Credentials": "Royalty, The Royal House of Sefwi Obeng-Mim"
     },
     {
-      "S_No": 25,
+      "S_No": 27,
       "Name": "Ouided Bouchamaoui",
       "Country": "TUNISIA",
       "Credentials": "Nobel Peace Laureate 2015"
     },
     {
-      "S_No": 26,
+      "S_No": 28,
       "Name": "Paco Soleil",
       "Country": "SPAIN",
       "Credentials": "Artist, Peace Painter (live performance)"
     },
     {
-      "S_No": 27,
+      "S_No": 29,
       "Name": "P V Sindhu",
       "Country": "INDIA",
       "Credentials": "Badminton World Champion (2019) (final confirmation based on tournament schedule)"
     },
     {
-      "S_No": 28,
+      "S_No": 30,
       "Name": "Rina Telesphore, Dr, His Royal Highness, The Prince",
       "Country": "MADAGASCAR",
       "Credentials": "Royalty, Pastor, Philanthropist"
     },
     {
-      "S_No": 29,
+      "S_No": 31,
       "Name": "Romona Murad Dr., Her Royal Highness Princess Dato Seri",
       "Country": "MALAYSIA",
       "Credentials": "Royalty, Philanthropist, Peace Activist"
     },
     {
-      "S_No": 30,
+      "S_No": 32,
       "Name": "Rui Duarte de Barros, His Excellency",
       "Country": "GUINEA BISSAU",
       "Credentials": "Prime Minister"
     },
     {
-      "S_No": 31,
+      "S_No": 33,
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
     },
     {
-      "S_No": 32,
+      "S_No": 34,
       "Name": "Shirin Ebadi",
       "Country": "IRAN",
       "Credentials": "Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003"
     },
     {
-      "S_No": 33,
+      "S_No": 35,
       "Name": "Tehemton  Burjor Mirza, Dastur",
       "Country": "INDIA",
       "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
     },
     {
-      "S_No": 34,
+      "S_No": 36,
       "Name": "Thich Nhat Tu, Most Venerable, Dr.",
       "Country": "VIETNAM",
       "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
     },
     {
-      "S_No": 35,
+      "S_No": 37,
       "Name": "Venkatramani R, Honorable",
       "Country": "INDIA",
       "Credentials": "The Attorney General of India"
     },
     {
-      "S_No": 36,
+      "S_No": 38,
       "Name": "Yasmin Karachiwala",
       "Country": "INDIA",
       "Credentials": "Celebrity Fitness Trainer"
     },
     {
-      "S_No": 37,
+      "S_No": 39,
       "Name": "Zayed Khan",
       "Country": "INDIA",
       "Credentials": "Producer & Actor"
