@@ -1627,7 +1627,7 @@ header .nav-item .nav-link.active {
 }
 .confirmation table tr th:nth-child(2) {
   background-color: #446aa0;
-  width: 40rem;
+  width: 30rem;
 }
 .confirmation table tr th:nth-child(3) {
   background-color: #6ca357;
