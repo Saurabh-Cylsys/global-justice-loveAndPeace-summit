@@ -362,7 +362,7 @@ header .nav-item .nav-link.active {
 .index .section7 {
   background-image: url(../images/index/banner2.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   /* height: 127vh; */
   height: auto;
 }
