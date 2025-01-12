@@ -921,6 +921,8 @@
                       (change)="onFileChange($event)"
                     />
                   </div>
+
+
                   <!-- <p *ngIf="selectedFile" class="file-name">Selected file: {{ selectedFile.name }}</p> -->
                   <p
                     style="
@@ -1334,6 +1336,61 @@
             "
           >
             Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="isPeaceOn == 2"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1">
+    <div class="modal-content p-3">
+      <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
+      <image-cropper 
+      *ngIf="imageChangedEvent" 
+      [imageChangedEvent]="imageChangedEvent"
+      (imageCropped)="imageCropped($event)"
+      [maintainAspectRatio]="true"
+      [resizeToWidth]="128"
+      [cropperMinWidth]="100"
+      [cropperMinHeight]="100"
+      [style.width]="'100%'">
+    </image-cropper>
+
+      <div class="col-md-12 row justify-content-center mb-4 " style="width: 95%">
+        <div class="col-md-4 col-6">
+          <button
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="cropperReady()"
+            style="height: 36px; font-size: 15px"
+          >
+            Crop
+          </button>
+        </div>
+        <div class="col-md-4 col-6">
+          <button
+            class="btn btn-success w-100"
+            data-dismiss="modal"
+            (click)="closeModal()"
+            style="
+              height: 36px;
+              font-size: 15px;
+              background-color: #ffff;
+              color: #198754;
+            "
+          >
+            Cancel
           </button>
         </div>
       </div>
