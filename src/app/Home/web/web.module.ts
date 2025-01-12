@@ -36,6 +36,7 @@ import { IntlInputPhoneModule } from 'intl-input-phone';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -82,7 +83,8 @@ import { DownloadBrochureComponent } from './download-brochure/download-brochure
    ReactiveFormsModule, 
     NgxIntlTelInputModule ,
     QRCodeModule,
-   IntlInputPhoneModule
+   IntlInputPhoneModule,
+   ImageCropperModule
   ]
 })
 export class WebModule { }

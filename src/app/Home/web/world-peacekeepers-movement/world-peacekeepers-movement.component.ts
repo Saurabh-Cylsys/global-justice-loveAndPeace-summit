@@ -1,7 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -9,6 +8,8 @@ import html2canvas from 'html2canvas';
 import int1TelInput from 'intl-tel-input';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -59,6 +60,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   minDate: string | null = null;
   maxDate: string | null = null;
   isDragging = false;
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -72,6 +75,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
+    private sanitizer: DomSanitizer,
     private renderer: Renderer2) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates
     // this.is_selectedFile = false;
@@ -185,53 +189,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     return this.peacekeepersForm.get('dob');
   }
 
-  onDrop(event: DragEvent): void {
-    event.preventDefault();
-    this.isDragging = false;
-
-    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
-      this.selectedFile = event.dataTransfer.files[0];
-      this.is_selectedFile = true;
-      console.log('Dropped file:', this.selectedFile);
-
-        // Update the input field's value programmatically
-        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (fileInput) {
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(this.selectedFile);
-      fileInput.files = dataTransfer.files; // Set the dropped file to the input
-    }
-      }
-  }
-
-  onDragOver(event: DragEvent): void {
-
-    event.preventDefault();
-    this.isDragging = true;
-
-    // Add a visual cue for the drag-over state (e.g., border highlight)
-  }
-
-  onDragLeave(event: DragEvent): void {
-    event.preventDefault();
-    this.isDragging = false;
-
-    // Remove the visual cue for the drag-over state
-  }
-
-  // Handle the file selection from the input element
-  onFileSelect(event: Event): void {
-
-    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
-
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
-      this.selectedFile = target.files[0];
-      this.is_selectedFile = true;
-
-      console.log('Selected file:', this.selectedFile);
-    }
-  }
 
   downloadImage() {
 
@@ -359,23 +316,163 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
   // profile_picture:[''],
 
-  onFileChange(event: any): void {
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging = false;
+
+
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      this.selectedFile = event.dataTransfer.files[0];
+      this.is_selectedFile = true;
+      console.log('Dropped file:', this.selectedFile);
+
+        // Update the input field's value programmatically
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    if (fileInput) {
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(this.selectedFile);
+      fileInput.files = dataTransfer.files; // Set the dropped file to the input
+    }
+
+    const fileInputEvent = {
+      target: {
+        files: [this.selectedFile]
+      }
+    } as any;
+    this.fileChangeEvent(fileInputEvent);
+  }      
+  }
+
+  onDragOver(event: DragEvent): void {
+
+    event.preventDefault();
+    this.isDragging = true;
+
+    // Add a visual cue for the drag-over state (e.g., border highlight)
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    this.isDragging = false;
+
+    // Remove the visual cue for the drag-over state
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    console.log(this.imageChangedEvent, 'on select');
+  
+    // Open the popup for cropping
+    this.isPeaceOn = 2;
+    this.showPopup = true;
+    this.display = 'block';
+    this.formdisplay = false;
+  }
+
+  // Handle the file selection from the input element
+  onFileSelect(event: Event): void {
 
     console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      this.selectedFile = target.files[0];
       this.is_selectedFile = true;
+
+      console.log('Selected file:', this.selectedFile);
     }
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.previewUrl = e.target.result; // Set the preview URL
-    };
-    reader.readAsDataURL(file);
-    console.log('Selected file:', this.selectedFile);
   }
 
+
+  onFileChange(event: any): void {
+    this.imageChangedEvent = event;
+    console.log(this.imageChangedEvent , 'on select');
+
+    this.isPeaceOn = 2;
+    this.showPopup = true;
+    this.display = 'block'
+    this.formdisplay = false;
+
+    // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+
+    // const file = event.target.files[0];
+    // if (file) {
+    //   this.selectedFile = file;
+    //   this.is_selectedFile = true;
+    // }
+    // const reader = new FileReader();
+    // reader.onload = (e: any) => {
+    //   this.previewUrl = e.target.result; // Set the preview URL
+    // };
+    // reader.readAsDataURL(file);
+    // console.log('Selected file:', this.selectedFile);
+  }
+
+//   fileChangeEvent(event: any): void {
+//     this.imageChangedEvent = event;
+// }
+
+
+imageCropped(event: ImageCroppedEvent): void {
+  this.croppedImage = event.objectUrl;
+
+      console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+
+      // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
+fetch(this.croppedImage)
+.then(response => response.blob())  // Fetch the image blob
+.then(blob => {
+  // Create a File object from the Blob
+  const file = new File([blob], "BeautyPlus_20220223152217940_save.jpg", {
+    type: blob.type,
+    lastModified: Date.now()  // You can set this to the actual last modified timestamp if needed
+  });
+
+  // Now you can append the file data to your payload
+  const payload = {
+    file: file,
+    otherData: 'your other data here',
+  };
+
+  // For example, logging the file details
+  console.log(file);
+  console.log(payload);
+
+  const newFile = file;
+  if (newFile) {
+    this.selectedFile = newFile;
+    this.is_selectedFile = true;
+  }
+  const reader = new FileReader();
+  reader.onload = (e: any) => {
+    this.previewUrl = e.target.result; // Set the preview URL
+  };
+  reader.readAsDataURL(newFile);
+  console.log('Selected file:', this.selectedFile);
+
+  // Proceed with your request or any other operation with 'payload'
+})
+.catch(error => {
+  console.error('Error fetching the image:', error);
+});
+
+
+
+}
+
+imageLoaded() {
+  // Optional: Image loaded event
+}
+
+cropperReady() {
+  this.display = "none";
+  this.showPopup = false;
+  // Optional: Cropper ready event
+}
+
+loadImageFailed() {
+  // Optional: Image load failed event
+}
 
   ValidateAlpha(event: any) {
     var keyCode = (event.which) ? event.which : event.keyCode
@@ -393,6 +490,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   submitData(fileInput: HTMLInputElement): void {
+    debugger
     this.convertedImage = '';
     this.display = "none";
     this.showPopup = false;
