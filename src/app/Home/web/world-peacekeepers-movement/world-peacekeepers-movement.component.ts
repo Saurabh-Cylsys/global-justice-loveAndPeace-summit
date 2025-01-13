@@ -57,6 +57,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   qrCodeData: string | null = null;
   qrCodeImg: any
   convertedImage: string | null = null;
+  isConvertedImage: boolean = true;
   minDate: string | null = null;
   maxDate: string | null = null;
   isDragging = false;
@@ -280,6 +281,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         .finally(() => {
           // this.isLoading = false; // Hide the spinner if added
           console.log('converted image', this.convertedImage);
+          this.isConvertedImage = false;
 
         });
     }
