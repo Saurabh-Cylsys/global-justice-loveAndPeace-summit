@@ -61,6 +61,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   maxDate: string | null = null;
   isDragging = false;
   imageChangedEvent: any = '';
+  imageFileName: any = '';
   croppedImage: any = '';
 
   changePreferredCountries() {
@@ -245,7 +246,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         setTimeout(() => {
           this.readyImage();
         }, 1000);
-       });
+      });
     }
 
 
@@ -324,23 +325,24 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
+      this.imageFileName = this.selectedFile.name
       console.log('Dropped file:', this.selectedFile);
 
-        // Update the input field's value programmatically
-        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-    if (fileInput) {
-      const dataTransfer = new DataTransfer();
-      dataTransfer.items.add(this.selectedFile);
-      fileInput.files = dataTransfer.files; // Set the dropped file to the input
-    }
-
-    const fileInputEvent = {
-      target: {
-        files: [this.selectedFile]
+      // Update the input field's value programmatically
+      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      if (fileInput) {
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(this.selectedFile);
+        fileInput.files = dataTransfer.files; // Set the dropped file to the input
       }
-    } as any;
-    this.fileChangeEvent(fileInputEvent);
-  }      
+
+      const fileInputEvent = {
+        target: {
+          files: [this.selectedFile]
+        }
+      } as any;
+      this.fileChangeEvent(fileInputEvent);
+    }
   }
 
   onDragOver(event: DragEvent): void {
@@ -361,7 +363,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
-  
     // Open the popup for cropping
     this.isPeaceOn = 2;
     this.showPopup = true;
@@ -386,7 +387,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   onFileChange(event: any): void {
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent , 'on select');
+    console.log(this.imageChangedEvent, 'on select');
+    this.imageFileName = event.target.files[0].name
 
     this.isPeaceOn = 2;
     this.showPopup = true;
@@ -408,71 +410,79 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     // console.log('Selected file:', this.selectedFile);
   }
 
-//   fileChangeEvent(event: any): void {
-//     this.imageChangedEvent = event;
-// }
+  //   fileChangeEvent(event: any): void {
+  //     this.imageChangedEvent = event;
+  // }
 
 
-imageCropped(event: ImageCroppedEvent): void {
-  this.croppedImage = event.objectUrl;
+  imageCropped(event: ImageCroppedEvent): void {
+    this.croppedImage = event.objectUrl;
+    console.log(this.imageFileName, 'cropping');
 
-      console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+    // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
+    fetch(this.croppedImage)
+      .then(response => response.blob())  // Fetch the image blob
+      .then(blob => {
+        // Create a File object from the Blob
+        const file = new File([blob], this.imageFileName, {
+          type: blob.type,
+          lastModified: Date.now()  // You can set this to the actual last modified timestamp if needed
+        });
 
-      // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
-fetch(this.croppedImage)
-.then(response => response.blob())  // Fetch the image blob
-.then(blob => {
-  // Create a File object from the Blob
-  const file = new File([blob], "BeautyPlus_20220223152217940_save.jpg", {
-    type: blob.type,
-    lastModified: Date.now()  // You can set this to the actual last modified timestamp if needed
-  });
+        // Now you can append the file data to your payload
+        const payload = {
+          file: file,
+          otherData: 'your other data here',
+        };
 
-  // Now you can append the file data to your payload
-  const payload = {
-    file: file,
-    otherData: 'your other data here',
-  };
+        // For example, logging the file details
+        console.log(file);
+        console.log(payload);
 
-  // For example, logging the file details
-  console.log(file);
-  console.log(payload);
+        const newFile = file;
+        if (newFile) {
+          this.selectedFile = newFile;
+          this.is_selectedFile = true;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.previewUrl = e.target.result; // Set the preview URL
+        };
+        reader.readAsDataURL(newFile);
+        console.log('Selected file:', this.selectedFile);
 
-  const newFile = file;
-  if (newFile) {
-    this.selectedFile = newFile;
-    this.is_selectedFile = true;
+        // Proceed with your request or any other operation with 'payload'
+      })
+      .catch(error => {
+        console.error('Error fetching the image:', error);
+      });
+
+
+
   }
-  const reader = new FileReader();
-  reader.onload = (e: any) => {
-    this.previewUrl = e.target.result; // Set the preview URL
-  };
-  reader.readAsDataURL(newFile);
-  console.log('Selected file:', this.selectedFile);
 
-  // Proceed with your request or any other operation with 'payload'
-})
-.catch(error => {
-  console.error('Error fetching the image:', error);
-});
+  closeImageModal() {
+    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    fileInput.value = '';
+    this.is_selectedFile = false
+    this.display = "none";
+    this.showPopup = false;
+  }
 
+  imageLoaded() {
+    // Optional: Image loaded event
+  }
 
+  cropperReady() {
+    this.imageChangedEvent = '';
+    this.display = "none";
+    this.showPopup = false;
+    // Optional: Cropper ready event
+  }
 
-}
-
-imageLoaded() {
-  // Optional: Image loaded event
-}
-
-cropperReady() {
-  this.display = "none";
-  this.showPopup = false;
-  // Optional: Cropper ready event
-}
-
-loadImageFailed() {
-  // Optional: Image load failed event
-}
+  loadImageFailed() {
+    // Optional: Image load failed event
+  }
 
   ValidateAlpha(event: any) {
     var keyCode = (event.which) ? event.which : event.keyCode
