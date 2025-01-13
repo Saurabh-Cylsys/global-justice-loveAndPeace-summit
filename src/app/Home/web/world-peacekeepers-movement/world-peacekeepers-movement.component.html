@@ -911,9 +911,12 @@
                     >
                     <span>or</span>
                     <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
-                    <input
+                 
+                                        <input
                       class="custom-file-input col-md-5 col-12"
                       type="file"
+                      style="  cursor: pointer;
+"
                       accept="image/jpg,image/png,image/jpeg"
                       formControlName="File"
                       name="profile_picture"
@@ -922,7 +925,23 @@
                     />
                   </div>
 
-
+                <button *ngIf="is_selectedFile"
+                class="btn btn-success"
+                data-dismiss="modal"
+                (click)="closeImageModal()"
+                style="
+                  margin-top: 5px;
+                  height: 32px;
+                  font-size: 12px;
+                  background-color: #ffff;
+                  color: #1d1d11;
+                  font-weight: 500;
+                "
+              >
+              Clear Image
+              </button>
+                  <!-- <a class="" style="color: #005A93;"  (click)="closeImageModal()"
+                  >Clear Image</a> -->
                   <!-- <p *ngIf="selectedFile" class="file-name">Selected file: {{ selectedFile.name }}</p> -->
                   <p
                     style="
@@ -1367,7 +1386,7 @@
       [style.width]="'100%'">
     </image-cropper>
 
-      <div class="col-md-12 row justify-content-center mb-4 " style="width: 95%">
+      <div class="col-md-12 row justify-content-center mb-4 mt-1">
         <div class="col-md-4 col-6">
           <button
             class="btn btn-success w-100"
@@ -1382,7 +1401,7 @@
           <button
             class="btn btn-success w-100"
             data-dismiss="modal"
-            (click)="closeModal()"
+            (click)="closeImageModal()"
             style="
               height: 36px;
               font-size: 15px;
