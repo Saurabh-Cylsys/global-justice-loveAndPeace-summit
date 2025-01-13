@@ -971,7 +971,7 @@
                     type="button"
                     class="btn btn-success text-white text-center"
                     [disabled]="
-                      this.peacekeepersForm.invalid && !is_selectedFile
+                      this.peacekeepersForm.invalid
                     "
                   >
                     Save
@@ -1191,12 +1191,12 @@
               >
                 <span style="outline: none; border: none"
                   ><b>
-                    You have entered the correct information. Please click the
-                    'OK' button.
+                    If You would like to go with this preview, for your Badge, please click the ‘OK’ button
                     <br />
-                    If you need to refill the information, please click the
-                    'Back' button.
+                    To refill the information. please click the ‘Back’ button
                   </b>
+                 
+
                 </span>
               </div>
             </div>
@@ -1204,7 +1204,7 @@
         </tr>
       </table>
 
-      <div class="col-md-12 row ms- mb-4" style="width: 95%">
+      <div class="col-md-12 row justify-content-center mb-4">
         <div class="col-md-4 col-6">
           <button
             class="btn btn-success w-100"
@@ -1336,6 +1336,7 @@
           <button
             class="btn btn-success w-100"
             data-dismiss="modal"
+            [disabled]="isConvertedImage"
             (click)="downloadImage()"
             style="height: 36px; font-size: 15px"
           >
@@ -1380,7 +1381,7 @@
       [imageChangedEvent]="imageChangedEvent"
       (imageCropped)="imageCropped($event)"
       [maintainAspectRatio]="true"
-      [resizeToWidth]="128"
+      [resizeToWidth]="1024"
       [cropperMinWidth]="100"
       [cropperMinHeight]="100"
       [style.width]="'100%'">
