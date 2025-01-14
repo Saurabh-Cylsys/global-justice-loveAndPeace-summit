@@ -249,7 +249,7 @@
 
   .index .section1 .cardMain {
     /* background-color: #005a9394; */
-    background-color: #edffae;
+    background-color: #edffae73;
     border: 1px solid #005a93;
     box-shadow: none;
     border-top-left-radius: 0;
@@ -333,7 +333,24 @@
     .index .section7{
       background-image: var(--gradient3);
     }
-  
+    .btnText{
+      font-size: 12px;
+    }
+
+    .confirmation table{
+      font-size: 12px;
+    }
+
+    .confirmation table tr th:nth-child(2) {
+      /* background-color: #446aa0; */
+      width: 12rem;
+      display: block;
+  }
+
+  .confirmation table tr td span {
+    width: 15rem;
+    display: block;
+  }
 }
 
 @media (max-width: 375px) {
