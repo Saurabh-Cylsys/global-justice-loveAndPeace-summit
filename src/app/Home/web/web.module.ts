@@ -37,9 +37,7 @@ import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.compo
 import { QRCodeModule } from 'angularx-qrcode';
 import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { PaymentSuccessfulComponent } from './payment-successful/payment-successful.component';
 import { PaymentMainComponent } from './payment-main/payment-main.component';
-import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
@@ -77,9 +75,7 @@ import { PaymentCancelComponent } from './payment-cancel/payment-cancel.componen
     VisitorTermsOnditionsComponent,
     ChairmanCornerComponent,
     DownloadBrochureComponent,
-    PaymentSuccessfulComponent,
     PaymentMainComponent,
-    PaymentStatusComponent,
     PaymentComponent,
     SuccessComponent,
     PaymentCancelComponent,

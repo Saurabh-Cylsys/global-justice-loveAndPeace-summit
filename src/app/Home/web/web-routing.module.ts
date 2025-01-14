@@ -29,7 +29,6 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
-import { PaymentSuccessfulComponent } from './payment-successful/payment-successful.component';
 import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
