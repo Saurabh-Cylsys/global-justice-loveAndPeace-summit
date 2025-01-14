@@ -24,11 +24,11 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-12" *ngIf="!isMobileView">
-                        <h5>12-13 April, 2025</h5>
+                        <h5>12th -13th April, 2025</h5>
                         <p>DEC, Expo City, Dubai</p>
                       </div>
                       <div class="col-12" *ngIf="isMobileView">
-                        <h5>12-13 April 2025, Dubai Expo</h5>
+                        <h5>12th - 13th April 2025, Dubai Expo</h5>
                       </div>
                       <div class="col-4">
                         <div class="card">
@@ -117,12 +117,12 @@
                 <h2 class="">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
                   JUSTICE, LOVE & <br />
-                  PEACE SUMMIT @ DUBAI ON 13th APRIL 2025
+                  PEACE SUMMIT @ DUBAI ON 12th - 13th APRIL 2025
                 </h2>
-                <h6 class="editYear">Date: JANUARY 12, 2025</h6>
+                <h6 class="editYear">Date: JANUARY 14, 2025</h6>
               </div>
               <div class="col-md-12">
-                <div class="table-responsive confirmation px-md-0 px-2">
+                <div class="table-responsive confirmation px-md-0">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -138,7 +138,7 @@
                         <td>{{ i + 1 }}</td>
                         <td>{{ row.Name }}</td>
                         <td class="text-center">{{ row.Country }}</td>
-                        <td>{{ row.Credentials }}</td>
+                        <td><span>{{ row.Credentials }}</span></td>
                       </tr>                      
 
                       <!-- <tr *ngFor="let row of data">
@@ -158,7 +158,7 @@
                 
               </div>
               <div class="col-md-12">
-                <div class="table-responsive confirmation px-md-0 px-2">
+                <div class="table-responsive confirmation px-md-0">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -172,8 +172,8 @@
                       <tr *ngFor="let row of joinOnline">
                         <td>{{ row.S_No }}</td>
                         <td>{{ row.Name }}</td>
-                        <td>{{ row.Country }}</td>
-                        <td>{{ row.Credentials }}</td>
+                        <td class="text-center">{{ row.Country }}</td>
+                        <td><span>{{ row.Credentials }}</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -301,7 +301,7 @@
                       class="d-lg-flex align-items-center justify-content-between"
                     >
                       <div class="date">
-                        <h3>13 <span>April, Sunday 2025</span></h3>
+                        <h3>12th -13th <span>April, 2025</span></h3>
                         <h5>10:00 AM - 11:00 PM</h5>
                       </div>
                       <h4 class="location">

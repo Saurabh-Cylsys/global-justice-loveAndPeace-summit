@@ -1057,6 +1057,7 @@ header .nav-item .nav-link.active {
 
 ::-webkit-scrollbar {
   width: 10px;
+  height: 5px;
 }
 
 /* Track */
@@ -1639,6 +1640,7 @@ header .nav-item .nav-link.active {
 }
 .confirmation table tr td {
   background-color: transparent;
+  padding-block: 3px;
 }
 
 .confirmation table tr td:nth-child(2) {
