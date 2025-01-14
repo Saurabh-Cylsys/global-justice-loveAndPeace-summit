@@ -1,6 +1,24 @@
-<h1>Payment Successful</h1>
-<p *ngIf="transactionVerified">Transaction Verified: {{ sessionId }}</p>
-<p *ngIf="!transactionVerified">Verifying Transaction...</p>
+<!-- <h1>Payment Successful</h1> -->
+<div *ngIf="isPaymentStatus == 'complete'">
+  <img src="assets/UIComponents/images/paymentmode/payment-success.png" width="800px" alt="">
+<!-- <div class="card">
+  <div class="background-pattern"></div>
+  <div class="checkmark">✔</div>
+  <h1>Yeah! </h1>
+  <h2><span class="emoji">🎉</span> Payment Successful</h2>
+  <p>
+    <span class="globe-icon">🌍</span>
+    Thank You for Joining the Global Justice, Love & Peace Summit
+  </p>
+</div>
+<button class="done-button">Done</button> -->
+</div>
+<div *ngIf="isPaymentStatus == 'failed'">
+  <img src="assets/UIComponents/images/paymentmode/payment-failed.png" width="800px" alt="">
+
+
+</div>
+
 
 <!-- <div class="payment-success-container">
     <h1>Payment Successful</h1>
@@ -13,7 +31,7 @@
 <!-- <button  type="button"
 class="btn btn-success text-white text-center" (click)="redirectToDashboard()">Go to home</button> -->
 
-  <!-- <div *ngIf="isPaymentSuccessful">
+<!-- <div *ngIf="isPaymentSuccessful">
     <p>Payment successful! Thank you for your purchase. You have been registered.</p>
   </div>
 

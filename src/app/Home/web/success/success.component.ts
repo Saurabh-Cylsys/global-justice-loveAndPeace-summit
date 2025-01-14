@@ -6,11 +6,8 @@ import { DelegateService } from '../../delegate/services/delegate.service';
 
 @Component({
   selector: 'app-success',
-  template: `
-<h1>Payment Successful</h1>
-<p>Your Transaction ID: {{ transactionId }}</p>
-  `,
-})
+  templateUrl: './success.component.html',
+  styleUrls: ['./success.component.css']})
 export class SuccessComponent implements OnInit {
   transactionId: string | null = null;
   isPaymentSuccessful: boolean = false;
@@ -18,13 +15,13 @@ export class SuccessComponent implements OnInit {
   isPaymentError: boolean = false;
   errorMessage: string = '';
   sessionId: string | null = null;
-  transactionVerified: boolean = false;
+  transactionVerified: boolean | undefined;
  
   constructor(private route: ActivatedRoute,
     private DelegateService: DelegateService,
      private http: HttpClient) {
     this.route.queryParams.subscribe((params) => {
-      this.sessionId = params['prefilled_email'] || 'No email';
+      this.sessionId = params['session_id'] || 'No session_id';
     });
   }
  
@@ -34,17 +31,24 @@ export class SuccessComponent implements OnInit {
 
   }
 verifySession(){
+  console.log( this.transactionVerified , 'transactionVerified.....22');
+
 let body={
-  session_id: this.sessionId
+  // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
+  sessionId: this.sessionId
+
 }
   this.DelegateService.postVerifySession(body).subscribe({
     next: (response:any) => {
               if (response.success) {
                 console.log('Session Verified:', response.session);
-                this.isPaymentStatus = response.status;
+                this.isPaymentStatus = response.session.status;
                 this.transactionVerified = true;
+                console.log( this.isPaymentStatus , 'transactionVerified.....22');
+                
               } else {
-                this.isPaymentStatus = response.status;
+                // this.isPaymentStatus = response.session.status;
+                this.isPaymentStatus = 'failed';
                 console.error('Payment not completed:', response.message);
               }
             },
