@@ -42,5 +42,12 @@ export class DelegateService {
 
   }
 
+  postCheckoutSession(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postCheckoutSessionEndpoint(),body);
 
+  }
+  postVerifySession(body: any) {
+    return this._apiHttpService.get(this._apiEndpointsService.postVerifySessionEndpoint(),body);
+
+  }
 }

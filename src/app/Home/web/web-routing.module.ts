@@ -29,6 +29,10 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { VisitorTermsOnditionsComponent } from './visitor-terms-onditions/visitor-terms-onditions.component';
 import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.component';
 import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
+import { PaymentSuccessfulComponent } from './payment-successful/payment-successful.component';
+import { PaymentMainComponent } from './payment-main/payment-main.component';
+import { SuccessComponent } from './success/success.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -69,12 +73,22 @@ const routes: Routes = [
       {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent},
       {path:'chairman-corner',component:ChairmanCornerComponent},
       {path:'download-brochure',component:DownloadBrochureComponent},
+
+      //Payment
       
       
       {path:'', redirectTo:'home', pathMatch:'full'}
     ]
-  }
+  },
+  {
+    path: '', 
+    component: PaymentMainComponent,
+    children:[
+      { path: 'payment-status', component: PaymentComponent },
+      { path: 'success', component: SuccessComponent },
 
+    ]
+  }
 
 ];
 

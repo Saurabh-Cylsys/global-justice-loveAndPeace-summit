@@ -276,4 +276,12 @@ export class ApiEndpointsService {
   public getPeacekeeper_Badge_Data(id:any) {
     return this.createUrl(this._constants.API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE + id);
   }
+  public postCheckoutSessionEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CHECKOUT_SESSION);
+  }
+  public postVerifySessionEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+  }
+
+  
 }
