@@ -1600,6 +1600,7 @@ header .nav-item .nav-link.active {
   text-align: start;
   width: 100%;
   border-radius: 10px;
+  font-size: 16px;
 }
 
 .confirmation table tr th {
@@ -1918,4 +1919,8 @@ header .nav-item .nav-link.active {
 
 .welcome{
   background-image: var(--gradient3);
+}
+
+.btnText{
+  font-size: 18px;
 }
