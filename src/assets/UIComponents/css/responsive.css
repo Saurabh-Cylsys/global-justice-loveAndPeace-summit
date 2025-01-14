@@ -336,6 +336,10 @@
     .btnText{
       font-size: 12px;
     }
+
+    .confirmation table{
+      font-size: 12px;
+    }
 }
 
 @media (max-width: 375px) {
