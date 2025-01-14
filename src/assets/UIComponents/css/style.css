@@ -1919,3 +1919,7 @@ header .nav-item .nav-link.active {
 .welcome{
   background-image: var(--gradient3);
 }
+
+.btnText{
+  font-size: 18px;
+}
