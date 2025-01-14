@@ -37,6 +37,10 @@ import { ChairmanCornerComponent } from './chairman-corner/chairman-corner.compo
 import { QRCodeModule } from 'angularx-qrcode';
 import { DownloadBrochureComponent } from './download-brochure/download-brochure.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { PaymentMainComponent } from './payment-main/payment-main.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './success/success.component';
+import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -71,6 +75,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     VisitorTermsOnditionsComponent,
     ChairmanCornerComponent,
     DownloadBrochureComponent,
+    PaymentMainComponent,
+    PaymentComponent,
+    SuccessComponent,
+    PaymentCancelComponent,
 
     // WhoShouldAttendAndWhyComponent,
     

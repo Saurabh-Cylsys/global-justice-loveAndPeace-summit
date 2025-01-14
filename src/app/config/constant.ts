@@ -13,6 +13,10 @@ export class Constants {
     public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
     public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
     public readonly API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE: string = 'peacekeeper/'
+
+    //payment
+    public readonly API_ENDPOINT_CHECKOUT_SESSION: string = 'create_session_stripe'
+    public readonly API_ENDPOINT_VERIFY_SESSION: string = 'verify_session_stripe_payment'
     
 
 
