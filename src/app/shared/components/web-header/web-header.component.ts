@@ -38,7 +38,7 @@ export class WebHeaderComponent implements OnInit {
     { label: 'The Movement', fragment: undefined },
     { label: 'I am Peacekeeper', fragment: 'pe2' },
     { label: 'Sign Up Now', fragment: 'pe3' },
-    { label: '7 Peace Values', fragment: 'pe4' },
+    { label: '7 Human Values', fragment: 'pe4' },
     { label: 'Song and Graphics', fragment: 'pe5' },
   ];
   downloadLinks = [

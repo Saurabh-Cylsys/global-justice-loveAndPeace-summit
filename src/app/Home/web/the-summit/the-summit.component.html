@@ -3020,7 +3020,7 @@
       </div>
     </div>
   </div>
-  <div class="section section7 p-lg-5" id="ts6">
+  <div class="section section7 p-lg-5 position-relative" id="ts6">
     <div
       class="container-fluid h-100"
       [ngClass]="isVisibleCount == false ? 'h-100' : 'h-250'"
@@ -3127,6 +3127,20 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem; "
+            *ngIf="isMobileView"
+          />
   </div>
   <div class="section scroll section7 py-lg-3" id="ts7">
     <div class="container-fluid h-100">
