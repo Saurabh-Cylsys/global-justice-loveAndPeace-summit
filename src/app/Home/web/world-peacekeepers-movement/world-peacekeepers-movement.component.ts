@@ -9,7 +9,7 @@ import int1TelInput from 'intl-tel-input';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { ImageCroppedEvent, ImageTransform , LoadedImage } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -64,6 +64,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   imageChangedEvent: any = '';
   imageFileName: any = '';
   croppedImage: any = '';
+  zoomLevel: number = 1; // Initial zoom level
+  transform: ImageTransform = {}; // Object for applying transformations
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -480,6 +482,31 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.display = "none";
     this.showPopup = false;
     // Optional: Cropper ready event
+  }
+
+
+   // Zoom In
+   zoomIn(): void {
+    if (this.zoomLevel < 5) { // Maximum zoom level
+      this.zoomLevel += 0.1;
+      this.applyZoom();
+    }
+  }
+
+  // Zoom Out
+  zoomOut(): void {
+    if (this.zoomLevel > 1) { // Minimum zoom level
+      this.zoomLevel -= 0.1;
+      this.applyZoom();
+    }
+  }
+
+  // Apply Zoom
+  applyZoom(): void {
+    this.transform = {
+      ...this.transform,
+      scale: this.zoomLevel, // Apply zoom level
+    };
   }
 
   loadImageFailed() {

@@ -157,3 +157,47 @@
 .drop-zone-hover {
   border-color: #007bff;
 }
+.cropper-container {
+  position: relative;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  right: 15px; /* Adjust distance from the right side */
+  transform: translateY(-50%); /* Perfect vertical centering */
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 5px; /* Space between buttons */
+}
+
+.zoom-button {
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Slightly rounded corners */
+  width: 30px; /* Button width */
+  height: 30px; /* Button height */
+  font-size: 18px; /* Font size for + and - */
+  font-weight: bold; /* Make the text bold */
+  color: #333; /* Dark gray text color */
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Center text horizontally */
+  align-items: center; /* Center text vertically */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color 0.2s, transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.zoom-button:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.zoom-button:active {
+  background-color: #e0e0e0; /* Darker gray background on click */
+  transform: scale(0.95); /* Slight shrink effect */
+}
