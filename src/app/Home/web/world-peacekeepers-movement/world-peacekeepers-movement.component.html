@@ -1374,6 +1374,8 @@
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content p-3">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
+      <div class="cropper-container">
+  
       <image-cropper 
       *ngIf="imageChangedEvent" 
       [imageChangedEvent]="imageChangedEvent"
@@ -1382,8 +1384,15 @@
       [resizeToWidth]="1024"
       [cropperMinWidth]="100"
       [cropperMinHeight]="100"
+      [transform]="transform"
       [style.width]="'100%'">
     </image-cropper>
+  <!-- Zoom Buttons -->
+  <!-- <div class="zoom-controls">
+    <button class="zoom-button" (click)="zoomIn()">+</button>
+    <button class="zoom-button" (click)="zoomOut()">-</button>
+  </div> -->
+      </div>
 
       <div class="col-md-12 row justify-content-center mb-4 mt-1">
         <div class="col-md-4 col-6">
