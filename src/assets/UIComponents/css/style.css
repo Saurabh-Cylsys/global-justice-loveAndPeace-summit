@@ -467,11 +467,11 @@ header .nav-item .nav-link.active {
   position: relative;
   line-height: 1.4em;
   font-size: 1.03em;
-  padding: 0 var(--spacing);
+  padding: 0 0 0 var(--spacing);
   list-style: none;
   text-align: left;
   font-weight: 100;
-  max-width: 50%;
+  max-width: 55%;
 }
 
 .timeline h1 {
