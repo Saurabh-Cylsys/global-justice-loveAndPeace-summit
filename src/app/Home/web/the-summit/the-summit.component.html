@@ -224,13 +224,11 @@
       </div>
     </div>
   </div>
-  <div class="section section5 px-lg-3 py-3 scroll" id="ts2">
-    <div class="container-fluid">
-      <div class="row align-items-center">
+  <div class="section section5 py-lg-3 scroll" id="ts2">
+    <div class="container-fluid h-100">
+      <div class="row align-items-center align-content-center h-100">
         <div class="col-12">
           <h2>Chairman of the Summit</h2>
-        </div>
-        <div class="col-12">
           <ul class="chairman">
             <li>
               <img
@@ -413,18 +411,17 @@
   </div>
   <div class="section" id="ts3">
     <div class="section6 p-lg-5 py-5 speakers scroll">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
+      <div class="container-fluid h-100">
+        <div class="row align-items-center align-content-center h-100">
+
+          <div class="col-md-12">
             <h2>Speakers (Peace Ambassadors)</h2>
             <h6>Names in Alphabetic Order; All with Written Confirmations</h6>
-          </div>
-
-          <div class="col-md-12" *ngIf="!isMobileView">
             <div
               id="carouselExampleAutoplaying"
               class="carousel carousel-dark slide"
               data-bs-ride="carousel"
+              *ngIf="!isMobileView"
             >
               <div class="carousel-indicators">
                 <button
@@ -520,7 +517,7 @@
                   aria-label="Slide 15"
                 ></button>
               </div>
-              <div class="carousel-inner" style="height: 72vh">
+              <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
                   <div class="row">
                     <div class="col-md-4">
@@ -1256,12 +1253,12 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-          </div>
-          <div class="col-md-12" *ngIf="isMobileView">
+          
             <div
               id="carouselExampleAutoplaying"
               class="carousel carousel-dark slide"
               data-bs-ride="carousel"
+              *ngIf="isMobileView"
             >
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
@@ -2587,9 +2584,9 @@
       </div>
     </div>
   </div>
-  <div class="section partner scroll section7" id="ts4">
+  <div class="section partner scroll section7 py-lg-5" id="ts4">
     <div class="container-fluid h-100">
-      <div class="row h-100">
+      <div class="row align-items-center align-content-center h-100">
         <div class="col-md-12 text-center p-0 h-100">
           <img
             loading="lazy"
@@ -2991,8 +2988,8 @@
     </div>
   </div>
   <div class="section section7 p-lg-5" id="ts6">
-    <div class="container-fluid"[ngClass]="isVisibleCount == false?'h-100':'h-250'">
-      <div class="row "[ngClass]="isVisibleCount == false?'h-100':'h-250'">
+    <div class="container-fluid h-100"[ngClass]="isVisibleCount == false?'h-100':'h-250'">
+      <div class="row h-100"[ngClass]="isVisibleCount == false?'h-100':'h-250'">
         <div class="col-md-4 p-lg-5">
           <label for="" class="mb-3">SCHEDULE</label>
           <h1 class="mb-3">
@@ -3008,9 +3005,9 @@
             DOWNLOAD SCHEDULE
           </button>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 p-lg-5">
           <div class="row align-items-end">
-            <div class="col-12 px-lg-5 mx-lg-5">
+            <div class="col-12 mx-lg-5">
               <div class="d-lg-flex align-items-center justify-content-between">
                 <div class="date">
                   <h3>12th - 13th <span>April, 2025</span></h3>
