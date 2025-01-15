@@ -149,7 +149,7 @@ export class DelegateRegistrationComponent {
       // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
       profession_1: ['', [Validators.required]],// need 
       profession_2: [''],// need 
-      website: ['', [Validators.pattern('https?://.+')]], // Basic URL pattern validation
+      website: ['', [Validators.pattern('^[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*$')]], // Basic URL pattern validation
       organization_name: [''],// need 
       address: [''],
       country: ['', [Validators.required]],
