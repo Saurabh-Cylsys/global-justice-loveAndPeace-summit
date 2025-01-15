@@ -1933,3 +1933,7 @@ header .nav-item .nav-link.active {
 .btnText{
   font-size: 18px;
 }
+
+.detail span{
+color: #005A93;
+}
