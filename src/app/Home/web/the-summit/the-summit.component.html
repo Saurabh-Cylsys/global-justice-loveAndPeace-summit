@@ -410,7 +410,7 @@
     </div>
   </div>
   <div class="section" id="ts3">
-    <div class="section6 p-lg-5 py-5 speakers scroll">
+    <div class="section6 p-lg-5 py-5 speakers scroll position-relative">
       <div class="container-fluid h-100">
         <div class="row align-items-center align-content-center h-100">
 
@@ -2145,6 +2145,20 @@
         </div> -->
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
     </div>
 
     <div class="section5 p-lg-5 invited scroll">
@@ -3001,7 +3015,7 @@
             planning of Global Summit
           </p>
 
-          <button (click)="downloadPDF()" class="btn btn-success p-3">
+          <button (click)="downloadPDF()" class="btn btn-success p-md-3">
             DOWNLOAD SCHEDULE
           </button>
         </div>

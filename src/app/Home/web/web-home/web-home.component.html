@@ -114,9 +114,14 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-12">
-                <h2 class="">
+                <h2 class="" *ngIf="!isMobileView">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
                   JUSTICE, LOVE & <br />
+                  PEACE SUMMIT @ DUBAI ON 12th - 13th APRIL 2025
+                </h2>
+                <h2 class="" *ngIf="isMobileView">
+                  SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
+                  JUSTICE, LOVE & 
                   PEACE SUMMIT @ DUBAI ON 12th - 13th APRIL 2025
                 </h2>
                 <h6 class="editYear">Date: JANUARY 14, 2025</h6>
@@ -133,13 +138,14 @@
                       </tr>
                     </thead>
                     <tbody>
-
                       <tr *ngFor="let row of speakersList; let i = index">
                         <td>{{ i + 1 }}</td>
                         <td>{{ row.Name }}</td>
                         <td class="text-center">{{ row.Country }}</td>
-                        <td><span>{{ row.Credentials }}</span></td>
-                      </tr>                      
+                        <td>
+                          <span>{{ row.Credentials }}</span>
+                        </td>
+                      </tr>
 
                       <!-- <tr *ngFor="let row of data">
                         <td>{{ row.S_No }}</td>
@@ -152,10 +158,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <h2 class="">
-                  Will Join Online
-                </h2>
-                
+                <h2 class="">Will Join Online</h2>
               </div>
               <div class="col-md-12">
                 <div class="table-responsive confirmation px-md-0">
@@ -173,13 +176,15 @@
                         <td>{{ row.S_No }}</td>
                         <td>{{ row.Name }}</td>
                         <td class="text-center">{{ row.Country }}</td>
-                        <td><span>{{ row.Credentials }}</span></td>
+                        <td>
+                          <span>{{ row.Credentials }}</span>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div class="col-md-12"  *ngIf="!isMobileView">
+              <div class="col-md-12" *ngIf="!isMobileView">
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
                 <div class="row">
@@ -195,7 +200,7 @@
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">B. 8 Royalty</li>
                       <li class="my-2">G. 1 Artist</li>
-                      <li class="my-2">L. 3 Politician </li>
+                      <li class="my-2">L. 3 Politician</li>
                     </ul>
                   </div>
                   <div class="col-md">
@@ -240,11 +245,10 @@
                 </ul>
                 <ul class="my-lg-3">
                   <li>K. 3 Film Stars</li>
-                  <li>L. 3 Politician </li>
+                  <li>L. 3 Politician</li>
                   <li>M. 1 Beauty Queen</li>
                   <li>N. 3 Social Activist</li>
                   <li>O. 1 Ex-Head of State</li>
-                  
                 </ul>
                 <ul class="my-lg-3">
                   <li>P. 3 Others</li>
@@ -276,7 +280,7 @@
             </div>
           </div>
         </section>
-        <section class="section7 p-lg-5 h-auto" id="event1">
+        <section class="section7 p-lg-5 h-auto position-relative" id="event1" >
           <div class="container-fluid h-100">
             <div class="row h-100">
               <div class="col-md-4 p-lg-5">
@@ -290,7 +294,7 @@
                   planning of Global Summit
                 </p>
 
-                <button (click)="downloadPDF()" class="btn btn-success p-3">
+                <button (click)="downloadPDF()" class="btn btn-success p-md-3">
                   DOWNLOAD SCHEDULE
                 </button>
               </div>
@@ -328,13 +332,16 @@
                     <div id="timeline-content">
                       <ul class="timeline">
                         <li
-                        class="event"
-                        [attr.data-date]="event.time"
-                        [attr.data-count]="i + 1"
-                        *ngFor="let event of events | slice:0:visibleCount; let i = index"
-                      >
-                        <h3 class="fw-bold">{{ event.title }}</h3>
-                      </li>
+                          class="event"
+                          [attr.data-date]="event.time"
+                          [attr.data-count]="i + 1"
+                          *ngFor="
+                            let event of events | slice : 0 : visibleCount;
+                            let i = index
+                          "
+                        >
+                          <h3 class="fw-bold">{{ event.title }}</h3>
+                        </li>
                         <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
                         <h3>Opening Session</h3>
                       </li>
@@ -356,12 +363,14 @@
                     </div>
 
                     <a
-                    class="text-decoration-none"
-                    style="cursor: pointer;"
-                    (click)="showMore(!isVisibleCount?true:false)"
-                  >
-                    <b style="color: rgba(3, 192, 75, 0.623)">{{isVisibleCount == false? 'See More...':'Less...'}}</b>
-                  </a>
+                      class="text-decoration-none"
+                      style="cursor: pointer"
+                      (click)="showMore(!isVisibleCount ? true : false)"
+                    >
+                      <b style="color: rgba(3, 192, 75, 0.623)">{{
+                        isVisibleCount == false ? "See More..." : "Less..."
+                      }}</b>
+                    </a>
 
                     <!-- <a
                       href="assets/UIComponents/images/GJLPS-Collateral-Brochure.pdf"
@@ -379,6 +388,20 @@
               </div>
             </div>
           </div>
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem; "
+            *ngIf="isMobileView"
+          />
         </section>
         <section class="section8 p-lg-5 venueBg">
           <div class="container-fluid">
@@ -442,4 +465,3 @@
 </button> -->
 
 <!-- Modal -->
-
