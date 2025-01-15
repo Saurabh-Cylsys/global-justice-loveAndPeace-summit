@@ -363,6 +363,11 @@ header .nav-item .nav-link.active {
   width: 60%;
 }
 
+.speakers .carousel-inner img{
+  position: relative;
+  z-index: 1;
+}
+
 /* index section7 */
 
 .index .section7 {
