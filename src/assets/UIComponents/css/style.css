@@ -326,10 +326,14 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
   color: var(--color1);
   margin-block: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .speakers label {
   text-transform: uppercase;
+  position: relative;
+  z-index: 1;
 }
 
 .speakers .editYear {
@@ -351,6 +355,8 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   margin-block: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .speakers img {
@@ -360,7 +366,8 @@ header .nav-item .nav-link.active {
 /* index section7 */
 
 .index .section7 {
-  background-image: url(../images/index/banner2.png);
+  /* background-image: url(../images/index/banner2.png); */
+  background-image: var(--gradient3);
   background-repeat: no-repeat;
   background-size: cover;
   /* height: 127vh; */
@@ -547,7 +554,7 @@ header .nav-item .nav-link.active {
 }
 
 .progress-bar {
-  background-color: var(--color2);
+  background-color: var(--color3);
 }
 .progress {
   background-color: var(--color3);
