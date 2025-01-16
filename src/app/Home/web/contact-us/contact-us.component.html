@@ -56,7 +56,7 @@
 
 <main class="index delegate-form">
   <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
-    <section class="section7 p-lg-5">
+    <section class="section7 p-lg-5 position-relative">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-5">
@@ -298,7 +298,7 @@
                 </p>
               </div>
               <div class="mb-4 col-md-4">
-                <div class="form-floating">
+                <div class="">
                   <!-- <select
                     name="nametitle[1]"
                     id="nametitle1"
@@ -321,19 +321,8 @@
                     <option value="Lord">Lord</option>
                   </select>
                   <label for="title">Title</label> -->
-                  <input
-                  type="text"
-                  name="fname[1]"
-                  id="fname1"
-                  placeholder=""
-                  class="form-control"
-                  value=""
-                  [maxlength]="7"
-                  data-error="Please select option"
-                  formControlName="title"
-                  />
                   <label
-                    class="col-md-12 no-padding"
+                    class="col-md-12 no-padding px-0"
                     for="nametitle1"
                     >Title
                     <!-- <span
@@ -344,6 +333,18 @@
                     > -->
                     </label
                   >
+                  <input
+                  type="text"
+                  name="fname[1]"
+                  id="fname1"
+                  placeholder="Enter title"
+                  class="form-control p-0"
+                  value=""
+                  [maxlength]="7"
+                  data-error="Please select option"
+                  formControlName="title"
+                  />
+                  
                   <!-- <div
                     *ngIf="
                       getcontrol('title')?.errors &&
@@ -360,18 +361,19 @@
                 </div>
               </div>
               <div class="mb-4 col-md-4">
-                <div class="form-floating">
+                <div class="">
+                  <label for="FirstName" class="p-0">First Name</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control p-0"
                     id="FirstName"
                     formControlName="firstName"
                     name="firstName"
-                    placeholder=""
+                    placeholder="Enter first name"
                     required
                     value=""
                   />
-                  <label for="FirstName">First Name</label>
+                  
 
                   <div
                     class="text-danger"
@@ -390,18 +392,19 @@
                 </div>
               </div>
               <div class="mb-4 col-md-4">
-                <div class="form-floating">
+                <div class="">
+                  <label for="LastName" class="px-0">Last Name</label>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control p-0"
                     formControlName="lastName"
                     name="lastName"
                     id="LastName"
                     required
-                    placeholder=""
+                    placeholder="Enter last name"
                     value=""
                   />
-                  <label for="LastName">Last Name</label>
+                  
 
                   <div
                     *ngIf="
@@ -420,7 +423,7 @@
               </div>
 
               <div class="mb-4 col-md-6">
-                <label for="mobileNomber">Phone Number</label>
+                <label for="mobileNomber" class="px-0">Phone Number</label>
                 <div class="form-floating">
                   <ngx-intl-tel-input
                     type="tel"
@@ -490,12 +493,13 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="form-floating">
+                <div class="">
+                  <label for="email" class="px-0">Email</label>
                   <input
                     type="email"
-                    class="form-control"
+                    class="form-control p-0"
                     id="email"
-                    placeholder=""
+                    placeholder="Enter email"
                     pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                     formControlName="email"
                     required
@@ -503,7 +507,7 @@
                     name="email"
                     value=""
                   />
-                  <label for="email">Email</label>
+                  
 
                   <div class="help-block with-errors"></div>
                   <div
@@ -557,7 +561,7 @@
                   <label for="question">Your Query</label>
                   <textarea
                     type="text"
-                    class="form-control"
+                    class="form-control position-relative"
                     placeholder="Write your query"
                     value=""
                     formControlName="yourQuestion"
@@ -565,8 +569,9 @@
                     id="question"
                     style="
                       border: 1px dotted;
-                      border-radius: 10px;
+                      border-radius: 10px !important;
                       min-height: 20vh;
+                      z-index: 1;
                     "
                   >
                   </textarea>
@@ -575,7 +580,7 @@
               <div class="mb-4 col-md-12 text-center">
                 <button
                   type="submit"
-                  class="btn btn-success p-2 w-50 text-center"
+                  class="btn btn-success p-2 w-50 text-center position-relative" style="z-index: 1;"
                   [disabled]="this.contactUsForm.invalid"
                 >
                   Send
@@ -585,6 +590,20 @@
           </div>
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
     </section>
   </form>
 </main>

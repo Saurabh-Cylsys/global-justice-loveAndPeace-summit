@@ -152,12 +152,15 @@ header .nav-item .nav-link.active {
 .index .section1 .tableBox table tr td {
   background-color: transparent;
   color: var(--color2);
-  border-style: dotted;
+  border-style: solid;
   /* vertical-align: bottom; */
 }
 .index .section1 .tableBox table tr td:nth-child(2) {
-  border-left: 1px dotted var(--color2);
-  border-right: 1px dotted var(--color2);
+  border-left: 1px solid var(--color2);
+  border-right: 1px solid var(--color2);
+}
+.index .section1 .tableBox table tr:nth-child(2) td{
+  border-bottom: none;
 }
 
 .index .section1 .tableBox table tr td h6 {
@@ -1463,9 +1466,9 @@ header .nav-item .nav-link.active {
 }
 
 .delegate-form .section7 {
-  background-image: url(../images/delegateBg.svg);
+  /* background-image: url(../images/delegateBg.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   /* height: 127vh; */
   height: auto;
 }

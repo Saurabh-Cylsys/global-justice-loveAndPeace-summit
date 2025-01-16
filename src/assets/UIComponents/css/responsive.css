@@ -41,12 +41,19 @@
 }
 
 @media (max-width: 768px) {
+  .confirmation table tr th:nth-child(2) {
+    width: 15rem;
+}
+#dc3 p{
+  font-size: 14px;
+}
+
   .index .section1 {
     background: url(../images/index/bannermob.gif);
-    background-size: 100% 100%; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-size: contain; /* Ensures the image covers the section while maintaining aspect ratio */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 80vh; /* Keeps the height relative to the viewport */
+    height: 90vh; /* Keeps the height relative to the viewport */
   }
   .index .section1 .bgColor {
     background: var(--gradient5);
@@ -364,6 +371,10 @@
   }
 }
 @media (max-width: 425px) {
+  .index .section1 {
+
+    height: 79.4vh; /* Keeps the height relative to the viewport */
+  }
   
   .index .section1 .bgColor {
     background: var(--gradient5);
@@ -689,6 +700,10 @@
         height: 55vh;
   }} */
 @media (max-width: 375px) {
+  .index .section1 {
+
+    height: 68vh; /* Keeps the height relative to the viewport */
+  }
   .pix {
     height: 100px;
     width: 100px;

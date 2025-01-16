@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router,ActivatedRoute  } from '@angular/router';
@@ -74,6 +74,7 @@ export class DelegateRegistrationComponent {
   conferenceInterestArr:any
   minDate: string| null = null;
   maxDate: string | null = null;
+  isMobileView = false;
   interests = [
     { value: 'Justice', label: 'Justice' },
     { value: 'Love', label: 'Love' },
@@ -109,6 +110,7 @@ export class DelegateRegistrationComponent {
 
 
   ngOnInit(): void {
+    this.checkWindowSize();
   this.dobValidator();
 
     this.route.queryParams.subscribe((params:any) => {
@@ -479,6 +481,21 @@ closeModal() {
   this.router.navigateByUrl('/home')
 }
 
+  checkWindowSize(): void {
+    if (window.innerWidth <= 767) {
+      this.SharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.SharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
 
 }
 
