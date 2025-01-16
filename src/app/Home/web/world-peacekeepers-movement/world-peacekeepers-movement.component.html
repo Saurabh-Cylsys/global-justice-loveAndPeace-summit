@@ -516,18 +516,8 @@
               style="position: relative; z-index: 1"
             >
               <div class="row g-2">
-                <div class="col-md">
-                  <div class="form-floating">
-                    <input
-                      type="text"
-                      class="form-control w-100"
-                      formControlName="full_name"
-                      name="full_name"
-                      id="title"
-                      (keypress)="ValidateAlpha($event)"
-                      placeholder=""
-                      value=""
-                    />
+                <div class="col-md my-lg-0 my-3">
+                  <div class="">
                     <label for="title" class="px-0"
                       >Full Name :<span
                         class="form-label-span"
@@ -536,6 +526,17 @@
                         *</span
                       >
                     </label>
+                    <input
+                      type="text"
+                      class="form-control w-100 p-0"
+                      formControlName="full_name"
+                      name="full_name"
+                      id="title"
+                      (keypress)="ValidateAlpha($event)"
+                      placeholder="Enter full name"
+                      value=""
+                    />
+                    
                     <div
                       class="text-danger"
                       *ngIf="
@@ -551,19 +552,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md">
-                  <div class="form-floating">
-                    <input
-                      type="date"
-                      class="form-control w-100 text-start"
-                      formControlName="dob"
-                      name="dob"
-                      id="title"
-                      placeholder=""
-                      value=""
-                      [attr.min]="minDate"
-                      [attr.max]="maxDate"
-                    />
+                <div class="col-md my-lg-0 my-3">
+                  <div class="">
                     <label for="title"
                       >DOB :<span
                         class="form-label-span px-0"
@@ -572,6 +562,18 @@
                         *</span
                       >
                     </label>
+                    <input
+                      type="date"
+                      class="form-control w-100 text-start p-0"
+                      formControlName="dob"
+                      name="dob"
+                      id="title"
+                      placeholder=""
+                      value=""
+                      [attr.min]="minDate"
+                      [attr.max]="maxDate"
+                    />
+                    
                     <div
                       class="text-danger"
                       *ngIf="
@@ -587,8 +589,8 @@
                   </div>
                 </div>
 
-                <div class="col-md">
-                  <label class="col-md-12 no-padding" for="mobile1"
+                <div class="col-md my-lg-0 my-3">
+                  <label class="col-md-12 no-padding p-0" for="mobile1"
                     >Country<span
                       class="form-label-span"
                       style="color: #ff0000"
@@ -603,7 +605,7 @@
                       <select
                         formControlName="country"
                         style="cursor: pointer"
-                        class="form-select w-100 pt-1 pb-0 curs"
+                        class="form-select w-100 p-0"
                         required
                         data-error="Please select country"
                         (change)="getCountrycode(code)"
@@ -638,7 +640,7 @@
               </div>
 
               <div class="row g-2 mt-lg-5">
-                <div class="col-md my-3 my-lg-0">
+                <div class="col-md my-lg-0 my-3">
                   <!-- <div class="form-floating">
                   <input
                     type="email"
@@ -676,10 +678,16 @@
                     >
                   </div>
                 </div> -->
-                  <div class="form-floating">
+                  <div class="">
+                    <label for="email" class="px-0">
+                      E-Mail:
+                      <span class="form-label-span" style="color: #ff0000"
+                        >*</span
+                      >
+                    </label>
                     <input
                       type="email"
-                      class="form-control w-100"
+                      class="form-control w-100 p-0"
                       formControlName="email_id"
                       name="email_id"
                       id="email"
@@ -688,12 +696,7 @@
                       required
                       (keydown)="onKeyDown($event, mobile_number)"
                     />
-                    <label for="email" class="px-0">
-                      E-Mail:
-                      <span class="form-label-span" style="color: #ff0000"
-                        >*</span
-                      >
-                    </label>
+                    
                     <div
                       *ngIf="
                         getcontrol('email_id')?.errors &&

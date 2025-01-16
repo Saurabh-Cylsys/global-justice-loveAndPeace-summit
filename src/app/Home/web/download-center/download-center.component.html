@@ -1157,7 +1157,7 @@
             </ul>
           </div>
         </div>
-        <hr />
+        <hr class="my-4" />
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-4">
@@ -1235,7 +1235,7 @@
             </ul>
           </div>
         </div>
-        <hr />
+        <hr class="my-4" />
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-4">
@@ -1321,7 +1321,7 @@
             </ul>
           </div>
         </div>
-        <hr />
+        <hr class="my-4" />
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-4">
@@ -2229,7 +2229,7 @@
       </div>
     </div>
   </div>
-  <div class="section section7 py-lg-5" id="dc11">
+  <div class="section section7 py-lg-5 position-relative" id="dc11">
     <div class="container-fluid h-100">
       <div class="row align-items-center justify-content-center h-100">
         <div class="text-center">
@@ -2279,5 +2279,19 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
 </div>
