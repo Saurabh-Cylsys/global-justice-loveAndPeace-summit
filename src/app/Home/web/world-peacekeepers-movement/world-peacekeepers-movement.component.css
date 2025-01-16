@@ -157,6 +157,7 @@
 .drop-zone-hover {
   border-color: #007bff;
 }
+
 .cropper-container {
   position: relative;
   display: flex;
