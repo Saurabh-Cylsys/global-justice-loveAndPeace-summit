@@ -6,7 +6,7 @@
           <div class="container-fluid section1 position-relative">
             <div class="row justify-content-between bgColor h-100">
               <div
-                class="col-lg-2 col-2 position-relative"
+                class="col-lg-2 col-md-2 col-2 position-relative"
                 *ngIf="!isMobileView"
               >
                 <img
@@ -18,7 +18,7 @@
                 />
               </div>
               <div
-                class="col-lg-4 col-12 text-center  px-lg-5 mt-lg-0 mt-lg-4"
+                class="col-lg-4 col-md-6 col-12 text-center px-lg-5 mt-lg-0 mt-lg-4"
               >
                 <div class="card cardMain">
                   <div class="card-body">
@@ -66,7 +66,7 @@
               </div>
               <div class="col-12 tableBox">
                 <div class="row">
-                  <div class="col-lg-9">
+                  <div class="col-lg-9 col-md-9">
                     <table class="table m-0">
                       <tbody>
                         <tr>
@@ -121,8 +121,7 @@
                 </h2>
                 <h2 class="" *ngIf="isMobileView">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
-                  JUSTICE, LOVE & 
-                  PEACE SUMMIT @ DUBAI ON 12th - 13th APRIL 2025
+                  JUSTICE, LOVE & PEACE SUMMIT @ DUBAI ON 12th - 13th APRIL 2025
                 </h2>
                 <h6 class="editYear">Date: JANUARY 14, 2025</h6>
               </div>
@@ -187,8 +186,8 @@
               <div class="col-md-12" *ngIf="!isMobileView">
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
-                <div class="row">
-                  <div class="col-md">
+                <div class="row d-lg-flex d-md-none">
+                  <div class="col-lg col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">A. 8 Nobel Peace Laureates</li>
                       <li class="my-2">F. 6 Sports Champions</li>
@@ -196,32 +195,58 @@
                       <li class="my-2">P. 3 Others</li>
                     </ul>
                   </div>
-                  <div class="col-md">
+                  <div class="col-lg col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">B. 8 Royalty</li>
                       <li class="my-2">G. 1 Artist</li>
                       <li class="my-2">L. 3 Politician</li>
                     </ul>
                   </div>
-                  <div class="col-md">
+                  <div class="col-lg col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">C. 2 Heads of State</li>
                       <li class="my-2">H. 3 Chief Justice</li>
                       <li class="my-2">M. 1 Beauty Queen</li>
                     </ul>
                   </div>
-                  <div class="col-md">
+                  <div class="col-lg col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">D. 9 Religious Leaders</li>
                       <li class="my-2">I. 1 Attorney General</li>
                       <li class="my-2">N. 3 Social Activist</li>
                     </ul>
                   </div>
-                  <div class="col-md">
+                  <div class="col-lg col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li class="my-2">E. 4 Industrialist (Business)</li>
                       <li class="my-2">J. 2 Judge</li>
                       <li class="my-2">O. 1 Ex-Head of State</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row d-lg-none d-md-flex">
+                  <div class="col-md-6">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li>A. 8 Nobel Peace Laureates</li>
+                      <li>B. 8 Royalty</li>
+                      <li>C. 2 Heads of State</li>
+                      <li>D. 9 Religious Leaders</li>
+                      <li>E. 4 Industrialist (Business)</li>
+                      <li>F. 6 Sports Champions</li>
+                      <li>G. 1 Artist</li>
+                      <li>H. 3 Chief Justice</li>
+                      <li>I. 1 Attorney General</li>
+                      <li>J. 2 Judge</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="my-lg-3 d-block text-start">
+                      <li>K. 4 Film Stars</li>
+                      <li>L. 3 Politician</li>
+                      <li>M. 1 Beauty Queen</li>
+                      <li>N. 3 Social Activist</li>
+                      <li>O. 1 Ex-Head of State</li>
+                      <li>P. 3 Others</li>
                     </ul>
                   </div>
                 </div>
@@ -280,10 +305,10 @@
             </div>
           </div>
         </section>
-        <section class="section7 p-lg-5 h-auto position-relative" id="event1" >
+        <section class="section7 p-lg-5 h-auto position-relative" id="event1">
           <div class="container-fluid h-100">
             <div class="row h-100">
-              <div class="col-md-4 p-lg-5">
+              <div class="col-lg-4 col-md-6 p-lg-5">
                 <label for="" class="mb-3">SCHEDULE</label>
                 <h1 class="mb-3">
                   SCHEDULE <br />
@@ -298,7 +323,7 @@
                   DOWNLOAD SCHEDULE
                 </button>
               </div>
-              <div class="col-md-8">
+              <div class="col-lg-8 col-md-6">
                 <div class="row align-items-end">
                   <div class="col-12 px-lg-5 mx-lg-5">
                     <div
@@ -364,7 +389,7 @@
 
                     <a
                       class="text-decoration-none"
-                      style="cursor: pointer"
+                      style="cursor: pointer; position: relative; z-index: 9;"
                       (click)="showMore(!isVisibleCount ? true : false)"
                     >
                       <b style="color: rgba(3, 192, 75, 0.623)">{{
@@ -399,7 +424,7 @@
             src="assets/UIComponents/images/watermark.png"
             alt=""
             class="position-absolute"
-            style="right: 0; bottom: 0; width: 10rem; "
+            style="right: 0; bottom: 0; width: 10rem"
             *ngIf="isMobileView"
           />
         </section>
