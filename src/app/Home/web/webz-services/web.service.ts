@@ -329,10 +329,20 @@ export class WebService {
       // "S_No": 33,
       "View": '',
       "Profile_Photo": null,
+      "Name": "Sanjay Khan",
+      "Country": "INDIA",
+      "Credentials": "Actor, Producer, Director"
+    },
+    {
+      // "S_No": 33,
+      "View": '',
+      "Profile_Photo": null,
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
     },
+    
+    // list 14
     {
       // "S_No": 34,
       "View": '',
@@ -341,7 +351,6 @@ export class WebService {
       "Country": "IRAN",
       "Credentials": "Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003"
     },
-    // list 14
     {
       // "S_No": 34,
       "View": '',
@@ -358,6 +367,8 @@ export class WebService {
       "Country": "INDIA",
       "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
     },
+    
+    // list 15
     {
       // "S_No": 36,
       "View": '',
@@ -366,7 +377,6 @@ export class WebService {
       "Country": "VIETNAM",
       "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
     },
-    // list 15
     {
       // "S_No": 37,
       "View": '',
@@ -383,6 +393,7 @@ export class WebService {
       "Country": "INDIA",
       "Credentials": "Celebrity Fitness Trainer"
     },
+    // list 16
     {
       // "S_No": 39,
       "View": '',
@@ -751,10 +762,23 @@ export class WebService {
             // "S_No": 33,
             "View": '',
             "Profile_Photo": null,
+            "Name": "Sanjay Khan",
+            "Country": "INDIA",
+            "Credentials": "Actor, Producer, Director"
+          },
+          {
+            // "S_No": 33,
+            "View": '',
+            "Profile_Photo": null,
             "Name": "Satpal Singh Khalsa, Bhai Saheb",
             "Country": "USA",
             "Credentials": "Ambassador of Sikh Dharma"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 34,
             "View": '',
@@ -763,10 +787,6 @@ export class WebService {
             "Country": "IRAN",
             "Credentials": "Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 34,
             "View": '',
@@ -783,6 +803,11 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 36,
             "View": '',
@@ -791,10 +816,6 @@ export class WebService {
             "Country": "VIETNAM",
             "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 37,
             "View": '',
@@ -811,6 +832,11 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Celebrity Fitness Trainer"
           },
+          
+        ]
+      },
+      {
+        speakers:[
           {
             // "S_No": 39,
             "View": '',
@@ -820,7 +846,7 @@ export class WebService {
             "Credentials": "Producer & Actor"
           }
         ]
-      },
+      }
     ]
   }
 }
