@@ -15,7 +15,7 @@
             <div id="regformcontainer">
               <div class="clearfix"></div>
               <form [formGroup]="registrationForm" (ngSubmit)="submitData()">
-                <div class="clearfix section7 p-lg-5">
+                <div class="clearfix section7 p-lg-5 position-relative">
                   <div class="form-step-wrapper" id="formstep-1">
                     <div class="panel panel-default reg-panel section_1">
                       <div class="panel-body">
@@ -40,7 +40,7 @@
                                   class="form-group fg-nametitle col-md-4 col-sm-2 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
                                       <!-- <select
                                         name="nametitle[1]"
                                         id="nametitle1"
@@ -66,19 +66,8 @@
                                         <option value="Hon">Hon</option>
                                         <option value="Lord">Lord</option>
                                       </select> -->
-                                      <input
-                                      type="text"
-                                      name="fname[1]"
-                                      id="fname1"
-                                      placeholder=""
-                                      class="form-control"
-                                      [maxlength]="7"
-                                      value=""
-                                      data-error="Please select option"
-                                      formControlName="title"
-                                      />
                                       <label
-                                        class="col-md-12 no-padding"
+                                        class="col-md-12 no-padding p-0"
                                         for="nametitle1"
                                         >Title
                                         <!-- <span
@@ -89,6 +78,18 @@
                                         > -->
                                         </label
                                       >
+                                      <input
+                                      type="text"
+                                      name="fname[1]"
+                                      id="fname1"
+                                      placeholder="Enter title"
+                                      class="form-control p-0"
+                                      [maxlength]="7"
+                                      value=""
+                                      data-error="Please select option"
+                                      formControlName="title"
+                                      />
+                                      
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -109,13 +110,23 @@
                                   class="form-group fg-fname col-md-4 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="fname1"
+                                        >First Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                       <input
                                         type="text"
                                         name="fname[1]"
                                         id="fname1"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter first name"
+                                        class="form-control p-0"
                                         value=""
                                         required
                                         [(ngModel)]="first_name"
@@ -128,16 +139,7 @@
                                         }"
                                       />
 
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="fname1"
-                                        >First Name<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
+                                      
                                     </div>
                                     <div
                                       class="text-danger"
@@ -165,14 +167,24 @@
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="lname1"
+                                        >Last Name<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                       <input
                                         type="text"
                                         [(ngModel)]="last_name"
                                         name="lname[1]"
                                         id="lname1"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter last name"
+                                        class="form-control p-0"
                                         value=""
                                         required
                                         formControlName="last_name"
@@ -183,16 +195,7 @@
                                             submitted && f.last_name.errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="lname1"
-                                        >Last Name<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
+                                      
                                     </div>
                                     <div
                                       *ngIf="
@@ -220,23 +223,9 @@
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
-                                      <input
-                                        type="date"
-                                        name="lname[1]"
-                                        id="lname1"
-                                        placeholder=""
-                                        class="form-control"
-                                        value=""
-                                        required
-                                        formControlName="dob"
-                                        minlength="3"
-                                        [attr.min]="minDate"
-                                        [attr.max]="maxDate"
-                                        (ngModelChange)="onDateChange($event)"
-                                      />
+                                    <div class="">
                                       <label
-                                        class="col-md-12 no-padding"
+                                        class="col-md-12 no-padding p-0"
                                         for="lname1"
                                         >DOB<span
                                           class="form-label-span"
@@ -245,6 +234,21 @@
                                           *</span
                                         ></label
                                       >
+                                      <input
+                                        type="date"
+                                        name="lname[1]"
+                                        id="lname1"
+                                        placeholder=""
+                                        class="form-control p-0"
+                                        value=""
+                                        required
+                                        formControlName="dob"
+                                        minlength="3"
+                                        [attr.min]="minDate"
+                                        [attr.max]="maxDate"
+                                        (ngModelChange)="onDateChange($event)"
+                                      />
+                                      
                                     </div>
                                     <div
                                       *ngIf="
@@ -275,7 +279,7 @@
                                       class="form-group form-group-inner mobile-number"
                                     >
                                       <label
-                                        class="col-md-12 no-padding mb-1"
+                                        class="col-md-12 no-padding p-0"
                                         for="mobile1"
                                         >Mobile Number<span
                                           class="form-label-span"
@@ -285,8 +289,7 @@
                                         ></label
                                       >
                                       <div
-                                        class="form-floating"
-                                        style="margin: -13px 0 0 0"
+                                        class=""
                                       >
                                         <ngx-intl-tel-input
                                           class="custom-width-container"
@@ -341,7 +344,7 @@
                                     <div
                                       class="form-group form-group-inner mobile-number"
                                     >
-                                      <div class="form-floating">
+                                      <div class="">
                                         <!-- <input
                                         type="text"
                                         name="mobile_number[1]"
@@ -398,13 +401,23 @@
                                   class="form-group fg-email col-md-6 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="email1"
+                                        >Email Id<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                       <input
                                         type="email"
                                         name="email[1]"
                                         id="email1"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter your email"
+                                        class="form-control p-0"
                                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
                                         value=""
                                         required
@@ -417,8 +430,8 @@
                                             submitted && f.email_id.errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
+                                      <!-- <label
+                                        class="col-md-12 no-padding p-0"
                                         for="email1"
                                         >Email Id<span
                                           class="form-label-span"
@@ -426,7 +439,7 @@
                                         >
                                           *</span
                                         ></label
-                                      >
+                                      > -->
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -453,13 +466,18 @@
                                   class="form-group fg-email col-md-4 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profileurl"
+                                        >LinkedIn Profile</label
+                                      >
                                       <input
                                         type="text"
                                         name=""
                                         id="linkedIn"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter linkedIn profile"
+                                        class="form-control p-0"
                                         value=""
                                         [(ngModel)]="linkedIn_profile"
                                         (keydown)="
@@ -473,11 +491,7 @@
                                             f.linkedIn_profile.errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profileurl"
-                                        >LinkedIn Profile</label
-                                      >
+                                      
                                     </div>
                                     <div
                                       *ngIf="
@@ -498,13 +512,18 @@
                                   class="form-group fg-email col-md-4 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profileurl"
+                                        >Instagram ID</label
+                                      >
                                       <input
                                         type="text"
                                         name=""
                                         id="instagram_profile"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter instagram ID"
+                                        class="form-control p-0"
                                         value=""
                                         [(ngModel)]="instagram_profile"
                                         (keydown)="
@@ -518,11 +537,7 @@
                                             f.instagram_profile.errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profileurl"
-                                        >Instagram ID</label
-                                      >
+                                      
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -560,13 +575,23 @@
                                     ></label
                                   > -->
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profession1"
+                                        >Profession 1<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
                                       <input
                                         type="text"
                                         name="profession_1"
                                         id="Profession1"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter profession 1"
+                                        class="form-control p-0"
                                         value=""
                                         required
                                         formControlName="profession_1"
@@ -576,16 +601,7 @@
                                             submitted && f.profession_1.errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profession1"
-                                        >Profession 1<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
+                                      
                                     </div>
                                     <div
                                       *ngIf="
@@ -612,22 +628,23 @@
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="profession2"
+                                        >Profession 2 (if any)</label
+                                      >
                                       <input
                                         type="text"
                                         name="profession_2"
                                         id="profession2"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter profession 2"
+                                        class="form-control p-0"
                                         value=""
                                         formControlName="profession_2"
                                         minlength="3"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profession2"
-                                        >Profession 2 (if any)</label
-                                      >
+                                      
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -654,13 +671,18 @@
                                   class="form-group fg-field_10 col-md-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="field_10"
+                                      >Website</label
+                                    >
                                       <input
                                         type="text"
                                         name="field_10"
                                         id="field_10"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter website URL"
+                                        class="form-control p-0"
                                         value=""
                                         [(ngModel)]="website"
                                         (keydown)="onKeyDown($event, website)"
@@ -672,11 +694,7 @@
                                               .errors
                                         }"
                                       />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="field_10"
-                                        >Website</label
-                                      >
+                                     
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -699,13 +717,24 @@
                                 class="form-group fg-lname col-md-4 col-sm-3 my-3"
                               >
                                 <div class="col-md-12 no-padding">
-                                  <div class="form-floating">
+                                  <div class="">
+                                    <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="organization"
+                                      >Organization Name
+                                      <!-- <span
+                                        class="form-label-span"
+                                        style="color: #ff0000"
+                                      >
+                                        *</span >-->
+                                      </label
+                                    >
                                     <input
                                       type="text"
                                       name="organization_name"
                                       id="organization"
-                                      placeholder=""
-                                      class="form-control"
+                                      placeholder="Enter organization name"
+                                      class="form-control p-0"
                                       value=""
                                       formControlName="organization_name"
                                       minlength="3"
@@ -716,17 +745,7 @@
                                           f.organization_name.errors
                                       }"
                                     />
-                                    <label
-                                      class="col-md-12 no-padding"
-                                      for="organization"
-                                      >Organization Name
-                                      <!-- <span
-                                        class="form-label-span"
-                                        style="color: #ff0000"
-                                      >
-                                        *</span >-->
-                                      </label
-                                    >
+                                    
                                   </div>
                                   <!-- <div class="help-block with-errors"></div>
                                   <div
@@ -760,26 +779,11 @@
                                   class="form-group fg-field_3 col-md-4 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
                                       <span class="required-icon"></span
-                                      ><input
-                                        type="text"
-                                        name="address"
-                                        id="address"
-                                        placeholder=""
-                                        class="form-control"
-                                        value=""
-                                        [(ngModel)]="address"
-                                        (keypress)="ValidateAlpha($event)"
-                                        formControlName="address"
-                                        minlength="3"
-                                        [ngClass]="{
-                                          'is-invalid':
-                                            submitted && f.address.errors
-                                        }"
-                                      />
+                                      >
                                       <label
-                                        class="col-md-12 no-padding"
+                                        class="col-md-12 no-padding p-0"
                                         for="field_3"
                                         >Address
                                         <!-- <span
@@ -790,6 +794,23 @@
                                         > -->
                                         </label
                                       >
+                                      <input
+                                        type="text"
+                                        name="address"
+                                        id="address"
+                                        placeholder="Enter address"
+                                        class="form-control p-0"
+                                        value=""
+                                        [(ngModel)]="address"
+                                        (keypress)="ValidateAlpha($event)"
+                                        formControlName="address"
+                                        minlength="3"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.address.errors
+                                        }"
+                                      />
+                                      
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <!-- <div
@@ -817,14 +838,21 @@
                                   class="form-group fg-field_3 col-md-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
                                       <span class="required-icon"></span
-                                      ><input
+                                      ><label for="" class="p-0"
+                                      >Country<span
+                                        class="form-label-span"
+                                        style="color: #ff0000"
+                                      >
+                                        *</span
+                                      >
+                                    </label><input
                                         type="text"
                                         name="country"
                                         id="country"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter country"
+                                        class="form-control p-0"
                                         value=""
                                         required
                                         formControlName="country"
@@ -834,14 +862,7 @@
                                             submitted && f.country.errors
                                         }"
                                       />
-                                      <label for=""
-                                        >Country<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        >
-                                      </label>
+                                      
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -899,18 +920,19 @@
                                 </div>
                                 <div class="form-group fg-field_3 col-md-4 my-3">
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
+                                    <div class="">
+                                      <label for="" class="p-0">State/Province </label>
                                       <input
                                         type="text"
                                         name="state"
                                         id="state"
-                                        placeholder=""
-                                        class="form-control"
+                                        placeholder="Enter state/province"
+                                        class="form-control p-0"
                                         value=""
                                         formControlName="state"
                                         minlength="5"
                                       />
-                                      <label for="">State/Province </label>
+                                      
                                     </div>
                                     <!-- <div
                                       *ngIf="
@@ -981,18 +1003,8 @@
                                 </div>
                                 <div class="col-md-4">
                                   <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
-                                      <input
-                                        type="text"
-                                        name="city"
-                                        id="city"
-                                        placeholder=""
-                                        class="form-control"
-                                        value=""
-                                        formControlName="city"
-                                        minlength="5"
-                                      />
-                                      <label for=""
+                                    <div class="">
+                                      <label for="" class="p-0"
                                         >City<span
                                           class="form-label-span"
                                           style="color: #ff0000"
@@ -1000,6 +1012,17 @@
                                           *</span
                                         >
                                       </label>
+                                      <input
+                                        type="text"
+                                        name="city"
+                                        id="city"
+                                        placeholder="Enter city"
+                                        class="form-control p-0"
+                                        value=""
+                                        formControlName="city"
+                                        minlength="5"
+                                      />
+                                      
                                     </div>
                                     <!-- <select
                                     class="form-control"
@@ -1237,24 +1260,25 @@
                                   <p class="refLabel">The link for the payment ({{this.referralCode?2604:2800}} $) will be shared with you after submission of this form</p>
                                   <h6>Do you have a Reference code:</h6>
                                 </div>
-                                <div class="col-md-3 ps-lg-5">
-                                  <div class="form-floating">
+                                <div class="col-md-3 ">
+                                  <div class="">
+                                    <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="profession2"
+                                      >Reference Number:</label
+                                    >
                                     <input
                                       type="text"
                                       name="reference_no"
                                       id="profession2"
-                                      placeholder=""
-                                      class="form-control"
+                                      placeholder="Enter reference no."
+                                      class="form-control p-0"
                                       value=""
                                       [readonly]="this.referralCode?this.referralCode:''"
                                       formControlName="reference_no"
                                       minlength="3"
                                     />
-                                    <label
-                                      class="col-md-12 no-padding"
-                                      for="profession2"
-                                      >Reference Number:</label
-                                    >
+                                    
                                   </div>
                                 </div>
                               </div>
@@ -1272,8 +1296,8 @@
                                   </h6>
                                 </div>
                                 <div class="col-md-8">
-                                  <div class="row m-0 px-3">
-                                    <div class="form-check col-md-4 my-3">
+                                  <div class="row m-0">
+                                    <div class="form-check col-md-4 my-3 p-0">
                                       <input
                                         class="form-check-input"
                                         type="radio"
@@ -1290,7 +1314,7 @@
                                         Gathering Knowledge
                                       </label>
                                     </div>
-                                    <div class="form-check col-md-4 my-3">
+                                    <div class="form-check col-md-4 my-3 p-0">
                                       <input
                                         class="form-check-input"
                                         type="radio"
@@ -1306,7 +1330,7 @@
                                         Networking
                                       </label>
                                     </div>
-                                    <div class="form-check col-md-4 my-3">
+                                    <div class="form-check col-md-4 my-3 p-0">
                                       <input
                                         class="form-check-input"
                                         type="radio"
@@ -1322,7 +1346,7 @@
                                         Speaker Profile
                                       </label>
                                     </div>
-                                    <div class="form-check col-md-4 my-3">
+                                    <div class="form-check col-md-4 my-3 p-0">
                                       <input
                                         class="form-check-input"
                                         type="radio"
@@ -1338,7 +1362,7 @@
                                         Working for Peace
                                       </label>
                                     </div>
-                                    <div class="form-check col-md-4 my-3">
+                                    <div class="form-check col-md-4 my-3 p-0">
                                       <input
                                         class="form-check-input"
                                         type="radio"
@@ -1371,7 +1395,7 @@
                                   </h6>
                                 </div>
                                 <div class="col-md-8">
-                                  <div class="row m-0 px-3">
+                                  <div class="row m-0">
                                     <div class="form-check col-md-3 my-3" *ngFor="let interest of interests; let i = index">
                                       <input
                                         class="form-check-input"
@@ -1485,7 +1509,7 @@
                               <input id="showid" type="hidden" name="showid" value="1" /> -->
                                 <input
                                   type="submit"
-                                  class="btn btn-success p-2"
+                                  class="btn btn-success p-2 px-4"
                                   [disabled]="registrationForm.invalid"
                                   value="Submit"
                                   name="register"
@@ -1497,6 +1521,20 @@
                       </div>
                     </div>
                   </div>
+                  <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
                 </div>
               </form>
             </div>

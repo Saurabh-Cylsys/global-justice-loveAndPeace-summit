@@ -1463,9 +1463,9 @@ header .nav-item .nav-link.active {
 }
 
 .delegate-form .section7 {
-  background-image: url(../images/delegateBg.svg);
+  /* background-image: url(../images/delegateBg.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
   /* height: 127vh; */
   height: auto;
 }

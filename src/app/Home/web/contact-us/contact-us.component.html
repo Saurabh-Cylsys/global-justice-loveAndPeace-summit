@@ -56,7 +56,7 @@
 
 <main class="index delegate-form">
   <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
-    <section class="section7 p-lg-5">
+    <section class="section7 p-lg-5 position-relative">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-5">
@@ -561,7 +561,7 @@
                   <label for="question">Your Query</label>
                   <textarea
                     type="text"
-                    class="form-control"
+                    class="form-control position-relative"
                     placeholder="Write your query"
                     value=""
                     formControlName="yourQuestion"
@@ -571,6 +571,7 @@
                       border: 1px dotted;
                       border-radius: 10px !important;
                       min-height: 20vh;
+                      z-index: 1;
                     "
                   >
                   </textarea>
@@ -579,7 +580,7 @@
               <div class="mb-4 col-md-12 text-center">
                 <button
                   type="submit"
-                  class="btn btn-success p-2 w-50 text-center"
+                  class="btn btn-success p-2 w-50 text-center position-relative" style="z-index: 1;"
                   [disabled]="this.contactUsForm.invalid"
                 >
                   Send
@@ -589,6 +590,20 @@
           </div>
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
     </section>
   </form>
 </main>
