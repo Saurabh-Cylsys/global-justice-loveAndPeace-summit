@@ -107,11 +107,21 @@
   .awards .section7 .card .card-body ul {
     display: block;
   }
+  .scroll p {
+    font-size: 12px !important;
+  }
 
   .index .section7 p {
     font-size: 16px;
+    /* font-size: 12px; */
     line-height: 20px;
   }
+  
+  .index .section7 .date h3{
+    font-size: 30px;
+  }
+
+  
 
   .index .section1 .tableBox table tr td p {
     font-size: 12px;
@@ -369,6 +379,9 @@
   #ts4{
     height: 50vh;
   }
+  .indexSec2 ul li{
+    text-align: left;
+  }
 }
 @media (max-width: 425px) {
   .index .section1 {
@@ -387,7 +400,9 @@
   .index .section4 img {
     margin: 0 0 0;
   }
-
+  .scroll p {
+    font-size: 12px;
+}
   /* .index .section1 .tableBox {
     left: 0;
     position: relative;
@@ -700,6 +715,9 @@
         height: 55vh;
   }} */
 @media (max-width: 375px) {
+  .scroll p {
+    font-size: 12px;
+}
   .index .section1 {
 
     height: 68vh; /* Keeps the height relative to the viewport */
@@ -734,6 +752,9 @@
 }
 
 @media (max-width: 320px) {
+  .scroll p {
+    font-size: 12px;
+}
   .index .section1 .tableBox table tr td p {
     font-size: 10px;
   }

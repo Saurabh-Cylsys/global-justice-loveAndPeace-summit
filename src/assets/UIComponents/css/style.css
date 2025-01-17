@@ -1866,32 +1866,35 @@ header .nav-item .nav-link.active {
 
 /* Default styling for large screens */
 .main-body .scroll {
-  height: 100vh;
+  min-height: 100vh;
+  /* margin: auto; */
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 1024px) {
   .main-body .scroll {
-    height: auto;
+    min-height: 100vh;
   }
 }
 /* Medium screens (tablets) */
 @media (max-width: 768px) {
   .main-body .scroll {
-    height: auto;
+    min-height: 50vh;
   }
 }
 
 /* Small screens (phones) */
 @media (max-width: 480px) {
   .main-body .scroll {
-    height: auto;
+    min-height: 50vh;
   }
 }
 
 /* Extra small screens (tiny devices) */
 @media (max-width: 320px) {
   .main-body .scroll {
-    height: auto;
+    min-height: 50vh;
   }
 }
 
@@ -1968,4 +1971,9 @@ color: #005A93;
 
 #phone{
   padding: 0 5px;
+}
+
+#pe5 img{
+  position: relative;
+  z-index: 2;
 }
