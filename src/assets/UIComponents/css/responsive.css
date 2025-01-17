@@ -38,6 +38,13 @@
   .awards .section7 .card .card-body h3 {
     font-size: 17px;
   }
+  .index .section7 p{
+    font-size: 14px;
+  }
+  .confirmation table tr th:nth-child(2) {
+    background-color: #446aa0;
+    width: 16rem;
+}
 }
 
 @media (max-width: 768px) {
