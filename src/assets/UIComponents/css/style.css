@@ -1630,7 +1630,7 @@ header .nav-item .nav-link.active {
 .confirmation td,
 .confirmation tr {
   border-style: dashed;
-  border-color: var(--color1);
+  border-color: var(--color-dim);
 }
 
 .confirmation thead tr,
