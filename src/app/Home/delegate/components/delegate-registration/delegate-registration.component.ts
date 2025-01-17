@@ -55,7 +55,7 @@ export class DelegateRegistrationComponent {
   fullURL: string;
   othervalstate: any='';
   othervalstate_id:any='';
-  
+
   othervalcity: any='';
   othervalcity_id:any='';
 
@@ -85,11 +85,11 @@ export class DelegateRegistrationComponent {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
   constructor(private datePipe: DatePipe,
-     private formBuilder: FormBuilder, 
-     private DelegateService: DelegateService, 
-     private SharedService: SharedService, 
-     private ngxService: NgxUiLoaderService, 
-     private router: Router, 
+     private formBuilder: FormBuilder,
+     private DelegateService: DelegateService,
+     private SharedService: SharedService,
+     private ngxService: NgxUiLoaderService,
+     private router: Router,
      private httpClient: HttpClient,
      private route: ActivatedRoute) {
     this.fullURL = window.location.href;
@@ -121,18 +121,18 @@ export class DelegateRegistrationComponent {
 
         console.log(this.referralCode,'referralCode..........');
       }
-      
+
     });
-    
+
     this.createForm();
-  
+
 
 
     // this.getdates()
     // this.getAllCountries()
     // this.getAllCountrycode()
 
- 
+
 
   }
 
@@ -149,19 +149,19 @@ export class DelegateRegistrationComponent {
       linkedIn_profile:['', [Validators.pattern('https?://.+')]],
       instagram_profile:['', [Validators.pattern('https?://.+')]],
       // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
-      profession_1: ['', [Validators.required]],// need 
-      profession_2: [''],// need 
+      profession_1: ['', [Validators.required]],// need
+      profession_2: [''],// need
       website: ['', [Validators.pattern('^[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*$')]], // Basic URL pattern validation
-      organization_name: [''],// need 
+      organization_name: [''],// need
       address: [''],
       country: ['', [Validators.required]],
       state: [''],
       city: ['', [Validators.required]],
-      passport_no: [''],// need 
-      passport_issue_by: [''],// need 
+      passport_no: [''],// need
+      passport_issue_by: [''],// need
       pin_code: [null],
       // attend_summit: ['0', [Validators.required]],
-      reference_no: [this.referralCode?this.referralCode:''],// need 
+      reference_no: [this.referralCode?this.referralCode:''],// need
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
 
@@ -189,7 +189,7 @@ const eighteenYearsAgo = new Date(
 );
 this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
 this.minDate = `${minYear}-01-01`; // Set
- 
+
 }
 
 onCheckboxChange(event: any) {
@@ -241,10 +241,13 @@ console.log(indiaCodeObject);
 //     });
 //   }
 
+disableManualInput(event: KeyboardEvent): void {
+  event.preventDefault();
+}
 
 
   changeCountry(e: any) {
-    
+
     this.country_id = e.target.value;
     this.isOthersSelected = this.country_id === '247'; // Set a flag for "Others"
     console.log(this.country_id);
@@ -269,31 +272,31 @@ console.log(indiaCodeObject);
           this.registrationForm.patchValue({
               city:this.cityData[0].city_id
             })
-  
+
             console.log("c",this.registrationForm.value.city,this.othervalcity_id,this.othervalcity);
-  
+
           }, (err: any) => {
             console.log("Err", err);
             this.ngxService.stop();
           });
-  
+
     // this.otherval=    this.registrationForm.get('state')?.setValue(this.statesData[0].state_name);
       console.log("s",this.registrationForm.value.state,this.othervalstate_id,this.othervalstate);
-      
+
       }, (err: any) => {
         console.log("Err", err);
         // this.ngxService.stop();
       });
-      
+
     }
     else{
-      
+
       this.othervalstate_id='';
       this.othervalstate = '';
       this.othervalcity_id='';
       this.othervalcity='';
       console.log(typeof(this.othervalcity),this.othervalstate);
-      
+
     // this.ngxService.start();
     this.DelegateService.getAllStates(this.country_id).subscribe((res: any) => {
       // this.ngxService.stop();
@@ -324,16 +327,16 @@ console.log(indiaCodeObject);
 
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
-      
+
       if(inputValue.number.length<6){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-      
+
      }
-   
+
   }
 
 
@@ -356,7 +359,7 @@ console.log(indiaCodeObject);
     };
   }
 
-  
+
   noRepeatingDigits(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -387,7 +390,7 @@ onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
   console.log(this.registrationForm);
   if(inputValue!==null){
 
-  
+
   // Check if the pressed key is the space bar and the input is empty
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
@@ -415,7 +418,7 @@ onKeyDown(event: KeyboardEvent, inputValue: any): void {
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
 const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 console.log(formattedMobileNumber);
-    
+
     this.registrationForm.patchValue({
       country_code :this.registrationForm.value.mobile_number.dialCode,
       mobile_number :formattedMobileNumber,
@@ -442,8 +445,8 @@ console.log(formattedMobileNumber);
             this.registrationForm.reset();
 
             this.openPopup();
-           
-           
+
+
           } else {
             this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'error')
@@ -451,21 +454,21 @@ console.log(formattedMobileNumber);
           }
         },(err) => {
           this.ngxService.stop();
-  
-     
+
+
             this.SharedService.ToastPopup('', err.error.message, 'error')
 
-          
+
         }
         );
-     
+
 
     }
   }
 
 
 
- 
+
   openPopup() {
     this.showPopup=true;
     console.log("modal open");
@@ -495,6 +498,11 @@ closeModal() {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  onInput(event: any, controlName: string) {
+    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+    this.registrationForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
 }

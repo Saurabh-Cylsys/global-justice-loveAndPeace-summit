@@ -293,6 +293,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.display = "none";
     this.showPopup = false;
   }
+
+  disableManualInput(event: KeyboardEvent): void {
+    event.preventDefault();
+  }
+
   isCorrect() {
     this.isMobile = this.peacekeepersForm.value.mobile_number.dialCode + " " + this.peacekeepersForm.value.mobile_number.number
     this.display = "block";
@@ -328,6 +333,22 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
+
+      if (this.selectedFile) {
+        const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+
+        // Validate the file type
+        if (!validExtensions.includes(this.selectedFile.type)) {
+          this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+
+          this.is_selectedFile = false;
+          return;
+        }
+      }
+      else {
+        console.log('No file selected.');
+      }
+
       this.is_selectedFile = true;
       this.imageFileName = this.selectedFile.name
       console.log('Dropped file:', this.selectedFile);
@@ -392,12 +413,32 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   onFileChange(event: any): void {
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
-    this.imageFileName = event.target.files[0].name
+    this.imageFileName = event.target.files[0].name;
 
-    this.isPeaceOn = 2;
-    this.showPopup = true;
-    this.display = 'block'
-    this.formdisplay = false;
+    const file = event.target.files[0];
+
+    if (file) {
+      const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+
+      // Validate the file type
+      if (!validExtensions.includes(file.type)) {
+        this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+        event.target.value = ''; // Reset the file input
+        this.is_selectedFile = false;
+        return;
+      }
+
+      this.isPeaceOn = 2;
+      this.showPopup = true;
+      this.display = 'block'
+      this.formdisplay = false;
+
+    }
+    else {
+      console.log('No file selected.');
+    }
+
+
 
     // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
@@ -626,7 +667,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    // 
+    //
     if (inputValue !== null) {
 
       if (inputValue.number.length < 9) {
@@ -709,7 +750,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
 
   downloadQRCode(parent: any) {
-    // 
+    //
     console.log(parent);
 
     let parentElement = null

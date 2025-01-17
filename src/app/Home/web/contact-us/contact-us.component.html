@@ -343,8 +343,9 @@
                   [maxlength]="7"
                   data-error="Please select option"
                   formControlName="title"
+                  (input)="onInput($event, 'title')"
                   />
-                  
+
                   <!-- <div
                     *ngIf="
                       getcontrol('title')?.errors &&
@@ -372,8 +373,9 @@
                     placeholder="Enter first name"
                     required
                     value=""
+                    (input)="onInput($event, 'firstName')"
                   />
-                  
+
 
                   <div
                     class="text-danger"
@@ -403,8 +405,9 @@
                     required
                     placeholder="Enter last name"
                     value=""
+                    (input)="onInput($event, 'lastName')"
                   />
-                  
+
 
                   <div
                     *ngIf="
@@ -506,8 +509,9 @@
                     (keydown)="onKeyDown($event, mobile_number)"
                     name="email"
                     value=""
+                    (input)="onInput($event, 'email')"
                   />
-                  
+
 
                   <div class="help-block with-errors"></div>
                   <div
@@ -567,6 +571,7 @@
                     formControlName="yourQuestion"
                     name="yourQuestion"
                     id="question"
+                    maxlength="500"
                     style="
                       border: 1px dotted;
                       border-radius: 10px !important;

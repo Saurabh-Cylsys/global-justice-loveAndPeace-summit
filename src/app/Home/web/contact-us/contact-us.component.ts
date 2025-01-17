@@ -177,7 +177,7 @@ console.log(indiaCodeObject);
     // Check if the pressed key is the space bar and the input is empty
     if (event.key === ' ' && event.code === 'Space') {
       event.preventDefault(); // Prevent the space character from being typed
-    }  
+    }
   }
 
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
@@ -195,22 +195,26 @@ console.log(indiaCodeObject);
       }
     }
   }
-  
+
   }
 
- 
+  onInput(event: any, controlName: string) {
+    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+    this.contactUsForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
+  }
+
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
-      
+
       if(inputValue.number.length<9){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-      
+
      }
-   
+
   }
 
 
@@ -219,7 +223,7 @@ console.log(indiaCodeObject);
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
     console.log(formattedMobileNumber);
-        
+
     this.contactUsForm.patchValue({
       countryCode :this.contactUsForm.value.phoneNumber.countryCode,
       phoneNumber :this.contactUsForm.value.phoneNumber.dialCode + ' ' + formattedMobileNumber
@@ -230,7 +234,7 @@ console.log(indiaCodeObject);
       return console.log('Invalid Details');
     }
     if (this.submitted) {
-     
+
         this.reqBody = {
           ...this.contactUsForm.value,
         };
@@ -241,19 +245,19 @@ console.log(indiaCodeObject);
             console.log("result", result);
             this.ngxService.stop();
             this.contactUsForm.reset();
-            this.SharedService.ToastPopup('', result.message, 'success')        
-           
-          } 
+            this.SharedService.ToastPopup('', result.message, 'success')
+
+          }
         },(err) => {
           this.ngxService.stop();
-  
-     
+
+
             this.SharedService.ToastPopup('', err.error.message, 'error')
 
-          
+
         }
         );
-     
+
 
     }
   }
