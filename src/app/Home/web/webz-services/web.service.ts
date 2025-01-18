@@ -137,6 +137,14 @@ export class WebService {
       // "S_No": 13,
       "View": '',
       "Profile_Photo": null,
+      "Name": "Juan Carlos Sainz-Borgo, Dr.",
+      "Country": "COSTA RICA",
+      "Credentials": "Vice Rector, University of Peace "
+    },
+    {
+      // "S_No": 13,
+      "View": '',
+      "Profile_Photo": null,
       "Name": "Kailash Satyarthi",
       "Country": "INDIA",
       "Credentials": "Social Activist, Nobel Peace Laureate 2014"
@@ -363,6 +371,14 @@ export class WebService {
       // "S_No": 35,
       "View": '',
       "Profile_Photo": null,
+      "Name": "Surender Singh Kandhari",
+      "Country": "UAE",
+      "Credentials": "Industrialist : Chairman, Al Dobowi Group"
+    },
+    {
+      // "S_No": 35,
+      "View": '',
+      "Profile_Photo": null,
       "Name": "Tehemton  Burjor Mirza, Dastur",
       "Country": "INDIA",
       "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
@@ -543,14 +559,23 @@ export class WebService {
             // "S_No": 13,
             "View": '',
             "Profile_Photo": null,
-            "Name": "Kailash Satyarthi",
-            "Country": "INDIA",
-            "Credentials": "Social Activist, Nobel Peace Laureate 2014"
+            "Name": "Juan Carlos Sainz-Borgo, Dr.",
+            "Country": "COSTA RICA",
+            "Credentials": "Vice Rector, University of Peace "
           },
+          
         ]
       },
       {
         speakers: [
+          {
+            // "S_No": 13,
+            "View": '',
+            "Profile_Photo": null,
+            "Name": "Kailash Satyarthi",
+            "Country": "INDIA",
+            "Credentials": "Social Activist, Nobel Peace Laureate 2014"
+          },
           {
             // "S_No": 14,
             "View": '',
@@ -567,6 +592,11 @@ export class WebService {
             "Country": "LIBERIA",
             "Credentials": "Nobel Peace Laureate 2011"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 16,
             "View": '',
@@ -575,10 +605,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 17,
             "View": '',
@@ -595,6 +621,11 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner "
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 18,
             "View": '',
@@ -603,10 +634,6 @@ export class WebService {
             "Country": "DENMARK",
             "Credentials": "Royalty, TV Host, Philanthropist"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 19,
             "View": '',
@@ -623,6 +650,11 @@ export class WebService {
             "Country": "EGYPT",
             "Credentials": "Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 21,
             "View": 'asif',
@@ -631,10 +663,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Royalty Heir Apparent to the Prince of Arcot"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 17,
             "View": '',
@@ -651,6 +679,12 @@ export class WebService {
             "Country": "SRI LANKA",
             "Credentials": "Nobel Peace Laureate 2007"
           },
+          
+        ]
+      },
+
+      {
+        speakers: [
           {
             // "S_No": 23,
             "View": '',
@@ -659,11 +693,6 @@ export class WebService {
             "Country": "GAMBIA",
             "Credentials": "Industrialist : Chairman, TAF Global"
           },
-        ]
-      },
-
-      {
-        speakers: [
           {
             // "S_No": 24,
             "View": '',
@@ -680,6 +709,12 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Industrialist, Chairman, Godrej Industries"
           },
+          
+        ]
+      },
+
+      {
+        speakers: [
           {
             // "S_No": 17,
             "View": '',
@@ -688,11 +723,6 @@ export class WebService {
             "Country": "GHANA",
             "Credentials": "Royalty"
           },
-        ]
-      },
-
-      {
-        speakers: [
           {
             // "S_No": 26,
             "View": '',
@@ -709,6 +739,12 @@ export class WebService {
             "Country": "TUNISIA",
             "Credentials": "Nobel Peace Laureate 2015"
           },
+          
+        ]
+      },
+
+      {
+        speakers: [
           {
             // "S_No": 28,
             "View": '',
@@ -717,11 +753,6 @@ export class WebService {
             "Country": "SPAIN",
             "Credentials": "Artist, Peace Painter (live performance)"
           },
-        ]
-      },
-
-      {
-        speakers: [
           {
             // "S_No": 29,
             "View": '',
@@ -738,6 +769,11 @@ export class WebService {
             "Country": "MADAGASCAR",
             "Credentials": "Royalty, Pastor, Philanthropist"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 31,
             "View": 'romona',
@@ -746,10 +782,6 @@ export class WebService {
             "Country": "MALAYSIA",
             "Credentials": "Royalty, Philanthropist, Peace Activist"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 32,
             "View": '',
@@ -766,6 +798,12 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Actor, Producer, Director"
           },
+          
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 33,
             "View": '',
@@ -774,11 +812,6 @@ export class WebService {
             "Country": "USA",
             "Credentials": "Ambassador of Sikh Dharma"
           },
-          
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 34,
             "View": '',
@@ -795,6 +828,20 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Producer & Actress, Royalty"
           },
+          
+          
+        ]
+      },
+      {
+        speakers: [
+          {
+            // "S_No": 35,
+            "View": '',
+            "Profile_Photo": null,
+            "Name": "Surender Singh Kandhari",
+            "Country": "UAE",
+            "Credentials": "Industrialist : Chairman, Al Dobowi Group"
+          },
           {
             // "S_No": 35,
             "View": '',
@@ -803,11 +850,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
           },
-          
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 36,
             "View": '',
@@ -816,6 +858,13 @@ export class WebService {
             "Country": "VIETNAM",
             "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
           },
+          
+          
+          
+        ]
+      },
+      {
+        speakers:[
           {
             // "S_No": 37,
             "View": '',
@@ -832,11 +881,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Celebrity Fitness Trainer"
           },
-          
-        ]
-      },
-      {
-        speakers:[
           {
             // "S_No": 39,
             "View": '',
