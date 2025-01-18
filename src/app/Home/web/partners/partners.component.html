@@ -49,8 +49,8 @@
 </nav>
 
 <div class="main-body">
-  <section id="p1" class="section section7 scroll">
-    <div class="container-fluid h-100">
+  <section id="p1" class="section section7 scroll position-relative">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12" *ngIf="isMobileView">
           <div
@@ -253,6 +253,20 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </section>
   <section id="p2" class="section5 p-lg-5 py-5 partner_carousel scroll">
     <div class="container-fluid">

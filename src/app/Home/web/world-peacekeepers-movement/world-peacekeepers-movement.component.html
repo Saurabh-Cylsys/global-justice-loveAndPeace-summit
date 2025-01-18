@@ -53,8 +53,8 @@
 </nav>
 <div class="main-body">
   <div class="section partner" id="pe1">
-    <section class="section7">
-      <div class="container-fluid h-100">
+    <section class="section7 position-relative">
+      <div class="container-fluid h-100" style="position: relative;z-index: 1;">
         <div class="row align-items-center justify-content-center h-100">
           <div class="col-md-12 px-4" *ngIf="isMobileView">
             <ul
@@ -263,11 +263,25 @@
           </div>
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
     </section>
   </div>
   <div class="section partner" id="pe2">
-    <section class="section7 py-lg-0 py-4">
-      <div class="container-fluid h-100">
+    <section class="section7 py-lg-0 py-4 position-relative">
+      <div class="container-fluid h-100" style="position: relative;z-index: 1;">
         <div class="row align-items-center justify-content-center h-100">
           <div class="col-md-12" *ngIf="isMobileView">
             <!-- <img
@@ -499,12 +513,26 @@
           </div>
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
     </section>
   </div>
 
   <div class="section partner delegate-form" id="pe3">
-    <section class="section7">
-      <div class="container-fluid h-100 p-lg-5">
+    <section class="section7 position-relative">
+      <div class="container-fluid h-100 p-lg-5" style="position: relative;z-index: 1;">
         <div class="row justify-content-center h-100">
           <div class="col-md-12 mb-lg-5">
             <h2>JOIN US AS A PEACEKEEPER NOW</h2>
@@ -1029,10 +1057,24 @@
           </div>
         </div>
       </div>
+      <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
     </section>
   </div>
-  <div class="section section5 partner delegate-form py-3 " id="pe4">
-    <div class="container">
+  <div class="section section5 partner delegate-form py-3 position-relative" id="pe4">
+    <div class="container" style="position: relative;z-index: 1;">
       <div class="row justify-content-center">
         <div class="col-md-12 text-center">
           <h2>7 Human Values</h2>
@@ -1064,6 +1106,20 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
   <div class="section partner1 mt-lg-0 mt-5" id="pe5">
     <section class="section5 p-lg-5 position-relative">
