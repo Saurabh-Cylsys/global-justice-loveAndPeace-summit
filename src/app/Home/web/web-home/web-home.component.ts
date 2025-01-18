@@ -52,18 +52,25 @@ export class WebHomeComponent implements OnInit, OnDestroy{
   ) {}
 
   
-  events = [
-    { title: 'Registration', time: '10:00 AM - 10:30 AM' },
-    { title: 'Opening Session', time: '10:30 AM - 11:00 AM' },
-    { title: 'Session Theme 1 - JUSTICE', time: '11:00 AM - 12:30 PM' },
-    { title: 'Lunch & Networking', time: '12:30 PM - 2:30 PM' },
-    { title: 'Session Theme 2 - LOVE', time: '2:30 PM - 4:00 PM' },
-    { title: 'Tea & Networking', time: '4:00 PM - 4:45 PM' },
-    { title: 'Session Theme 3 - PEACE', time: '4:45 PM - 6:15 PM' },
-    { title: 'Tea & Networking', time: '6:15 PM - 7:15 PM' },
-    { title: 'Awards', time: '7:15 PM - 8:15 PM' },
-    { title: 'Closing Session', time: '8:15 PM - 9:00 PM' },
-    { title: 'Dinner & Networking', time: '9:00 PM - 11:00 PM' },
+  events_day1 = [
+    { title: 'Registration', time: '8:00 AM-10:00 AM' },
+    { title: 'Opening Session', time: '10:00 AM-10:30 AM' },
+    { title: 'Session 1 HAll 1 JUSTICE HAll 2 PEACE', time: '10:30 AM-12:30 PM' },
+    { title: 'Lunch & Networking', time: '12:30 PM-2:00 PM' },
+    { title: 'Session 2 HAll 1 lOVE HAll 2 JUSTICE', time: '2:00 PM-4:00 PM' },
+    { title: 'Tea & Networking', time: '4:00 PM-5:00 PM' },
+    { title: 'Session 3 HAll 1 PEACE HAll 2 LOVE', time: '5:00 PM-7:00 PM' },
+    { title: 'Dinner & Networking', time: '7:30 PM-9:30 PM' },
+  ];
+  events_day2 = [
+    { title: 'Session 4 HAll 1 LOVE  HAll 2 PEACE', time: '10:00 AM-12:00 PM' },
+    { title: 'Lunch & Networking', time: '12:00 PM-1:30 PM' },
+    { title: 'Session 5 HAll 1 JUSTICE HAll 2 PEACE', time: '1:30 PM- 3:30 PM' },
+    { title: 'Tea & Networking', time: '3:30 PM - 4:30 PM' },
+    { title: 'Session 6 HAll 1 JUSTICE HAll 2 LOVE', time: '4:30 PM- 6:30 PM' },
+    { title: 'Awards', time: '7:00 PM-8:30 PM' },
+    { title: 'Closing Session', time: '8:30 PM-9:00 PM' },
+    { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
   ngOnInit(): void {
     this.checkWindowSize();

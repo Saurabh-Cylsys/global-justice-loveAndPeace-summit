@@ -389,6 +389,14 @@
   .indexSec2 ul li{
     text-align: left;
   }
+  .event_day{
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+  .index .section7 .location{
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
 @media (max-width: 425px) {
   .index .section1 {

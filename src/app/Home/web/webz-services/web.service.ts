@@ -250,14 +250,13 @@ export class WebService {
       "Credentials": "Industrialist : Chairman, TAF Global"
     },
     // list 10
-    {
-      // "S_No": 24,
-      "View": '',
-      "Profile_Photo": null,
-      "Name": "Nadia Murad",
-      "Country": "IRAQ",
-      "Credentials": "Social Activist : Nobel Peace Laureates 2018"
-    },
+    // {
+    //   "View": '',
+    //   "Profile_Photo": null,
+    //   "Name": "Nadia Murad",
+    //   "Country": "IRAQ",
+    //   "Credentials": "Social Activist : Nobel Peace Laureates 2018"
+    // },
     {
       // "S_No": 25,
       "View": 'nadir',
@@ -693,14 +692,14 @@ export class WebService {
             "Country": "GAMBIA",
             "Credentials": "Industrialist : Chairman, TAF Global"
           },
-          {
-            // "S_No": 24,
-            "View": '',
-            "Profile_Photo": null,
-            "Name": "Nadia Murad",
-            "Country": "IRAQ",
-            "Credentials": "Social Activist : Nobel Peace Laureates 2018"
-          },
+          // {
+           
+          //   "View": '',
+          //   "Profile_Photo": null,
+          //   "Name": "Nadia Murad",
+          //   "Country": "IRAQ",
+          //   "Credentials": "Social Activist : Nobel Peace Laureates 2018"
+          // },
           {
             // "S_No": 25,
             "View": 'nadir',
