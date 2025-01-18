@@ -18,8 +18,10 @@
   );
   --gradient2: linear-gradient(180deg, #ffffff 0%, #128940 100%);
   --gradient3: linear-gradient(180deg, #ffffff 22%, #e8f0cc 100%);
-  --gradient4: linear-gradient(277.3deg, #128940 6.75%, #12c450 95.73%);
+  --gradient4: linear-gradient(270deg, #004E8A 14.85%, #005487 21.66%, #00637B 35.22%, #007760 54%, #008A3B 70.95%, #008A3B 90.42%);
   --gradient5: linear-gradient(180deg, #ffffff 22%, #004e8a 100%);
+  
+
 
   /* timeline */
 
