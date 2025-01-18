@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {ActivatedRoute } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-awards',
@@ -7,11 +8,15 @@ import {ActivatedRoute } from '@angular/router';
   styleUrls: ['./awards.component.css']
 })
 export class AwardsComponent {
-  constructor( private router: ActivatedRoute
+  isMobileView = false;
+  constructor(
+      private _activeRouter:ActivatedRoute, 
+      private SharedService: SharedService,
   ) {}
 
-  ngAfterViewInit(): void {
-    this.router.fragment.subscribe((fragment) => {
+  ngOnInit(): void {
+    this.checkWindowSize();
+    this._activeRouter.fragment.subscribe((fragment) => {
       if (fragment) {
         const element = document.getElementById(fragment);
         if (element) {
@@ -20,4 +25,20 @@ export class AwardsComponent {
       }
     });
   }
+    checkWindowSize(): void {
+      if (window.innerWidth <= 767) {
+        this.SharedService.isMobileView.next(true);
+        this.isMobileView = true;
+      } else {
+        this.SharedService.isMobileView.next(false);
+        this.isMobileView = false;
+      }
+    }
+  
+    // Listen to window resize events
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+      this.checkWindowSize();
+    }
+ 
 }
