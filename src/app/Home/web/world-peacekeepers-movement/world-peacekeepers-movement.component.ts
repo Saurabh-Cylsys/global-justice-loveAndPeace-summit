@@ -1,23 +1,48 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
-import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  Renderer2,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormGroup,
+  Validators,
+  FormControlName,
+  FormBuilder,
+  FormArray,
+  AbstractControl,
+  ValidatorFn,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { DelegateService } from '../../delegate/services/delegate.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import html2canvas from 'html2canvas';
 import int1TelInput from 'intl-tel-input';
-import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+import {
+  CountryISO,
+  PhoneNumberFormat,
+  SearchCountryField,
+} from 'ngx-intl-tel-input';
 import { environment } from 'src/environments/environment';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ImageCroppedEvent, ImageTransform , LoadedImage } from 'ngx-image-cropper';
+import { DomSanitizer, Meta, Title } from '@angular/platform-browser';
+import {
+  ImageCroppedEvent,
+  ImageTransform,
+  LoadedImage,
+} from 'ngx-image-cropper';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
   templateUrl: './world-peacekeepers-movement.component.html',
-  styleUrls: ['./world-peacekeepers-movement.component.css']
+  styleUrls: ['./world-peacekeepers-movement.component.css'],
 })
 export class WorldPeacekeepersMovementComponent implements OnInit {
-
   peacekeepersForm: any = FormGroup;
   reqBody: any;
   formdisplay: boolean = true;
@@ -28,8 +53,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   submitted = false;
   is_selectedFile: boolean = false;
   countryData: any;
-  fileUrl: any
-  isMobile: any
+  fileUrl: any;
+  isMobile: any;
   mobile_number: string = '';
   mobile_numberVal: boolean = false;
 
@@ -39,23 +64,26 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
-  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  preferredCountries: CountryISO[] = [
+    CountryISO.UnitedStates,
+    CountryISO.UnitedKingdom,
+  ];
   country_codeList: any;
   countryCodes: any;
   country_code: any;
   defaultCountryISO: any;
   selectedCountryISO: any;
   peacekeeperData: any = [];
-  peacekeeperBadgeId: any
-  peacekeeperBadgeResponse: any
-  peacekeeperBadge: any
+  peacekeeperBadgeId: any;
+  peacekeeperBadgeResponse: any;
+  peacekeeperBadge: any;
   isCheckEmail: boolean = true;
   previewUrl: string | null = null; // Add this to your component
 
   isMobileView = false;
   // qrCodeData: string  = 'delegate-registration?code=CODZDZ-0000063-W';
   qrCodeData: string | null = null;
-  qrCodeImg: any
+  qrCodeImg: any;
   convertedImage: string | null = null;
   isConvertedImage: boolean = true;
   minDate: string | null = null;
@@ -73,56 +101,72 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private renderer: Renderer2) {
-    this.defaultCountryISO = CountryISO.UnitedArabEmirates
+    private titleService: Title,
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
-
   }
 
   getcontrol(name: any): AbstractControl | null {
     return this.peacekeepersForm.get(name);
   }
-  get f() { return this.peacekeepersForm.controls; }
+  get f() {
+    return this.peacekeepersForm.controls;
+  }
   @ViewChild('contentTemplate')
   contentTemplate!: TemplateRef<any>;
 
   country_code_val() {
-
-    console.log(this.peacekeepersForm.value.phone.number, this.peacekeepersForm.value.dialCode)
+    console.log(
+      this.peacekeepersForm.value.phone.number,
+      this.peacekeepersForm.value.dialCode
+    );
   }
 
   ngOnInit(): void {
+    this.setMetaTags();
+    this.setCanonicalUrl(
+      'https://www.justice-love-peace.com/world-peacekeepers-movement'
+    );
     this.dobValidator();
-    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+    console.log(
+      this.mobile_numberVal,
+      this.is_selectedFile,
+      this.peacekeepersForm.invalid
+    );
 
     this.checkWindowSize();
-    this.getAllCountrycode()
+    this.getAllCountrycode();
     this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
     console.log(inputElement, 'inputElement');
 
     if (inputElement) {
-
-      const data =
-        int1TelInput(inputElement, {
-          initialCountry: 'ae',
-          separateDialCode: true,
-          utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
-        });
+      const data = int1TelInput(inputElement, {
+        initialCountry: 'ae',
+        separateDialCode: true,
+        utilsScript:
+          'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js',
+      });
       inputElement.addEventListener('countrychange', () => {
         console.log(data);
 
         this.countryData = int1TelInput(inputElement, {
           initialCountry: 'ae',
           separateDialCode: true,
-          utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js'
+          utilsScript:
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js',
         }).getSelectedCountryData();
         console.log('Selected Country Code:', this.countryData.dialCode);
         console.log('Selected Country ISO Code:', this.countryData.iso2);
@@ -134,21 +178,21 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       dob: ['', [Validators.required]],
       country: ['', [Validators.required]],
       country_code: [''],
-      mobile_number: ['', [Validators.required,
-      Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
-      this.noRepeatingDigits(), this.containsConsecutiveZeros()
-      ]],
+      mobile_number: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
+          this.noRepeatingDigits(),
+          this.containsConsecutiveZeros(),
+        ],
+      ],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
       Check_email: [''],
-      File: ['', [Validators.required]]
+      File: ['', [Validators.required]],
     });
-
-
   }
-
-
-
 
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -159,7 +203,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       return null;
     };
   }
-
 
   noRepeatingDigits(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -186,16 +229,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     );
     this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
     this.minDate = `${minYear}-01-01`; // Set
-
   }
 
   get dob() {
     return this.peacekeepersForm.get('dob');
   }
 
-
   downloadImage() {
-
     if (this.convertedImage) {
       const link = document.createElement('a');
       link.href = this.convertedImage;
@@ -208,7 +248,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     //   console.error('Element not found for capturing!');
     //   return;
     // }
-
 
     // html2canvas(element, {
     //   useCORS: true, // Ensures cross-origin images are captured
@@ -230,32 +269,28 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     //     this.showPopup = false;
     //   });
     setTimeout(() => {
-      this.display = "none";
+      this.display = 'none';
       this.showPopup = false;
-
     }, 1000);
-
-
   }
   openPopup() {
     // this.peacekeeperBadgeId = 124
     if (this.peacekeeperBadgeId) {
-      let id = this.peacekeeperBadgeId
+      let id = this.peacekeeperBadgeId;
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
         this.peacekeeperData = res.data;
-        this.qrCodeImg = res.QR_code
-        this.fileUrl = this.peacekeeperData.file_urls[0]
-        console.log("modal peacekeeperData", this.peacekeeperData);
+        this.qrCodeImg = res.QR_code;
+        this.fileUrl = this.peacekeeperData.file_urls[0];
+        console.log('modal peacekeeperData', this.peacekeeperData);
         setTimeout(() => {
           this.readyImage();
         }, 1000);
       });
     }
 
-
     this.showPopup = true;
     this.isPeaceOn = 0;
-    this.display = 'block'
+    this.display = 'block';
     this.formdisplay = false;
   }
   readyImage() {
@@ -268,7 +303,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
       html2canvas(element, {
         useCORS: true, // Ensures cross-origin images are captured
-        scale: 2,    // Improves image quality
+        scale: 2, // Improves image quality
       })
         .then((canvas) => {
           this.convertedImage = canvas.toDataURL('image/png');
@@ -284,40 +319,42 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           // this.isLoading = false; // Hide the spinner if added
           console.log('converted image', this.convertedImage);
           this.isConvertedImage = false;
-
         });
     }
   }
   closeModal() {
-
-    this.display = "none";
+    this.display = 'none';
     this.showPopup = false;
   }
   isCorrect() {
-    this.isMobile = this.peacekeepersForm.value.mobile_number.dialCode + " " + this.peacekeepersForm.value.mobile_number.number
-    this.display = "block";
+    this.isMobile =
+      this.peacekeepersForm.value.mobile_number.dialCode +
+      ' ' +
+      this.peacekeepersForm.value.mobile_number.number;
+    this.display = 'block';
     this.showPopup = true;
     this.isPeaceOn = 1;
-
   }
   getAllCountrycode() {
+    this.DelegateService.getAllCountrycode().subscribe(
+      (res: any) => {
+        console.log('code', res.data);
+        this.code = res.data;
+        // Define the country name you want to find (e.g., "India (+91)")
+        const countryToFind = 'India';
 
-    this.DelegateService.getAllCountrycode().subscribe((res: any) => {
-      console.log("code", res.data);
-      this.code = res.data;
-      // Define the country name you want to find (e.g., "India (+91)")
-      const countryToFind = "India";
+        // Find the object that matches the country name
+        // const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
+        // console.log(indiaCodeObject);
 
-      // Find the object that matches the country name
-      // const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
-      // console.log(indiaCodeObject);
-
-      //     this.peacekeepersForm.patchValue({
-      //       country :indiaCodeObject.name
-      //     })
-    }, (err: any) => {
-      console.log("error", err);
-    });
+        //     this.peacekeepersForm.patchValue({
+        //       country :indiaCodeObject.name
+        //     })
+      },
+      (err: any) => {
+        console.log('error', err);
+      }
+    );
   }
   // profile_picture:[''],
 
@@ -325,15 +362,16 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     event.preventDefault();
     this.isDragging = false;
 
-
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
-      this.imageFileName = this.selectedFile.name
+      this.imageFileName = this.selectedFile.name;
       console.log('Dropped file:', this.selectedFile);
 
       // Update the input field's value programmatically
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+      const fileInput = document.querySelector(
+        'input[type="file"]'
+      ) as HTMLInputElement;
       if (fileInput) {
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(this.selectedFile);
@@ -342,15 +380,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
       const fileInputEvent = {
         target: {
-          files: [this.selectedFile]
-        }
+          files: [this.selectedFile],
+        },
       } as any;
       this.fileChangeEvent(fileInputEvent);
     }
   }
 
   onDragOver(event: DragEvent): void {
-
     event.preventDefault();
     this.isDragging = true;
 
@@ -376,8 +413,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   // Handle the file selection from the input element
   onFileSelect(event: Event): void {
-
-    console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
+    console.log(
+      this.mobile_numberVal,
+      this.is_selectedFile,
+      this.peacekeepersForm.invalid
+    );
 
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -388,15 +428,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     }
   }
 
-
   onFileChange(event: any): void {
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
-    this.imageFileName = event.target.files[0].name
+    this.imageFileName = event.target.files[0].name;
 
     this.isPeaceOn = 2;
     this.showPopup = true;
-    this.display = 'block'
+    this.display = 'block';
     this.formdisplay = false;
 
     // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
@@ -418,19 +457,18 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   //     this.imageChangedEvent = event;
   // }
 
-
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
     console.log(this.imageFileName, 'cropping');
 
     // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
     fetch(this.croppedImage)
-      .then(response => response.blob())  // Fetch the image blob
-      .then(blob => {
+      .then((response) => response.blob()) // Fetch the image blob
+      .then((blob) => {
         // Create a File object from the Blob
         const file = new File([blob], this.imageFileName, {
           type: blob.type,
-          lastModified: Date.now()  // You can set this to the actual last modified timestamp if needed
+          lastModified: Date.now(), // You can set this to the actual last modified timestamp if needed
         });
 
         // Now you can append the file data to your payload
@@ -457,19 +495,18 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
         // Proceed with your request or any other operation with 'payload'
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching the image:', error);
       });
-
-
-
   }
 
   closeImageModal() {
-    const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+    const fileInput = document.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
     fileInput.value = '';
-    this.is_selectedFile = false
-    this.display = "none";
+    this.is_selectedFile = false;
+    this.display = 'none';
     this.showPopup = false;
   }
 
@@ -479,15 +516,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   cropperReady() {
     this.imageChangedEvent = '';
-    this.display = "none";
+    this.display = 'none';
     this.showPopup = false;
     // Optional: Cropper ready event
   }
 
-
-   // Zoom In
-   zoomIn(): void {
-    if (this.zoomLevel < 5) { // Maximum zoom level
+  // Zoom In
+  zoomIn(): void {
+    if (this.zoomLevel < 5) {
+      // Maximum zoom level
       this.zoomLevel += 0.1;
       this.applyZoom();
     }
@@ -495,7 +532,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   // Zoom Out
   zoomOut(): void {
-    if (this.zoomLevel > 1) { // Minimum zoom level
+    if (this.zoomLevel > 1) {
+      // Minimum zoom level
       this.zoomLevel -= 0.1;
       this.applyZoom();
     }
@@ -514,12 +552,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   ValidateAlpha(event: any) {
-    var keyCode = (event.which) ? event.which : event.keyCode
+    var keyCode = event.which ? event.which : event.keyCode;
 
-    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
+    if (
+      (keyCode < 65 || keyCode > 90) &&
+      (keyCode < 97 || keyCode > 123) &&
+      keyCode != 32
+    )
       return false;
     return true;
-
   }
 
   extractCountryCode(inputString: string): string | null {
@@ -527,14 +568,15 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     return countryCodeMatch ? `+${countryCodeMatch[1]}` : null;
   }
 
-
   submitData(fileInput: HTMLInputElement): void {
-    debugger
+    debugger;
     this.convertedImage = '';
-    this.display = "none";
+    this.display = 'none';
     this.showPopup = false;
-    console.log(this.peacekeepersForm.value.mobile_number.number, this.peacekeepersForm.value.mobile_number.dialCode)
-
+    console.log(
+      this.peacekeepersForm.value.mobile_number.number,
+      this.peacekeepersForm.value.mobile_number.dialCode
+    );
 
     // const inputString = this.peacekeepersForm.value.country_code;
     // const countryCode = this.extractCountryCode(inputString);
@@ -544,14 +586,16 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
     console.log(formattedMobileNumber);
 
-
-    this.isCheckEmail = this.peacekeepersForm.value.Check_email
+    this.isCheckEmail = this.peacekeepersForm.value.Check_email;
     this.peacekeepersForm.patchValue({
       is_active: 1,
       Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
       // country_code: this.peacekeepersForm.value.mobile_number.countryCode,
-      mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
-    })
+      mobile_number:
+        this.peacekeepersForm.value.mobile_number.dialCode +
+        ' ' +
+        formattedMobileNumber,
+    });
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
     //   return console.log('Invalid Details');
@@ -567,10 +611,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     // Append the selected file
     if (this.selectedFile) {
-      formData.append('profile_picture', this.selectedFile, this.selectedFile.name);
+      formData.append(
+        'profile_picture',
+        this.selectedFile,
+        this.selectedFile.name
+      );
     }
-    console.log("this.peacekeepersForm", formData);
-    console.log("window.location.origin", environment.domainUrl);
+    console.log('this.peacekeepersForm', formData);
+    console.log('window.location.origin', environment.domainUrl);
     formData.append('url', environment.domainUrl);
 
     // Show loader
@@ -579,66 +627,54 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     // Call the service to submit data
     this.SharedService.postPeacekeeper(formData).subscribe(
       (response: any) => {
-
         if (response.success) {
           this.submitted = true;
           this.ngxService.stop();
-          console.log("response", response);
+          console.log('response', response);
           // this.peacekeeperBadgeResponse = response.QR_code
-          this.peacekeeperBadgeResponse = 'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png'
+          this.peacekeeperBadgeResponse =
+            'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
           this.peacekeeperBadge = response.batch;
 
-
-          this.peacekeeperBadgeId = response.peacekeeper_id
-          this.SharedService.ToastPopup('', response.message, 'success')
-          this.is_selectedFile = false
+          this.peacekeeperBadgeId = response.peacekeeper_id;
+          this.SharedService.ToastPopup('', response.message, 'success');
+          this.is_selectedFile = false;
           this.peacekeepersForm.reset();
 
           this.selectedFile = null;
           fileInput.value = '';
           this.previewUrl = '';
-
         } else {
           this.ngxService.stop();
-          this.SharedService.ToastPopup('', response.message, 'error')
-
+          this.SharedService.ToastPopup('', response.message, 'error');
         }
-      }, (err) => {
-
-        const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
+      },
+      (err) => {
+        const rawMobileNumber =
+          this.peacekeepersForm.value.mobile_number.number;
         const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
         console.log(formattedMobileNumber);
 
-
         this.peacekeepersForm.patchValue({
-          mobile_number: formattedMobileNumber
-        })
+          mobile_number: formattedMobileNumber,
+        });
         this.ngxService.stop();
 
-
-        this.SharedService.ToastPopup('', err.error.message, 'error')
-
-
+        this.SharedService.ToastPopup('', err.error.message, 'error');
       }
     );
   }
 
-
-
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    // 
+    //
     if (inputValue !== null) {
-
       if (inputValue.number.length < 9) {
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-
     }
-
-
   }
 
   onKeyDown(event: KeyboardEvent, inputValue: any): void {
@@ -651,7 +687,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
     if (inputValue !== null) {
-
       if (event.key === ' ' && inputValue.trim() === '') {
         event.preventDefault(); // Prevent the space character from being typed
       } else if (event.code === 'Backspace') {
@@ -665,10 +700,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     }
   }
 
-
-
   getCountrycode(code: any) {
-
     let countryName = this.peacekeepersForm.value.country;
     const indiaCodeObject = code.find((item: any) => item.name === countryName);
     console.log(indiaCodeObject);
@@ -676,9 +708,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.peacekeepersForm.patchValue({
       // is_active :1,
       // Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
-      country_code: indiaCodeObject.code
+      country_code: indiaCodeObject.code,
       // mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
-    })
+    });
   }
 
   ngAfterViewInit(): void {
@@ -707,38 +739,37 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.checkWindowSize();
   }
 
-
   downloadQRCode(parent: any) {
-    // 
+    //
     console.log(parent);
 
-    let parentElement = null
+    let parentElement = null;
 
-    if (parent.elementType === "canvas") {
+    if (parent.elementType === 'canvas') {
       // fetches base 64 data from canvas
       parentElement = parent.qrcElement.nativeElement
-        .querySelector("canvas")
-        .toDataURL("image/png")
-    } else if (this.qrCodeData === "img" || this.qrCodeData === "url") {
+        .querySelector('canvas')
+        .toDataURL('image/png');
+    } else if (this.qrCodeData === 'img' || this.qrCodeData === 'url') {
       // fetches base 64 data from image
       // parentElement contains the base64 encoded image src
       // you might use to store somewhere
-      parentElement = parent.qrcElement.nativeElement.querySelector("img").src
+      parentElement = parent.qrcElement.nativeElement.querySelector('img').src;
     } else {
-      alert("Set elementType to 'canvas', 'img' or 'url'.")
+      alert("Set elementType to 'canvas', 'img' or 'url'.");
     }
 
     if (parentElement) {
       // converts base 64 encoded image to blobData
-      let blobData = this.convertBase64ToBlob(parentElement)
+      let blobData = this.convertBase64ToBlob(parentElement);
       // saves as image
-      const blob = new Blob([blobData], { type: "image/png" })
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement("a")
-      link.href = url
+      const blob = new Blob([blobData], { type: 'image/png' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
       // name of the file
-      link.download = "qrcode"
-      link.click()
+      link.download = 'qrcode';
+      link.click();
     }
   }
 
@@ -759,5 +790,67 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     return new Blob([uInt8Array], { type: imageType });
   }
 
-}
+  setMetaTags(): void {
+    // Set the page title
+    this.titleService.setTitle(
+      'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
+    );
 
+    // Add or update meta tags
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content:
+          'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
+      },
+      {
+        property: 'og:title',
+        content:
+          'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
+      },
+      {
+        property: 'og:image',
+        content:
+          'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
+      },
+      {
+        property: 'og:url',
+        content: 'https://www.justice-love-peace.com/world-peacekeepers-movement',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:site_name',
+        content: 'Global Justice, Love and Peace Summit | Dubai',
+      },
+    ]);
+  }
+
+  setCanonicalUrl(url: string): void {
+    // Remove any existing canonical tags
+    const existingLink: HTMLLinkElement | null = this.document.querySelector(
+      'link[rel="canonical"]'
+    );
+    if (existingLink) {
+      this.renderer.removeChild(this.document.head, existingLink);
+    }
+
+    // Add a new canonical tag
+    const link: HTMLLinkElement = this.renderer.createElement('link');
+    this.renderer.setAttribute(link, 'rel', 'canonical');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.appendChild(this.document.head, link);
+  }
+}
