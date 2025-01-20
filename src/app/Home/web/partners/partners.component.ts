@@ -22,8 +22,8 @@ export class PartnersComponent {
   ) {}
 
   ngOnInit(): void {
-    this.setMetaTags();
-    this.setCanonicalUrl('https://www.justice-love-peace.com/partners');
+    // this.setMetaTags();
+    // this.setCanonicalUrl('https://www.justice-love-peace.com/partners');
     this.checkWindowSize();
   }
   checkWindowSize(): void {
@@ -52,67 +52,67 @@ export class PartnersComponent {
       }
     });
   }
-  setMetaTags(): void {
-    // Set the page title
-    this.titleService.setTitle(
-      'Our Partners | Global Justice, Love, and Peace Movement | Dubai'
-    );
+  // setMetaTags(): void {
+    
+  //   this.titleService.setTitle(
+  //     'Our Partners | Global Justice, Love, and Peace Movement | Dubai'
+  //   );
 
-    // Add or update meta tags
-    this.metaService.addTags([
-      {
-        name: 'description',
-        content:
-          'Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners, contributions and join us in fostering a more peaceful world.',
-      },
-      {
-        name: 'keywords',
-        content:
-          'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
-      },
-      {
-        property: 'og:title',
-        content:
-          'Our Partners | Global Justice, Love, and Peace Movement | Dubai',
-      },
-      {
-        property: 'og:description',
-        content:
-          'Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners, contributions and join us in fostering a more peaceful world.',
-      },
-      {
-        property: 'og:image',
-        content:
-          'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
-      },
-      {
-        property: 'og:url',
-        content: 'https://www.justice-love-peace.com/partners',
-      },
-      {
-        property: 'og:type',
-        content: 'website',
-      },
-      {
-        property: 'og:site_name',
-        content: 'Global Justice, Love and Peace Summit | Dubai',
-      },
-    ]);
-  }
+    
+  //   this.metaService.addTags([
+  //     {
+  //       name: 'description',
+  //       content:
+  //         'Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners, contributions and join us in fostering a more peaceful world.',
+  //     },
+  //     {
+  //       name: 'keywords',
+  //       content:
+  //         'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
+  //     },
+  //     {
+  //       property: 'og:title',
+  //       content:
+  //         'Our Partners | Global Justice, Love, and Peace Movement | Dubai',
+  //     },
+  //     {
+  //       property: 'og:description',
+  //       content:
+  //         'Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners, contributions and join us in fostering a more peaceful world.',
+  //     },
+  //     {
+  //       property: 'og:image',
+  //       content:
+  //         'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
+  //     },
+  //     {
+  //       property: 'og:url',
+  //       content: 'https://www.justice-love-peace.com/partners',
+  //     },
+  //     {
+  //       property: 'og:type',
+  //       content: 'website',
+  //     },
+  //     {
+  //       property: 'og:site_name',
+  //       content: 'Global Justice, Love and Peace Summit | Dubai',
+  //     },
+  //   ]);
+  // }
 
-  setCanonicalUrl(url: string): void {
-    // Remove any existing canonical tags
-    const existingLink: HTMLLinkElement | null = this.document.querySelector(
-      'link[rel="canonical"]'
-    );
-    if (existingLink) {
-      this.renderer.removeChild(this.document.head, existingLink);
-    }
+  // setCanonicalUrl(url: string): void {
+    
+  //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
+  //     'link[rel="canonical"]'
+  //   );
+  //   if (existingLink) {
+  //     this.renderer.removeChild(this.document.head, existingLink);
+  //   }
 
-    // Add a new canonical tag
-    const link: HTMLLinkElement = this.renderer.createElement('link');
-    this.renderer.setAttribute(link, 'rel', 'canonical');
-    this.renderer.setAttribute(link, 'href', url);
-    this.renderer.appendChild(this.document.head, link);
-  }
+    
+  //   const link: HTMLLinkElement = this.renderer.createElement('link');
+  //   this.renderer.setAttribute(link, 'rel', 'canonical');
+  //   this.renderer.setAttribute(link, 'href', url);
+  //   this.renderer.appendChild(this.document.head, link);
+  // }
 }
