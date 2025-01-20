@@ -32,7 +32,8 @@ export class WebHeaderComponent implements OnInit {
   ];
   awardsLinks = [
     { label: 'Award Categories', fragment: undefined },
-    { label: 'Awards Research Committee', fragment: 'aw2' },
+    { label: 'Nominees', fragment: 'aw2' },
+    { label: 'Awards Research Committee', fragment: 'aw3' },
   ];
   peacekeeperLinks = [
     { label: 'The Movement', fragment: undefined },

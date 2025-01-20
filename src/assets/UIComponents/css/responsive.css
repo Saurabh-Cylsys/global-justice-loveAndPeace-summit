@@ -383,9 +383,9 @@
     height: auto;
   }
 
-  #ts4{
+  /* #ts4{
     height: 50vh;
-  }
+  } */
   .indexSec2 ul li{
     text-align: left;
   }
@@ -717,9 +717,9 @@
     height: auto;
   }
 
-  #ts4{
+  /* #ts4{
     height: 50vh;
-  }
+  } */
 }
 /* @media (max-width: 390px) {
   .index .section1 {
