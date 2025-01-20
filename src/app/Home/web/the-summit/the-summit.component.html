@@ -95,7 +95,7 @@
 <!-- main body -->
 
 <div class="main-body">
-  <div class="section6 section2 px-lg-5 section scroll " id="ts1">
+  <div class="section6 section2 px-lg-5 section scroll" id="ts1">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3 col-md-6 my-3">
@@ -424,836 +424,44 @@
             >
               <div class="carousel-indicators">
                 <button
+                  *ngFor="let group of speakersList; let i = index"
                   type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="0"
-                  class="active"
-                  aria-current="true"
-                  aria-label="Slide 1"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="1"
-                  aria-label="Slide 2"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="2"
-                  aria-label="Slide 3"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="3"
-                  aria-label="Slide 4"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="4"
-                  aria-label="Slide 5"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="5"
-                  aria-label="Slide 6"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="6"
-                  aria-label="Slide 7"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="7"
-                  aria-label="Slide 8"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="8"
-                  aria-label="Slide 9"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="9"
-                  aria-label="Slide 10"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="10"
-                  aria-label="Slide 11"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="11"
-                  aria-label="Slide 12"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="12"
-                  aria-label="Slide 13"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="13"
-                  aria-label="Slide 14"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="14"
-                  aria-label="Slide 15"
-                ></button>
-                <button
-                  type="button"
-                  data-bs-target="#carouselExampleAutoplaying"
-                  data-bs-slide-to="15"
-                  aria-label="Slide 16"
+                  [attr.data-bs-target]="'#carouselExampleAutoplaying'"
+                  [attr.data-bs-slide-to]="i"
+                  [class.active]="i === 0"
+                  [attr.aria-current]="i === 0 ? 'true' : null"
+                  [attr.aria-label]="'Slide ' + (i + 1)"
                 ></button>
               </div>
               <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="3000">
+                <div
+                  class="carousel-item"
+                  *ngFor="let group of speakersList; let i = index"
+                  [class.active]="i === 0"
+                  [attr.data-bs-interval]="3000"
+                >
                   <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Arjuna Ranatunga, Deshamanya</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>Cricketer & Politician</h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Baba Ramdev</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>World Yoga Guru</h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Banagala Upatissa Thero, Most Venerable</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>
-                            President of Mahabodhi Society, Sri Lanka : Buddhist
-                            Religious Leader
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
+                    <div
+                      class="col-md-4"
+                      *ngFor="let speaker of group.speakers"
+                    >
                       <ul class="list-unstyled p-0">
                         <li class="p-3 text-center">
                           <img
-                            (click)="clickToView('binod')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker14.png"
+                            (click)="clickToView(speaker.View)"
+                            [src]="
+                              speaker.Profile_Photo
+                                ? 'assets/UIComponents/images/speakers/' +
+                                  speaker.Profile_Photo
+                                : 'assets/UIComponents/images/speakers/null.png'
+                            "
+                            alt="{{ speakers.Name }}"
+                            class="profile-photo"
                           />
 
-                          <h5>Binod Kumar Chaudhary</h5>
-                          <label for="">(NEPAL)</label>
-                          <h6>
-                            President, Chaudhary Group : Industrialist, Member
-                            of House of Representatives of Nepal
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Chandra Kumar Bose</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Socio-Political Activist & Convenor, The Open
-                            Platform for Netaji : ( grand nephew of Subhash
-                            Chandra Bose )
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Dalip Singh Rana, The Great Khali</h5>
-                          <label for="">( USA, INDIA )</label>
-                          <h6>
-                            Wrestler : 1st Indian born World Heavyweight
-                            Champion, WWE
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Deepa Malik, Dr.</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Sports Champion : Silver Medallist at 2016 Rio
-                            Paralympics
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Ekaterina Zagladina</h5>
-                          <label for="">(RUSSIA)</label>
-                          <h6>
-                            President of the Permanent Secretariat of the World
-                            Summit of Nobel Peace Laureates
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Esha Deol</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Actress</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Feizi Masrour Milani, Dr.</h5>
-                          <label for="">(BRAZIL)</label>
-                          <h6>
-                            Elected Representative, National Spiritual Assembly
-                            of the Bahais of Brazil
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Fejzullah Rexhepi, His Excellency.</h5>
-                          <label for="">(KOSOVO)</label>
-                          <h6>President of the Supreme Court of Kosovo</h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('habil')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker7.png"
-                          />
-
-                          <h5>Habil Khorakiwala, Dr.</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Industrialist : Chairman, Wockhardt Group</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Hassan Babacar Jallow, Lord Chief Justice</h5>
-                          <label for="">(GAMBIA )</label>
-                          <h6>Chief Justice of the Supreme Court of Gambia</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Helena Lemaletian, Senator, Ambassador</h5>
-                          <label for="">(KENYA)</label>
-                          <h6>
-                            Politician ( Member of Parliament ), Royalty ( Queen
-                            of the North Kenya ), Beauty Queen ( Miss
-                            Commonwealth Kenya, 2018 )
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker1.png"
-                          />
-                          <h5>Kailash Satyarthi</h5>
-                          <label for="">(India)</label>
-                          <h6>Social Activist : Nobel Peace Laureate (2014)</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Lech Walesa, Ex-President</h5>
-                          <label for="">(POLAND )</label>
-                          <h6>
-                            Politician, Trade Union Activist : Nobel Peace
-                            Laureate 1983
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker3.png"
-                          />
-                          <h5>Leymah Gbowee</h5>
-
-                          <label>(LIBERIA)</label>
-                          <h6>Nobel Peace Laureate 2011</h6>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker10.png"
-                          />
-                          <h5>Lokesh Ji Muni Acharya, His Holiness</h5>
-                          <label for="">(India)</label>
-                          <h6>
-                            Founder, Ahimsa Vishwa Bharti & World Peace
-                            Ambassador, Jain Religion Spiritual Leader
-                          </h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Mahawa Simou Diouf, <br />
-                            Judge President of the Court of Justice of WAEMU
-                            (West African Monetary & Economic Union)
-                          </h5>
-                          <label for="">(BURKINA FASO)</label>
-                          <h6>
-                            Head of Association of Judges of 8 countries in West
-                            Africa
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mahesh Bhupathi</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Tennis : Former World Number 1 Doubles Tennis
-                            Player, 12 times Grand Slam Doubles Winner
-                          </h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Mario-Max Schaumburg-Lippe, <br />
-                            His Highness Dr. Prince
-                          </h5>
-                          <label for="">(DENMARK)</label>
-                          <h6>Royalty, TV Host, Philanthropist</h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mary Kom</h5>
-                          <label for="">(India)</label>
-                          <h6>Boxer, 6 times World Champion</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('salam')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker12.png"
-                          />
-                          <h5>Mohamed Abd-Salam, His Excellency, Judge</h5>
-                          <label for="">(EGYPT)</label>
-                          <h6>
-                            Secretary General of the Muslim Council of Elders &
-                            Co-President of Religions for Peace
-                          </h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <!-- <span class="mobCarousal"></span> -->
-                          <img
-                            (click)="clickToView('asif')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker8.png"
-                          />
-                          <h5>Mohammed Asif Ali, Nawabzada</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Royalty Heir Apparent to the Prince of Arcot</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mohammad Tawhidi, Imam</h5>
-                          <label for="">(AUSTRALIA)</label>
-                          <h6>
-                            Islamic Religious Leader : Vice President, Global
-                            Imams Council & Chairman, Senior Imams Committee
-                          </h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mohan Mubasinghe, Prof</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>Nobel Peace Laureate 2007</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mustapha Njie</h5>
-                          <label for="">(GAMBIA)</label>
-                          <h6>Industrialist : Chairman, TAF Global</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Nadia Murad</h5>
-                          <label for="">(IRAQ)</label>
-                          <h6>Social Activist : Nobel Peace Laureates 2018</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('nadir')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker2.png"
-                          />
-                          <h5>Nadir Godrej</h5>
-                          <label for="">(India)</label>
-                          <h6>
-                            Industrialist: Chairman & MD, Godrej Industries Ltd
-                          </h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Nii Tackie Tackie Tsuru 2, King, His Royal Majesty
-                          </h5>
-                          <label for="">(GHANA)</label>
-                          <h6>Royalty</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker13.png"
-                          />
-                          <h5>
-                            Oheneba Nana Kwame Obeng 2, His Royal Highness
-                          </h5>
-                          <label for="">(GHANA)</label>
-                          <h6>Royalty, The Royal House of Sefwi Obeng-Mim</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Ouided Bouchamaoui</h5>
-                          <label for="">(Tunisia)</label>
-                          <h6>Nobel Peace Laureate (2015)</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Paco Soleil</h5>
-                          <label for="">(SPAIN)</label>
-                          <h6>Artist, Peace Painter (live performance)</h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>PV Sindhu</h5>
-                          <label for="">(India)</label>
-                          <!-- <h6>Sportsperson, Olympic Medallist</h6> -->
-                          <h6>Badminton World Champion (2019)</h6>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('rina')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker6.png"
-                          />
-                          <h5>
-                            Rina Telesphore, Dr, His Royal Highness, The Prince
-                          </h5>
-                          <label for="">(MADAGASCAR )</label>
-                          <h6>Royalty, Pastor, Philanthropist</h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('romona')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker9.png"
-                          />
-                          <h5>
-                            Romona Murad Dr.,<br />
-                            Her Royal Highness Princess Dato Seri
-                          </h5>
-                          <label for="">(MALAYSIA)</label>
-                          <h6>Royalty, Philanthropist, Peace Activist</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker4.png"
-                          />
-                          <h5>Rui Duarte de Barros</h5>
-                          <label for="">(Guinea-Bissau)</label>
-                          <h6>Prime Minister</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Sanjay Khan</h5>
-                          <label for="">(India)</label>
-                          <h6>Actor, Producer, Director</h6>
-                          
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('satpal')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker15.png"
-                          />
-                          <h5>Satpal Singh Khalsa, Bhai Saheb</h5>
-                          <label for="">(USA)</label>
-                          <h6>Ambassador of Sikh Dharma</h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Shirin Ebadi</h5>
-                          <label for="">(IRAN)</label>
-                          <h6>
-                            Social Activist, Judge, Lawyer : Nobel Peace
-                            Laureate 2003
-                          </h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Soha Ali Khan</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Producer & Actress, Royalty</h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Tehemton Burjor Mirza, Dastur</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            High Priest, Shreeji Pak Iranshah Atash Behram,
-                            Udvada : Zoroastrian Religion Leader
-                          </h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Thich Nhat Tu, Most Venerable, Dr.</h5>
-                          <label for="">(VIETNAM)</label>
-                          <h6>
-                            Vice-President, Vietnam Buddhist Sangha & Permanent
-                            Vice-Chancellor, Vietnam Buddhist Society : Buddhist
-                            Religion Leader
-                          </h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Venkatramani R, Honorable</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>The Attorney General of India</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Zayed Khan</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Producer & Actor</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Jose Manuel Ramos Horta, His Excellency</h5>
-                          <label for="">(EAST TIMOR)</label>
-                          <h6>
-                            President, East Timor & Nobel Peace Laureate, 1996
-                            (ONLINE)
-                          </h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
+                          <h5>{{ speaker.Name }}</h5>
+                          <label>({{ speaker.Country }})</label>
+                          <h6>{{ speaker.Credentials }}</h6>
                         </li>
                       </ul>
                     </div>
@@ -1293,884 +501,40 @@
               *ngIf="isMobileView"
             >
               <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
+                <ng-container
+                  *ngFor="let speakers of isMobilespeakersList; let i = index"
+                >
+                  <div
+                    class="carousel-item"
+                    [ngClass]="{ active: i === 0 }"
+                    data-bs-interval="3000"
+                  >
+                    <div class="row">
+                      <div class="col-md-4">
+                        <ul class="list-unstyled p-0">
+                          <li class="p-3 text-center">
+                            <!-- <img src="../../../../assets/UIComponents/images/speakers/" alt=""> -->
 
-                          <h5>Arjuna Ranatunga, Deshamanya</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>Cricketer & Politician</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
+                            <img
+                              (click)="clickToView(speakers.View)"
+                              [src]="
+                                speakers.Profile_Photo
+                                  ? 'assets/UIComponents/images/speakers/' +
+                                    speakers.Profile_Photo
+                                  : 'assets/UIComponents/images/speakers/null.png'
+                              "
+                              alt="{{ speakers.Name }}"
+                              class="profile-photo"
+                            />
+                            <h5>{{ speakers.Name }}</h5>
+                            <label>({{ speakers.Country }})</label>
+                            <h6>{{ speakers.Credentials }}</h6>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Baba Ramdev</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>World Yoga Guru</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Banagala Upatissa Thero, Most Venerable</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>
-                            President of Mahabodhi Society, Sri Lanka : Buddhist
-                            Religious Leader
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('bibod')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker14.png"
-                          />
-
-                          <h5>Binod Kumar Chaudhary</h5>
-                          <label for="">(NEPAL)</label>
-                          <h6>
-                            President, Chaudhary Group : Industrialist, Member
-                            of House of Representatives of Nepal
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Chandra Kumar Bose</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Socio-Political Activist & Convenor, The Open
-                            Platform for Netaji : ( grand nephew of Subhash
-                            Chandra Bose )
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Dalip Singh Rana, The Great Khali</h5>
-                          <label for="">(USA, INDIA)</label>
-                          <h6>
-                            Wrestler : 1st Indian born World Heavyweight
-                            Champion, WWE
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Deepa Malik, Dr.</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Sports Champion : Silver Medallist at 2016 Rio
-                            Paralympics
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Ekaterina Zagladina</h5>
-                          <label for="">(RUSSIA)</label>
-                          <h6>
-                            President of the Permanent Secretariat of the World
-                            Summit of Nobel Peace Laureates
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Esha Deol</h5>
-                          <label for="">(INDIA )</label>
-                          <h6>Actress</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Feizi Masrour Milani, Dr.</h5>
-                          <label for="">(BRAZIL)</label>
-                          <h6>
-                            Elected Representative, National Spiritual Assembly
-                            of the Bahais of Brazil
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Fejzullah Rexhepi, His Excellency</h5>
-                          <label for="">(KOSOVO)</label>
-                          <h6>President of the Supreme Court of Kosovo</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('habil')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker7.png"
-                          />
-
-                          <h5>Habil Khorakiwala, Dr.</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Industrialist : Chairman, Wockhardt Group</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Hassan Babacar Jallow, Lord Chief Justice</h5>
-                          <label for="">(GAMBIA)</label>
-                          <h6>Chief Justice of the Supreme Court of Gambia</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Helena Lemaletian, Senator, Ambassador</h5>
-                          <label for="">(KENYA)</label>
-                          <h6>
-                            Politician ( Member of Parliament ), Royalty ( Queen
-                            of the North Kenya ), Beauty Queen ( Miss
-                            Commonwealth Kenya, 2018 )
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker1.png"
-                          />
-                          <h5>Kailash Satyarthi</h5>
-                          <label for="">(India)</label>
-                          <h6>Social Activist : Nobel Peace Laureate (2014)</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Lech Walesa, Ex-President</h5>
-                          <label for="">(POLAND )</label>
-                          <h6>
-                            Politician, Trade Union Activist : Nobel Peace
-                            Laureate 1983
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker3.png"
-                          />
-                          <h5>Leymah Gbowee</h5>
-
-                          <label>(LIBERIA)</label>
-                          <h6>Nobel Peace Laureate 2011</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker10.png"
-                          />
-                          <h5>Lokesh Ji Muni Acharya</h5>
-                          <label for="">(India)</label>
-                          <h6>
-                            Founder, Ahimsa Vishwa Bharti & World Peace
-                            Ambassador, Jain Religion Spiritual Leader
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Mahawa Simou Diouf, <br />
-                            Judge President of the Court of Justice of WAEMU
-                            (West African Monetary & Economic Union)
-                          </h5>
-                          <label for="">(BURKINA FASO)</label>
-                          <h6>
-                            Head of Association of Judges of 8 countries in West
-                            Africa
-                          </h6>
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mahesh Bhupathi</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            Tennis : Former World Number 1 Doubles Tennis
-                            Player, 12 times Grand Slam Doubles Winner
-                          </h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Mario-Max Schaumburg-Lippe, <br />
-                            His Highness Dr. Prince
-                          </h5>
-                          <label for="">(DENMARK)</label>
-                          <h6>Royalty, TV Host, Philanthropist</h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mary Kom</h5>
-                          <label for="">(India)</label>
-                          <h6>Boxer, 6 times World Champion</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('salam')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker12.png"
-                          />
-                          <h5>Mohamed Abd-Salam, His Excellency, Judge</h5>
-                          <label for="">(EGYPT)</label>
-                          <h6>
-                            Secretary General of the Muslim Council of Elders &
-                            Co-President of Religions for Peace
-                          </h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mohammed Asif Ali, Nawabzada</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Royalty Heir Apparent to the Prince of Arcot</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mohammad Tawhidi, Imam</h5>
-                          <label for="">(AUSTRALIA)</label>
-                          <h6>
-                            Islamic Religious Leader : Vice President, Global
-                            Imams Council & Chairman, Senior Imams Committee
-                          </h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mohan Mubasinghe, Prof</h5>
-                          <label for="">(SRI LANKA)</label>
-                          <h6>Nobel Peace Laureate 2007</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Mustapha Njie</h5>
-                          <label for="">(GAMBIA)</label>
-                          <h6>Industrialist : Chairman, TAF Global</h6>
-                          <!-- <p></p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Nadia Murad</h5>
-                          <label for="">(IRAQ )</label>
-                          <h6>Social Activist : Nobel Peace Laureates 2018</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('nadir')"
-                            src="assets/UIComponents/images/speakers/speaker2.png"
-                          />
-                          <h5>Nadir Godrej</h5>
-                          <label for="">(India)</label>
-                          <h6>
-                            Industrialist: Chairman & MD, Godrej Industries Ltd
-                          </h6>
-                          <!-- <p>Chairman & MD, Godrej Industries Ltd</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>
-                            Nii Tackie Tackie Tsuru 2, King, His Royal Majesty
-                          </h5>
-                          <label for="">(GHANA)</label>
-                          <h6>Royalty</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker13.png"
-                          />
-                          <h5>
-                            Oheneba Nana Kwame Obeng 2, His Royal Highness
-                          </h5>
-                          <label for="">(GHANA)</label>
-                          <h6>Royalty, The Royal House of Sefwi Obeng-Mim</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Ouided Bouchamaoui</h5>
-                          <label for="">(Tunisia)</label>
-                          <h6>Nobel Peace Laureate (2015)</h6>
-                          <!-- <p>Jain religion spiritual leader</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Paco Soleil</h5>
-                          <label for="">(SPAIN)</label>
-                          <h6>Artist, Peace Painter (live performance)</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>PV Sindhu</h5>
-                          <label for="">(India)</label>
-                          <h6>Badminton World Champion (2019)</h6>
-                          <label for=""
-                            >(Final confirmation based on tournament
-                            schedule)</label
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('rina')"
-                            src="assets/UIComponents/images/speakers/speaker6.png"
-                          />
-                          <h5>
-                            Rina Telesphore, Dr, His Royal Highness, The Prince
-                          </h5>
-                          <label for="">(MADAGASCAR )</label>
-                          <h6>Royalty, Pastor, Philanthropist</h6>
-                          <!-- <p>Badminton World Champion 2019</p>
-                        <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        > -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('romona')"
-                            src="assets/UIComponents/images/speakers/speaker9.png"
-                          />
-                          <h5>
-                            Romona Murad Dr.,<br />
-                            Her Royal Highness Princess Dato Seri
-                          </h5>
-                          <label for="">(MALAYSIA)</label>
-                          <h6>Royalty, Philanthropist, Peace Activist</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            src="assets/UIComponents/images/speakers/speaker4.png"
-                          />
-                          <h5>Rui Duarte de Barros</h5>
-                          <label for="">(Guinea-Bissau)</label>
-                          <h6>Prime Minister</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Sanjay Khan</h5>
-                          <label for="">(India)</label>
-                          <h6>Actor, Producer, Director</h6>
-                          
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <img
-                            (click)="clickToView('satpal')"
-                            style="cursor: pointer"
-                            src="assets/UIComponents/images/speakers/speaker15.png"
-                          />
-                          <h5>Satpal Singh Khalsa, Bhai Saheb</h5>
-                          <label for="">(USA)</label>
-                          <h6>Ambassador of Sikh Dharma</h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Shirin Ebadi</h5>
-                          <label for="">(IRAN)</label>
-                          <h6>
-                            Social Activist, Judge, Lawyer : Nobel Peace
-                            Laureate 2003
-                          </h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Soha Ali Khan</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Producer & Actress, Royalty</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Tehemton Burjor Mirza, Dastur</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>
-                            High Priest, Shreeji Pak Iranshah Atash Behram,
-                            Udvada : Zoroastrian Religion Leader
-                          </h6>
-                          <!-- <p>Peace Painter (live performance)</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Thich Nhat Tu, Most Venerable, Dr.</h5>
-                          <label for="">(VIETNAM)</label>
-                          <h6>
-                            Vice-President, Vietnam Buddhist Sangha & Permanent
-                            Vice-Chancellor, Vietnam Buddhist Society : Buddhist
-                            Religion Leader
-                          </h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-
-                          <h5>Venkatramani R, Honorable<br /></h5>
-                          <label for="">(INDIA)</label>
-                          <h6>The Attorney General of India</h6>
-                          <!-- <p></p> -->
-                          <!-- <label for=""
-                          >(Final confirmation based on tournament
-                          schedule)</label
-                        >  -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Yasmin Karachiwala</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Celebrity Fitness Trainer</h6>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Zayed Khan</h5>
-                          <label for="">(INDIA)</label>
-                          <h6>Producer & Actor</h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item" data-bs-interval="3000">
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <ul class="list-unstyled p-0">
-                        <li class="p-3 text-center">
-                          <span class="mobCarousal"></span>
-                          <h5>Jose Manuel Ramos Horta, His Excellency</h5>
-                          <label for="">(EAST TIMOR)</label>
-                          <h6>
-                            President, East Timor & Nobel Peace Laureate, 1996
-                            (ONLINE)
-                          </h6>
-                          <!-- <p>Prime Minister, Republic of Guimea-Bissau</p> -->
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                </ng-container>
               </div>
               <button
                 class="carousel-control-prev"
@@ -2248,8 +612,8 @@
       </div>
     </div>
 
-    <div class="partner scroll section5 py-lg-5 py-4">
-      <div class="container-fluid h-100">
+    <div class="partner scroll section5 py-lg-5 py-4 position-relative">
+      <div class="container-fluid h-100" style="position: relative; z-index: 1">
         <div class="row h-100">
           <div class="col-md-12" *ngIf="isMobileView">
             <ul class="text-center list-unstyled h-100">
@@ -2654,36 +1018,66 @@
           </div>
         </div>
       </div>
+      <img
+        src="assets/UIComponents/images/watermark.png"
+        alt=""
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 20rem"
+        *ngIf="!isMobileView"
+      />
+      <img
+        src="assets/UIComponents/images/watermark.png"
+        alt=""
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 10rem"
+        *ngIf="isMobileView"
+      />
     </div>
   </div>
-  <div class="section partner scroll section7 py-lg-5" id="ts4">
-    <div class="container-fluid h-100">
+  <div
+    class="section partner scroll section7 py-lg-5 position-relative"
+    id="ts4"
+  >
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row align-items-center align-content-center h-100">
         <div class="col-md-12 text-center p-0 h-100">
           <img
             loading="eager"
             src="assets/UIComponents/images/the_summit/map.svg"
             alt=""
-            width="100%"
-            height="100%"
+            class="col-md-8 col-12 h-100"
           />
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="left: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="left: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
-  <div class="section partner scroll section5" id="ts5">
-    <div class="container-fluid h-100">
+  <div class="section partner scroll section5 position-relative" id="ts5">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row h-100 align-items-center">
         <div class="col-md-12 py-5" *ngIf="isMobileView">
           <div class="row">
-            <div class="col-12 text-center m-auto pb-3">
+            <div class="col-12 text-center mx-auto pb-3">
               <img
                 src="assets/UIComponents/images/the_summit/goals.svg"
                 alt=""
                 width="75%"
               />
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals1.svg"
                 alt=""
@@ -2707,7 +1101,7 @@
                 To spread GENTLENESS as language of the world
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals2.svg"
                 alt=""
@@ -2731,7 +1125,7 @@
                 To take GIANT steps in world Justice, Love & Peace
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals3.svg"
                 alt=""
@@ -2756,7 +1150,7 @@
                 the world
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals4.svg"
                 alt=""
@@ -2780,7 +1174,7 @@
                 To be GENUINE in our commitments towards Justice, Love & Peace
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals5.svg"
                 alt=""
@@ -2805,7 +1199,7 @@
                 blessings, & bounties in this world
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals6.svg"
                 alt=""
@@ -2829,7 +1223,7 @@
                 To propagate a life, where we are GRACEFUL in all our affairs
               </p>
             </div>
-            <div class="col-6 my-lg-5 text-center m-auto">
+            <div class="col-6 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/the_summit/goals7.svg"
                 alt=""
@@ -3058,18 +1452,52 @@
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
   <div class="section section7 p-lg-5 position-relative" id="ts6">
-    <div
-      class="container-fluid h-100"
-      [ngClass]="isVisibleCount == false ? 'h-100' : 'h-250'"
-    >
-      <div
-        class="row h-100"
-        [ngClass]="isVisibleCount == false ? 'h-100' : 'h-250'"
-      >
-        <div class="col-md-4 p-lg-5">
-          <label for="" class="mb-3">SCHEDULE</label>
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
+      <div class="row h-100">
+        <div class="col-12" *ngIf="!isMobileView">
+          <div class="d-lg-flex align-items-center justify-content-between">
+            <div class="date">
+              <h3>12th -13th <span>April, 2025</span></h3>
+              <!-- <h5>10:00 AM - 11:00 PM</h5> -->
+            </div>
+            <h4 class="location">
+              <a
+                href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
+                style="text-decoration: none"
+                target="_blank"
+                >Exhibition Centre (DEC), Expo City, Dubai</a
+              >
+            </h4>
+          </div>
+          <div
+            class="progress mb-4 mt-0"
+            role="progressbar"
+            aria-label="Basic example"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar" style="width: 25%"></div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <!-- <label for="" class="mb-3">SCHEDULE</label> -->
           <h1 class="mb-3">
             SCHEDULE <br />
             AND AGENDA
@@ -3083,119 +1511,118 @@
             DOWNLOAD SCHEDULE
           </button>
         </div>
-        <div class="col-md-8 p-lg-5">
-          <div class="row align-items-end">
-            <div class="col-12 mx-lg-5">
-              <div class="d-lg-flex align-items-center justify-content-between">
-                <div class="date">
-                  <h3>12th - 13th <span>April, 2025</span></h3>
-                  <h5>10:00 AM - 11:00 PM</h5>
-                </div>
-                <h4 class="location">
-                  <a
-                    href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
-                    style="text-decoration: none"
-                    target="_blank"
-                    >Dubai Exhibition Centre</a
-                  >
-                </h4>
-              </div>
-              <div
-                class="progress my-4"
-                role="progressbar"
-                aria-label="Basic example"
-                aria-valuenow="25"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                <div class="progress-bar" style="width: 25%"></div>
-              </div>
+        <div class="col-12" *ngIf="isMobileView">
+          <div class="d-lg-flex align-items-center justify-content-between">
+            <div class="date">
+              <h3>12th -13th <span>April, 2025</span></h3>
+              <!-- <h5>10:00 AM - 11:00 PM</h5> -->
             </div>
+            <h4 class="location">
+              <a
+                href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
+                style="text-decoration: none"
+                target="_blank"
+                >Exhibition Centre (DEC), Expo City, Dubai</a
+              >
+            </h4>
+          </div>
+          <div
+            class="progress mb-4 mt-0"
+            role="progressbar"
+            aria-label="Basic example"
+            aria-valuenow="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            <div class="progress-bar" style="width: 25%"></div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-6">
+          <div class="row">
             <div class="col-12">
+              <h4 class="event_day">Day 1 - 12th April 2025</h4>
               <div id="timeline-content">
                 <ul class="timeline">
                   <li
                     class="event"
                     [attr.data-date]="event.time"
                     [attr.data-count]="i + 1"
-                    *ngFor="
-                      let event of events | slice : 0 : visibleCount;
-                      let i = index
-                    "
+                    *ngFor="let event of events_day1; let i = index"
                   >
                     <h3 class="fw-bold">{{ event.title }}</h3>
                   </li>
-                  <!-- <li class="event" data-date="10:30 AM - 11:00 AM">
-                  <h3>Opening Session</h3>
-                </li>
-                <li
-                  class="event"
-                  id="date"
-                  data-date="11:00 AM - 12:30 PM"
-                >
-                  <h3>Session Theme 1 - JUSTICE</h3>
-                </li>
-  
-                <li class="event" data-date="12:30 PM - 2:30 PM">
-                  <h3>Launch & Networking</h3>
-                </li>
-                <li class="event" data-date="2:30 PM - 4:00 PM">
-                  <h3>Session Theme 2 - LOVE</h3>
-                </li> -->
                 </ul>
               </div>
-
-              <a
-                class="text-decoration-none"
-                style="cursor: pointer"
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="collapse" id="collapseExample">
+              <h4 class="event_day mt-3">Day 2 - 13th April 2025</h4>
+              <div id="timeline-content">
+                <ul class="timeline">
+                  <li
+                    class="event"
+                    [attr.data-date]="event.time"
+                    [attr.data-count]="i + 1"
+                    *ngFor="let event of events_day2; let i = index"
+                  >
+                    <h3 class="fw-bold">{{ event.title }}</h3>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p class="d-inline-flex gap-1">
+              <button
+                class="btn bg-transparent"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
                 (click)="showMore(!isVisibleCount ? true : false)"
               >
                 <b style="color: rgba(3, 192, 75, 0.623)">{{
                   isVisibleCount == false ? "See More..." : "Less..."
                 }}</b>
-              </a>
-
-              <!-- <a
-                href="assets/UIComponents/images/GJLPS-Collateral-Brochure.pdf"
-                class="text-decoration-none"
-                target="_blank"
-                ><b style="color: rgba(3, 192, 75, 0.623)">See More...</b></a
-              > -->
-            </div>
+              </button>
+            </p>
           </div>
         </div>
       </div>
     </div>
     <img
-            src="assets/UIComponents/images/watermark.png"
-            alt=""
-            class="position-absolute"
-            style="left: 0; bottom: 0; width: 20rem"
-            *ngIf="!isMobileView"
-          />
-          <img
-            src="assets/UIComponents/images/watermark.png"
-            alt=""
-            class="position-absolute"
-            style="right: 0; bottom: 0; width: 10rem; "
-            *ngIf="isMobileView"
-          />
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="left: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
-  <div class="section scroll section7 scroll py-lg-3" id="ts7">
-    <div class="container-fluid h-100">
+  <div
+    class="section scroll section7 scroll py-lg-3 position-relative"
+    id="ts7"
+  >
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row align-items-center justify-content-center h-100">
         <div class="container-fluid h-100">
           <div class="row h-100 align-items-center">
             <div class="col-md-12 py-5" *ngIf="isMobileView">
               <div class="row">
-                <div class="col-12 text-center m-auto pb-3">
+                <div class="col-12 text-center mx-auto pb-3">
                   <img
                     src="assets/UIComponents/images/theme/justice.svg"
                     alt=""
                     width="35%"
                   />
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme1.png"
                     alt=""
@@ -3207,7 +1634,7 @@
                     & Religion
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme2.png"
                     alt=""
@@ -3219,7 +1646,7 @@
                     Children
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme3.png"
                     alt=""
@@ -3231,7 +1658,7 @@
                     Genders
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme4.png"
                     alt=""
@@ -3243,7 +1670,7 @@
                     Flora and Fauna
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme5.png"
                     alt=""
@@ -3255,7 +1682,7 @@
                     Toward Reformation over Retribution
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme6.png"
                     alt=""
@@ -3267,7 +1694,7 @@
                     Responsibility
                   </p>
                 </div>
-                <div class="col-6 my-lg-5 text-center m-auto">
+                <div class="col-6 my-lg-5 text-center mx-auto">
                   <img
                     src="assets/UIComponents/images/theme/theme7.png"
                     alt=""
@@ -3395,20 +1822,34 @@
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
-  <div class="section7 py-lg-3 scroll">
-    <div class="container-fluid h-100">
+  <div class="section7 py-lg-3 scroll position-relative">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row h-100 align-items-center">
         <div class="col-md-12 py-5" *ngIf="isMobileView">
           <div class="row">
-            <div class="col-12 text-center m-auto pb-3">
+            <div class="col-12 text-center mx-auto pb-3">
               <img
                 src="assets/UIComponents/images/theme/love.svg"
                 alt=""
                 width="35%"
               />
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme1.png"
                 alt=""
@@ -3417,7 +1858,7 @@
 
               <p class="text-center">Universal Love</p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme2.png"
                 alt=""
@@ -3426,7 +1867,7 @@
 
               <p class="text-center">Self Love</p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme3.png"
                 alt=""
@@ -3435,7 +1876,7 @@
 
               <p class="text-center">Love Of God</p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme4.png"
                 alt=""
@@ -3444,7 +1885,7 @@
 
               <p class="text-center">Love Of Country</p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme5.png"
                 alt=""
@@ -3453,7 +1894,7 @@
 
               <p class="text-center">Love Of Family</p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme6.png"
                 alt=""
@@ -3462,7 +1903,7 @@
 
               <p class="text-center">Love Of Truth</p>
             </div>
-            <div class="col-12 my-lg-5 text-center m-auto">
+            <div class="col-12 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme7.png"
                 alt=""
@@ -3584,20 +2025,34 @@
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
-  <div class="section7 py-lg-3 scroll">
-    <div class="container-fluid h-100">
+  <div class="section7 py-lg-3 scroll position-relative">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <div class="row h-100 align-items-center">
         <div class="col-md-12 py-5" *ngIf="isMobileView">
           <div class="row">
-            <div class="col-12 text-center m-auto pb-3">
+            <div class="col-12 text-center mx-auto pb-3">
               <img
                 src="assets/UIComponents/images/theme/peace.svg"
                 alt=""
                 width="35%"
               />
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme1.png"
                 alt=""
@@ -3609,7 +2064,7 @@
                 Nations
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme2.png"
                 alt=""
@@ -3621,7 +2076,7 @@
                 Coexistence
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme3.png"
                 alt=""
@@ -3633,7 +2088,7 @@
                 Peace
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme4.png"
                 alt=""
@@ -3645,7 +2100,7 @@
                 People
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme5.png"
                 alt=""
@@ -3657,7 +2112,7 @@
                 Self
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme6.png"
                 alt=""
@@ -3669,7 +2124,7 @@
                 Environment
               </p>
             </div>
-            <div class="col-12 my-lg-5 text-center m-auto">
+            <div class="col-12 my-lg-5 text-center mx-auto">
               <img
                 src="assets/UIComponents/images/theme/theme7.png"
                 alt=""
@@ -3794,9 +2249,23 @@
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
-  <div class="section partner section7 scroll" id="ts8">
-    <div class="container-fluid h-100">
+  <div class="section partner section7 scroll position-relative" id="ts8">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1">
       <!-- <div class="row h-100">
         <div class="col-md-12 h-100">
           <img
@@ -3845,7 +2314,7 @@
               <p class="text-center">
                 There is a STRUCTURED <br />
                 NETWORKING room with 28 tables,<br />
-                55 are prebooked & 55 are free
+                14 are prebooked & 14 are free
               </p>
             </li>
             <li class="my-2">
@@ -3913,7 +2382,7 @@
                   <p class="text-center">
                     There is a STRUCTURED <br />
                     NETWORKING room with 28 tables,<br />
-                    55 are prebooked & 55 are free
+                    14 are prebooked & 14 are free
                   </p>
                 </li>
               </ul>
@@ -3974,6 +2443,20 @@
         </div>
       </div>
     </div>
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 20rem"
+      *ngIf="!isMobileView"
+    />
+    <img
+      src="assets/UIComponents/images/watermark.png"
+      alt=""
+      class="position-absolute"
+      style="right: 0; bottom: 0; width: 10rem"
+      *ngIf="isMobileView"
+    />
   </div>
   <div class="section section8 p-lg-5 scroll" id="ts9">
     <div class="container-fluid">
@@ -4500,7 +2983,7 @@
           <a
             href="mailto:email@dr-huzaifa-khorakiwala.care"
             style="color: #005a93; text-decoration: none"
-            >email@dr-huzaifa-khorakiwala.care</a
+            >email&#64;dr-huzaifa-khorakiwala.caretEST</a
           >
         </p>
         <p style="margin-bottom: 0">
@@ -4732,7 +3215,7 @@
         </div>
         <div class="col-9 text-center">
           <h1 class="modal-title fs-5" id="nadirLabel">
-            Judge Mohamed Abdelsalam
+            Judge Mohamed Abd-Salam
           </h1>
           <p>Secretary-General of the Muslim Council of Elders</p>
           <!-- <label for="">Chairman of Godrej Agrovet Ltd.</label> -->
@@ -5050,11 +3533,10 @@
           <div class="col-md-5">
             <p class="detail small">
               <span class="mb-2"><b>Bibliography</b></span> <br />
-              
+
               <b>bhaisahibsatpalsingh.com/</b> <br />
               <b>www.sikhdharmauniversal.com/</b> <br />
               <b>www.facebook.com/bhaisahibsatpalsingh</b>
-              
             </p>
           </div>
           <div class="col-md-7">
@@ -5068,15 +3550,17 @@
           <div class="col-md-5">
             <p class="detail small">
               <span><b>Chairman: </b></span><b>Sikh Dharma</b> <br />
-              <b>289 S. Robertson Blvd., Suite 502 <br> Beverly Hills, California 90211 USA</b>
-              
+              <b
+                >289 S. Robertson Blvd., Suite 502 <br />
+                Beverly Hills, California 90211 USA</b
+              >
             </p>
           </div>
           <div class="col-md-7">
             <p class="detail small">
-              <span><b>Email: </b></span><b>BhaiSahibSatpal@aol.com, satpalsk@gmail.com</b> <br />
+              <span><b>Email: </b></span
+              ><b>BhaiSahibSatpal&#64;aol.com, satpalsk&#64;gmail.com</b> <br />
               <span><b>Cell:: </b></span><b>1-702-858-6261</b>
-              
             </p>
           </div>
         </div>

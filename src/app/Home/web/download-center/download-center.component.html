@@ -113,7 +113,7 @@
 </nav>
 
 <div class="main-body">
-  <div class="section scroll" id="dc1">
+  <div class="section" id="dc1">
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-12 p-0 h-100">
@@ -128,8 +128,8 @@
       </div>
     </div>
   </div>
-  <div class="section section7 p-lg-5 p-0 scroll" id="dc2">
-    <div class="container-fluid h-100">
+  <div class="section section7 p-lg-5 p-0 scroll position-relative" id="dc2">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center align-content-center h-100">
         <div class="col-md-3 text-center">
           <img
@@ -147,9 +147,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 p-lg-5" id="dc3">
-    <div class="container-fluid h-100">
+  <div class="section section7 p-lg-5 position-relative" id="dc3">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row h-100" *ngIf="isMobileView">
         <div class="col-md-12">
           <img src="assets/UIComponents/images/significance.svg" alt="" class="w-100 px-5 pt-4" />
@@ -429,20 +443,34 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 scroll" id="dc4">
-    <div class="container-fluid h-100">
+  <div class="section section7 scroll position-relative" id="dc4">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12 py-4" *ngIf="isMobileView">
           <div class="row">
-            <div class="col-12 text-center m-auto pb-3">
+            <div class="col-12 text-center mx-auto pb-3">
               <img
                 src="assets/UIComponents/images/download center/pillars.svg"
                 alt=""
                 width="75%"
               />
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/reaward.png"
@@ -455,7 +483,7 @@
                 THE GOOD
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/punish.png"
@@ -468,7 +496,7 @@
                 WRONG
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/speak_up.png"
@@ -481,7 +509,7 @@
                 TRUTH
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/time.png"
@@ -494,7 +522,7 @@
                 ANALYSIS BUT DO NOT DELAY IT
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/evil.png"
@@ -507,7 +535,7 @@
                 EVIL OR WICKED
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/justice.png"
@@ -520,7 +548,7 @@
                 DO IN JUSTICE
               </p>
             </div>
-            <div class="col-4 text-center m-auto">
+            <div class="col-4 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/poor.png"
@@ -654,9 +682,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 scroll" id="dc5">
-    <div class="container-fluid h-100">
+  <div class="section section7 scroll position-relative" id="dc5">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12 py-4" *ngIf="isMobileView">
           <div class="row">
@@ -840,20 +882,34 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 scroll" id="dc6">
-    <div class="container-fluid h-100">
+  <div class="section section7 scroll position-relative" id="dc6">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12 py-4" *ngIf="isMobileView">
           <div class="row">
-            <div class="col-12 text-center m-auto pb-3">
+            <div class="col-12 text-center mx-auto pb-3">
               <img
                 src="assets/UIComponents/images/download center/quotes.svg"
                 alt=""
                 width="75%"
               />
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes1.png"
@@ -866,7 +922,7 @@
                 Increases blessing
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes2.png"
@@ -879,7 +935,7 @@
                 is a divine attribute
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes3.png"
@@ -892,7 +948,7 @@
                 one another is half of wisdom
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes4.png"
@@ -906,7 +962,7 @@
                 thoughts, words & actions
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes5.png"
@@ -919,7 +975,7 @@
                 is half of faith
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/quotes6.png"
@@ -932,7 +988,7 @@
                 only life worth living
               </p>
             </div>
-            <div class="col-4 my-lg-5 text-center m-auto">
+            <div class="col-4 my-lg-5 text-center mx-auto">
               <img
                 _ngcontent-uex-c33=""
                 src="assets/UIComponents/images/download center/humunity.png"
@@ -1067,9 +1123,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 py-lg-5 py-5" id="dc7">
-    <div class="container-fluid h-100">
+  <div class="section section7 py-lg-5 py-5 position-relative" id="dc7">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="text-center">
           <img
@@ -1409,9 +1479,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 py-lg-5" id="dc8">
-    <div class="container-fluid h-100">
+  <div class="section section7 py-lg-5 position-relative" id="dc8">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="text-center">
           <img
@@ -1514,9 +1598,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
-  <div class="section section7 scroll" id="dc9">
-    <div class="container-fluid h-100">
+  <div class="section section7 scroll position-relative" id="dc9">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="col-md-12 py-4" *ngIf="isMobileView">
           <div class="row">
@@ -1739,10 +1837,24 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="right: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
 
-  <div class="section section5 poen" id="dc10">
-    <div class="container-fluid h-100">
+  <div class="section section5 poen position-relative" id="dc10">
+    <div class="container-fluid h-100" style="position: relative; z-index: 1;">
       <div class="row h-100 px-lg-5">
         <div class="col-md-12">
           <ul class="p-0 text-center list-unstyled">
@@ -2228,9 +2340,23 @@
         </div>
       </div>
     </div>
+    <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 20rem"
+            *ngIf="!isMobileView"
+          />
+          <img
+            src="assets/UIComponents/images/watermark.png"
+            alt=""
+            class="position-absolute"
+            style="left: 0; bottom: 0; width: 10rem"
+            *ngIf="isMobileView"
+          />
   </div>
   <div class="section section7 py-lg-5 position-relative" id="dc11">
-    <div class="container-fluid h-100">
+    <div class="container-fluid h-100" style="position: relative;z-index: 1;">
       <div class="row align-items-center justify-content-center h-100">
         <div class="text-center">
           <img
@@ -2241,7 +2367,10 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <ul class="p-0 text-center list-unstyled mt-lg-5">
+            <ul class="p-0 text-center list-unstyled mt-lg-5" style="
+            position: relative;
+            z-index: 1;
+        ">
               <li class="my-2">
                 <h4>
                   <img
@@ -2283,14 +2412,14 @@
             src="assets/UIComponents/images/watermark.png"
             alt=""
             class="position-absolute"
-            style="left: 0; bottom: 0; width: 20rem"
+            style="right: 0; bottom: 0; width: 20rem"
             *ngIf="!isMobileView"
           />
           <img
             src="assets/UIComponents/images/watermark.png"
             alt=""
             class="position-absolute"
-            style="left: 0; bottom: 0; width: 10rem"
+            style="right: 0; bottom: 0; width: 10rem"
             *ngIf="isMobileView"
           />
   </div>

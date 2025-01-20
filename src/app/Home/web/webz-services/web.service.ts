@@ -44,8 +44,8 @@ export class WebService {
     // list 2
     {
       // "S_No": 3,
-      "View": '',
-      "Profile_Photo": null,
+      "View": 'binod',
+      "Profile_Photo": 'speaker14.png',
       "Name": "Binod Kumar Chaudhary  ",
       "Country": "NEPAL",
       "Credentials": "President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal"
@@ -137,6 +137,14 @@ export class WebService {
       // "S_No": 13,
       "View": '',
       "Profile_Photo": null,
+      "Name": "Juan Carlos Sainz-Borgo, Dr.",
+      "Country": "COSTA RICA",
+      "Credentials": "Vice Rector, University of Peace "
+    },
+    {
+      // "S_No": 13,
+      "View": '',
+      "Profile_Photo": 'speaker1.png',
       "Name": "Kailash Satyarthi",
       "Country": "INDIA",
       "Credentials": "Social Activist, Nobel Peace Laureate 2014"
@@ -153,7 +161,7 @@ export class WebService {
     {
       // "S_No": 15,
       "View": '',
-      "Profile_Photo": null,
+      "Profile_Photo": 'speaker3.png',
       "Name": "Leymah Gbowee",
       "Country": "LIBERIA",
       "Credentials": "Nobel Peace Laureate 2011"
@@ -161,7 +169,7 @@ export class WebService {
     {
       // "S_No": 16,
       "View": '',
-      "Profile_Photo": null,
+      "Profile_Photo": 'speaker10.png',
       "Name": "Lokesh Ji Muni Acharya, His Holiness",
       "Country": "INDIA",
       "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
@@ -202,8 +210,8 @@ export class WebService {
     },
     {
       // "S_No": 20,
-      "View": '',
-      "Profile_Photo": null,
+      "View": 'salam',
+      "Profile_Photo": 'speaker12.png',
       "Name": "Mohammed Abd-Salam, His Excellency, Judge",
       "Country": "EGYPT",
       "Credentials": "Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace"
@@ -242,14 +250,13 @@ export class WebService {
       "Credentials": "Industrialist : Chairman, TAF Global"
     },
     // list 10
-    {
-      // "S_No": 24,
-      "View": '',
-      "Profile_Photo": null,
-      "Name": "Nadia Murad",
-      "Country": "IRAQ",
-      "Credentials": "Social Activist : Nobel Peace Laureates 2018"
-    },
+    // {
+    //   "View": '',
+    //   "Profile_Photo": null,
+    //   "Name": "Nadia Murad",
+    //   "Country": "IRAQ",
+    //   "Credentials": "Social Activist : Nobel Peace Laureates 2018"
+    // },
     {
       // "S_No": 25,
       "View": 'nadir',
@@ -270,7 +277,7 @@ export class WebService {
     {
       // "S_No": 26,
       "View": '',
-      "Profile_Photo": null,
+      "Profile_Photo": 'speaker13.png',
       "Name": "Oheneba Nana Kwame Obeng 2, His Royal Highness",
       "Country": "GHANA",
       "Credentials": "Royalty, The Royal House of Sefwi Obeng-Mim"
@@ -320,7 +327,7 @@ export class WebService {
     {
       // "S_No": 32,
       "View": '',
-      "Profile_Photo": null,
+      "Profile_Photo": 'speaker4.png',
       "Name": "Rui Duarte de Barros, His Excellency",
       "Country": "GUINEA BISSAU",
       "Credentials": "Prime Minister"
@@ -335,8 +342,8 @@ export class WebService {
     },
     {
       // "S_No": 33,
-      "View": '',
-      "Profile_Photo": null,
+      "View": 'satpal',
+      "Profile_Photo": 'speaker15.png',
       "Name": "Satpal Singh Khalsa, Bhai Saheb",
       "Country": "USA",
       "Credentials": "Ambassador of Sikh Dharma"
@@ -358,6 +365,14 @@ export class WebService {
       "Name": "Soha Ali Khan",
       "Country": "INDIA",
       "Credentials": "Producer & Actress, Royalty"
+    },
+    {
+      // "S_No": 35,
+      "View": '',
+      "Profile_Photo": null,
+      "Name": "Surender Singh Kandhari",
+      "Country": "UAE",
+      "Credentials": "Industrialist : Chairman, Al Dobowi Group"
     },
     {
       // "S_No": 35,
@@ -401,6 +416,14 @@ export class WebService {
       "Name": "Zayed Khan",
       "Country": "INDIA",
       "Credentials": "Producer & Actor"
+    },
+    {
+      // "S_No": 39,
+      "View": '',
+      "Profile_Photo": null,
+      "Name": "Jose Manuel Ramos Horta, His Excellency",
+      "Country": "EAST TIMOR",
+      "Credentials": "President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)"
     }
   ]
 
@@ -440,8 +463,8 @@ export class WebService {
         speakers: [
           {
             // "S_No": 3,
-            "View": '',
-            "Profile_Photo": null,
+            "View": 'binod',
+            "Profile_Photo": 'speaker14.png',
             "Name": "Binod Kumar Chaudhary  ",
             "Country": "NEPAL",
             "Credentials": "President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal"
@@ -543,14 +566,23 @@ export class WebService {
             // "S_No": 13,
             "View": '',
             "Profile_Photo": null,
-            "Name": "Kailash Satyarthi",
-            "Country": "INDIA",
-            "Credentials": "Social Activist, Nobel Peace Laureate 2014"
+            "Name": "Juan Carlos Sainz-Borgo, Dr.",
+            "Country": "COSTA RICA",
+            "Credentials": "Vice Rector, University of Peace "
           },
+          
         ]
       },
       {
         speakers: [
+          {
+            // "S_No": 13,
+            "View": '',
+            "Profile_Photo": 'speaker1.png',
+            "Name": "Kailash Satyarthi",
+            "Country": "INDIA",
+            "Credentials": "Social Activist, Nobel Peace Laureate 2014"
+          },
           {
             // "S_No": 14,
             "View": '',
@@ -562,23 +594,24 @@ export class WebService {
           {
             // "S_No": 15,
             "View": '',
-            "Profile_Photo": null,
+            "Profile_Photo": 'speaker3.png',
             "Name": "Leymah Gbowee",
             "Country": "LIBERIA",
             "Credentials": "Nobel Peace Laureate 2011"
           },
-          {
-            // "S_No": 16,
-            "View": '',
-            "Profile_Photo": null,
-            "Name": "Lokesh Ji Muni Acharya, His Holiness",
-            "Country": "INDIA",
-            "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
-          },
+          
         ]
       },
       {
         speakers: [
+          {
+            // "S_No": 16,
+            "View": '',
+            "Profile_Photo": 'speaker10.png',
+            "Name": "Lokesh Ji Muni Acharya, His Holiness",
+            "Country": "INDIA",
+            "Credentials": "Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader"
+          },
           {
             // "S_No": 17,
             "View": '',
@@ -595,6 +628,11 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner "
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 18,
             "View": '',
@@ -603,10 +641,6 @@ export class WebService {
             "Country": "DENMARK",
             "Credentials": "Royalty, TV Host, Philanthropist"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 19,
             "View": '',
@@ -617,12 +651,17 @@ export class WebService {
           },
           {
             // "S_No": 20,
-            "View": '',
-            "Profile_Photo": null,
+            "View": 'salam',
+            "Profile_Photo": 'speaker12.png',
             "Name": "Mohammed Abd-Salam, His Excellency, Judge",
             "Country": "EGYPT",
             "Credentials": "Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace"
           },
+          
+        ]
+      },
+      {
+        speakers: [
           {
             // "S_No": 21,
             "View": 'asif',
@@ -631,10 +670,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Royalty Heir Apparent to the Prince of Arcot"
           },
-        ]
-      },
-      {
-        speakers: [
           {
             // "S_No": 17,
             "View": '',
@@ -651,6 +686,12 @@ export class WebService {
             "Country": "SRI LANKA",
             "Credentials": "Nobel Peace Laureate 2007"
           },
+          
+        ]
+      },
+
+      {
+        speakers: [
           {
             // "S_No": 23,
             "View": '',
@@ -659,19 +700,14 @@ export class WebService {
             "Country": "GAMBIA",
             "Credentials": "Industrialist : Chairman, TAF Global"
           },
-        ]
-      },
-
-      {
-        speakers: [
-          {
-            // "S_No": 24,
-            "View": '',
-            "Profile_Photo": null,
-            "Name": "Nadia Murad",
-            "Country": "IRAQ",
-            "Credentials": "Social Activist : Nobel Peace Laureates 2018"
-          },
+          // {
+           
+          //   "View": '',
+          //   "Profile_Photo": null,
+          //   "Name": "Nadia Murad",
+          //   "Country": "IRAQ",
+          //   "Credentials": "Social Activist : Nobel Peace Laureates 2018"
+          // },
           {
             // "S_No": 25,
             "View": 'nadir',
@@ -688,15 +724,17 @@ export class WebService {
             "Country": "GHANA",
             "Credentials": "Royalty"
           },
+          
         ]
       },
 
       {
         speakers: [
+          
           {
             // "S_No": 26,
             "View": '',
-            "Profile_Photo": null,
+            "Profile_Photo": 'speaker13.png',
             "Name": "Oheneba Nana Kwame Obeng 2, His Royal Highness",
             "Country": "GHANA",
             "Credentials": "Royalty, The Royal House of Sefwi Obeng-Mim"
@@ -717,11 +755,13 @@ export class WebService {
             "Country": "SPAIN",
             "Credentials": "Artist, Peace Painter (live performance)"
           },
+          
         ]
       },
 
       {
         speakers: [
+          
           {
             // "S_No": 29,
             "View": '',
@@ -746,14 +786,16 @@ export class WebService {
             "Country": "MALAYSIA",
             "Credentials": "Royalty, Philanthropist, Peace Activist"
           },
+          
         ]
       },
       {
         speakers: [
+          
           {
             // "S_No": 32,
             "View": '',
-            "Profile_Photo": null,
+            "Profile_Photo": 'speaker4.png',
             "Name": "Rui Duarte de Barros, His Excellency",
             "Country": "GUINEA BISSAU",
             "Credentials": "Prime Minister"
@@ -768,8 +810,8 @@ export class WebService {
           },
           {
             // "S_No": 33,
-            "View": '',
-            "Profile_Photo": null,
+            "View": 'satpal',
+            "Profile_Photo": 'speaker15.png',
             "Name": "Satpal Singh Khalsa, Bhai Saheb",
             "Country": "USA",
             "Credentials": "Ambassador of Sikh Dharma"
@@ -779,6 +821,7 @@ export class WebService {
       },
       {
         speakers: [
+          
           {
             // "S_No": 34,
             "View": '',
@@ -799,15 +842,24 @@ export class WebService {
             // "S_No": 35,
             "View": '',
             "Profile_Photo": null,
-            "Name": "Tehemton  Burjor Mirza, Dastur",
-            "Country": "INDIA",
-            "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
+            "Name": "Surender Singh Kandhari",
+            "Country": "UAE",
+            "Credentials": "Industrialist : Chairman, Al Dobowi Group"
           },
           
         ]
       },
       {
         speakers: [
+          
+          {
+            // "S_No": 35,
+            "View": '',
+            "Profile_Photo": null,
+            "Name": "Tehemton  Burjor Mirza, Dastur",
+            "Country": "INDIA",
+            "Credentials": "High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader"
+          },
           {
             // "S_No": 36,
             "View": '',
@@ -816,6 +868,7 @@ export class WebService {
             "Country": "VIETNAM",
             "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
           },
+          
           {
             // "S_No": 37,
             "View": '',
@@ -824,6 +877,12 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "The Attorney General of India"
           },
+          
+        ]
+      },
+      {
+        speakers:[
+          
           {
             // "S_No": 38,
             "View": '',
@@ -832,11 +891,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Celebrity Fitness Trainer"
           },
-          
-        ]
-      },
-      {
-        speakers:[
           {
             // "S_No": 39,
             "View": '',
@@ -844,6 +898,14 @@ export class WebService {
             "Name": "Zayed Khan",
             "Country": "INDIA",
             "Credentials": "Producer & Actor"
+          },
+          {
+            // "S_No": 39,
+            "View": '',
+            "Profile_Photo": null,
+            "Name": "Jose Manuel Ramos Horta, His Excellency",
+            "Country": "EAST TIMOR",
+            "Credentials": "President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)"
           }
         ]
       }

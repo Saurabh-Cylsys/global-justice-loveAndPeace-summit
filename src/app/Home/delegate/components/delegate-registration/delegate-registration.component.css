@@ -359,9 +359,10 @@
     top: 0;
     width: 18px;
     height: 18px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
+    border: 1px solid #005A9380;
     border-radius: 100%;
-    background: #fff;
+    background: transparent;
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
@@ -400,4 +401,16 @@
   
     background-color: #005A93;
     background-image: none;
+}
+
+.form-check-input{
+    background-color: transparent;
+    border: 1px solid #005A9380
+}
+.form-check-input:checked{
+    background-color: #005A93;
+}
+
+.form-check label{
+    line-height: 0;
 }
