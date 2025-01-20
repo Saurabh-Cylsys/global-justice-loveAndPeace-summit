@@ -396,6 +396,14 @@ export class WebService {
       // "S_No": 37,
       "View": '',
       "Profile_Photo": null,
+      "Name": "Urvashi Rautela",
+      "Country": "INDIA",
+      "Credentials": "Actor & Model"
+    },
+    {
+      // "S_No": 37,
+      "View": '',
+      "Profile_Photo": null,
       "Name": "Venkatramani R, Honorable",
       "Country": "INDIA",
       "Credentials": "The Attorney General of India"
@@ -868,7 +876,21 @@ export class WebService {
             "Country": "VIETNAM",
             "Credentials": "Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader"
           },
+          {
+            // "S_No": 37,
+            "View": '',
+            "Profile_Photo": null,
+            "Name": "Urvashi Rautela",
+            "Country": "INDIA",
+            "Credentials": "Actor & Model"
+          },
           
+          
+          
+        ]
+      },
+      {
+        speakers:[
           {
             // "S_No": 37,
             "View": '',
@@ -877,11 +899,6 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "The Attorney General of India"
           },
-          
-        ]
-      },
-      {
-        speakers:[
           
           {
             // "S_No": 38,
@@ -899,6 +916,11 @@ export class WebService {
             "Country": "INDIA",
             "Credentials": "Producer & Actor"
           },
+        ]
+      },
+      {
+        speakers:[
+          
           {
             // "S_No": 39,
             "View": '',
