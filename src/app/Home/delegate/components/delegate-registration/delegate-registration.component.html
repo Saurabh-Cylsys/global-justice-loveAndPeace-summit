@@ -223,7 +223,7 @@
                                   </div>
                                 </div>
 
-                                <div
+                                <!-- <div
                                   class="form-group fg-lname col-md-4 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
@@ -269,6 +269,48 @@
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
+                                </div> -->
+
+                                <div class="form-group fg-lname col-md-4 col-sm-3 my-3">
+                                  <div>
+                                    <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="lname1"
+                                    >DOB<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  <input
+                                    type="text"
+                                    class="form-control p-0"
+                                    placeholder="Select Date of birth"
+                                    formControlName="dob"
+                                    [minDate]="minDate1"
+                                    [maxDate]="maxDate1"
+                                    (keydown)="disableManualInput($event)"
+                                    (ngModelChange)="onDateChange($event)"
+                                    bsDatepicker
+                                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+
+                                  />
+
+                                  <div
+                                      *ngIf="
+                                        getcontrol('dob')?.errors &&
+                                        getcontrol('dob')?.touched
+                                      "
+                                    >
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="getcontrol('dob')?.errors?.['required']"
+                                        >Date of birth is required</small
+                                      >
+                                    </div>
+                                  </div>
+
                                 </div>
                               </div>
 
@@ -333,6 +375,7 @@
                                               mobile_number
                                             )
                                           "
+                                          (countryChange)="onCountryChange($event)"
                                         ></ngx-intl-tel-input>
                                       </div>
                                       <small
@@ -489,17 +532,12 @@
                                         (keydown)="
                                           onKeyDown($event, linkedIn_profile)
                                         "
-                                        data-error="Please enter valid linkedIn_profile"
                                         formControlName="linkedIn_profile"
-                                        [ngClass]="{
-                                          'is-invalid':
-                                            submitted &&
-                                            f.linkedIn_profile.errors
-                                        }"
+
                                       />
 
                                     </div>
-                                    <div
+                                    <!-- <div
                                       *ngIf="
                                         getcontrol('linkedIn_profile')
                                           ?.errors &&
@@ -511,7 +549,7 @@
                                         *ngIf="getcontrol('linkedIn_profile')?.errors?.['pattern']"
                                         >Please enter valid linkedIn URL.
                                       </small>
-                                    </div>
+                                    </div> -->
                                   </div>
                                 </div>
                                 <div
@@ -535,18 +573,14 @@
                                         (keydown)="
                                           onKeyDown($event, instagram_profile)
                                         "
-                                        data-error="Please enter valid Facebook URL"
+
                                         formControlName="instagram_profile"
-                                        [ngClass]="{
-                                          'is-invalid':
-                                            submitted &&
-                                            f.instagram_profile.errors
-                                        }"
+
                                       />
 
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div
+                                    <!-- <div
                                       *ngIf="
                                         getcontrol('instagram_profile')
                                           ?.errors &&
@@ -559,7 +593,7 @@
                                       >
                                         Invalid Instagram profile URL.
                                       </span>
-                                    </div>
+                                    </div> -->
                                   </div>
                                 </div>
                               </div>
@@ -850,14 +884,15 @@
                                   <div class="col-md-12 no-padding">
                                     <div class="">
                                       <span class="required-icon"></span
-                                      ><label for="" class="p-0"
+                                      ><label for="" class="no-padding p-0"
                                       >Country<span
                                         class="form-label-span"
                                         style="color: #ff0000"
                                       >
                                         *</span
                                       >
-                                    </label><input
+                                    </label>
+                                    <!-- <input
                                         type="text"
                                         name="country"
                                         id="country"
@@ -871,11 +906,11 @@
                                           'is-invalid':
                                             submitted && f.country.errors
                                         }"
-                                      />
+                                      /> -->
 
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <div
+                                    <!-- <div
                                       *ngIf="
                                         getcontrol('country')?.errors &&
                                         getcontrol('country')?.touched
@@ -886,13 +921,12 @@
                                         *ngIf="getcontrol('country')?.errors?.['required']"
                                         >Country is required.</small
                                       >
-                                    </div>
+                                    </div> -->
                                   </div>
 
-                                  <!-- <select
+                                  <select
                                     (change)="changeCountry($event)"
-                                    class="form-control"
-                                    class="form-control"
+                                    class="form-control p-0"
                                     id="country"
                                     formControlName="country"
                                     name="India"
@@ -909,7 +943,7 @@
                                         let country of countryData;
                                         let j = index
                                       "
-                                      [value]="country.country_id"
+                                      [value]="country.id"
                                     >
                                       {{ country.country_name }}
                                     </option>
@@ -926,13 +960,13 @@
                                       *ngIf="getcontrol('country')?.errors?.['required']"
                                       >Country is required.</small
                                     >
-                                  </div> -->
+                                  </div>
                                 </div>
                                 <div class="form-group fg-field_3 col-md-4 my-3">
                                   <div class="col-md-12 no-padding">
-                                    <div class="">
-                                      <label for="" class="p-0">State/Province </label>
-                                      <input
+
+                                      <label for="" class="no-padding p-0">State/Province </label>
+                                      <!-- <input
                                         type="text"
                                         name="state"
                                         id="state"
@@ -941,9 +975,8 @@
                                         value=""
                                         formControlName="state"
                                         minlength="5"
-                                      />
+                                      /> -->
 
-                                    </div>
                                     <!-- <div
                                       *ngIf="
                                         getcontrol('state')?.errors &&
@@ -965,8 +998,8 @@
                                     </div> -->
                                   </div>
 
-                                  <!-- <select
-                                    class="form-control"
+                                  <select
+                                    class="form-control p-0"
                                     (change)="changeStates($event)"
                                     id="state"
                                     formControlName="state"
@@ -977,9 +1010,9 @@
                                     <option value="" disabled selected>
                                       Select State
                                     </option>
-                                    <option [value]="othervalstate_id" [selected]="isOthersSelected">
+                                    <!-- <option [value]="othervalstate_id" [selected]="isOthersSelected">
                                         {{ isOthersSelected ? othervalstate : 'Select State' }}
-                                      </option>
+                                      </option> -->
                                     <option *ngFor="let state of statesData; let j = index" [value]="state.state_id">
                                         {{ state.state_name }}
                                       </option>
@@ -997,8 +1030,8 @@
                                     >
                                       {{ state.state_name }}
                                     </option>
-                                  </select> -->
-                                  <!-- <div
+                                  </select>
+                                  <div
                                     *ngIf="
                                       getcontrol('state')?.errors &&
                                       getcontrol('state')?.touched
@@ -1009,12 +1042,12 @@
                                       *ngIf="getcontrol('state')?.errors?.['required']"
                                       >State is required.</small
                                     >
-                                  </div> -->
+                                  </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="col-md-12 no-padding">
                                     <div class="">
-                                      <label for="" class="p-0"
+                                      <label for="" class="no-padding p-0"
                                         >City<span
                                           class="form-label-span"
                                           style="color: #ff0000"
@@ -1022,7 +1055,7 @@
                                           *</span
                                         >
                                       </label>
-                                      <input
+                                      <!-- <input
                                         type="text"
                                         name="city"
                                         id="city"
@@ -1031,11 +1064,11 @@
                                         value=""
                                         formControlName="city"
                                         minlength="5"
-                                      />
+                                      /> -->
 
                                     </div>
-                                    <!-- <select
-                                    class="form-control"
+                                    <select
+                                    class="form-control p-0"
                                     (change)="changeCity($event)"
                                     id="city"
                                     formControlName="city"
@@ -1063,7 +1096,7 @@
                                     >
                                       {{ city.city_name }}
                                     </option>
-                                  </select> -->
+                                  </select>
                                     <div
                                       *ngIf="
                                         getcontrol('city')?.errors &&

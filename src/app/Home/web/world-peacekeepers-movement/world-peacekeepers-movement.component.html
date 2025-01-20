@@ -580,7 +580,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md my-lg-0 my-3">
+                <!-- <div class="col-md my-lg-0 my-3">
                   <div class="">
                     <label for="title"
                       >DOB :<span
@@ -616,6 +616,47 @@
                       >
                     </div>
                   </div>
+                </div> -->
+
+                <div class="col-md my-lg-0 my-3">
+                  <div>
+                    <label
+                    class="col-md-12 no-padding p-0"
+                    for="lname1"
+                    >DOB<span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control p-0"
+                    placeholder="Select Date of birth"
+                    formControlName="dob"
+                    [minDate]="minDate1"
+                    [maxDate]="maxDate1"
+                    (keydown)="disableManualInput($event)"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+
+                  />
+
+                  <div
+                      class="text-danger"
+                      *ngIf="
+                        getcontrol('dob')?.errors && getcontrol('dob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('dob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="col-md my-lg-0 my-3">
@@ -644,9 +685,9 @@
                         </option>
                         <option
                           *ngFor="let code of code; let j = index"
-                          [value]="code.name"
+                          [value]="code.country_name"
                         >
-                          {{ code.name }}
+                          {{ code.country_name }}
                         </option>
                       </select>
 

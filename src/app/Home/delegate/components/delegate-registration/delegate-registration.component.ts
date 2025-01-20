@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
+import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, FormControl, } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router,ActivatedRoute  } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
@@ -67,7 +67,8 @@ export class DelegateRegistrationComponent {
   country_codeList: any;
   countryCodes: any;
   country_code: any;
-  selectedCountryISO: any;
+  // selectedCountryISO: any;
+  selectedCountryISO: CountryISO = CountryISO.India;
   formattedDate: string = '';
   referralCode:any='';
   conferenceInterest:any
@@ -80,10 +81,22 @@ export class DelegateRegistrationComponent {
     { value: 'Love', label: 'Love' },
     { value: 'Peace', label: 'Peace' }
   ];
+  disabledDates: Date[] = [];
+
+  maxDate1 : any;
+  minDate1 : any;
+  colorTheme: string = 'theme-dark-blue';
+
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
+
+  onCountryChange(event: any): void {
+    console.log('Country Changed:', event); // Logs the selected country
+    this.selectedCountryISO = event.iso2; // Update the selected country ISO
+  }
+
   constructor(private datePipe: DatePipe,
      private formBuilder: FormBuilder,
      private DelegateService: DelegateService,
@@ -94,7 +107,20 @@ export class DelegateRegistrationComponent {
      private route: ActivatedRoute) {
     this.fullURL = window.location.href;
     console.log('Full URL:', this.fullURL);
+
+    const today = new Date();
+
+  // Max date is 18 years ago from today
+  this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+  // Min date is 120 years ago from today
+  this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
    }
+
+  get dateControl() {
+    return this.registrationForm.get('dob');
+  }
+
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
@@ -111,7 +137,7 @@ export class DelegateRegistrationComponent {
 
   ngOnInit(): void {
     this.checkWindowSize();
-  this.dobValidator();
+    this.dobValidator();
 
     this.route.queryParams.subscribe((params:any) => {
       if(params){
@@ -129,7 +155,7 @@ export class DelegateRegistrationComponent {
 
 
     // this.getdates()
-    // this.getAllCountries()
+    this.getAllCountries()
     // this.getAllCountrycode()
 
 
@@ -141,13 +167,15 @@ export class DelegateRegistrationComponent {
       title: [''],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
+      dob: ['', [Validators.required,this.ageValidator]],
       country_code: [''],
 
       mobile_number: ['', [ Validators.minLength(7), Validators.required]],
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      linkedIn_profile:['', [Validators.pattern('https?://.+')]],
-      instagram_profile:['', [Validators.pattern('https?://.+')]],
+      // linkedIn_profile:['', [Validators.pattern('https?://.+')]],
+      // instagram_profile:['', [Validators.pattern('https?://.+')]],
+      linkedIn_profile:[''],
+      instagram_profile:[''],
       // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
       profession_1: ['', [Validators.required]],// need
       profession_2: [''],// need
@@ -178,18 +206,56 @@ export class DelegateRegistrationComponent {
 //     });
 //   }
 
+// dobValidator() {
+//   const today = new Date();
+
+// const minYear = today.getFullYear() - 120; // 120 years ago
+// const eighteenYearsAgo = new Date(
+//   today.getFullYear() - 18,
+//   today.getMonth(),
+//   today.getDate()
+// );
+// this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
+// this.minDate = `${minYear}-01-01`; // Set
+
+// }
+
 dobValidator() {
   const today = new Date();
 
-const minYear = today.getFullYear() - 120; // 120 years ago
-const eighteenYearsAgo = new Date(
-  today.getFullYear() - 18,
-  today.getMonth(),
-  today.getDate()
-);
-this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
-this.minDate = `${minYear}-01-01`; // Set
+  // Calculate the date 18 years ago from today
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
+  this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
 
+  // Set disabledDates (any date after maxDate)
+  this.disabledDates = [eighteenYearsAgo]; // Disabling the date of 18 years ago
+  console.log(`Max date (18 years ago): ${this.maxDate}`);
+}
+
+ageValidator(control: FormControl) {
+  const selectedDate = new Date(control.value);
+
+  // If the selected date is invalid, return an error
+  if (isNaN(selectedDate.getTime())) {
+    return { invalidDate: true }; // Invalid date format
+  }
+
+  const today = new Date();
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+  // If selected date is after or on the date 18 years ago, it's invalid
+  if (selectedDate > eighteenYearsAgo) {
+    return { ageError: 'Date must be at least 18 years ago' };
+  }
+
+  return null; // Valid date
+}
+
+isDisabledDate(date: Date): boolean {
+  const today = new Date();
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  return date >= eighteenYearsAgo;
 }
 
 onCheckboxChange(event: any) {
@@ -232,14 +298,14 @@ console.log(indiaCodeObject);
 
   }
 
-//   getAllCountries() {
-//     this.DelegateService.getAllCountries().subscribe((res: any) => {
-//       console.log("CountryData1", res.data);
-//       this.countryData = res.data;
-//     }, (err: any) => {
-//       console.log("error", err);
-//     });
-//   }
+  getAllCountries() {
+    this.DelegateService.getAllCountries().subscribe((res: any) => {
+      console.log("CountryData1", res.data);
+      this.countryData = res.data;
+    }, (err: any) => {
+      console.log("error", err);
+    });
+  }
 
 disableManualInput(event: KeyboardEvent): void {
   event.preventDefault();
@@ -414,7 +480,7 @@ onKeyDown(event: KeyboardEvent, inputValue: any): void {
 }
 
   submitData(): void {
-    debugger
+
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
 const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 console.log(formattedMobileNumber);

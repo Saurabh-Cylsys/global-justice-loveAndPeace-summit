@@ -7,6 +7,7 @@ import { DelegateRegistrationComponent } from './components/delegate-registratio
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -20,7 +21,8 @@ import { IntlInputPhoneModule } from 'intl-input-phone';
     DelegateRoutingModule,
     SharedModule,
     NgxIntlTelInputModule,
-    IntlInputPhoneModule
+    IntlInputPhoneModule,
+    BsDatepickerModule.forRoot()
   ]
 })
 export class DelegateModule { }

@@ -94,6 +94,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   croppedImage: any = '';
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
+  maxDate1 : any;
+  minDate1 : any;
+  colorTheme: string = 'theme-dark-blue';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -115,6 +118,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
+
+    const today = new Date();
+
+    // Max date is 18 years ago from today
+    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+    // Min date is 120 years ago from today
+    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
     // this.is_selectedFile = false;
   }
 
