@@ -294,8 +294,8 @@ console.log(indiaCodeObject);
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
-    this.formattedDate = this.datePipe.transform(parsedDate, 'dd/MM/yyyy') || '';
-
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    console.log(this.formattedDate);
   }
 
   getAllCountries() {
@@ -488,7 +488,7 @@ console.log(formattedMobileNumber);
     this.registrationForm.patchValue({
       country_code :this.registrationForm.value.mobile_number.dialCode,
       mobile_number :formattedMobileNumber,
-      // dob: this.formattedDate
+      dob: this.formattedDate
     })
     console.log(this.registrationForm.value);
 

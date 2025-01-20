@@ -35,7 +35,7 @@ import {
   ImageTransform,
   LoadedImage,
 } from 'ngx-image-cropper';
-import { DOCUMENT } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -97,6 +97,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   maxDate1 : any;
   minDate1 : any;
   colorTheme: string = 'theme-dark-blue';
+  formattedDate: string = '';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -105,6 +106,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
   constructor(
+    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
     private SharedService: SharedService,
@@ -120,13 +122,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
 
     const today = new Date();
-
-    // Max date is 18 years ago from today
     this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-
-    // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
-    // this.is_selectedFile = false;
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -143,6 +140,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       this.peacekeepersForm.value.phone.number,
       this.peacekeepersForm.value.dialCode
     );
+  }
+
+  onDateChange(event: string): void {
+    // Convert the date format
+    const parsedDate = new Date(event);
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    console.log(this.formattedDate);
   }
 
   ngOnInit(): void {
@@ -621,14 +625,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   submitData(fileInput: HTMLInputElement): void {
-    debugger;
+
     this.convertedImage = '';
     this.display = 'none';
     this.showPopup = false;
-    console.log(
-      this.peacekeepersForm.value.mobile_number.number,
-      this.peacekeepersForm.value.mobile_number.dialCode
-    );
 
     // const inputString = this.peacekeepersForm.value.country_code;
     // const countryCode = this.extractCountryCode(inputString);
@@ -647,6 +647,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
+        dob: this.formattedDate
+
     });
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
@@ -754,13 +756,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   getCountrycode(code: any) {
     let countryName = this.peacekeepersForm.value.country;
-    const indiaCodeObject = code.find((item: any) => item.name === countryName);
+    const indiaCodeObject = code.find((item: any) => item.country_name === countryName);
     console.log(indiaCodeObject);
 
     this.peacekeepersForm.patchValue({
       // is_active :1,
       // Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
-      country_code: indiaCodeObject.code,
+      country_code: indiaCodeObject.id,
       // mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
     });
   }
