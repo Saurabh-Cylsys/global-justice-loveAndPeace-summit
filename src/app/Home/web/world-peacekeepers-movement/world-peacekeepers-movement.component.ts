@@ -35,7 +35,7 @@ import {
   ImageTransform,
   LoadedImage,
 } from 'ngx-image-cropper';
-import { DOCUMENT } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -94,6 +94,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   croppedImage: any = '';
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
+  maxDate1 : any;
+  minDate1 : any;
+  colorTheme: string = 'theme-dark-blue';
+  formattedDate: string = '';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -102,6 +106,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
   constructor(
+    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
     private SharedService: SharedService,
@@ -115,7 +120,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
-    // this.is_selectedFile = false;
+
+    const today = new Date();
+    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -132,6 +140,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       this.peacekeepersForm.value.phone.number,
       this.peacekeepersForm.value.dialCode
     );
+  }
+
+  onDateChange(event: string): void {
+    // Convert the date format
+    const parsedDate = new Date(event);
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    console.log(this.formattedDate);
   }
 
   ngOnInit(): void {
@@ -326,6 +341,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.display = 'none';
     this.showPopup = false;
   }
+
+  disableManualInput(event: KeyboardEvent): void {
+    event.preventDefault();
+  }
+
   isCorrect() {
     this.isMobile =
       this.peacekeepersForm.value.mobile_number.dialCode +
@@ -364,6 +384,22 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
+
+      if (this.selectedFile) {
+        const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+
+        // Validate the file type
+        if (!validExtensions.includes(this.selectedFile.type)) {
+          this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+
+          this.is_selectedFile = false;
+          return;
+        }
+      }
+      else {
+        console.log('No file selected.');
+      }
+
       this.is_selectedFile = true;
       this.imageFileName = this.selectedFile.name;
       console.log('Dropped file:', this.selectedFile);
@@ -433,10 +469,30 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
 
-    this.isPeaceOn = 2;
-    this.showPopup = true;
-    this.display = 'block';
-    this.formdisplay = false;
+    const file = event.target.files[0];
+
+    if (file) {
+      const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+
+      // Validate the file type
+      if (!validExtensions.includes(file.type)) {
+        this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+        event.target.value = ''; // Reset the file input
+        this.is_selectedFile = false;
+        return;
+      }
+
+      this.isPeaceOn = 2;
+      this.showPopup = true;
+      this.display = 'block'
+      this.formdisplay = false;
+
+    }
+    else {
+      console.log('No file selected.');
+    }
+
+
 
     // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
@@ -569,14 +625,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   submitData(fileInput: HTMLInputElement): void {
-    debugger;
+
     this.convertedImage = '';
     this.display = 'none';
     this.showPopup = false;
-    console.log(
-      this.peacekeepersForm.value.mobile_number.number,
-      this.peacekeepersForm.value.mobile_number.dialCode
-    );
 
     // const inputString = this.peacekeepersForm.value.country_code;
     // const countryCode = this.extractCountryCode(inputString);
@@ -595,6 +647,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
+        dob: this.formattedDate
+
     });
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
@@ -702,13 +756,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   getCountrycode(code: any) {
     let countryName = this.peacekeepersForm.value.country;
-    const indiaCodeObject = code.find((item: any) => item.name === countryName);
+    const indiaCodeObject = code.find((item: any) => item.country_name === countryName);
     console.log(indiaCodeObject);
 
     this.peacekeepersForm.patchValue({
       // is_active :1,
       // Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
-      country_code: indiaCodeObject.code,
+      country_code: indiaCodeObject.id,
       // mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
     });
   }

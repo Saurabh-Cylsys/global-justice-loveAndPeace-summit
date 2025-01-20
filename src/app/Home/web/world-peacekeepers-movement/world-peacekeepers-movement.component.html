@@ -564,7 +564,7 @@
                       placeholder="Enter full name"
                       value=""
                     />
-                    
+
                     <div
                       class="text-danger"
                       *ngIf="
@@ -580,7 +580,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md my-lg-0 my-3">
+                <!-- <div class="col-md my-lg-0 my-3">
                   <div class="">
                     <label for="title"
                       >DOB :<span
@@ -600,8 +600,9 @@
                       value=""
                       [attr.min]="minDate"
                       [attr.max]="maxDate"
+                      (keydown)="disableManualInput($event)"
                     />
-                    
+
                     <div
                       class="text-danger"
                       *ngIf="
@@ -615,6 +616,47 @@
                       >
                     </div>
                   </div>
+                </div> -->
+
+                <div class="col-md my-lg-0 my-3">
+                  <div>
+                    <label
+                    class="col-md-12 no-padding p-0"
+                    for="lname1"
+                    >DOB<span
+                      class="form-label-span"
+                      style="color: #ff0000"
+                    >
+                      *</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control p-0"
+                    placeholder="Select Date of birth"
+                    formControlName="dob"
+                    [minDate]="minDate1"
+                    [maxDate]="maxDate1"
+                    (keydown)="disableManualInput($event)"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+
+                  />
+
+                  <div
+                      class="text-danger"
+                      *ngIf="
+                        getcontrol('dob')?.errors && getcontrol('dob')?.touched
+                      "
+                    >
+                      <small
+                        class="text-danger"
+                        *ngIf="getcontrol('dob')?.errors?.['required']"
+                        >Date of birth is required</small
+                      >
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="col-md my-lg-0 my-3">
@@ -643,9 +685,9 @@
                         </option>
                         <option
                           *ngFor="let code of code; let j = index"
-                          [value]="code.name"
+                          [value]="code.country_name"
                         >
-                          {{ code.name }}
+                          {{ code.country_name }}
                         </option>
                       </select>
 
@@ -724,7 +766,7 @@
                       required
                       (keydown)="onKeyDown($event, mobile_number)"
                     />
-                    
+
                     <div
                       *ngIf="
                         getcontrol('email_id')?.errors &&
@@ -836,7 +878,7 @@
                     name="mobile_number[1]"
                     id="number_mobile1"
                     placeholder="Mobile Number"
-                 
+
                     class="form-control number_field"
                     value=""
                     pattern=".{8,12}"
@@ -846,7 +888,7 @@
                     data-error="Please enter valid number."
                     formControlName="mobile_number"
                     (keypress)="keyPressNumbers($event)"
-               
+
                   /> -->
                       <small class="text-danger" *ngIf="mobile_numberVal">
                         (Country code + Mobile number) will be 7 to 15 digits
@@ -921,7 +963,7 @@
                     (change)="onFileChange($event)"
                     placeholder=""
                     value=""
-                  /> 
+                  />
                 </div>-->
                   <label for="" class="imgUpload"
                     >Image Upload
@@ -942,7 +984,7 @@
                     >
                     <span>or</span>
                     <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
-                 
+
                                         <input
                       class="custom-file-input col-md-5 col-12"
                       type="file"
@@ -1448,10 +1490,10 @@
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content p-3">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
-      
+
       <!-- <div class="cropper-container"> -->
-      <image-cropper 
-      *ngIf="imageChangedEvent" 
+      <image-cropper
+      *ngIf="imageChangedEvent"
       [imageChangedEvent]="imageChangedEvent"
       (imageCropped)="imageCropped($event)"
       [maintainAspectRatio]="true"

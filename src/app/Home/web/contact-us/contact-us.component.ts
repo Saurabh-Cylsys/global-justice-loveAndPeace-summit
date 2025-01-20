@@ -267,16 +267,23 @@ export class ContactUsComponent {
     }
   }
 
+  onInput(event: any, controlName: string) {
+    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+    this.contactUsForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
+  }
+
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    if (inputValue !== null) {
-      if (inputValue.number.length < 9) {
+    if(inputValue !== null){
+
+      if(inputValue.number.length<9){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-    }
+     }
   }
+
 
   submitData(): void {
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;

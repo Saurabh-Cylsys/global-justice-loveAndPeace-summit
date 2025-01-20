@@ -22,6 +22,8 @@ import { Constants } from './config/constant';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 
 // import { HeaderComponent } from './shared/components/header/header.component';
@@ -32,27 +34,27 @@ import { QRCodeModule } from 'angularx-qrcode';
   imports: [
     CommonModule,
     FormsModule,
-    
+
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot(),
     AuthModule,
-    SharedModule,   
+    SharedModule,
     BrowserModule,
     ToastrModule.forRoot(),
     NgxUiLoaderModule,
     AppRoutingModule,
     FormsModule, ReactiveFormsModule,SharedModule,
-    QRCodeModule
-
+    QRCodeModule,
+    BsDatepickerModule.forRoot()
 
   ],
 
   providers: [
     DatePipe,
     Constants,
-    
+
     provideAnimations(),
     Constants,
     // {provide: LocationStrategy, useClass: HashLocationStrategy}

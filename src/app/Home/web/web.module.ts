@@ -41,6 +41,7 @@ import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -81,18 +82,19 @@ import { PaymentCancelComponent } from './payment-cancel/payment-cancel.componen
     PaymentCancelComponent,
 
     // WhoShouldAttendAndWhyComponent,
-    
+
   ],
   imports: [
     CommonModule,
     WebRoutingModule,
     SharedModule,
     FormsModule,
-   ReactiveFormsModule, 
+   ReactiveFormsModule,
     NgxIntlTelInputModule ,
     QRCodeModule,
    IntlInputPhoneModule,
-   ImageCropperModule
+   ImageCropperModule,
+   BsDatepickerModule.forRoot()
   ]
 })
 export class WebModule { }
