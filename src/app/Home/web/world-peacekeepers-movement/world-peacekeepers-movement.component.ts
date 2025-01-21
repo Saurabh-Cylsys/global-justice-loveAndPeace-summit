@@ -35,7 +35,7 @@ import {
   ImageTransform,
   LoadedImage,
 } from 'ngx-image-cropper';
-import { DatePipe, DOCUMENT } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -94,10 +94,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   croppedImage: any = '';
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
-  maxDate1 : any;
-  minDate1 : any;
-  colorTheme: string = 'theme-dark-blue';
-  formattedDate: string = '';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -106,7 +102,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
   constructor(
-    private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
     private SharedService: SharedService,
@@ -120,10 +115,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
-
-    const today = new Date();
-    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
+    // this.is_selectedFile = false;
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -142,18 +134,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     );
   }
 
-  onDateChange(event: string): void {
-    // Convert the date format
-    const parsedDate = new Date(event);
-    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-    console.log(this.formattedDate);
-  }
-
   ngOnInit(): void {
-    // this.setMetaTags();
-    // this.setCanonicalUrl(
-    //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
-    // );
+    this.setMetaTags();
+    this.setCanonicalUrl(
+      'https://www.justice-love-peace.com/world-peacekeepers-movement'
+    );
     this.dobValidator();
     console.log(
       this.mobile_numberVal,
@@ -341,11 +326,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.display = 'none';
     this.showPopup = false;
   }
-
-  disableManualInput(event: KeyboardEvent): void {
-    event.preventDefault();
-  }
-
   isCorrect() {
     this.isMobile =
       this.peacekeepersForm.value.mobile_number.dialCode +
@@ -358,6 +338,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
+        // debugger;
         console.log('code', res.data);
         this.code = res.data;
         // Define the country name you want to find (e.g., "India (+91)")
@@ -384,22 +365,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
-
-      if (this.selectedFile) {
-        const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
-
-        // Validate the file type
-        if (!validExtensions.includes(this.selectedFile.type)) {
-          this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
-
-          this.is_selectedFile = false;
-          return;
-        }
-      }
-      else {
-        console.log('No file selected.');
-      }
-
       this.is_selectedFile = true;
       this.imageFileName = this.selectedFile.name;
       console.log('Dropped file:', this.selectedFile);
@@ -469,30 +434,10 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
 
-    const file = event.target.files[0];
-
-    if (file) {
-      const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
-
-      // Validate the file type
-      if (!validExtensions.includes(file.type)) {
-        this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
-        event.target.value = ''; // Reset the file input
-        this.is_selectedFile = false;
-        return;
-      }
-
-      this.isPeaceOn = 2;
-      this.showPopup = true;
-      this.display = 'block'
-      this.formdisplay = false;
-
-    }
-    else {
-      console.log('No file selected.');
-    }
-
-
+    this.isPeaceOn = 2;
+    this.showPopup = true;
+    this.display = 'block';
+    this.formdisplay = false;
 
     // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 
@@ -625,10 +570,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   submitData(fileInput: HTMLInputElement): void {
-
+    debugger;
     this.convertedImage = '';
     this.display = 'none';
     this.showPopup = false;
+    console.log(
+      this.peacekeepersForm.value.mobile_number.number,
+      this.peacekeepersForm.value.mobile_number.dialCode
+    );
 
     // const inputString = this.peacekeepersForm.value.country_code;
     // const countryCode = this.extractCountryCode(inputString);
@@ -647,8 +596,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-        dob: this.formattedDate
-
     });
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
@@ -756,13 +703,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
   getCountrycode(code: any) {
     let countryName = this.peacekeepersForm.value.country;
-    const indiaCodeObject = code.find((item: any) => item.country_name === countryName);
+    const indiaCodeObject = code.find((item: any) => item.name === countryName);
     console.log(indiaCodeObject);
 
     this.peacekeepersForm.patchValue({
       // is_active :1,
       // Check_email:this.peacekeepersForm.value.Check_email == true? 1 : 0,
-      country_code: indiaCodeObject.id,
+      country_code: indiaCodeObject.code,
       // mobile_number: this.peacekeepersForm.value.mobile_number.dialCode + ' ' + formattedMobileNumber
     });
   }
@@ -844,67 +791,67 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     return new Blob([uInt8Array], { type: imageType });
   }
 
-  // setMetaTags(): void {
-    
-  //   this.titleService.setTitle(
-  //     'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
-  //   );
+  setMetaTags(): void {
+    // Set the page title
+    this.titleService.setTitle(
+      'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
+    );
 
-    
-  //   this.metaService.addTags([
-  //     {
-  //       name: 'description',
-  //       content:
-  //         'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
-  //     },
-  //     {
-  //       name: 'keywords',
-  //       content:
-  //         'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
-  //     },
-  //     {
-  //       property: 'og:title',
-  //       content:
-  //         'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai',
-  //     },
-  //     {
-  //       property: 'og:description',
-  //       content:
-  //         'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content:
-  //         'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
-  //     },
-  //     {
-  //       property: 'og:url',
-  //       content: 'https://www.justice-love-peace.com/world-peacekeepers-movement',
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'website',
-  //     },
-  //     {
-  //       property: 'og:site_name',
-  //       content: 'Global Justice, Love and Peace Summit | Dubai',
-  //     },
-  //   ]);
-  // }
+    // Add or update meta tags
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content:
+          'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
+      },
+      {
+        property: 'og:title',
+        content:
+          'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
+      },
+      {
+        property: 'og:image',
+        content:
+          'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
+      },
+      {
+        property: 'og:url',
+        content: 'https://www.justice-love-peace.com/world-peacekeepers-movement',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:site_name',
+        content: 'Global Justice, Love and Peace Summit | Dubai',
+      },
+    ]);
+  }
 
-  // setCanonicalUrl(url: string): void {
-    
-  //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
-  //     'link[rel="canonical"]'
-  //   );
-  //   if (existingLink) {
-  //     this.renderer.removeChild(this.document.head, existingLink);
-  //   }
+  setCanonicalUrl(url: string): void {
+    // Remove any existing canonical tags
+    const existingLink: HTMLLinkElement | null = this.document.querySelector(
+      'link[rel="canonical"]'
+    );
+    if (existingLink) {
+      this.renderer.removeChild(this.document.head, existingLink);
+    }
 
-    
-  //   const link: HTMLLinkElement = this.renderer.createElement('link');
-  //   this.renderer.setAttribute(link, 'rel', 'canonical');
-  //   this.renderer.setAttribute(link, 'href', url);
-  //   this.renderer.appendChild(this.document.head, link);
-  // }
+    // Add a new canonical tag
+    const link: HTMLLinkElement = this.renderer.createElement('link');
+    this.renderer.setAttribute(link, 'rel', 'canonical');
+    this.renderer.setAttribute(link, 'href', url);
+    this.renderer.appendChild(this.document.head, link);
+  }
 }
