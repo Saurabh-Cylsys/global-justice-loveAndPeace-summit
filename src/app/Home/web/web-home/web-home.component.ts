@@ -90,7 +90,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     });
 
     console.log('home');
-    this.speakersList = this.webService.speakersList;
+    this.speakersList = this.webService.confirmedSpeakersList;
     this.SharedService.headerIcon = this._router.routerState.snapshot.url;
 
     this.updateCountdown();

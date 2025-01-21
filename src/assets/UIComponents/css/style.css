@@ -2012,6 +2012,7 @@ header .nav-item .nav-link.active {
   display: flex;
   align-items: center;
   text-transform: uppercase;
+  width: fit-content;
 }
 
 .custom-list {
@@ -2028,7 +2029,7 @@ header .nav-item .nav-link.active {
   text-transform: uppercase;
 }
 .custom-list .custom-list-head p {
-font-size: 24px;
+font-size: 20px;
 font-weight: 700;
 line-height: 30.91px;
 text-align: left;
@@ -2092,4 +2093,9 @@ color: var(--color3);
   background-image: url("../../UIComponents/images/awards/peaceLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.awardLink a:nth-child(2){
+  background-color: #3e8e41;
+  color: var(--color2) !important;
 }
