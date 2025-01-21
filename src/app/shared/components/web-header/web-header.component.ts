@@ -74,6 +74,15 @@ export class WebHeaderComponent implements OnInit {
     this._router.events.subscribe(() => {
       this.isHomePage = this._router.url === '/home';
     });
+
+    this._activeRouter.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
   }
 
   navigateUrl() {
@@ -255,14 +264,4 @@ export class WebHeaderComponent implements OnInit {
     this.checkWindowSize();
   }
 
-    ngAfterViewInit(): void {
-    this._activeRouter.fragment.subscribe((fragment) => {
-      if (fragment) {
-        const element = document.getElementById(fragment);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  }
 }

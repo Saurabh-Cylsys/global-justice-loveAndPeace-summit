@@ -27,9 +27,7 @@ export class DownloadCenterComponent {
     });
     console.log('download center');
     this.checkWindowSize();
-  }
 
-  ngAfterViewInit(): void {
     this.router.fragment.subscribe((fragment) => {
       if (fragment) {
         const element = document.getElementById(fragment);
@@ -39,6 +37,8 @@ export class DownloadCenterComponent {
       }
     });
   }
+
+
 
   checkWindowSize(): void {
     if (window.innerWidth <= 767) {

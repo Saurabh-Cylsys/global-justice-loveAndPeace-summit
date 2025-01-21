@@ -25,6 +25,15 @@ export class PartnersComponent {
     // this.setMetaTags();
     // this.setCanonicalUrl('https://www.justice-love-peace.com/partners');
     this.checkWindowSize();
+    
+    this.ActivatedRoute.fragment.subscribe((fragment) => {
+      if (fragment) {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
   }
   checkWindowSize(): void {
     if (window.innerWidth <= 767) {
@@ -42,16 +51,7 @@ export class PartnersComponent {
     this.checkWindowSize();
   }
 
-  ngAfterViewInit(): void {
-    this.ActivatedRoute.fragment.subscribe((fragment) => {
-      if (fragment) {
-        const element = document.getElementById(fragment);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  }
+
   // setMetaTags(): void {
     
   //   this.titleService.setTitle(

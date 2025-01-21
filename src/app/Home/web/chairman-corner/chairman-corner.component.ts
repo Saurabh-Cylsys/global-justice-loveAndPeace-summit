@@ -25,9 +25,7 @@ export class ChairmanCornerComponent {
     this.checkWindowSize();
     // this.setMetaTags();
     //   this.setCanonicalUrl('https://www.justice-love-peace.com/chairman-corner');
-  }
 
-  ngAfterViewInit(): void {
     this.router.fragment.subscribe((fragment) => {
       if (fragment) {
         const element = document.getElementById(fragment);
@@ -37,6 +35,8 @@ export class ChairmanCornerComponent {
       }
     });
   }
+
+
 
   checkWindowSize(): void {
     if (window.innerWidth <= 767) {
