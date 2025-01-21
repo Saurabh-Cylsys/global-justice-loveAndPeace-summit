@@ -214,10 +214,10 @@ export class WebService {
       // "S_No": 16,
       View: '',
       Profile_Photo: 'speaker10.png',
-      Name: 'Lokesh Ji Muni Acharya, His Holiness',
+      Name: 'Lokesh Ji Muni Acharya, Dr, His Holiness',
       Country: 'INDIA',
       Credentials:
-        'Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader',
+        'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
     },
     {
       // "S_No": 17,
@@ -279,7 +279,7 @@ export class WebService {
       Name: 'Mohammad Tawhidi, Imam',
       Country: 'AUSTRALIA',
       Credentials:
-        'slamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
+        'Islamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
     },
     // list 11
     {
@@ -304,7 +304,7 @@ export class WebService {
       Profile_Photo: 'speaker2.png',
       Name: 'Nadir Godrej',
       Country: 'INDIA',
-      Credentials: 'Industrialist, Chairman, Godrej Industries',
+      Credentials: 'Industrialist: Chairman, Godrej Industries',
     },
     // list 12
     {
@@ -380,7 +380,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Sanjay Khan',
       Country: 'INDIA',
-      Credentials: 'Actor, Producer, Director',
+      Credentials: 'Producer, Director, & Actor',
     },
     // list 15
     {
@@ -449,7 +449,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Venkatramani R, Honorable',
       Country: 'INDIA',
-      Credentials: 'The Attorney General of India',
+      Credentials: 'Attorney General of India',
     },
     {
       // "S_No": 38,
@@ -669,10 +669,10 @@ export class WebService {
       // "S_No": 16,
       View: '',
       Profile_Photo: 'speaker10.png',
-      Name: 'Lokesh Ji Muni Acharya, His Holiness',
+      Name: 'Lokesh Ji Muni Acharya, Dr, His Holiness',
       Country: 'INDIA',
       Credentials:
-        'Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader',
+        'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
     },
     {
       // "S_No": 17,
@@ -734,7 +734,7 @@ export class WebService {
       Name: 'Mohammad Tawhidi, Imam',
       Country: 'AUSTRALIA',
       Credentials:
-        'slamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
+        'Islamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
     },
     // list 11
     {
@@ -759,7 +759,7 @@ export class WebService {
       Profile_Photo: 'speaker2.png',
       Name: 'Nadir Godrej',
       Country: 'INDIA',
-      Credentials: 'Industrialist, Chairman, Godrej Industries',
+      Credentials: 'Industrialist: Chairman, Godrej Industries',
     },
     // list 12
     {
@@ -835,7 +835,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Sanjay Khan',
       Country: 'INDIA',
-      Credentials: 'Actor, Producer, Director',
+      Credentials: 'Producer, Director, & Actor',
     },
     // list 15
     {
@@ -904,7 +904,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Venkatramani R, Honorable',
       Country: 'INDIA',
-      Credentials: 'The Attorney General of India',
+      Credentials: 'Attorney General of India',
     },
     {
       // "S_No": 38,
@@ -930,7 +930,7 @@ export class WebService {
       Name: 'Jose Manuel Ramos Horta, His Excellency',
       Country: 'EAST TIMOR',
       Credentials:
-        'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
+        'President, East Timor & Nobel Peace Laureate, 1996',
     },
   ];
 
@@ -1170,10 +1170,10 @@ export class WebService {
             // "S_No": 16,
             View: '',
             Profile_Photo: 'speaker10.png',
-            Name: 'Lokesh Ji Muni Acharya, His Holiness',
+            Name: 'Lokesh Ji Muni Acharya, Dr, His Holiness',
             Country: 'INDIA',
             Credentials:
-              'Founder, Ahimsa Vishwa Bharti & World Peace Ambassador, Jain Religion Spiritual Leader',
+              'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
           {
             // "S_No": 17,
@@ -1244,7 +1244,7 @@ export class WebService {
             Name: 'Mohammad Tawhidi, Imam',
             Country: 'AUSTRALIA',
             Credentials:
-              'slamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
+              'Islamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
           },
         ],
       },
@@ -1274,7 +1274,7 @@ export class WebService {
             Profile_Photo: 'speaker2.png',
             Name: 'Nadir Godrej',
             Country: 'INDIA',
-            Credentials: 'Industrialist, Chairman, Godrej Industries',
+            Credentials: 'Industrialist: Chairman, Godrej Industries',
           },
         ],
       },
@@ -1363,7 +1363,7 @@ export class WebService {
             Profile_Photo: null,
             Name: 'Sanjay Khan',
             Country: 'INDIA',
-            Credentials: 'Actor, Producer, Director',
+            Credentials: 'Producer, Director, & Actor',
           },
         ],
       },
@@ -1445,7 +1445,7 @@ export class WebService {
             Profile_Photo: null,
             Name: 'Venkatramani R, Honorable',
             Country: 'INDIA',
-            Credentials: 'The Attorney General of India',
+            Credentials: 'Attorney General of India',
           },
           {
             // "S_No": 38,
@@ -1475,7 +1475,7 @@ export class WebService {
             Name: 'Jose Manuel Ramos Horta, His Excellency',
             Country: 'EAST TIMOR',
             Credentials:
-              'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
+              'President, East Timor & Nobel Peace Laureate, 1996',
           },
         ],
       },
