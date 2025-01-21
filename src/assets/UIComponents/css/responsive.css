@@ -397,6 +397,12 @@
     font-size: 16px;
     font-weight: 600;
   }
+
+  .head ul li a, .head ul li .dropbtn, .head form, .head form a{
+    padding: 10px 2px;
+    font-size: 8px;
+    font-weight: 600;
+  }
 }
 @media (max-width: 425px) {
   .index .section1 {
