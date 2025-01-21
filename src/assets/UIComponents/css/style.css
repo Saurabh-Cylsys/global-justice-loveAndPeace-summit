@@ -2109,3 +2109,8 @@ color: var(--color3);
   background-color: #3e8e41;
   color: var(--color2) !important;
 }
+
+img{
+  max-width: 100%;
+  height: auto;
+}

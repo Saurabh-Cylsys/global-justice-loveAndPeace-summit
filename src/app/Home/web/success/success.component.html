@@ -1,6 +1,6 @@
 <!-- <h1>Payment Successful</h1> -->
 <div *ngIf="isPaymentStatus == 'complete'" class="col-md-7">
-  <img src="assets/UIComponents/images/paymentmode/payment-success.svg" width="100%" alt="">
+  <img loading="lazy" src="assets/UIComponents/images/paymentmode/payment-success.svg" width="100%" alt="">
 <!-- <div class="card">
   <div class="background-pattern"></div>
   <div class="checkmark">✔</div>
@@ -14,7 +14,7 @@
 <button class="done-button">Done</button> -->
 </div>
 <div *ngIf="isPaymentStatus == 'failed'" class="col-md-7">
-  <img src="assets/UIComponents/images/paymentmode/payment-failed.svg" width="100%" alt="">
+  <img loading="lazy" src="assets/UIComponents/images/paymentmode/payment-failed.svg" width="100%" alt="">
 
 
 </div>
@@ -22,9 +22,9 @@
 
 <!-- <div class="payment-success-container">
     <h1>Payment Successful</h1>
-    <img *ngIf="isPaymentStatus == 'success'" src="assets/UIComponents/images/paymentmode/success-icon.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
-    <img *ngIf="isPaymentStatus == 'failed'" src="assets/UIComponents/images/paymentmode/red-cross.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
-    <img *ngIf="isPaymentStatus == 'pending'" src="assets/UIComponents/images/paymentmode/warning_orange.svg " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <img loading="lazy" *ngIf="isPaymentStatus == 'success'" src="assets/UIComponents/images/paymentmode/success-icon.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <img loading="lazy" *ngIf="isPaymentStatus == 'failed'" src="assets/UIComponents/images/paymentmode/red-cross.png " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
+    <img loading="lazy" *ngIf="isPaymentStatus == 'pending'" src="assets/UIComponents/images/paymentmode/warning_orange.svg " style="width: 200px;" alt="Payment Successful" width="200px" class="success-icon" />
     <p *ngIf="isPaymentStatus == 'success'">Your payment for delegate registration has been successfully processed.</p>
 </div> -->
 

@@ -294,10 +294,10 @@
           *ngIf="!isHomePage"
           [routerLink]="['/home']"
         >
-          <img
+          <img loading="lazy"
             src="assets/UIComponents/images/logo.gif"
             alt=""
-            class="col-md-10"
+            class="col-md-10" 
           />
         </a>
       </div>
@@ -460,7 +460,7 @@
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Download Brochures"
             [routerLink]="['/download-brochure']"
-            >Lang <br><img
+            >Lang <br><img loading="lazy"
               src="assets/UIComponents/images/download.svg"
               alt=""
               class="w-50"
@@ -478,7 +478,7 @@
         [routerLink]="['/home']"
         style="width: 100px"
       >
-        <img src="assets/UIComponents/images/logo.gif" alt="" width="100%" />
+        <img loading="lazy" src="assets/UIComponents/images/logo.gif" alt="" width="100%" />
       </a>
       <button
         class="navbar-toggler border-white list"
