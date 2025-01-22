@@ -1982,6 +1982,7 @@ min-height: 30vh;
   text-align: center;
   font-size: 25px;
   font-weight: 600;
+  border-radius: 10px;
 }
 #p5 .card,
 #p5 .card .card-header {
@@ -1989,6 +1990,10 @@ min-height: 30vh;
 }
 #p5 .card .card-header {
   border-bottom: none;
+}
+
+#p5 .card .card-body img{
+  border-radius: 0 0px 10px 10px;
 }
 
 #phone {

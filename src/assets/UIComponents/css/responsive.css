@@ -723,6 +723,10 @@
     height: auto;
   }
 
+  #p5 .card .card-header {
+    border-bottom: none;
+    font-size: 16px;
+}
   /* #ts4{
     height: 50vh;
   } */
