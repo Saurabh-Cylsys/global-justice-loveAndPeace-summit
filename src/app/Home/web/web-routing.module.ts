@@ -35,14 +35,13 @@ import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     component: WebMainComponent,
 
     children:[
       {path:'home',component:WebHomeComponent,
         data: {
-          title: 'Global Justice, Love and Peace Summit | Dubai',
-          description: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
+          metaKey: 'home'
         },
       },
       // { path: 'AgendaPharma', component: AgendaPharmaPreconnectComponent },
@@ -50,8 +49,7 @@ const routes: Routes = [
       // { path: 'OurLengcy', component: OurLengcyComponent },
       { path: 'DownloadCenter', component: DownloadCenterComponent,
         data: {
-          title: 'Download Center | Global Justice, Love, and Peace Summit 2025',
-          description: 'Access essential resources, materials, and documents related to the Justice, Love, and Peace Movement. Download brochures, event details, and more to stay informed and engaged with our global initiatives.',
+          metaKey: 'DownloadCenter'
         },
        },
       // { path: 'EventPartners', component: EventPartnersComponent },
@@ -68,84 +66,73 @@ const routes: Routes = [
       // {path:'agenda',component:AgendaComponent},
       {path:'awards',component:AwardsComponent,
         data: {
-          title: 'Awards | Global Justice, Love, and Peace Movement | Dubai',
-          description: 'Explore the prestigious awards conferred by the Justice, Love, and Peace Movement through a non-biased, merit-based process conducted by a 28-member global committee across 23 countries. Honoring individuals from all professions who have made a significant impact on society.',
+          metaKey: 'awards'
         },
       },
 
       // summit url
       {path:'the-summit',component:TheSummitComponent,
         data: {
-          title: 'The Summit | Global Justice, Love, and Peace Movement | Dubai',
-          description: 'Explore the Global Justice, Love, and Peace Summit, a platform for collaboration and dialogue to build a fairer, more compassionate world. Learn more about the event and join us in driving positive change.',
+          metaKey: 'the-summit'
         },
       },
       {path:'partners',component:PartnersComponent,
         data: {
-          title: 'Our Partners | Global Justice, Love, and Peace Movement | Dubai',
-          description: 'Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners, contributions and join us in fostering a more peaceful world.',
+          metaKey: 'partners'
         },
       },
       {path:'world-peacekeepers-movement',component:WorldPeacekeepersMovementComponent,
         data: {
-          title: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai ',
-          description: 'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
+          metaKey: 'world-peacekeepers-movement'
         },
       },
       {path:'contact-us',component:ContactUsComponent,
         data: {
-          title: 'Contact Us | Justice, Love, and Peace Movement',
-          description: 'Reach out to the Justice, Love, and Peace Movement for inquiries, support, or collaboration opportunities. Our dedicated team is here to assist you in promoting global harmony and equality.',
+          metaKey: 'contact-us'
         },
       },
       //footer
-      
+
       {path:'privacy-policy',component:PrivacyPolicyComponent,
         data: {
-          title: 'Privacy Policy | Global Justice, Love, and Peace Summit 2025',
-          description: 'Review the Privacy Policy for the Global Justice, Love, and Peace Summit 2025 in Dubai. Understand how we collect, use, and protect your personal information to ensure a secure and transparent experience.',
+          metaKey: 'privacy-policy'
         },
       },
       {path:'accessibility',component:AccessibilityComponent,
         data: {
-          title: 'Accessibility Information | Global Justice, Love, and Peace Summit 2025',
-          description: 'Learn about the accessibility features of the Global Justice, Love, and Peace Summit 2025 in Dubai. We provide accessible parking, entrances, seating areas, sign language interpretation, Braille materials, and live captioning to ensure an inclusive experience for all attendees.',
+          metaKey: 'accessibility'
         },
       },
       {path:'cookie-policy',component:CookiePolicyComponent,
         data: {
-          title: 'Cookie Policy | Global Justice, Love, and Peace Summit 2025',
-          description: 'Learn about the use of cookies on the Global Justice, Love, and Peace Summit 2025 website. Understand how we collect and manage your data to enhance your browsing experience.',
+          metaKey: 'cookie-policy'
         },
       },
       {path:'terms-of-use',component:TermsOfUseComponent,
         data: {
-          title: 'Terms of Use | Global Justice, Love, and Peace Summit 2025',
-          description: 'Review the Terms of Use for the Global Justice, Love, and Peace Summit 2025 in Dubai. Understand the guidelines and policies to ensure a safe and enjoyable experience at the event.',
+          metaKey: 'terms-of-use'
         },
       },
       {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent,
         data: {
-          title: 'Visitor Terms & Conditions | Global Justice, Love, and Peace Summit 2025',
-          description: 'Review the Visitor Terms & Conditions for the Global Justice, Love, and Peace Summit 2025 in Dubai. Understand the guidelines and policies to ensure a safe and enjoyable experience at the event.',
+          metaKey: 'visitor-terms-conditions'
         },
       },
       {path:'chairman-corner',component:ChairmanCornerComponent,
         data: {
-          title: 'Chairmans Corner | Global Justice, Love, and Peace Summit 2025',
-          description: 'Explore insights and messages from the Chairman of the Justice, Love, and Peace Movement, guiding our mission to foster global harmony and equality. Stay informed about leadership perspectives and organizational developments.',
+          metaKey: 'chairman-corner'
         },
       },
       {path:'download-brochure',component:DownloadBrochureComponent},
 
       //Payment
-      
-      
+
+
       {path:'', redirectTo:'home', pathMatch:'full'}
     ]
   },
   {
-    path: '', 
+    path: '',
     component: PaymentMainComponent,
     children:[
       { path: 'payment-status', component: PaymentComponent },

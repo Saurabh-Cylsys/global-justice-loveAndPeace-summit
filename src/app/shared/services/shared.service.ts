@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
 import { Observable, Subject } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, filter } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { Meta } from '@angular/platform-browser';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { META_CONFIG } from '../classes/meta.config';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,8 +25,43 @@ export class SharedService {
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
-    private _toastr: ToastrService
-  ) { }
+    private _toastr: ToastrService,
+    private meta: Meta,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.updateMetaTags());
+  }
+
+  updateMetaTags() {
+    // const route = this.router.routerState.snapshot.root.firstChild;
+
+    const routeData = this.getRouteData();
+
+    if (routeData && routeData.metaKey) {
+      const metaInfo = META_CONFIG[routeData.metaKey];
+
+      if (metaInfo) {
+        // Set the meta tags dynamically using Meta service
+        this.meta.updateTag({ name: 'title', content: metaInfo.title });
+        this.meta.updateTag({ name: 'description', content: metaInfo.description });
+        this.meta.updateTag({ name: 'og:title', content: metaInfo.title });
+        this.meta.updateTag({ name: 'og:description', content: metaInfo.description });
+        this.meta.updateTag({ name: 'og:url', content: metaInfo.link });
+      }
+    }
+}
+
+private getRouteData(): any {
+  let route = this.activatedRoute;
+  while (route.firstChild) {
+    route = route.firstChild;
+  }
+  return route.snapshot.data;
+}
+
   ToastPopup(errorMsg: string, errorModule: string, errorType: string) {
     switch (errorType) {
       case 'error':

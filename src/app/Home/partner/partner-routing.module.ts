@@ -6,11 +6,12 @@ import { PartnerRegistrationComponent } from './components/partner-registration/
 const routes: Routes = [
 
   {
-    path: '', 
+    path: '',
     component: PartnerMainComponent,
 
     children:[
-      {path:'partner-registration',component:PartnerRegistrationComponent},
+      {path:'partner-registration',component:PartnerRegistrationComponent,
+      },
       // {path:'register',component:},
       // {path:'reset-password',component:ResetPasswordComponent},
       {path:'', redirectTo:'/partner-registration', pathMatch:'full'}
