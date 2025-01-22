@@ -60,7 +60,6 @@
                 <!-- (click)="refreshPage('summit',link.fragment)" -->
 
                 <a
-                  class="text-dark"
                   [routerLink]="['/the-summit']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
@@ -101,7 +100,7 @@
             <ul>
               <li *ngFor="let link of partnersLinks">
                 <a
-                  class="text-dark"
+                  
                   [routerLink]="['/partners']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
@@ -139,10 +138,9 @@
           data-bs-parent="#accordionFlushExample"
         >
           <div class="accordion-body">
-            <ul>
+            <ul class="awardLink">
               <li *ngFor="let link of awardsLinks">
                 <a
-                  class="text-dark"
                   [routerLink]="['/awards']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
@@ -183,7 +181,6 @@
             <ul>
               <li *ngFor="let link of peacekeeperLinks">
                 <a
-                  class="text-dark"
                   [routerLink]="['/world-peacekeepers-movement']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
@@ -224,7 +221,6 @@
             <ul>
               <li *ngFor="let link of downloadLinks">
                 <a
-                  class="text-dark"
                   [routerLink]="['/DownloadCenter']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"

@@ -6,7 +6,7 @@ import { delay, filter } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { META_CONFIG } from '../classes/meta.config';
 @Injectable({
@@ -27,6 +27,7 @@ export class SharedService {
     private _apiEndpointsService: ApiEndpointsService,
     private _toastr: ToastrService,
     private meta: Meta,
+    private titleService: Title,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -36,23 +37,32 @@ export class SharedService {
   }
 
   updateMetaTags() {
-    // const route = this.router.routerState.snapshot.root.firstChild;
-
     const routeData = this.getRouteData();
 
     if (routeData && routeData.metaKey) {
-      const metaInfo = META_CONFIG[routeData.metaKey];
+        const metaInfo = META_CONFIG[routeData.metaKey];
 
-      if (metaInfo) {
-        // Set the meta tags dynamically using Meta service
-        this.meta.updateTag({ name: 'title', content: metaInfo.title });
-        this.meta.updateTag({ name: 'description', content: metaInfo.description });
-        this.meta.updateTag({ name: 'og:title', content: metaInfo.title });
-        this.meta.updateTag({ name: 'og:description', content: metaInfo.description });
-        this.meta.updateTag({ name: 'og:url', content: metaInfo.link });
-      }
+        if (metaInfo) {
+            // Set the meta tags dynamically using Meta service
+            this.titleService.setTitle(metaInfo.title);
+            this.meta.updateTag({ name: 'title', content: metaInfo.title });
+            this.meta.updateTag({ name: 'description', content: metaInfo.description });
+            this.meta.updateTag({ property: 'og:title', content: metaInfo.title });
+            this.meta.updateTag({ property: 'og:description', content: metaInfo.description });
+            this.meta.updateTag({ property: 'og:url', content: metaInfo.link });
+
+            // Add or update the canonical link
+            const link: HTMLLinkElement = document.querySelector('link[rel="canonical"]') || document.createElement('link');
+            link.setAttribute('rel', 'canonical');
+            link.setAttribute('href', metaInfo.link);
+            
+            if (!document.head.contains(link)) {
+                document.head.appendChild(link);
+            }
+        }
     }
 }
+
 
 private getRouteData(): any {
   let route = this.activatedRoute;

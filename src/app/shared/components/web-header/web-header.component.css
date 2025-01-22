@@ -609,10 +609,11 @@
 
 .accordion-body ul li{
   border-bottom: 1px solid #005a93;
+  padding: 0 10px;
 }
 
 .accordion-body ul li a{
-  color: #005a93  !important;
+  color: #005a93 ;
   font-weight: 400 !important;
 }
 
@@ -631,5 +632,13 @@
 
 .accordion-body ul {
   background-color: #fff;
-  padding: 0 10px;
+  padding: 0 0;
+}
+
+.awardLink li:nth-child(2){
+  background-color: #128940;
+}
+
+.awardLink li:nth-child(2) a{
+  color: #fff !important;
 }

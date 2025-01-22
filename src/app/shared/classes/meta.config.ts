@@ -1,26 +1,26 @@
 export const META_CONFIG : any = {
   'home': {
-    title: 'Global Justice, Love and Peace Summit | Dubai - April 2025',
-    description: 'Join the Global Justice, Love, and Peace Summit in Dubai - April 2025, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
+    title: 'Global Justice, Love and Peace Summit | Dubai',
+    description: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
     link: 'https://justice-love-peace.com/home'
   },
   'the-summit': {
-    title: 'The Summit | Global Justice, Love, and Peace Movement | Dubai - April 2025',
+    title: 'The Summit | Global Justice, Love, and Peace Movement | Dubai',
     description: 'Explore the Global Justice, Love, and Peace Summit, a platform for collaboration and dialogue to build a fairer, more compassionate world. Learn more about the event and join us in driving positive change.',
     link: 'https://justice-love-peace.com/the-summit'
   },
   'partners': {
-    title: 'Our Partners | Global Justice, Love, and Peace Movement | Dubai - April 2025',
+    title: 'Our Partners | Global Justice, Love, and Peace Movement | Dubai',
     description: "Meet the organizations and individuals collaborating with the Justice, Love, and Peace Movement to promote global harmony and equality. Discover our partners' contributions and join us in fostering a more peaceful world.",
     link: 'https://justice-love-peace.com/partners'
   },
   'awards': {
-    title: 'Awards | Global Justice, Love, and Peace Movement | Dubai - April 2025',
+    title: 'Awards | Global Justice, Love, and Peace Movement | Dubai',
     description: 'Explore the prestigious awards conferred by the Justice, Love, and Peace Movement through a non-biased, merit-based process conducted by a 28-member global committee across 23 countries. Honoring individuals from all professions who have made a significant impact on society.',
     link: 'https://justice-love-peace.com/awards'
   },
   'world-peacekeepers-movement': {
-    title: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai - April 2025 ',
+    title: 'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai ',
     description: "Join the World Peacekeepers Movement, a global initiative forming the world's largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.",
     link: 'https://justice-love-peace.com/world-peacekeepers-movement'
   },
@@ -30,7 +30,7 @@ export const META_CONFIG : any = {
     link: 'https://justice-love-peace.com/DownloadCenter'
   },
   'chairman-corner': {
-    title: 'Global Justice, Love and Peace Summit | Dubai - April 2025',
+    title: 'Chairmans Corner | Global Justice, Love, and Peace Summit 2025',
     description: 'Explore insights and messages from the Chairman of the Justice, Love, and Peace Movement, guiding our mission to foster global harmony and equality. Stay informed about leadership perspectives and organizational developments.',
     link: 'https://justice-love-peace.com/chairman-corner'
   },
