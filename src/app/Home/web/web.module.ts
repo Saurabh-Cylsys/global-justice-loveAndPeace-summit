@@ -42,6 +42,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -80,6 +81,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     PaymentComponent,
     SuccessComponent,
     PaymentCancelComponent,
+    CustomePipePipe
 
     // WhoShouldAttendAndWhyComponent,
 

@@ -470,13 +470,26 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
 }
-#timeline-content {
+.timeline-content {
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  /* height: 100%; */
+  gap: 2rem; /* Space between child elements */
+  padding: 0 0 0 1rem;
 }
+@media (min-width: 320px) {
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 8rem;
+  }
+}
+@media (min-width: 1024px) {
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 8rem;
+  }
+}
+
 
 /* Timeline */
 
@@ -495,7 +508,8 @@ header .nav-item .nav-link.active {
   list-style: none;
   text-align: left;
   font-weight: 100;
-  max-width: 55%;
+  /* max-width: 55%; */
+  max-width: 100%;
 }
 
 .timeline h1 {
@@ -517,6 +531,10 @@ header .nav-item .nav-link.active {
 }
 .timeline h3:last-child{
   margin: 0;
+}
+
+.timeline h3 span{
+  color: var(--color1) !important;
 }
 
 .timeline .event {
@@ -2013,8 +2031,8 @@ min-height: 30vh;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
-  padding-inline: 1.5rem;
-  margin-inline: 3rem;
+  /* padding-inline: 1.5rem; */
+  /* margin-inline: 3rem; */
 }
 
 .nomineeList li {
@@ -2118,4 +2136,8 @@ color: var(--color3);
 img{
   max-width: 100%;
   height: auto;
+}
+
+.timeline h3 span{
+  color: var(--color1) !important;
 }

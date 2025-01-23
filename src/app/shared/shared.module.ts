@@ -6,12 +6,14 @@ import { WebHeaderComponent } from './components/web-header/web-header.component
 import { WebFooterComponent } from './components/web-footer/web-footer.component';
 import { LeftPanelComponent } from './components/left-panel/left-panel.component';
 import { HeaderImgComponent } from './components/header-img/header-img.component';
+// import { CustomePipePipe } from './classes/custome-pipe.pipe';
 @NgModule({
   declarations: [
     WebHeaderComponent,
     WebFooterComponent,
     LeftPanelComponent,
-    HeaderImgComponent
+    HeaderImgComponent,
+    // CustomePipePipe
   ],
   imports: [
     CommonModule,

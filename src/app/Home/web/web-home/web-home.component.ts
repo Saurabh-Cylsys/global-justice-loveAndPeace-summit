@@ -75,10 +75,9 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       title: 'Session 5 HAll 1 JUSTICE HAll 2 PEACE',
       time: '1:30 PM- 3:30 PM',
     },
-    { title: 'Tea & Networking', time: '3:30 PM - 4:30 PM' },
-    { title: 'Session 6 HAll 1 JUSTICE HAll 2 LOVE', time: '4:30 PM- 6:30 PM' },
-    { title: 'Awards', time: '7:30 PM-8:30 PM' },
-    { title: 'Closing Session', time: '8:30 PM-9:00 PM' },
+    { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },
+    { title: 'Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
+    { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
   ngOnInit(): void {

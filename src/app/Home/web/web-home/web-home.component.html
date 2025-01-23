@@ -9,12 +9,12 @@
                 class="col-lg-2 col-md-2 col-2 position-relative"
                 *ngIf="!isMobileView"
               >
-                <img loading="eager"
+                <img
+                  loading="eager"
                   src="assets/UIComponents/images/logo.gif"
                   alt=""
                   class="logo"
                   width="100%"
-                  
                 />
               </div>
               <div
@@ -121,7 +121,8 @@
                 </h2>
                 <h2 class="" *ngIf="isMobileView">
                   SPEAKERS (PEACE AMBASSADORS) CONFIRMATIONS FOR THE GLOBAL
-                  JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL 2025
+                  JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL
+                  2025
                 </h2>
                 <h6 class="editYear">Date: JANUARY 20th, 2025</h6>
               </div>
@@ -227,7 +228,7 @@
                 <div class="row d-lg-none d-md-flex">
                   <div class="col-md-6">
                     <ul class="my-lg-3 d-block text-start">
-                      <li>A. 10 Nobel Peace Laureates </li>
+                      <li>A. 10 Nobel Peace Laureates</li>
                       <li>B. 10 Royalty</li>
                       <li>C. 2 Heads of State</li>
                       <li>D. 9 Religious Leaders</li>
@@ -256,7 +257,7 @@
                 <h2 class="">Profiles of Confirmed Speakers</h2>
 
                 <ul class="my-lg-3">
-                  <li>A. 10 Nobel Peace Laureates </li>
+                  <li>A. 10 Nobel Peace Laureates</li>
                   <li>B. 10 Royalty</li>
                   <li>C. 2 Heads of State</li>
                   <li>D. 9 Religious Leaders</li>
@@ -293,24 +294,30 @@
               <div class="col-12 organiserUL">
                 <ul class="list-unstyled">
                   <li>
-                    &#64; the organisers only consider a FINAL CONFIRMATION, if it
-                    is a WRITTEN CONFIRMATION
+                    &#64; the organisers only consider a FINAL CONFIRMATION, if
+                    it is a WRITTEN CONFIRMATION
                   </li>
                 </ul>
                 <ul class="list-unstyled">
                   <li>
-                    &#64; the conﬁrmations listed above have been put according to
-                    alphabetical order of the name
+                    &#64; the conﬁrmations listed above have been put according
+                    to alphabetical order of the name
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </section>
-        <section class="section7 scroll p-lg-5 h-auto position-relative" id="event1">
-          <div class="container-fluid h-100" style="position: relative;z-index: 1;">
+        <section
+          class="section7 scroll p-lg-5 h-auto position-relative"
+          id="event1"
+        >
+          <div
+            class="container-fluid h-100"
+            style="position: relative; z-index: 1"
+          >
             <div class="row h-100">
-              <div class="col-12"  *ngIf="!isMobileView">
+              <div class="col-12" *ngIf="!isMobileView">
                 <div
                   class="d-lg-flex align-items-center justify-content-between"
                 >
@@ -338,7 +345,7 @@
                   <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-6" >
+              <div class="col-lg-6 col-md-6">
                 <!-- <label for="" class="mb-3">SCHEDULE</label> -->
                 <h1 class="mb-3">
                   SCHEDULE <br />
@@ -353,7 +360,7 @@
                   DOWNLOAD SCHEDULE
                 </button>
               </div>
-              <div class="col-12"  *ngIf="isMobileView">
+              <div class="col-12" *ngIf="isMobileView">
                 <div
                   class="d-lg-flex align-items-center justify-content-between"
                 >
@@ -381,11 +388,11 @@
                   <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
-              <div class="col-lg-8 col-md-6">
+              <div class="col-lg-6 col-md-6">
                 <div class="row">
                   <div class="col-12">
                     <h4 class="event_day">Day 1 - 12th April 2025</h4>
-                    <div id="timeline-content">
+                    <div class="timeline-content">
                       <ul class="timeline">
                         <li
                           class="event"
@@ -396,52 +403,84 @@
                             let i = index
                           "
                         >
-                          <h3 class="fw-bold">{{ event.title }}</h3>
+                          <h3
+                            class="fw-bold"
+                            [innerHTML]="event.title | customePipe"
+                          ></h3>
                         </li>
-                        
+                        <!-- <li class="event" data-date="8:00 AM-10:00 AM">
+                          Registration
+                        </li>
+                        <li class="event" data-date="10:00 AM-10:30 AM">
+                          Opening Session
+                        </li>
+                        <li class="event" data-date="10:00 AM-10:30 AM">
+                          Opening Session
+                        </li> -->
                       </ul>
                     </div>
                   </div>
-                </div>
-                <div class="col-12">
-                  <div class="collapse" id="collapseExample">
-                    <h4 class="event_day mt-3">Day 2 - 13th April 2025</h4>
-                    <div id="timeline-content">
-                      <ul class="timeline">
-                        <li
-                          class="event"
-                          [attr.data-date]="event.time"
-                          [attr.data-count]="i + 1"
-                          *ngFor="
-                            let event of events_day2 ;
-                            let i = index
-                          "
-                        >
-                          <h3 class="fw-bold">{{ event.title }}</h3>
-                        </li>
-                        
-                      </ul>
+                  <div class="col-12">
+                    <div class="collapse" id="collapseExample">
+                      <h4 class="event_day mt-3">Day 2 - 13th April 2025</h4>
+                      <div class="timeline-content">
+                        <ul class="timeline">
+                          <!-- <li
+                            class="event"
+                            [attr.data-date]="event.time"
+                            [attr.data-count]="i + 1"
+                            *ngFor="
+                              let event of events_day2 ;
+                              let i = index
+                            "
+                          >
+                            <h3 class="fw-bold">{{ event.title }}</h3>
+                          </li> -->
+                          <li
+                            class="event"
+                            [attr.data-date]="event.time"
+                            [attr.data-count]="i + 1"
+                            *ngFor="let event of events_day2; let i = index"
+                          >
+                            <h3
+                              class="fw-bold"
+                              [innerHTML]="event.title | customePipe"
+                            ></h3>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
+                    <p class="d-inline-flex gap-1">
+                      <button
+                        class="btn bg-transparent"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample"
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                        (click)="showMore(!isVisibleCount ? true : false)"
+                      >
+                        <b style="color: rgba(3, 192, 75, 0.623)">{{
+                          isVisibleCount == false ? "See More..." : "Less..."
+                        }}</b>
+                      </button>
+                    </p>
                   </div>
-                  <p class="d-inline-flex gap-1">
-                    <button class="btn bg-transparent" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" (click)="showMore(!isVisibleCount ? true : false)">
-                      <b style="color: rgba(3, 192, 75, 0.623)">{{
-                        isVisibleCount == false ? "See More..." : "Less..."
-                      }}</b>
-                    </button>
-                  </p>
                 </div>
+                
               </div>
             </div>
           </div>
-          <img loading="eager"
+          <img
+            loading="eager"
             src="assets/UIComponents/images/watermark.png"
             alt=""
             class="position-absolute"
             style="left: 0; bottom: 0; width: 20rem"
             *ngIf="!isMobileView"
           />
-          <img loading="eager"
+          <img
+            loading="eager"
             src="assets/UIComponents/images/watermark.png"
             alt=""
             class="position-absolute"
@@ -459,12 +498,11 @@
                   height="450"
                   style="border: 0"
                   allowfullscreen=""
-                  
                   referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
 
-                <img loading="eager"
-                  
+                <img
+                  loading="eager"
                   src="assets/UIComponents/images/index/GHD.svg"
                   alt="Second Image"
                   class="position-absolute second-image"
