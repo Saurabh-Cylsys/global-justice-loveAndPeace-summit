@@ -179,7 +179,7 @@ header .nav-item .nav-link.active {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  text-shadow: 0px 1.11px 4.44px #ffffff50;
+  text-shadow: 0px 1.11px 4.44px #000000;
 }
 
 .index .section1 .tableBox table tr td p {

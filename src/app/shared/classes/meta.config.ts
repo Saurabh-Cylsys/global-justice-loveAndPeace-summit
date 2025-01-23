@@ -2,7 +2,7 @@ export const META_CONFIG : any = {
   'home': {
     title: 'Global Justice, Love and Peace Summit | Dubai',
     description: 'Join the Global Justice, Love, and Peace Summit in Dubai, a transformative event uniting leaders, activists, and visionaries to promote equality, compassion, and harmony worldwide. Be part of the change!',
-    link: 'https://justice-love-peace.com/home'
+    link: 'https://justice-love-peace.com'
   },
   'the-summit': {
     title: 'The Summit | Global Justice, Love, and Peace Movement | Dubai',
