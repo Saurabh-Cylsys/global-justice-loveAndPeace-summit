@@ -39,11 +39,14 @@ const routes: Routes = [
     component: WebMainComponent,
 
     children:[
-      {path:'home',component:WebHomeComponent,
-        data: {
-          metaKey: 'home'
-        },
-      },
+      { path: 'home', redirectTo: '', pathMatch: 'full' }, // Redirect /home to /
+ 
+      { path: '', component: WebHomeComponent, data: { metaKey: 'home' } },
+      // {path:'home',component:WebHomeComponent,
+      //   data: {
+      //     metaKey: 'home'
+      //   },
+      // },
       // { path: 'AgendaPharma', component: AgendaPharmaPreconnectComponent },
       // { path: 'Faqs', component: FaqsComponent },
       // { path: 'OurLengcy', component: OurLengcyComponent },

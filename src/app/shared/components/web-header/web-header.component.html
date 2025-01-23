@@ -279,7 +279,8 @@
 <!-- header start -->
 <header
   class="head"
-  [class.hide-logo]="_router.url === '/home'"
+  
+  [class.hide-logo]="_router.url === '/home' || _router.url === '/'"
   *ngIf="!isMobileView"
 >
   <div class="container-fluid">
@@ -287,7 +288,6 @@
       <div class="col-md-1" *ngIf="!isHomePage">
         <a
           class="navbar-brand logo"
-          *ngIf="!isHomePage"
           [routerLink]="['/home']"
         >
           <img loading="eager"
@@ -301,8 +301,11 @@
         <ul
           class="navbar-nav m-auto align-items-center d-flex flex-row m-auto navbar-nav justify-content-end py-4"
         >
-          <li class="nav-item" routerLinkActive="active">
+          <!-- <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/home']">Home</a>
+          </li> -->
+          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
