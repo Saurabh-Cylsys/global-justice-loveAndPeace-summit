@@ -39,7 +39,7 @@ export class ChairmanCornerComponent {
 
 
   checkWindowSize(): void {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 900) {
       this.SharedService.isMobileView.next(true);
       this.isMobileView = true;
     } else {

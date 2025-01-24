@@ -2128,6 +2128,18 @@ color: var(--color3);
   background-repeat: no-repeat;
 }
 
+.custom-list .lifetime::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 8px;
+  width: 24px; /* Adjust the size of the marker */
+  height: 24px;
+  background-image: url("../../UIComponents/images/awards/lifetimeLogo.svg"); /* Path to your SVG file */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .awardLink a:nth-child(2){
   background-color: #3e8e41;
   color: var(--color2) !important;
@@ -2140,4 +2152,15 @@ img{
 
 .timeline h3 span{
   color: var(--color1) !important;
+}
+
+@media (min-width: 320px){
+  .chairmanCenter, .chairmanCenter h2 {
+    text-align: center !important;
+  }
+  }
+@media (min-width: 1024px){
+.chairmanCenter, .chairmanCenter h2 {
+  text-align: start !important;
+}
 }
