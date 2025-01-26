@@ -50,10 +50,10 @@ export class TheSummitComponent implements OnInit {
     { title: 'Dinner & Networking', time: '7:30 PM-9:30 PM' },
   ];
   events_day2 = [
-    { title: 'Session 4 HAll 1 LOVE  HAll 2 PEACE', time: '10:00 AM-12:30 PM' },
+    { title: 'Session 4 HAll 1 LOVE  HAll 2 JUSTICE', time: '10:00 AM-12:30 PM' },
     { title: 'Lunch', time: '12:30 PM-1:30 PM' },
     {
-      title: 'Session 5 HAll 1 JUSTICE HAll 2 PEACE',
+      title: 'Session 5 HAll 1 JUSTICE HAll 2 LOVE',
       time: '1:30 PM- 3:30 PM',
     },
     { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },

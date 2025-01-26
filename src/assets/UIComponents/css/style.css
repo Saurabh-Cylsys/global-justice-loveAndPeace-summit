@@ -39,7 +39,7 @@
   --radius: 4px;
   --date: 120px;
   --dotborder: 4px;
-  --dot: 20px;
+  --dot: 24px;
   --line: 5px;
 }
 /* header css start */
@@ -540,8 +540,8 @@ header .nav-item .nav-link.active {
 .timeline .event {
   border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* fade equivalent */
   padding-bottom: calc(var(--spacing) * 0.5);
-  /* margin-bottom: 10px; */
-  margin-bottom: 0;
+  margin-bottom: 10px;
+  /* margin-bottom: 0; */
   position: relative;
 }
 
@@ -1690,6 +1690,7 @@ header .nav-item .nav-link.active {
 .confirmation table tr td {
   background-color: transparent;
   padding-block: 3px;
+  color: #414241;
 }
 
 .confirmation table tr td:nth-child(2) {
@@ -1707,6 +1708,11 @@ header .nav-item .nav-link.active {
   margin-inline: 15px;
   color: #4a4a49;
   font-weight: 600;
+  line-height: 3;
+}
+
+.indexSec2 ul li span{
+  color: var(--color3);
 }
 
 .indexSec2 ul li::marker {
