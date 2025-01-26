@@ -37,7 +37,7 @@ export class TheSummitComponent implements OnInit {
   visibleCount: number = 5; // Initial number of events to show
   isVisibleCount: boolean = false;
   events_day1 = [
-    { title: 'Registration', time: '8:00 AM-10:00 AM' },
+    { title: 'Registration/Refreshment', time: '8:00 AM-10:00 AM' },
     { title: 'Opening Session', time: '10:00 AM-10:30 AM' },
     {
       title: 'Session 1 HAll 1 JUSTICE HAll 2 PEACE',
@@ -51,13 +51,13 @@ export class TheSummitComponent implements OnInit {
   ];
   events_day2 = [
     { title: 'Session 4 HAll 1 LOVE  HAll 2 PEACE', time: '10:00 AM-12:30 PM' },
-    { title: 'Lunch & Networking', time: '12:30 PM-1:30 PM' },
+    { title: 'Lunch', time: '12:30 PM-1:30 PM' },
     {
       title: 'Session 5 HAll 1 JUSTICE HAll 2 PEACE',
       time: '1:30 PM- 3:30 PM',
     },
     { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },
-    { title: 'Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
+    { title: 'Session 6 Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
     { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];

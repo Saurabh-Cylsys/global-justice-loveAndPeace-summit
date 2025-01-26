@@ -38,7 +38,21 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       Name: 'Jose Manuel Ramos Horta, His Excellency',
       Country: 'EAST TIMOR',
       Credentials:
-        'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
+        'President, East Timor & Nobel Peace Laureate, 1996',
+    },
+    {
+      S_No: 2,
+      Name: 'Joseph Boakai, His Excellency',
+      Country: 'LIBERIA',
+      Credentials:
+        'President of Liberia',
+    },
+    {
+      S_No: 3,
+      Name: 'Sri Sri Ravishankar, Gurudev',
+      Country: 'INDIA',
+      Credentials:
+        'World Spiritual Guru : Founder, Art of Living',
     },
   ];
 
@@ -56,7 +70,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   events_day1 = [
-    { title: 'Registration', time: '8:00 AM-10:00 AM' },
+    { title: 'Registration/Refreshment', time: '8:00 AM-10:00 AM' },
     { title: 'Opening Session', time: '10:00 AM-10:30 AM' },
     {
       title: 'Session 1 HAll 1 JUSTICE HAll 2 PEACE',
@@ -70,13 +84,13 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   ];
   events_day2 = [
     { title: 'Session 4 HAll 1 LOVE  HAll 2 PEACE', time: '10:00 AM-12:30 PM' },
-    { title: 'Lunch & Networking', time: '12:30 PM-1:30 PM' },
+    { title: 'Lunch', time: '12:30 PM-1:30 PM' },
     {
       title: 'Session 5 HAll 1 JUSTICE HAll 2 PEACE',
       time: '1:30 PM- 3:30 PM',
     },
     { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },
-    { title: 'Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
+    { title: 'Session 6 Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
     { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
