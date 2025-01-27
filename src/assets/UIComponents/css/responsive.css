@@ -142,6 +142,7 @@
 
   .index .section5 h2,
   .index .section6 h2,
+  .index .section6 h1,
   .index .section9 h2 {
     font-size: 18px;
   }
@@ -260,7 +261,7 @@
   .contact-info p {
     font-size: 12px !important;
   }
-  .indexSec2 h2 {
+  .indexSec2 h2, .indexSec2 h1 {
     font-size: 13px !important;
     line-height: 28.52px !important;
     margin-top: 10px;
@@ -480,6 +481,7 @@
 
   .index .section5 h2,
   .index .section6 h2,
+  .index .section6 h1,
   .index .section9 h2 {
     font-size: 18px;
   }
