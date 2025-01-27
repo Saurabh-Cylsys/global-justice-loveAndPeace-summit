@@ -1002,8 +1002,7 @@
                     type="button"
                     class="btn btn-success text-white text-center px-5"
                     [disabled]="
-                      this.peacekeepersForm.invalid
-                    "
+                      this.peacekeepersForm.invalid || this.selectedFile== null"
                   >
                     Save
                   </button>

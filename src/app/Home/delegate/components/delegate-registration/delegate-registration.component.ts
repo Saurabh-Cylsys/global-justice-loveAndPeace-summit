@@ -439,15 +439,17 @@ console.log(formattedMobileNumber);
         this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
           if (result.success) {
             console.log("result", result);
-            this.ngxService.stop();
+            // this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success')
             this.registrationForm.reset();
 
-            this.openPopup();
+            // this.openPopup();
+
 
           setTimeout(() => {
 
             console.log('get payment URL',result.url);
+            this.ngxService.stop();
             if (result.url) {
               window.location.href = result.url; // Redirect to Stripe Checkout
             }
