@@ -362,7 +362,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
-
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
@@ -385,7 +384,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         },
       } as any;
       this.fileChangeEvent(fileInputEvent);
+      console.log(this.peacekeepersForm);
     }
+
   }
 
   onDragOver(event: DragEvent): void {
@@ -509,6 +510,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.is_selectedFile = false;
     this.display = 'none';
     this.showPopup = false;
+    this.selectedFile = null;
   }
 
   imageLoaded() {
