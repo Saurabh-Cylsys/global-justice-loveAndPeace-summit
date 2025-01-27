@@ -88,6 +88,7 @@ header .nav-item .nav-link.active {
   background: linear-gradient(90.07deg, #0a263b 0.16%, #082031 99.56%);
   padding: 0;
 }
+
 .index .section1 {
   background-image: url(../images/index/banner.gif);
   /* background-size: 90% 100%; */
@@ -95,6 +96,22 @@ header .nav-item .nav-link.active {
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
   height: 90vh; /* Keeps the height relative to the viewport */
+}
+
+@media (min-width: 768px) {
+  .index .section1 {
+    height: 50vh; /* Keeps the height relative to the viewport */
+  }
+}
+@media (min-width: 1024px) {
+  .index .section1 {
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%; 
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    height: 90vh; /* Keeps the height relative to the viewport */
+  }
 }
 .index .section1 .logo {
   position: absolute;
@@ -317,7 +334,7 @@ header .nav-item .nav-link.active {
   background-color: var(--color1);
   text-align: center;
 }
-.index .section6 h2 {
+.index .section6 h2,.index .section6 h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 51.52px;
@@ -1728,7 +1745,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
 }
 
-.indexSec2 h2 {
+.indexSec2 h2, .indexSec2 h1 {
   font-size: 26px !important;
 }
 
