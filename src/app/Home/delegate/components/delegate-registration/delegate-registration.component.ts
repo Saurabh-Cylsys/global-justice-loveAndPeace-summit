@@ -444,7 +444,15 @@ console.log(formattedMobileNumber);
             this.registrationForm.reset();
 
             this.openPopup();
-           
+
+          setTimeout(() => {
+
+            console.log('get payment URL',result.url);
+            if (result.url) {
+              window.location.href = result.url; // Redirect to Stripe Checkout
+            }
+            
+          }, 5000);
            
           } else {
             this.ngxService.stop();
