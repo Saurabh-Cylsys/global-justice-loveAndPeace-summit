@@ -18,16 +18,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Home/delegate/delegate.module').then((m) => m.DelegateModule)
   },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./Home/partner/partner.module').then((m) => m.PartnerModule)
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./Home/speaker/speaker.module').then((m) => m.SpeakerModule)
-  },
+
   {
     path: '',
     loadChildren: () =>
