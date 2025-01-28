@@ -13,7 +13,10 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { WebService } from '../webz-services/web.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import SwiperCore, { EffectCards, Navigation, Pagination, SwiperOptions, Autoplay } from 'swiper';
 
+// Install Swiper modules
+SwiperCore.use([EffectCards, Navigation, Pagination, Autoplay]);
 declare var AOS: any;
 
 @Component({
@@ -56,6 +59,25 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     },
   ];
 
+  swiperConfig: SwiperOptions = {
+    effect: "cards",
+    grabCursor: true,
+    initialSlide: 2,
+    speed: 500,
+    loop: true,
+    mousewheel: {
+      invert: false,
+    },
+    autoplay: {
+      delay: 3000, // Time (in milliseconds) between transitions
+      disableOnInteraction: false, // Continue autoplay even after user interaction
+    },
+  };
+  
+
+
+  slides : any = []
+
   // headerIcon:any
   constructor(
     private _router: Router,
@@ -95,6 +117,21 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
   ngOnInit(): void {
+
+    fetch('assets/speakers.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('JSON data:', data);
+        this.slides = data; // Use the fetched data in your component
+      })
+      .catch(error => {
+        console.error('There was a problem fetching the JSON file:', error);
+      });
     // this.setMetaTags();
     // this.setCanonicalUrl('https://www.justice-love-peace.com/home');
     this.checkWindowSize();

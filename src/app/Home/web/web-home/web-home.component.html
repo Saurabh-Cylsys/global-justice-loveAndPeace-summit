@@ -305,6 +305,31 @@
             </div>
           </div>
         </section>
+        <section class="section6 p-lg-5 speakers indexSec2">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="speakers-container">
+                  <h2>SPEAKERS (PEACE AMBASSADORS)</h2>
+                  <swiper
+                    [effect]="'cards'"
+                    [grabCursor]="true"
+                    [navigation]="true"
+                    [autoplay]="{ delay: 3000, disableOnInteraction: false }"
+                    class="mySwiper"
+                  >
+                    <ng-template swiperSlide *ngFor="let slide of slides">
+                      <div class="mycard">
+                          <img [src]="slide.path" class="speaker-image" />
+                      </div>
+                    </ng-template>
+                  </swiper>
+                  <button class="see-all-button btn btn-success" data-bs-toggle="modal" data-bs-target="#seeAllSpeakers">See all Speakers</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section
           class="section7 scroll p-lg-5 h-auto position-relative"
           id="event1"
@@ -546,3 +571,26 @@
 </button> -->
 
 <!-- Modal -->
+
+
+
+<div class="modal fade" id="seeAllSpeakers" tabindex="-1" aria-labelledby="seeAllSpeakersLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 text-end">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="col-md-3 py-3" *ngFor="let slide of slides">
+            <div class="card">
+              <div class="card-body p-0">
+                <img [src]="slide.path" class="speaker-image" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -43,6 +43,7 @@ import { SuccessComponent } from './success/success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
+import { SwiperModule } from 'swiper/angular';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
@@ -96,6 +97,7 @@ import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
     QRCodeModule,
    IntlInputPhoneModule,
    ImageCropperModule,
+   SwiperModule,
    BsDatepickerModule.forRoot()
   ]
 })
