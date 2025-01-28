@@ -410,7 +410,7 @@
     </div>
   </div>
   <div class="section" id="ts3">
-    <div class="section6 p-lg-5 py-5 speakers scroll position-relative">
+    <div class="section6  py-5 speakers scroll position-relative">
       <div class="container-fluid h-100">
         <div class="row align-items-center align-content-center h-100">
           <div class="col-md-12">
@@ -433,7 +433,7 @@
                   [attr.aria-label]="'Slide ' + (i + 1)"
                 ></button>
               </div>
-              <div class="carousel-inner">
+              <div class="carousel-inner px-5">
                 <div
                   class="carousel-item"
                   *ngFor="let group of speakersList; let i = index"
@@ -442,7 +442,7 @@
                 >
                   <div class="row">
                     <div
-                      class="col-md-4"
+                      class="col-md-4 mx-auto"
                       *ngFor="let speaker of group.speakers"
                     >
                       <ul class="list-unstyled p-0">
@@ -454,7 +454,7 @@
                               speaker.Profile_Photo
                                 ? 'assets/UIComponents/images/speakers/' +
                                   speaker.Profile_Photo
-                                : 'assets/UIComponents/images/speakers/null.png'
+                                : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
                             "
                             alt="{{ speakers.Name }}"
                             class="profile-photo"

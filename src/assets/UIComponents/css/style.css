@@ -1626,6 +1626,9 @@ header .nav-item .nav-link.active {
 
 .head form a {
   font-weight: 400 !important;
+  display: inline-flex;
+  /* width: 100%; */
+  align-items: center;
 }
 
 #international_committee .modal-content {
@@ -1681,6 +1684,7 @@ header .nav-item .nav-link.active {
 .confirmation tr {
   border-style: dashed;
   border-color: var(--color-dim);
+  border-width: 1px;
 }
 
 .confirmation thead tr,
@@ -2185,5 +2189,9 @@ img{
 @media (min-width: 1024px){
 .chairmanCenter, .chairmanCenter h2 {
   text-align: start !important;
+}
+
+#ts3 .carousel-item{
+  min-height: 65vh;
 }
 }
