@@ -153,10 +153,11 @@
   }
 
   .index .section5 h2,
+  .index .section5 h1,
   .index .section6 h2,
   .index .section6 h1,
   .index .section9 h2 {
-    font-size: 18px;
+    font-size: 22px;
   }
   .index .section1 .cardMain h5 {
     font-size: 14px;
@@ -314,7 +315,7 @@
     font-weight: 600;
   }
 
-  .awards .section4 h2 {
+  .awards .section4 h1 {
     font-size: 24px;
   }
 
@@ -650,7 +651,7 @@
     font-weight: 600;
   }
 
-  .awards .section4 h2 {
+  .awards .section4 h1 {
     font-size: 24px;
   }
 

@@ -37,7 +37,7 @@ export class TheSummitComponent implements OnInit {
   visibleCount: number = 5; // Initial number of events to show
   isVisibleCount: boolean = false;
   events_day1 = [
-    { title: 'Registration/Refreshment', time: '8:00 AM-10:00 AM' },
+    { title: 'Registration / Refreshment', time: '8:00 AM-10:00 AM' },
     { title: 'Opening Session', time: '10:00 AM-10:30 AM' },
     {
       title: 'Session 1 HAll 1 JUSTICE HAll 2 PEACE',
