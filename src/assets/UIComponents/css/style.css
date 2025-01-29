@@ -1678,7 +1678,7 @@ header .nav-item .nav-link.active {
 
 .confirmation table tr th {
   white-space: pre;
-  text-align: center;
+  text-align: left;
   color: #fff;
 }
 
@@ -2197,4 +2197,11 @@ img{
 #ts3 .carousel-item{
   min-height: 65vh;
 }
+}
+
+
+button:active, button:focus{
+  outline: none !important;
+  box-shadow: none;
+  border: none;
 }
