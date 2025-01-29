@@ -1,19 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WebHomeComponent } from './web-home/web-home.component';
-// import { PhotosComponent } from './photos/photos.component';
-// import { MediaPartnersComponent } from './media-partners/media-partners.component';
-// import { JoinOurmailingListComponent } from './join-ourmailing-list/join-ourmailing-list.component';
-// import { SpeakerComponent } from './speaker/speaker.component';
-// import { SpeakerPostComponent } from './speaker-post/speaker-post.component';
-// import { EventPartnersComponent } from './event-partners/event-partners.component';
 import { DownloadCenterComponent } from './download-center/download-center.component';
 import { WebMainComponent } from './web-main/web-main.component';
-// import { WhoShouldAttendComponent } from './who-should-attend/who-should-attend.component';
-// import { AboutUsComponent } from './about-us/about-us.component';
-// import { BrochureComponent } from './brochure/brochure.component';
-// import { SalesBrochureComponent } from './sales-brochure/sales-brochure.component';
-// import { AgendaComponent } from './agenda/agenda.component';
 import { AwardsComponent } from './awards/awards.component';
 import { TheSummitComponent } from './the-summit/the-summit.component';
 import { PartnersComponent } from './partners/partners.component';
@@ -35,103 +24,120 @@ const routes: Routes = [
     path: '',
     component: WebMainComponent,
 
-    children:[
+    children: [
       { path: 'home', redirectTo: '', pathMatch: 'full' }, // Redirect /home to /
- 
+
       { path: '', component: WebHomeComponent, data: { metaKey: 'home' } },
       // {path:'home',component:WebHomeComponent,
       //   data: {
       //     metaKey: 'home'
       //   },
       // },
-      {path:'the-summit',component:TheSummitComponent,
+      {
+        path: 'the-summit',
+        component: TheSummitComponent,
         data: {
-          metaKey: 'the-summit'
+          metaKey: 'the-summit',
         },
       },
-      {path:'partners',component:PartnersComponent,
+      {
+        path: 'partners',
+        component: PartnersComponent,
         data: {
-          metaKey: 'partners'
+          metaKey: 'partners',
         },
       },
-      {path:'awards',component:AwardsComponent,
+      {
+        path: 'awards',
+        component: AwardsComponent,
         data: {
-          metaKey: 'awards'
+          metaKey: 'awards',
         },
       },
-      {path:'world-peacekeepers-movement',component:WorldPeacekeepersMovementComponent,
+      {
+        path: 'world-peacekeepers-movement',
+        component: WorldPeacekeepersMovementComponent,
         data: {
-          metaKey: 'world-peacekeepers-movement'
+          metaKey: 'world-peacekeepers-movement',
         },
       },
-      { path: 'DownloadCenter', component: DownloadCenterComponent,
+      {
+        path: 'DownloadCenter',
+        component: DownloadCenterComponent,
         data: {
-          metaKey: 'DownloadCenter'
-        },
-       },
-       {path:'chairman-corner',component:ChairmanCornerComponent,
-        data: {
-          metaKey: 'chairman-corner'
+          metaKey: 'DownloadCenter',
         },
       },
-      {path:'download-brochure',component:DownloadBrochureComponent},
-      
-      
-      {path:'contact-us',component:ContactUsComponent,
+      {
+        path: 'chairman-corner',
+        component: ChairmanCornerComponent,
         data: {
-          metaKey: 'contact-us'
+          metaKey: 'chairman-corner',
+        },
+      },
+      { path: 'download-brochure', component: DownloadBrochureComponent },
+
+      {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        data: {
+          metaKey: 'contact-us',
         },
       },
 
       //footer
 
-      {path:'privacy-policy',component:PrivacyPolicyComponent,
+      {
+        path: 'privacy-policy',
+        component: PrivacyPolicyComponent,
         data: {
-          metaKey: 'privacy-policy'
+          metaKey: 'privacy-policy',
         },
       },
-      {path:'accessibility',component:AccessibilityComponent,
+      {
+        path: 'accessibility',
+        component: AccessibilityComponent,
         data: {
-          metaKey: 'accessibility'
+          metaKey: 'accessibility',
         },
       },
-      {path:'cookie-policy',component:CookiePolicyComponent,
+      {
+        path: 'cookie-policy',
+        component: CookiePolicyComponent,
         data: {
-          metaKey: 'cookie-policy'
+          metaKey: 'cookie-policy',
         },
       },
-      {path:'terms-of-use',component:TermsOfUseComponent,
+      {
+        path: 'terms-of-use',
+        component: TermsOfUseComponent,
         data: {
-          metaKey: 'terms-of-use'
+          metaKey: 'terms-of-use',
         },
       },
-      {path:'visitor-terms-conditions',component:VisitorTermsOnditionsComponent,
+      {
+        path: 'visitor-terms-conditions',
+        component: VisitorTermsOnditionsComponent,
         data: {
-          metaKey: 'visitor-terms-conditions'
+          metaKey: 'visitor-terms-conditions',
         },
       },
-      
 
-      //Payment
-
-
-      {path:'', redirectTo:'home', pathMatch:'full'}
-    ]
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+    ],
   },
   {
     path: '',
     component: PaymentMainComponent,
-    children:[
+    children: [
       { path: 'payment-status', component: PaymentComponent },
       { path: 'success', component: SuccessComponent },
-
-    ]
-  }
-
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class WebRoutingModule { }
+export class WebRoutingModule {}
