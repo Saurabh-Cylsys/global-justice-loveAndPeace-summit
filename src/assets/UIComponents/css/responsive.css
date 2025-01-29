@@ -539,9 +539,9 @@
   }
 }
 @media (max-width: 425px) {
-  /* .index .section1 .bgColor {
+  .index .section1 .bgColor {
     background: var(--gradient5);
-  } */
+  }
 
   .index .section1 .logo {
     position: relative;
