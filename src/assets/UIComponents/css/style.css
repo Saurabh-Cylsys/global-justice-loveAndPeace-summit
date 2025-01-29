@@ -96,24 +96,9 @@ header .nav-item .nav-link.active {
   background-size: 85% 100%;
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
-  height: 90vh; /* Keeps the height relative to the viewport */
+  min-height: 90vh; /* Keeps the height relative to the viewport */
 }
 
-@media (min-width: 768px) {
-  .index .section1 {
-    height: 50vh; /* Keeps the height relative to the viewport */
-  }
-}
-@media (min-width: 1024px) {
-  .index .section1 {
-    background-image: url(../images/index/banner.gif);
-    /* background-size: 90% 100%; */
-    background-size: 85% 100%;
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    height: 90vh; /* Keeps the height relative to the viewport */
-  }
-}
 .index .section1 .logo {
   position: absolute;
   /* top: -50px;
@@ -496,23 +481,12 @@ header .nav-item .nav-link.active {
   gap: 2rem; /* Space between child elements */
   padding: 0 0 0 1rem;
 }
-@media (min-width: 320px) {
-  .timeline-content {
-    gap: 4rem;
-    padding: 0 0 0 9rem;
-  }
-}
-@media (min-width: 1024px) {
-  .timeline-content {
-    gap: 4rem;
-    padding: 0 0 0 8rem;
-  }
-}
 
 /* Timeline */
 
 .timeline {
-  border-left: var(--line) solid var(--color3);
+  /* border-left: var(--line) solid var(--color3); */
+  border-left: 3px solid var(--color3);
   border-bottom-right-radius: var(--radius);
   border-top-right-radius: var(--radius);
   background: rgba(255, 255, 255, 0.03); /* fade equivalent */
@@ -1006,6 +980,10 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
+}
+
+.chairman li:nth-child(3) {
+  font-weight: 600;
 }
 
 .index .section7 h2, .partner .section7 h1 {
@@ -1640,6 +1618,10 @@ header .nav-item .nav-link.active {
   letter-spacing: 1px;
 }
 
+.head ul li .dropbtn{
+  border: 1px solid #fff;
+}
+
 .head form a {
   font-weight: 400 !important;
   display: inline-flex;
@@ -1690,8 +1672,8 @@ header .nav-item .nav-link.active {
 }
 
 .confirmation table tr th {
-  white-space: pre;
-  text-align: center;
+  white-space: nowrap;
+  text-align: left;
   color: #fff;
 }
 
@@ -1929,7 +1911,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: auto;
   color: var(--color1) !important;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 #sBg6 {
@@ -1949,41 +1931,9 @@ header .nav-item .nav-link.active {
   align-items: center;
 }
 
-@media (max-width: 1024px) {
-  .main-body .scroll {
-    min-height: 100vh;
-  }
-}
-/* Medium screens (tablets) */
-@media (max-width: 768px) {
-  .main-body .scroll {
-    min-height: 40vh;
-  }
-}
 
-/* Small screens (phones) */
-@media (max-width: 480px) {
-  #ts4,
-  #p2,
-  #p4,
-  #dc2,
-  #ts3 .scroll {
-    min-height: 50vh;
-  }
-  #p1 {
-    min-height: 30vh;
-  }
-  .main-body .scroll {
-    min-height: 100vh;
-  }
-}
 
-/* Extra small screens (tiny devices) */
-@media (max-width: 320px) {
-  .main-body .scroll {
-    min-height: 100vh;
-  }
-}
+
 
 #p4 h3,
 #p4 p {
@@ -2242,3 +2192,11 @@ img {
 border-color: #005b94;
   border-image-source: linear-gradient(180deg, #005b94 0%, #128940 100%);
 } */
+
+
+
+button:active, button:focus{
+  outline: none !important;
+  box-shadow: none;
+  border: none;
+}
