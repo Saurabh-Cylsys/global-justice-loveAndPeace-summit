@@ -179,6 +179,14 @@ export class WebService {
       // "S_No": 12,
       View: '',
       Profile_Photo: null,
+      Name: 'Hlubi Mboya-Arnold',
+      Country: 'SOUTH AFRICA',
+      Credentials: 'Actress, Humanitarian',
+    },
+    {
+      // "S_No": 12,
+      View: '',
+      Profile_Photo: null,
       Name: 'Hoda Galal Yassa, Dr.',
       Country: 'EGYPT',
       Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -190,6 +198,14 @@ export class WebService {
       Name: 'Houcine Abbasi',
       Country: 'TUNISIA',
       Credentials: 'Educationist : Nobel Peace Laureate 2015',
+    },
+    {
+      // "S_No": 12,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Jacqueline Fernandez',
+      Country: 'SRI LANKA, INDIA',
+      Credentials: 'Beauty Queen, Actress',
     },
     {
       // "S_No": 13,
@@ -207,6 +223,14 @@ export class WebService {
       Name: 'Kailash Satyarthi',
       Country: 'INDIA',
       Credentials: 'Social Activist, Nobel Peace Laureate 2014',
+    },
+    {
+      // "S_No": 14,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Kili Paul',
+      Country: 'TANZANIAN',
+      Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
     },
     {
       // "S_No": 14,
@@ -342,6 +366,14 @@ export class WebService {
       Credentials: 'Industrialist : Chairman, TAF Global',
     },
     {
+      // "S_No": 17,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Nadia Murad',
+      Country: 'IRAQ',
+      Credentials: 'Social Activist: Nobel Peace Laureate 2018',
+    },
+    {
       // "S_No": 25,
       View: 'nadir',
       Profile_Photo: 'speaker2.png',
@@ -384,6 +416,14 @@ export class WebService {
     },
     // list 15
     {
+      // "S_No": 27,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Oscar Arias Sanchez, His Excellency ',
+      Country: 'COSTA RICA',
+      Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
+    },
+    {
       // "S_No": 28,
       View: '',
       Profile_Photo: 'speaker35.png',
@@ -391,15 +431,15 @@ export class WebService {
       Country: 'SPAIN',
       Credentials: 'Artist, Peace Painter (live performance)',
     },
-    {
-      // "S_No": 29,
-      View: '',
-      Profile_Photo: null,
-      Name: 'P V Sindhu',
-      Country: 'INDIA',
-      Credentials:
-        'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
-    },
+    // {
+     
+    //   View: '',
+    //   Profile_Photo: null,
+    //   Name: 'P V Sindhu',
+    //   Country: 'INDIA',
+    //   Credentials:
+    //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
+    // },
     {
       // "S_No": 30,
       View: 'rina',
@@ -452,6 +492,14 @@ export class WebService {
       Credentials: 'Producer, Director, & Actor',
     },
     {
+      // "S_No": 34,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Sanjeev Kapoor',
+      Country: 'INDIA',
+      Credentials: 'World Renowned Chef',
+    },
+    {
       // "S_No": 33,
       View: 'satpal',
       Profile_Photo: 'speaker15.png',
@@ -467,6 +515,14 @@ export class WebService {
       Name: 'Shirin Ebadi, Dr. ',
       Country: 'IRAN',
       Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
+    },
+    {
+      // "S_No": 34,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
+      Country: 'LIBERIA',
+      Credentials: 'Chief Justice of Liberia',
     },
     {
       // "S_No": 34,
@@ -711,6 +767,14 @@ export class WebService {
       // "S_No": 12,
       View: '',
       Profile_Photo: null,
+      Name: 'Hlubi Mboya-Arnold',
+      Country: 'SOUTH AFRICA',
+      Credentials: 'Actress, Humanitarian',
+    },
+    {
+      // "S_No": 12,
+      View: '',
+      Profile_Photo: null,
       Name: 'Hoda Galal Yassa, Dr.',
       Country: 'EGYPT',
       Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -722,6 +786,14 @@ export class WebService {
       Name: 'Houcine Abbasi',
       Country: 'TUNISIA',
       Credentials: 'Educationist : Nobel Peace Laureate 2015',
+    },
+    {
+      // "S_No": 12,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Jacqueline Fernandez',
+      Country: 'SRI LANKA, INDIA',
+      Credentials: 'Beauty Queen, Actress',
     },
     {
       // "S_No": 13,
@@ -739,6 +811,14 @@ export class WebService {
       Name: 'Kailash Satyarthi',
       Country: 'INDIA',
       Credentials: 'Social Activist, Nobel Peace Laureate 2014',
+    },
+    {
+      // "S_No": 14,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Kili Paul',
+      Country: 'TANZANIAN',
+      Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
     },
     {
       // "S_No": 14,
@@ -875,6 +955,14 @@ export class WebService {
       Credentials: 'Industrialist : Chairman, TAF Global',
     },
     {
+      // "S_No": 17,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Nadia Murad',
+      Country: 'IRAQ',
+      Credentials: 'Social Activist: Nobel Peace Laureate 2018',
+    },
+    {
       // "S_No": 25,
       View: 'nadir',
       Profile_Photo: 'speaker2.png',
@@ -917,6 +1005,14 @@ export class WebService {
     },
     // list 15
     {
+      // "S_No": 27,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Oscar Arias Sanchez, His Excellency ',
+      Country: 'COSTA RICA',
+      Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
+    },
+    {
       // "S_No": 28,
       View: '',
       Profile_Photo: 'speaker35.png',
@@ -924,15 +1020,15 @@ export class WebService {
       Country: 'SPAIN',
       Credentials: 'Artist, Peace Painter (live performance)',
     },
-    {
-      // "S_No": 29,
-      View: '',
-      Profile_Photo: null,
-      Name: 'P V Sindhu',
-      Country: 'INDIA',
-      Credentials:
-        'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
-    },
+    // {
+     
+    //   View: '',
+    //   Profile_Photo: null,
+    //   Name: 'P V Sindhu',
+    //   Country: 'INDIA',
+    //   Credentials:
+    //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
+    // },
     {
       // "S_No": 30,
       View: 'rina',
@@ -985,6 +1081,14 @@ export class WebService {
       Credentials: 'Producer, Director, & Actor',
     },
     {
+      // "S_No": 34,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Sanjeev Kapoor',
+      Country: 'INDIA',
+      Credentials: 'World Renowned Chef',
+    },
+    {
       // "S_No": 33,
       View: 'satpal',
       Profile_Photo: 'speaker15.png',
@@ -1000,6 +1104,14 @@ export class WebService {
       Name: 'Shirin Ebadi, Dr. ',
       Country: 'IRAN',
       Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
+    },
+    {
+      // "S_No": 34,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
+      Country: 'LIBERIA',
+      Credentials: 'Chief Justice of Liberia',
     },
     {
       // "S_No": 34,
@@ -1299,6 +1411,14 @@ export class WebService {
             // "S_No": 12,
             View: '',
             Profile_Photo: null,
+            Name: 'Hlubi Mboya-Arnold',
+            Country: 'SOUTH AFRICA',
+            Credentials: 'Actress, Humanitarian',
+          },
+          {
+            // "S_No": 12,
+            View: '',
+            Profile_Photo: null,
             Name: 'Hoda Galal Yassa, Dr.',
             Country: 'EGYPT',
             Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -1311,6 +1431,21 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Educationist : Nobel Peace Laureate 2015',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 8
+          {
+            // "S_No": 12,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Jacqueline Fernandez',
+            Country: 'SRI LANKA, INDIA',
+            Credentials: 'Beauty Queen, Actress',
+          },
+          
           {
             // "S_No": 13,
             View: '',
@@ -1319,11 +1454,6 @@ export class WebService {
             Country: 'COSTA RICA',
             Credentials: 'Vice Rector, University of Peace ',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 8
           {
             // "S_No": 13,
             View: '',
@@ -1331,6 +1461,20 @@ export class WebService {
             Name: 'Kailash Satyarthi',
             Country: 'INDIA',
             Credentials: 'Social Activist, Nobel Peace Laureate 2014',
+          },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 9
+          {
+            // "S_No": 14,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Kili Paul',
+            Country: 'TANZANIAN',
+            Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
           },
           {
             // "S_No": 14,
@@ -1349,11 +1493,14 @@ export class WebService {
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
+         
+          
         ],
       },
+
       {
         speakers: [
-          // list 9
+          // list 10
           {
             // "S_No": 14,
             View: '',
@@ -1380,12 +1527,14 @@ export class WebService {
             Credentials:
               'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
+         
+          
         ],
       },
 
       {
         speakers: [
-          // list 10
+          // list 11
           {
             // "S_No": 17,
             View: '',
@@ -1412,12 +1561,14 @@ export class WebService {
             Country: 'DENMARK',
             Credentials: 'Royalty, TV Host, Philanthropist',
           },
+          
+          
         ],
       },
 
       {
         speakers: [
-          // list 11
+          // list 12
           {
             // "S_No": 19,
             View: '',
@@ -1444,12 +1595,13 @@ export class WebService {
             Credentials:
               'Nobel Peace Laureate 2015 : President, Tunisian Order of Lawyers',
           },
+          
+          
         ],
       },
-
       {
         speakers: [
-          // list 12
+          // list 13
           {
             // "S_No": 21,
             View: 'asif',
@@ -1475,11 +1627,14 @@ export class WebService {
             Country: 'SRI LANKA',
             Credentials: 'Nobel Peace Laureate 2007',
           },
+          
+          
+          
         ],
       },
       {
         speakers: [
-          // list 13
+          // list 14
           {
             // "S_No": 23,
             View: '',
@@ -1489,6 +1644,14 @@ export class WebService {
             Credentials: 'Industrialist : Chairman, TAF Global',
           },
           {
+            // "S_No": 17,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Nadia Murad',
+            Country: 'IRAQ',
+            Credentials: 'Social Activist: Nobel Peace Laureate 2018',
+          },
+          {
             // "S_No": 25,
             View: 'nadir',
             Profile_Photo: 'speaker2.png',
@@ -1496,6 +1659,14 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Industrialist: Chairman, Godrej Industries',
           },
+          
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 15
           {
             // "S_No": 17,
             View: '',
@@ -1504,11 +1675,6 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Industrialist : Founder & Chairman, West Zone Group',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 14
           {
             // "S_No": 17,
             View: '',
@@ -1525,6 +1691,13 @@ export class WebService {
             Country: 'GHANA',
             Credentials: 'Royalty, The Royal House of Sefwi Obeng-Mim',
           },
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 16
           {
             // "S_No": 27,
             View: '',
@@ -1533,11 +1706,14 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 15
+          {
+            // "S_No": 27,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Oscar Arias Sanchez, His Excellency ',
+            Country: 'COSTA RICA',
+            Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
+          },
           {
             // "S_No": 28,
             View: '',
@@ -1546,15 +1722,14 @@ export class WebService {
             Country: 'SPAIN',
             Credentials: 'Artist, Peace Painter (live performance)',
           },
-          {
-            // "S_No": 29,
-            View: '',
-            Profile_Photo: null,
-            Name: 'P V Sindhu',
-            Country: 'INDIA',
-            Credentials:
-              'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
-          },
+          
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 17
           {
             // "S_No": 30,
             View: 'rina',
@@ -1563,11 +1738,6 @@ export class WebService {
             Country: 'MADAGASCAR',
             Credentials: 'Royalty, Pastor, Philanthropist',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 16
           {
             // "S_No": 31,
             View: '',
@@ -1585,6 +1755,14 @@ export class WebService {
             Country: 'MALAYSIA',
             Credentials: 'Royalty, Philanthropist, Peace Activist',
           },
+          
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 18
           {
             // "S_No": 32,
             View: '',
@@ -1593,11 +1771,6 @@ export class WebService {
             Country: 'GUINEA BISSAU',
             Credentials: 'Prime Minister',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 17
           {
             // "S_No": 33,
             View: '',
@@ -1614,6 +1787,22 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer, Director, & Actor',
           },
+          
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 19
+          {
+            // "S_No": 34,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Sanjeev Kapoor',
+            Country: 'INDIA',
+            Credentials: 'World Renowned Chef',
+          },
           {
             // "S_No": 33,
             View: 'satpal',
@@ -1622,11 +1811,6 @@ export class WebService {
             Country: 'USA',
             Credentials: 'Ambassador of Sikh Dharma',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 18
           {
             // "S_No": 34,
             View: '',
@@ -1634,6 +1818,23 @@ export class WebService {
             Name: 'Shirin Ebadi, Dr. ',
             Country: 'IRAN',
             Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
+          },
+          
+          
+         
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 20
+          {
+            // "S_No": 34,
+            View: '',
+            Profile_Photo: null,
+            Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
+            Country: 'LIBERIA',
+            Credentials: 'Chief Justice of Liberia',
           },
           {
             // "S_No": 34,
@@ -1651,11 +1852,16 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Industrialist : Chairman, Al Dobowi Group',
           },
+          
+          
+          
+          
+          
         ],
       },
       {
         speakers: [
-          // list 19
+          // list 21
           {
             // "S_No": 35,
             View: '',
@@ -1682,11 +1888,16 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Actor & Model',
           },
+          
+          
+          
+          
+          
         ],
       },
       {
         speakers: [
-          // list 20
+          // list 22
           {
             // "S_No": 37,
             View: '',
@@ -1711,11 +1922,14 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Celebrity Fitness Trainer',
           },
+         
+          
+          
         ],
       },
       {
         speakers: [
-          // list 21
+          // list 22
           {
             // "S_No": 39,
             View: '',
@@ -1744,7 +1958,7 @@ export class WebService {
       },
       {
         speakers: [
-          // list 22
+         
           
           {
             View: '',
