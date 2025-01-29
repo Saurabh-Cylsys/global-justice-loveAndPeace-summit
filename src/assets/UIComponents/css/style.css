@@ -95,12 +95,47 @@ header .nav-item .nav-link.active {
   background-size: 85% 100%; 
   background-position: center; /* Centers the image */
   background-repeat: no-repeat;
-  height: 90vh; /* Keeps the height relative to the viewport */
+  min-height: 90vh; /* Keeps the height relative to the viewport */
 }
+
+@media (min-width: 320px) {
+.index .section1 {
+  background: url(../images/index/bannermob.gif);
+  background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat;
+  min-height: 67vh; /* Keeps the height relative to the viewport */
+}
+}
+
+@media (min-width: 375px) {
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 79vh; /* Keeps the height relative to the viewport */
+  }
+  }
+
+@media (min-width: 425px) {
+  .index .section1 {
+    background: url(../images/index/bannermob.gif);
+    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 90vh; /* Keeps the height relative to the viewport */
+  }
+  }
 
 @media (min-width: 768px) {
   .index .section1 {
-    height: 50vh; /* Keeps the height relative to the viewport */
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%; 
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 65vh; /* Keeps the height relative to the viewport */
   }
 }
 @media (min-width: 1024px) {
@@ -110,7 +145,7 @@ header .nav-item .nav-link.active {
     background-size: 85% 100%; 
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    height: 90vh; /* Keeps the height relative to the viewport */
+    min-height: 90vh; /* Keeps the height relative to the viewport */
   }
 }
 .index .section1 .logo {
@@ -1625,6 +1660,10 @@ header .nav-item .nav-link.active {
   font-size: 14px;
   padding: 6.5px;
   letter-spacing: 1px;
+}
+
+.head ul li .dropbtn{
+  border: 1px solid #fff;
 }
 
 .head form a {

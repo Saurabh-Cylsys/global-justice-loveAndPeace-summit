@@ -61,16 +61,10 @@
   font-size: 14px;
 }
 
-  .index .section1 {
-    background: url(../images/index/bannermob.gif);
-    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    height: 90vh; /* Keeps the height relative to the viewport */
-  }
-  .index .section1 .bgColor {
+  
+  /* .index .section1 .bgColor {
     background: var(--gradient5);
-  }
+  } */
 
   .index .section1 .logo {
     position: relative;
@@ -413,14 +407,10 @@
   }
 }
 @media (max-width: 425px) {
-  .index .section1 {
-
-    height: 79.4vh; /* Keeps the height relative to the viewport */
-  }
-  
-  .index .section1 .bgColor {
+ 
+  /* .index .section1 .bgColor {
     background: var(--gradient5);
-  }
+  } */
 
   .index .section1 .logo {
     position: relative;
@@ -745,10 +735,6 @@
   .scroll p {
     font-size: 12px;
 }
-  .index .section1 {
-
-    height: 68vh; /* Keeps the height relative to the viewport */
-  }
   .pix {
     height: 100px;
     width: 100px;
