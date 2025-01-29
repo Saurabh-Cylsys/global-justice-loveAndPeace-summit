@@ -337,11 +337,25 @@ video {
 
 
 /* swiper */
-.mySwiper {
-  width: 500px;
-  height: 500px;
-  margin: 0 auto;
+
+@media (min-width: 320px){
+  .mySwiper {
+    width: 100%;
+  }
 }
+@media (min-width: 768px){
+  .mySwiper {
+    width: 60%;
+  }
+}
+@media (min-width: 1024px){
+  .mySwiper {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+  }
+}
+
 
 .mycard {
   position: relative;
