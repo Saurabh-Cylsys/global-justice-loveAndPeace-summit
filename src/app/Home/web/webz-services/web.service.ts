@@ -274,7 +274,7 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
       Country: 'DENMARK',
       Credentials: 'Royalty, TV Host, Philanthropist',
@@ -806,7 +806,7 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
       Country: 'DENMARK',
       Credentials: 'Royalty, TV Host, Philanthropist',
@@ -1092,7 +1092,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Joseph Boakai, His Excellency',
       Country: 'LIBERIA',
-      Credentials: 'President of Liberia',
+      Credentials: 'President of Liberia (ONLINE)',
     },
     // list 22
     {
@@ -1100,7 +1100,7 @@ export class WebService {
       Profile_Photo: null,
       Name: 'Sri Sri Ravishankar, Gurudev',
       Country: 'INDIA',
-      Credentials: 'World Spiritual Guru : Founder, Art of Living',
+      Credentials: 'World Spiritual Guru : Founder, Art of Living (ONLINE)',
     },
   ];
 
@@ -1407,7 +1407,7 @@ export class WebService {
           {
             // "S_No": 18,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker11.png',
             Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
             Country: 'DENMARK',
             Credentials: 'Royalty, TV Host, Philanthropist',
@@ -1738,7 +1738,7 @@ export class WebService {
             Profile_Photo: null,
             Name: 'Joseph Boakai, His Excellency',
             Country: 'LIBERIA',
-            Credentials: 'President of Liberia',
+            Credentials: 'President of Liberia (ONLINE)',
           },
         ],
       },
@@ -1751,7 +1751,7 @@ export class WebService {
             Profile_Photo: null,
             Name: 'Sri Sri Ravishankar, Gurudev',
             Country: 'INDIA',
-            Credentials: 'World Spiritual Guru : Founder, Art of Living',
+            Credentials: 'World Spiritual Guru : Founder, Art of Living (ONLINE)',
           },
         ],
       },
