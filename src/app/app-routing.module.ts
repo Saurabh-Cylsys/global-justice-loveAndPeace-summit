@@ -21,16 +21,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./Home/partner/partner.module').then((m) => m.PartnerModule)
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./Home/speaker/speaker.module').then((m) => m.SpeakerModule)
-  },
-  {
-    path: '',
-    loadChildren: () =>
       import('./Home/web/web.module').then((m) => m.WebModule)
   },
   // {
