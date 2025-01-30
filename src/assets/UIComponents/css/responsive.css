@@ -105,9 +105,9 @@
 }
 
 @media (min-width: 1024px) {
-  .main-body .scroll {
+  /* .main-body .scroll {
     min-height: 100vh;
-  }
+  } */
   .timeline-content {
     gap: 4rem;
     padding: 0 0 0 11.5rem;
