@@ -1403,10 +1403,16 @@ header .nav-item .nav-link.active {
   color: #8d8d8d !important;
 }
 
-.hide-logo .logo {
-  display: none;
+
+#logo{
+  transition: 0.4s;
+  position: absolute;
 }
 
+.small-logo {
+  position: relative !important;
+  transition: 0.4s;
+}
 .containerCheck {
   display: block;
   position: relative;
@@ -1487,9 +1493,7 @@ header .nav-item .nav-link.active {
   box-shadow: none;
 }
 
-.hide-logo .logo {
-  display: none;
-}
+
 .iti {
   width: 100%;
   display: flex !important;
@@ -1929,6 +1933,7 @@ header .nav-item .nav-link.active {
   /* margin: auto; */
   display: flex;
   align-items: center;
+  padding: 2rem 0;
 }
 
 
@@ -1941,7 +1946,7 @@ header .nav-item .nav-link.active {
 }
 
 #p4 h3 {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: 700;
   line-height: 90.16px;
   text-align: center;
@@ -1950,7 +1955,7 @@ header .nav-item .nav-link.active {
 }
 
 #p4 p {
-  font-size: 50px;
+  font-size: 35px;
   font-weight: 400;
   line-height: 64.4px;
   text-align: center;

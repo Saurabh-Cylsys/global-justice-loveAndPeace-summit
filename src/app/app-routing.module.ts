@@ -18,7 +18,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./Home/delegate/delegate.module').then((m) => m.DelegateModule)
   },
-
   {
     path: '',
     loadChildren: () =>

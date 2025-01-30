@@ -4,19 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { WebRoutingModule } from './web-routing.module';
 import { WebHomeComponent } from './web-home/web-home.component';
-import { OurLengcyComponent } from './our-lengcy/our-lengcy.component';
-import { JoinOurmailingListComponent } from './join-ourmailing-list/join-ourmailing-list.component';
-import { FaqsComponent } from './faqs/faqs.component';
-import { SpeakerComponent } from './speaker/speaker.component';
-import { AgendaPharmaPreconnectComponent } from './agenda-pharma-preconnect/agenda-pharma-preconnect.component';
-import { WhoShouldAttendComponent } from './who-should-attend/who-should-attend.component';
-import { EventPartnersComponent } from './event-partners/event-partners.component';
 import { DownloadCenterComponent } from './download-center/download-center.component';
 import { WebMainComponent } from './web-main/web-main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AboutUsComponent } from './about-us/about-us.component';
-
-import { AgendaComponent } from './agenda/agenda.component';
 import { AwardsComponent } from './awards/awards.component';
 import { TheSummitComponent } from './the-summit/the-summit.component';
 import { PartnersComponent } from './partners/partners.component';
@@ -40,24 +30,13 @@ import { PaymentCancelComponent } from './payment-cancel/payment-cancel.componen
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
 import { SwiperModule } from 'swiper/angular';
-// import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
 
 
 @NgModule({
   declarations: [
     WebHomeComponent,
-    OurLengcyComponent,
-    JoinOurmailingListComponent,
-    FaqsComponent,
-    SpeakerComponent,
-    AgendaPharmaPreconnectComponent,
-    WhoShouldAttendComponent,
-    EventPartnersComponent,
     DownloadCenterComponent,
     WebMainComponent,
-    AboutUsComponent,
-
-    AgendaComponent,
     AwardsComponent,
     TheSummitComponent,
     PartnersComponent,

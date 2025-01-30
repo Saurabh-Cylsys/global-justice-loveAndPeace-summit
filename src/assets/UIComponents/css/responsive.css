@@ -13,23 +13,9 @@
     background-repeat: no-repeat;
     height: 79.4vh; /* Keeps the height relative to the viewport */
   }
-}
-@media (min-width: 768px){
-  .index .section1 {
-    background-image: url(../images/index/banner.gif);
-    /* background-size: 90% 100%; */
-    background-size: 85% 100%; 
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    height: 90vh; /* Keeps the height relative to the viewport */
-  }
-}
-/* Add media queries for finer control on smaller devices */
 
-/* Extra small screens (tiny devices) */
-@media (min-width: 320px) {
   .main-body .scroll {
-    min-height: 100vh;
+    min-height: 90vh;
   }
   #ts4,
   #p2,
@@ -60,6 +46,9 @@
     min-height: 67vh; /* Keeps the height relative to the viewport */
   }
 }
+
+/* Add media queries for finer control on smaller devices */
+
 
 @media (min-width: 375px) {
   .index .section1 {
@@ -95,6 +84,7 @@
   }
 }
 
+
 /* Medium screens (tablets) */
 @media (min-width: 768px) {
   .main-body .scroll {
@@ -115,9 +105,9 @@
 }
 
 @media (min-width: 1024px) {
-  .main-body .scroll {
+  /* .main-body .scroll {
     min-height: 100vh;
-  }
+  } */
   .timeline-content {
     gap: 4rem;
     padding: 0 0 0 11.5rem;
@@ -194,9 +184,9 @@
     font-size: 14px;
   }
 
-  /* .index .section1 .bgColor {
+  .index .section1 .bgColor {
     background: var(--gradient5);
-  } */
+  }
 
   .index .section1 .logo {
     position: relative;
@@ -236,9 +226,7 @@
     width: auto;
   } */
 
-  .partner_carousel .carousel-item ul {
-    display: block;
-  }
+ 
   .partner_carousel ul li img {
     width: 100%;
   }
@@ -472,7 +460,7 @@
   }
 
   #p4 p {
-    font-size: 20px;
+    font-size: 18px !important;
     font-weight: 400;
     line-height: 20.4px;
     text-align: center;
@@ -539,9 +527,10 @@
   }
 }
 @media (max-width: 425px) {
-  /* .index .section1 .bgColor {
+
+  .index .section1 .bgColor {
     background: var(--gradient5);
-  } */
+  }
 
   .index .section1 .logo {
     position: relative;
@@ -580,9 +569,9 @@
     width: auto;
   } */
 
-  .partner_carousel .carousel-item ul {
+  /* .partner_carousel .carousel-item ul {
     display: block;
-  }
+  } */
   .partner_carousel ul li img {
     width: 100%;
   }
@@ -797,7 +786,7 @@
   }
 
   #p4 h3 {
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 700;
     line-height: 90.16px;
     text-align: center;
@@ -806,9 +795,9 @@
   }
 
   #p4 p {
-    font-size: 20px;
+    font-size: 16px !important;
     font-weight: 400;
-    line-height: 64.4px;
+    line-height: 20.4px;
     text-align: center;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;

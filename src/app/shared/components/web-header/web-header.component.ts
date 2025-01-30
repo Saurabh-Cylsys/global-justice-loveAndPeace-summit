@@ -60,6 +60,14 @@ export class WebHeaderComponent implements OnInit {
     { label: 'Messages', fragment: 'cc2' },
     { label: 'Songs', fragment: 'cc3' },
   ];
+
+  isScrolled = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollY = window.scrollY;
+    this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
+  }
   constructor(
     public _router: Router,
     private _activeRouter: ActivatedRoute,
@@ -72,7 +80,7 @@ export class WebHeaderComponent implements OnInit {
     console.log(this._activeRouter.url, 'WebHeaderComponent initialized');
 
     this._router.events.subscribe(() => {
-      this.isHomePage = this._router.url === '/home';
+      this.isHomePage = this._router.url === '/'; // Check if the route is home
     });
 
     this._activeRouter.fragment.subscribe((fragment) => {
