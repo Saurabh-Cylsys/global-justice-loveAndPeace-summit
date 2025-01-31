@@ -727,7 +727,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     //
     if (inputValue !== null) {
-      if (inputValue.number.length < 9) {
+      if (inputValue.number.length < 7) {
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
@@ -749,7 +749,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       if (event.key === ' ' && inputValue.trim() === '') {
         event.preventDefault(); // Prevent the space character from being typed
       } else if (event.code === 'Backspace') {
-        if (inputValue.number.length < 9) {
+        if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
           // event.preventDefault()
         } else {

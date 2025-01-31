@@ -327,7 +327,7 @@ console.log(indiaCodeObject);
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
       
-      if(inputValue.number.length<6){
+      if(inputValue.number.length<7){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
@@ -394,7 +394,7 @@ onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
   if (event.key === ' ' && event.code === 'Space') {
     event.preventDefault(); // Prevent the space character from being typed
   }else  if (event.code === 'Backspace') {
-    if(inputValue.number.length<6){
+    if(inputValue.number.length<7){
       this.mobile_numberVal = true;
       // event.preventDefault()
     } else {

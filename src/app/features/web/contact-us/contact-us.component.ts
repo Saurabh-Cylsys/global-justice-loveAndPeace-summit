@@ -257,7 +257,7 @@ export class ContactUsComponent {
       if (event.key === ' ' && event.code === 'Space') {
         event.preventDefault(); // Prevent the space character from being typed
       } else if (event.code === 'Backspace') {
-        if (inputValue.number.length < 9) {
+        if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
           // event.preventDefault()
         } else {
@@ -275,7 +275,7 @@ export class ContactUsComponent {
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
 
-      if(inputValue.number.length<9){
+      if(inputValue.number.length<7){
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
