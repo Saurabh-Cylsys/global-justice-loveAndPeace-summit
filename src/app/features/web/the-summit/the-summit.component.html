@@ -410,7 +410,7 @@
     </div>
   </div>
   <div class="section" id="ts3">
-    <div class="section6  py-5 speakers scroll position-relative">
+    <div class="section6  py-5 speakers scroll position-relative" style="z-index: 1;">
       <div class="container-fluid h-100">
         <div class="row align-items-center align-content-center h-100">
           <div class="col-md-12">
@@ -574,7 +574,7 @@
         src="assets/UIComponents/images/watermark.png"
         alt="attach image"
         class="position-absolute"
-        style="left: 0; bottom: 0; width: 20rem"
+        style="left: 0; bottom: 0; width: 20rem; z-index: -1;"
         *ngIf="!isMobileView"
       />
       <img
@@ -582,7 +582,7 @@
         src="assets/UIComponents/images/watermark.png"
         alt="attach image"
         class="position-absolute"
-        style="left: 0; bottom: 0; width: 10rem"
+        style="left: 0; bottom: 0; width: 10rem; z-index: -1;"
         *ngIf="isMobileView"
       />
     </div>
