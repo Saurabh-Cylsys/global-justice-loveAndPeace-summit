@@ -182,7 +182,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
+          // Validators.pattern(/^(?!.*(\d)\1{9})(\d{10})$/), // Checks for no repeated digits
           this.noRepeatingDigits(),
           this.containsConsecutiveZeros(),
         ],
@@ -190,7 +190,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
       is_active: 1,
       Check_email: [''],
-      File: ['', [Validators.required]],
+      // File: ['', [Validators.required]],
     });
   }
 
@@ -363,6 +363,32 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     event.preventDefault();
     this.isDragging = false;
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      const file = event.dataTransfer.files[0];
+      
+
+      if (file) {
+        const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+        const minSize = 204800; // 200KB
+        const maxSize = 5242880; // 5MB
+        
+        // Validate the file type
+        if (!validExtensions.includes(file.type)) {
+          this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+          
+          this.is_selectedFile = false;
+          return;
+        }
+              // Validate the file size
+      if (file.size < minSize || file.size > maxSize) {
+        this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+        this.is_selectedFile = false;
+        return;
+      }
+      }
+      else {
+        console.log('No file selected.');
+      }
+      
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
       this.imageFileName = this.selectedFile.name;
@@ -431,14 +457,44 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   onFileChange(event: any): void {
+    console.log('form',this.peacekeepersForm);
+    
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
+    const file = event.target.files[0];
 
-    this.isPeaceOn = 2;
-    this.showPopup = true;
-    this.display = 'block';
-    this.formdisplay = false;
+    if (file) {
+      const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
+      const minSize = 204800; // 200KB
+      const maxSize = 5242880; // 5MB
+
+      // Validate the file type
+      if (!validExtensions.includes(file.type)) {
+        this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+        event.target.value = ''; // Reset the file input
+        this.is_selectedFile = false;
+        return;
+      }
+          // Validate the file size
+    if (file.size < minSize || file.size > maxSize) {
+      this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+      event.target.value = ''; // Reset the file input
+      this.is_selectedFile = false;
+      return;
+    }
+
+      this.isPeaceOn = 2;
+      this.showPopup = true;
+      this.display = 'block'
+      this.formdisplay = false;
+
+    }
+    else {
+      console.log('No file selected.');
+    }
+
+
 
     // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
 

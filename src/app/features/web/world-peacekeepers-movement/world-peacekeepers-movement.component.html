@@ -563,6 +563,7 @@
                       (keypress)="ValidateAlpha($event)"
                       placeholder="Enter full name"
                       value=""
+                      autocomplete="off"
                     />
                     
                     <div
@@ -636,6 +637,7 @@
                         class="form-select w-100 p-0 px-2"
                         required
                         data-error="Please select country"
+                        autocomplete="off"
                         (change)="getCountrycode(code)"
                       >
                         <option selected value="" disabled>
@@ -721,6 +723,7 @@
                       id="email"
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
+                      autocomplete="off"
                       required
                       (keydown)="onKeyDown($event, mobile_number)"
                     />
@@ -811,7 +814,7 @@
                           CountryISO.UnitedKingdom
                         ]"
                         [enableAutoCountrySelect]="false"
-                        [enablePlaceholder]="false"
+                        [enablePlaceholder]="true"
                         [searchCountryFlag]="true"
                         [searchCountryField]="[
                           SearchCountryField.Iso2,
@@ -819,18 +822,19 @@
                         ]"
                         [selectFirstCountry]="false"
                         [selectedCountryISO]="CountryISO.UnitedArabEmirates"
-                        [maxLength]="10"
-                        [phoneValidation]="false"
+                        [phoneValidation]="true"
                         [separateDialCode]="true"
-                        pattern=".{8,12}"
-                        minlength="10"
+                        [maxLength]="13"
                         [(ngModel)]="mobile_number"
-                        maxlength="10"
                         name="mobile_number"
+                        formControlName="mobile_number"
                         (keydown)="onMobileKeyDown($event, mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
-                        formControlName="mobile_number"
-                      ></ngx-intl-tel-input>
+                        ></ngx-intl-tel-input>
+                        <!-- [maxLength]="10"
+                        pattern=".{8,12}"
+                        minlength="10"
+                        maxlength="10" -->
                       <!-- <input
                     type="text"
                     name="mobile_number[1]"
@@ -949,7 +953,6 @@
                       style="  cursor: pointer;
 "
                       accept="image/jpg,image/png,image/jpeg"
-                      formControlName="File"
                       name="profile_picture"
                       #fileInput
                       (change)="onFileChange($event)"
