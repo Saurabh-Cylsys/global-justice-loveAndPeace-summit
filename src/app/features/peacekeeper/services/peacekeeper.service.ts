@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
+import { ApiHttpService } from 'src/app/core/services/api-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeacekeeperService {
 
-  constructor() { }
+  constructor(private _apiHttpService: ApiHttpService,
+    private _apiEndpointsService: ApiEndpointsService,
+    private _toastr: ToastrService) { }
+
+
+
+  postPeacekeeperLogin(body:any){
+    return this._apiHttpService.post(this._apiEndpointsService.postpeackeeperLoginEndpoint(), body)
+
+  }
 }

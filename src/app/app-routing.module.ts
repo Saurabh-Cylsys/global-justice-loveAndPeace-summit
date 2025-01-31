@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { WebHomeComponent } from './features/web/web-home/web-home.component';
+import { LoginComponent } from './features/peacekeeper/components/login/login.component';
+import { DashboardComponent } from './features/peacekeeper/components/dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -18,6 +20,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/delegate/delegate.module').then((m) => m.DelegateModule)
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./features/peacekeeper/peacekeeper.module').then((m) => m.PeacekeeperModule)
+  },
+
+
+  // {path : 'login' , component :LoginComponent},
+  // {path:'dashboard', component : DashboardComponent },
+
+  // {path : '' , component :LoginComponent}
 
   // {
   //   path: '',
@@ -31,7 +44,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     scrollPositionRestoration: 'enabled', // Restores scroll position
-    anchorScrolling: 'enabled', 
+    anchorScrolling: 'enabled',
     onSameUrlNavigation: 'reload'       // Enables fragment scrolling
   }),],
   exports: [RouterModule]

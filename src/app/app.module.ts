@@ -46,7 +46,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FormsModule, ReactiveFormsModule,SharedModule,
     QRCodeModule,
     BsDatepickerModule.forRoot()
-
   ],
 
   providers: [

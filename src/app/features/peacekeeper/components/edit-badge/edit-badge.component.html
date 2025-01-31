@@ -1,0 +1,139 @@
+
+<app-peacekeeper-leftpanel></app-peacekeeper-leftpanel>
+
+<div id="main" class="main body-content">
+  <app-peacekeeper-header></app-peacekeeper-header>
+
+
+  <div class="section">
+      <h2 class="main-heading">Edit Badge</h2>
+      <div class="row">
+          <p>General Information</p>
+          <div class="col-md-9">
+
+              <div class="card p-2 mb-3" style="box-shadow: 0px 2px 5px 0px #d6d6d6; border: none;">
+                  <div class="d-flex justify-content-center">
+                      <div class="select-image-div">
+                          <input type="file" id="fileInput" accept="image/*">
+                          <br>
+                          <div class="pre"><img id="preview" src="assets/UIComponents/images/peacekeeper/badge_img.png">
+                              <button class="select-image">
+                                  <img src="assets/UIComponents/images/peacekeeper/camera.png" alt="">
+                              </button>
+                          </div>
+
+                      </div>
+                  </div>
+                  <form [formGroup]="editBadgeForm">
+                  <div class="row">
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="first" class="mb-1">First Name : <span
+                                      class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded">
+                                  <input formControlName="firstName" type="text" class="w-100 border-0 input-field"
+                                      placeholder="Enter First Name" aria-label=""
+                                      aria-describedby="addon-wrapping" value="Hanan">
+                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
+                                          class="fa-solid fa-pencil"></i></span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="password" class="mb-1">Last Name <span
+                                      class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded">
+                                  <input formControlName="lastName" type="text" class="w-100 border-0 input-field"
+                                      placeholder="Enter Last Name" aria-label=""
+                                      aria-describedby="addon-wrapping" value="Sammak">
+                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
+                                          class="fa-solid fa-pencil"></i></span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="country" class="mb-1">Country : <span
+                                      class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded mt-2">
+                                  <select formControlName="country" name="" id="" class="w-100 border-0 input-field"
+                                      style="background: inherit;">
+                                      <option value="['India','IN']">India</option>
+                                      <option value="['Nigeria','NG']">Nigeria</option>
+                                      <option value="['Afghanistan','AF']">Afghanistan</option>
+                                      <option value="['Ãƒâ€¦land Islands','AX']">Ãƒâ€¦land Islands</option>
+
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="password" class="mb-1">Mobile Number : <span
+                                      class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded">
+                                  <select formControlName="mobileNumber" name="" id="" style="background: inherit; border: none; outline: none;">
+                                      <option value="+93">+93</option>
+                                      <option value="+355">+355</option>
+                                      <option value="+213">+213</option>
+                                      <option value="+1684">+1684</option>
+                                      <option value="+376">+376</option>
+
+                                  </select> &nbsp;
+                                  <input type="text" class="w-100 border-0 input-field" placeholder=""
+                                      aria-label="" aria-describedby="addon-wrapping" value="1234567890">
+                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
+                                          class="fa-solid fa-pencil"></i></span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="password" class="mb-1">E-Mail : <span
+                                      class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded">
+                                  <input formControlName="email" type="text" class="w-100 border-0 input-field" placeholder="Enter Email"
+                                      aria-label="" aria-describedby="addon-wrapping" value="abc123@gmail.com">
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-6 p-3">
+                          <div class="mb-3 input">
+                              <label for="password" class="mb-1">DOB : <span class="text-danger">*</span></label>
+                              <div class="input-group flex-nowrap rounded mt-1">
+                                  <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
+                                      placeholder="" aria-label="" aria-describedby="addon-wrapping">
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="col-md-12 contianer-fluid mb-3" style="text-align: center;">
+                          <button class="btn btn-success px-3">Update</button>
+                      </div>
+
+                  </div>
+                </form>
+              </div>
+
+          </div>
+          <div class="col-md-3">
+              <div class="card border-0">
+                  <div class="card-body p-0">
+                      <img src="assets/UIComponents/images/peacekeeper/Badge.jpg" alt="" class="mb-2 w-100">
+                  </div>
+
+                  <button class="btn btn-success w-100">Preview</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

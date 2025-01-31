@@ -6,6 +6,8 @@ import { WebHeaderComponent } from './components/web-header/web-header.component
 import { WebFooterComponent } from './components/web-footer/web-footer.component';
 import { LeftPanelComponent } from './components/left-panel/left-panel.component';
 import { HeaderImgComponent } from './components/header-img/header-img.component';
+import { PeacekeeperHeaderComponent } from './components/peacekeeper-header/peacekeeper-header.component';
+import { PeacekeeperLeftpanelComponent } from './components/peacekeeper-leftpanel/peacekeeper-leftpanel.component';
 // import { CustomePipePipe } from './classes/custome-pipe.pipe';
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { HeaderImgComponent } from './components/header-img/header-img.component
     WebFooterComponent,
     LeftPanelComponent,
     HeaderImgComponent,
+    PeacekeeperHeaderComponent,
+    PeacekeeperLeftpanelComponent,
     // CustomePipePipe
   ],
   imports: [
@@ -24,8 +28,9 @@ import { HeaderImgComponent } from './components/header-img/header-img.component
     WebHeaderComponent,
     WebFooterComponent,
     LeftPanelComponent,
-    HeaderImgComponent
-  
+    HeaderImgComponent,
+    PeacekeeperHeaderComponent,
+    PeacekeeperLeftpanelComponent
   ]
 })
 export class SharedModule { }
