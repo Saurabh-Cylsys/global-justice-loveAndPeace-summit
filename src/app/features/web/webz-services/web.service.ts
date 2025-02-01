@@ -25,23 +25,8 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker19.png',
-      Name: 'Arjuna Ranatunga, Deshamanya',
-      Country: 'SRI LANKA',
-      Credentials: 'Cricketer & Politician',
-    },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker17.png',
-      Name: 'Ali Rasheed Lootah, Sultan',
-      Country: 'UAE',
-      Credentials:
-        'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
-    },
+    
+    
     // list 2
     {
       // "S_No": 1,
@@ -58,6 +43,22 @@ export class WebService {
       Name: 'Antonia Zu Schaumburg-Lippe, Dr, Her Highness Princess',
       Country: 'DENMARK',
       Credentials: 'Royalty, Lawyer, Philanthropist',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: 'speaker19.png',
+      Name: 'Arjuna Ranatunga, Deshamanya',
+      Country: 'SRI LANKA',
+      Credentials: 'Cricketer & Politician',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Asle Toje',
+      Country: 'NORWAY',
+      Credentials: 'Deputy Leader, Norwegian Nobel Committee',
     },
     {
       // "S_No": 1,
@@ -298,6 +299,14 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
+      Profile_Photo: null,
+      Name: 'Maqsoud Cruz',
+      Country: 'UAE',
+      Credentials: 'Chairman, National Human Rights Commission, UAE',
+    },
+    {
+      // "S_No": 18,
+      View: '',
       Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
       Country: 'DENMARK',
@@ -531,6 +540,15 @@ export class WebService {
       Name: 'Soha Ali Khan',
       Country: 'INDIA',
       Credentials: 'Producer & Actress, Royalty',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: 'speaker17.png',
+      Name: 'Sultan Ali Rashed Lootah',
+      Country: 'UAE',
+      Credentials:
+        'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
     },
     {
       // "S_No": 35,
@@ -613,23 +631,6 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker19.png',
-      Name: 'Arjuna Ranatunga, Deshamanya',
-      Country: 'SRI LANKA',
-      Credentials: 'Cricketer & Politician',
-    },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker17.png',
-      Name: 'Ali Rasheed Lootah, Sultan',
-      Country: 'UAE',
-      Credentials:
-        'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
-    },
     // list 2
     {
       // "S_No": 1,
@@ -646,6 +647,22 @@ export class WebService {
       Name: 'Antonia Zu Schaumburg-Lippe, Dr, Her Highness Princess',
       Country: 'DENMARK',
       Credentials: 'Royalty, Lawyer, Philanthropist',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: 'speaker19.png',
+      Name: 'Arjuna Ranatunga, Deshamanya',
+      Country: 'SRI LANKA',
+      Credentials: 'Cricketer & Politician',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Asle Toje',
+      Country: 'NORWAY',
+      Credentials: 'Deputy Leader, Norwegian Nobel Committee',
     },
     {
       // "S_No": 1,
@@ -886,6 +903,14 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
+      Profile_Photo: null,
+      Name: 'Maqsoud Cruz',
+      Country: 'UAE',
+      Credentials: 'Chairman, National Human Rights Commission, UAE',
+    },
+    {
+      // "S_No": 18,
+      View: '',
       Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
       Country: 'DENMARK',
@@ -1120,6 +1145,15 @@ export class WebService {
       Name: 'Soha Ali Khan',
       Country: 'INDIA',
       Credentials: 'Producer & Actress, Royalty',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: 'speaker17.png',
+      Name: 'Sultan Ali Rashed Lootah',
+      Country: 'UAE',
+      Credentials:
+        'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
     },
     {
       // "S_No": 35,
@@ -1209,7 +1243,7 @@ export class WebService {
     // list 22
     {
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker49.png',
       Name: 'Sri Sri Ravishankar, Gurudev',
       Country: 'INDIA',
       Credentials: 'World Spiritual Guru : Founder, Art of Living (ONLINE)',
@@ -1229,29 +1263,8 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker19.png',
-      Name: 'Arjuna Ranatunga, Deshamanya',
-      Country: 'SRI LANKA',
-      Credentials: 'Cricketer & Politician',
-    },
-    {
-      // "S_No": 1,
-      View: '',
-      Profile_Photo: 'speaker17.png',
-      Name: 'Ali Rasheed Lootah, Sultan',
-      Country: 'UAE',
-      Credentials:
-        'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
-    },
-        ],
-      },
-
-      {
-        speakers: [
-          // list 2
+    
+    
     {
       // "S_No": 1,
       View: '',
@@ -1268,6 +1281,30 @@ export class WebService {
       Country: 'DENMARK',
       Credentials: 'Royalty, Lawyer, Philanthropist',
     },
+        ],
+      },
+
+      {
+        speakers: [
+          // list 2
+    
+    
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: 'speaker19.png',
+      Name: 'Arjuna Ranatunga, Deshamanya',
+      Country: 'SRI LANKA',
+      Credentials: 'Cricketer & Politician',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Asle Toje',
+      Country: 'NORWAY',
+      Credentials: 'Deputy Leader, Norwegian Nobel Committee',
+    },
     {
       // "S_No": 1,
       View: '',
@@ -1282,6 +1319,7 @@ export class WebService {
       {
         speakers: [
           // list 3
+          
           {
             // "S_No": 2,
             View: '',
@@ -1309,12 +1347,14 @@ export class WebService {
             Credentials:
               'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
           },
+          
         ],
       },
 
       {
         speakers: [
           // list 4
+          
           {
             // "S_No": 5,
             View: '',
@@ -1346,6 +1386,7 @@ export class WebService {
       {
         speakers: [
           // list 5
+          
           {
             // "S_No": 6,
             View: '',
@@ -1377,6 +1418,7 @@ export class WebService {
       {
         speakers: [
           // list 6
+          
           {
             // "S_No": 10,
             View: 'habil',
@@ -1407,6 +1449,7 @@ export class WebService {
       {
         speakers: [
           // list 7
+          
           {
             // "S_No": 12,
             View: '',
@@ -1423,6 +1466,7 @@ export class WebService {
             Country: 'EGYPT',
             Credentials: 'Industrialist : President, Arab Women Investors Union',
           },
+          
           {
             // "S_No": 12,
             View: '',
@@ -1431,12 +1475,12 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Educationist : Nobel Peace Laureate 2015',
           },
-          
         ],
       },
       {
         speakers: [
           // list 8
+          
           {
             // "S_No": 12,
             View: '',
@@ -1468,6 +1512,7 @@ export class WebService {
       {
         speakers: [
           // list 9
+          
           {
             // "S_No": 14,
             View: '',
@@ -1501,6 +1546,7 @@ export class WebService {
       {
         speakers: [
           // list 10
+          
           {
             // "S_No": 14,
             View: '',
@@ -1518,6 +1564,7 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Nobel Peace Laureate 2011',
           },
+          
           {
             // "S_No": 16,
             View: '',
@@ -1527,7 +1574,6 @@ export class WebService {
             Credentials:
               'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
-         
           
         ],
       },
@@ -1535,6 +1581,7 @@ export class WebService {
       {
         speakers: [
           // list 11
+          
           {
             // "S_No": 17,
             View: '',
@@ -1556,10 +1603,10 @@ export class WebService {
           {
             // "S_No": 18,
             View: '',
-            Profile_Photo: 'speaker11.png',
-            Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
-            Country: 'DENMARK',
-            Credentials: 'Royalty, TV Host, Philanthropist',
+            Profile_Photo: null,
+            Name: 'Maqsoud Cruz',
+            Country: 'UAE',
+            Credentials: 'Chairman, National Human Rights Commission, UAE',
           },
           
           
@@ -1569,6 +1616,15 @@ export class WebService {
       {
         speakers: [
           // list 12
+          
+          {
+            // "S_No": 18,
+            View: '',
+            Profile_Photo: 'speaker11.png',
+            Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
+            Country: 'DENMARK',
+            Credentials: 'Royalty, TV Host, Philanthropist',
+          },
           {
             // "S_No": 19,
             View: '',
@@ -1586,6 +1642,15 @@ export class WebService {
             Credentials:
               'Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace',
           },
+          
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 13
+          
           {
             // "S_No": 21,
             View: '',
@@ -1595,13 +1660,6 @@ export class WebService {
             Credentials:
               'Nobel Peace Laureate 2015 : President, Tunisian Order of Lawyers',
           },
-          
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 13
           {
             // "S_No": 21,
             View: 'asif',
@@ -1610,6 +1668,7 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Royalty Heir Apparent to the Prince of Arcot',
           },
+          
           {
             // "S_No": 17,
             View: '',
@@ -1619,14 +1678,6 @@ export class WebService {
             Credentials:
               'Islamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
           },
-          {
-            // "S_No": 22,
-            View: '',
-            Profile_Photo: 'speaker32.png',
-            Name: 'Mohan Mubasinghe, Prof, Deshmanya',
-            Country: 'SRI LANKA',
-            Credentials: 'Nobel Peace Laureate 2007',
-          },
           
           
           
@@ -1635,6 +1686,15 @@ export class WebService {
       {
         speakers: [
           // list 14
+          
+          {
+            // "S_No": 22,
+            View: '',
+            Profile_Photo: 'speaker32.png',
+            Name: 'Mohan Mubasinghe, Prof, Deshmanya',
+            Country: 'SRI LANKA',
+            Credentials: 'Nobel Peace Laureate 2007',
+          },
           {
             // "S_No": 23,
             View: '',
@@ -1643,6 +1703,7 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Industrialist : Chairman, TAF Global',
           },
+          
           {
             // "S_No": 17,
             View: '',
@@ -1650,14 +1711,6 @@ export class WebService {
             Name: 'Nadia Murad',
             Country: 'IRAQ',
             Credentials: 'Social Activist: Nobel Peace Laureate 2018',
-          },
-          {
-            // "S_No": 25,
-            View: 'nadir',
-            Profile_Photo: 'speaker2.png',
-            Name: 'Nadir Godrej',
-            Country: 'INDIA',
-            Credentials: 'Industrialist: Chairman, Godrej Industries',
           },
           
           
@@ -1667,6 +1720,15 @@ export class WebService {
       {
         speakers: [
           // list 15
+          
+          {
+            // "S_No": 25,
+            View: 'nadir',
+            Profile_Photo: 'speaker2.png',
+            Name: 'Nadir Godrej',
+            Country: 'INDIA',
+            Credentials: 'Industrialist: Chairman, Godrej Industries',
+          },
           {
             // "S_No": 17,
             View: '',
@@ -1683,6 +1745,14 @@ export class WebService {
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 16
+          
           {
             // "S_No": 26,
             View: '',
@@ -1692,12 +1762,6 @@ export class WebService {
             Credentials: 'Royalty, The Royal House of Sefwi Obeng-Mim',
           },
           
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 16
           {
             // "S_No": 27,
             View: '',
@@ -1706,6 +1770,7 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
           },
+          
           {
             // "S_No": 27,
             View: '',
@@ -1713,14 +1778,6 @@ export class WebService {
             Name: 'Oscar Arias Sanchez, His Excellency ',
             Country: 'COSTA RICA',
             Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
-          },
-          {
-            // "S_No": 28,
-            View: '',
-            Profile_Photo: 'speaker35.png',
-            Name: 'Paco Soleil',
-            Country: 'SPAIN',
-            Credentials: 'Artist, Peace Painter (live performance)',
           },
           
           
@@ -1730,6 +1787,15 @@ export class WebService {
       {
         speakers: [
           // list 17
+          
+          {
+            // "S_No": 28,
+            View: '',
+            Profile_Photo: 'speaker35.png',
+            Name: 'Paco Soleil',
+            Country: 'SPAIN',
+            Credentials: 'Artist, Peace Painter (live performance)',
+          },
           {
             // "S_No": 30,
             View: 'rina',
@@ -1738,6 +1804,8 @@ export class WebService {
             Country: 'MADAGASCAR',
             Credentials: 'Royalty, Pastor, Philanthropist',
           },
+          
+          
           {
             // "S_No": 31,
             View: '',
@@ -1747,6 +1815,14 @@ export class WebService {
             Credentials:
               'Catholic Priest, Promotor of Peace & Inter-Religious Dialogue',
           },
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 18
+          
           {
             // "S_No": 31,
             View: 'romona',
@@ -1755,14 +1831,6 @@ export class WebService {
             Country: 'MALAYSIA',
             Credentials: 'Royalty, Philanthropist, Peace Activist',
           },
-          
-          
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 18
           {
             // "S_No": 32,
             View: '',
@@ -1771,6 +1839,8 @@ export class WebService {
             Country: 'GUINEA BISSAU',
             Credentials: 'Prime Minister',
           },
+          
+         
           {
             // "S_No": 33,
             View: '',
@@ -1779,6 +1849,14 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'TV personality, entrepreneur',
           },
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 19
+          
           {
             // "S_No": 33,
             View: '',
@@ -1787,14 +1865,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer, Director, & Actor',
           },
-          
-          
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 19
           {
             // "S_No": 34,
             View: '',
@@ -1803,6 +1873,9 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'World Renowned Chef',
           },
+          
+          
+          
           {
             // "S_No": 33,
             View: 'satpal',
@@ -1811,6 +1884,14 @@ export class WebService {
             Country: 'USA',
             Credentials: 'Ambassador of Sikh Dharma',
           },
+         
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 20
+          
           {
             // "S_No": 34,
             View: '',
@@ -1819,15 +1900,6 @@ export class WebService {
             Country: 'IRAN',
             Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
           },
-          
-          
-         
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 20
           {
             // "S_No": 34,
             View: '',
@@ -1836,6 +1908,8 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Chief Justice of Liberia',
           },
+          
+          
           {
             // "S_No": 34,
             View: '',
@@ -1844,15 +1918,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer & Actress, Royalty',
           },
-          {
-            // "S_No": 35,
-            View: '',
-            Profile_Photo: 'speaker38.png',
-            Name: 'Surender Singh Kandhari',
-            Country: 'UAE',
-            Credentials: 'Industrialist : Chairman, Al Dobowi Group',
-          },
-          
           
           
           
@@ -1862,6 +1927,24 @@ export class WebService {
       {
         speakers: [
           // list 21
+          
+          {
+            // "S_No": 1,
+            View: '',
+            Profile_Photo: 'speaker17.png',
+            Name: 'Sultan Ali Rashed Lootah',
+            Country: 'UAE',
+            Credentials:
+              'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
+          },
+          {
+            // "S_No": 35,
+            View: '',
+            Profile_Photo: 'speaker38.png',
+            Name: 'Surender Singh Kandhari',
+            Country: 'UAE',
+            Credentials: 'Industrialist : Chairman, Al Dobowi Group',
+          },
           {
             // "S_No": 35,
             View: '',
@@ -1871,23 +1954,7 @@ export class WebService {
             Credentials:
               'High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader',
           },
-          {
-            // "S_No": 36,
-            View: '',
-            Profile_Photo: 'speaker40.png',
-            Name: 'Thich Nhat Tu, Most Venerable, Dr.',
-            Country: 'VIETNAM',
-            Credentials:
-              'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
-          },
-          {
-            // "S_No": 37,
-            View: '',
-            Profile_Photo: 'speaker47.png',
-            Name: 'Urvashi Rautela',
-            Country: 'INDIA',
-            Credentials: 'Actor & Model',
-          },
+          
           
           
           
@@ -1899,6 +1966,24 @@ export class WebService {
         speakers: [
           // list 22
           {
+            // "S_No": 36,
+            View: '',
+            Profile_Photo: 'speaker40.png',
+            Name: 'Thich Nhat Tu, Most Venerable, Dr.',
+            Country: 'VIETNAM',
+            Credentials:
+              'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
+          },
+          
+          {
+            // "S_No": 37,
+            View: '',
+            Profile_Photo: 'speaker47.png',
+            Name: 'Urvashi Rautela',
+            Country: 'INDIA',
+            Credentials: 'Actor & Model',
+          },
+          {
             // "S_No": 37,
             View: '',
             Profile_Photo: 'speaker45.png',
@@ -1906,6 +1991,16 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Attorney General of India',
           },
+          
+          
+         
+          
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 22
           {
             // "S_No": 37,
             View: '',
@@ -1922,14 +2017,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Celebrity Fitness Trainer',
           },
-         
-          
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 22
           {
             // "S_No": 39,
             View: '',
@@ -1938,6 +2025,11 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer & Actor',
           },
+          
+        ],
+      },
+      {
+        speakers: [
           {
             // "S_No": 39,
             View: '',
@@ -1947,6 +2039,7 @@ export class WebService {
             Credentials:
               'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
           },
+          
           {
             View: '',
             Profile_Photo: null,
@@ -1954,15 +2047,10 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
           },
-        ],
-      },
-      {
-        speakers: [
-         
           
           {
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker49.png',
             Name: 'Sri Sri Ravishankar, Gurudev',
             Country: 'INDIA',
             Credentials: 'World Spiritual Guru : Founder, Art of Living (ONLINE)',

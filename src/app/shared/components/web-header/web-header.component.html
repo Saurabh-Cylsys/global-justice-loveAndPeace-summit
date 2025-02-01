@@ -63,8 +63,8 @@
                   [routerLink]="['/the-summit']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -103,8 +103,8 @@
                   [routerLink]="['/partners']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -143,8 +143,8 @@
                   [routerLink]="['/awards']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -183,8 +183,8 @@
                   [routerLink]="['/world-peacekeepers-movement']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -223,8 +223,8 @@
                   [routerLink]="['/DownloadCenter']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -347,11 +347,14 @@
                 The Summit
               </button>
               <div class="hover-dropdown-content">
-                <a
+                <!-- <a
                   *ngFor="let link of summitLinks"
                   [routerLink]="['/the-summit']"
                   [fragment]="link.fragment || undefined"
                 >
+                  {{ link.label }}
+                </a> -->
+                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" [routerLink]="['/the-summit']" fragment="{{ link.fragment }}">
                   {{ link.label }}
                 </a>
               </div>
@@ -366,7 +369,8 @@
                 <a
                   *ngFor="let link of partnersLinks"
                   [routerLink]="['/partners']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -386,7 +390,8 @@
                 <a
                   *ngFor="let link of awardsLinks"
                   [routerLink]="['/awards']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -405,7 +410,8 @@
                 <a
                   *ngFor="let link of peacekeeperLinks"
                   [routerLink]="['/world-peacekeepers-movement']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -434,7 +440,8 @@
                 <a
                   *ngFor="let link of downloadLinks"
                   [routerLink]="['/DownloadCenter']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>

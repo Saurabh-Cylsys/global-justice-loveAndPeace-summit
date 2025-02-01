@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-web-header',
@@ -71,7 +72,9 @@ export class WebHeaderComponent implements OnInit {
   constructor(
     public _router: Router,
     private _activeRouter: ActivatedRoute,
-    private SharedService: SharedService
+    private SharedService: SharedService,
+    private location: Location,
+    private renderer: Renderer2
   ) {}
   ngOnInit(): void {
     this.checkWindowSize();
@@ -270,4 +273,22 @@ export class WebHeaderComponent implements OnInit {
     this.checkWindowSize();
   }
 
+
+  navigateToSection(fragment: string | undefined) {
+    const offcanvasElement = document.getElementById('offcanvasScrolling');
+
+  if (offcanvasElement) {
+    offcanvasElement.classList.remove('show'); // Remove the "show" class
+  }
+    if (fragment) {
+      setTimeout(() => {
+        this.location.replaceState(this._router.url.split('#')[0]); // Remove fragment
+      }, 1000); // Delay to allow scrolling
+    } else {
+      // Ensure we remove the trailing #
+      setTimeout(() => {
+        this.location.replaceState(this._router.url.split('#')[0]);
+      }, 100);
+    }
+  }
 }
