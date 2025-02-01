@@ -684,6 +684,9 @@ onDateChange(event: string): void {
     // const inputString = this.peacekeepersForm.value.country_code;
     // const countryCode = this.extractCountryCode(inputString);
     // console.log(countryCode); // Output: +91
+    const returnmobileNumber = this.peacekeepersForm.value.mobile_number;
+    const returnDOB = this.peacekeepersForm.value.dob;
+    console.log(returnmobileNumber,'mobileNumber');
 
     const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
@@ -755,13 +758,9 @@ onDateChange(event: string): void {
         }
       },
       (err) => {
-        const rawMobileNumber =
-          this.peacekeepersForm.value.mobile_number.number;
-        const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-        console.log(formattedMobileNumber);
-
-        this.peacekeepersForm.patchValue({
-          mobile_number: formattedMobileNumber,
+          this.peacekeepersForm.patchValue({
+          mobile_number: returnmobileNumber,
+          dob: returnDOB,
         });
         this.ngxService.stop();
 

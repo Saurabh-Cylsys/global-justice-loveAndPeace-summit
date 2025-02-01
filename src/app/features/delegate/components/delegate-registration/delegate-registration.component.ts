@@ -473,6 +473,11 @@ onKeyDown(event: KeyboardEvent, inputValue: any): void {
 }
 
   submitData(): void {
+    // after throw error
+    const returnmobileNumber = this.registrationForm.value.mobile_number;
+    const returnDOB = this.registrationForm.value.dob;
+    console.log(returnmobileNumber,'mobileNumber');
+
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
 const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 console.log(formattedMobileNumber);
@@ -522,6 +527,10 @@ console.log(formattedMobileNumber);
           }
         },(err) => {
           this.ngxService.stop();
+          this.registrationForm.patchValue({
+            mobile_number :returnmobileNumber,
+            dob: returnDOB
+          })
   
      
             this.SharedService.ToastPopup('', err.error.message, 'error')
