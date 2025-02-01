@@ -211,6 +211,15 @@ export class ContactUsComponent {
     };
   }
 
+  ValidateAlpha(event: any) {
+    var keyCode = (event.which) ? event.which : event.keyCode
+
+    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
+      return false;
+    return true;
+
+  }
+
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -272,6 +281,17 @@ export class ContactUsComponent {
     this.contactUsForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
+ /** ✅ Function to Display Validation Message */
+ getPhoneErrorMessage() {
+  const control = this.contactUsForm.controls['phoneNumber'];
+  
+  if (control.errors.validatePhoneNumber['valid']) {
+    return '';
+  } else {
+    return 'Invalid mobile number for selected country.';
+  }
+}
+
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     if(inputValue !== null){
 
@@ -297,11 +317,11 @@ export class ContactUsComponent {
         ' ' +
         formattedMobileNumber,
     });
-    console.log(this.contactUsForm.value);
+    console.log(this.contactUsForm);
     this.submitted = true;
-    if (this.contactUsForm.invalid) {
-      return console.log('Invalid Details');
-    }
+    // if (this.contactUsForm.invalid) {
+    //   return console.log('Invalid Details');
+    // }
     if (this.submitted) {
       this.reqBody = {
         ...this.contactUsForm.value,

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, } from '@angular/forms';
+import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, FormControl, } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router,ActivatedRoute  } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
@@ -80,10 +80,22 @@ export class DelegateRegistrationComponent {
     { value: 'Love', label: 'Love' },
     { value: 'Peace', label: 'Peace' }
   ];
+  disabledDates: Date[] = [];
+
+  maxDate1 : any;
+  minDate1 : any;
+  colorTheme: string = 'theme-dark-blue';
+
 
   changePreferredCountries() {
 		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
 	}
+
+  onCountryChange(event: any): void {
+    console.log('Country Changed:', event); // Logs the selected country
+    this.selectedCountryISO = event.iso2; // Update the selected country ISO
+  }
+  
   constructor(private datePipe: DatePipe,
      private formBuilder: FormBuilder, 
      private DelegateService: DelegateService, 
@@ -94,6 +106,14 @@ export class DelegateRegistrationComponent {
      private route: ActivatedRoute) {
     this.fullURL = window.location.href;
     console.log('Full URL:', this.fullURL);
+
+    const today = new Date();
+
+    // Max date is 18 years ago from today
+    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  
+    // Min date is 120 years ago from today
+    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
    }
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
@@ -141,7 +161,7 @@ export class DelegateRegistrationComponent {
       title: [''],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
+      dob: ['', [Validators.required,this.ageValidator]],
       country_code: [''],
 
       mobile_number: ['', [ Validators.minLength(7), Validators.required]],
@@ -180,18 +200,43 @@ export class DelegateRegistrationComponent {
 //     });
 //   }
 
+
 dobValidator() {
   const today = new Date();
 
-const minYear = today.getFullYear() - 120; // 120 years ago
-const eighteenYearsAgo = new Date(
-  today.getFullYear() - 18,
-  today.getMonth(),
-  today.getDate()
-);
-this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
-this.minDate = `${minYear}-01-01`; // Set
- 
+  // Calculate the date 18 years ago from today
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
+  this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
+
+  // Set disabledDates (any date after maxDate)
+  this.disabledDates = [eighteenYearsAgo]; // Disabling the date of 18 years ago
+  console.log(`Max date (18 years ago): ${this.maxDate}`);
+}
+
+ageValidator(control: FormControl) {
+  const selectedDate = new Date(control.value);
+
+  // If the selected date is invalid, return an error
+  if (isNaN(selectedDate.getTime())) {
+    return { invalidDate: true }; // Invalid date format
+  }
+
+  const today = new Date();
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+  // If selected date is after or on the date 18 years ago, it's invalid
+  if (selectedDate > eighteenYearsAgo) {
+    return { ageError: 'Date must be at least 18 years ago' };
+  }
+
+  return null; // Valid date
+}
+
+isDisabledDate(date: Date): boolean {
+  const today = new Date();
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  return date >= eighteenYearsAgo;
 }
 
 onCheckboxChange(event: any) {
@@ -207,6 +252,10 @@ onCheckboxChange(event: any) {
     }
     conferenceLeverInterest.markAsTouched(); // Mark control as touched
   }
+}
+
+disableManualInput(event: KeyboardEvent): void {
+  event.preventDefault();
 }
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe((res: any) => {
@@ -230,7 +279,7 @@ console.log(indiaCodeObject);
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
-    this.formattedDate = this.datePipe.transform(parsedDate, 'dd/MM/yyyy') || '';
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
 
   }
 
@@ -384,6 +433,17 @@ checkTerms1(evtt: any) {
   this.terms1 = evtt.target.checked;
 }
 
+  /** ✅ Function to Display Validation Message */
+  getPhoneErrorMessage() {
+    const control = this.registrationForm.controls['mobile_number'];
+    
+    if (control.errors.validatePhoneNumber['valid']) {
+      return '';
+    } else {
+      return 'Invalid mobile number for selected country.';
+    }
+  }
+
 
 onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
   console.log(this.registrationForm);
@@ -413,7 +473,6 @@ onKeyDown(event: KeyboardEvent, inputValue: any): void {
 }
 
   submitData(): void {
-    debugger
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
 const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 console.log(formattedMobileNumber);
@@ -421,7 +480,7 @@ console.log(formattedMobileNumber);
     this.registrationForm.patchValue({
       country_code :this.registrationForm.value.mobile_number.dialCode,
       mobile_number :formattedMobileNumber,
-      // dob: this.formattedDate
+      dob: this.formattedDate
     })
     console.log(this.registrationForm.value);
 
@@ -507,6 +566,12 @@ closeModal() {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  
+  onInput(event: any, controlName: string) {
+    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+    this.registrationForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
 }

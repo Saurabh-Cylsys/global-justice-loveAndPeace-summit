@@ -94,7 +94,6 @@ export class WebHeaderComponent implements OnInit {
   }
 
   navigateUrl() {
-    debugger;
     // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
     this._router.navigate(['/delegate-registration']);
   }
@@ -104,7 +103,6 @@ export class WebHeaderComponent implements OnInit {
 
   }
   downloadPDF() {
-    debugger;
     const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure-01-ENGLISH-241227.pdf'; // Path to your PDF file in the assets folder
     const a = document.createElement('a');
     a.href = fileUrl;

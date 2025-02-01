@@ -16,6 +16,7 @@ import {
   FormArray,
   AbstractControl,
   ValidatorFn,
+  FormControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -35,7 +36,7 @@ import {
   ImageTransform,
   LoadedImage,
 } from 'ngx-image-cropper';
-import { DOCUMENT } from '@angular/common';
+import { DatePipe, DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -94,14 +95,21 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   croppedImage: any = '';
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
-
+  disabledDates: Date[] = [];
+  formattedDate: string = '';
+  maxDate1 : any;
+  minDate1 : any;
+  colorTheme: string = 'theme-dark-blue';
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
-
+  onCountryChange(event: any): void {
+    console.log('Country Changed:', event); // Logs the selected country
+    this.selectedCountryISO = event.iso2; // Update the selected country ISO
+  }
   // configOption: ConfigurationOptions = new ConfigurationOptions;
 
-  constructor(
+  constructor(private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private DelegateService: DelegateService,
     private SharedService: SharedService,
@@ -116,6 +124,14 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
+    
+    const today = new Date();
+
+    // Max date is 18 years ago from today
+    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  
+    // Min date is 120 years ago from today
+    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -175,7 +191,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
-      dob: ['', [Validators.required]],
+      dob: ['', [Validators.required,this.ageValidator]],
       country: ['', [Validators.required]],
       country_code: [''],
       mobile_number: [
@@ -218,18 +234,48 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     };
   }
 
-  dobValidator() {
-    const today = new Date();
 
-    const minYear = today.getFullYear() - 120; // 120 years ago
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-    this.maxDate = eighteenYearsAgo.toISOString().split('T')[0];
-    this.minDate = `${minYear}-01-01`; // Set
+dobValidator() {
+  const today = new Date();
+
+  // Calculate the date 18 years ago from today
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
+  this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
+
+  // Set disabledDates (any date after maxDate)
+  this.disabledDates = [eighteenYearsAgo]; // Disabling the date of 18 years ago
+  console.log(`Max date (18 years ago): ${this.maxDate}`);
+}
+
+ageValidator(control: FormControl) {
+  const selectedDate = new Date(control.value);
+
+  // If the selected date is invalid, return an error
+  if (isNaN(selectedDate.getTime())) {
+    return { invalidDate: true }; // Invalid date format
   }
+
+  const today = new Date();
+  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+  // If selected date is after or on the date 18 years ago, it's invalid
+  if (selectedDate > eighteenYearsAgo) {
+    return { ageError: 'Date must be at least 18 years ago' };
+  }
+
+  return null; // Valid date
+}
+disableManualInput(event: KeyboardEvent): void {
+  event.preventDefault();
+}
+
+onDateChange(event: string): void {
+  // Convert the date format
+  const parsedDate = new Date(event);
+  this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+}
 
   get dob() {
     return this.peacekeepersForm.get('dob');
@@ -457,7 +503,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   onFileChange(event: any): void {
-    console.log('form',this.peacekeepersForm);
     
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
@@ -628,7 +673,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   }
 
   submitData(fileInput: HTMLInputElement): void {
-    debugger;
     this.convertedImage = '';
     this.display = 'none';
     this.showPopup = false;
@@ -654,6 +698,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
+        dob: this.formattedDate
+
     });
     console.log(this.peacekeepersForm.value);
     // if (this.peacekeepersForm.invalid) {
@@ -752,12 +798,26 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
         if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
           // event.preventDefault()
+          
         } else {
+          console.log('form',this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber['valid']);
           this.mobile_numberVal = false;
         }
       }
     }
   }
+
+  /** ✅ Function to Display Validation Message */
+  getPhoneErrorMessage() {
+    const control = this.peacekeepersForm.controls['mobile_number'];
+    
+    if (control.errors.validatePhoneNumber['valid']) {
+      return '';
+    } else {
+      return 'Invalid mobile number for selected country.';
+    }
+  }
+
 
   getCountrycode(code: any) {
     let countryName = this.peacekeepersForm.value.country;
@@ -846,6 +906,12 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       uInt8Array[i] = decodedData.charCodeAt(i);
     }
     return new Blob([uInt8Array], { type: imageType });
+  }
+
+
+  onInput(event: any, controlName: string) {
+    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+    this.peacekeepersForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
   // setMetaTags(): void {

@@ -564,6 +564,7 @@
                       placeholder="Enter full name"
                       value=""
                       autocomplete="off"
+                      (input)="onInput($event, 'full_name')"
                     />
                     
                     <div
@@ -592,16 +593,18 @@
                       >
                     </label>
                     <input
-                      type="date"
-                      class="form-control w-100 text-start p-0"
-                      formControlName="dob"
-                      name="dob"
-                      id="title"
-                      placeholder="dd-mm-yyyy"
-                      value=""
-                      [attr.min]="minDate"
-                      [attr.max]="maxDate"
-                    />
+                    type="text"
+                    class="form-control p-0"
+                    placeholder="Select Date of birth"
+                    formControlName="dob"
+                    [minDate]="minDate1"
+                    [maxDate]="maxDate1"
+                    (keydown)="disableManualInput($event)"
+                    (ngModelChange)="onDateChange($event)"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+
+                  />
                     
                     <div
                       class="text-danger"
@@ -725,6 +728,7 @@
                       placeholder="Enter your email"
                       autocomplete="off"
                       required
+                      (input)="onInput($event, 'email_id')"
                       (keydown)="onKeyDown($event, mobile_number)"
                     />
                     
@@ -830,6 +834,8 @@
                         formControlName="mobile_number"
                         (keydown)="onMobileKeyDown($event, mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
+                        (countryChange)="onCountryChange($event)"
+
                         ></ngx-intl-tel-input>
                         <!-- [maxLength]="10"
                         pattern=".{8,12}"
@@ -852,6 +858,9 @@
                     (keypress)="keyPressNumbers($event)"
                
                   /> -->
+                  <span > 
+                    
+                  </span>
                       <small class="text-danger" *ngIf="mobile_numberVal">
                         (Country code + Mobile number) will be 7 to 15 digits
                         based on country.
@@ -867,6 +876,13 @@
                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                           >Mobile number is required</small
                         >
+                        <small
+                        class="text-danger"
+                        *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched" 
+                        >
+                        {{ getPhoneErrorMessage() }}
+                        </small
+                      >
                       </div>
                     </div>
                   </div>
@@ -1409,7 +1425,6 @@
         <div class="col-6">
           <button
             class="btn btn-success w-100"
-            data-dismiss="modal"
             [disabled]="isConvertedImage"
             (click)="downloadImage()"
             style="height: 36px; font-size: 15px"
@@ -1420,7 +1435,6 @@
         <div class="col-6">
           <button
             class="btn btn-success w-100"
-            data-dismiss="modal"
             (click)="closeModal()"
             style="
               height: 36px;

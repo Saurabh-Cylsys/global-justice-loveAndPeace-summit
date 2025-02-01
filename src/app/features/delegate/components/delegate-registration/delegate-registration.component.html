@@ -84,10 +84,12 @@
                                       id="fname1"
                                       placeholder="Enter title"
                                       class="form-control p-0"
-                                      [maxlength]="7"
-                                      value=""
+                                      [maxlength]="10"
+                                      value="" (keypress)="ValidateAlpha($event)"
                                       data-error="Please select option"
                                       formControlName="title"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'title')"  
                                       />
                                       
                                     </div>
@@ -133,6 +135,8 @@
                                         formControlName="first_name"
                                         minlength="3"
                                         (keypress)="ValidateAlpha($event)"
+                                      autocomplete="off"
+                                        (input)="onInput($event, 'first_name')"
                                         [ngClass]="{
                                           'text-danger':
                                             submitted && f.first_name.errors
@@ -190,6 +194,8 @@
                                         formControlName="last_name"
                                         minlength="3"
                                         (keypress)="ValidateAlpha($event)"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'last_name')"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted && f.last_name.errors
@@ -234,7 +240,7 @@
                                           *</span
                                         ></label
                                       >
-                                      <input
+                                      <!-- <input
                                         type="date"
                                         name="lname[1]"
                                         id="lname1"
@@ -247,10 +253,36 @@
                                         [attr.min]="minDate"
                                         [attr.max]="maxDate"
                                         (ngModelChange)="onDateChange($event)"
-                                      />
+                                      /> -->
                                       
-                                    </div>
+                                      <input
+                                      type="text"
+                                      class="form-control p-0"
+                                      placeholder="Select Date of birth"
+                                      formControlName="dob"
+                                      [minDate]="minDate1"
+                                      [maxDate]="maxDate1"
+                                      (keydown)="disableManualInput($event)"
+                                      (ngModelChange)="onDateChange($event)"
+                                      bsDatepicker
+                                      [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+  
+                                    />
+  
                                     <div
+                                        *ngIf="
+                                          getcontrol('dob')?.errors &&
+                                          getcontrol('dob')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('dob')?.errors?.['required']"
+                                          >Date of birth is required</small
+                                        >
+                                      </div>
+                                    </div>
+                                    <!-- <div
                                       *ngIf="
                                         getcontrol('dob')?.errors &&
                                         getcontrol('dob')?.touched
@@ -261,7 +293,7 @@
                                         *ngIf="getcontrol('dob')?.errors?.['required']"
                                         >Date of birth is required</small
                                       >
-                                    </div>
+                                    </div> -->
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
@@ -316,6 +348,7 @@
                                           [separateDialCode]="true"
                                           [(ngModel)]="mobile_number"
                                           formControlName="mobile_number"
+                                          autocomplete="off"
                                           (keydown)="
                                             onMobileKeyDown(
                                               $event,
@@ -328,6 +361,7 @@
                                               mobile_number
                                             )
                                           "
+                                           (countryChange)="onCountryChange($event)"
                                         ></ngx-intl-tel-input>
                                       </div>
                                       <small
@@ -340,6 +374,7 @@
                                         >
                                         <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
                                           long.</p> -->
+
                                     </div>
                                     <div
                                       class="form-group form-group-inner mobile-number"
@@ -376,23 +411,18 @@
                                           getcontrol('mobile_number')?.touched
                                         "
                                       >
-                                        <!-- <small
+                                        <small
                                           class="text-danger"
                                           *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                                           >Mobile number is required</small
                                         >
                                         <small
-                                          class="text-danger"
-                                          *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                                          >
-                                          <b>Note:-</b>
-                                      
-                                          <p class="text-danger mb-1">(Country code + Mobile number) will be 7 to 15 digits based on country.</p>
-                                       
-                                         
-                                          
-                                          </small
-                                        > -->
+                                        class="text-danger"
+                                        *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched" 
+                                        >
+                                        {{ getPhoneErrorMessage() }}
+                                        </small
+                                      >
                                       </div>
                                     </div>
                                   </div>
@@ -413,6 +443,7 @@
                                         ></label
                                       >
                                       <input
+                                      (input)="onInput($event, 'email_id')"
                                         type="email"
                                         name="email[1]"
                                         id="email1"
@@ -422,6 +453,8 @@
                                         value=""
                                         required
                                         (keydown)="onKeyDown($event, email_id)"
+                                      autocomplete="off"
+
                                         [(ngModel)]="email_id"
                                         data-error="Please enter valid email id"
                                         formControlName="email_id"
@@ -484,6 +517,7 @@
                                           onKeyDown($event, linkedIn_profile)
                                         "
                                         formControlName="linkedIn_profile"
+                                      autocomplete="off"
                                         
                                       />
                                       
@@ -525,6 +559,7 @@
                                           onKeyDown($event, instagram_profile)
                                         "
                                         formControlName="instagram_profile"
+                                      autocomplete="off"
                                         
                                       />
                                       
@@ -585,6 +620,8 @@
                                         value=""
                                         required
                                         formControlName="profession_1"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'profession_1')"
                                         minlength="3"
                                         [ngClass]="{
                                           'is-invalid':
@@ -632,6 +669,8 @@
                                         class="form-control p-0"
                                         value=""
                                         formControlName="profession_2"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'profession_2')"
                                         minlength="3"
                                       />
                                       
@@ -677,6 +716,8 @@
                                         [(ngModel)]="website"
                                         (keydown)="onKeyDown($event, website)"
                                         formControlName="website"
+                                      autocomplete="off"
+
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted &&
@@ -729,6 +770,8 @@
                                       formControlName="organization_name"
                                       minlength="3"
                                       (keypress)="ValidateAlpha($event)"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'organization_name')"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted &&
@@ -793,6 +836,8 @@
                                         value=""
                                         [(ngModel)]="address"
                                         (keypress)="ValidateAlpha($event)"
+                                        autocomplete="off"
+                                        (input)="onInput($event, 'address')"
                                         formControlName="address"
                                         minlength="3"
                                         [ngClass]="{
@@ -846,6 +891,8 @@
                                         value=""
                                         required
                                         formControlName="country"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'country')"
                                         minlength="5"
                                         [ngClass]="{
                                           'is-invalid':
@@ -919,6 +966,8 @@
                                         placeholder="Enter state/province"
                                         class="form-control p-0"
                                         value=""
+                                        (input)="onInput($event, 'state')"
+                                        autocomplete="off"
                                         formControlName="state"
                                         minlength="5"
                                       />
@@ -1010,6 +1059,9 @@
                                         class="form-control p-0"
                                         value=""
                                         formControlName="city"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'city')"
+
                                         minlength="5"
                                       />
                                       
@@ -1267,6 +1319,8 @@
                                       [readonly]="this.referralCode?this.referralCode:''"
                                       formControlName="reference_no"
                                       minlength="3"
+                                      autocomplete="off"
+                                      (input)="onInput($event, 'reference_no')"
                                     />
                                     
                                   </div>
