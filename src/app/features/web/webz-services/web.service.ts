@@ -31,7 +31,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker50.png',
       Name: 'Alpha Sesay, Esquire, Honorable',
       Country: 'SIERRA LEONE',
       Credentials: 'Attorney General & Minister of Justice, Sierra Leone',
@@ -55,7 +55,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker51.png',
       Name: 'Asle Toje',
       Country: 'NORWAY',
       Credentials: 'Deputy Leader, Norwegian Nobel Committee',
@@ -100,7 +100,7 @@ export class WebService {
     {
       // "S_No": 5,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker56.png',
       Name: 'Dalip Singh Rana, The Great Khali',
       Country: 'USA, INDIA',
       Credentials: 'Wrestler : 1st Indian born World Heavyweight Champion, WWE',
@@ -108,7 +108,7 @@ export class WebService {
     {
       // "S_No": 5,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker52.png',
       Name: 'Deepa Malik, Dr.',
       Country: 'INDIA',
       Credentials:
@@ -117,7 +117,7 @@ export class WebService {
     {
       // "S_No": 6,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker53.png',
       Name: 'Dia Mirza',
       Country: 'INDIA',
       Credentials: 'Beauty Queen, Actress',
@@ -126,7 +126,7 @@ export class WebService {
     {
       // "S_No": 6,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker54.png',
       Name: 'Ekaterina Zagladina',
       Country: 'RUSSIA ',
       Credentials:
@@ -143,7 +143,7 @@ export class WebService {
     {
       // "S_No": 8,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker55.png',
       Name: 'Feizi Masrour Milani, Dr.',
       Country: 'BRAZIL',
       Credentials:
@@ -179,7 +179,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker57.png',
       Name: 'Hlubi Mboya-Arnold',
       Country: 'SOUTH AFRICA',
       Credentials: 'Actress, Humanitarian',
@@ -187,7 +187,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker58.png',
       Name: 'Hoda Galal Yassa, Dr.',
       Country: 'EGYPT',
       Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -203,7 +203,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker59.png',
       Name: 'Jacqueline Fernandez',
       Country: 'SRI LANKA, INDIA',
       Credentials: 'Beauty Queen, Actress',
@@ -228,7 +228,7 @@ export class WebService {
     {
       // "S_No": 14,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker62.png',
       Name: 'Kili Paul',
       Country: 'TANZANIAN',
       Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
@@ -236,7 +236,7 @@ export class WebService {
     {
       // "S_No": 14,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker63.png',
       Name: 'Kriti Kharbanda',
       Country: 'INDIA',
       Credentials: 'Actress ( Hindi, South Indian )',
@@ -299,7 +299,7 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker64.png',
       Name: 'Maqsoud Cruz',
       Country: 'UAE',
       Credentials: 'Chairman, National Human Rights Commission, UAE',
@@ -333,7 +333,7 @@ export class WebService {
     {
       // "S_No": 21,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker65.png',
       Name: 'Mohamed Fadhel Mahfoudh',
       Country: 'TUNISIA',
       Credentials:
@@ -377,7 +377,7 @@ export class WebService {
     {
       // "S_No": 17,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker73.png',
       Name: 'Nadia Murad',
       Country: 'IRAQ',
       Credentials: 'Social Activist: Nobel Peace Laureate 2018',
@@ -393,7 +393,7 @@ export class WebService {
     {
       // "S_No": 17,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker66.png',
       Name: 'Naresh Kumar Bhawnani',
       Country: 'UAE',
       Credentials: 'Industrialist : Founder & Chairman, West Zone Group',
@@ -418,7 +418,7 @@ export class WebService {
     {
       // "S_No": 27,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker68.png',
       Name: 'Ouided Bouchamaoui',
       Country: 'TUNISIA',
       Credentials: 'Nobel Peace Laureate 2015',
@@ -427,7 +427,7 @@ export class WebService {
     {
       // "S_No": 27,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker67.png',
       Name: 'Oscar Arias Sanchez, His Excellency ',
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
@@ -461,7 +461,7 @@ export class WebService {
     {
       // "S_No": 31,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker69.png',
       Name: 'Roby Kannamchirayil, Father, Dr.',
       Country: 'INDIA',
       Credentials:
@@ -503,7 +503,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker70.png',
       Name: 'Sanjeev Kapoor',
       Country: 'INDIA',
       Credentials: 'World Renowned Chef',
@@ -528,7 +528,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker71.png',
       Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
       Country: 'LIBERIA',
       Credentials: 'Chief Justice of Liberia',
@@ -536,7 +536,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker72.png',
       Name: 'Soha Ali Khan',
       Country: 'INDIA',
       Credentials: 'Producer & Actress, Royalty',
@@ -635,7 +635,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker50.png',
       Name: 'Alpha Sesay, Esquire, Honorable',
       Country: 'SIERRA LEONE',
       Credentials: 'Attorney General & Minister of Justice, Sierra Leone',
@@ -659,7 +659,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker51.png',
       Name: 'Asle Toje',
       Country: 'NORWAY',
       Credentials: 'Deputy Leader, Norwegian Nobel Committee',
@@ -704,7 +704,7 @@ export class WebService {
     {
       // "S_No": 5,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker56.png',
       Name: 'Dalip Singh Rana, The Great Khali',
       Country: 'USA, INDIA',
       Credentials: 'Wrestler : 1st Indian born World Heavyweight Champion, WWE',
@@ -712,7 +712,7 @@ export class WebService {
     {
       // "S_No": 5,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker52.png',
       Name: 'Deepa Malik, Dr.',
       Country: 'INDIA',
       Credentials:
@@ -721,7 +721,7 @@ export class WebService {
     {
       // "S_No": 6,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker53.png',
       Name: 'Dia Mirza',
       Country: 'INDIA',
       Credentials: 'Beauty Queen, Actress',
@@ -730,7 +730,7 @@ export class WebService {
     {
       // "S_No": 6,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker54.png',
       Name: 'Ekaterina Zagladina',
       Country: 'RUSSIA ',
       Credentials:
@@ -747,7 +747,7 @@ export class WebService {
     {
       // "S_No": 8,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker55.png',
       Name: 'Feizi Masrour Milani, Dr.',
       Country: 'BRAZIL',
       Credentials:
@@ -783,7 +783,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker57.png',
       Name: 'Hlubi Mboya-Arnold',
       Country: 'SOUTH AFRICA',
       Credentials: 'Actress, Humanitarian',
@@ -791,7 +791,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker58.png',
       Name: 'Hoda Galal Yassa, Dr.',
       Country: 'EGYPT',
       Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -807,7 +807,7 @@ export class WebService {
     {
       // "S_No": 12,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker59.png',
       Name: 'Jacqueline Fernandez',
       Country: 'SRI LANKA, INDIA',
       Credentials: 'Beauty Queen, Actress',
@@ -832,7 +832,7 @@ export class WebService {
     {
       // "S_No": 14,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker62.png',
       Name: 'Kili Paul',
       Country: 'TANZANIAN',
       Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
@@ -840,7 +840,7 @@ export class WebService {
     {
       // "S_No": 14,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker63.png',
       Name: 'Kriti Kharbanda',
       Country: 'INDIA',
       Credentials: 'Actress ( Hindi, South Indian )',
@@ -903,7 +903,7 @@ export class WebService {
     {
       // "S_No": 18,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker64.png',
       Name: 'Maqsoud Cruz',
       Country: 'UAE',
       Credentials: 'Chairman, National Human Rights Commission, UAE',
@@ -937,7 +937,7 @@ export class WebService {
     {
       // "S_No": 21,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker65.png',
       Name: 'Mohamed Fadhel Mahfoudh',
       Country: 'TUNISIA',
       Credentials:
@@ -982,7 +982,7 @@ export class WebService {
     {
       // "S_No": 17,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker73.png',
       Name: 'Nadia Murad',
       Country: 'IRAQ',
       Credentials: 'Social Activist: Nobel Peace Laureate 2018',
@@ -998,7 +998,7 @@ export class WebService {
     {
       // "S_No": 17,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker66.png',
       Name: 'Naresh Kumar Bhawnani',
       Country: 'UAE',
       Credentials: 'Industrialist : Founder & Chairman, West Zone Group',
@@ -1023,7 +1023,7 @@ export class WebService {
     {
       // "S_No": 27,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker68.png',
       Name: 'Ouided Bouchamaoui',
       Country: 'TUNISIA',
       Credentials: 'Nobel Peace Laureate 2015',
@@ -1032,7 +1032,7 @@ export class WebService {
     {
       // "S_No": 27,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker67.png',
       Name: 'Oscar Arias Sanchez, His Excellency ',
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
@@ -1066,7 +1066,7 @@ export class WebService {
     {
       // "S_No": 31,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker69.png',
       Name: 'Roby Kannamchirayil, Father, Dr.',
       Country: 'INDIA',
       Credentials:
@@ -1108,7 +1108,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker70.png',
       Name: 'Sanjeev Kapoor',
       Country: 'INDIA',
       Credentials: 'World Renowned Chef',
@@ -1133,7 +1133,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker71.png',
       Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
       Country: 'LIBERIA',
       Credentials: 'Chief Justice of Liberia',
@@ -1141,7 +1141,7 @@ export class WebService {
     {
       // "S_No": 34,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker72.png',
       Name: 'Soha Ali Khan',
       Country: 'INDIA',
       Credentials: 'Producer & Actress, Royalty',
@@ -1227,7 +1227,7 @@ export class WebService {
     {
       // "S_No": 39,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker60.png',
       Name: 'Jose Manuel Ramos Horta, His Excellency',
       Country: 'EAST TIMOR',
       Credentials:
@@ -1235,7 +1235,7 @@ export class WebService {
     },
     {
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker61.png',
       Name: 'Joseph Boakai, His Excellency',
       Country: 'LIBERIA',
       Credentials: 'President of Liberia (ONLINE)',
@@ -1268,7 +1268,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker50.png',
       Name: 'Alpha Sesay, Esquire, Honorable',
       Country: 'SIERRA LEONE',
       Credentials: 'Attorney General & Minister of Justice, Sierra Leone',
@@ -1300,7 +1300,7 @@ export class WebService {
     {
       // "S_No": 1,
       View: '',
-      Profile_Photo: null,
+      Profile_Photo: 'speaker51.png',
       Name: 'Asle Toje',
       Country: 'NORWAY',
       Credentials: 'Deputy Leader, Norwegian Nobel Committee',
@@ -1358,7 +1358,7 @@ export class WebService {
           {
             // "S_No": 5,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker56.png',
             Name: 'Dalip Singh Rana, The Great Khali',
             Country: 'USA, INDIA',
             Credentials: 'Wrestler : 1st Indian born World Heavyweight Champion, WWE',
@@ -1366,7 +1366,7 @@ export class WebService {
           {
             // "S_No": 5,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker52.png',
             Name: 'Deepa Malik, Dr.',
             Country: 'INDIA',
             Credentials:
@@ -1375,7 +1375,7 @@ export class WebService {
           {
             // "S_No": 6,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker53.png',
             Name: 'Dia Mirza',
             Country: 'INDIA',
             Credentials: 'Beauty Queen, Actress',
@@ -1390,7 +1390,7 @@ export class WebService {
           {
             // "S_No": 6,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker54.png',
             Name: 'Ekaterina Zagladina',
             Country: 'RUSSIA ',
             Credentials:
@@ -1407,7 +1407,7 @@ export class WebService {
           {
             // "S_No": 8,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker55.png',
             Name: 'Feizi Masrour Milani, Dr.',
             Country: 'BRAZIL',
             Credentials:
@@ -1453,7 +1453,7 @@ export class WebService {
           {
             // "S_No": 12,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker57.png',
             Name: 'Hlubi Mboya-Arnold',
             Country: 'SOUTH AFRICA',
             Credentials: 'Actress, Humanitarian',
@@ -1461,7 +1461,7 @@ export class WebService {
           {
             // "S_No": 12,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker58.png',
             Name: 'Hoda Galal Yassa, Dr.',
             Country: 'EGYPT',
             Credentials: 'Industrialist : President, Arab Women Investors Union',
@@ -1484,7 +1484,7 @@ export class WebService {
           {
             // "S_No": 12,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker59.png',
             Name: 'Jacqueline Fernandez',
             Country: 'SRI LANKA, INDIA',
             Credentials: 'Beauty Queen, Actress',
@@ -1516,7 +1516,7 @@ export class WebService {
           {
             // "S_No": 14,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker62.png',
             Name: 'Kili Paul',
             Country: 'TANZANIAN',
             Credentials: 'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
@@ -1524,7 +1524,7 @@ export class WebService {
           {
             // "S_No": 14,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker63.png',
             Name: 'Kriti Kharbanda',
             Country: 'INDIA',
             Credentials: 'Actress ( Hindi, South Indian )',
@@ -1603,7 +1603,7 @@ export class WebService {
           {
             // "S_No": 18,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker64.png',
             Name: 'Maqsoud Cruz',
             Country: 'UAE',
             Credentials: 'Chairman, National Human Rights Commission, UAE',
@@ -1654,7 +1654,7 @@ export class WebService {
           {
             // "S_No": 21,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker65.png',
             Name: 'Mohamed Fadhel Mahfoudh',
             Country: 'TUNISIA',
             Credentials:
@@ -1707,7 +1707,7 @@ export class WebService {
           {
             // "S_No": 17,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker73.png',
             Name: 'Nadia Murad',
             Country: 'IRAQ',
             Credentials: 'Social Activist: Nobel Peace Laureate 2018',
@@ -1732,7 +1732,7 @@ export class WebService {
           {
             // "S_No": 17,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker66.png',
             Name: 'Naresh Kumar Bhawnani',
             Country: 'UAE',
             Credentials: 'Industrialist : Founder & Chairman, West Zone Group',
@@ -1765,7 +1765,7 @@ export class WebService {
           {
             // "S_No": 27,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker68.png',
             Name: 'Ouided Bouchamaoui',
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
@@ -1774,7 +1774,7 @@ export class WebService {
           {
             // "S_No": 27,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker67.png',
             Name: 'Oscar Arias Sanchez, His Excellency ',
             Country: 'COSTA RICA',
             Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
@@ -1809,7 +1809,7 @@ export class WebService {
           {
             // "S_No": 31,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker69.png',
             Name: 'Roby Kannamchirayil, Father, Dr.',
             Country: 'INDIA',
             Credentials:
@@ -1868,7 +1868,7 @@ export class WebService {
           {
             // "S_No": 34,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker70.png',
             Name: 'Sanjeev Kapoor',
             Country: 'INDIA',
             Credentials: 'World Renowned Chef',
@@ -1903,7 +1903,7 @@ export class WebService {
           {
             // "S_No": 34,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker71.png',
             Name: 'Sie-A-Nyene Gyapay Yuoh, Her Honour',
             Country: 'LIBERIA',
             Credentials: 'Chief Justice of Liberia',
@@ -1913,7 +1913,7 @@ export class WebService {
           {
             // "S_No": 34,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker72.png',
             Name: 'Soha Ali Khan',
             Country: 'INDIA',
             Credentials: 'Producer & Actress, Royalty',
@@ -2033,7 +2033,7 @@ export class WebService {
           {
             // "S_No": 39,
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker60.png',
             Name: 'Jose Manuel Ramos Horta, His Excellency',
             Country: 'EAST TIMOR',
             Credentials:
@@ -2042,7 +2042,7 @@ export class WebService {
           
           {
             View: '',
-            Profile_Photo: null,
+            Profile_Photo: 'speaker61.png',
             Name: 'Joseph Boakai, His Excellency',
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
