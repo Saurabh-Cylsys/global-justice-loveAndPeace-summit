@@ -18,4 +18,12 @@ export class PeacekeeperService {
     return this._apiHttpService.post(this._apiEndpointsService.postpeackeeperLoginEndpoint(), body)
 
   }
+
+  getAllCountrycode() {
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountrycodeEndpoint());
+  }
+
+  getPeacekeeperBadgeById(body:any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getPeacekeeperBadgeByIdEndpoint(), body);
+  }
 }

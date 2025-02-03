@@ -11,6 +11,10 @@ import { PeacekeeperMainComponent } from './components/peacekeeper-main/peacekee
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { IntlInputPhoneModule } from 'intl-input-phone';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -29,7 +33,12 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     PeacekeeperRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    BsDatepickerModule.forRoot(),
+    NgxIntlTelInputModule,
+    IntlInputPhoneModule,
+    ImageCropperModule,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
