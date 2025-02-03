@@ -1,51 +1,53 @@
-<div class="login-box">
-  <img src="assets/UIComponents/images/logo.gif" class="logo mt-3" alt="Logo">
-  <h3 class="login-heading">LOGIN</h3>
-  <p class="text-muted">Login for peacekeeper only</p>
-
-  <form [formGroup]="emailForm" (ngSubmit)="login()">
-    <div class="mb-3">
-      <label for="email" class="mb-1">Email Address <span class="text-danger">*</span></label>
-      <div class="input-group flex-nowrap border rounded">
-        <!-- Email Input -->
-        <input
-          type="email"
-          class="form-control border-0"
-          placeholder="abc@gmail.com"
-          formControlName="email"
-          required
-          email
-        >
-        <!-- Icon -->
-        <span class="input-group-text border-0 icon" id="addon-wrapping">
-          <i class="fa-solid fa-user"></i>
-        </span>
+<div class="loginBox">
+  <div class="login-box">
+    <img src="assets/UIComponents/images/logo.gif" class="logo mt-3" alt="Logo">
+    <h3 class="login-heading">LOGIN</h3>
+    <p class="text-muted">Login for peacekeeper only</p>
+  
+    <form [formGroup]="emailForm" (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="email" class="mb-1">Email Address <span class="text-danger">*</span></label>
+        <div class="input-group flex-nowrap border rounded">
+          <!-- Email Input -->
+          <input
+            type="email"
+            class="form-control border-0"
+            placeholder="abc@gmail.com"
+            formControlName="email"
+            required
+            email
+          >
+          <!-- Icon -->
+          <span class="input-group-text border-0 icon" id="addon-wrapping">
+            <i class="fa-solid fa-user"></i>
+          </span>
+        </div>
+  
+        <!-- Validation Messages -->
+        <div *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="text-danger">
+          <div *ngIf="emailForm.get('email')?.hasError('required')">Email is required.</div>
+          <!-- <div *ngIf="emailForm.get('email')?.hasError('email')">Please enter a valid email address.</div> -->
+        </div>
+  
+        <!-- Optional Error Message Below Input -->
+        <small *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="error-message d-block text-start text-danger mt-1">
+          <img src="assets/UIComponents/images/peacekeeper/error.png" alt="Error Icon"> Please enter a valid email address.
+        </small>
       </div>
-
-      <!-- Validation Messages -->
-      <div *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="text-danger">
-        <div *ngIf="emailForm.get('email')?.hasError('required')">Email is required.</div>
-        <!-- <div *ngIf="emailForm.get('email')?.hasError('email')">Please enter a valid email address.</div> -->
-      </div>
-
-      <!-- Optional Error Message Below Input -->
-      <small *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="error-message d-block text-start text-danger mt-1">
-        <img src="assets/UIComponents/images/peacekeeper/error.png" alt="Error Icon"> Please enter a valid email address.
-      </small>
-    </div>
-
-      <!-- <div class="mb-3">
-          <label for="password" class="mb-1">Password <span class="text-danger">*</span></label>
-          <div class="input-group flex-nowrap border rounded">
-              <input type="password" class="form-control border-0" placeholder="Password" aria-label="" aria-describedby="addon-wrapping">
-              <span class="input-group-text border-0 icon" id="addon-wrapping"><i class="fa-solid fa-eye-slash"></i></span>
-          </div>
-          <small class="error-massage d-block text-start mt-1"><img src="assets/images/error.png" alt=""> Please enter a valid password</small>
-      </div> -->
-
-      <button type="submit" [disabled]="emailForm.invalid" class="btn login w-100">Log in</button>
-  </form>
-
-
-
+  
+        <!-- <div class="mb-3">
+            <label for="password" class="mb-1">Password <span class="text-danger">*</span></label>
+            <div class="input-group flex-nowrap border rounded">
+                <input type="password" class="form-control border-0" placeholder="Password" aria-label="" aria-describedby="addon-wrapping">
+                <span class="input-group-text border-0 icon" id="addon-wrapping"><i class="fa-solid fa-eye-slash"></i></span>
+            </div>
+            <small class="error-massage d-block text-start mt-1"><img src="assets/images/error.png" alt=""> Please enter a valid password</small>
+        </div> -->
+  
+        <button type="submit" [disabled]="emailForm.invalid" class="btn login w-100">Log in</button>
+    </form>
+  
+  
+  
+  </div>
 </div>

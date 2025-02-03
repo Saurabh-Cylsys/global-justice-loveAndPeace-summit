@@ -1,3 +1,12 @@
+.loginBox{
+  display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url(../../../../../assets/UIComponents/images/Login.png);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+}
 .login-box {
   background: white;
   padding: 30px;
