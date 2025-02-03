@@ -63,8 +63,8 @@
                   [routerLink]="['/the-summit']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -83,12 +83,12 @@
             aria-expanded="false"
             aria-controls="flush-collapseTwo"
           >
-          <a
-          [routerLink]="['/partners']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-          >Partners</a
-        >
+            <a
+              [routerLink]="['/partners']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Partners</a
+            >
           </button>
         </h2>
         <div
@@ -100,12 +100,11 @@
             <ul>
               <li *ngFor="let link of partnersLinks">
                 <a
-                  
                   [routerLink]="['/partners']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -124,12 +123,12 @@
             aria-expanded="false"
             aria-controls="flush-collapseThree"
           >
-          <a
-          [routerLink]="['/awards']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-          >Awards</a
-        >
+            <a
+              [routerLink]="['/awards']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Awards</a
+            >
           </button>
         </h2>
         <div
@@ -144,8 +143,8 @@
                   [routerLink]="['/awards']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -164,12 +163,12 @@
             aria-expanded="false"
             aria-controls="flush-collapseFour"
           >
-          <a
-          [routerLink]="['/world-peacekeepers-movement']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-          >I-am-Peacekeeper Movement</a
-        >
+            <a
+              [routerLink]="['/world-peacekeepers-movement']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >I-am-Peacekeeper Movement</a
+            >
           </button>
         </h2>
         <div
@@ -184,8 +183,8 @@
                   [routerLink]="['/world-peacekeepers-movement']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -204,12 +203,12 @@
             aria-expanded="false"
             aria-controls="flush-collapseFive"
           >
-          <a
-          [routerLink]="['/DownloadCenter']"
-          aria-label="Close"
-          data-bs-dismiss="offcanvas"
-          >Download Center</a
-        >
+            <a
+              [routerLink]="['/DownloadCenter']"
+              aria-label="Close"
+              data-bs-dismiss="offcanvas"
+              >Download Center</a
+            >
           </button>
         </h2>
         <div
@@ -224,8 +223,8 @@
                   [routerLink]="['/DownloadCenter']"
                   aria-label="Close"
                   data-bs-dismiss="offcanvas"
-                  [fragment]="link.fragment || undefined"
-                  onclick="removeClass()"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -279,23 +278,50 @@
 <!-- header start -->
 <header
   class="head"
-  
   [class.hide-logo]="_router.url === '/home' || _router.url === '/'"
   *ngIf="!isMobileView"
 >
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-md-1" *ngIf="!isHomePage">
+      <!-- <div class="col-md-1" *ngIf="!isHomePage">
         <a
           class="navbar-brand logo"
           [routerLink]="['/home']"
         >
           <img loading="eager"
             src="assets/UIComponents/images/logo.gif"
-            alt=""
+            alt="attach image"
             class="col-md-10" 
           />
         </a>
+      </div> -->
+
+      <div
+        class="col-md-1 col-1 position-relative"
+        *ngIf="!isMobileView"
+        [ngClass]="{ 'small-logo': isScrolled }"
+      >
+      <a
+          class="navbar-brand logo"
+          [routerLink]="['/home']"
+          *ngIf="!isHomePage"
+        >
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach images"
+          width="80%"
+          
+        />
+        </a>
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach images"
+          id="logo"
+          [ngClass]="{ 'small-logo': isScrolled }"
+          *ngIf="isHomePage"
+        />
       </div>
       <div class="col-md">
         <ul
@@ -304,7 +330,11 @@
           <!-- <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/home']">Home</a>
           </li> -->
-          <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
             <a class="nav-link" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
@@ -317,11 +347,14 @@
                 The Summit
               </button>
               <div class="hover-dropdown-content">
-                <a
+                <!-- <a
                   *ngFor="let link of summitLinks"
                   [routerLink]="['/the-summit']"
                   [fragment]="link.fragment || undefined"
                 >
+                  {{ link.label }}
+                </a> -->
+                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" [routerLink]="['/the-summit']" fragment="{{ link.fragment }}">
                   {{ link.label }}
                 </a>
               </div>
@@ -336,7 +369,8 @@
                 <a
                   *ngFor="let link of partnersLinks"
                   [routerLink]="['/partners']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -356,7 +390,8 @@
                 <a
                   *ngFor="let link of awardsLinks"
                   [routerLink]="['/awards']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -375,7 +410,8 @@
                 <a
                   *ngFor="let link of peacekeeperLinks"
                   [routerLink]="['/world-peacekeepers-movement']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -404,7 +440,8 @@
                 <a
                   *ngFor="let link of downloadLinks"
                   [routerLink]="['/DownloadCenter']"
-                  [fragment]="link.fragment || undefined"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
                 </a>
@@ -459,9 +496,10 @@
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Download Brochures"
             [routerLink]="['/download-brochure']"
-            >Lang <br><img loading="eager"
+            >Lang <br /><img
+              loading="eager"
               src="assets/UIComponents/images/download.svg"
-              alt=""
+              alt="attach image"
               class="w-50"
           /></a>
         </form>
@@ -477,7 +515,12 @@
         [routerLink]="['/home']"
         style="width: 100px"
       >
-        <img loading="eager" src="assets/UIComponents/images/logo.gif" alt="" class="col-lg-12 col-md-12 col-6" />
+        <img
+          loading="eager"
+          src="assets/UIComponents/images/logo.gif"
+          alt="attach image"
+          class="col-lg-12 col-md-12 col-6"
+        />
       </a>
       <button
         class="navbar-toggler border-white list"
