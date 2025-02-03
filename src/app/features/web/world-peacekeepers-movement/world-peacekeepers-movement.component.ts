@@ -502,6 +502,7 @@ onDateChange(event: string): void {
     }
   }
 
+  
   onFileChange(event: any): void {
     
     this.imageChangedEvent = event;
