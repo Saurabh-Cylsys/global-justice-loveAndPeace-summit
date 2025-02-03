@@ -340,7 +340,8 @@
                   placeholder="Enter title"
                   class="form-control p-0"
                   value=""
-                  [maxlength]="7"
+                  (keypress)="ValidateAlpha($event)"
+                  [maxlength]="10"
                   data-error="Please select option"
                   formControlName="title"
                   (input)="onInput($event, 'title')"
@@ -445,11 +446,9 @@
                     ]"
                     [selectFirstCountry]="false"
                     [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="10"
-                    [minlength]="10"
-                    [phoneValidation]="false"
+                    [maxLength]="12"
+                    [phoneValidation]="true"
                     [separateDialCode]="true"
-                    pattern=".{8,12}"
                     [(ngModel)]="mobile_number"
                     formControlName="phoneNumber"
                     name="phoneNumber"
@@ -488,10 +487,12 @@
                       >Mobile number is required</small
                     >
                     <small
-                      class="text-danger"
-                      *ngIf="getcontrol('phoneNumber')?.errors?.['minlength']"
-                      >Mobile number must be at least 10 digit long.</small
+                    class="text-danger"
+                    *ngIf="!mobile_numberVal && getcontrol('phoneNumber')?.invalid && getcontrol('phoneNumber')?.touched" 
                     >
+                    {{ getPhoneErrorMessage() }}
+                    </small
+                  >
                   </div>
                 </div>
               </div>

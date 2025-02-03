@@ -11,6 +11,7 @@
 npm-debug.log
 yarn-error.log
 
+
 # IDEs and editors
 .idea/
 .project
@@ -22,6 +23,7 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
+package-lock.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

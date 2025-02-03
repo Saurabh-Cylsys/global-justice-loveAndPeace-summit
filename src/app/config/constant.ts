@@ -16,8 +16,8 @@ export class Constants {
 
     //payment
     public readonly API_ENDPOINT_CHECKOUT_SESSION: string = 'create_session_stripe'
-    public readonly API_ENDPOINT_VERIFY_SESSION: string = 'verify_session_stripe_payment'
-
+    public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
+    
 
 
 

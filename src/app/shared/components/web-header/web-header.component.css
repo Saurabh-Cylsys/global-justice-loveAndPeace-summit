@@ -600,6 +600,7 @@
 .accordion-body ul li a{
   color: #005a93 ;
   font-weight: 400 !important;
+  display: block;
 }
 
 .accordion-button::after {
