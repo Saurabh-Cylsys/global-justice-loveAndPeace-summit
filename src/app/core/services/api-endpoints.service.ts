@@ -294,4 +294,8 @@ export class ApiEndpointsService {
   }
 
   
+  public updatePeacekeeperEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_UPDATE_PEACEKEEPER);
+  }
+  
 }

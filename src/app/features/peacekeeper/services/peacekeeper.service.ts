@@ -26,4 +26,9 @@ export class PeacekeeperService {
   getPeacekeeperBadgeById(body:any) {
     return this._apiHttpService.post(this._apiEndpointsService.getPeacekeeperBadgeByIdEndpoint(), body);
   }
+
+  updatePeacekeeper(data: any) {
+    return this._apiHttpService.put(this._apiEndpointsService.updatePeacekeeperEndpoint(), data
+    )
+  }
 }

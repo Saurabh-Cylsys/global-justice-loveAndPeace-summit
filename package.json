@@ -37,6 +37,7 @@
     "intl-input-phone": "^0.0.9",
     "intl-tel-input": "^24.8.1",
     "jquery": "^3.7.1",
+    "libphonenumber-js": "^1.11.19",
     "ngx-bootstrap": "^8.0.0",
     "ngx-image-cropper": "^7.2.1",
     "ngx-intl-tel-input": "^3.2.0",

@@ -62,5 +62,7 @@ export class Constants {
 
     public readonly API_ENDPOINT_PEACKEEPER_LOGIN: string = 'login-peacekeeper'
     public readonly API_ENDPOINT_PEACKEEPER_BADGE_BY_ID: string = 'get_peacekeeper_details_by_id'
+    public readonly API_ENDPOINT_UPDATE_PEACEKEEPER: string = 'edit-peacekeeper'
+
 
 }

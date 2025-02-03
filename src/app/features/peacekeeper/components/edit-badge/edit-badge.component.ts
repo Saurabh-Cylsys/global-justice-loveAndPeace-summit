@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -13,6 +13,7 @@ import {
 import { Router } from '@angular/router';
 import {
   CountryISO,
+  NgxIntlTelInputComponent,
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
@@ -20,6 +21,9 @@ import { PeacekeeperService } from '../../services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ImageCroppedEvent, ImageTransform } from 'ngx-image-cropper';
+import { environment } from 'src/environments/environment';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
+
 @Component({
   selector: 'app-edit-badge',
   templateUrl: './edit-badge.component.html',
@@ -72,6 +76,8 @@ export class EditBadgeComponent {
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
   imageUrl: string | ArrayBuffer | null = 'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
+
+  @ViewChild(NgxIntlTelInputComponent, { static: false }) phoneInput?: NgxIntlTelInputComponent;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -106,14 +112,14 @@ export class EditBadgeComponent {
 
   createEditBadgeForm() {
     this.editBadgeForm = this.fb.group({
-      firstName: ['', [Validators.required]],
+      full_name: ['', [Validators.required]],
       // lastName: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      mobileNumber: ['', [Validators.required,
+      mobile_number: ['', [Validators.required,
       this.noRepeatingDigits(),
       this.containsConsecutiveZeros(),
       ]],
-      email: ['', [Validators.required]],
+      email_id: ['', [Validators.required]],
       dob: ['', [Validators.required, this.ageValidator]]
 
     });
@@ -134,7 +140,7 @@ export class EditBadgeComponent {
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
           this.imageUrl = this.PeaceBadgeData?.file_name
           
-          const mobileNumber = this.PeaceBadgeData.mobile_number;
+          // const mobileNumber = this.PeaceBadgeData.mobile_number;
 
           // // Extract country code
           // const countryCode1 = mobileNumber.split(" ")[0];
@@ -146,7 +152,7 @@ export class EditBadgeComponent {
           // console.log("Mobile Number:", number); // Output: "8765456789"
         
 
-          // debugger
+          debugger
 
           // const countryCode = 'AE'; // Example: 'IN'
           // const phoneNumber = '8120926413'; // Example: '9876543210'
@@ -165,7 +171,7 @@ export class EditBadgeComponent {
 
           // if (countryISO) {
           //   this.editBadgeForm.patchValue({
-          //     mobileNumber: {
+          //     mobile_number: {
           //       number: number,
           //       countryCode: countryISO
           //     },
@@ -174,13 +180,36 @@ export class EditBadgeComponent {
           // } else {
           //   console.warn('Invalid country code received:', countryCode);
           // }
+
+          const phoneNumber = parsePhoneNumberFromString(this.PeaceBadgeData.mobile_number);
+          if (phoneNumber) {
+            const countryDialCode = phoneNumber.countryCallingCode; // e.g., 91
+            const nationalNumber = phoneNumber.nationalNumber; // e.g., 8120926413
+            this.editBadgeForm.patchValue({
+                  mobile_number: {
+                    number: nationalNumber,
+                  },
+    
+                });
+            // this.mobile_number = nationalNumber; // Sirf mobile number bind karna
+            // this.editBadgeForm.patchValue({ mobile_number: nationalNumber });
+      
+            // Country ko dial code ke basis pe set karna
+            setTimeout(() => {
+              this.setCountryByDialCode(countryDialCode);
+            }, 100);
+          }
+        
+          
           // this.PeaceBadgeData.mobile_number 
           this.editBadgeForm.patchValue({
-            firstName: this.PeaceBadgeData.full_name,
-            lastName: this.PeaceBadgeData.full_name,
+            full_name: this.PeaceBadgeData.full_name,
             country: this.PeaceBadgeData.country,
-            email: this.PeaceBadgeData.email_id,
-            mobileNumber:mobileNumber,
+            email_id: this.PeaceBadgeData.email_id,
+            // mobile_number:{
+            //         number: this.mobile_number,
+            //       },
+            
             dob: dateObject
 
           });
@@ -192,6 +221,104 @@ export class EditBadgeComponent {
 
       }
     })
+  }
+  setCountryByDialCode(dialCode: string) {
+    if (this.phoneInput) {
+      const countryList = this.phoneInput.allCountries;
+      const country = countryList.find(c => c.dialCode === dialCode);
+      if (country) {
+        this.phoneInput.selectedCountry = country;
+      }
+    }
+  }
+
+  updatePeacekeeper(fileInput: HTMLInputElement): void {
+    // const returnmobileNumber = this.editBadgeForm.value.mobile_number;
+    // const returnDOB = this.editBadgeForm.value.dob;
+    // console.log(returnmobileNumber,'mobileNumber');
+
+    // const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
+    // const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+    // console.log(formattedMobileNumber);
+
+    // this.isCheckEmail = this.editBadgeForm.value.Check_email;
+    this.editBadgeForm.patchValue({
+      is_active: 1,
+      // Check_email: this.editBadgeForm.value.Check_email == true ? 1 : 0,
+      // country_code: this.editBadgeForm.value.mobile_number.countryCode,
+      // mobile_number:
+      //   this.editBadgeForm.value.mobile_number.dialCode +
+      //   ' ' +
+      //   formattedMobileNumber,
+        dob: this.formattedDate
+
+    });
+    console.log(this.editBadgeForm.value);
+    // if (this.editBadgeForm.invalid) {
+    //   return console.log('Invalid Details');
+    // }
+
+    // Create FormData object
+    const formData = new FormData();
+
+    // Append all form fields except the file
+    // Object.keys(this.editBadgeForm.value).forEach((key) => {
+    //   formData.append(key, this.editBadgeForm.value[key]);
+    // });
+
+    // Append the selected file
+    let encryptedBody = this.sharedService.encryptData(this.editBadgeForm.value);
+
+    formData.append(
+      'encrypted_data', encryptedBody
+    );
+    if (this.selectedFile) {
+      formData.append(
+        'profile_picture',
+        this.selectedFile,
+        this.selectedFile.name
+      );
+    }
+
+  
+    console.log('this.editBadgeForm', formData);
+    console.log('window.location.origin', environment.domainUrl);
+    // formData.append('url', environment.domainUrl);
+
+    // Show loader
+    this.ngxService.start();
+
+    // Call the service to submit data
+    this.peaceKeeperService.updatePeacekeeper(formData).subscribe(
+      (response: any) => {
+        if (response.success) {
+          this.submitted = true;
+          this.ngxService.stop();
+          console.log('response', response);
+          this.peaceBadge = response.batch;
+
+          this.sharedService.ToastPopup('', response.message, 'success');
+          this.is_selectedFile = false;
+          this.editBadgeForm.reset();
+
+          this.selectedFile = null;
+          fileInput.value = '';
+          this.imageUrl = '';
+        } else {
+          this.ngxService.stop();
+          this.sharedService.ToastPopup('', response.message, 'error');
+        }
+      },
+      (err) => {
+        //   this.editBadgeForm.patchValue({
+        //   mobile_number: returnmobileNumber,
+        //   dob: returnDOB,
+        // });
+        this.ngxService.stop();
+
+        this.sharedService.ToastPopup('', err.error.message, 'error');
+      }
+    );
   }
 
 
@@ -271,7 +398,7 @@ export class EditBadgeComponent {
 
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
-    console.log('form', this.editBadgeForm.controls['mobileNumber']);
+    console.log('form', this.editBadgeForm.controls['mobile_number']);
 
     if (inputValue !== null) {
       if (event.key === ' ' && inputValue.trim() === '') {
@@ -282,7 +409,7 @@ export class EditBadgeComponent {
           // event.preventDefault()
 
         } else {
-          console.log('form', this.editBadgeForm.controls['mobileNumber'].errors?.['validatePhoneNumber']['valid']);
+          console.log('form', this.editBadgeForm.controls['mobile_number'].errors?.['validatePhoneNumber']['valid']);
           this.mobile_numberVal = false;
         }
       }
@@ -336,7 +463,7 @@ export class EditBadgeComponent {
   /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
     debugger
-    const control = this.editBadgeForm.controls['mobileNumber'];
+    const control = this.editBadgeForm.controls['mobile_number'];
 
     // if (control.errors?.['validatePhoneNumber']['valid']) {
     //   return '';
@@ -393,7 +520,7 @@ export class EditBadgeComponent {
 
 
   onFileChange(event: any): void {
-    debugger
+  
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
