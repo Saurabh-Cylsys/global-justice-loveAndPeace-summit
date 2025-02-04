@@ -51,6 +51,7 @@ export class EditBadgeComponent {
   country_codeList: any;
   countryCodes: any;
   country_code: any;
+  country_codeISO: any;
   defaultCountryISO: any;
   selectedCountryISO: any;
   submitted = false;
@@ -127,8 +128,12 @@ export class EditBadgeComponent {
 
 
   getPeaceBadgeData() {
+    debugger
+    let userData = JSON.parse(localStorage.getItem('userDetails') || '')
+    console.log(userData);
+    let peaceId =  userData.peacekeeper_id
     let body = {
-      peace_id: 344
+      peace_id: peaceId
     }
     this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
       next: (res: any) => {
@@ -139,78 +144,36 @@ export class EditBadgeComponent {
           console.log(this.PeaceBadgeData, 'PeaceBadgeData');
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
           this.imageUrl = this.PeaceBadgeData?.file_name
-          
-          // const mobileNumber = this.PeaceBadgeData.mobile_number;
 
-          // // Extract country code
-          // const countryCode1 = mobileNumber.split(" ")[0];
-          
-          // // Extract mobile number
-          // const number = mobileNumber.split(" ")[1];
-          
-          // console.log("Country Code:", countryCode1); // Output: "+971"
-          // console.log("Mobile Number:", number); // Output: "8765456789"
-        
 
-          debugger
-
-          // const countryCode = 'AE'; // Example: 'IN'
-          // const phoneNumber = '8120926413'; // Example: '9876543210'
-
-          // // Find the corresponding CountryISO value
-          // const countryISO = Object.values(CountryISO).find(
-          //   (iso) => iso.toLowerCase() === countryCode.toLowerCase()
-          // );
-          // console.log(CountryISO, 'CountryISO');
-
-          //date format
           const dateString = this.PeaceBadgeData.dob; // DD/MM/YYYY format
           const dateObject = new Date(dateString);
           console.log(dateObject);
 
 
-          // if (countryISO) {
-          //   this.editBadgeForm.patchValue({
-          //     mobile_number: {
-          //       number: number,
-          //       countryCode: countryISO
-          //     },
-
-          //   });
-          // } else {
-          //   console.warn('Invalid country code received:', countryCode);
-          // }
-
           const phoneNumber = parsePhoneNumberFromString(this.PeaceBadgeData.mobile_number);
           if (phoneNumber) {
             const countryDialCode = phoneNumber.countryCallingCode; // e.g., 91
             const nationalNumber = phoneNumber.nationalNumber; // e.g., 8120926413
+            
+            this.setCountryByDialCode(countryDialCode);
+            setTimeout(() => {
+            }, 100);
             this.editBadgeForm.patchValue({
                   mobile_number: {
                     number: nationalNumber,
+                    countryCode: this.country_codeISO
                   },
     
                 });
-            // this.mobile_number = nationalNumber; // Sirf mobile number bind karna
-            // this.editBadgeForm.patchValue({ mobile_number: nationalNumber });
-      
-            // Country ko dial code ke basis pe set karna
-            setTimeout(() => {
-              this.setCountryByDialCode(countryDialCode);
-            }, 100);
           }
         
           
-          // this.PeaceBadgeData.mobile_number 
           this.editBadgeForm.patchValue({
             full_name: this.PeaceBadgeData.full_name,
             country: this.PeaceBadgeData.country,
             email_id: this.PeaceBadgeData.email_id,
-            // mobile_number:{
-            //         number: this.mobile_number,
-            //       },
-            
-            dob: dateObject
+             dob: dateObject
 
           });
           console.log(this.editBadgeForm, 'editBadgeForm');
@@ -223,80 +186,88 @@ export class EditBadgeComponent {
     })
   }
   setCountryByDialCode(dialCode: string) {
+
     if (this.phoneInput) {
       const countryList = this.phoneInput.allCountries;
       const country = countryList.find(c => c.dialCode === dialCode);
       if (country) {
-        this.phoneInput.selectedCountry = country;
+        // this.phoneInput.selectedCountry = country;
+        this.country_codeISO = country.iso2;
       }
+
+
     }
   }
 
   updatePeacekeeper(fileInput: HTMLInputElement): void {
-    // const returnmobileNumber = this.editBadgeForm.value.mobile_number;
-    // const returnDOB = this.editBadgeForm.value.dob;
-    // console.log(returnmobileNumber,'mobileNumber');
+    debugger
+    const returnmobileNumber = this.editBadgeForm.value.mobile_number;
+    const returnDOB = this.editBadgeForm.value.dob;
+    console.log(returnmobileNumber,'mobileNumber');
 
-    // const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
-    // const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-    // console.log(formattedMobileNumber);
+    const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
+    const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+    console.log(formattedMobileNumber);
+console.log(this.phoneInput, 'phoneInput');
 
-    // this.isCheckEmail = this.editBadgeForm.value.Check_email;
     this.editBadgeForm.patchValue({
       is_active: 1,
-      // Check_email: this.editBadgeForm.value.Check_email == true ? 1 : 0,
-      // country_code: this.editBadgeForm.value.mobile_number.countryCode,
-      // mobile_number:
-      //   this.editBadgeForm.value.mobile_number.dialCode +
-      //   ' ' +
-      //   formattedMobileNumber,
+      mobile_number:
+        this.editBadgeForm.value.mobile_number.dialCode +
+        ' ' +
+        formattedMobileNumber,
         dob: this.formattedDate
 
     });
-    console.log(this.editBadgeForm.value);
-    // if (this.editBadgeForm.invalid) {
-    //   return console.log('Invalid Details');
-    // }
 
-    // Create FormData object
-    const formData = new FormData();
 
-    // Append all form fields except the file
-    // Object.keys(this.editBadgeForm.value).forEach((key) => {
-    //   formData.append(key, this.editBadgeForm.value[key]);
-    // });
+    const FromData = {
+      id:this.PeaceBadgeData.peacekeeper_id,
+      full_name:this.editBadgeForm.value.full_name,
+      country:this.editBadgeForm.value.country,
+      email_id:this.editBadgeForm.value.email_id,
+      mobile_number:this.editBadgeForm.value.mobile_number,
+      dob:this.formattedDate,
+      Check_email:1,
+      is_active:1,
+      url:this.PeaceBadgeData.url
+    }
 
-    // Append the selected file
-    let encryptedBody = this.sharedService.encryptData(this.editBadgeForm.value);
+    const EncryptData = this.sharedService.encryptData(FromData);
+    const encryptedPayload = new FormData();
+    encryptedPayload.append('encrypted_data', EncryptData);
 
-    formData.append(
-      'encrypted_data', encryptedBody
-    );
     if (this.selectedFile) {
-      formData.append(
+      encryptedPayload.append(
         'profile_picture',
         this.selectedFile,
         this.selectedFile.name
       );
     }
 
-  
-    console.log('this.editBadgeForm', formData);
-    console.log('window.location.origin', environment.domainUrl);
-    // formData.append('url', environment.domainUrl);
+
+
+    console.log(this.editBadgeForm.value);
 
     // Show loader
     this.ngxService.start();
 
     // Call the service to submit data
-    this.peaceKeeperService.updatePeacekeeper(formData).subscribe(
+    this.peaceKeeperService.updatePeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
         if (response.success) {
           this.submitted = true;
           this.ngxService.stop();
           console.log('response', response);
           this.peaceBadge = response.batch;
-
+          debugger
+          const userData = {
+            full_name : this.PeaceBadgeData.full_name,
+            peacekeeper_id : this.PeaceBadgeData.peacekeeper_id,
+            file_name : this.PeaceBadgeData?.file_name,
+          }
+          // this.sharedService.setUserDetails(JSON.stringify(userData));
+          localStorage.setItem('userDetails', JSON.stringify(userData));
           this.sharedService.ToastPopup('', response.message, 'success');
           this.is_selectedFile = false;
           this.editBadgeForm.reset();
@@ -304,16 +275,20 @@ export class EditBadgeComponent {
           this.selectedFile = null;
           fileInput.value = '';
           this.imageUrl = '';
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          // this.getPeaceBadgeData();
         } else {
           this.ngxService.stop();
           this.sharedService.ToastPopup('', response.message, 'error');
         }
       },
       (err) => {
-        //   this.editBadgeForm.patchValue({
-        //   mobile_number: returnmobileNumber,
-        //   dob: returnDOB,
-        // });
+          this.editBadgeForm.patchValue({
+          mobile_number: returnmobileNumber,
+          dob: returnDOB,
+        });
         this.ngxService.stop();
 
         this.sharedService.ToastPopup('', err.error.message, 'error');
@@ -326,19 +301,10 @@ export class EditBadgeComponent {
   getAllCountrycode() {
     this.peaceKeeperService.getAllCountrycode().subscribe(
       (res: any) => {
-        // debugger;
         console.log('code', res.data);
         this.code = res.data;
-        // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India';
 
-        // Find the object that matches the country name
-        // const indiaCodeObject =  this.code.find((item:any) => item.name === countryToFind);
-        // console.log(indiaCodeObject);
-
-        //     this.editBadgeForm.patchValue({
-        //       country :indiaCodeObject.name
-        //     })
       },
       (err: any) => {
         console.log('error', err);

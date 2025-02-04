@@ -46,7 +46,7 @@
                   <form [formGroup]="editBadgeForm">
                   <div class="row">
 
-                      <div class="col-md-6 p-3">
+                      <div class="col-md-4 p-3">
                           <div class="mb-3 input">
                               <label for="first" class="mb-1">Full Name : <span
                                       class="text-danger">*</span></label>
@@ -81,6 +81,42 @@
                         </div>
                       </div>
 
+                      <div class="col-md-4 p-3">
+                        <div class="mb-3 input">
+                            <label for="password" class="mb-1">DOB : <span class="text-danger">*</span></label>
+                            <div class="input-group flex-nowrap rounded mt-1">
+                                <!-- <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
+                                    placeholder="" aria-label="" aria-describedby="addon-wrapping"> -->
+
+                                    <input
+                                    type="text"
+                                    class="p-0 w-100 border-0 input-field"
+                                    placeholder="Select Date of birth"
+                                    formControlName="dob"
+                                    [minDate]="minDate1"
+                                    [maxDate]="maxDate1"
+                                    (keydown)="disableManualInput($event)"
+                                    (ngModelChange)="onDateChange($event)"
+                                    bsDatepicker
+                                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+                
+                                  />
+                                    
+                              </div>
+                          </div>
+                          <div
+                            class="text-danger"
+                            *ngIf="
+                              getcontrol('dob')?.errors && getcontrol('dob')?.touched
+                            "
+                          >
+                            <small
+                              class="text-danger"
+                              *ngIf="getcontrol('dob')?.errors?.['required']"
+                              >Date of birth is required</small
+                            >
+                          </div>
+                    </div>
                       <!-- <div class="col-md-6 p-3">
                           <div class="mb-3 input">
                               <label for="password" class="mb-1">Last Name <span
@@ -115,7 +151,7 @@
                         </div>
                       </div> -->
 
-                      <div class="col-md-6 p-3">
+                      <div class="col-md-4 p-3">
                           <div class="mb-3 input">
                               <label for="country" class="mb-1">Country : <span
                                       class="text-danger">*</span></label>
@@ -219,18 +255,18 @@
                           </small>
                           <div
                             *ngIf="
-                              getcontrol('mobileNumber')?.errors &&
-                              getcontrol('mobileNumber')?.touched
+                              getcontrol('mobile_number')?.errors &&
+                              getcontrol('mobile_number')?.touched
                             "
                           >
                             <small
                               class="text-danger"
-                              *ngIf="getcontrol('mobileNumber')?.errors?.['required']"
+                              *ngIf="getcontrol('mobile_number')?.errors?.['required']"
                               >Mobile number is required</small
                             >
                             <small
                             class="text-danger"
-                            *ngIf="!mobile_numberVal && getcontrol('mobileNumber')?.invalid && getcontrol('mobileNumber')?.touched" 
+                            *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched" 
                             >
                             {{ getPhoneErrorMessage() }}
                             </small
@@ -273,42 +309,7 @@
                           </div>
                       </div>
 
-                      <div class="col-md-6 p-3">
-                          <div class="mb-3 input">
-                              <label for="password" class="mb-1">DOB : <span class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded mt-1">
-                                  <!-- <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
-                                      placeholder="" aria-label="" aria-describedby="addon-wrapping"> -->
 
-                                      <input
-                                      type="text"
-                                      class="p-0 w-100 border-0 input-field"
-                                      placeholder="Select Date of birth"
-                                      formControlName="dob"
-                                      [minDate]="minDate1"
-                                      [maxDate]="maxDate1"
-                                      (keydown)="disableManualInput($event)"
-                                      (ngModelChange)="onDateChange($event)"
-                                      bsDatepicker
-                                      [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
-                  
-                                    />
-                                      
-                                </div>
-                            </div>
-                            <div
-                              class="text-danger"
-                              *ngIf="
-                                getcontrol('dob')?.errors && getcontrol('dob')?.touched
-                              "
-                            >
-                              <small
-                                class="text-danger"
-                                *ngIf="getcontrol('dob')?.errors?.['required']"
-                                >Date of birth is required</small
-                              >
-                            </div>
-                      </div>
 
                       <div class="col-md-12 contianer-fluid mb-3" style="text-align: center;">
                           <button class="btn btn-success px-3" (click)="updatePeacekeeper(fileInput)">Update</button>
@@ -331,7 +332,7 @@
                     />
                   </div>
 
-                  <button class="btn btn-success w-100">Preview</button>
+                  <button *ngIf="peaceBadge" class="btn btn-success w-100">Preview</button>
               </div>
           </div>
       </div>
