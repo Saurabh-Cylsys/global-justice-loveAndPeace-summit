@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AngularEditorComponent, AngularEditorConfig } from '@kolkov/angular-editor';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-sent-invitation',
@@ -10,8 +11,12 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
 
   isNew: boolean = false;
   isExisting: boolean = false;
-
-  constructor(private cdr: ChangeDetectorRef){}
+  isCollapsed = false;
+  constructor(private cdr: ChangeDetectorRef, private SharedService: SharedService){
+    this.SharedService.isCollapsed$.subscribe(state => {
+      this.isCollapsed = state;
+    });
+  }
 
   ngOnInit(): void {
 

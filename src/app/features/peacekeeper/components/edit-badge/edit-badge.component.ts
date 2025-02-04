@@ -77,6 +77,7 @@ export class EditBadgeComponent {
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
   imageUrl: string | ArrayBuffer | null = 'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
+  isCollapsed = false;
 
   @ViewChild(NgxIntlTelInputComponent, { static: false }) phoneInput?: NgxIntlTelInputComponent;
   changePreferredCountries() {
@@ -90,6 +91,9 @@ export class EditBadgeComponent {
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
   ) {
+    this.sharedService.isCollapsed$.subscribe(state => {
+      this.isCollapsed = state;
+    });
     const today = new Date();
 
     // Max date is 18 years ago from today
