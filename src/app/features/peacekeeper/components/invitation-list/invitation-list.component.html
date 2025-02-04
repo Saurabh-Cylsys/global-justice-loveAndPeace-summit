@@ -3,7 +3,7 @@
 <div
   id="main"
   class="main body-content"
-  [ngStyle]="{ 'margin-left': isCollapsed ? '0px' : '220px' }"
+  [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }"
 >
   <app-peacekeeper-header></app-peacekeeper-header>
   <div class="section">

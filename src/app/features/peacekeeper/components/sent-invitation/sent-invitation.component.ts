@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import { AngularEditorComponent, AngularEditorConfig } from '@kolkov/angular-editor';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -12,6 +12,7 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
   isNew: boolean = false;
   isExisting: boolean = false;
   isCollapsed = false;
+  isMobileView = false;
   constructor(private cdr: ChangeDetectorRef, private SharedService: SharedService){
     this.SharedService.isCollapsed$.subscribe(state => {
       this.isCollapsed = state;
@@ -19,7 +20,7 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
   }
 
   ngOnInit(): void {
-
+    this.checkWindowSize();
   }
 
   selectedRecipient: string = 'Select';
@@ -148,5 +149,20 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
       }
     }
   }
+
+    checkWindowSize(): void {
+          if (window.innerWidth <= 900) {
+            this.SharedService.isMobileView.next(true);
+            this.isMobileView = true;
+          } else {
+            this.SharedService.isMobileView.next(false);
+            this.isMobileView = false;
+          }
+        }
+        // Listen to window resize events
+        @HostListener('window:resize', ['$event'])
+        onResize(event: any): void {
+          this.checkWindowSize();
+        }
 }
 

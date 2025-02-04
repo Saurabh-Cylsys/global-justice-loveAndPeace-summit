@@ -1,4 +1,4 @@
-<div id="mySidebar" class="sidebar text-center" [ngClass]="{ 'collapsed': isCollapsed }">
+<div id="mySidebar" class="sidebar text-center" [ngClass]="{ 'collapsed': isCollapsed }" *ngIf="!isMobileView">
   <div style="border-bottom: 1px solid black; padding: 3px;">
       <img src="assets/UIComponents/images/logo.gif" alt="" class="logo">
      </div>

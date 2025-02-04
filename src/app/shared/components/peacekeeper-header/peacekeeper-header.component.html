@@ -1,7 +1,7 @@
-<header id="header" class="header fixed-top d-flex align-items-center justify-content-between" [ngStyle]="{ 'margin-left': isCollapsed ? '0px' : '220px' }">
+<header id="header" class="header fixed-top d-flex align-items-center justify-content-between"  [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }">
   <div class="d-flex align-items-center justify-content-between">
-      <i class="bi bi-list" (click)="toggleSidebar()" style="font-size: 30px;"></i>
-
+      <i class="bi bi-list" (click)="toggleSidebar()" style="font-size: 30px;" *ngIf="!isMobileView"></i>
+      <i class="bi bi-list" style="font-size: 30px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" *ngIf="isMobileView"></i>
   </div>
   <div class="profile d-flex">
       <div class="profile-card">
@@ -13,3 +13,38 @@
       </div>
   </div>
 </header>
+
+
+
+<!-- offcanvas -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <!-- <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5> -->
+      <img src="assets/UIComponents/images/logo.gif" alt="" class="logo">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">&#x2715;</button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="sidebar-nav mt-3" id="sidebar-nav">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/dashboard"><img src="assets/UIComponents/images/peacekeeper/dashboard.png" alt="">
+                   <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item " routerLinkActive="active">
+                <a class="nav-link" routerLink="/edit-badge"><img src="assets/UIComponents/images/peacekeeper/edit_badge1.png" alt=""> <span>Edit Badge</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/sent-invitation"><img src="assets/UIComponents/images/peacekeeper/sent.png" alt=""> <span>Sent
+                        Invitation</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/invitation-List"><img src="assets/UIComponents/images/peacekeeper/sent.png" alt=""> <span>
+                        Invitation list</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/login"><img src="assets/UIComponents/images/peacekeeper/logout.png" alt="">
+                    <span>Logout</span></a>
+            </li>
+        </ul>
+    </div>
+  </div>

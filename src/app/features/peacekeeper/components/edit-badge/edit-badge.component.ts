@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -78,6 +78,7 @@ export class EditBadgeComponent {
   transform: ImageTransform = {}; // Object for applying transformations
   imageUrl: string | ArrayBuffer | null = 'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
   isCollapsed = false;
+  isMobileView = false;
 
   @ViewChild(NgxIntlTelInputComponent, { static: false }) phoneInput?: NgxIntlTelInputComponent;
   changePreferredCountries() {
@@ -113,6 +114,7 @@ export class EditBadgeComponent {
     this.dobValidator();
     this.getAllCountrycode()
     this.getPeaceBadgeData()
+    this.checkWindowSize();
   }
 
   createEditBadgeForm() {
@@ -617,5 +619,18 @@ console.log(this.phoneInput, 'phoneInput');
       };
     }
   
-
+checkWindowSize(): void {
+      if (window.innerWidth <= 900) {
+        this.sharedService.isMobileView.next(true);
+        this.isMobileView = true;
+      } else {
+        this.sharedService.isMobileView.next(false);
+        this.isMobileView = false;
+      }
+    }
+    // Listen to window resize events
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+      this.checkWindowSize();
+    }
 }
