@@ -1,6 +1,6 @@
-<header id="header" class="header fixed-top d-flex align-items-center justify-content-between">
+<header id="header" class="header fixed-top d-flex align-items-center justify-content-between" [ngStyle]="{ 'margin-left': isCollapsed ? '0px' : '220px' }">
   <div class="d-flex align-items-center justify-content-between">
-      <i class="fa-solid fa-bars text-black" onclick="toggleSidebar()" style="font-size: 30px;"></i>
+      <i class="bi bi-list" (click)="toggleSidebar()" style="font-size: 30px;"></i>
 
   </div>
   <div class="profile d-flex">
