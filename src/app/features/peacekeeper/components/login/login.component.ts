@@ -14,11 +14,11 @@ export class LoginComponent {
 
   emailForm!: FormGroup;
 
-  constructor(private router:Router,
-              private fb: FormBuilder,
-              private peaceKeeperService : PeacekeeperService,
-              private sharedService: SharedService,
-              private ngxService: NgxUiLoaderService,){}
+  constructor(private router: Router,
+    private fb: FormBuilder,
+    private peaceKeeperService: PeacekeeperService,
+    private sharedService: SharedService,
+    private ngxService: NgxUiLoaderService,) { }
 
   ngOnInit(){
     localStorage.clear();
@@ -27,13 +27,13 @@ export class LoginComponent {
 
   }
 
-  createLoginForm(){
+  createLoginForm() {
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
   }
 
-  login(){
+  login() {
 
     let encryptedEmail = this.sharedService.encryptData({
       "email": this.emailForm.value.email
@@ -45,16 +45,20 @@ export class LoginComponent {
 
     this.ngxService.start();
     this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
-      next : (res:any)=>{
-        console.log("Res",res);
-        if(res.success) {
-          this.sharedService.ToastPopup('Login Successful','','success')
+      next: (res: any) => {
+        console.log("Res", res);
+        if (res.success) {
+          this.sharedService.ToastPopup('Login Successful', '', 'success')
           const decreptedToken = this.sharedService.decryptData(res.token);
-          const decreptedUser  = this.sharedService.decryptData(res.data)
-
+          const decreptedUser = this.sharedService.decryptData(res.data)
+          const userData = {
+            full_name : decreptedUser.full_name,
+            peacekeeper_id : decreptedUser.peacekeeper_id,
+            file_name : decreptedUser.file_name,
+          }
           // Store the encrypted token
           this.sharedService.setJWTToken(decreptedToken);
-          this.sharedService.setUserDetails(JSON.stringify(decreptedUser));
+          this.sharedService.setUserDetails(JSON.stringify(userData));
           this.ngxService.stop();
 
           this.router.navigate(['/dashboard']);

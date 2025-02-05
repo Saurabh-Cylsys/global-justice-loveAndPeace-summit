@@ -288,4 +288,14 @@ export class ApiEndpointsService {
   public postpeackeeperLoginEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_PEACKEEPER_LOGIN);
   }
+
+  public getPeacekeeperBadgeByIdEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_PEACKEEPER_BADGE_BY_ID);
+  }
+
+  
+  public updatePeacekeeperEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_UPDATE_PEACEKEEPER);
+  }
+  
 }

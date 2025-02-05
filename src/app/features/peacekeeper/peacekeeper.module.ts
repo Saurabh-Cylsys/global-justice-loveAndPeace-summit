@@ -14,6 +14,11 @@ import { NgxEditorModule } from 'ngx-editor';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
 import { EditorModule } from 'primeng/editor';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { IntlInputPhoneModule } from 'intl-input-phone';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +39,12 @@ import { EditorModule } from 'primeng/editor';
     FormsModule,
     ReactiveFormsModule,
     NgxEditorModule,
-    EditorModule
+    EditorModule,
+    BsDatepickerModule.forRoot(),
+    NgxIntlTelInputModule,
+    IntlInputPhoneModule,
+    ImageCropperModule,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
