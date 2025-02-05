@@ -102,6 +102,11 @@
   .index .section2 .mainCard .cardP {
     font-size: 14px;
   }
+
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 11.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
