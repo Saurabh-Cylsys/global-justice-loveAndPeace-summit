@@ -1,0 +1,76 @@
+
+<app-peacekeeper-leftpanel></app-peacekeeper-leftpanel>
+
+<main id="main" class="main ml-0 body-content">
+  <app-peacekeeper-header></app-peacekeeper-header>
+  <div class="card" style="padding: inherit">
+    <div class="container py-5">
+      <div class="heading pb-5">
+        <div class="row">
+          <div class="col-md-7">
+            <h1 class="text_style">Upload your contacts</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="upload-btn-wrapper">
+
+            <button class="btn browsefile cursor-pointer">
+              <img src="assets/UIComponents/images/peacekeeper/upload_icon.png" alt="" />
+              <p>Browse Your File</p>
+            </button>
+            <input #inputFile type="file" name="file" accept=".xlsx" (change)="handleFileInput($event)" />
+            {{this.selectedFile?.name}}
+          </div>
+          <p>Only Excel</p>
+          <p>File Maximum Size is 20MB &nbsp; &nbsp;&nbsp; </p>
+        </div>
+
+        <div class="col-md-2"><a class="btn btn-info1 mt-5">+</a></div>
+        <div class="col-md-5">
+
+          <div class="col-md-12">
+            <div>
+              <p> <input type="radio" name="listType" (change)="toggleListType(true)" checked>&nbsp; Create New List
+                  <input type="radio" name="listType" (change)="toggleListType(false)">&nbsp;Select Existing List</p>
+            </div>
+            <div class="col-md-8"  *ngIf="isNewList">
+              <label for="lname">Create New List</label>
+              <input type="text" class="form-control" [(ngModel)]="listName" autocomplete="off" id="lname" placeholder="Enter List Name">
+            </div>
+
+            <!-- <div class="col-md-2 mt-2"  *ngIf="isNewList">
+              <button class="btn btn-info1" [disabled]="listName == ''" (click)="addList()">Add</button>
+            </div> -->
+          </div>
+
+          <div class="mt-4" *ngIf="!isNewList">
+            <select class="form-control" [(ngModel)]="selectedList" (change)="changeListName()">
+              <option selected value="" disabled>Select list</option>
+              <option *ngFor="let item of list_contacts" [ngValue]="item">{{item.list_name}}</option>
+          </select>
+
+          <p class="mt-3">All These Contact will go to this list</p>
+          <p> Duplicate contact found then-
+            <!--  <input type="radio" name="action">&nbsp; Let it be <input type="radio" name="action">&nbsp;Replace</p> -->
+
+          <!-- <input type="radio" name="action" (change)="actionValue = 1" [checked]="actionValue === 1">&nbsp; Let it be
+          <input type="radio" name="action" (change)="actionValue = 1" [checked]="actionValue === 1">&nbsp;Replace -->
+
+
+          <input type="radio" class="cursor-pointer" name="action" #letItBeRadio (change)="setLetItBeValue(letItBeRadio.checked ? 1 : 0)" [checked]="letItBeValue === 1">&nbsp; Let it be
+          <input type="radio" class="cursor-pointer" name="action" #replaceRadio (change)="setReplaceValue(replaceRadio.checked ? 1 : 0)" [checked]="replaceValue === 1">&nbsp;Replace
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class=" mt-5">
+
+            <button (click)="continue()" [disabled]="!selectedList && !listName" class="btn totalbutton btn-info1" type="button"><span>Continue</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

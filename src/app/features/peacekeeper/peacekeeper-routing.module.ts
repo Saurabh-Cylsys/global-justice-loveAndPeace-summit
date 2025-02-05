@@ -6,6 +6,8 @@ import { PeacekeeperMainComponent } from './components/peacekeeper-main/peacekee
 import { EditBadgeComponent } from './components/edit-badge/edit-badge.component';
 import { InvitationListComponent } from './components/invitation-list/invitation-list.component';
 import { SentInvitationComponent } from './components/sent-invitation/sent-invitation.component';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
 
 const routes: Routes = [
 
@@ -17,7 +19,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'edit-badge', component: EditBadgeComponent },
       { path: 'invitation-List', component: InvitationListComponent },
-      { path: 'sent-invitation', component: SentInvitationComponent }
+      { path: 'sent-invitation', component: SentInvitationComponent },
+      { path: 'contact-list', component: ContactListComponent },
+      { path: 'upload-contacts', component: UploadContactsComponent }
     ],
   },
 

@@ -10,8 +10,10 @@ import { InvitationListComponent } from './components/invitation-list/invitation
 import { PeacekeeperMainComponent } from './components/peacekeeper-main/peacekeeper-main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import { NgxEditorModule } from 'ngx-editor';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     SentInvitationComponent,
     InvitationListComponent,
     PeacekeeperMainComponent,
+    ContactListComponent,
+    UploadContactsComponent
 
   ],
   imports: [
@@ -29,7 +33,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     PeacekeeperRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    NgxEditorModule,
+    EditorModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
