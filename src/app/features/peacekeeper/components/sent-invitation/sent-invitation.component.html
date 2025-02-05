@@ -1,5 +1,5 @@
 <app-peacekeeper-leftpanel></app-peacekeeper-leftpanel>
-<div id="main" class="main body-content">
+<div id="main" class="main body-content" [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }">
   <app-peacekeeper-header></app-peacekeeper-header>
 
   <form [formGroup]="editorForm" (ngSubmit)="submit()">

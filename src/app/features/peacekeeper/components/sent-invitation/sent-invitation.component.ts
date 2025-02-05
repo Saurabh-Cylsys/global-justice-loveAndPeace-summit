@@ -1,11 +1,9 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-  OnInit,
-} from '@angular/core';
+  ChangeDetectionStrategy,} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Editor, Toolbar, Validators } from 'ngx-editor';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-sent-invitation',
@@ -25,6 +23,18 @@ export class SentInvitationComponent implements OnInit {
   editor!: Editor;
 
   editorForm! : FormGroup;
+  isCollapsed! : boolean;
+  isMobileView! : boolean
+
+  selectedRecipient: string = 'Select';
+  selectedSendVia: string = 'Select';
+  selectedSendViaImage: string | null = null;
+
+  constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef, private SharedService: SharedService){
+    this.SharedService.isCollapsed$.subscribe(state => {
+      this.isCollapsed = state;
+    });
+  }
 
   get textValue() {
     return this.editorForm.get('text')?.value;
@@ -51,31 +61,6 @@ export class SentInvitationComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
-  constructor(private fb: FormBuilder) {}
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      event.stopPropagation(); // Prevent conflicts
-    }
-  }
-
-  ngOnInit(): void {
-    this.editor = new Editor();
-
-    this.editorForm = this.fb.group({
-      text :[ '']
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.editor.destroy();
-  }
-
-  selectedRecipient: string = 'Select';
-  selectedSendVia: string = 'Select';
-  selectedSendViaImage: string | null = null;
-
   recipientOptions = [
     {
       label: 'Contact',
@@ -98,6 +83,37 @@ export class SentInvitationComponent implements OnInit {
       image: 'assets/UIComponents/images/peacekeeper/Collaborators.png',
     },
   ];
+
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.stopPropagation(); // Prevent conflicts
+    }
+  }
+
+   // Listen to window resize events
+   @HostListener('window:resize', ['$event'])
+   onResize(event: any): void {
+     this.checkWindowSize();
+   }
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+    this.editorForm = this.fb.group({
+      text :[ '']
+    });
+
+    this.checkWindowSize();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  this.isCollapsed = false;
+   this.isMobileView = false;
+
+  }
+
 
   onRecipientChange(option: any) {
     console.log(option);
@@ -132,6 +148,16 @@ export class SentInvitationComponent implements OnInit {
       this.isExisting = true;
     }
   }
+
+    checkWindowSize(): void {
+          if (window.innerWidth <= 900) {
+            this.SharedService.isMobileView.next(true);
+            this.isMobileView = true;
+          } else {
+            this.SharedService.isMobileView.next(false);
+            this.isMobileView = false;
+          }
+        }
 
   submit() {
     console.log(this.form.value);

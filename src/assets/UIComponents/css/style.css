@@ -2486,5 +2486,9 @@ button:active, button:focus{
   background-color: #004E89;
   color: #fff;
   border: 2px #004E89;
-  ;
+}
+
+
+.sidebar.collapsed{
+  width: 0;
 }
