@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Editor, Toolbar, Validators } from 'ngx-editor';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sent-invitation',
@@ -29,8 +30,10 @@ export class SentInvitationComponent implements OnInit {
   selectedRecipient: string = 'Select';
   selectedSendVia: string = 'Select';
   selectedSendViaImage: string | null = null;
+  sanitizedContent: SafeHtml = ''
 
-  constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef, private SharedService: SharedService){
+  constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef,
+    private SharedService: SharedService, private sanitizer: DomSanitizer){
     this.SharedService.isCollapsed$.subscribe(state => {
       this.isCollapsed = state;
     });
@@ -161,5 +164,12 @@ export class SentInvitationComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
+  }
+
+  getSanitizedHTML(): SafeHtml {
+    let rawHTML = this.editorForm.get('text')?.value || '';
+
+    // Mark the content as safe HTML
+    return this.sanitizer.bypassSecurityTrustHtml(rawHTML);
   }
 }

@@ -167,6 +167,11 @@
               <p-editor formControlName="text" [style]="{ height: '320px' }" ></p-editor>
 
           </div>
+
+          <div class="preview-container">
+            <h3>Preview:</h3>
+            <div [innerHTML]="getSanitizedHTML()"></div>
+          </div>
        </div>
        </div>
       <div class="card mb-3" id="Existing Template" *ngIf="isExisting">
