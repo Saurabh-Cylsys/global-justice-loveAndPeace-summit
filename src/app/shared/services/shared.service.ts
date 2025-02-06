@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { delay, filter } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -22,6 +22,8 @@ export class SharedService {
   refresh$ = this.refreshPermissionSubject.asObservable();
   isMobileView = new Subject();
 
+  private collapsedState = new BehaviorSubject<boolean>(false);
+  isCollapsed$ = this.collapsedState.asObservable();
 
   constructor(
     private _apiHttpService: ApiHttpService,
@@ -163,4 +165,7 @@ private getRouteData(): any {
     localStorage.setItem('userDetails', userDetails);
   }
 
+  toggleSidebar() {
+    this.collapsedState.next(!this.collapsedState.value);
+  }
 }

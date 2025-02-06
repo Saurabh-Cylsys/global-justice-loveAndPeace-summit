@@ -10,11 +10,14 @@ import { InvitationListComponent } from './components/invitation-list/invitation
 import { PeacekeeperMainComponent } from './components/peacekeeper-main/peacekeeper-main.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { IntlInputPhoneModule } from 'intl-input-phone';
+import { NgxEditorModule } from 'ngx-editor';
+import { ContactListComponent } from './components/contact-list/contact-list.component';
+import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
+import { EditorModule } from 'primeng/editor';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { IntlInputPhoneModule } from 'intl-input-phone';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SentInvitationComponent,
     InvitationListComponent,
     PeacekeeperMainComponent,
+    ContactListComponent,
+    UploadContactsComponent
 
   ],
   imports: [
@@ -33,12 +38,13 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     PeacekeeperRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularEditorModule,
+    NgxEditorModule,
+    EditorModule,
     BsDatepickerModule.forRoot(),
     NgxIntlTelInputModule,
     IntlInputPhoneModule,
     ImageCropperModule,
-    
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

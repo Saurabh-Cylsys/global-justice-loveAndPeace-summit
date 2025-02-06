@@ -1,237 +1,257 @@
 <app-peacekeeper-leftpanel></app-peacekeeper-leftpanel>
-<div id="main" class="main body-content">
+<div id="main" class="main body-content" [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }">
   <app-peacekeeper-header></app-peacekeeper-header>
 
-  <div class="section">
-    <h2 class="main-heading">Sent Invitation</h2>
-    <div class="row">
-      <!-- Choose Recipient Type -->
-      <div class="col-md-6 mb-3">
-        <div class="dropdown">
-          <label for="" class="mb-1">Choose Recipient Type</label>
-          <button
-            id="recipientButton"
-            class="btn btn-light w-100 d-flex align-items-center border form-select"
-            type="button"
-            data-bs-toggle="dropdown"
+  <form [formGroup]="editorForm" (ngSubmit)="submit()">
+    <div class="section">
+      <h2 class="main-heading">Sent Invitation</h2>
+      <div class="row">
+        <!-- Choose Recipient Type -->
+        <div class="col-md-6 mb-3">
+          <div class="dropdown">
+            <label for="" class="mb-1">Choose Recipient Type</label>
+            <button
+              id="recipientButton"
+              class="btn btn-light w-100 d-flex align-items-center border form-select"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <span id="recipientText">{{ selectedRecipient }}</span>
+            </button>
+
+            <ul class="dropdown-menu w-100">
+              <li *ngFor="let option of recipientOptions">
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  (click)="onRecipientChange(option)"
+                >
+                  <img [src]="option.image" [alt]="option.label" class="me-2" />
+                  {{ option.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <div class="dropdown">
+            <label for="" class="mb-1">Sent Via</label>
+            <button
+              id="sendViaButton"
+              class="btn btn-light border form-select w-100 d-flex align-items-center"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <img
+                *ngIf="selectedSendViaImage"
+                [src]="selectedSendViaImage"
+                alt="Selected"
+                class="me-2"
+              />
+              <span id="sendViaText">{{ selectedSendVia }}</span>
+            </button>
+
+            <ul class="dropdown-menu w-100">
+              <li *ngFor="let option of sendViaOptions">
+                <a
+                  class="dropdown-item d-flex align-items-center"
+                  (click)="onSendViaChange(option)"
+                >
+                  <img [src]="option.image" [alt]="option.label" class="me-2" />
+                  {{ option.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-5 mb-3">
+          <label for="" class="mb-1">Contact List</label>
+          <!-- <div class="dropdown">
+            <button
+              class="form-select"
+              type="button"
+              id="dropdownMenuButton"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="text-align: left"
+            >
+              Select
+            </button>
+            <ul
+              class="dropdown-menu w-100 p-2"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <li class="dropdown-item">
+                <input
+                  class="form-check-input me-2 select-all"
+                  type="checkbox"
+                  id="selectAll"
+                />
+                <label for="selectAll">Select All</label>
+              </li>
+              <li class="dropdown-item">
+                <input
+                  class="form-check-input me-2 contact-checkbox"
+                  type="checkbox"
+                />
+                <label>poonam.sgmail.com</label>
+              </li>
+              <li class="dropdown-item">
+                <input
+                  class="form-check-input me-2 contact-checkbox"
+                  type="checkbox"
+                />
+                <label>poonam.s gmail.com</label>
+              </li>
+              <li class="dropdown-item">
+                <input
+                  class="form-check-input me-2 contact-checkbox"
+                  type="checkbox"
+                />
+                <label>poonam.s gmail.com</label>
+              </li>
+              <li class="dropdown-item">
+                <input
+                  class="form-check-input me-2 contact-checkbox"
+                  type="checkbox"
+                />
+                <label>poonam.s gmail.com</label>
+              </li>
+            </ul>
+          </div> -->
+
+          <select name="" id="" class="form-control">
+            <option value="">Select</option>
+            <option value="">Rajesh</option>
+            <option value="">Suresh</option>
+            <option value="">Sachin</option>
+            <option value="">Rahul</option>
+
+          </select>
+        </div>
+        <div class="col-md-1 mb-3" style="text-align: right">
+          <img
+            src="assets/UIComponents/images/peacekeeper/upload.png"
+            class="mt-4"
+            alt=""
+          />
+        </div>
+        <!-- Template Type -->
+        <div class="col-md-6 mb-3">
+          <label for="" class="mb-1">Template Type</label>
+          <select
+            name=""
+            id="templateSelect"
+            class="form-select border"
+            (change)="changeTemplateType($event)"
           >
-            <span id="recipientText">{{ selectedRecipient }}</span>
-          </button>
-
-          <ul class="dropdown-menu w-100">
-            <li *ngFor="let option of recipientOptions">
-              <a
-                class="dropdown-item d-flex align-items-center"
-                (click)="onRecipientChange(option)"
-              >
-                <img [src]="option.image" [alt]="option.label" class="me-2" />
-                {{ option.label }}
-              </a>
-            </li>
-          </ul>
+            <option value="" selected disabled>Select</option>
+            <option value="1">New Communication</option>
+            <option value="2">Existing Template</option>
+          </select>
         </div>
       </div>
 
-      <!-- Send Via -->
-      <div class="col-md-6 mb-3">
-        <div class="dropdown">
-          <label for="" class="mb-1">Sent Via</label>
-          <button id="sendViaButton"
-    class="btn btn-light border form-select w-100 d-flex align-items-center"
-    type="button"
-    data-bs-toggle="dropdown">
-    <img *ngIf="selectedSendViaImage" [src]="selectedSendViaImage" alt="Selected" class="me-2">
-    <span id="sendViaText">{{ selectedSendVia }}</span>
-  </button>
+      <div class="card mb-3" *ngIf="isNew">
+        <h5 class="p-2">New Communication</h5>
 
-  <ul class="dropdown-menu w-100">
-    <li *ngFor="let option of sendViaOptions">
-      <a class="dropdown-item d-flex align-items-center" (click)="onSendViaChange(option)">
-        <img [src]="option.image" [alt]="option.label" class="me-2">
-        {{ option.label }}
-      </a>
-    </li>
-  </ul>
+        <div class="editor-container">
+          <!-- <form [formGroup]="form"> -->
+            <!-- <div class="editor">
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar">
+              </ngx-editor-menu>
+              <ngx-editor [editor]="editor" formControlName="editorContent" [readonly]="false">
+              </ngx-editor>
+            </div> -->
+          <!-- </form> -->
+          <div>
+              <p-editor formControlName="text" [style]="{ height: '320px' }" ></p-editor>
+
+          </div>
+
+          <div class="preview-container">
+            <h3>Preview:</h3>
+            <div [innerHTML]="getSanitizedHTML()"></div>
+          </div>
+       </div>
+       </div>
+      <div class="card mb-3" id="Existing Template" *ngIf="isExisting">
+        <div class="p-2">
+          <h5>Choose Existing Template</h5>
+          <div class="table-responsive rounded-2">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>Recipient Type</th>
+                  <th>Template</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-template="Peace Partners">
+                  <td>
+                    <input type="radio" name="template" id="Peace-partners" />
+                  </td>
+                  <td>Peace Partners</td>
+                  <td>
+                    <img
+                      src="assets/UIComponents/images/peacekeeper/template.jpg"
+                      alt="Template 1"
+                      width="20"
+                    />
+                  </td>
+                </tr>
+                <tr class="selected-row" data-template="Delegates">
+                  <td>
+                    <input
+                      type="radio"
+                      class="table-checkbox"
+                      name="template"
+                      id="Delegates"
+                    />
+                  </td>
+                  <td>Delegates</td>
+                  <td>
+                    <img
+                      src="assets/UIComponents/images/peacekeeper/template.jpg"
+                      alt="Template 2"
+                      width="20"
+                    />
+                  </td>
+                </tr>
+                <tr data-template="Patrons">
+                  <td>
+                    <input
+                      type="radio"
+                      class="table-checkbox"
+                      name="template"
+                      id="partons"
+                    />
+                  </td>
+                  <td>Patrons</td>
+                  <td>
+                    <img
+                      src="assets/UIComponents/images/peacekeeper/template.jpg"
+                      alt="Template 3"
+                      width="20"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-flex justify-content-between mb-3">
+            <p>You select Delegates Template</p>
+            <button class="rounded preview-button">
+              Preview selected template
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col-md-5 mb-3">
-        <label for="" class="mb-1">Contact List</label>
-        <div class="dropdown">
-          <button
-            class="form-select"
-            type="button"
-            id="dropdownMenuButton"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style="text-align: left"
-          >
-            Select
-          </button>
-          <ul
-            class="dropdown-menu w-100 p-2"
-            aria-labelledby="dropdownMenuButton"
-          >
-            <li class="dropdown-item">
-              <input
-                class="form-check-input me-2 select-all"
-                type="checkbox"
-                id="selectAll"
-              />
-              <label for="selectAll">Select All</label>
-            </li>
-            <li class="dropdown-item">
-              <input
-                class="form-check-input me-2 contact-checkbox"
-                type="checkbox"
-              />
-              <label>poonam.sgmail.com</label>
-            </li>
-            <li class="dropdown-item">
-              <input
-                class="form-check-input me-2 contact-checkbox"
-                type="checkbox"
-              />
-              <label>poonam.s gmail.com</label>
-            </li>
-            <li class="dropdown-item">
-              <input
-                class="form-check-input me-2 contact-checkbox"
-                type="checkbox"
-              />
-              <label>poonam.s gmail.com</label>
-            </li>
-            <li class="dropdown-item">
-              <input
-                class="form-check-input me-2 contact-checkbox"
-                type="checkbox"
-              />
-              <label>poonam.s gmail.com</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-1 mb-3" style="text-align: right">
-        <img
-          src="assets/UIComponents/images/peacekeeper/upload.png"
-          class="mt-4"
-          alt=""
-        />
-      </div>
-      <!-- Template Type -->
-      <div class="col-md-6 mb-3">
-        <label for="" class="mb-1">Template Type</label>
-        <select name="" id="templateSelect" class="form-select border" (change)="changeTemplateType($event)">
-          <option value="" selected disabled>Select</option>
-          <option value="1">New Communication</option>
-          <option value="2">Existing Template</option>
-        </select>
+
+      <div class="contianer-fluid float-end">
+        <button class="btn btn-success px-5 mb-3">Share</button>
       </div>
     </div>
-    <!-- <div class="card mb-3" id="New Template" *ngIf="isNew">
-      <h5 class="p-2">New Communication</h5>
-      <div class="card" >
-        <angular-editor #htmlEditor [(ngModel)]="htmlContent" [config]="editorConfig"
-            (ngModelChange)="onHtmlContentChanged($event)" class="mt-2">
-        </angular-editor>
-
-      </div>
-    </div> -->
-
-    <div class="card mb-3" *ngIf="isNew">
-      <h5 class="p-2">New Communication</h5>
-      <div class="card" #editorWrapper> <!-- Wrap editor for height adjustments -->
-        <angular-editor
-          #htmlEditor
-          [(ngModel)]="htmlContent"
-          [config]="editorConfig"
-          (ngModelChange)="onHtmlContentChanged($event)"
-          class="mt-2">
-        </angular-editor>
-      </div>
-    </div>
-
-    <ng-container *ngIf="isNew">
-      <h5 class="p-2">New Communication</h5>
-      <!-- <angular-editor #htmlEditor [(ngModel)]="htmlContent" [config]="editorConfig"
-        (ngModelChange)="onHtmlContentChanged($event)" class="mt-2">
-      </angular-editor> -->
-
-    </ng-container>
-    <div *ngIf="isExisting" class="card mb-3" id="Existing Template">
-      <div class="p-2">
-        <h5>Choose Existing Template</h5>
-        <div class="table-responsive rounded-2">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Select</th>
-                <th>Recipient Type</th>
-                <th>Template</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-template="Peace Partners">
-                <td>
-                  <input type="radio" name="template" id="Peace-partners" />
-                </td>
-                <td>Peace Partners</td>
-                <td>
-                  <img
-                    src="assets/UIComponents/images/peacekeeper/template.jpg"
-                    alt="Template 1"
-                    width="20"
-                  />
-                </td>
-              </tr>
-              <tr class="selected-row" data-template="Delegates">
-                <td>
-                  <input
-                    type="radio"
-                    class="table-checkbox"
-                    name="template"
-                    id="Delegates"
-                  />
-                </td>
-                <td>Delegates</td>
-                <td>
-                  <img
-                    src="assets/UIComponents/images/peacekeeper/template.jpg"
-                    alt="Template 2"
-                    width="20"
-                  />
-                </td>
-              </tr>
-              <tr data-template="Patrons">
-                <td>
-                  <input
-                    type="radio"
-                    class="table-checkbox"
-                    name="template"
-                    id="partons"
-                  />
-                </td>
-                <td>Patrons</td>
-                <td>
-                  <img
-                    src="assets/UIComponents/images/peacekeeper/template.jpg"
-                    alt="Template 3"
-                    width="20"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="d-flex justify-content-between mb-3">
-          <p>You select Delegates Template</p>
-          <button class="rounded preview-button">
-            Preview selected template
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="contianer-fluid float-end">
-      <button class="btn btn-success px-5 mb-3">Share</button>
-    </div>
+  </form>
   </div>
-</div>
+

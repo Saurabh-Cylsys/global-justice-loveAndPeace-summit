@@ -5,8 +5,19 @@
 }
 
 
-angular-editor {
-  min-height: 200px;
+.editor ngx-editor {
+  min-height: 300px;  /* Adjust height */
   max-height: 500px;
   overflow: auto;
+}
+
+
+
+.p-editor-container {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 320px;
+}
+.ql-editor {
+  min-height: 250px;
 }

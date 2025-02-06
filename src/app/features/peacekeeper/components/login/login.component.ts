@@ -20,7 +20,9 @@ export class LoginComponent {
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,) { }
 
-  ngOnInit() {
+  ngOnInit(){
+    localStorage.clear();
+    sessionStorage.clear();
     this.createLoginForm();
 
   }

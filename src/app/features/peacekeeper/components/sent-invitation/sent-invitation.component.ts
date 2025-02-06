@@ -1,81 +1,121 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { AngularEditorComponent, AngularEditorConfig } from '@kolkov/angular-editor';
+import {
+  ChangeDetectionStrategy,} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Editor, Toolbar, Validators } from 'ngx-editor';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sent-invitation',
   templateUrl: './sent-invitation.component.html',
-  styleUrls: ['./sent-invitation.component.css']
+  styleUrls: ['./sent-invitation.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
-export class SentInvitationComponent implements OnInit ,AfterViewInit{
-
+export class SentInvitationComponent implements OnInit {
   isNew: boolean = false;
   isExisting: boolean = false;
+  isEditorVisible: boolean = true;
+  form!: FormGroup;
+  text :string ="";
 
-  constructor(private cdr: ChangeDetectorRef){}
+  htmlContent: string = ''; // Store HTML content
 
-  ngOnInit(): void {
+  editor!: Editor;
 
-  }
+  editorForm! : FormGroup;
+  isCollapsed! : boolean;
+  isMobileView! : boolean
 
   selectedRecipient: string = 'Select';
   selectedSendVia: string = 'Select';
   selectedSendViaImage: string | null = null;
+  sanitizedContent: SafeHtml = ''
 
-  @ViewChild('editorWrapper', { static: false }) editorWrapper!: ElementRef;
-  @ViewChild('htmlEditor',{ static: false }) htmlEditor!: AngularEditorComponent;
-  @Output() htmlContentChanged: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('editor') editor!: ElementRef;
-  htmlContent : string = "";
-  @ViewChild('titleInput') titleInput!: ElementRef;
+  constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef,
+    private SharedService: SharedService, private sanitizer: DomSanitizer){
+    this.SharedService.isCollapsed$.subscribe(state => {
+      this.isCollapsed = state;
+    });
+  }
 
+  get textValue() {
+    return this.editorForm.get('text')?.value;
+  }
 
-
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    minHeight: '10rem',
-    maxHeight: 'auto',
-    width: 'auto',
-    minWidth: '0',
-    translate: 'yes',
-    enableToolbar: true,
-    showToolbar: true,
-    sanitize: false,
-    placeholder: 'Enter text here...',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    defaultFontSize: '4px',
-    fonts: [
-      { class: 'arial', name: 'Arial' },
-      { class: 'times-new-roman', name: 'Times New Roman' },
-      { class: 'calibri', name: 'Calibri' },
-      { class: 'comic-sans-ms', name: 'Comic Sans MS' }
-    ],
-
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
+  editorConfig = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'align': [] }],
+      [{ 'color': [] }, { 'background': [] }]
     ]
   };
 
-  recipientOptions = [
-    { label: 'Contact', image: 'assets/UIComponents/images/peacekeeper/image 2650.jpg' },
-    { label: 'Peace Partners', image: 'assets/UIComponents/images/peacekeeper/peace.png' },
-    { label: 'Delegates', image: 'assets/UIComponents/images/peacekeeper/delegate.png' },
-    { label: 'Patrons', image: 'assets/UIComponents/images/peacekeeper/Patrons.png' },
-    { label: 'Collaborators', image: 'assets/UIComponents/images/peacekeeper/Collaborators.png' }
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
+
+  recipientOptions = [
+    {
+      label: 'Contact',
+      image: 'assets/UIComponents/images/peacekeeper/image 2650.jpg',
+    },
+    {
+      label: 'Peace Partners',
+      image: 'assets/UIComponents/images/peacekeeper/peace.png',
+    },
+    {
+      label: 'Delegates',
+      image: 'assets/UIComponents/images/peacekeeper/delegate.png',
+    },
+    {
+      label: 'Patrons',
+      image: 'assets/UIComponents/images/peacekeeper/Patrons.png',
+    },
+    {
+      label: 'Collaborators',
+      image: 'assets/UIComponents/images/peacekeeper/Collaborators.png',
+    },
+  ];
+
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.stopPropagation(); // Prevent conflicts
+    }
+  }
+
+   // Listen to window resize events
+   @HostListener('window:resize', ['$event'])
+   onResize(event: any): void {
+     this.checkWindowSize();
+   }
+
+  ngOnInit(): void {
+    this.editor = new Editor();
+    this.editorForm = this.fb.group({
+      text :[ '']
+    });
+
+    this.checkWindowSize();
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  this.isCollapsed = false;
+   this.isMobileView = false;
+
+  }
 
 
   onRecipientChange(option: any) {
@@ -84,9 +124,15 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
   }
 
   sendViaOptions = [
-    { label: 'Email', image: 'assets/UIComponents/images/peacekeeper/Email.png' },
-    { label: 'WhatsApp', image: 'assets/UIComponents/images/peacekeeper/WhatsApp.png' },
-    { label: 'SMS', image: 'assets/UIComponents/images/peacekeeper/SMS.png' }
+    {
+      label: 'Email',
+      image: 'assets/UIComponents/images/peacekeeper/Email.png',
+    },
+    {
+      label: 'WhatsApp',
+      image: 'assets/UIComponents/images/peacekeeper/WhatsApp.png',
+    },
+    { label: 'SMS', image: 'assets/UIComponents/images/peacekeeper/SMS.png' },
   ];
 
   onSendViaChange(option: any) {
@@ -94,54 +140,36 @@ export class SentInvitationComponent implements OnInit ,AfterViewInit{
     this.selectedSendViaImage = option.image;
   }
 
-  changeTemplateType(evt:any){
+  changeTemplateType(evt: any) {
+    console.log(evt.target.value);
 
-    const selectedValue = (evt.target as HTMLSelectElement).value;
-    this.isNew = selectedValue === '1'; // Enable new template
-
-    setTimeout(() => this.adjustEditorHeight(), 500);
-
-    // if(evt.target.value == 1) {
-    //   this.isNew = true;
-    //   this.isExisting = false;
-    // }
-    // else if(evt.target.value == 2) {
-    //   this.isNew = false;
-    //   this.isExisting = true;
-    // }
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => this.adjustEditorHeight(), 1000);
-  }
-
-  onHtmlContentChanged(content: string): void {
-
-    setTimeout(() => this.adjustEditorHeight(), 300);
-  }
-
-  // private adjustEditorHeight(): void {
-  //   if (this.editor && this.htmlEditor.textArea) {
-  //     const editorElement = this.htmlEditor.textArea.nativeElement;
-  //     editorElement.style.height = 'auto';
-  //     editorElement.style.height = `${editorElement.scrollHeight}px`;
-
-  //     this.cdr.detectChanges();
-  //   }
-  // }
-
-  private adjustEditorHeight(): void {
-    if (this.editorWrapper?.nativeElement) {
-      const editorElement = this.editorWrapper.nativeElement;
-
-      // Avoid infinite update loop
-      const newHeight = editorElement.scrollHeight + 'px';
-      if (editorElement.style.height !== newHeight) {
-        editorElement.style.height = 'auto';
-        editorElement.style.height = newHeight;
-        this.cdr.detectChanges();
-      }
+    if (evt.target.value == 1) {
+      this.isNew = true;
+      this.isExisting = false;
+    } else if (evt.target.value == 2) {
+      this.isNew = false;
+      this.isExisting = true;
     }
   }
-}
 
+    checkWindowSize(): void {
+          if (window.innerWidth <= 900) {
+            this.SharedService.isMobileView.next(true);
+            this.isMobileView = true;
+          } else {
+            this.SharedService.isMobileView.next(false);
+            this.isMobileView = false;
+          }
+        }
+
+  submit() {
+    console.log(this.form.value);
+  }
+
+  getSanitizedHTML(): SafeHtml {
+    let rawHTML = this.editorForm.get('text')?.value || '';
+
+    // Mark the content as safe HTML
+    return this.sanitizer.bypassSecurityTrustHtml(rawHTML);
+  }
+}

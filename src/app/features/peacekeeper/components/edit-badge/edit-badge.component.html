@@ -1,22 +1,26 @@
-
 <app-peacekeeper-leftpanel></app-peacekeeper-leftpanel>
 
-<div id="main" class="main body-content">
+<div
+  id="main"
+  class="main body-content"
+  [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }"
+>
   <app-peacekeeper-header></app-peacekeeper-header>
 
-
   <div class="section">
-      <h2 class="main-heading">Edit Badge</h2>
-      <div class="row">
-          <p>General Information</p>
-          <div class="col-md-9">
-
-              <div class="card p-2 mb-3" style="box-shadow: 0px 2px 5px 0px #d6d6d6; border: none;">
-                  <div class="d-flex justify-content-center">
-                      <div class="select-image-div">
-                          <!-- <input type="file" id="fileInput" > -->
-                          <br>
-                          <!-- <div class="pre"><img id="preview" [src]="this.PeaceBadgeData?.file_name">
+    <h2 class="main-heading">Edit Badge</h2>
+    <div class="row">
+      <p>General Information</p>
+      <div class="col-md-9">
+        <div
+          class="card p-2 mb-3"
+          style="box-shadow: 0px 2px 5px 0px #d6d6d6; border: none"
+        >
+          <div class="d-flex justify-content-center">
+            <div class="select-image-div">
+              <!-- <input type="file" id="fileInput" > -->
+              <br />
+              <!-- <div class="pre"><img id="preview" [src]="this.PeaceBadgeData?.file_name">
                               <button class="select-image" >
                                   <img src="assets/UIComponents/images/peacekeeper/camera.png" alt="">
                               </button>
@@ -24,100 +28,122 @@
 
                           </div> -->
 
-                          <div class="profile-container">
-                            <label for="file-input" class="profile-label" >
-                              <img [src]="imageUrl" alt="Profile Image" class="profile-image" />
-                              <div class="upload-icon">
-                                <img src="assets/UIComponents/images/peacekeeper/camera.png" alt="Upload" />
-                              </div>
-                            </label>
-                            <input type="file" id="file-input"  type="file"
-                            style="  cursor: pointer;
-      "
-                            accept="image/jpg,image/png,image/jpeg"
-                            name="profile_picture"
-                            #fileInput
-                            (change)="onFileChange($event)" hidden />
-                          </div>
-                          
-
-                      </div>
+              <div class="profile-container">
+                <label for="file-input" class="profile-label">
+                  <img
+                    [src]="imageUrl"
+                    alt="Profile Image"
+                    class="profile-image"
+                  />
+                  <div class="upload-icon">
+                    <img
+                      src="assets/UIComponents/images/peacekeeper/camera.png"
+                      alt="Upload"
+                    />
                   </div>
-                  <form [formGroup]="editBadgeForm">
-                  <div class="row">
+                </label>
+                <input
+                  type="file"
+                  id="file-input"
+                  type="file"
+                  style="cursor: pointer"
+                  accept="image/jpg,image/png,image/jpeg"
+                  name="profile_picture"
+                  #fileInput
+                  (change)="onFileChange($event)"
+                  hidden
+                />
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="editBadgeForm">
+            <div class="row">
+              <div class="col-md-4 p-3">
+                <div class="mb-3 input">
+                  <label for="first" class="mb-1"
+                    >Full Name : <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group flex-nowrap rounded">
+                    <input
+                      formControlName="full_name"
+                      type="text"
+                      class="w-100 border-0 input-field"
+                      (keypress)="ValidateAlpha($event)"
+                      (input)="onInput($event, 'full_name')"
+                      placeholder="Enter Full Name"
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
+                      value="Hanan"
+                    />
+                    <span
+                      class="input-group-text border-0 icon"
+                      id="addon-wrapping"
+                      ><i class="fa-solid fa-pencil"></i
+                    ></span>
+                  </div>
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    getcontrol('full_name')?.errors &&
+                    getcontrol('full_name')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('full_name')?.errors?.['required']"
+                    >First name is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('full_name')?.errors?.['minlength']"
+                    >First name must be at least 3 characters long.</small
+                  >
+                </div>
+              </div>
 
-                      <div class="col-md-4 p-3">
-                          <div class="mb-3 input">
-                              <label for="first" class="mb-1">Full Name : <span
-                                      class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded">
-                                  <input formControlName="full_name" type="text" class="w-100 border-0 input-field"
-                                  (keypress)="ValidateAlpha($event)"
-                                  (input)="onInput($event, 'full_name')"
-                                      placeholder="Enter Full Name" aria-label=""
-                                      aria-describedby="addon-wrapping" value="Hanan">
-                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
-                                          class="fa-solid fa-pencil"></i></span>
-                              </div>
-                          </div>
-                          <div
-                          class="text-danger"
-                          *ngIf="
-                            getcontrol('full_name')?.errors &&
-                            getcontrol('full_name')?.touched
-                          "
-                        >
-                          <small
-                            class="text-danger"
-                            *ngIf="getcontrol('full_name')?.errors?.['required']"
-                            >First name is required</small
-                          >
-                          <small
-                            class="text-danger"
-                            *ngIf="getcontrol('full_name')?.errors?.['minlength']"
-                            >First name must be at least 3
-                            characters long.</small
-                          >
-                        </div>
-                      </div>
-
-                      <div class="col-md-4 p-3">
-                        <div class="mb-3 input">
-                            <label for="password" class="mb-1">DOB : <span class="text-danger">*</span></label>
-                            <div class="input-group flex-nowrap rounded mt-1">
-                                <!-- <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
+              <div class="col-md-4 p-3">
+                <div class="mb-3 input">
+                  <label for="password" class="mb-1"
+                    >DOB : <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group flex-nowrap rounded mt-1">
+                    <!-- <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
                                     placeholder="" aria-label="" aria-describedby="addon-wrapping"> -->
 
-                                    <input
-                                    type="text"
-                                    class="p-0 w-100 border-0 input-field"
-                                    placeholder="Select Date of birth"
-                                    formControlName="dob"
-                                    [minDate]="minDate1"
-                                    [maxDate]="maxDate1"
-                                    (keydown)="disableManualInput($event)"
-                                    (ngModelChange)="onDateChange($event)"
-                                    bsDatepicker
-                                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
-                
-                                  />
-                                    
-                              </div>
-                          </div>
-                          <div
-                            class="text-danger"
-                            *ngIf="
-                              getcontrol('dob')?.errors && getcontrol('dob')?.touched
-                            "
-                          >
-                            <small
-                              class="text-danger"
-                              *ngIf="getcontrol('dob')?.errors?.['required']"
-                              >Date of birth is required</small
-                            >
-                          </div>
-                    </div>
-                      <!-- <div class="col-md-6 p-3">
+                    <input
+                      type="text"
+                      class="p-0 w-100 border-0 input-field"
+                      placeholder="Select Date of birth"
+                      formControlName="dob"
+                      [minDate]="minDate1"
+                      [maxDate]="maxDate1"
+                      (keydown)="disableManualInput($event)"
+                      (ngModelChange)="onDateChange($event)"
+                      bsDatepicker
+                      [bsConfig]="{
+                        isAnimated: true,
+                        dateInputFormat: 'DD/MM/YYYY',
+                        showWeekNumbers: false,
+                        containerClass: colorTheme
+                      }"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    getcontrol('dob')?.errors && getcontrol('dob')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('dob')?.errors?.['required']"
+                    >Date of birth is required</small
+                  >
+                </div>
+              </div>
+              <!-- <div class="col-md-6 p-3">
                           <div class="mb-3 input">
                               <label for="password" class="mb-1">Last Name <span
                                       class="text-danger">*</span></label>
@@ -151,12 +177,13 @@
                         </div>
                       </div> -->
 
-                      <div class="col-md-4 p-3">
-                          <div class="mb-3 input">
-                              <label for="country" class="mb-1">Country : <span
-                                      class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded mt-2">
-                                  <!-- <select formControlName="country" name="" id="" class="w-100 border-0 input-field"
+              <div class="col-md-4 p-3">
+                <div class="mb-3 input">
+                  <label for="country" 
+                    >Country : <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group flex-nowrap rounded mt-2">
+                    <!-- <select formControlName="country" name="" id="" class="w-100 border-0 input-field"
                                       style="background: inherit;">
                                       <option value="['India','IN']">India</option>
                                       <option value="['Nigeria','NG']">Nigeria</option>
@@ -165,48 +192,48 @@
 
                                   </select> -->
 
-                                  <select
-                                  formControlName="country"
-                                  style="cursor: pointer"
-                                  class="form-select w-100 p-0 px-2"
-                                  required
-                                  data-error="Please select country"
-                                  autocomplete="off"
-                                  (change)="getCountrycode(code)"
-                                >
-                                  <option selected value="" disabled>
-                                    --Please select country--
-                                  </option>
-                                  <option
-                                    *ngFor="let code of code; let j = index"
-                                    [value]="code.name"
-                                  >
-                                    {{ code.name }}
-                                  </option>
-                                </select>
-          
-                            </div>
-                        </div>
-                        <div
-                          *ngIf="
-                            getcontrol('country')?.errors &&
-                            getcontrol('country')?.touched
-                          "
-                        >
-                          <small
-                            class="text-danger"
-                            *ngIf="getcontrol('country')?.errors?.['required']"
-                            >Country is required</small
-                          >
-                        </div>
-                      </div>
+                    <select
+                      formControlName="country"
+                      style="cursor: pointer"
+                      class="form-select w-100 p-0 px-2"
+                      required
+                      data-error="Please select country"
+                      autocomplete="off"
+                      (change)="getCountrycode(code)"
+                    >
+                      <option selected value="" disabled>
+                        --Please select country--
+                      </option>
+                      <option
+                        *ngFor="let code of code; let j = index"
+                        [value]="code.name"
+                      >
+                        {{ code.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  *ngIf="
+                    getcontrol('country')?.errors &&
+                    getcontrol('country')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('country')?.errors?.['required']"
+                    >Country is required</small
+                  >
+                </div>
+              </div>
 
-                      <div class="col-md-6 p-3">
-                          <div class="mb-3 input">
-                              <label for="password" class="mb-1">Mobile Number : <span
-                                      class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded">
-                                  <!-- <select formControlName="mobileNumber" name="" id="" style="background: inherit; border: none; outline: none;">
+              <div class="col-md-6 p-3">
+                <div class="mb-3 input">
+                  <label for="password" class="mb-1"
+                    >Mobile Number : <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group flex-nowrap rounded">
+                    <!-- <select formControlName="mobileNumber" name="" id="" style="background: inherit; border: none; outline: none;">
                                       <option value="+93">+93</option>
                                       <option value="+355">+355</option>
                                       <option value="+213">+213</option>
@@ -214,130 +241,141 @@
                                       <option value="+376">+376</option>
 
                                   </select> &nbsp;-->
-                                  <!-- <input type="text" class="w-100 border-0 input-field" placeholder=""
+                    <!-- <input type="text" class="w-100 border-0 input-field" placeholder=""
                                       aria-label="" formControlName="mobileNumber" aria-describedby="addon-wrapping" value="" readonly>
                                   <span class="input-group-text border-0 icon" id="addon-wrapping"><i
                                           class="fa-solid fa-pencil"></i></span>  -->
-                                          <ngx-intl-tel-input
-                                          class="custom-width-container w-100 border-0 input-field"
-                                          
-                                          [preferredCountries]="[
-                                            CountryISO.UnitedStates,
-                                            CountryISO.India,
-                                            CountryISO.UnitedKingdom
-                                          ]"
-                                          [enableAutoCountrySelect]="true"
-                                          [enablePlaceholder]="false"
-                                          [searchCountryFlag]="true"
-                                          [searchCountryField]="[
-                                            SearchCountryField.Iso2,
-                                            SearchCountryField.Name
-                                          ]"
-                                          [selectFirstCountry]="false"
-                                          [selectedCountryISO]="CountryISO.UnitedArabEmirates"
-                                          [phoneValidation]="true"
-                                          [separateDialCode]="true"
-                                          [maxLength]="12"
-                                          [(ngModel)]="mobile_number"
-                                          name="mobile_number"
-                                          formControlName="mobile_number"
-                                          (keydown)="onMobileKeyDown($event, mobile_number)"
-                                          (keypress)="keyPressNumbers($event, mobile_number)"
-                  
-                                          ></ngx-intl-tel-input>
-
-
-                                        </div>
-                                    </div>
-                          <small class="text-danger" *ngIf="mobile_numberVal">
-                            (Country code + Mobile number) will be 7 to 15 digits
-                            based on country.
-                          </small>
-                          <div
-                            *ngIf="
-                              getcontrol('mobile_number')?.errors &&
-                              getcontrol('mobile_number')?.touched
-                            "
-                          >
-                            <small
-                              class="text-danger"
-                              *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                              >Mobile number is required</small
-                            >
-                            <small
-                            class="text-danger"
-                            *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched" 
-                            >
-                            {{ getPhoneErrorMessage() }}
-                            </small
-                          >
-                          </div>
-                      </div>
-
-                      <div class="col-md-6 p-3">
-                          <div class="mb-3 input">
-                              <label for="password" class="mb-1">E-Mail : <span
-                                      class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded">
-                                  <input formControlName="email_id" type="text" class="w-100 border-0 input-field"  readonly placeholder="Enter Email"
-                                  value=""
-                                  autocomplete="off"
-                                  (keypress)="ValidateAlpha($event)"
-                                  (input)="onInput($event, 'email_id')"
-                                      aria-label="" aria-describedby="addon-wrapping" >
-
-                              </div>
-                          </div>
-                          <div class="help-block with-errors"></div>
-                          <div
-                            *ngIf="
-                              getcontrol('email_id')?.errors &&
-                              getcontrol('email_id')?.touched
-                            "
-                          >
-                            <small
-                              class="text-danger"
-                              *ngIf="getcontrol('email_id')?.errors?.['required']"
-                              >Email is required.</small
-                            >
-                            <small
-                              class="text-danger"
-                              *ngIf="getcontrol('email_id')?.errors?.['email_id']"
-                              >Please enter valid email
-                              address.</small
-                            >
-                          </div>
-                      </div>
-
-
-
-                      <div class="col-md-12 contianer-fluid mb-3" style="text-align: center;">
-                          <button class="btn btn-success px-3" (click)="updatePeacekeeper(fileInput)">Update</button>
-                      </div>
-
+                    <ngx-intl-tel-input
+                      class="custom-width-container w-100 border-0 input-field"
+                      [preferredCountries]="[
+                        CountryISO.UnitedStates,
+                        CountryISO.India,
+                        CountryISO.UnitedKingdom
+                      ]"
+                      [enableAutoCountrySelect]="true"
+                      [enablePlaceholder]="false"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.UnitedArabEmirates"
+                      [phoneValidation]="true"
+                      [separateDialCode]="true"
+                      [maxLength]="12"
+                      [(ngModel)]="mobile_number"
+                      name="mobile_number"
+                      formControlName="mobile_number"
+                      (keydown)="onMobileKeyDown($event, mobile_number)"
+                      (keypress)="keyPressNumbers($event, mobile_number)"
+                    ></ngx-intl-tel-input>
                   </div>
-                </form>
+                </div>
+                <small class="text-danger" *ngIf="mobile_numberVal">
+                  (Country code + Mobile number) will be 7 to 15 digits based on
+                  country.
+                </small>
+                <div
+                  *ngIf="
+                    getcontrol('mobile_number')?.errors &&
+                    getcontrol('mobile_number')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                    >Mobile number is required</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      !mobile_numberVal &&
+                      getcontrol('mobile_number')?.invalid &&
+                      getcontrol('mobile_number')?.touched
+                    "
+                  >
+                    {{ getPhoneErrorMessage() }}
+                  </small>
+                </div>
               </div>
 
-          </div>
-          <div class="col-md-3">
-              <div class="card border-0">
-                  <div class="card-body p-0">
-                      <!-- <img src="assets/UIComponents/images/peacekeeper/Badge.jpg" alt="" class="mb-2 w-100"> -->
-                      <img loading="eager"
-                      [src]="peaceBadge"
-                      class="w-100"
-                      alt=""
-                      width="100px"
+              <div class="col-md-6 p-3">
+                <div class="mb-3 input">
+                  <label for="password" class="mb-1"
+                    >E-Mail : <span class="text-danger">*</span></label
+                  >
+                  <div class="input-group flex-nowrap rounded">
+                    <input
+                      formControlName="email_id"
+                      type="text"
+                      class="w-100 border-0 input-field"
+                      readonly
+                      placeholder="Enter Email"
+                      value=""
+                      autocomplete="off"
+                      (keypress)="ValidateAlpha($event)"
+                      (input)="onInput($event, 'email_id')"
+                      aria-label=""
+                      aria-describedby="addon-wrapping"
                     />
                   </div>
-
-                  <button *ngIf="peaceBadge" class="btn btn-success w-100">Preview</button>
+                </div>
+                <div class="help-block with-errors"></div>
+                <div
+                  *ngIf="
+                    getcontrol('email_id')?.errors &&
+                    getcontrol('email_id')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('email_id')?.errors?.['required']"
+                    >Email is required.</small
+                  >
+                  <small
+                    class="text-danger"
+                    *ngIf="getcontrol('email_id')?.errors?.['email_id']"
+                    >Please enter valid email address.</small
+                  >
+                </div>
               </div>
-          </div>
-      </div>
-  </div>
 
+              <div
+                class="col-md-12 contianer-fluid mb-3"
+                style="text-align: center"
+              >
+                <button
+                  class="btn btn-success px-3"
+                  (click)="updatePeacekeeper(fileInput)"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card border-0">
+          <div class="card-body p-0">
+            <!-- <img src="assets/UIComponents/images/peacekeeper/Badge.jpg" alt="" class="mb-2 w-100"> -->
+            <img
+              loading="eager"
+              [src]="peaceBadge"
+              class="w-100"
+              alt=""
+              width="100px"
+            />
+          </div>
+
+          <button *ngIf="peaceBadge" class="btn btn-success w-100">
+            Preview
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div
@@ -353,21 +391,22 @@
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content p-3">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
-      
+
       <!-- <div class="cropper-container"> -->
-      <image-cropper 
-      *ngIf="imageChangedEvent" 
-      [imageChangedEvent]="imageChangedEvent"
-      (imageCropped)="imageCropped($event)"
-      [maintainAspectRatio]="true"
-      [resizeToWidth]="1024"
-      [cropperMinWidth]="100"
-      [cropperMinHeight]="100"
-      [transform]="transform"
-      [style.width]="'100%'">
-    </image-cropper>
-  <!-- Zoom Buttons -->
-  <!-- <div class="zoom-controls">
+      <image-cropper
+        *ngIf="imageChangedEvent"
+        [imageChangedEvent]="imageChangedEvent"
+        (imageCropped)="imageCropped($event)"
+        [maintainAspectRatio]="true"
+        [resizeToWidth]="1024"
+        [cropperMinWidth]="100"
+        [cropperMinHeight]="100"
+        [transform]="transform"
+        [style.width]="'100%'"
+      >
+      </image-cropper>
+      <!-- Zoom Buttons -->
+      <!-- <div class="zoom-controls">
     <button class="zoom-button" (click)="zoomIn()">+</button>
     <button class="zoom-button" (click)="zoomOut()">-</button>
   </div>

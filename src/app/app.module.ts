@@ -23,7 +23,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { NgxEditorModule } from 'ngx-editor';
 
 
 // import { HeaderComponent } from './shared/components/header/header.component';
@@ -45,7 +45,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AppRoutingModule,
     FormsModule, ReactiveFormsModule,SharedModule,
     QRCodeModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxEditorModule
   ],
 
   providers: [
