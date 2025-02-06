@@ -131,7 +131,7 @@ export class EditBadgeComponent {
     debugger
     let userData = JSON.parse(localStorage.getItem('userDetails') || '')
     console.log(userData);
-    let peaceId =  userData.peacekeeper_id
+    let peaceId = userData.peacekeeper_id
     let body = {
       peace_id: peaceId
     }
@@ -155,25 +155,25 @@ export class EditBadgeComponent {
           if (phoneNumber) {
             const countryDialCode = phoneNumber.countryCallingCode; // e.g., 91
             const nationalNumber = phoneNumber.nationalNumber; // e.g., 8120926413
-            
+
             this.setCountryByDialCode(countryDialCode);
             setTimeout(() => {
             }, 100);
             this.editBadgeForm.patchValue({
-                  mobile_number: {
-                    number: nationalNumber,
-                    countryCode: this.country_codeISO
-                  },
-    
-                });
+              mobile_number: {
+                number: nationalNumber,
+                countryCode: this.country_codeISO
+              },
+
+            });
           }
-        
-          
+
+
           this.editBadgeForm.patchValue({
             full_name: this.PeaceBadgeData.full_name,
             country: this.PeaceBadgeData.country,
             email_id: this.PeaceBadgeData.email_id,
-             dob: dateObject
+            dob: dateObject
 
           });
           console.log(this.editBadgeForm, 'editBadgeForm');
@@ -203,12 +203,12 @@ export class EditBadgeComponent {
     debugger
     const returnmobileNumber = this.editBadgeForm.value.mobile_number;
     const returnDOB = this.editBadgeForm.value.dob;
-    console.log(returnmobileNumber,'mobileNumber');
+    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
     console.log(formattedMobileNumber);
-console.log(this.phoneInput, 'phoneInput');
+    console.log(this.phoneInput, 'phoneInput');
 
     this.editBadgeForm.patchValue({
       is_active: 1,
@@ -216,21 +216,21 @@ console.log(this.phoneInput, 'phoneInput');
         this.editBadgeForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-        dob: this.formattedDate
+      dob: this.formattedDate
 
     });
 
 
     const FromData = {
-      id:this.PeaceBadgeData.peacekeeper_id,
-      full_name:this.editBadgeForm.value.full_name,
-      country:this.editBadgeForm.value.country,
-      email_id:this.editBadgeForm.value.email_id,
-      mobile_number:this.editBadgeForm.value.mobile_number,
-      dob:this.formattedDate,
-      Check_email:1,
-      is_active:1,
-      url:this.PeaceBadgeData.url
+      id: this.PeaceBadgeData.peacekeeper_id,
+      full_name: this.editBadgeForm.value.full_name,
+      country: this.editBadgeForm.value.country,
+      email_id: this.editBadgeForm.value.email_id,
+      mobile_number: this.editBadgeForm.value.mobile_number,
+      dob: this.formattedDate,
+      Check_email: 1,
+      is_active: 1,
+      url: this.PeaceBadgeData.url
     }
 
     const EncryptData = this.sharedService.encryptData(FromData);
@@ -262,9 +262,9 @@ console.log(this.phoneInput, 'phoneInput');
           this.peaceBadge = response.batch;
           debugger
           const userData = {
-            full_name : this.PeaceBadgeData.full_name,
-            peacekeeper_id : this.PeaceBadgeData.peacekeeper_id,
-            file_name : this.PeaceBadgeData?.file_name,
+            full_name: this.PeaceBadgeData.full_name,
+            peacekeeper_id: this.PeaceBadgeData.peacekeeper_id,
+            file_name: this.PeaceBadgeData?.file_name,
           }
           // this.sharedService.setUserDetails(JSON.stringify(userData));
           localStorage.setItem('userDetails', JSON.stringify(userData));
@@ -285,7 +285,7 @@ console.log(this.phoneInput, 'phoneInput');
         }
       },
       (err) => {
-          this.editBadgeForm.patchValue({
+        this.editBadgeForm.patchValue({
           mobile_number: returnmobileNumber,
           dob: returnDOB,
         });
@@ -428,14 +428,16 @@ console.log(this.phoneInput, 'phoneInput');
 
   /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
-    debugger
     const control = this.editBadgeForm.controls['mobile_number'];
+    if (control.value) {
+      if (control.errors?.['validatePhoneNumber']['valid']) {
+        return '';
+      } else {
+        return 'Invalid mobile number for selected country.';
+      }
 
-    // if (control.errors?.['validatePhoneNumber']['valid']) {
-    //   return '';
-    // } else {
-    //   return 'Invalid mobile number for selected country.';
-    // }
+    }
+    return ''; // Ensure a value is always returned
   }
 
   ValidateAlpha(event: any) {
@@ -486,7 +488,7 @@ console.log(this.phoneInput, 'phoneInput');
 
 
   onFileChange(event: any): void {
-  
+
     this.imageChangedEvent = event;
     console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
@@ -504,13 +506,13 @@ console.log(this.phoneInput, 'phoneInput');
         this.is_selectedFile = false;
         return;
       }
-          // Validate the file size
-    if (file.size < minSize || file.size > maxSize) {
-      this.sharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-      event.target.value = ''; // Reset the file input
-      this.is_selectedFile = false;
-      return;
-    }
+      // Validate the file size
+      if (file.size < minSize || file.size > maxSize) {
+        this.sharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+        event.target.value = ''; // Reset the file input
+        this.is_selectedFile = false;
+        return;
+      }
 
       this.isPeaceOn = 2;
       this.showPopup = true;
@@ -526,48 +528,48 @@ console.log(this.phoneInput, 'phoneInput');
   }
 
 
-    imageCropped(event: ImageCroppedEvent): void {
-      this.croppedImage = event.objectUrl;
-      console.log(this.imageFileName, 'cropping');
-  
-      // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
-      fetch(this.croppedImage)
-        .then((response) => response.blob()) // Fetch the image blob
-        .then((blob) => {
-          // Create a File object from the Blob
-          const file = new File([blob], this.imageFileName, {
-            type: blob.type,
-            lastModified: Date.now(), // You can set this to the actual last modified timestamp if needed
-          });
-  
-          // Now you can append the file data to your payload
-          const payload = {
-            file: file,
-            otherData: 'your other data here',
-          };
-  
-          // For example, logging the file details
-          console.log(file);
-          console.log(payload);
-  
-          const newFile = file;
-          if (newFile) {
-            this.selectedFile = newFile;
-            this.is_selectedFile = true;
-          }
-          const reader = new FileReader();
-          reader.onload = (e: any) => {
-            this.imageUrl = e.target.result; // Set the preview URL
-          };
-          reader.readAsDataURL(newFile);
-          console.log('Selected file:', this.selectedFile);
-  
-          // Proceed with your request or any other operation with 'payload'
-        })
-        .catch((error) => {
-          console.error('Error fetching the image:', error);
+  imageCropped(event: ImageCroppedEvent): void {
+    this.croppedImage = event.objectUrl;
+    console.log(this.imageFileName, 'cropping');
+
+    // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
+    fetch(this.croppedImage)
+      .then((response) => response.blob()) // Fetch the image blob
+      .then((blob) => {
+        // Create a File object from the Blob
+        const file = new File([blob], this.imageFileName, {
+          type: blob.type,
+          lastModified: Date.now(), // You can set this to the actual last modified timestamp if needed
         });
-    }
+
+        // Now you can append the file data to your payload
+        const payload = {
+          file: file,
+          otherData: 'your other data here',
+        };
+
+        // For example, logging the file details
+        console.log(file);
+        console.log(payload);
+
+        const newFile = file;
+        if (newFile) {
+          this.selectedFile = newFile;
+          this.is_selectedFile = true;
+        }
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imageUrl = e.target.result; // Set the preview URL
+        };
+        reader.readAsDataURL(newFile);
+        console.log('Selected file:', this.selectedFile);
+
+        // Proceed with your request or any other operation with 'payload'
+      })
+      .catch((error) => {
+        console.error('Error fetching the image:', error);
+      });
+  }
 
   cropperReady() {
     this.imageChangedEvent = '';
@@ -587,31 +589,31 @@ console.log(this.phoneInput, 'phoneInput');
     this.selectedFile = null;
   }
 
-    // Zoom In
-    zoomIn(): void {
-      if (this.zoomLevel < 5) {
-        // Maximum zoom level
-        this.zoomLevel += 0.1;
-        this.applyZoom();
-      }
+  // Zoom In
+  zoomIn(): void {
+    if (this.zoomLevel < 5) {
+      // Maximum zoom level
+      this.zoomLevel += 0.1;
+      this.applyZoom();
     }
-  
-    // Zoom Out
-    zoomOut(): void {
-      if (this.zoomLevel > 1) {
-        // Minimum zoom level
-        this.zoomLevel -= 0.1;
-        this.applyZoom();
-      }
+  }
+
+  // Zoom Out
+  zoomOut(): void {
+    if (this.zoomLevel > 1) {
+      // Minimum zoom level
+      this.zoomLevel -= 0.1;
+      this.applyZoom();
     }
-  
-    // Apply Zoom
-    applyZoom(): void {
-      this.transform = {
-        ...this.transform,
-        scale: this.zoomLevel, // Apply zoom level
-      };
-    }
-  
+  }
+
+  // Apply Zoom
+  applyZoom(): void {
+    this.transform = {
+      ...this.transform,
+      scale: this.zoomLevel, // Apply zoom level
+    };
+  }
+
 
 }
