@@ -1,120 +1,100 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControlName, FormBuilder, FormArray, AbstractControl, ValidatorFn, FormControl, } from '@angular/forms';
+import {
+  FormGroup,
+  Validators,
+  FormBuilder,
+  AbstractControl,
+  ValidatorFn,
+  FormControl,
+} from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { Router,ActivatedRoute  } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
-
+import {
+  CountryISO,
+  PhoneNumberFormat,
+  SearchCountryField,
+} from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-delegate-registration',
   templateUrl: './delegate-registration.component.html',
-  styleUrls: ['./delegate-registration.component.css']
+  styleUrls: ['./delegate-registration.component.css'],
 })
 export class DelegateRegistrationComponent {
   showPopup: boolean = false;
-  formdisplay:boolean=true;
-  display:string='';
-  isOthersSelected:any;
+  formdisplay: boolean = true;
+  display: string = '';
   reqBody: any;
   registrationForm: any = FormGroup;
   submitted = false;
-  repositoryForm: any = FormGroup;
-  country_id: any
-  state_id: any
-  cities: any;
-  states: any;
-  countries: any;
-  country:any;
-  countryData: any;
-  statesData: any;
-  cityData: any;
-  city_id: any;
+  countryData: any = [];
+  statesData: any = [];
+  cityData: any = [];
   code: any;
-  dates: any;
-  terms: any;
-  terms1: any;
-  first_name: string = '';
-  last_name: string = '';
   mobile_number: string = '';
-  mobile_numberVal:boolean= false;
-  email_id: string = '';
-  linkedIn_profile: string = '';
-  instagram_profile: string = '';
-  profession_1: string = '';
-  profession_2: string = '';
-  address: string = '';
-  pin_code: string = '';
-  website: string = '';
-  represent_pharmaceutical_industry: string = '';
-  manufacturing_solution_PI: string = '';
+  mobile_numberVal: boolean = false;
   fullURL: string;
-  othervalstate: any='';
-  othervalstate_id:any='';
-  
-  othervalcity: any='';
-  othervalcity_id:any='';
-
-  separateDialCode = false;
-	SearchCountryField = SearchCountryField;
-	CountryISO = CountryISO;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
-	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
-  country_codeList: any;
-  countryCodes: any;
-  country_code: any;
+  preferredCountries: CountryISO[] = [
+    CountryISO.UnitedStates,
+    CountryISO.UnitedKingdom,
+  ];
   selectedCountryISO: any;
   formattedDate: string = '';
-  referralCode:any='';
-  conferenceInterest:any
-  conferenceInterestArr:any
-  minDate: string| null = null;
+  referralCode: any = '';
+  minDate: string | null = null;
   maxDate: string | null = null;
   isMobileView = false;
   interests = [
     { value: 'Justice', label: 'Justice' },
     { value: 'Love', label: 'Love' },
-    { value: 'Peace', label: 'Peace' }
+    { value: 'Peace', label: 'Peace' },
   ];
   disabledDates: Date[] = [];
 
-  maxDate1 : any;
-  minDate1 : any;
+  maxDate1: any;
+  minDate1: any;
   colorTheme: string = 'theme-dark-blue';
-
+  country_name: any;
+  state_name: any;
+  city_name: any;
 
   changePreferredCountries() {
-		this.preferredCountries = [CountryISO.India, CountryISO.Canada];
-	}
+    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+  }
 
   onCountryChange(event: any): void {
-    console.log('Country Changed:', event); // Logs the selected country
     this.selectedCountryISO = event.iso2; // Update the selected country ISO
   }
-  
-  constructor(private datePipe: DatePipe,
-     private formBuilder: FormBuilder, 
-     private DelegateService: DelegateService, 
-     private SharedService: SharedService, 
-     private ngxService: NgxUiLoaderService, 
-     private router: Router, 
-     private httpClient: HttpClient,
-     private route: ActivatedRoute) {
+
+  constructor(
+    private datePipe: DatePipe,
+    private formBuilder: FormBuilder,
+    private DelegateService: DelegateService,
+    private SharedService: SharedService,
+    private ngxService: NgxUiLoaderService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.fullURL = window.location.href;
-    console.log('Full URL:', this.fullURL);
 
     const today = new Date();
 
     // Max date is 18 years ago from today
-    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  
+    this.maxDate1 = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+
     // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
-   }
+  }
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
@@ -122,279 +102,279 @@ export class DelegateRegistrationComponent {
     return this.registrationForm.get('instagram_profile');
   }
   isInvalidInstagramProfile() {
-    return this.instagramProfileControl.hasError('pattern') && this.instagramProfileControl.touched;
+    return (
+      this.instagramProfileControl.hasError('pattern') &&
+      this.instagramProfileControl.touched
+    );
   }
-  get f() { return this.registrationForm.controls; }
 
-
-
+  get f() {
+    return this.registrationForm.controls;
+  }
 
   ngOnInit(): void {
     this.checkWindowSize();
-  this.dobValidator();
+    // this.dobValidator();
 
-    this.route.queryParams.subscribe((params:any) => {
-      if(params){
+    this.route.queryParams.subscribe((params: any) => {
+      if (params) {
         this.referralCode = params.code;
       }
-      if(this.referralCode){
-
-        console.log(this.referralCode,'referralCode..........');
+      if (this.referralCode) {
+        console.log(this.referralCode, 'referralCode..........');
       }
-      
     });
-    
-    this.createForm();
-  
 
+    this.createForm();
 
     // this.getdates()
-    // this.getAllCountries()
+    this.getAllCountries();
     // this.getAllCountrycode()
-
- 
-
   }
 
-  createForm(){
+  createForm() {
     this.registrationForm = this.formBuilder.group({
-      title: [''],
+      title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      dob: ['', [Validators.required,this.ageValidator]],
+      dob: ['', [Validators.required, this.ageValidator]],
       country_code: [''],
-
-      mobile_number: ['', [ Validators.minLength(7), Validators.required]],
-      email_id: ['', [Validators.required, Validators.email]], // Using Validators.email for email format validation
-      // linkedIn_profile:['', [Validators.pattern('https?://.+')]],
-      // instagram_profile:['', [Validators.pattern('https?://.+')]],
-      linkedIn_profile:[''],
-      instagram_profile:[''],
-      // instagram_profile:['', [ Validators.pattern('^(https?:\\/\\/(www\\.)?(instagram\\.com\\/|linkedin\\.com\\/[^\\/]+\\/public-profile\\/settings\\?trk=.+)|[a-zA-Z0-9._]+)$')]],
-      profession_1: ['', [Validators.required]],// need 
-      profession_2: [''],// need 
-      website: ['', [Validators.pattern('^[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*$')]], // Basic URL pattern validation
-      organization_name: [''],// need 
+      mobile_number: ['', [Validators.minLength(7), Validators.required]],
+      email_id: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      linkedIn_profile: [''],
+      instagram_profile: [''],
+      profession_1: ['', [Validators.required]],
+      profession_2: [''],
+      website: ['', [Validators.pattern('^[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*$')]],
+      organization_name: [''],
       address: [''],
       country: ['', [Validators.required]],
-      state: [''],
+      state: ['',[Validators.required]],
       city: ['', [Validators.required]],
-      passport_no: [''],// need 
-      passport_issue_by: [''],// need 
+      city_id: ['', [Validators.required]],
+      state_id: ['', [Validators.required]],
+      country_id: ['', [Validators.required]],
+      passport_no: [''],
+      passport_issue_by: [''],
       pin_code: [null],
-      // attend_summit: ['0', [Validators.required]],
-      reference_no: [this.referralCode?this.referralCode:''],// need 
+      reference_no: [this.referralCode ? this.referralCode : ''],
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
-
-      created_by: "Admin",
+      created_by: 'Admin',
       status: ['0'],
     });
   }
-//   getdates(){
-//     this.DelegateService.getdates().subscribe((res: any) => {
-//       console.log("dates", res.data);
-//       this.dates = res.data;
-//     }, (err:any) => {
-//       console.log("error", err);
-//     });
-//   }
 
+  ageValidator(control: FormControl) {
+    const selectedDate = new Date(control.value);
 
-dobValidator() {
-  const today = new Date();
-
-  // Calculate the date 18 years ago from today
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
-  this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
-
-  // Set disabledDates (any date after maxDate)
-  this.disabledDates = [eighteenYearsAgo]; // Disabling the date of 18 years ago
-  console.log(`Max date (18 years ago): ${this.maxDate}`);
-}
-
-ageValidator(control: FormControl) {
-  const selectedDate = new Date(control.value);
-
-  // If the selected date is invalid, return an error
-  if (isNaN(selectedDate.getTime())) {
-    return { invalidDate: true }; // Invalid date format
-  }
-
-  const today = new Date();
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-
-  // If selected date is after or on the date 18 years ago, it's invalid
-  if (selectedDate > eighteenYearsAgo) {
-    return { ageError: 'Date must be at least 18 years ago' };
-  }
-
-  return null; // Valid date
-}
-
-isDisabledDate(date: Date): boolean {
-  const today = new Date();
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  return date >= eighteenYearsAgo;
-}
-
-onCheckboxChange(event: any) {
-  const conferenceLeverInterest = this.registrationForm.get('conference_lever_interest');
-  if (conferenceLeverInterest) {
-    const currentValues = conferenceLeverInterest.value || [];
-    if (event.target.checked) {
-      // Add the value if checked
-      conferenceLeverInterest.setValue([...currentValues, event.target.value]);
-    } else {
-      // Remove the value if unchecked
-      conferenceLeverInterest.setValue(currentValues.filter((v: string) => v !== event.target.value));
+    if (isNaN(selectedDate.getTime())) {
+      return { invalidDate: true };
     }
-    conferenceLeverInterest.markAsTouched(); // Mark control as touched
+
+    const today = new Date();
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    // If selected date is after or on the date 18 years ago, it's invalid
+    if (selectedDate > eighteenYearsAgo) {
+      return { ageError: 'Date must be at least 18 years ago' };
+    }
+
+    return null; // Valid date
   }
-}
 
-disableManualInput(event: KeyboardEvent): void {
-  event.preventDefault();
-}
+  isDisabledDate(date: Date): boolean {
+    const today = new Date();
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+    return date >= eighteenYearsAgo;
+  }
+
+  onCheckboxChange(event: any) {
+    const conferenceLeverInterest = this.registrationForm.get(
+      'conference_lever_interest'
+    );
+    if (conferenceLeverInterest) {
+      const currentValues = conferenceLeverInterest.value || [];
+      if (event.target.checked) {
+        // Add the value if checked
+        conferenceLeverInterest.setValue([
+          ...currentValues,
+          event.target.value,
+        ]);
+      } else {
+        // Remove the value if unchecked
+        conferenceLeverInterest.setValue(
+          currentValues.filter((v: string) => v !== event.target.value)
+        );
+      }
+      conferenceLeverInterest.markAsTouched(); // Mark control as touched
+    }
+  }
+
+  disableManualInput(event: KeyboardEvent): void {
+    event.preventDefault();
+  }
+
   getAllCountrycode() {
-    this.DelegateService.getAllCountrycode().subscribe((res: any) => {
-      console.log("code", res.data);
-      this.code = res.data;
-      // Define the country name you want to find (e.g., "India (+91)")
-const countryToFind = "India (+91)";
+    this.DelegateService.getAllCountrycode().subscribe(
+      (res: any) => {
+        this.code = res.data;
+        // Define the country name you want to find (e.g., "India (+91)")
+        const countryToFind = 'India (+91)';
 
-// Find the object that matches the country name
-const indiaCodeObject =  this.code.find((item:any) => item.country_mobile_code === countryToFind);
-console.log(indiaCodeObject);
+        // Find the object that matches the country name
+        const indiaCodeObject = this.code.find(
+          (item: any) => item.country_mobile_code === countryToFind
+        );
 
-      this.registrationForm.patchValue({
-        country_code :indiaCodeObject.country_mobile_code
-      })
-    }, (err: any) => {
-      console.log("error", err);
-    });
+        this.registrationForm.patchValue({
+          country_code: indiaCodeObject.country_mobile_code,
+        });
+      },
+      (err: any) => {
+        console.log('error', err);
+      }
+    );
   }
 
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
-    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
+    this.formattedDate =
+      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
-//   getAllCountries() {
-//     this.DelegateService.getAllCountries().subscribe((res: any) => {
-//       console.log("CountryData1", res.data);
-//       this.countryData = res.data;
-//     }, (err: any) => {
-//       console.log("error", err);
-//     });
-//   }
-
-
+  getAllCountries() {
+    this.DelegateService.getAllCountries().subscribe(
+      (res: any) => {
+        this.countryData = res.data;
+      },
+      (err: any) => {
+        console.log('error', err);
+      }
+    );
+  }
 
   changeCountry(e: any) {
-    
-    this.country_id = e.target.value;
-    this.isOthersSelected = this.country_id === '247'; // Set a flag for "Others"
-    console.log(this.country_id);
-    if(this.country_id==='247'){
-      console.log("hii",this.country_id);
-      this.DelegateService.getAllStates(this.country_id).subscribe((res: any) => {
-        // this.ngxService.stop();
-        this.statesData = res.data;
-        console.log(this.statesData[0].state_name);
-      this.othervalstate=this.statesData[0].state_name;
-      this.othervalstate_id=this.statesData[0].state_id;
-      this.registrationForm.patchValue({
-          state:this.statesData[0].state_id
-        })
 
-        this.DelegateService.getAllCities(this.othervalstate_id).subscribe((res: any) => {
+    const selectedValue = e.target.value;
+    const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
+    this.registrationForm.patchValue({ country_id: countryObj.id });
+    this.country_name = countryObj.name;
+
+      this.ngxService.start();
+      this.DelegateService.getAllStates(countryObj.id).subscribe(
+        (res: any) => {
+          this.ngxService.stop();
+          this.statesData = res.data;
+        },
+        (err: any) => {
+          console.log('Err', err);
           // this.ngxService.stop();
-          this.cityData = res.data;
-          console.log(this.cityData[0].city_name);
-          this.othervalcity=this.cityData[0].city_name;
-          this.othervalcity_id=this.cityData[0].city_id;
-          this.registrationForm.patchValue({
-              city:this.cityData[0].city_id
-            })
-  
-            console.log("c",this.registrationForm.value.city,this.othervalcity_id,this.othervalcity);
-  
-          }, (err: any) => {
-            console.log("Err", err);
-            this.ngxService.stop();
-          });
-  
-    // this.otherval=    this.registrationForm.get('state')?.setValue(this.statesData[0].state_name);
-      console.log("s",this.registrationForm.value.state,this.othervalstate_id,this.othervalstate);
-      
-      }, (err: any) => {
-        console.log("Err", err);
-        // this.ngxService.stop();
-      });
-      
-    }
-    else{
-      
-      this.othervalstate_id='';
-      this.othervalstate = '';
-      this.othervalcity_id='';
-      this.othervalcity='';
-      console.log(typeof(this.othervalcity),this.othervalstate);
-      
-    // this.ngxService.start();
-    this.DelegateService.getAllStates(this.country_id).subscribe((res: any) => {
-      // this.ngxService.stop();
-      this.statesData = res.data;
-    }, (err: any) => {
-      console.log("Err", err);
-      // this.ngxService.stop();
-    });
-  }
+        }
+      );
   }
 
   changeStates(e: any) {
-    this.state_id = e.target.value;
+
+    const selectedValue = e.target.value;
+    const stateObj = JSON.parse(selectedValue); // Convert JSON string back to object
+    this.registrationForm.patchValue({ state_id: stateObj.id });
+    this.state_name = stateObj.name;
+
     // this.ngxService.start();
-    this.DelegateService.getAllCities(this.state_id).subscribe((res: any) => {
+    this.DelegateService.getAllCities(stateObj.id).subscribe((res: any) => {
       // this.ngxService.stop();
       this.cityData = res.data;
     });
   }
 
-
   changeCity(e: any) {
-    this.city_id = e.target.value;
-    console.log("state", e.target.value);
+
+    debugger;
+      const selectedValue = e.target.value;
+      const cityObj = JSON.parse(selectedValue); // Convert JSON string back to object
+      this.registrationForm.patchValue({ city_id: cityObj.id });
+      this.city_name = cityObj.name;
   }
 
-
-
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    if(inputValue !== null){
-      
-      if(inputValue.number.length<7){
+    if (inputValue !== null) {
+      if (inputValue.number.length < 7) {
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-      
-     }
-   
+    }
   }
 
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+    const text = event.clipboardData?.getData('text') || '';
 
-  ValidateAlpha(event: any) {
-    var keyCode = (event.which) ? event.which : event.keyCode
+    // Allow only alphabets and spaces
+    if (/^[a-zA-Z\s]*$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
 
-    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32)
-      return false;
-    return true;
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
 
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+  onEmailPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
+    if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid characters
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+  onProfessionPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Prevent default paste action
+    const text = event.clipboardData?.getData('text') || ''; // Get the pasted text
+
+    // Check if pasted text matches the allowed pattern (letters, spaces, commas, periods, hyphens)
+    const validTextPattern = /^[a-zA-Z\s,.-]*$/;
+
+    // If valid, allow paste; otherwise, show an alert or handle accordingly
+    if (validTextPattern.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value = text; // Paste valid text into the input field
+      input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
+    } else {
+      alert('Only letters, spaces, commas, periods, and hyphens are allowed.');
+    }
+  }
+
+  validateAlpha(event: any) {
+    const charCode = event.key.charCodeAt(0);
+    if (!/[a-zA-Z\s]/.test(event.key)) {
+      event.preventDefault(); // Block numbers and special characters
+    }
   }
 
   containsConsecutiveZeros(): ValidatorFn {
@@ -407,7 +387,6 @@ console.log(indiaCodeObject);
     };
   }
 
-  
   noRepeatingDigits(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -422,144 +401,208 @@ console.log(indiaCodeObject);
     };
   }
 
-
-  checkTerms(evt: any) {
-    console.log(evt.target.checked);
-    this.terms = evt.target.checked;
-}
-
-checkTerms1(evtt: any) {
-  console.log(evtt.target.checked);
-  this.terms1 = evtt.target.checked;
-}
-
-  /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
     const control = this.registrationForm.controls['mobile_number'];
-    
-    if (control.errors.validatePhoneNumber['valid']) {
-      return '';
-    } else {
-      return 'Invalid mobile number for selected country.';
+    if (control.value) {
+      if (control.errors.validatePhoneNumber['valid']) {
+        return '';
+      } else {
+        return 'Invalid mobile number for selected country.';
+      }
+    }
+    return '';
+  }
+
+  onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
+    if (inputValue !== null) {
+      // Check if the pressed key is the space bar and the input is empty
+      if (event.key === ' ' && event.code === 'Space') {
+        event.preventDefault(); // Prevent the space character from being typed
+      } else if (event.code === 'Backspace') {
+        if (inputValue.number.length < 7) {
+          this.mobile_numberVal = true;
+          // event.preventDefault()
+        } else {
+          this.mobile_numberVal = false;
+        }
+      }
     }
   }
 
-
-onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
-  console.log(this.registrationForm);
-  if(inputValue!==null){
-
-  
-  // Check if the pressed key is the space bar and the input is empty
-  if (event.key === ' ' && event.code === 'Space') {
-    event.preventDefault(); // Prevent the space character from being typed
-  }else  if (event.code === 'Backspace') {
-    if(inputValue.number.length<7){
-      this.mobile_numberVal = true;
-      // event.preventDefault()
-    } else {
-      this.mobile_numberVal = false;
+  onKeyDown(event: KeyboardEvent): void {
+    // Check if the pressed key is the space bar and the input is empty
+    if (event.key === ' ' && event.code === 'Space') {
+      event.preventDefault(); // Prevent the space character from being typed
     }
   }
+
+  onInstagramKeyDown(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+
+    if (event instanceof KeyboardEvent) {
+      // Block spaces at the beginning
+      if (event.key === ' ' && input.value.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      // Allow only letters, numbers, underscores, and dots
+      const allowedKeys = /^[a-zA-Z0-9_.]$/;
+      if (event.key.length === 1 && !allowedKeys.test(event.key)) {
+        event.preventDefault();
+      }
+    }
   }
 
-}
-onKeyDown(event: KeyboardEvent, inputValue: any): void {
-  // Check if the pressed key is the space bar and the input is empty
-  if (event.key === ' ' && event.code === 'Space') {
-    event.preventDefault(); // Prevent the space character from being typed
+  onInstagramPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+
+    const text = event.clipboardData?.getData('text') || '';
+    const validText = text.replace(/[^a-zA-Z0-9_.]/g, ''); // Remove invalid characters
+
+    if (validText !== text) {
+      event.preventDefault();
+    }
+
+    const input = event.target as HTMLInputElement;
+    input.value = validText; // Only paste valid characters
+    input.dispatchEvent(new Event('input')); // Trigger Angular change detection
   }
 
-}
 
   submitData(): void {
-    // after throw error
+
+    if(this.registrationForm.value.title == "" || this.registrationForm.value.title == undefined){
+      this.SharedService.ToastPopup("Please Enter Title",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.first_name == "" || this.registrationForm.value.first_name == undefined) {
+      this.SharedService.ToastPopup("Please Enter First Name",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.last_name == "" || this.registrationForm.value.last_name == undefined) {
+      this.SharedService.ToastPopup("Please Enter Last Name",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.dob == "" || this.registrationForm.value.dob == undefined) {
+      this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.mobile_number == "" || this.registrationForm.value.mobile_number == undefined || this.registrationForm.value.mobile_number == null) {
+      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      return;
+    }
+    else if (this.registrationForm.controls['mobile_number'].errors && !this.registrationForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+      this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
+      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.profession_1 == "" || this.registrationForm.value.profession_1 == undefined) {
+      this.SharedService.ToastPopup("Please Enter Profeesion",'','error');
+      return;
+    }
+    else if(this.country_name == "" || this.country_name == undefined) {
+      this.SharedService.ToastPopup("Please Select Country",'','error');
+      return;
+    }
+    else if(this.state_name == "" || this.state_name == undefined) {
+      this.SharedService.ToastPopup("Please Select State",'','error');
+      return;
+    }
+    else if(this.city_name == "" || this.city_name == undefined) {
+      this.SharedService.ToastPopup("Please Select City",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.attendee_purpose == "" || this.registrationForm.value.attendee_purpose == undefined) {
+      this.SharedService.ToastPopup("Please Select Attending purpose",'','error');
+      return;
+    }
+    else if(this.registrationForm.value.attendee_purpose == "" || this.registrationForm.value.attendee_purpose == undefined) {
+      this.SharedService.ToastPopup("Please Select Attending purpose",'','error');
+      return;
+    }
+    else if(this.registrationForm.get('conference_lever_interest')?.value.length == 0) {
+      this.SharedService.ToastPopup("Please select at least one interest.",'','error');
+      return;
+    }
+
+
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
-    console.log(returnmobileNumber,'mobileNumber');
+    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-console.log(formattedMobileNumber);
-    
+    let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
+    console.log(formattedMobileNumber);
+
     this.registrationForm.patchValue({
-      country_code :this.registrationForm.value.mobile_number.dialCode,
-      mobile_number :formattedMobileNumber,
-      dob: this.formattedDate
-    })
-    console.log(this.registrationForm.value);
+      country_code: this.registrationForm.value.mobile_number.dialCode,
+      mobile_number: formattedMobileNumber,
+      dob: this.formattedDate,
+      country : this.country_name,
+      state : this.state_name,
+      city : this.city_name
+    });
 
     this.submitted = true;
-    // if (this.registrationForm.invalid) {
-    //   return console.log('Invalid Details');
-    // }
-    if (this.submitted) {
 
-        this.reqBody = {
-          ...this.registrationForm.value,
-        };
-        console.log("this.registrationForm.value", this.registrationForm.value);
-        this.ngxService.start();
-        this.SharedService.registration(this.reqBody).subscribe(async (result: any) => {
+
+
+    if (this.submitted) {
+      this.reqBody = {
+        ...this.registrationForm.value,
+      };
+
+      this.ngxService.start();
+      this.SharedService.registration(this.reqBody).subscribe(
+        async (result: any) => {
           if (result.success) {
-            console.log("result", result);
+            console.log('result', result);
             // this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success')
+            this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
 
-            // this.openPopup();
-
-
-          setTimeout(() => {
-
-            console.log('get payment URL',result.url);
-            this.ngxService.stop();
-            if (result.url) {
-              window.location.href = result.url; // Redirect to Stripe Checkout
-            }
-            
-          }, 5000);
-           
+            setTimeout(() => {
+              console.log('get payment URL', result.url);
+              this.ngxService.stop();
+              if (result.url) {
+                window.location.href = result.url; // Redirect to Stripe Checkout
+              }
+            }, 5000);
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error')
-
+            this.SharedService.ToastPopup('', result.message, 'error');
           }
-        },(err) => {
+        },
+        (err) => {
           this.ngxService.stop();
           this.registrationForm.patchValue({
-            mobile_number :returnmobileNumber,
-            dob: returnDOB
-          })
-  
-     
-            this.SharedService.ToastPopup('', err.error.message, 'error')
+            mobile_number: returnmobileNumber,
+            dob: returnDOB,
+          });
 
-          
+          this.SharedService.ToastPopup('', err.error.message, 'error');
         }
-        );
-     
-
+      );
     }
   }
 
-
-
- 
   openPopup() {
-    this.showPopup=true;
-    console.log("modal open");
-    this.display='block'
-    this.formdisplay=false;
-}
+    this.showPopup = true;
+    this.display = 'block';
+    this.formdisplay = false;
+  }
 
-closeModal() {
-  this.display = "none";
-  this.showPopup=false;
-  this.formdisplay=true;
-  this.registrationForm.reset({});
-  this.router.navigateByUrl('/home')
-}
+  closeModal() {
+    this.display = 'none';
+    this.showPopup = false;
+    this.formdisplay = true;
+    this.registrationForm.reset({});
+    this.router.navigateByUrl('/home');
+  }
 
   checkWindowSize(): void {
     if (window.innerWidth <= 767) {
@@ -577,10 +620,10 @@ closeModal() {
     this.checkWindowSize();
   }
 
-  
   onInput(event: any, controlName: string) {
     const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
-    this.registrationForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
+    this.registrationForm.controls[controlName].setValue(trimmedValue, {
+      emitEvent: false,
+    });
   }
-
 }

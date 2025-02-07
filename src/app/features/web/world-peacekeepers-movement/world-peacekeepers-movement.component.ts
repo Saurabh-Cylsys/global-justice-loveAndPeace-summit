@@ -87,8 +87,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   qrCodeImg: any;
   convertedImage: string | null = null;
   isConvertedImage: boolean = true;
-  minDate: string | null = null;
-  maxDate: string | null = null;
   isDragging = false;
   imageChangedEvent: any = '';
   imageFileName: any = '';
@@ -114,22 +112,17 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private DelegateService: DelegateService,
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
-    private router: Router,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer,
-    private titleService: Title,
-    private metaService: Meta,
-    private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
-    
+
     const today = new Date();
 
     // Max date is 18 years ago from today
     this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  
+
     // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
@@ -143,30 +136,17 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   @ViewChild('contentTemplate')
   contentTemplate!: TemplateRef<any>;
 
-  country_code_val() {
-    console.log(
-      this.peacekeepersForm.value.phone.number,
-      this.peacekeepersForm.value.dialCode
-    );
-  }
 
   ngOnInit(): void {
     // this.setMetaTags();
     // this.setCanonicalUrl(
     //   'https://www.justice-love-peace.com/world-peacekeepers-movement'
     // );
-    this.dobValidator();
-    console.log(
-      this.mobile_numberVal,
-      this.is_selectedFile,
-      this.peacekeepersForm.invalid
-    );
 
     this.checkWindowSize();
     this.getAllCountrycode();
     this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
-    console.log(inputElement, 'inputElement');
 
     if (inputElement) {
       const data = int1TelInput(inputElement, {
@@ -176,7 +156,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js',
       });
       inputElement.addEventListener('countrychange', () => {
-        console.log(data);
 
         this.countryData = int1TelInput(inputElement, {
           initialCountry: 'ae',
@@ -184,8 +163,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           utilsScript:
             'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js',
         }).getSelectedCountryData();
-        console.log('Selected Country Code:', this.countryData.dialCode);
-        console.log('Selected Country ISO Code:', this.countryData.iso2);
+
       });
     }
 
@@ -234,20 +212,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     };
   }
 
-
-dobValidator() {
-  const today = new Date();
-
-  // Calculate the date 18 years ago from today
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
-  this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
-
-  // Set disabledDates (any date after maxDate)
-  this.disabledDates = [eighteenYearsAgo]; // Disabling the date of 18 years ago
-  console.log(`Max date (18 years ago): ${this.maxDate}`);
-}
-
 ageValidator(control: FormControl) {
   const selectedDate = new Date(control.value);
 
@@ -266,6 +230,43 @@ ageValidator(control: FormControl) {
 
   return null; // Valid date
 }
+
+onPaste(event: ClipboardEvent) {
+  event.preventDefault(); // Block pasting
+  const text = event.clipboardData?.getData('text') || '';
+
+  // Allow only alphabets and spaces
+  if (/^[a-zA-Z\s]*$/.test(text)) {
+    const input = event.target as HTMLInputElement;
+    input.value += text; // Append only valid text
+    input.dispatchEvent(new Event('input')); // Update Angular form control
+  }
+}
+
+onPasteMobileNumber(event: ClipboardEvent) {
+  event.preventDefault(); // Block default paste action
+  const text = event.clipboardData?.getData('text') || '';
+
+  // Allow only numbers (0-9)
+  if (/^\d+$/.test(text)) {
+    const input = event.target as HTMLInputElement;
+    input.value += text; // Append only valid numbers
+    input.dispatchEvent(new Event('input')); // Update Angular form control
+  }
+}
+
+onEmailPaste(event: ClipboardEvent) {
+  event.preventDefault(); // Block default paste action
+  const text = event.clipboardData?.getData('text') || '';
+
+  // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
+  if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
+    const input = event.target as HTMLInputElement;
+    input.value += text; // Append only valid characters
+    input.dispatchEvent(new Event('input')); // Update Angular form control
+  }
+}
+
 disableManualInput(event: KeyboardEvent): void {
   event.preventDefault();
 }
@@ -289,35 +290,11 @@ onDateChange(event: string): void {
       link.click();
     }
 
-    // const element: HTMLElement | null = document.getElementById('capture');
-    // if (!element) {
-    //   console.error('Element not found for capturing!');
-    //   return;
-    // }
 
-    // html2canvas(element, {
-    //   useCORS: true, // Ensures cross-origin images are captured
-    //   scale: 2,    // Improves image quality
-    // })
-    //   .then((canvas) => {
-    //     const imageUrl = canvas.toDataURL('image/png');
-    //     // const link = document.createElement('a');
-    //     // link.href = imageUrl;
-    //     // link.download = 'peacekeeper-card.png'; // Set the filename
-    //     // link.click();
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error capturing the image:', error);
-    //   })
-    //   .finally(() => {
-    //     // this.isLoading = false; // Hide the spinner if added
-    //     this.display = "none";
-    //     this.showPopup = false;
-    //   });
     setTimeout(() => {
       this.display = 'none';
       this.showPopup = false;
-    }, 1000);
+    }, 500);
   }
   openPopup() {
     // this.peacekeeperBadgeId = 124
@@ -327,7 +304,6 @@ onDateChange(event: string): void {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code;
         this.fileUrl = this.peacekeeperData.file_urls[0];
-        console.log('modal peacekeeperData', this.peacekeeperData);
         setTimeout(() => {
           this.readyImage();
         }, 1000);
@@ -372,7 +348,39 @@ onDateChange(event: string): void {
     this.display = 'none';
     this.showPopup = false;
   }
+
   isCorrect() {
+
+    if(this.peacekeepersForm.value.full_name == "" || this.peacekeepersForm.value.full_name == undefined){
+      this.SharedService.ToastPopup("Please Enter Full Name",'','error');
+      return;
+    }
+    else if(this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
+      this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
+      return;
+    }
+    else if(this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
+      this.SharedService.ToastPopup("Please select country",'','error');
+      return;
+    }
+    else if(this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
+      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+    else if(this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
+      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      return;
+    }
+   else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+    this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
+    return;
+  }
+    else if(this.selectedFile == null || this.selectedFile == undefined) {
+      this.SharedService.ToastPopup("Please upload image",'','error');
+      return;
+    }
+
+
     this.isMobile =
       this.peacekeepersForm.value.mobile_number.dialCode +
       ' ' +
@@ -384,8 +392,7 @@ onDateChange(event: string): void {
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
-        // debugger;
-        console.log('code', res.data);
+
         this.code = res.data;
         // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India';
@@ -410,17 +417,17 @@ onDateChange(event: string): void {
     this.isDragging = false;
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       const file = event.dataTransfer.files[0];
-      
+
 
       if (file) {
         const validExtensions = ['image/jpg', 'image/jpeg', 'image/png'];
         const minSize = 204800; // 200KB
         const maxSize = 5242880; // 5MB
-        
+
         // Validate the file type
         if (!validExtensions.includes(file.type)) {
           this.SharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
-          
+
           this.is_selectedFile = false;
           return;
         }
@@ -434,11 +441,10 @@ onDateChange(event: string): void {
       else {
         console.log('No file selected.');
       }
-      
+
       this.selectedFile = event.dataTransfer.files[0];
       this.is_selectedFile = true;
       this.imageFileName = this.selectedFile.name;
-      console.log('Dropped file:', this.selectedFile);
 
       // Update the input field's value programmatically
       const fileInput = document.querySelector(
@@ -477,7 +483,6 @@ onDateChange(event: string): void {
 
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent, 'on select');
     // Open the popup for cropping
     this.isPeaceOn = 2;
     this.showPopup = true;
@@ -487,25 +492,18 @@ onDateChange(event: string): void {
 
   // Handle the file selection from the input element
   onFileSelect(event: Event): void {
-    console.log(
-      this.mobile_numberVal,
-      this.is_selectedFile,
-      this.peacekeepersForm.invalid
-    );
 
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
       this.selectedFile = target.files[0];
       this.is_selectedFile = true;
 
-      console.log('Selected file:', this.selectedFile);
     }
   }
 
   onFileChange(event: any): void {
-    
+
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
     const file = event.target.files[0];
 
@@ -539,26 +537,8 @@ onDateChange(event: string): void {
       console.log('No file selected.');
     }
 
-
-
-    // console.log(this.mobile_numberVal, this.is_selectedFile, this.peacekeepersForm.invalid);
-
-    // const file = event.target.files[0];
-    // if (file) {
-    //   this.selectedFile = file;
-    //   this.is_selectedFile = true;
-    // }
-    // const reader = new FileReader();
-    // reader.onload = (e: any) => {
-    //   this.previewUrl = e.target.result; // Set the preview URL
-    // };
-    // reader.readAsDataURL(file);
-    // console.log('Selected file:', this.selectedFile);
   }
 
-  //   fileChangeEvent(event: any): void {
-  //     this.imageChangedEvent = event;
-  // }
 
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
@@ -579,10 +559,6 @@ onDateChange(event: string): void {
           file: file,
           otherData: 'your other data here',
         };
-
-        // For example, logging the file details
-        console.log(file);
-        console.log(payload);
 
         const newFile = file;
         if (newFile) {
@@ -622,7 +598,6 @@ onDateChange(event: string): void {
     this.imageChangedEvent = '';
     this.display = 'none';
     this.showPopup = false;
-    // Optional: Cropper ready event
   }
 
   // Zoom In
@@ -673,24 +648,16 @@ onDateChange(event: string): void {
   }
 
   submitData(fileInput: HTMLInputElement): void {
+
     this.convertedImage = '';
     this.display = 'none';
     this.showPopup = false;
-    console.log(
-      this.peacekeepersForm.value.mobile_number.number,
-      this.peacekeepersForm.value.mobile_number.dialCode
-    );
 
-    // const inputString = this.peacekeepersForm.value.country_code;
-    // const countryCode = this.extractCountryCode(inputString);
-    // console.log(countryCode); // Output: +91
     const returnmobileNumber = this.peacekeepersForm.value.mobile_number;
     const returnDOB = this.peacekeepersForm.value.dob;
-    console.log(returnmobileNumber,'mobileNumber');
 
     const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-    console.log(formattedMobileNumber);
 
     this.isCheckEmail = this.peacekeepersForm.value.Check_email;
     this.peacekeepersForm.patchValue({
@@ -704,10 +671,6 @@ onDateChange(event: string): void {
         dob: this.formattedDate
 
     });
-    console.log(this.peacekeepersForm.value);
-    // if (this.peacekeepersForm.invalid) {
-    //   return console.log('Invalid Details');
-    // }
 
     // Create FormData object
     const formData = new FormData();
@@ -725,8 +688,6 @@ onDateChange(event: string): void {
         this.selectedFile.name
       );
     }
-    console.log('this.peacekeepersForm', formData);
-    console.log('window.location.origin', environment.domainUrl);
     formData.append('url', environment.domainUrl);
 
     // Show loader
@@ -797,7 +758,7 @@ onDateChange(event: string): void {
         if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
           // event.preventDefault()
-          
+
         } else {
           console.log('form',this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber['valid']);
           this.mobile_numberVal = false;
@@ -806,15 +767,16 @@ onDateChange(event: string): void {
     }
   }
 
-  /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
     const control = this.peacekeepersForm.controls['mobile_number'];
-    
-    if (control.errors.validatePhoneNumber['valid']) {
-      return '';
-    } else {
-      return 'Invalid mobile number for selected country.';
+    if (control.value) {
+      if (control.errors.validatePhoneNumber['valid']) {
+        return '';
+      } else {
+        return 'Invalid mobile number for selected country.';
+      }
     }
+    return '';
   }
 
 
@@ -841,6 +803,7 @@ onDateChange(event: string): void {
       }
     });
   }
+
   checkWindowSize(): void {
     if (window.innerWidth <= 767) {
       this.SharedService.isMobileView.next(true);
@@ -892,13 +855,13 @@ onDateChange(event: string): void {
   }
 
   private convertBase64ToBlob(Base64Image: any) {
-   
+
     const parts = Base64Image.split(';base64,');
 
     const imageType = parts[0].split(':')[1];
-  
+
     const decodedData = window.atob(parts[1]);
- 
+
     const uInt8Array = new Uint8Array(decodedData.length);
 
     for (let i = 0; i < decodedData.length; ++i) {
@@ -912,65 +875,4 @@ onDateChange(event: string): void {
     const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
     this.peacekeepersForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
-
-  // setMetaTags(): void {
-  //   this.titleService.setTitle(
-  //     'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai'
-  //   );
-
-  //   this.metaService.addTags([
-  //     {
-  //       name: 'description',
-  //       content:
-  //         'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
-  //     },
-  //     {
-  //       name: 'keywords',
-  //       content:
-  //         'Become a peacekeeper, Dubai Peace Summit 2025, Global Justice Summit Dubai, Global peace efforts, Global Peace Summit Dubai 2025, Join the peace movement, Justice and equality events, Love and Peace Summit, Peace summit registration, Promoting equality and compassion, Register for the summit, Social harmony projects, World peace movement, World Peacekeepers Summit',
-  //     },
-  //     {
-  //       property: 'og:title',
-  //       content:
-  //         'World Peacekeepers Movement | Global Justice, Love, and Peace Initiative | Dubai',
-  //     },
-  //     {
-  //       property: 'og:description',
-  //       content:
-  //         'Join the World Peacekeepers Movement, a global initiative forming the worlds largest peace army to promote justice, love, and harmony. JOIN US AS A PEACEKEEPER NOW and make a difference in creating a peaceful world.',
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content:
-  //         'http://www.justice-love-peace.com/assets/UIComponents/images/logo.jpg',
-  //     },
-  //     {
-  //       property: 'og:url',
-  //       content: 'https://www.justice-love-peace.com/world-peacekeepers-movement',
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'website',
-  //     },
-  //     {
-  //       property: 'og:site_name',
-  //       content: 'Global Justice, Love and Peace Summit | Dubai',
-  //     },
-  //   ]);
-  // }
-
-  // setCanonicalUrl(url: string): void {
-  //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
-  //     'link[rel="canonical"]'
-  //   );
-  //   if (existingLink) {
-  //     this.renderer.removeChild(this.document.head, existingLink);
-  //   }
-
- 
-  //   const link: HTMLLinkElement = this.renderer.createElement('link');
-  //   this.renderer.setAttribute(link, 'rel', 'canonical');
-  //   this.renderer.setAttribute(link, 'href', url);
-  //   this.renderer.appendChild(this.document.head, link);
-  // }
 }
