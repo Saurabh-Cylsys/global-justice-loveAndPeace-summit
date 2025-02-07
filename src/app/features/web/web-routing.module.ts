@@ -18,6 +18,7 @@ import { DownloadBrochureComponent } from './download-brochure/download-brochure
 import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
+import { HumanValuesComponent } from './human-values/human-values.component';
 
 const routes: Routes = [
   {
@@ -121,6 +122,10 @@ const routes: Routes = [
         data: {
           metaKey: 'visitor-terms-conditions',
         },
+      },
+      {
+        path: 'human-values',
+        component: HumanValuesComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
