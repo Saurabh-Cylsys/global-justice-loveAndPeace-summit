@@ -563,10 +563,10 @@
                       #fullName
                       maxlength="200"
                       (paste)="onPaste($event)"
-                      (keypress)="validateAlpha($event)"
                       placeholder="Enter full name"
                       autocomplete="off"
-                      (input)="onInput($event, 'full_name')"
+                      (input)="validateAlpha($event, 'full_name')"
+                      (keydown)="handleTabKey($event, 'dob')"
                     />
 
                     <div
@@ -604,6 +604,7 @@
                     [minDate]="minDate1"
                     [maxDate]="maxDate1"
                     (keydown)="disableManualInput($event)"
+                    (keydown.tab)="openDatepicker()"
                     (ngModelChange)="onDateChange($event)"
                     bsDatepicker
                     [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
@@ -700,7 +701,7 @@
                       maxlength="125"
                       required
                       (input)="onInput($event, 'email_id')"
-                      (keydown)="onKeyDown($event, mobile_number)"
+                      (keydown)="onKeyDownEmail($event)"
                     />
 
                     <div
@@ -770,7 +771,7 @@
                         id="number_mobile1"
                         #number_mobile1
                         formControlName="mobile_number"
-                        (keydown)="onMobileKeyDown($event, mobile_number)"
+                        (keydown)="onMobileNumberKeyDown($event)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
 
                         ></ngx-intl-tel-input>

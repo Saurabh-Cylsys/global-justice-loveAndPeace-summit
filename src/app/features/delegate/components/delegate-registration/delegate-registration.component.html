@@ -193,10 +193,11 @@
                                         required
                                         formControlName="last_name"
                                         #l_name
-                                        minlength="3"
+                                        minlength="2"
                                         maxlength="115"
                                         (keypress)="validateAlpha($event)"
                                         (paste)="onPaste($event)"
+                                        (keydown)="handleTabKey($event, 'dob')"
                                         autocomplete="off"
                                         (input)="onInput($event, 'last_name')"
                                         [ngClass]="{
@@ -254,6 +255,7 @@
                                         [maxDate]="maxDate1"
                                         (keydown)="disableManualInput($event)"
                                         (ngModelChange)="onDateChange($event)"
+                                        (keydown.tab)="openDatepicker()"
                                         bsDatepicker
                                         [bsConfig]="{
                                           isAnimated: true,
@@ -569,7 +571,7 @@
                                         autocomplete="off"
                                         maxlength="150"
                                         (input)="onProfessionInput($event)"
-                                        minlength="3"
+                                        minlength="2"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted && f.profession_1.errors
@@ -591,7 +593,7 @@
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('profession_1')?.errors?.['minlength']"
-                                        >Profession must be at least 3
+                                        >Profession must be at least 2
                                         characters long.</small
                                       >
                                     </div>
@@ -618,10 +620,8 @@
                                         (paste)="onProfessionPaste($event)"
                                         maxlength="150"
                                         autocomplete="off"
-                                        (input)="
-                                          onInput($event, 'profession_2')
-                                        "
-                                        minlength="3"
+                                        (input)="onProfessionInput($event)"
+                                        minlength="2"
                                       />
                                     </div>
                                     <!-- <div
@@ -663,7 +663,7 @@
                                         class="form-control p-0"
                                         (keydown)="onKeyDown($event, 'website')"
                                         formControlName="website"
-                                        (input)="validateWebsite($event)"
+                                        (input)="onInput($event,'website')"
                                         (paste)="onPasteEvent($event, 'website')"
                                         autocomplete="off"
                                         maxlength="200"
@@ -772,25 +772,7 @@
                                       />
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <!-- <div
-                                      *ngIf="
-                                        getcontrol('address')?.errors &&
-                                        getcontrol('address')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('address')?.errors?.['required']"
-                                        >Address is required.</small
-                                      >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('address')?.errors?.['minlength']"
-                                      >
-                                        Address must be at least 3 characters
-                                        long.</small
-                                      >
-                                    </div> -->
+
                                   </div>
                                 </div>
                                 <div
@@ -826,7 +808,7 @@
 
                                       <select
                                     (change)="changeCountry($event)"
-                                    class="form-control p-0"
+                                    class="form-control p-0 form-select"
                                     id="country"
                                     formControlName="country"
                                     #country
@@ -879,10 +861,8 @@
                                           *</span
                                         > </label
                                       >
-
-
                                       <select
-                                    class="form-control p-0"
+                                    class="form-control p-0 form-select"
                                     (change)="changeStates($event)"
                                     id="state"
                                     #state
@@ -928,7 +908,7 @@
                                       </label>
 
                                       <select
-                                      class="form-control p-0"
+                                      class="form-control p-0 form-select"
                                       (change)="changeCity($event)"
                                       id="city"
                                       #city

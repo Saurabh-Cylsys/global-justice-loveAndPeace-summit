@@ -355,9 +355,9 @@ onDateChange(event: string): void {
 
   isCorrect() {
 
-    if(this.peacekeepersForm.value.full_name == "" || this.peacekeepersForm.value.full_name == undefined){
+    if(!this.peacekeepersForm.value.full_name?.trim() || this.peacekeepersForm.value.full_name.trim().length < 3){
       this.renderer.selectRootElement('#fullName').focus();
-      this.SharedService.ToastPopup("Please Enter Full Name",'','error');
+      this.SharedService.ToastPopup("Full Name must be at least 3 characters long",'','error');
       return;
     }
     else if(this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
@@ -664,24 +664,18 @@ onDateChange(event: string): void {
     // Optional: Image load failed event
   }
 
-  // ValidateAlpha(event: any) {
-  //   var keyCode = event.which ? event.which : event.keyCode;
 
-  //   if (
-  //     (keyCode < 65 || keyCode > 90) &&
-  //     (keyCode < 97 || keyCode > 123) &&
-  //     keyCode != 32
-  //   )
-  //     return false;
-  //   return true;
-  // }
+  validateAlpha(event: any, controlName: string) {
+    let inputValue = event.target.value;
 
-  validateAlpha(event: any) {
-    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+    // Remove leading spaces
+    inputValue = inputValue.replace(/^\s+/, '');
 
-    if (!allowedPattern.test(event.key)) {
-      event.preventDefault(); // Block invalid characters
-    }
+    // Remove invalid characters except letters, space, hyphen, and underscore
+    inputValue = inputValue.replace(/[^a-zA-Z\s\-_‘]/g, '');
+
+    // Update the input field
+    this.peacekeepersForm.controls[controlName].setValue(inputValue, { emitEvent: false });
   }
 
   extractCountryCode(inputString: string): string | null {
@@ -772,6 +766,21 @@ onDateChange(event: string): void {
     );
   }
 
+  onMobileNumberKeyDown(event: KeyboardEvent): void {
+    // Allow only numbers and essential keys
+    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+      return; // Allow these keys
+    }
+
+    // Block everything except numbers (0-9)
+    const allowedPattern = /^[0-9]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
+  }
+
+
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     //
     if (inputValue !== null) {
@@ -783,6 +792,27 @@ onDateChange(event: string): void {
       }
     }
   }
+
+  onKeyDownEmail(event: any): void {
+    // Allow navigation & correction keys
+    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+      return; // Allow these keys
+    }
+
+    // Prevent space at any position
+    if (event.key === ' ' && event.code === 'Space') {
+      event.preventDefault();
+      return;
+    }
+
+    // Allowed characters: Letters, Numbers, @, ., _, and -
+    const allowedPattern = /^[a-zA-Z0-9@._-]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
+  }
+
 
   onKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
@@ -917,4 +947,28 @@ onDateChange(event: string): void {
     const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
     this.peacekeepersForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
+
+  handleTabKey(event: KeyboardEvent, nextFieldId: string) {
+    if (event.key === 'Tab') {
+      event.preventDefault(); // Prevent default tab behavior
+
+      const nextField = document.getElementById(nextFieldId) as HTMLElement;
+      if (nextField) {
+        nextField.focus(); // Move focus to DOB field
+
+        // Open the datepicker when moving to DOB field
+        if (nextFieldId === 'dob') {
+          this.openDatepicker();
+        }
+      }
+    }
+  }
+
+  openDatepicker() {
+    const dobInput = document.getElementById('dob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
 }

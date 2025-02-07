@@ -18,6 +18,7 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
+import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -65,6 +66,8 @@ export class DelegateRegistrationComponent {
   state_name: any;
   city_name: any;
   @ViewChild('number_mobile1', { static: false }) mobileNumberInput!: ElementRef;
+  @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
+
 
 
   changePreferredCountries() {
@@ -369,23 +372,33 @@ export class DelegateRegistrationComponent {
       input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
     }
     else {
-      this.SharedService.ToastPopup('Only letters, spaces, _, -, @, and & are allowed.','','error');
+      event.preventDefault();
     }
   }
 
   onProfessionInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const allowedPattern = /^[a-zA-Z\s_@&-]*$/; // Allowed characters
 
-    if (!allowedPattern.test(input.value)) {
-      input.value = input.value.replace(/[^a-zA-Z\s_@&-]/g, ''); // Remove invalid characters
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    }
+    const input = event.target as HTMLInputElement;
+
+  // Remove leading spaces
+  let inputValue = input.value.replace(/^\s+/, '');
+
+  // Allowed characters pattern
+  const allowedPattern = /^[a-zA-Z_@&-]*$/; // Removed \s to prevent spaces anywhere
+
+  // Remove any invalid characters
+  inputValue = inputValue.replace(/[^a-zA-Z_@&-]/g, '');
+
+  // Set the cleaned value back to the input
+  input.value = inputValue;
+
+  // Dispatch event to update Angular form control
+  input.dispatchEvent(new Event('input'));
   }
 
 
   validateAlpha(event: any) {
-    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+    const allowedPattern = /^[a-zA-Z\s\-'_‘]$/;
 
     if (!allowedPattern.test(event.key)) {
       event.preventDefault(); // Block invalid characters
@@ -464,19 +477,30 @@ export class DelegateRegistrationComponent {
 
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     if (inputValue !== null) {
-      // Check if the pressed key is the space bar and the input is empty
-      if (event.key === ' ' && event.code === 'Space') {
-        event.preventDefault(); // Prevent the space character from being typed
-      } else if (event.code === 'Backspace') {
+      // Prevent space at the beginning
+      if (event.key === ' ' && event.code === 'Space' && inputValue.number.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      // Allow only numbers, Backspace, Delete, Arrow Keys, and Tab
+      if (!/^[0-9]$/.test(event.key) &&
+          !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+        event.preventDefault();
+        return;
+      }
+
+      // Handle backspace validation
+      if (event.code === 'Backspace') {
         if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
-          // event.preventDefault()
         } else {
           this.mobile_numberVal = false;
         }
       }
     }
   }
+
 
   onKeyDown(event: KeyboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
     if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
@@ -640,19 +664,19 @@ export class DelegateRegistrationComponent {
 
   submitData(): void {
 
-    if(this.registrationForm.value.title == "" || this.registrationForm.value.title == undefined){
+    if(!this.registrationForm.value.title || this.registrationForm.value.title.length < 2){
       this.renderer.selectRootElement('#title').focus();
-      this.SharedService.ToastPopup("Please Enter Title",'','error');
+      this.SharedService.ToastPopup("Title must be at least 2 characters long.", '', 'error');
       return;
     }
-    else if(this.registrationForm.value.first_name == "" || this.registrationForm.value.first_name == undefined) {
+    else if(!this.registrationForm.value.first_name || this.registrationForm.value.first_name.length < 3) {
       this.renderer.selectRootElement('#f_name').focus();
-      this.SharedService.ToastPopup("Please Enter First Name",'','error');
+      this.SharedService.ToastPopup("First Name must be at least 3 characters long.", '', 'error');
       return;
     }
-    else if(this.registrationForm.value.last_name == "" || this.registrationForm.value.last_name == undefined) {
+    else if(!this.registrationForm.value.last_name || this.registrationForm.value.last_name.length < 2) {
       this.renderer.selectRootElement('#l_name').focus();
-      this.SharedService.ToastPopup("Please Enter Last Name",'','error');
+      this.SharedService.ToastPopup("Last Name must be at least 3 characters long.", '', 'error');
       return;
     }
     else if(this.registrationForm.value.dob == "" || this.registrationForm.value.dob == undefined) {
@@ -696,9 +720,9 @@ export class DelegateRegistrationComponent {
       this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
       return;
     }
-    else if(this.registrationForm.value.profession_1 == "" || this.registrationForm.value.profession_1 == undefined) {
+    else if(!this.registrationForm.value.profession_1 || this.registrationForm.value.profession_1.trim().length < 2) {
       this.renderer.selectRootElement('#profession1').focus();
-      this.SharedService.ToastPopup("Please Enter Profeesion",'','error');
+      this.SharedService.ToastPopup("Profession must be at least 2 characters long.", '', 'error');
       return;
     }
     else if(this.country_name == "" || this.country_name == undefined) {
@@ -732,11 +756,11 @@ export class DelegateRegistrationComponent {
       this.SharedService.ToastPopup("Please Select City",'','error');
       return;
     }
-    else if(this.registrationForm.value.attendee_purpose == "" || this.registrationForm.value.attendee_purpose == undefined) {
+    else if(!this.registrationForm.value.attendee_purpose || this.registrationForm.value.attendee_purpose.trim() === "") {
       this.SharedService.ToastPopup("Please Select Attending purpose",'','error');
       return;
     }
-    else if(this.registrationForm.get('conference_lever_interest')?.value.length == 0) {
+    else if (!this.registrationForm.get('conference_lever_interest')?.value || this.registrationForm.get('conference_lever_interest')?.value.length === 0) {
       this.SharedService.ToastPopup("Please select at least one interest.",'','error');
       return;
     }
@@ -830,9 +854,65 @@ export class DelegateRegistrationComponent {
   }
 
   onInput(event: any, controlName: string) {
-    const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
-    this.registrationForm.controls[controlName].setValue(trimmedValue, {
+    let inputValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+
+    let allowedPattern: RegExp;
+
+    switch (controlName) {
+      case 'first_name':
+        allowedPattern =  /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
+        break;
+      case 'last_name':
+        allowedPattern = /^[a-zA-Z\s-]+$/; // Allows only alphabets, spaces, and hyphens
+        break;
+      case 'email_id':
+        allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
+        inputValue = inputValue.toLowerCase(); // Convert email to lowercase
+        break;
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs
+        break;
+      case 'title':
+        allowedPattern = /^[a-zA-Z]+$/; // **Alphabets only (A-Z, a-z), no spaces**
+        break;
+      default:
+        allowedPattern = /.*/; // No restriction for other fields
+    }
+
+    // Remove invalid characters dynamically
+    inputValue = inputValue.split('').filter((char:any) => allowedPattern.test(char)).join('');
+
+    // Update the form control with the cleaned value
+    this.registrationForm.controls[controlName].setValue(inputValue, {
       emitEvent: false,
     });
   }
+
+
+  handleTabKey(event: KeyboardEvent, nextFieldId: string) {
+    if (event.key === 'Tab') {
+      event.preventDefault(); // Prevent default tab behavior
+
+      const nextField = document.getElementById(nextFieldId) as HTMLElement;
+      if (nextField) {
+        nextField.focus(); // Move focus to DOB field
+
+        // Open the datepicker when moving to DOB field
+        if (nextFieldId === 'dob') {
+          this.openDatepicker();
+        }
+      }
+    }
+  }
+
+  openDatepicker() {
+    const dobInput = document.getElementById('dob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
 }
