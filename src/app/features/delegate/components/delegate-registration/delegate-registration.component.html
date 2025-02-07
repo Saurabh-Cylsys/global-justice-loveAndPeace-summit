@@ -411,7 +411,7 @@
                                         class="form-control p-0"
                                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
                                         required
-                                        (keydown)="onKeyDown($event)"
+                                        (keydown)="onKeyDown($event, 'email')"
                                         (paste)="onEmailPaste($event)"
                                         maxlength="125"
                                         autocomplete="off"
@@ -463,9 +463,8 @@
                                         placeholder="Enter linkedIn profile"
                                         class="form-control p-0"
                                         maxlength="100"
-                                        (keydown)="
-                                          onKeyDown($event)
-                                        "
+                                        (keydown)="onKeyDown($event, 'linkedin')"
+                                        (paste)="onPasteEvent($event, 'linkedin')"
                                         formControlName="linkedIn_profile"
                                         autocomplete="off"
                                       />
@@ -662,8 +661,10 @@
                                         id="field_10"
                                         placeholder="Enter website URL"
                                         class="form-control p-0"
-                                        (keydown)="onKeyDown($event)"
+                                        (keydown)="onKeyDown($event, 'website')"
                                         formControlName="website"
+                                        (input)="validateWebsite($event)"
+                                        (paste)="onPasteEvent($event, 'website')"
                                         autocomplete="off"
                                         maxlength="200"
                                         [ngClass]="{
@@ -759,6 +760,7 @@
                                         placeholder="Enter address"
                                         class="form-control p-0"
                                         (keypress)="validateAddress($event)"
+                                        (paste)="onPasteAddress($event)"
                                         maxlength="200"
                                         autocomplete="off"
                                         (input)="onInput($event, 'address')"

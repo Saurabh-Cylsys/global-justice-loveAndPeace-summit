@@ -400,6 +400,32 @@ export class DelegateRegistrationComponent {
     }
   }
 
+  validateWebsite(event: any) {
+    const allowedPattern = /^[a-zA-Z0-9@._\-/:]+$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
+  }
+
+
+  onPasteAddress(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only letters, numbers, spaces, and specific special characters
+    const allowedPattern = /^[a-zA-Z0-9\s@,.\-_()]+$/;
+
+    if (allowedPattern.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append valid text
+      input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
+    } else {
+      this.SharedService.ToastPopup("Only letters, numbers, spaces, and @, . - _ ( ) are allowed.",'',"error");
+    }
+  }
+
+
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -452,12 +478,124 @@ export class DelegateRegistrationComponent {
     }
   }
 
-  onKeyDown(event: KeyboardEvent): void {
-    // Check if the pressed key is the space bar and the input is empty
+  onKeyDown(event: KeyboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
+    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+      return; // Allow these keys
+    }
+
     if (event.key === ' ' && event.code === 'Space') {
-      event.preventDefault(); // Prevent the space character from being typed
+      event.preventDefault(); // Prevent leading spaces
+      return;
+    }
+
+    let allowedPattern: RegExp;
+    switch (fieldType) {
+      case 'email':
+        allowedPattern = /^[a-zA-Z0-9@._-]$/; // Allowed characters for email
+        break;
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]$/; // Allowed characters for website
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]$/; // Allows LinkedIn profile URLs (including % for encoding)
+        break;
+      default:
+        return;
+    }
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
     }
   }
+
+  onInputEvent(event: KeyboardEvent | ClipboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
+    if (event.type === 'paste') {
+      // Handle paste event
+      event.preventDefault();
+      const clipboardData = (event as ClipboardEvent).clipboardData?.getData('text') || '';
+
+      let allowedPattern: RegExp;
+      switch (fieldType) {
+        case 'email':
+          allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
+          break;
+        case 'website':
+          allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
+          break;
+        case 'linkedin':
+          allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs (including % for encoding)
+          break;
+        default:
+          return;
+      }
+
+      if (allowedPattern.test(clipboardData)) {
+        const input = event.target as HTMLInputElement;
+        input.value += clipboardData; // Append valid text
+        input.dispatchEvent(new Event('input')); // Update Angular form control
+      } else {
+        alert('Invalid characters pasted.');
+      }
+      return;
+    }
+
+    // Handle keydown event
+    const keyEvent = event as KeyboardEvent;
+    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(keyEvent.key)) {
+      return; // Allow these keys
+    }
+
+    if (keyEvent.key === ' ' && keyEvent.code === 'Space') {
+      keyEvent.preventDefault(); // Prevent leading spaces
+      return;
+    }
+
+    let allowedPattern: RegExp;
+    switch (fieldType) {
+      case 'email':
+        allowedPattern = /^[a-zA-Z0-9@._-]$/;
+        break;
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]$/;
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]$/;
+        break;
+      default:
+        return;
+    }
+
+    if (!allowedPattern.test(keyEvent.key)) {
+      keyEvent.preventDefault(); // Block invalid characters
+    }
+  }
+
+
+  onPasteEvent(event: ClipboardEvent, fieldType: 'website' | 'linkedin'): void {
+    event.preventDefault();
+    const clipboardData = event.clipboardData?.getData('text') || '';
+
+    let allowedPattern: RegExp;
+    switch (fieldType) {
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/;
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/;
+        break;
+      default:
+        return;
+    }
+
+    if (allowedPattern.test(clipboardData)) {
+      const input = event.target as HTMLInputElement;
+      input.value += clipboardData; // Append valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    } else {
+      event.preventDefault();
+    }
+  }
+
 
   onInstagramKeyDown(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
