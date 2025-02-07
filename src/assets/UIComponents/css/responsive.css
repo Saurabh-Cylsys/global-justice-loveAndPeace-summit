@@ -96,11 +96,16 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 65vh; /* Keeps the height relative to the viewport */
+    min-height: 60vh; /* Keeps the height relative to the viewport */
   }
 
   .index .section2 .mainCard .cardP {
     font-size: 14px;
+  }
+
+  .timeline-content {
+    gap: 4rem;
+    padding: 0 0 0 11.5rem;
   }
 }
 
@@ -126,7 +131,7 @@
     background-size: 85% 100%;
     background-position: center; /* Centers the image */
     background-repeat: no-repeat;
-    min-height: 90vh; /* Keeps the height relative to the viewport */
+    min-height: 85vh; /* Keeps the height relative to the viewport */
   }
 }
 
@@ -135,6 +140,14 @@
     position: relative;
     top: -50px;
     /* left: -50px;  */
+  }
+  .index .section1 {
+    background-image: url(../images/index/banner.gif);
+    /* background-size: 90% 100%; */
+    background-size: 85% 100%;
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    min-height: 95vh; /* Keeps the height relative to the viewport */
   }
 }
 
@@ -246,6 +259,7 @@
 
   .index .section7 .date h3 {
     font-size: 30px;
+    text-align: center;
   }
 
   .index .section1 .tableBox table tr td p {
@@ -515,6 +529,7 @@
   .index .section7 .location {
     font-size: 16px;
     font-weight: 600;
+    text-align: center;
   }
 
   .head ul li a,
@@ -581,8 +596,13 @@
   }
 
   .index .section7 p {
-    font-size: 16px;
+    font-size: 16px !important;
     line-height: 20px;
+    text-align: center;
+  }
+
+  .index .section7 .date h3 {
+    text-align: center;
   }
 
   .index .section1 .tableBox table tr td p {
@@ -610,6 +630,7 @@
     font-size: 30px;
     font-weight: 700;
     line-height: 40.6px;
+    text-align: center;
   }
   .timeline h2,
   .timeline h3 {
