@@ -583,10 +583,12 @@
                       class="form-control w-100 p-0"
                       formControlName="full_name"
                       name="full_name"
-                      id="title"
-                      (keypress)="ValidateAlpha($event)"
+                      id="fullName"
+                      #fullName
+                      maxlength="200"
+                      (paste)="onPaste($event)"
+                      (keypress)="validateAlpha($event)"
                       placeholder="Enter full name"
-                      value=""
                       autocomplete="off"
                       (input)="onInput($event, 'full_name')"
                     />
@@ -601,7 +603,7 @@
                       <small
                         class="text-danger"
                         *ngIf="getcontrol('full_name')?.errors?.['required']"
-                        >Name is required</small
+                        >Full Name is required</small
                       >
                     </div>
                   </div>
@@ -617,22 +619,20 @@
                       >
                     </label>
                     <input
-                      type="text"
-                      class="form-control p-0"
-                      placeholder="Select Date of birth"
-                      formControlName="dob"
-                      [minDate]="minDate1"
-                      [maxDate]="maxDate1"
-                      (keydown)="disableManualInput($event)"
-                      (ngModelChange)="onDateChange($event)"
-                      bsDatepicker
-                      [bsConfig]="{
-                        isAnimated: true,
-                        dateInputFormat: 'DD/MM/YYYY',
-                        showWeekNumbers: false,
-                        containerClass: colorTheme
-                      }"
-                    />
+                    type="text"
+                    id="dob"
+                    #dob
+                    class="form-control p-0"
+                    placeholder="Select Date of birth"
+                    formControlName="dob"
+                    [minDate]="minDate1"
+                    [maxDate]="maxDate1"
+                    (keydown)="disableManualInput($event)"
+                    (ngModelChange)="onDateChange($event)"
+                    bsDatepicker
+                    [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
+
+                  />
 
                     <div
                       class="text-danger"
@@ -665,6 +665,8 @@
                       <select
                         formControlName="country"
                         style="cursor: pointer"
+                        id="country"
+                        #country
                         class="form-select w-100 p-0 px-2"
                         required
                         data-error="Please select country"
@@ -702,43 +704,6 @@
 
               <div class="row g-2 mt-lg-5">
                 <div class="col-md my-lg-0 my-3">
-                  <!-- <div class="form-floating">
-                  <input
-                    type="email"
-                    class="form-control"
-                    formControlName="email_id"
-                    name="email_id"
-                    id="email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,12}$"
-                    placeholder=""
-                    value=""
-                  />
-                  <label for="title"
-                    >E-Mail :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
-                    >
-                      *</span
-                    ></label
-                  >
-                  <div
-                    *ngIf="
-                      getcontrol('email_id')?.errors &&
-                      getcontrol('email_id')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['required']"
-                      >Email is required.</small
-                    >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['email']"
-                      >Please enter valid email address.</small
-                    >
-                  </div>
-                </div> -->
                   <div class="">
                     <label for="email" class="px-0">
                       E-Mail:
@@ -752,9 +717,11 @@
                       formControlName="email_id"
                       name="email_id"
                       id="email"
+                      #email
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
                       autocomplete="off"
+                      maxlength="125"
                       required
                       (input)="onInput($event, 'email_id')"
                       (keydown)="onKeyDown($event, mobile_number)"
@@ -798,43 +765,7 @@
                     ></label
                   >
                   <div class="row no-padding">
-                    <!-- <div
-                  class="form-group form-group-inner mobile-code col-3"
-                >
-                <div class="form-floating">
-                  <select
-                    formControlName="country_code"
-                    class="form-control"
-                    required
-                    data-error="Please enter code"
-                  >
-                    <option selected value="" disabled>
-                      --Please select--
-                    </option>
-                    <option
-                      *ngFor="
-                        let code of code;
-                        let j = index
-                      "
-                      [value]="code.country_mobile_code"
-                    >
-                      {{ code.country_mobile_code }}
-                    </option>
-                  </select></div>
-                  <div
-                    *ngIf="
-                      getcontrol('country_code')?.errors &&
-                      getcontrol('country_code')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('country_code')?.errors?.['required']"
-                      >Country code is required</small
-                    >
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div> -->
+
                     <div
                       class="form-group form-group-inner mobile-number col-9 w-100"
                     >
@@ -858,33 +789,19 @@
                         [separateDialCode]="true"
                         [maxLength]="12"
                         [(ngModel)]="mobile_number"
+                        (paste)="onPasteMobileNumber($event)"
                         name="mobile_number"
+                        id="number_mobile1"
+                        #number_mobile1
                         formControlName="mobile_number"
                         (keydown)="onMobileKeyDown($event, mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
-                      ></ngx-intl-tel-input>
-                      <!-- [maxLength]="10"
-                        pattern=".{8,12}"
-                        minlength="10"
-                        maxlength="10" -->
-                      <!-- <input
-                    type="text"
-                    name="mobile_number[1]"
-                    id="number_mobile1"
-                    placeholder="Mobile Number"
-                 
-                    class="form-control number_field"
-                    value=""
-                    pattern=".{8,12}"
-                    minlength="10"
-                    maxlength="10"
-                    required
-                    data-error="Please enter valid number."
-                    formControlName="mobile_number"
-                    (keypress)="keyPressNumbers($event)"
-               
-                  /> -->
-                      <span> </span>
+
+                        ></ngx-intl-tel-input>
+
+                  <span >
+
+                  </span>
                       <small class="text-danger" *ngIf="mobile_numberVal">
                         (Country code + Mobile number) will be 7 to 15 digits
                         based on country.
@@ -901,43 +818,15 @@
                           >Mobile number is required</small
                         >
                         <small
-                          class="text-danger"
-                          *ngIf="
-                            !mobile_numberVal &&
-                            getcontrol('mobile_number')?.invalid &&
-                            getcontrol('mobile_number')?.touched
-                          "
+                        class="text-danger"
+                        *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched"
                         >
                           {{ getPhoneErrorMessage() }}
                         </small>
                       </div>
                     </div>
                   </div>
-                  <!-- <label for="mobilenumber"
-                    >Mobile Number :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
-                    >
-                      *</span
-                    ></label
-                  >
-                  <div
-                    *ngIf="
-                      getcontrol('mobile_number')?.errors &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                      >Mobile number is required</small
-                    >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                      >Mobile number must be at least 10 digit long.</small
-                    >
-                  </div> -->
+
                 </div>
 
                 <div class="col-md-12 my-3 my-lg-3">
@@ -954,22 +843,7 @@
 
               <div class="row g-2">
                 <div class="col-md">
-                  <!--<div class="form-floating">
-                   <span
-                    class="form-label-span"
-                    style="color: #ff0000; float: left"
-                  >
-                    *</span
-                  >  <input
-                    type="file"
-                    class="form-control"
-                  name="profile_picture"
-                    id="title"
-                    (change)="onFileChange($event)"
-                    placeholder=""
-                    value=""
-                  /> 
-                </div>-->
+
                   <label for="" class="imgUpload"
                     >Image Upload
                     <span class="form-label-span" style="color: #ff0000">
@@ -996,7 +870,7 @@
                     /></span>
                     <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
 
-                    <input
+                                        <input
                       class="custom-file-input col-lg-auto col-md-auto col-12"
                       type="file"
                       style="cursor: pointer"
@@ -1053,9 +927,6 @@
                     (click)="isCorrect()"
                     type="button"
                     class="btn btn-success text-white text-center px-5 mb-lg-0 mb-4"
-                    [disabled]="
-                      this.peacekeepersForm.invalid || this.selectedFile == null
-                    "
                   >
                     Save
                   </button>
@@ -1567,19 +1438,18 @@
 
       <!-- <div class="cropper-container"> -->
       <image-cropper
-        *ngIf="imageChangedEvent"
-        [imageChangedEvent]="imageChangedEvent"
-        (imageCropped)="imageCropped($event)"
-        [maintainAspectRatio]="true"
-        [resizeToWidth]="1024"
-        [cropperMinWidth]="100"
-        [cropperMinHeight]="100"
-        [transform]="transform"
-        [style.width]="'100%'"
-      >
-      </image-cropper>
-      <!-- Zoom Buttons -->
-      <!-- <div class="zoom-controls">
+      *ngIf="imageChangedEvent"
+      [imageChangedEvent]="imageChangedEvent"
+      (imageCropped)="imageCropped($event)"
+      [maintainAspectRatio]="true"
+      [resizeToWidth]="1024"
+      [cropperMinWidth]="100"
+      [cropperMinHeight]="100"
+      [transform]="transform"
+      [style.width]="'100%'">
+    </image-cropper>
+  <!-- Zoom Buttons -->
+  <!-- <div class="zoom-controls">
     <button class="zoom-button" (click)="zoomIn()">+</button>
     <button class="zoom-button" (click)="zoomOut()">-</button>
   </div>

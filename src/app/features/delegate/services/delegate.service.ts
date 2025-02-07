@@ -17,23 +17,24 @@ export class DelegateService {
   getSpeakers() {
     return this._apiHttpService.get(this._apiEndpointsService.getSpeakersEndpoint());
   }
- 
+
   getdates() {
     return this._apiHttpService.get(this._apiEndpointsService.getdatesEndpoint());
   }
   getAllCountrycode() {
     return this._apiHttpService.get(this._apiEndpointsService.getAllCountrycodeEndpoint());
   }
+
   getAllCountries() {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllCountriesEndpoint());
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint());
   }
 
   getAllStates(country_id: any) {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllStatesEndpoint(country_id));
+    return this._apiHttpService.get(this._apiEndpointsService.getStatesByCountryEndpoint(country_id));
   }
 
   getAllCities(state_id: any) {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllCitiesEndpoint(state_id));
+    return this._apiHttpService.get(this._apiEndpointsService.getCityByStateEndpoint(state_id));
 
   }
 
