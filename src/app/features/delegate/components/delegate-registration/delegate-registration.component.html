@@ -15,7 +15,7 @@
           <div class="clearfix">
             <div id="regformcontainer">
               <div class="clearfix"></div>
-              <form [formGroup]="registrationForm" (ngSubmit)="submitData()">
+              <form [formGroup]="registrationForm" (ngSubmit)="submitData()" autocomplete="off">
                 <div
                   class="clearfix section7 p-lg-5 position-relative"
                   style="z-index: 1"
@@ -83,8 +83,9 @@
                                       </label>
                                       <input
                                         type="text"
-                                        name="fname[1]"
-                                        id="fname1"
+                                        name="title"
+                                        id="title"
+                                        #title
                                         placeholder="Enter title"
                                         class="form-control p-0"
                                         [maxlength]="15"
@@ -128,7 +129,8 @@
                                       <input
                                         type="text"
                                         name="fname[1]"
-                                        id="fname1"
+                                        id="f_name"
+                                        #f_name
                                         placeholder="Enter first name"
                                         class="form-control p-0"
                                         required
@@ -185,11 +187,12 @@
                                       <input
                                         type="text"
                                         name="lname[1]"
-                                        id="lname1"
+                                        id="l_name"
                                         placeholder="Enter last name"
                                         class="form-control p-0"
                                         required
                                         formControlName="last_name"
+                                        #l_name
                                         minlength="3"
                                         maxlength="115"
                                         (keypress)="validateAlpha($event)"
@@ -239,29 +242,16 @@
                                           *</span
                                         ></label
                                       >
-                                      <!-- <input
-                                        type="date"
-                                        name="lname[1]"
-                                        id="lname1"
-                                        placeholder=""
-                                        class="form-control p-0"
-                                        value=""
-                                        required
-                                        formControlName="dob"
-                                        minlength="3"
-                                        [attr.min]="minDate"
-                                        [attr.max]="maxDate"
-                                        (ngModelChange)="onDateChange($event)"
-                                      /> -->
 
                                       <input
                                         type="text"
                                         class="form-control p-0"
                                         placeholder="Select Date of birth"
+                                        id="dob"
+                                        #dob
                                         formControlName="dob"
                                         [minDate]="minDate1"
                                         [maxDate]="maxDate1"
-                                        (paste)="onPaste($event)"
                                         (keydown)="disableManualInput($event)"
                                         (ngModelChange)="onDateChange($event)"
                                         bsDatepicker
@@ -336,6 +326,7 @@
                                           [phoneValidation]="true"
                                           name="mobile_number"
                                           id="number_mobile1"
+                                          #number_mobile1
                                           [separateDialCode]="true"
                                           [(ngModel)]="mobile_number"
                                           formControlName="mobile_number"
@@ -368,31 +359,6 @@
                                     <div
                                       class="form-group form-group-inner mobile-number"
                                     >
-                                      <div class="">
-                                        <!-- <input
-                                        type="text"
-                                        name="mobile_number[1]"
-                                        id="number_mobile1"
-                                        placeholder="Mobile Number"
-                                        [(ngModel)]="mobile_number"
-                                        (keydown)="
-                                          onKeyDown($event, mobile_number)
-                                        "
-                                        class="form-control number_field"
-                                        value=""
-                                        pattern=".{8,12}"
-                                        minlength="10"
-                                        maxlength="10"
-                                        required
-                                        data-error="Please enter valid number."
-                                        formControlName="mobile_number"
-                                        (keypress)="keyPressNumbers($event)"
-                                        [ngClass]="{
-                                          'is-invalid':
-                                            submitted && f.mobile_number.errors
-                                        }"
-                                      /> -->
-                                      </div>
                                       <div class="help-block with-errors"></div>
                                       <div
                                         *ngIf="
@@ -439,7 +405,8 @@
                                         (input)="onInput($event, 'email_id')"
                                         type="email"
                                         name="email[1]"
-                                        id="email1"
+                                        id="email"
+                                        #email
                                         placeholder="Enter your email"
                                         class="form-control p-0"
                                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
@@ -593,17 +560,16 @@
                                       <input
                                         type="text"
                                         name="profession_1"
-                                        id="Profession1"
+                                        id="profession1"
+                                        #profession1
                                         placeholder="Enter profession 1"
                                         class="form-control p-0"
                                         (paste)="onProfessionPaste($event)"
                                         required
                                         formControlName="profession_1"
                                         autocomplete="off"
-                                        maxlength="200"
-                                        (input)="
-                                          onInput($event, 'profession_1')
-                                        "
+                                        maxlength="150"
+                                        (input)="onProfessionInput($event)"
                                         minlength="3"
                                         [ngClass]="{
                                           'is-invalid':
@@ -651,7 +617,7 @@
                                         class="form-control p-0"
                                         formControlName="profession_2"
                                         (paste)="onProfessionPaste($event)"
-                                        maxlength="200"
+                                        maxlength="150"
                                         autocomplete="off"
                                         (input)="
                                           onInput($event, 'profession_2')
@@ -760,26 +726,7 @@
                                         }"
                                       />
                                     </div>
-                                    <!-- <div class="help-block with-errors"></div>
-                                  <div
-                                    *ngIf="
-                                      getcontrol('organization_name')
-                                        ?.errors &&
-                                      getcontrol('organization_name')?.touched
-                                    "
-                                  >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('organization_name')?.errors?.['required']"
-                                      >organization name is required</small
-                                    >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('organization_name')?.errors?.['minlength']"
-                                      >organization name must be at least 3
-                                      characters long.</small
-                                    >
-                                  </div> -->
+
                                   </div>
                                 </div>
                               </div>
@@ -811,7 +758,7 @@
                                         id="address"
                                         placeholder="Enter address"
                                         class="form-control p-0"
-                                        (keypress)="validateAlpha($event)"
+                                        (keypress)="validateAddress($event)"
                                         maxlength="200"
                                         autocomplete="off"
                                         (input)="onInput($event, 'address')"
@@ -880,6 +827,7 @@
                                     class="form-control p-0"
                                     id="country"
                                     formControlName="country"
+                                    #country
                                     name="India"
                                     [ngClass]="{
                                       'is-invalid':
@@ -935,6 +883,7 @@
                                     class="form-control p-0"
                                     (change)="changeStates($event)"
                                     id="state"
+                                    #state
                                     formControlName="state"
                                     [ngClass]="{
                                       'is-invalid': submitted && f.state.errors
@@ -980,6 +929,7 @@
                                       class="form-control p-0"
                                       (change)="changeCity($event)"
                                       id="city"
+                                      #city
                                       formControlName="city"
                                       value
                                       [ngClass]="{

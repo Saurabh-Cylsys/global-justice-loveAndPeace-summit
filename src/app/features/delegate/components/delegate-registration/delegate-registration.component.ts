@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import {
   CountryISO,
+  NgxIntlTelInputComponent,
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
@@ -63,6 +64,8 @@ export class DelegateRegistrationComponent {
   country_name: any;
   state_name: any;
   city_name: any;
+  @ViewChild('number_mobile1', { static: false }) mobileNumberInput!: ElementRef;
+
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -79,7 +82,8 @@ export class DelegateRegistrationComponent {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private renderer : Renderer2
   ) {
     this.fullURL = window.location.href;
 
@@ -298,8 +302,6 @@ export class DelegateRegistrationComponent {
   }
 
   changeCity(e: any) {
-
-    debugger;
       const selectedValue = e.target.value;
       const cityObj = JSON.parse(selectedValue); // Convert JSON string back to object
       this.registrationForm.patchValue({ city_id: cityObj.id });
@@ -322,7 +324,8 @@ export class DelegateRegistrationComponent {
     const text = event.clipboardData?.getData('text') || '';
 
     // Allow only alphabets and spaces
-    if (/^[a-zA-Z\s]*$/.test(text)) {
+    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+    if (allowedPattern.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value += text; // Append only valid text
       input.dispatchEvent(new Event('input')); // Update Angular form control
@@ -357,23 +360,43 @@ export class DelegateRegistrationComponent {
     event.preventDefault(); // Prevent default paste action
     const text = event.clipboardData?.getData('text') || ''; // Get the pasted text
 
-    // Check if pasted text matches the allowed pattern (letters, spaces, commas, periods, hyphens)
-    const validTextPattern = /^[a-zA-Z\s,.-]*$/;
+    const validTextPattern = /^[a-zA-Z\s_@&-]*$/;
 
     // If valid, allow paste; otherwise, show an alert or handle accordingly
     if (validTextPattern.test(text)) {
       const input = event.target as HTMLInputElement;
       input.value = text; // Paste valid text into the input field
       input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
-    } else {
-      alert('Only letters, spaces, commas, periods, and hyphens are allowed.');
+    }
+    else {
+      this.SharedService.ToastPopup('Only letters, spaces, _, -, @, and & are allowed.','','error');
     }
   }
 
+  onProfessionInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const allowedPattern = /^[a-zA-Z\s_@&-]*$/; // Allowed characters
+
+    if (!allowedPattern.test(input.value)) {
+      input.value = input.value.replace(/[^a-zA-Z\s_@&-]/g, ''); // Remove invalid characters
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
+
   validateAlpha(event: any) {
-    const charCode = event.key.charCodeAt(0);
-    if (!/[a-zA-Z\s]/.test(event.key)) {
-      event.preventDefault(); // Block numbers and special characters
+    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
+  }
+
+  validateAddress(event: KeyboardEvent) {
+    const allowedPattern = /^[a-zA-Z0-9\s@,.\-_()]*$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
     }
   }
 
@@ -469,55 +492,106 @@ export class DelegateRegistrationComponent {
     input.dispatchEvent(new Event('input')); // Trigger Angular change detection
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      document.querySelectorAll('input').forEach((input) => {
+        input.setAttribute('autocomplete', 'off');
+      });
+    });
+  }
 
   submitData(): void {
 
     if(this.registrationForm.value.title == "" || this.registrationForm.value.title == undefined){
+      this.renderer.selectRootElement('#title').focus();
       this.SharedService.ToastPopup("Please Enter Title",'','error');
       return;
     }
     else if(this.registrationForm.value.first_name == "" || this.registrationForm.value.first_name == undefined) {
+      this.renderer.selectRootElement('#f_name').focus();
       this.SharedService.ToastPopup("Please Enter First Name",'','error');
       return;
     }
     else if(this.registrationForm.value.last_name == "" || this.registrationForm.value.last_name == undefined) {
+      this.renderer.selectRootElement('#l_name').focus();
       this.SharedService.ToastPopup("Please Enter Last Name",'','error');
       return;
     }
     else if(this.registrationForm.value.dob == "" || this.registrationForm.value.dob == undefined) {
+      this.renderer.selectRootElement('#dob').focus();
       this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
       return;
     }
     else if(this.registrationForm.value.mobile_number == "" || this.registrationForm.value.mobile_number == undefined || this.registrationForm.value.mobile_number == null) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
+
       this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
       return;
     }
     else if (this.registrationForm.controls['mobile_number'].errors && !this.registrationForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
+
       this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
       return;
     }
     else if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
+      this.renderer.selectRootElement('#email').focus();
       this.SharedService.ToastPopup("Please Enter Email ID",'','error');
       return;
     }
+    else if (this.registrationForm.controls['email_id'].invalid) {
+      this.renderer.selectRootElement('#email').focus();
+      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      return;
+    }
     else if(this.registrationForm.value.profession_1 == "" || this.registrationForm.value.profession_1 == undefined) {
+      this.renderer.selectRootElement('#profession1').focus();
       this.SharedService.ToastPopup("Please Enter Profeesion",'','error');
       return;
     }
     else if(this.country_name == "" || this.country_name == undefined) {
+
+      setTimeout(() => {
+        const countryElement = this.renderer.selectRootElement('#country', true);
+        if (countryElement) {
+          countryElement.focus();
+        }
+      }, 100);
       this.SharedService.ToastPopup("Please Select Country",'','error');
       return;
     }
     else if(this.state_name == "" || this.state_name == undefined) {
+      setTimeout(() => {
+        const stateElement = this.renderer.selectRootElement('#state', true);
+        if (stateElement) {
+          stateElement.focus();
+        }
+      }, 100);
       this.SharedService.ToastPopup("Please Select State",'','error');
       return;
     }
     else if(this.city_name == "" || this.city_name == undefined) {
+      setTimeout(() => {
+        const cityElement = this.renderer.selectRootElement('#city', true);
+        if (cityElement) {
+          cityElement.focus();
+        }
+      }, 100);
       this.SharedService.ToastPopup("Please Select City",'','error');
-      return;
-    }
-    else if(this.registrationForm.value.attendee_purpose == "" || this.registrationForm.value.attendee_purpose == undefined) {
-      this.SharedService.ToastPopup("Please Select Attending purpose",'','error');
       return;
     }
     else if(this.registrationForm.value.attendee_purpose == "" || this.registrationForm.value.attendee_purpose == undefined) {
@@ -528,7 +602,6 @@ export class DelegateRegistrationComponent {
       this.SharedService.ToastPopup("Please select at least one interest.",'','error');
       return;
     }
-
 
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
@@ -548,8 +621,6 @@ export class DelegateRegistrationComponent {
     });
 
     this.submitted = true;
-
-
 
     if (this.submitted) {
       this.reqBody = {

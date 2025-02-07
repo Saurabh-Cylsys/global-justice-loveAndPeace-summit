@@ -98,9 +98,12 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   maxDate1 : any;
   minDate1 : any;
   colorTheme: string = 'theme-dark-blue';
+
+
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
+
   onCountryChange(event: any): void {
     console.log('Country Changed:', event); // Logs the selected country
     this.selectedCountryISO = event.iso2; // Update the selected country ISO
@@ -113,7 +116,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private renderer : Renderer2
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
@@ -352,30 +356,60 @@ onDateChange(event: string): void {
   isCorrect() {
 
     if(this.peacekeepersForm.value.full_name == "" || this.peacekeepersForm.value.full_name == undefined){
+      this.renderer.selectRootElement('#fullName').focus();
       this.SharedService.ToastPopup("Please Enter Full Name",'','error');
       return;
     }
     else if(this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
+      this.renderer.selectRootElement('#dob').focus();
       this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
       return;
     }
     else if(this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
+      setTimeout(() => {
+        const countryElement = this.renderer.selectRootElement('#country', true);
+        if (countryElement) {
+          countryElement.focus();
+        }
+      }, 100);
       this.SharedService.ToastPopup("Please select country",'','error');
       return;
     }
     else if(this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
+      this.renderer.selectRootElement('#email').focus();
       this.SharedService.ToastPopup("Please Enter Email ID",'','error');
       return;
     }
+    else if (this.peacekeepersForm.controls['email_id'].invalid) {
+      this.renderer.selectRootElement('#email').focus();
+      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      return;
+    }
     else if(this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
       this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
       return;
     }
    else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+    setTimeout(() => {
+      const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+      if (inputElement) {
+        inputElement.focus();
+      } else {
+        console.error("Could not find mobile number input field");
+      }
+    }, 100);
     this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
     return;
   }
-    else if(this.selectedFile == null || this.selectedFile == undefined) {
+    else if(this.selectedFile == null || this.selectedFile == undefined ) {
       this.SharedService.ToastPopup("Please upload image",'','error');
       return;
     }
@@ -630,16 +664,24 @@ onDateChange(event: string): void {
     // Optional: Image load failed event
   }
 
-  ValidateAlpha(event: any) {
-    var keyCode = event.which ? event.which : event.keyCode;
+  // ValidateAlpha(event: any) {
+  //   var keyCode = event.which ? event.which : event.keyCode;
 
-    if (
-      (keyCode < 65 || keyCode > 90) &&
-      (keyCode < 97 || keyCode > 123) &&
-      keyCode != 32
-    )
-      return false;
-    return true;
+  //   if (
+  //     (keyCode < 65 || keyCode > 90) &&
+  //     (keyCode < 97 || keyCode > 123) &&
+  //     keyCode != 32
+  //   )
+  //     return false;
+  //   return true;
+  // }
+
+  validateAlpha(event: any) {
+    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
   }
 
   extractCountryCode(inputString: string): string | null {

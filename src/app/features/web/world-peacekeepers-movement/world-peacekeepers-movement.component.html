@@ -559,10 +559,11 @@
                       class="form-control w-100 p-0"
                       formControlName="full_name"
                       name="full_name"
-                      id="title"
+                      id="fullName"
+                      #fullName
                       maxlength="200"
                       (paste)="onPaste($event)"
-                      (keypress)="ValidateAlpha($event)"
+                      (keypress)="validateAlpha($event)"
                       placeholder="Enter full name"
                       autocomplete="off"
                       (input)="onInput($event, 'full_name')"
@@ -595,6 +596,8 @@
                     </label>
                     <input
                     type="text"
+                    id="dob"
+                    #dob
                     class="form-control p-0"
                     placeholder="Select Date of birth"
                     formControlName="dob"
@@ -638,6 +641,8 @@
                       <select
                         formControlName="country"
                         style="cursor: pointer"
+                        id="country"
+                        #country
                         class="form-select w-100 p-0 px-2"
                         required
                         data-error="Please select country"
@@ -688,10 +693,11 @@
                       formControlName="email_id"
                       name="email_id"
                       id="email"
+                      #email
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
                       autocomplete="off"
-                      maxlength="200"
+                      maxlength="125"
                       required
                       (input)="onInput($event, 'email_id')"
                       (keydown)="onKeyDown($event, mobile_number)"
@@ -761,6 +767,8 @@
                         [(ngModel)]="mobile_number"
                         (paste)="onPasteMobileNumber($event)"
                         name="mobile_number"
+                        id="number_mobile1"
+                        #number_mobile1
                         formControlName="mobile_number"
                         (keydown)="onMobileKeyDown($event, mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"

@@ -339,7 +339,7 @@
                   id="fname1"
                   placeholder="Enter title"
                   class="form-control p-0"
-                  value=""
+                  (paste)="onPaste($event)"
                   (keypress)="ValidateAlpha($event)"
                   [maxlength]="10"
                   data-error="Please select option"
@@ -488,7 +488,7 @@
                     >
                     <small
                     class="text-danger"
-                    *ngIf="!mobile_numberVal && getcontrol('phoneNumber')?.invalid && getcontrol('phoneNumber')?.touched" 
+                    *ngIf="!mobile_numberVal && getcontrol('phoneNumber')?.invalid && getcontrol('phoneNumber')?.touched"
                     >
                     {{ getPhoneErrorMessage() }}
                     </small
