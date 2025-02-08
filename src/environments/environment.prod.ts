@@ -7,7 +7,7 @@ export const environment = {
   // domainUrl:'https://globaljusticeuat.cylsys.com',           //development for peackeeper qrcode
 
   apiUrl : 'https://globaljusticeqcapi.cylsys.com/api/v1' ,       //QC
-  domainUrl:'https://globaljusticeqcapi.cylsys.com',         //QC for peackeeper qrcode
+  domainUrl:'https://globaljusticeqc.cylsys.com',         //QC for peackeeper qrcode
   apiMockUrl:'/api/v1',
   app_env: 'production'
 };
