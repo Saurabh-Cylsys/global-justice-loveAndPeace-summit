@@ -15,7 +15,7 @@
           <div class="clearfix">
             <div id="regformcontainer">
               <div class="clearfix"></div>
-              <form [formGroup]="registrationForm" (ngSubmit)="submitData()">
+              <form [formGroup]="registrationForm" (ngSubmit)="submitData()" autocomplete="off">
                 <div
                   class="clearfix section7 p-lg-5 position-relative"
                   style="z-index: 1"
@@ -74,29 +74,29 @@
                                         class="col-md-12 no-padding p-0"
                                         for="nametitle1"
                                         >Title
-                                        <!-- <span
+                                        <span
                                           class="form-label-span"
                                           style="color: #ff0000"
                                         >
                                           *</span
-                                        > -->
+                                        >
                                       </label>
                                       <input
                                         type="text"
-                                        name="fname[1]"
-                                        id="fname1"
+                                        name="title"
+                                        id="title"
+                                        #title
                                         placeholder="Enter title"
                                         class="form-control p-0"
-                                        [maxlength]="10"
-                                        value=""
-                                        (keypress)="ValidateAlpha($event)"
-                                        data-error="Please select option"
+                                        [maxlength]="15"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
                                         formControlName="title"
                                         autocomplete="off"
                                         (input)="onInput($event, 'title')"
                                       />
                                     </div>
-                                    <!-- <div
+                                    <div
                                       *ngIf="
                                         getcontrol('title')?.errors &&
                                         getcontrol('title')?.touched
@@ -108,7 +108,7 @@
                                         >Title is required</small
                                       >
                                     </div>
-                                    <div class="help-block with-errors"></div> -->
+                                    <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
                                 <div
@@ -129,15 +129,16 @@
                                       <input
                                         type="text"
                                         name="fname[1]"
-                                        id="fname1"
+                                        id="f_name"
+                                        #f_name
                                         placeholder="Enter first name"
                                         class="form-control p-0"
-                                        value=""
                                         required
-                                        [(ngModel)]="first_name"
                                         formControlName="first_name"
                                         minlength="3"
-                                        (keypress)="ValidateAlpha($event)"
+                                        maxlength="115"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
                                         autocomplete="off"
                                         (input)="onInput($event, 'first_name')"
                                         [ngClass]="{
@@ -185,16 +186,18 @@
                                       >
                                       <input
                                         type="text"
-                                        [(ngModel)]="last_name"
                                         name="lname[1]"
-                                        id="lname1"
+                                        id="l_name"
                                         placeholder="Enter last name"
                                         class="form-control p-0"
-                                        value=""
                                         required
                                         formControlName="last_name"
-                                        minlength="3"
-                                        (keypress)="ValidateAlpha($event)"
+                                        #l_name
+                                        minlength="2"
+                                        maxlength="115"
+                                        (keypress)="validateAlpha($event)"
+                                        (paste)="onPaste($event)"
+                                        (keydown)="handleTabKey($event, 'dob')"
                                         autocomplete="off"
                                         (input)="onInput($event, 'last_name')"
                                         [ngClass]="{
@@ -240,30 +243,19 @@
                                           *</span
                                         ></label
                                       >
-                                      <!-- <input
-                                        type="date"
-                                        name="lname[1]"
-                                        id="lname1"
-                                        placeholder=""
-                                        class="form-control p-0"
-                                        value=""
-                                        required
-                                        formControlName="dob"
-                                        minlength="3"
-                                        [attr.min]="minDate"
-                                        [attr.max]="maxDate"
-                                        (ngModelChange)="onDateChange($event)"
-                                      /> -->
 
                                       <input
                                         type="text"
                                         class="form-control p-0"
                                         placeholder="Select Date of birth"
+                                        id="dob"
+                                        #dob
                                         formControlName="dob"
                                         [minDate]="minDate1"
                                         [maxDate]="maxDate1"
                                         (keydown)="disableManualInput($event)"
                                         (ngModelChange)="onDateChange($event)"
+                                        (keydown.tab)="openDatepicker()"
                                         bsDatepicker
                                         [bsConfig]="{
                                           isAnimated: true,
@@ -286,18 +278,7 @@
                                         >
                                       </div>
                                     </div>
-                                    <!-- <div
-                                      *ngIf="
-                                        getcontrol('dob')?.errors &&
-                                        getcontrol('dob')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('dob')?.errors?.['required']"
-                                        >Date of birth is required</small
-                                      >
-                                    </div> -->
+
                                     <div class="help-block with-errors"></div>
                                   </div>
                                 </div>
@@ -347,9 +328,11 @@
                                           [phoneValidation]="true"
                                           name="mobile_number"
                                           id="number_mobile1"
+                                          #number_mobile1
                                           [separateDialCode]="true"
                                           [(ngModel)]="mobile_number"
                                           formControlName="mobile_number"
+                                          (paste)="onPasteMobileNumber($event)"
                                           autocomplete="off"
                                           (keydown)="
                                             onMobileKeyDown(
@@ -378,31 +361,6 @@
                                     <div
                                       class="form-group form-group-inner mobile-number"
                                     >
-                                      <div class="">
-                                        <!-- <input
-                                        type="text"
-                                        name="mobile_number[1]"
-                                        id="number_mobile1"
-                                        placeholder="Mobile Number"
-                                        [(ngModel)]="mobile_number"
-                                        (keydown)="
-                                          onKeyDown($event, mobile_number)
-                                        "
-                                        class="form-control number_field"
-                                        value=""
-                                        pattern=".{8,12}"
-                                        minlength="10"
-                                        maxlength="10"
-                                        required
-                                        data-error="Please enter valid number."
-                                        formControlName="mobile_number"
-                                        (keypress)="keyPressNumbers($event)"
-                                        [ngClass]="{
-                                          'is-invalid':
-                                            submitted && f.mobile_number.errors
-                                        }"
-                                      /> -->
-                                      </div>
                                       <div class="help-block with-errors"></div>
                                       <div
                                         *ngIf="
@@ -449,15 +407,16 @@
                                         (input)="onInput($event, 'email_id')"
                                         type="email"
                                         name="email[1]"
-                                        id="email1"
+                                        id="email"
+                                        #email
                                         placeholder="Enter your email"
                                         class="form-control p-0"
                                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
-                                        value=""
                                         required
-                                        (keydown)="onKeyDown($event, email_id)"
+                                        (keydown)="onKeyDown($event, 'email')"
+                                        (paste)="onEmailPaste($event)"
+                                        maxlength="125"
                                         autocomplete="off"
-                                        [(ngModel)]="email_id"
                                         data-error="Please enter valid email id"
                                         formControlName="email_id"
                                         [ngClass]="{
@@ -465,16 +424,7 @@
                                             submitted && f.email_id.errors
                                         }"
                                       />
-                                      <!-- <label
-                                        class="col-md-12 no-padding p-0"
-                                        for="email1"
-                                        >Email Id<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      > -->
+
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -488,9 +438,10 @@
                                         *ngIf="getcontrol('email_id')?.errors?.['required']"
                                         >Email is required.</small
                                       >
+
                                       <small
                                         class="text-danger"
-                                        *ngIf="getcontrol('email_id')?.errors?.['email']"
+                                        *ngIf="getcontrol('email_id')?.errors?.['pattern']"
                                         >Please enter valid email
                                         address.</small
                                       >
@@ -498,7 +449,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
+                                  class="form-group fg-email col-md-6 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -513,11 +464,9 @@
                                         id="linkedIn"
                                         placeholder="Enter linkedIn profile"
                                         class="form-control p-0"
-                                        value=""
-                                        [(ngModel)]="linkedIn_profile"
-                                        (keydown)="
-                                          onKeyDown($event, linkedIn_profile)
-                                        "
+                                        maxlength="100"
+                                        (keydown)="onKeyDown($event, 'linkedin')"
+                                        (paste)="onPasteEvent($event, 'linkedin')"
                                         formControlName="linkedIn_profile"
                                         autocomplete="off"
                                       />
@@ -538,7 +487,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
+                                  class="form-group fg-email col-md-6 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -553,13 +502,13 @@
                                         id="instagram_profile"
                                         placeholder="Enter instagram ID"
                                         class="form-control p-0"
-                                        value=""
-                                        [(ngModel)]="instagram_profile"
                                         (keydown)="
-                                          onKeyDown($event, instagram_profile)
+                                          onInstagramKeyDown($event)
                                         "
+                                        (paste)="onInstagramPaste($event)"
                                         formControlName="instagram_profile"
                                         autocomplete="off"
+                                        maxlength="100"
                                       />
                                     </div>
                                     <div class="help-block with-errors"></div>
@@ -585,7 +534,7 @@
                                   <h6>Professional Information :</h6>
                                 </div>
                                 <div
-                                  class="form-group fg-lname col-md-4 col-sm-6 my-3"
+                                  class="form-group fg-lname col-md-6 col-sm-3 my-3"
                                 >
                                   <!-- <label
                                     class="col-md-12 no-padding"
@@ -612,17 +561,17 @@
                                       <input
                                         type="text"
                                         name="profession_1"
-                                        id="Profession1"
+                                        id="profession1"
+                                        #profession1
                                         placeholder="Enter profession 1"
                                         class="form-control p-0"
-                                        value=""
+                                        (paste)="onProfessionPaste($event)"
                                         required
                                         formControlName="profession_1"
                                         autocomplete="off"
-                                        (input)="
-                                          onInput($event, 'profession_1')
-                                        "
-                                        minlength="3"
+                                        maxlength="150"
+                                        (input)="onProfessionInput($event)"
+                                        minlength="2"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted && f.profession_1.errors
@@ -640,10 +589,11 @@
                                         *ngIf="getcontrol('profession_1')?.errors?.['required']"
                                         >Profession is required</small
                                       >
+
                                       <small
                                         class="text-danger"
                                         *ngIf="getcontrol('profession_1')?.errors?.['minlength']"
-                                        >Profession must be at least 3
+                                        >Profession must be at least 2
                                         characters long.</small
                                       >
                                     </div>
@@ -651,7 +601,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-lname col-md-4 col-sm-6 my-3"
+                                  class="form-group fg-lname col-md-6 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -666,13 +616,12 @@
                                         id="profession2"
                                         placeholder="Enter profession 2"
                                         class="form-control p-0"
-                                        value=""
                                         formControlName="profession_2"
+                                        (paste)="onProfessionPaste($event)"
+                                        maxlength="150"
                                         autocomplete="off"
-                                        (input)="
-                                          onInput($event, 'profession_2')
-                                        "
-                                        minlength="3"
+                                        (input)="onProfessionInput($event)"
+                                        minlength="2"
                                       />
                                     </div>
                                     <!-- <div
@@ -697,7 +646,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-field_10 col-md-4 col-sm-6 my-3"
+                                  class="form-group fg-field_10 col-md-6 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -712,11 +661,12 @@
                                         id="field_10"
                                         placeholder="Enter website URL"
                                         class="form-control p-0"
-                                        value=""
-                                        [(ngModel)]="website"
-                                        (keydown)="onKeyDown($event, website)"
+                                        (keydown)="onKeyDown($event, 'website')"
                                         formControlName="website"
+                                        (input)="onInput($event,'website')"
+                                        (paste)="onPasteEvent($event, 'website')"
                                         autocomplete="off"
+                                        maxlength="200"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted &&
@@ -743,7 +693,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-lname col-md-4 col-sm-6 my-3"
+                                  class="form-group fg-lname col-md-6 col-sm-3 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -763,10 +713,9 @@
                                         id="organization"
                                         placeholder="Enter organization name"
                                         class="form-control p-0"
-                                        value=""
                                         formControlName="organization_name"
-                                        minlength="3"
-                                        (keypress)="ValidateAlpha($event)"
+                                        maxlength="100"
+                                        (keypress)="validateAlpha($event)"
                                         autocomplete="off"
                                         (input)="
                                           onInput($event, 'organization_name')
@@ -778,26 +727,7 @@
                                         }"
                                       />
                                     </div>
-                                    <!-- <div class="help-block with-errors"></div>
-                                  <div
-                                    *ngIf="
-                                      getcontrol('organization_name')
-                                        ?.errors &&
-                                      getcontrol('organization_name')?.touched
-                                    "
-                                  >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('organization_name')?.errors?.['required']"
-                                      >organization name is required</small
-                                    >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('organization_name')?.errors?.['minlength']"
-                                      >organization name must be at least 3
-                                      characters long.</small
-                                    >
-                                  </div> -->
+
                                   </div>
                                 </div>
                               </div>
@@ -807,7 +737,7 @@
                                 </div>
 
                                 <div
-                                  class="form-group fg-field_3 col-md-4 col-sm-12 my-3"
+                                  class="form-group fg-field_3 col-md-6 col-sm-4 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -829,13 +759,12 @@
                                         id="address"
                                         placeholder="Enter address"
                                         class="form-control p-0"
-                                        value=""
-                                        [(ngModel)]="address"
-                                        (keypress)="ValidateAlpha($event)"
+                                        (keypress)="validateAddress($event)"
+                                        (paste)="onPasteAddress($event)"
+                                        maxlength="200"
                                         autocomplete="off"
                                         (input)="onInput($event, 'address')"
                                         formControlName="address"
-                                        minlength="3"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted && f.address.errors
@@ -843,29 +772,11 @@
                                       />
                                     </div>
                                     <div class="help-block with-errors"></div>
-                                    <!-- <div
-                                      *ngIf="
-                                        getcontrol('address')?.errors &&
-                                        getcontrol('address')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('address')?.errors?.['required']"
-                                        >Address is required.</small
-                                      >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('address')?.errors?.['minlength']"
-                                      >
-                                        Address must be at least 3 characters
-                                        long.</small
-                                      >
-                                    </div> -->
+
                                   </div>
                                 </div>
                                 <div
-                                  class="form-group fg-field_3 col-md-4 my-3"
+                                  class="form-group fg-field_3 col-md-6 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -877,45 +788,30 @@
                                         >
                                           *</span
                                         > </label
-                                      ><input
+                                      >
+                                      <!-- <input
                                         type="text"
                                         name="country"
                                         id="country"
                                         placeholder="Enter country"
                                         class="form-control p-0"
-                                        value=""
                                         required
                                         formControlName="country"
                                         autocomplete="off"
                                         (input)="onInput($event, 'country')"
-                                        minlength="5"
+                                        minlength="3"
                                         [ngClass]="{
                                           'is-invalid':
                                             submitted && f.country.errors
                                         }"
-                                      />
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                    <div
-                                      *ngIf="
-                                        getcontrol('country')?.errors &&
-                                        getcontrol('country')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('country')?.errors?.['required']"
-                                        >Country is required.</small
-                                      >
-                                    </div>
-                                  </div>
+                                      /> -->
 
-                                  <!-- <select
+                                      <select
                                     (change)="changeCountry($event)"
-                                    class="form-control"
-                                    class="form-control"
+                                    class="form-control p-0 form-select"
                                     id="country"
                                     formControlName="country"
+                                    #country
                                     name="India"
                                     [ngClass]="{
                                       'is-invalid':
@@ -930,9 +826,9 @@
                                         let country of countryData;
                                         let j = index
                                       "
-                                      [value]="country.country_id"
+                                      [value]="country | json"
                                     >
-                                      {{ country.country_name }}
+                                      {{ country.name }}
                                     </option>
                                   </select>
                                   <div class="help-block with-errors"></div>
@@ -947,54 +843,29 @@
                                       *ngIf="getcontrol('country')?.errors?.['required']"
                                       >Country is required.</small
                                     >
-                                  </div> -->
+                                  </div>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                  </div>
                                 </div>
                                 <div
-                                  class="form-group fg-field_3 col-md-4 my-3"
+                                  class="form-group fg-field_3 col-md-6 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
                                       <label for="" class="p-0"
-                                        >State/Province
-                                      </label>
-                                      <input
-                                        type="text"
-                                        name="state"
-                                        id="state"
-                                        placeholder="Enter state/province"
-                                        class="form-control p-0"
-                                        value=""
-                                        (input)="onInput($event, 'state')"
-                                        autocomplete="off"
-                                        formControlName="state"
-                                        minlength="5"
-                                      />
-                                    </div>
-                                    <!-- <div
-                                      *ngIf="
-                                        getcontrol('state')?.errors &&
-                                        getcontrol('state')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('state')?.errors?.['required']"
-                                        >Address is required.</small
+                                        >State/Province<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        > </label
                                       >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('state')?.errors?.['minlength']"
-                                      >
-                                        Address must be at least 5 characters
-                                        long.</small
-                                      >
-                                    </div> -->
-                                  </div>
-
-                                  <!-- <select
-                                    class="form-control"
+                                      <select
+                                    class="form-control p-0 form-select"
                                     (change)="changeStates($event)"
                                     id="state"
+                                    #state
                                     formControlName="state"
                                     [ngClass]="{
                                       'is-invalid': submitted && f.state.errors
@@ -1003,28 +874,13 @@
                                     <option value="" disabled selected>
                                       Select State
                                     </option>
-                                    <option [value]="othervalstate_id" [selected]="isOthersSelected">
-                                        {{ isOthersSelected ? othervalstate : 'Select State' }}
+
+                                    <option *ngFor="let state of statesData; let j = index" [value]="state | json">
+                                        {{ state.name }}
                                       </option>
-                                    <option *ngFor="let state of statesData; let j = index" [value]="state.state_id">
-                                        {{ state.state_name }}
-                                      </option>
-                                    <option
-                                      *ngFor="
-                                        let state of statesData;
-                                        let j = index
-                                      "
-                                      [value]="state.state_id"
-                                      [attr.selected]="
-                                        state.state_name === othervalstate
-                                          ? 'selected'
-                                          : null
-                                      "
-                                    >
-                                      {{ state.state_name }}
-                                    </option>
-                                  </select> -->
-                                  <!-- <div
+
+                                  </select>
+                                  <div
                                     *ngIf="
                                       getcontrol('state')?.errors &&
                                       getcontrol('state')?.touched
@@ -1035,9 +891,11 @@
                                       *ngIf="getcontrol('state')?.errors?.['required']"
                                       >State is required.</small
                                     >
-                                  </div> -->
+                                  </div>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6 my-3">
                                   <div class="col-md-12 no-padding">
                                     <div class="">
                                       <label for="" class="p-0"
@@ -1048,249 +906,48 @@
                                           *</span
                                         >
                                       </label>
-                                      <input
-                                        type="text"
-                                        name="city"
-                                        id="city"
-                                        placeholder="Enter city"
-                                        class="form-control p-0"
-                                        value=""
-                                        formControlName="city"
-                                        autocomplete="off"
-                                        (input)="onInput($event, 'city')"
-                                        minlength="5"
-                                      />
-                                    </div>
-                                    <!-- <select
-                                    class="form-control"
-                                    (change)="changeCity($event)"
-                                    id="city"
-                                    formControlName="city"
-                                    value
-                                    [ngClass]="{
-                                      'is-invalid':
-                                        submitted && f['city'].errors
-                                    }"
-                                  >
-                                    <option selected value="" disabled>
-                                      Select City
-                                    </option>
 
-                                    <option
-                                      *ngFor="
-                                        let city of cityData;
-                                        let k = index
-                                      "
-                                      [value]="city.city_id"
-                                      [attr.selected]="
-                                        city.city_name === othervalcity
-                                          ? 'selected'
-                                          : null
-                                      "
-                                    >
-                                      {{ city.city_name }}
-                                    </option>
-                                  </select> -->
-                                    <div
-                                      *ngIf="
-                                        getcontrol('city')?.errors &&
-                                        getcontrol('city')?.touched
-                                      "
-                                    >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('city')?.errors?.['required']"
-                                        >City is required.</small
-                                      >
-                                    </div>
-                                  </div>
-                                </div>
-                                <!-- <div
-                                  class="form-group fg-field_9 col-md-4 col-sm-4"
-                                >
-                                  <label
-                                    class="col-md-12 no-padding"
-                                    for="field_9"
-                                    >Pin Code<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
-                                  <div class="col-md-12 no-padding">
-                                    <span class="required-icon">
-                                    <input
-                                      type="input"
-                                      name="field_9"
-                                      id="field_9"
-                                      [(ngModel)]="pin_code"
-                                      (keydown)="onKeyDown($event, pin_code)"
-                                      placeholder=""
-                                      class="form-control"
-                                      minlength="6"
-                                      maxlength="6"
-                                      value=""
-                                      required
-                                      formControlName="pin_code"
-                                      (keypress)="keyPressNumbers($event)"
+                                      <select
+                                      class="form-control p-0 form-select"
+                                      (change)="changeCity($event)"
+                                      id="city"
+                                      #city
+                                      formControlName="city"
+                                      value
                                       [ngClass]="{
                                         'is-invalid':
-                                          submitted && f.pin_code.errors
+                                          submitted && f['city'].errors
                                       }"
-                                    />
-                                    <div class="help-block with-errors"></div>
-
-                                    <div
-                                      *ngIf="
-                                        getcontrol('pin_code')?.errors &&
-                                        getcontrol('pin_code')?.touched
-                                      "
                                     >
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('pin_code')?.errors?.['required']"
-                                        >Pin Code is required.</small
-                                      >
+                                      <option selected value="" disabled>
+                                        Select City
+                                      </option>
 
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="getcontrol('pin_code')?.errors?.['minlength']"
-                                        >Pin code must be at least 6 digit
-                                        long.</small
+                                      <option
+                                        *ngFor="
+                                          let city of cityData;
+                                          let k = index"
+                                        [value]="city | json"
                                       >
-                                      <small
-                                        class="text-danger"
+                                        {{ city.name }}
+                                      </option>
+                                    </select>
+                                      <div
                                         *ngIf="
-                                          registrationForm
-                                            .get('pin_code')
-                                            .hasError(
-                                              'containsConsecutiveZeros'
-                                            )
+                                          getcontrol('city')?.errors &&
+                                          getcontrol('city')?.touched
                                         "
                                       >
-                                        cannot contain three or more consecutive
-                                        zeros.
-                                      </small>
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('city')?.errors?.['required']"
+                                          >City is required.</small
+                                        >
+                                      </div>
                                     </div>
                                   </div>
-                                </div> -->
+                                </div>
                               </div>
-                              <!-- <div class="row mb-3">
-                                <div class="col-md-12">
-                                  <h6>Additional Details :</h6>
-                                </div>
-                                <div
-                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
-                                >
-                                
-                                  <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
-                                      <input
-                                        type="text"
-                                        name="passport_no"
-                                        id="passportNo"
-                                        placeholder=""
-                                        class="form-control"
-                                        value=""
-                                        formControlName="passport_no"
-                                        minlength="3"
-                                      />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profession1"
-                                        >Passport No.</label
-                                      >
-                                    </div>
-                                
-                                    <div class="help-block with-errors"></div>
-                                  </div>
-                                </div>
-                                <div
-                                  class="form-group fg-lname col-md-4 col-sm-3 my-3"
-                                >
-                                  <div class="col-md-12 no-padding">
-                                    <div class="form-floating">
-                                      <input
-                                        type="text"
-                                        name="passport_issue_by"
-                                        id="profession2"
-                                        placeholder=""
-                                        class="form-control"
-                                        value=""
-                                        formControlName="passport_issue_by"
-                                        minlength="3"
-                                        (keypress)="ValidateAlpha($event)"
-                                      />
-                                      <label
-                                        class="col-md-12 no-padding"
-                                        for="profession2"
-                                        >Passport Issue By</label
-                                      >
-                                    </div>
-                                 
-                                    <div class="help-block with-errors"></div>
-                                  </div>
-                                </div>
-                              </div> -->
-                              <!-- <div
-                                class="row align-items-center justify-content-start"
-                              >
-                                <div class="col-md-12">
-                                  <h3>Summit Participation Details :</h3>
-                                </div>
-                              </div> -->
-                              <!-- <div class="row g-2 mt-5">
-                                <div class="col-md-12">
-                                  <h6>
-                                    You would like to attend the Summit:<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    >
-                                  </h6>
-                                </div>
-                                <div class="col-md">
-                                  <div class="row align-items-center">
-                                    <div class="form-check m-3 col-3">
-                                      <input
-                                        class="form-check-input"
-                                        type="radio"
-                                        name="attend_summit"
-                                        id="gridRadios1"
-                                        checked
-                                        formControlName="attend_summit"
-                                        value="0"
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="gridRadios1"
-                                      >
-                                        In Person <b> </b>(2800$)
-                                      </label>
-                                    </div>
-                                    <div class="form-check m-3 col-3">
-                                      <input
-                                        class="form-check-input"
-                                        type="radio"
-                                        formControlName="attend_summit"
-                                        name="attend_summit"
-                                        id="gridRadios2"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="gridRadios2"
-                                      >
-                                        Online (280$)
-                                      </label>
-                                    </div>
-                                  </div>
-
-                                  
-                                </div>
-                              </div> -->
 
                               <div class="row g-2 mt-5">
                                 <div class="col-md-12">
@@ -1312,10 +969,10 @@
                                     <input
                                       type="text"
                                       name="reference_no"
+                                      maxlength="50"
                                       id="profession2"
                                       placeholder="Enter reference no."
                                       class="form-control p-0"
-                                      value=""
                                       [readonly]="
                                         this.referralCode
                                           ? this.referralCode
@@ -1469,108 +1126,16 @@
                                         {{ interest.label }}
                                       </label>
                                     </div>
-                                    <!-- <div class="form-check col-md-3 my-3">
-                                      <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                    
-                                        name="conference_lever_interest"
-                                        formControlName="conference_lever_interest"
-                                        id="level1"
-                                        value="level1"
-                                        checked
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="level1"
-                                      >
-                                        Justice
-                                      </label>
-                                    </div>
-                                    <div class="form-check col-md-3 my-3">
-                                      <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        formControlName="conference_lever_interest"
-                                        name="conference_lever_interest"
-                                        id="level2"
-                                        value="1"
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="level2"
-                                      >
-                                        Love
-                                      </label>
-                                    </div>
-                                    <div class="form-check col-md-3 my-3">
-                                      <input
-                                        class="form-check-input"
-                                        formControlName="conference_lever_interest"
-                                        type="checkbox"
-                                        name="conference_lever_interest"
-                                        id="level3"
-                                        value="2"
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="level3"
-                                      >
-                                        Peace
-                                      </label>
-                                    </div> -->
-                                    <!-- <div class="form-check col-md-3 my-3">
-                                      <input
-                                        class="form-check-input"
-                                        formControlName="conference_lever_interest"
-                                        type="radio"
-                                        name="conference_lever_interest"
-                                        id="level4"
-                                        value="3"
-                                      />
-                                      <label
-                                        class="form-check-label"
-                                        for="level4"
-                                      >
-                                        All 3
-                                      </label>
-                                    </div> -->
+
                                   </div>
                                 </div>
                               </div>
 
                               <div id="submit-wrapper" class="text-center my-3">
-                                <!-- ================ ======================= -->
-                                <!-- <input
-                                type="hidden"
-                                name="ttst"
-                                id="st"
-                                value="1692166964"
-                              /> -->
-                                <!-- <div class="d-none">
-                                   <input
-                                  type="text"
-                                  name="middle_name"
-                                  id="middle_name"
-                                  value=""
-                                  autocomplete="mdlnme"
-                                /> 
-                                </div>-->
-                                <!-- ================ ======================= -->
 
-                                <!-- <input
-                                type="hidden"
-                                name="frmkey"
-                                value="cad4ec633a6ac6fadbe930f9ac476631"
-                              />
-          
-                              <input type="hidden" name="chk_mob_regid" value="0" />
-                              <input type="hidden" name="stepid" value="1" />
-                              <input id="showid" type="hidden" name="showid" value="1" /> -->
                                 <input
                                   type="submit"
                                   class="btn btn-success p-2 px-4"
-                                  [disabled]="registrationForm.invalid"
                                   value="Submit"
                                   name="register"
                                 />
