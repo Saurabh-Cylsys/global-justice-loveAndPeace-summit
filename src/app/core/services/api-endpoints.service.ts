@@ -114,11 +114,11 @@ export class ApiEndpointsService {
 
 
   //   public getProductListByCountryAndPostalCodeEndpoint(
-  //     countryCode: string, 
+  //     countryCode: string,
   //     postalCode: string
   //   ): string {
   //     return this.createUrlWithQueryParameters(
-  //       'productlist', 
+  //       'productlist',
   //       (qs: QueryStringParameters) => {
   //         qs.push('countryCode', countryCode);
   //         qs.push('postalCode', postalCode);
@@ -176,11 +176,11 @@ export class ApiEndpointsService {
   public contectUsEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US);
   }
-  
+
   public peacekeeperEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER);
   }
-  
+
   public checkEmailAndMobileEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_checkEmailAndMobile);
   }
@@ -188,7 +188,7 @@ export class ApiEndpointsService {
   public ScannedBadge(): string {
     return this.createUrl(this._constants.API_ENDPOINT_ScannedBadge);
   }
-  
+
   public user_badge(): string {
     return this.createUrl(this._constants.API_ENDPOINT_user_badge);
   }
@@ -262,7 +262,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_COUNTRY);
   }
 
-  
+
   public getAllStatesEndpoint(country_id:any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_STATES + '/' + country_id);
   }
@@ -283,5 +283,16 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
   }
 
-  
+  public getAllCountryForDelegatesEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);
+  }
+
+  public getStatesByCountryEndpoint(country_id:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY + '/' + country_id);
+  }
+
+  public getCityByStateEndpoint(country_id:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
+  }
+
 }

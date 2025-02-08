@@ -17,7 +17,7 @@ export class Constants {
     //payment
     public readonly API_ENDPOINT_CHECKOUT_SESSION: string = 'create_session_stripe'
     public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
-    
+
 
 
 
@@ -48,7 +48,7 @@ export class Constants {
     public readonly API_ENDPOINT_approveRegisration: string = 'registration/approve'
 
     public readonly API_ENDPOINT_unapproveRegisration: string = 'registration/unapprove'
- 
+
     public readonly API_ENDPOINT_getdates:string = 'getDates'
     public readonly API_ENDPOINT_GET_SPEAKERS:string = 'invite_speakers'
     public readonly API_ENDPOINT_GET_getAllCountrycode:string = 'getcountry'
@@ -56,5 +56,11 @@ export class Constants {
     public readonly API_ENDPOINT_GET_ALL_STATES:string = 'getstate'
     public readonly API_ENDPOINT_GET_ALL_CITIES:string = 'getcity'
     public readonly API_ENDPOINT_Download_Badge: string = 'registration/download_badge'
+
+    public readonly API_ENDPOINT_ALL_COUNTRY: string = 'get_delegate_country'
+    public readonly API_ENDPOINT_STATE_BY_COUNTRY: string = 'get_delegate_state'
+    public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
+
+
 
 }

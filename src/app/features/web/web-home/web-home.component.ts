@@ -73,7 +73,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       disableOnInteraction: false, // Continue autoplay even after user interaction
     },
   };
-  
+
 
 
   slides : any = []
@@ -116,22 +116,27 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
-  ngOnInit(): void {
 
-    fetch('assets/speakers.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('JSON data:', data);
-        this.slides = data; // Use the fetched data in your component
-      })
-      .catch(error => {
-        console.error('There was a problem fetching the JSON file:', error);
-      });
+
+   async ngOnInit(): Promise<void> {
+
+   await this.webService.getSpeakers().subscribe((data:any) => {
+      this.slides = data;
+    });
+    // fetch('assets/speakers.json')
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error('Network response was not ok ' + response.statusText);
+    //     }
+    //     return response.json();
+    //   })
+    //   .then(data => {
+    //     console.log('JSON data:', data);
+    //     this.slides = data; // Use the fetched data in your component
+    //   })
+    //   .catch(error => {
+    //     console.error('There was a problem fetching the JSON file:', error);
+    //   });
     // this.setMetaTags();
     // this.setCanonicalUrl('https://www.justice-love-peace.com/home');
     this.checkWindowSize();
@@ -147,6 +152,38 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     this.timerInterval = setInterval(() => {
       this.updateCountdown();
     }, 1000);
+  }
+
+   SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
+   CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
+
+  async fetchSpeakersWithCaching() {
+    const cachedData = localStorage.getItem(this.SPEAKERS_CACHE_KEY);
+
+    if (cachedData) {
+      const { timestamp, data } = JSON.parse(cachedData);
+
+      // Check if cache is still valid
+      if (Date.now() - timestamp < this.CACHE_EXPIRATION) {
+        return data;
+      }
+    }
+
+    try {
+      const response = await fetch("assets/speakers.json");
+      const speakers = await response.json();
+
+      // Cache the data
+      localStorage.setItem(this.SPEAKERS_CACHE_KEY, JSON.stringify({
+        timestamp: Date.now(),
+        data: speakers
+      }));
+
+      return speakers;
+    } catch (error) {
+      console.error("Error fetching speakers:", error);
+      return [];
+    }
   }
 
   ngOnDestroy(): void {
@@ -284,13 +321,13 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   // }
 
   // setCanonicalUrl(url: string): void {
-    
+
   //   const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
   //   if (existingLink) {
   //     this.renderer.removeChild(this.document.head, existingLink);
   //   }
 
-    
+
   //   const link: HTMLLinkElement = this.renderer.createElement('link');
   //   this.renderer.setAttribute(link, 'rel', 'canonical');
   //   this.renderer.setAttribute(link, 'href', url);

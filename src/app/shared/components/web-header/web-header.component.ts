@@ -101,6 +101,7 @@ export class WebHeaderComponent implements OnInit {
     this._router.navigate(['/delegate-registration']);
   }
 
+
   scrollById(route:any,id:any){
     this._router.navigate([route],{ queryParams: { id: id }});
 

@@ -25,7 +25,7 @@ import { HeaderImgComponent } from './components/header-img/header-img.component
     WebFooterComponent,
     LeftPanelComponent,
     HeaderImgComponent
-  
+
   ]
 })
 export class SharedModule { }
