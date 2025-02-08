@@ -30,6 +30,7 @@ import { PaymentCancelComponent } from './payment-cancel/payment-cancel.componen
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
 import { SwiperModule } from 'swiper/angular';
+import { HumanValuesComponent } from './blog/human-values/human-values.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { SwiperModule } from 'swiper/angular';
     PaymentComponent,
     SuccessComponent,
     PaymentCancelComponent,
-    CustomePipePipe
+    CustomePipePipe,
+    HumanValuesComponent
 
     // WhoShouldAttendAndWhyComponent,
 
