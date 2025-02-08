@@ -607,6 +607,7 @@
                     (keydown.tab)="openDatepicker()"
                     (ngModelChange)="onDateChange($event)"
                     bsDatepicker
+                    readonly
                     [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
 
                   />

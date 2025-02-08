@@ -152,7 +152,7 @@ export class DelegateRegistrationComponent {
       instagram_profile: [''],
       profession_1: ['', [Validators.required]],
       profession_2: [''],
-      website: ['', [Validators.pattern('^[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*$')]],
+      website: ['', [Validators.pattern('^(https?:\\/\\/)?([\\w.-]+)\\.([a-z]{2,6})([\\/\\w .-]*)*\\/?$')]],
       organization_name: [''],
       address: [''],
       country: ['', [Validators.required]],
@@ -377,24 +377,37 @@ export class DelegateRegistrationComponent {
   }
 
   onProfessionInput(event: Event) {
-
     const input = event.target as HTMLInputElement;
+
+    // Remove leading spaces
+    let inputValue = input.value.replace(/^\s+/, '');
+
+    // Allow alphabets, _, @, &, -, and spaces (but no special characters other than these)
+    inputValue = inputValue.replace(/[^a-zA-Z_@&-\s]/g, '');
+
+    // Prevent multiple spaces
+    inputValue = inputValue.replace(/\s{2,}/g, ' ');
+
+    // Set the cleaned value back to the input field
+    this.registrationForm.controls['profession_1'].setValue(inputValue, { emitEvent: false });
+}
+
+onProfession2Input(event: Event) {
+  const input = event.target as HTMLInputElement;
 
   // Remove leading spaces
   let inputValue = input.value.replace(/^\s+/, '');
 
-  // Allowed characters pattern
-  const allowedPattern = /^[a-zA-Z_@&-]*$/; // Removed \s to prevent spaces anywhere
+  // Allow alphabets, _, @, &, -, and spaces (but no special characters other than these)
+  inputValue = inputValue.replace(/[^a-zA-Z_@&-\s]/g, '');
 
-  // Remove any invalid characters
-  inputValue = inputValue.replace(/[^a-zA-Z_@&-]/g, '');
+  // Prevent multiple spaces
+  inputValue = inputValue.replace(/\s{2,}/g, ' ');
 
-  // Set the cleaned value back to the input
-  input.value = inputValue;
+  // Set the cleaned value back to the input field
+  this.registrationForm.controls['profession_2'].setValue(inputValue, { emitEvent: false });
+}
 
-  // Dispatch event to update Angular form control
-  input.dispatchEvent(new Event('input'));
-  }
 
 
   validateAlpha(event: any) {
@@ -877,6 +890,9 @@ export class DelegateRegistrationComponent {
         break;
       case 'title':
         allowedPattern = /^[a-zA-Z]+$/; // **Alphabets only (A-Z, a-z), no spaces**
+        break;
+      case 'organization_name':
+        allowedPattern = /^[a-zA-Z. ]+$/; // Allows alphabets, a single space, and a period (.)
         break;
       default:
         allowedPattern = /.*/; // No restriction for other fields

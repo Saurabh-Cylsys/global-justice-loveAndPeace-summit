@@ -152,7 +152,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
 
-    if (inputElement) {
+    if (inputElement != null) {
       const data = int1TelInput(inputElement, {
         initialCountry: 'ae',
         separateDialCode: true,
@@ -343,7 +343,6 @@ onDateChange(event: string): void {
         })
         .finally(() => {
           // this.isLoading = false; // Hide the spinner if added
-          console.log('converted image', this.convertedImage);
           this.isConvertedImage = false;
         });
     }
