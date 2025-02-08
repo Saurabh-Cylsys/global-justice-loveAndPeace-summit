@@ -19,6 +19,7 @@ import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HumanValuesComponent } from './blog/human-values/human-values.component';
+import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 
 const routes: Routes = [
   {
@@ -127,6 +128,10 @@ const routes: Routes = [
       {
         path: 'blog/human-values',
         component: HumanValuesComponent,
+      },
+      {
+        path: 'blog/how-to-use-social-media',
+        component: HowToUseSocialMediaComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
