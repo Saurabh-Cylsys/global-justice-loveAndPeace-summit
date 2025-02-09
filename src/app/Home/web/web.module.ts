@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -43,8 +43,8 @@ import { SuccessComponent } from './success/success.component';
 import { PaymentCancelComponent } from './payment-cancel/payment-cancel.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
+import { SwiperModule } from 'swiper/angular';
 // import { WhoShouldAttendAndWhyComponent } from './who-should-attend-and-why/who-should-attend-and-why.component';
-
 
 @NgModule({
   declarations: [
@@ -95,8 +95,9 @@ import { CustomePipePipe } from 'src/app/shared/classes/custome-pipe.pipe';
     NgxIntlTelInputModule ,
     QRCodeModule,
    IntlInputPhoneModule,
-   ImageCropperModule,
+   ImageCropperModule, SwiperModule,
    BsDatepickerModule.forRoot()
-  ]
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
 })
 export class WebModule { }

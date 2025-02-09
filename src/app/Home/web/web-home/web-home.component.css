@@ -335,3 +335,112 @@ video {
   object-fit: fill;
 }
 
+
+.speakers-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.speakers-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #004d7a;
+}
+
+.mySwiper {
+  width: 350px;
+  height: 500px;
+  margin: 0 auto;
+}
+
+.mycard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #f5f8ed, #ffffff);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  margin: 10px auto;
+}
+
+.mycard h3 {
+  font-size: 1.2rem;
+  color: #004d7a;
+  margin: 5px 0;
+}
+
+.event-date {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-bottom: 15px;
+}
+
+.mycard h4 {
+  font-size: 1rem;
+  color: #008000;
+  margin: 10px 0;
+}
+
+.speaker-name {
+  font-size: 1.5rem;
+  color: #004d7a;
+  margin: 10px 0;
+}
+
+.speaker-country {
+  font-size: 1.2rem;
+  color: #555555;
+  margin: 5px 0;
+}
+
+.speaker-title {
+  font-size: 1rem;
+  color: #777777;
+  margin-bottom: 15px;
+}
+
+.image-container {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.speaker-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.see-all-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.see-all-button:hover {
+  background: #0056b3;
+}

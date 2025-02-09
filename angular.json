@@ -26,10 +26,13 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.css",            
+
+              "src/styles.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/swiper/swiper-bundle.min.css",
               "node_modules/aos/dist/aos.css"
+
 
             ],
             "scripts": [
@@ -109,7 +112,7 @@
               "src/assets/UIComponents/js/mousescroll.js",
               "src/assets/UIComponents/js/owl.carousel.min.js",
               "src/assets/UIComponents/js/smoothscroll.js",
-              "src/assets/UIComponents/js/jquery.prettyPhoto.js",              
+              "src/assets/UIComponents/js/jquery.prettyPhoto.js",
               "src/assets/UIComponents/js/wow.min.js"
             ]
           }

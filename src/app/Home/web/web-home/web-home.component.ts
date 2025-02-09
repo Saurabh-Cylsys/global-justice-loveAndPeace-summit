@@ -13,7 +13,10 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { WebService } from '../webz-services/web.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import SwiperCore, { EffectCards, Navigation, Pagination, SwiperOptions } from 'swiper';
 
+// Install Swiper modules
+SwiperCore.use([EffectCards, Navigation, Pagination]);
 declare var AOS: any;
 
 @Component({
@@ -31,6 +34,66 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   speakersList: any[] = [];
   visibleCount: number = 5; // Initial number of events to show
   isVisibleCount: boolean = false;
+
+  swiperConfig: SwiperOptions = {
+    effect: "cards",
+    grabCursor: true,
+    initialSlide: 2,
+    speed: 500,
+    loop: true,
+    mousewheel: {
+      invert: false,
+    }
+  };
+
+
+  slides = [
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/b6f5eb64-887c-43b1-aaba-d52a4c59a379',
+      rating: '8.5',
+      title: "The Queen's Gambit",
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e906353b-fde0-4518-9a03-16545c1161bd',
+      rating: '9.5',
+      title: 'Breaking Bad',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/fc21e481-e28a-41a8-9db3-3b62c1ddc17e',
+      rating: '8.1',
+      title: 'Wednesday',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/6b6ad966-79e1-4d3c-8f92-566d0fee8082',
+      rating: '8.7',
+      title: 'Stranger Things',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/2ad44f5d-2215-4416-9c9b-2bae3be51a67',
+      rating: '8.6',
+      title: 'Anne with an E',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/aa8fe914-741f-4bf4-ad4a-24f19d1f4178',
+      rating: '8.9',
+      title: 'Friends',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d5f10b4f-7d34-45bd-bb5f-5f1530c2ac1c',
+      rating: '8.6',
+      title: 'The Crown',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/7cbac263-7c55-4428-908e-31018dc1bce3',
+      rating: '8.7',
+      title: 'House M.D.',
+    },
+    {
+      img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/2929f534-3bc3-4cbd-b84c-80df863d5a38',
+      rating: '9.2',
+      title: 'Game of Thrones',
+    },
+  ];
 
   joinOnline: any[] = [
     {
@@ -67,7 +130,21 @@ export class WebHomeComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) {
+
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(data => {
+        // Display the IP address on the screen
+        console.log(data.ip);
+      })
+      .catch(error => {
+        console.error("Error fetching IP address:", error);
+      });
+    //fetch('https://api.github.com/gists/13468728').then((res:any) => { this.slides = res.json() });
+
+
+  }
 
   events_day1 = [
     { title: 'Registration / Refreshment', time: '8:00 AM-10:00 AM' },
@@ -247,13 +324,13 @@ export class WebHomeComponent implements OnInit, OnDestroy {
   // }
 
   // setCanonicalUrl(url: string): void {
-    
+
   //   const existingLink: HTMLLinkElement | null = this.document.querySelector('link[rel="canonical"]');
   //   if (existingLink) {
   //     this.renderer.removeChild(this.document.head, existingLink);
   //   }
 
-    
+
   //   const link: HTMLLinkElement = this.renderer.createElement('link');
   //   this.renderer.setAttribute(link, 'rel', 'canonical');
   //   this.renderer.setAttribute(link, 'href', url);
