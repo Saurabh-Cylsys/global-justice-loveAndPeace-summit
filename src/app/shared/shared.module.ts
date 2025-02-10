@@ -31,6 +31,8 @@ import { PeacekeeperLeftpanelComponent } from './components/peacekeeper-leftpane
     HeaderImgComponent,
     PeacekeeperHeaderComponent,
     PeacekeeperLeftpanelComponent
+    
+
   ]
 })
 export class SharedModule { }

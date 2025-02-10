@@ -424,3 +424,9 @@ li#iti-0__item-us-preferred {
 .iti__country.iti__preferred {
   background: lightblue !important;
 }
+
+
+.form-select {
+
+  width: 100%;
+}

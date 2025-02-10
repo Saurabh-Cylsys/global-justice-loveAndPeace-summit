@@ -17,7 +17,7 @@ export class Constants {
     //payment
     public readonly API_ENDPOINT_CHECKOUT_SESSION: string = 'create_session_stripe'
     public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
-    
+
 
 
 
@@ -63,6 +63,10 @@ export class Constants {
     public readonly API_ENDPOINT_PEACKEEPER_LOGIN: string = 'login-peacekeeper'
     public readonly API_ENDPOINT_PEACKEEPER_BADGE_BY_ID: string = 'get_peacekeeper_details_by_id'
     public readonly API_ENDPOINT_UPDATE_PEACEKEEPER: string = 'edit-peacekeeper'
+    public readonly API_ENDPOINT_ALL_COUNTRY: string = 'get_delegate_country'
+    public readonly API_ENDPOINT_STATE_BY_COUNTRY: string = 'get_delegate_state'
+    public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
+
 
 
 }

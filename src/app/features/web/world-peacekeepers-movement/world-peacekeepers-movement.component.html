@@ -559,14 +559,16 @@
                       class="form-control w-100 p-0"
                       formControlName="full_name"
                       name="full_name"
-                      id="title"
-                      (keypress)="ValidateAlpha($event)"
+                      id="fullName"
+                      #fullName
+                      maxlength="200"
+                      (paste)="onPaste($event)"
                       placeholder="Enter full name"
-                      value=""
                       autocomplete="off"
-                      (input)="onInput($event, 'full_name')"
+                      (input)="validateAlpha($event, 'full_name')"
+                      (keydown)="handleTabKey($event, 'dob')"
                     />
-                    
+
                     <div
                       class="text-danger"
                       *ngIf="
@@ -577,7 +579,7 @@
                       <small
                         class="text-danger"
                         *ngIf="getcontrol('full_name')?.errors?.['required']"
-                        >Name is required</small
+                        >Full Name is required</small
                       >
                     </div>
                   </div>
@@ -594,18 +596,22 @@
                     </label>
                     <input
                     type="text"
+                    id="dob"
+                    #dob
                     class="form-control p-0"
                     placeholder="Select Date of birth"
                     formControlName="dob"
                     [minDate]="minDate1"
                     [maxDate]="maxDate1"
                     (keydown)="disableManualInput($event)"
+                    (keydown.tab)="openDatepicker()"
                     (ngModelChange)="onDateChange($event)"
                     bsDatepicker
+                    readonly
                     [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
 
                   />
-                    
+
                     <div
                       class="text-danger"
                       *ngIf="
@@ -637,6 +643,8 @@
                       <select
                         formControlName="country"
                         style="cursor: pointer"
+                        id="country"
+                        #country
                         class="form-select w-100 p-0 px-2"
                         required
                         data-error="Please select country"
@@ -674,43 +682,6 @@
 
               <div class="row g-2 mt-lg-5">
                 <div class="col-md my-lg-0 my-3">
-                  <!-- <div class="form-floating">
-                  <input
-                    type="email"
-                    class="form-control"
-                    formControlName="email_id"
-                    name="email_id"
-                    id="email"
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,12}$"
-                    placeholder=""
-                    value=""
-                  />
-                  <label for="title"
-                    >E-Mail :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
-                    >
-                      *</span
-                    ></label
-                  >
-                  <div
-                    *ngIf="
-                      getcontrol('email_id')?.errors &&
-                      getcontrol('email_id')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['required']"
-                      >Email is required.</small
-                    >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('email_id')?.errors?.['email']"
-                      >Please enter valid email address.</small
-                    >
-                  </div>
-                </div> -->
                   <div class="">
                     <label for="email" class="px-0">
                       E-Mail:
@@ -724,14 +695,16 @@
                       formControlName="email_id"
                       name="email_id"
                       id="email"
+                      #email
                       pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
                       placeholder="Enter your email"
                       autocomplete="off"
+                      maxlength="125"
                       required
                       (input)="onInput($event, 'email_id')"
-                      (keydown)="onKeyDown($event, mobile_number)"
+                      (keydown)="onKeyDownEmail($event)"
                     />
-                    
+
                     <div
                       *ngIf="
                         getcontrol('email_id')?.errors &&
@@ -770,43 +743,7 @@
                     ></label
                   >
                   <div class="row no-padding">
-                    <!-- <div
-                  class="form-group form-group-inner mobile-code col-3"
-                >
-                <div class="form-floating">
-                  <select
-                    formControlName="country_code"
-                    class="form-control"
-                    required
-                    data-error="Please enter code"
-                  >
-                    <option selected value="" disabled>
-                      --Please select--
-                    </option>
-                    <option
-                      *ngFor="
-                        let code of code;
-                        let j = index
-                      "
-                      [value]="code.country_mobile_code"
-                    >
-                      {{ code.country_mobile_code }}
-                    </option>
-                  </select></div>
-                  <div
-                    *ngIf="
-                      getcontrol('country_code')?.errors &&
-                      getcontrol('country_code')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('country_code')?.errors?.['required']"
-                      >Country code is required</small
-                    >
-                  </div>
-                  <div class="help-block with-errors"></div>
-                </div> -->
+
                     <div
                       class="form-group form-group-inner mobile-number col-9 w-100"
                     >
@@ -830,35 +767,18 @@
                         [separateDialCode]="true"
                         [maxLength]="12"
                         [(ngModel)]="mobile_number"
+                        (paste)="onPasteMobileNumber($event)"
                         name="mobile_number"
+                        id="number_mobile1"
+                        #number_mobile1
                         formControlName="mobile_number"
-                        (keydown)="onMobileKeyDown($event, mobile_number)"
+                        (keydown)="onMobileNumberKeyDown($event)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
 
                         ></ngx-intl-tel-input>
-                        <!-- [maxLength]="10"
-                        pattern=".{8,12}"
-                        minlength="10"
-                        maxlength="10" -->
-                      <!-- <input
-                    type="text"
-                    name="mobile_number[1]"
-                    id="number_mobile1"
-                    placeholder="Mobile Number"
-                 
-                    class="form-control number_field"
-                    value=""
-                    pattern=".{8,12}"
-                    minlength="10"
-                    maxlength="10"
-                    required
-                    data-error="Please enter valid number."
-                    formControlName="mobile_number"
-                    (keypress)="keyPressNumbers($event)"
-               
-                  /> -->
-                  <span > 
-                    
+
+                  <span >
+
                   </span>
                       <small class="text-danger" *ngIf="mobile_numberVal">
                         (Country code + Mobile number) will be 7 to 15 digits
@@ -877,7 +797,7 @@
                         >
                         <small
                         class="text-danger"
-                        *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched" 
+                        *ngIf="!mobile_numberVal && getcontrol('mobile_number')?.invalid && getcontrol('mobile_number')?.touched"
                         >
                         {{ getPhoneErrorMessage() }}
                         </small
@@ -885,31 +805,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- <label for="mobilenumber"
-                    >Mobile Number :<span
-                      class="form-label-span"
-                      style="color: #ff0000"
-                    >
-                      *</span
-                    ></label
-                  >
-                  <div
-                    *ngIf="
-                      getcontrol('mobile_number')?.errors &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                      >Mobile number is required</small
-                    >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['minlength']"
-                      >Mobile number must be at least 10 digit long.</small
-                    >
-                  </div> -->
+
                 </div>
 
                 <div class="col-md-12 my-3 my-lg-3">
@@ -926,22 +822,7 @@
 
               <div class="row g-2">
                 <div class="col-md">
-                  <!--<div class="form-floating">
-                   <span
-                    class="form-label-span"
-                    style="color: #ff0000; float: left"
-                  >
-                    *</span
-                  >  <input
-                    type="file"
-                    class="form-control"
-                  name="profile_picture"
-                    id="title"
-                    (change)="onFileChange($event)"
-                    placeholder=""
-                    value=""
-                  /> 
-                </div>-->
+
                   <label for="" class="imgUpload"
                     >Image Upload
                     <span class="form-label-span" style="color: #ff0000">
@@ -961,7 +842,7 @@
                     >
                     <span><img src="assets/UIComponents/images/divider.svg" alt=""></span>
                     <!-- <input type="file" name="myFile" class="drop-zone__input"> -->
-                 
+
                                         <input
                       class="custom-file-input col-lg-auto col-md-auto col-12"
                       type="file"
@@ -1019,8 +900,7 @@
                     (click)="isCorrect()"
                     type="button"
                     class="btn btn-success text-white text-center px-5 mb-lg-0 mb-4"
-                    [disabled]="
-                      this.peacekeepersForm.invalid || this.selectedFile== null"
+
                   >
                     Save
                   </button>
@@ -1032,7 +912,7 @@
             <ul class="list-unstyled text-center badge">
               <div>
                 <img loading="eager"
-                  src="assets/UIComponents/images/join-us.png"
+                  src="assets/UIComponents/images/join-us.webp"
                   alt=""
                   width="100%"
                   class="border"
@@ -1043,7 +923,7 @@
               </div>
               <li>
                 <button
-                  [disabled]="!submitted"
+                [disabled]="!submitted"
                   class="btn btn-success"
                   (click)="openPopup()"
                 >
@@ -1097,7 +977,8 @@
           <h2>7 Human Values</h2>
         </div>
         <div class="col-md-4 text-center">
-          <img loading="eager" src="assets/UIComponents/images/wpm/pv1.svg" alt="7 Peace Value" class="col-md-8" >
+          <a [routerLink]="['/blog/human-values']">
+          <img loading="eager" src="assets/UIComponents/images/wpm/pv1.svg" alt="7 Peace Value" class="col-md-8" ></a>
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -1339,92 +1220,27 @@
     <div class="modal-content">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
-      <ng-template #contentTemplate>
-        <table class="main w-100" style="margin: auto">
-          <tr>
-            <td style="position: relative">
-              <img loading="eager"
-                [src]="peacekeeperBadge"
-                class="w-100 cpImg"
-                alt=""
-                width="100px"
-              />
-              <!-- <div
-                style="position: absolute; top: 15px; left: 15px; width: 54%"
-              >
-                <h4
-                  class="fw-bold"
-                  style="
-                    margin: 0px;
-                    font-size: 14px;
-                    text-transform: uppercase;
-                  "
-                >
-                  {{ peacekeeperData.Name }}
-                </h4>
-                <hr
-                  style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
-                />
-
-                <div class="badgeModal">
-                  <label for="" style="color: #17598e"><b>Country :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Country }}</span
-                  >
-                </div>
-                <div class="badgeModal" *ngIf="isCheckEmail">
-                  <label for="" style="color: #17598e"><b>Mobile :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Phone }}</span
-                  >
-                </div>
-                <div class="badgeModal" *ngIf="isCheckEmail">
-                  <label for="" style="color: #17598e"><b>E-mail :</b></label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Email }}</span
-                  >
-                </div>
-                <div class="badgeModal">
-                  <label for="" style="color: #17598e"><b>ID No. :</b></label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.ID_NO }}</span
-                  >
-                </div>
-              </div>
-              <div>
+          <div id="capture">
+        <ng-container>
+          <table class="main w-100" style="margin: auto">
+            <tr>
+              <td style="position: relative">
                 <img loading="eager"
-                  class="pix"
-                  [src]="fileUrl"
+                  [src]="peacekeeperBadge"
+                  class="w-100 cpImg"
                   alt=""
-                  style="
-                    position: absolute;
-                    top: 15px;
-                    right: 20px;
-                    border: 2px solid #359138;
-                    border-radius: 50%;
-                    background-color: #fff;
-                  "
+                  width="100px"
                 />
-              </div>
-              <div
-                class="col-12 text-center qr-code-section"
-                style="position: relative"
-              >
-                <img loading="eager" class="pix pix2" [src]="qrCodeImg" alt="" />
-              </div> -->
-            </td>
-          </tr>
-        </table>
-      </ng-template>
+              </td>
+            </tr>
+          </table>
 
-      <div id="capture">
-        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </ng-container>
       </div>
       <div class="col-md-12 row ms-2 my-3" style="width: 95%">
         <div class="col-6">
           <button
             class="btn btn-success w-100"
-            [disabled]="isConvertedImage"
             (click)="downloadImage()"
             style="height: 36px; font-size: 15px"
           >
@@ -1463,10 +1279,10 @@
   <div class="modal-dialog come-from-modal new_dialog1">
     <div class="modal-content p-3">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
-      
+
       <!-- <div class="cropper-container"> -->
-      <image-cropper 
-      *ngIf="imageChangedEvent" 
+      <image-cropper
+      *ngIf="imageChangedEvent"
       [imageChangedEvent]="imageChangedEvent"
       (imageCropped)="imageCropped($event)"
       [maintainAspectRatio]="true"

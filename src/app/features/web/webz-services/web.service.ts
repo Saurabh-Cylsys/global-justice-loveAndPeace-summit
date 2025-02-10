@@ -1,19 +1,59 @@
 import { Injectable } from '@angular/core';
 import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
-import { Observable, Subject } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { Observable, of, Subject } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebService {
+
+  private SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
+  private CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
+  private SPEAKERS_URL = 'assets/speakers.json';
+
   constructor(
     private _apiHttpService: ApiHttpService,
-    private _apiEndpointsService: ApiEndpointsService
+    private _apiEndpointsService: ApiEndpointsService,private http: HttpClient
   ) {}
+
+  getSpeakers(): Observable<any[]> {
+    const cachedData = localStorage.getItem(this.SPEAKERS_CACHE_KEY);
+
+    if (cachedData) {
+      const { timestamp, data } = JSON.parse(cachedData);
+
+      // 1. Check if cache is still valid
+      if (Date.now() - timestamp < this.CACHE_EXPIRATION) {
+        console.log('Serving from cache');
+        return of(data); // Return cached data
+      }
+    }
+
+    // 2. Fetch from server if cache is expired or doesn't exist
+    return this.http.get<any[]>(this.SPEAKERS_URL).pipe(
+      tap(newData => {
+        // 3. Compare with cached data before updating cache
+        if (!cachedData || this.hasListChanged(JSON.parse(cachedData).data, newData)) {
+          console.log('Cache updated');
+          localStorage.setItem(this.SPEAKERS_CACHE_KEY, JSON.stringify({
+            timestamp: Date.now(),
+            data: newData
+          }));
+        } else {
+          console.log('No changes detected, cache remains the same');
+        }
+      })
+    );
+  }
+
+  private hasListChanged(oldList: any[], newList: any[]): boolean {
+    return JSON.stringify(oldList) !== JSON.stringify(newList);
+  }
+
 
   confirmedSpeakersList: any[] = [
     // list 1
@@ -25,8 +65,8 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
-    
-    
+
+
     // list 2
     {
       // "S_No": 1,
@@ -441,7 +481,7 @@ export class WebService {
       Credentials: 'Artist, Peace Painter (live performance)',
     },
     // {
-     
+
     //   View: '',
     //   Profile_Photo: null,
     //   Name: 'P V Sindhu',
@@ -1046,7 +1086,7 @@ export class WebService {
       Credentials: 'Artist, Peace Painter (live performance)',
     },
     // {
-     
+
     //   View: '',
     //   Profile_Photo: null,
     //   Name: 'P V Sindhu',
@@ -1263,8 +1303,8 @@ export class WebService {
       Country: 'TUNISIA',
       Credentials: 'Lawyer, Human Rights Activist : Nobel Peace Laureate 2015',
     },
-    
-    
+
+
     {
       // "S_No": 1,
       View: '',
@@ -1287,8 +1327,8 @@ export class WebService {
       {
         speakers: [
           // list 2
-    
-    
+
+
     {
       // "S_No": 1,
       View: '',
@@ -1319,7 +1359,7 @@ export class WebService {
       {
         speakers: [
           // list 3
-          
+
           {
             // "S_No": 2,
             View: '',
@@ -1347,14 +1387,14 @@ export class WebService {
             Credentials:
               'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
           },
-          
+
         ],
       },
 
       {
         speakers: [
           // list 4
-          
+
           {
             // "S_No": 5,
             View: '',
@@ -1386,7 +1426,7 @@ export class WebService {
       {
         speakers: [
           // list 5
-          
+
           {
             // "S_No": 6,
             View: '',
@@ -1418,7 +1458,7 @@ export class WebService {
       {
         speakers: [
           // list 6
-          
+
           {
             // "S_No": 10,
             View: 'habil',
@@ -1449,7 +1489,7 @@ export class WebService {
       {
         speakers: [
           // list 7
-          
+
           {
             // "S_No": 12,
             View: '',
@@ -1466,7 +1506,7 @@ export class WebService {
             Country: 'EGYPT',
             Credentials: 'Industrialist : President, Arab Women Investors Union',
           },
-          
+
           {
             // "S_No": 12,
             View: '',
@@ -1480,7 +1520,7 @@ export class WebService {
       {
         speakers: [
           // list 8
-          
+
           {
             // "S_No": 12,
             View: '',
@@ -1489,7 +1529,7 @@ export class WebService {
             Country: 'SRI LANKA, INDIA',
             Credentials: 'Beauty Queen, Actress',
           },
-          
+
           {
             // "S_No": 13,
             View: '',
@@ -1506,13 +1546,13 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Social Activist, Nobel Peace Laureate 2014',
           },
-          
+
         ],
       },
       {
         speakers: [
           // list 9
-          
+
           {
             // "S_No": 14,
             View: '',
@@ -1538,15 +1578,15 @@ export class WebService {
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
-         
-          
+
+
         ],
       },
 
       {
         speakers: [
           // list 10
-          
+
           {
             // "S_No": 14,
             View: '',
@@ -1564,7 +1604,7 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Nobel Peace Laureate 2011',
           },
-          
+
           {
             // "S_No": 16,
             View: '',
@@ -1574,14 +1614,14 @@ export class WebService {
             Credentials:
               'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
-          
+
         ],
       },
 
       {
         speakers: [
           // list 11
-          
+
           {
             // "S_No": 17,
             View: '',
@@ -1608,15 +1648,15 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'Chairman, National Human Rights Commission, UAE',
           },
-          
-          
+
+
         ],
       },
 
       {
         speakers: [
           // list 12
-          
+
           {
             // "S_No": 18,
             View: '',
@@ -1642,15 +1682,15 @@ export class WebService {
             Credentials:
               'Secretary General of the Muslim Council of Elders & Co-President of Religions for Peace',
           },
-          
-          
-          
+
+
+
         ],
       },
       {
         speakers: [
           // list 13
-          
+
           {
             // "S_No": 21,
             View: '',
@@ -1668,7 +1708,7 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Royalty Heir Apparent to the Prince of Arcot',
           },
-          
+
           {
             // "S_No": 17,
             View: '',
@@ -1678,15 +1718,15 @@ export class WebService {
             Credentials:
               'Islamic Religious Leader : Vice President, Global Imams Council & Chairman, Senior Imams Committee',
           },
-          
-          
-          
+
+
+
         ],
       },
       {
         speakers: [
           // list 14
-          
+
           {
             // "S_No": 22,
             View: '',
@@ -1703,7 +1743,7 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Industrialist : Chairman, TAF Global',
           },
-          
+
           {
             // "S_No": 17,
             View: '',
@@ -1712,15 +1752,15 @@ export class WebService {
             Country: 'IRAQ',
             Credentials: 'Social Activist: Nobel Peace Laureate 2018',
           },
-          
-          
-          
+
+
+
         ],
       },
       {
         speakers: [
           // list 15
-          
+
           {
             // "S_No": 25,
             View: 'nadir',
@@ -1745,14 +1785,14 @@ export class WebService {
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
-          
-          
+
+
         ],
       },
       {
         speakers: [
           // list 16
-          
+
           {
             // "S_No": 26,
             View: '',
@@ -1761,7 +1801,7 @@ export class WebService {
             Country: 'GHANA',
             Credentials: 'Royalty, The Royal House of Sefwi Obeng-Mim',
           },
-          
+
           {
             // "S_No": 27,
             View: '',
@@ -1770,7 +1810,7 @@ export class WebService {
             Country: 'TUNISIA',
             Credentials: 'Nobel Peace Laureate 2015',
           },
-          
+
           {
             // "S_No": 27,
             View: '',
@@ -1779,15 +1819,15 @@ export class WebService {
             Country: 'COSTA RICA',
             Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
           },
-          
-          
-          
+
+
+
         ],
       },
       {
         speakers: [
           // list 17
-          
+
           {
             // "S_No": 28,
             View: '',
@@ -1804,8 +1844,8 @@ export class WebService {
             Country: 'MADAGASCAR',
             Credentials: 'Royalty, Pastor, Philanthropist',
           },
-          
-          
+
+
           {
             // "S_No": 31,
             View: '',
@@ -1815,14 +1855,14 @@ export class WebService {
             Credentials:
               'Catholic Priest, Promotor of Peace & Inter-Religious Dialogue',
           },
-          
-          
+
+
         ],
       },
       {
         speakers: [
           // list 18
-          
+
           {
             // "S_No": 31,
             View: 'romona',
@@ -1839,8 +1879,8 @@ export class WebService {
             Country: 'GUINEA BISSAU',
             Credentials: 'Prime Minister',
           },
-          
-         
+
+
           {
             // "S_No": 33,
             View: '',
@@ -1849,14 +1889,14 @@ export class WebService {
             Country: 'UAE',
             Credentials: 'TV personality, entrepreneur',
           },
-          
-          
+
+
         ],
       },
       {
         speakers: [
           // list 19
-          
+
           {
             // "S_No": 33,
             View: '',
@@ -1873,9 +1913,9 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'World Renowned Chef',
           },
-          
-          
-          
+
+
+
           {
             // "S_No": 33,
             View: 'satpal',
@@ -1884,14 +1924,14 @@ export class WebService {
             Country: 'USA',
             Credentials: 'Ambassador of Sikh Dharma',
           },
-         
-          
+
+
         ],
       },
       {
         speakers: [
           // list 20
-          
+
           {
             // "S_No": 34,
             View: '',
@@ -1908,8 +1948,8 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'Chief Justice of Liberia',
           },
-          
-          
+
+
           {
             // "S_No": 34,
             View: '',
@@ -1918,16 +1958,16 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer & Actress, Royalty',
           },
-          
-          
-          
-          
+
+
+
+
         ],
       },
       {
         speakers: [
           // list 21
-          
+
           {
             // "S_No": 1,
             View: '',
@@ -1954,12 +1994,12 @@ export class WebService {
             Credentials:
               'High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader',
           },
-          
-          
-          
-          
-          
-          
+
+
+
+
+
+
         ],
       },
       {
@@ -1974,7 +2014,7 @@ export class WebService {
             Credentials:
               'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
           },
-          
+
           {
             // "S_No": 37,
             View: '',
@@ -1991,11 +2031,11 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Attorney General of India',
           },
-          
-          
-         
-          
-          
+
+
+
+
+
         ],
       },
       {
@@ -2025,7 +2065,7 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer & Actor',
           },
-          
+
         ],
       },
       {
@@ -2039,7 +2079,7 @@ export class WebService {
             Credentials:
               'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
           },
-          
+
           {
             View: '',
             Profile_Photo: 'speaker61.png',
@@ -2047,7 +2087,7 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
           },
-          
+
           {
             View: '',
             Profile_Photo: 'speaker49.png',

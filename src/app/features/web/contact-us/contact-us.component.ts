@@ -229,6 +229,19 @@ export class ContactUsComponent {
       return null;
     };
   }
+
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only alphabets and spaces
+    if (/^[a-zA-Z\s]*$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
   getAllCountrycode() {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
@@ -284,7 +297,7 @@ export class ContactUsComponent {
  /** ✅ Function to Display Validation Message */
  getPhoneErrorMessage() {
   const control = this.contactUsForm.controls['phoneNumber'];
-  
+
   if (control.errors.validatePhoneNumber['valid']) {
     return '';
   } else {
@@ -360,12 +373,12 @@ export class ContactUsComponent {
     this.checkWindowSize();
   }
   // setMetaTags(): void {
-    
+
   //   this.titleService.setTitle(
   //     'Contact Us | Justice, Love, and Peace Movement'
   //   );
 
-    
+
   //   this.metaService.addTags([
   //     {
   //       name: 'description',
@@ -408,7 +421,7 @@ export class ContactUsComponent {
   // }
 
   // setCanonicalUrl(url: string): void {
-    
+
   //   const existingLink: HTMLLinkElement | null = this.document.querySelector(
   //     'link[rel="canonical"]'
   //   );
@@ -416,7 +429,7 @@ export class ContactUsComponent {
   //     this.renderer.removeChild(this.document.head, existingLink);
   //   }
 
-    
+
   //   const link: HTMLLinkElement = this.renderer.createElement('link');
   //   this.renderer.setAttribute(link, 'rel', 'canonical');
   //   this.renderer.setAttribute(link, 'href', url);

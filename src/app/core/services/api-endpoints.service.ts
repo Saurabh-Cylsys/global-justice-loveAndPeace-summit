@@ -298,4 +298,16 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_UPDATE_PEACEKEEPER);
   }
   
+  public getAllCountryForDelegatesEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);
+  }
+
+  public getStatesByCountryEndpoint(country_id:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY + '/' + country_id);
+  }
+
+  public getCityByStateEndpoint(country_id:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
+  }
+
 }
