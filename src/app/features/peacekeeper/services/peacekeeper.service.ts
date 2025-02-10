@@ -31,4 +31,9 @@ export class PeacekeeperService {
     return this._apiHttpService.put(this._apiEndpointsService.updatePeacekeeperEndpoint(), data
     )
   }
+
+  changePasswordPeacekeeper(data: any) {
+    return this._apiHttpService.put(this._apiEndpointsService.changePasswordPeacekeeperEndpoint(), data
+    )
+  }
 }

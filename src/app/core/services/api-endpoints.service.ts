@@ -297,6 +297,12 @@ export class ApiEndpointsService {
   public updatePeacekeeperEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_UPDATE_PEACEKEEPER);
   }
+
+  
+  public changePasswordPeacekeeperEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CHANGE_PASSWORD_PEACEKEEPER);
+  }
+
   
   public getAllCountryForDelegatesEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);

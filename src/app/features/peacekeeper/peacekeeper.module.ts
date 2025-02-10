@@ -18,6 +18,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     InvitationListComponent,
     PeacekeeperMainComponent,
     ContactListComponent,
-    UploadContactsComponent
+    UploadContactsComponent,
+    ChangePasswordComponent
 
   ],
   imports: [

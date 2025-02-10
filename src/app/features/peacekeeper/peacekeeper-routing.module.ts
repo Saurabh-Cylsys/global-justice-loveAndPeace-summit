@@ -8,6 +8,7 @@ import { InvitationListComponent } from './components/invitation-list/invitation
 import { SentInvitationComponent } from './components/sent-invitation/sent-invitation.component';
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'invitation-List', component: InvitationListComponent },
       { path: 'sent-invitation', component: SentInvitationComponent },
       { path: 'contact-list', component: ContactListComponent },
+      { path: 'change-password', component: ChangePasswordComponent },
       { path: 'upload-contacts', component: UploadContactsComponent }
     ],
   },
