@@ -41,8 +41,13 @@ export class LoginComponent {
 
   createLoginForm() {
     this.emailForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      password : ['',[Validators.required]]
     });
+  }
+
+  get password() {
+    return this.emailForm.get('password');
   }
 
   getIPAddress(){
@@ -158,12 +163,13 @@ export class LoginComponent {
 
   login() {
 
-    let encryptedEmail = this.sharedService.encryptData({
-      "email": this.emailForm.value.email
+    let encryptedData = this.sharedService.encryptData({
+      "email": this.emailForm.value.email,
+      "password" : this.emailForm.value.password
     });
 
     let body = {
-      "encrypted_data": encryptedEmail
+      "encrypted_data": encryptedData
     };
 
     this.ngxService.start();

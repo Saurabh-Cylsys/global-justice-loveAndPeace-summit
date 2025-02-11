@@ -18,7 +18,7 @@ export class ChangePasswordComponent {
   showConfirmPassword = false;
 
   constructor(
-private datePipe: DatePipe,
+    private datePipe: DatePipe,
     private router: Router,
     private fb: FormBuilder,
     private peaceKeeperService: PeacekeeperService,
@@ -36,7 +36,9 @@ private datePipe: DatePipe,
   crateChangePasswordForm(){
     this.changePasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required,Validators.minLength(8),
+        Validators.maxLength(16),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,16}$')]],
       confirmPassword: ['', Validators.required]
     }, {
       validator: this.ConfirmPasswordValidator(
@@ -87,17 +89,25 @@ private datePipe: DatePipe,
     return this.changePasswordForm.controls;
   }
 
+  get password() {
+    return this.changePasswordForm.get('password');
+  }
+
   onSubmit() {
 
     if (this.changePasswordForm.invalid) {
       return;
     }
 
-    let body = {
+    let encryptedBody = this.sharedService.encryptData({
       "email": this.changePasswordForm.value.email,
       "password": this.changePasswordForm.value.password,
       "confirmPassword": this.changePasswordForm.value.confirmPassword
-    }
+    });
+
+    let body = {
+      "encrypted_data": encryptedBody
+    };
 
     this.ngxService.start();
     this.peaceKeeperService.generatePasswordApi(body).subscribe({
