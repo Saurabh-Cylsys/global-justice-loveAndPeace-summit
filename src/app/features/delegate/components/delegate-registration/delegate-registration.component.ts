@@ -143,9 +143,6 @@ export class DelegateRegistrationComponent {
     // this.getdates()
     this.getAllCountries();
     // this.getAllCountrycode()
-    this.getIPAddress();
-
-    this.deviceInfo = this.getDeviceOS();
   }
 
   createForm() {
@@ -940,114 +937,6 @@ onProfession2Input(event: Event) {
     }
   }
 
-  getIPAddress(){
-    this.SharedService.getIPAddress().subscribe({
-      next :(res:any)=>{
-        this.ipAddress = res.ip;
-      }
-    })
-  }
-
-  getDeviceOS(): string {
-    const userAgent = navigator.userAgent;
-    if (/android/i.test(userAgent)) return 'Android';
-    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
-    if (/Win/i.test(userAgent)) return 'Windows';
-    if (/Mac/i.test(userAgent)) return 'MacOS';
-    if (/Linux/i.test(userAgent)) return 'Linux';
-    return 'Unknown';
-  }
-
-  startTimer() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear any existing timer
-    }
-
-    this.timerExpired =false;
-    this.countdown = 100; // Reset countdown to 100 seconds
-    this.buttonText = "Resend OTP";
-
-    this.interval = setInterval(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      } else {
-        this.timerExpired = true;
-        this.buttonText = "Resend OTP";
-        clearInterval(this.interval); // Stop the timer when it reaches 0
-      }
-    }, 1000);
-  }
-
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear timer when component is destroyed
-    }
-  }
-
-  formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  }
-
-  sendOTP(){
-
-    if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
-      return;
-    }
-    else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
-      return;
-    }
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "deviceId": this.ipAddress,
-      "deviceOs": this.deviceInfo,
-      "registeration_type":"0"
-    }
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
-
-  verifyOTP(){
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "otp": this.txtVerifyOTP
-    }
-
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.buttonText = "Send OTP";
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
 
 
 

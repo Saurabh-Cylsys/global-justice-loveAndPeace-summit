@@ -50,11 +50,5 @@ export class DelegateService {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
   }
 
-  sendOTPApi(body: any){
-    return this._apiHttpService.post(this._apiEndpointsService.getSendOTPEndpoint(),body);
-  }
 
-  verifyOTPApi(body: any){
-    return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
-  }
 }

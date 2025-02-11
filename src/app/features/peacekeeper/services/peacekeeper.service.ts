@@ -32,6 +32,14 @@ export class PeacekeeperService {
     )
   }
 
+  sendOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getSendOTPEndpoint(),body);
+  }
+
+  verifyOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
+  }
+
   generatePasswordApi(body:any){
     return this._apiHttpService.post(this._apiEndpointsService.generatePassword(), body)
 

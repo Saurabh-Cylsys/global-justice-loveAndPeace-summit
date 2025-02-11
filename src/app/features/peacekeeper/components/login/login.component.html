@@ -1,53 +1,129 @@
 <div class="loginBox">
   <div class="login-box">
-    <img src="assets/UIComponents/images/logo.gif" class="logo mt-3" alt="Logo">
+    <img
+      src="assets/UIComponents/images/logo.gif"
+      class="logo mt-3"
+      alt="Logo"
+    />
     <h3 class="login-heading">LOGIN</h3>
     <p class="text-muted">Login for peacekeeper only</p>
 
     <form [formGroup]="emailForm" (ngSubmit)="login()">
       <div class="mb-3">
-        <label for="email" class="mb-1">Email Address <span class="text-danger">*</span></label>
+        <label for="email" class="mb-1"
+          >Email Address <span class="text-danger">*</span></label
+        >
         <div class="input-group flex-nowrap border rounded">
           <!-- Email Input -->
           <input
             type="email"
             class="form-control border-0"
-            placeholder="abc@gmail.com"
+            placeholder="Please enter email"
             formControlName="email"
             required
             email
-          >
+          />
           <!-- Icon -->
           <span class="input-group-text border-0 icon" id="addon-wrapping">
             <i class="fa-solid fa-user"></i>
           </span>
         </div>
 
-        <!-- Validation Messages -->
-        <div *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="text-danger">
-          <div *ngIf="emailForm.get('email')?.hasError('required')">Email is required.</div>
-          <!-- <div *ngIf="emailForm.get('email')?.hasError('email')">Please enter a valid email address.</div> -->
+        <div
+          *ngIf="
+            emailForm.get('email')?.invalid && emailForm.get('email')?.touched
+          "
+          class="text-danger"
+        >
+          <div *ngIf="emailForm.get('email')?.hasError('required')">
+            Email is required.
+          </div>
         </div>
-
-        <!-- Optional Error Message Below Input -->
-        <small *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" class="error-message d-block text-start text-danger mt-1">
-          <img src="assets/UIComponents/images/peacekeeper/error.png" alt="Error Icon"> Please enter a valid email address.
-        </small>
       </div>
 
-        <!-- <div class="mb-3">
-            <label for="password" class="mb-1">Password <span class="text-danger">*</span></label>
-            <div class="input-group flex-nowrap border rounded">
-                <input type="password" class="form-control border-0" placeholder="Password" aria-label="" aria-describedby="addon-wrapping">
-                <span class="input-group-text border-0 icon" id="addon-wrapping"><i class="fa-solid fa-eye-slash"></i></span>
-            </div>
-            <small class="error-massage d-block text-start mt-1"><img src="assets/images/error.png" alt=""> Please enter a valid password</small>
-        </div> -->
+      <div class="input-group flex-nowrap border rounded">
+        <input
+          type="password"
+          class="form-control border-0"
+          placeholder="Please enter password"
+          maxlength="16"
+          minlength="8"
+        />
+      </div>
 
-        <button type="submit" [disabled]="emailForm.invalid" class="btn login w-100">Log in</button>
+      <div class="form-group mt-3">
+        <button
+        type="submit"
+        [disabled]="emailForm.invalid"
+        class="btn login w-100"
+      >
+        Log in
+      </button>
+      </div>
+
+        <div class="col-md-12 text-center">
+          <img _ngcontent-eiu-c29="" src="assets/UIComponents/images/divider.svg" alt="">
+        </div>
+
+      <div
+        [ngStyle]="{ display: isOTPReceive ? 'block' : 'none' }"
+        class="form-group fg-email col-md-12 col-sm-6 my-3"
+      >
+        <div class="">
+          <label class="col-md-12 no-padding p-0" for="profileurl"
+            >Verify OTP</label
+          >
+          <input
+            type="text"
+            name=""
+            maxlength="6"
+            [(ngModel)]="txtVerifyOTP"
+            [ngModelOptions]="{ standalone: true }"
+            id="linkedIn"
+            placeholder="Enter OTP here"
+            class="form-control w-100"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div
+        *ngIf="!isOTPReceive || timerExpired"
+        class="form-group fg-email col-md-12 col-sm-6 my-3"
+      >
+        <button type="button" [disabled]="!this.emailForm.value.email" class="btn btn-success w-100" (click)="sendOTP()">
+          {{ buttonText }}
+        </button>
+      </div>
+
+      <div *ngIf="isOTPReceive" class="form-group fg-email col-md-12 col-sm-6">
+        <div class="col-md-12 no-padding">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="verifyOTP()"
+            [disabled]="timerExpired"
+          >
+            Verify OTP
+          </button>
+          <p
+            *ngIf="isOTPReceive"
+            class="text-danger small mb-0"
+            style="font-size: 0.8rem"
+          >
+            OTP will expire in {{ formatTime(countdown) }}
+          </p>
+        </div>
+      </div>
+
+
+      <!-- <button
+        type="submit"
+        [disabled]="emailForm.invalid"
+        class="btn login w-100"
+      >
+        Log in
+      </button> -->
     </form>
-
-
-
   </div>
 </div>

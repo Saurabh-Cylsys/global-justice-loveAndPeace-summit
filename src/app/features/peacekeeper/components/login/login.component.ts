@@ -13,6 +13,14 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 export class LoginComponent {
 
   emailForm!: FormGroup;
+  ipAddress: string = "";
+  deviceInfo: any = "";
+  isOTPReceive: boolean = false;
+  txtVerifyOTP : string = ""
+  countdown: number = 100; // 5 minutes in seconds
+  timerExpired: boolean = false;
+  interval: any;
+  buttonText :string = 'Login with OTP'
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -25,6 +33,10 @@ export class LoginComponent {
     sessionStorage.clear();
     this.createLoginForm();
 
+    this.getIPAddress();
+
+    this.deviceInfo = this.getDeviceOS();
+
   }
 
   createLoginForm() {
@@ -32,6 +44,117 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]]
     });
   }
+
+  getIPAddress(){
+    this.sharedService.getIPAddress().subscribe({
+      next :(res:any)=>{
+        this.ipAddress = res.ip;
+      }
+    })
+  }
+
+  getDeviceOS(): string {
+    const userAgent = navigator.userAgent;
+    if (/android/i.test(userAgent)) return 'Android';
+    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
+    if (/Win/i.test(userAgent)) return 'Windows';
+    if (/Mac/i.test(userAgent)) return 'MacOS';
+    if (/Linux/i.test(userAgent)) return 'Linux';
+    return 'Unknown';
+  }
+
+  startTimer() {
+    if (this.interval) {
+      clearInterval(this.interval); // Clear any existing timer
+    }
+
+    this.timerExpired =false;
+    this.countdown = 100; // Reset countdown to 100 seconds
+    this.buttonText = "Resend OTP";
+
+    this.interval = setInterval(() => {
+      if (this.countdown > 0) {
+        this.countdown--;
+      } else {
+        this.timerExpired = true;
+        this.buttonText = "Resend OTP";
+        clearInterval(this.interval); // Stop the timer when it reaches 0
+      }
+    }, 1000);
+  }
+
+  ngOnDestroy() {
+    if (this.interval) {
+      clearInterval(this.interval); // Clear timer when component is destroyed
+    }
+  }
+
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+  }
+
+  sendOTP(){
+
+    if(this.emailForm.value.email == "" || this.emailForm.value.email == undefined) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+    else if (this.emailForm.controls['email'].invalid) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      return;
+    }
+
+    let body = {
+      "email": this.emailForm.value.email,
+      "deviceId": this.ipAddress,
+      "deviceOs": this.deviceInfo,
+      "registeration_type":"0"
+    }
+    this.ngxService.start();
+    this.peaceKeeperService.sendOTPApi(body).subscribe({
+      next :(res:any)=>{
+        console.log("Res",res);
+        this.ngxService.stop();
+        this.isOTPReceive = true;
+        this.timerExpired = false;
+        this.countdown = 100; // Reset countdown
+        this.startTimer();
+        this.sharedService.ToastPopup(res.message,'','success')
+      },
+      error: (err: any) => {
+        console.error("Error:", err);
+        this.ngxService.stop();
+      }
+    })
+  }
+
+  verifyOTP(){
+
+    let body = {
+      "email": this.emailForm.value.email,
+      "otp": this.txtVerifyOTP
+    }
+
+    this.peaceKeeperService.verifyOTPApi(body).subscribe({
+      next :(res:any)=>{
+        console.log("Res",res);
+        this.buttonText = "Send OTP";
+        this.isOTPReceive = false;
+        this.timerExpired = false;
+        this.sharedService.ToastPopup(res.message,'','success');
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err: any) => {
+        console.error("Error:", err);
+        this.ngxService.stop();
+      }
+    })
+  }
+
 
   login() {
 
