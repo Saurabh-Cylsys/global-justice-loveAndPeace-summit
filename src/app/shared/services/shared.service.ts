@@ -10,6 +10,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { META_CONFIG } from '../classes/meta.config';
 import CryptoJS from 'crypto-js';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +33,8 @@ export class SharedService {
     private meta: Meta,
     private titleService: Title,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -168,4 +170,8 @@ private getRouteData(): any {
   toggleSidebar() {
     this.collapsedState.next(!this.collapsedState.value);
   }
+  getIPAddress() {
+    return this._apiHttpService.get('https://api64.ipify.org?format=json')
+  }
+
 }

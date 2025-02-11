@@ -3,7 +3,6 @@ import { ApiEndpointsService } from "src/app/core/services/api-endpoints.service
 import { ApiHttpService } from "src/app/core/services/api-http.service";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -49,6 +48,13 @@ export class DelegateService {
   }
   postVerifySession(body: any) {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
+  }
 
+  sendOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getSendOTPEndpoint(),body);
+  }
+
+  verifyOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
   }
 }

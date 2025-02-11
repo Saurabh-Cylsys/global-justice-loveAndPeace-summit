@@ -316,4 +316,12 @@ export class ApiEndpointsService {
 
   }
 
+  public getSendOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_SEND_OTP);
+  }
+
+  public getVerifyOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_OTP);
+  }
+
 }
