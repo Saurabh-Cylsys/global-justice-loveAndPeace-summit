@@ -67,16 +67,17 @@
                     <input
                       formControlName="full_name"
                       type="text"
+                      id="fullName"
+                      #fullName
                       class="w-100 border-0 input-field"
                       (keypress)="ValidateAlpha($event)"
                       (input)="onInput($event, 'full_name')"
                       placeholder="Enter Full Name"
                       aria-label=""
                       aria-describedby="addon-wrapping"
-                      value="Hanan"
                     />
                     <span
-                      class="input-group-text border-0 icon"
+                      class="border-0 icon"
                       id="addon-wrapping"
                       ><i class="fa-solid fa-pencil"></i
                     ></span>
@@ -92,12 +93,12 @@
                   <small
                     class="text-danger"
                     *ngIf="getcontrol('full_name')?.errors?.['required']"
-                    >First name is required</small
+                    >Full name is required</small
                   >
                   <small
                     class="text-danger"
                     *ngIf="getcontrol('full_name')?.errors?.['minlength']"
-                    >First name must be at least 3 characters long.</small
+                    >Full name must be at least 3 characters long.</small
                   >
                 </div>
               </div>
@@ -108,13 +109,12 @@
                     >DOB : <span class="text-danger">*</span></label
                   >
                   <div class="input-group flex-nowrap rounded mt-1">
-                    <!-- <input formControlName="dob" type="date" class="w-100 border-0 input-field" value="2025-01-23"
-                                    placeholder="" aria-label="" aria-describedby="addon-wrapping"> -->
-
                     <input
                       type="text"
                       class="p-0 w-100 border-0 input-field"
                       placeholder="Select Date of birth"
+                      id="dob"
+                      #dob
                       formControlName="dob"
                       [minDate]="minDate1"
                       [maxDate]="maxDate1"
@@ -143,60 +143,20 @@
                   >
                 </div>
               </div>
-              <!-- <div class="col-md-6 p-3">
-                          <div class="mb-3 input">
-                              <label for="password" class="mb-1">Last Name <span
-                                      class="text-danger">*</span></label>
-                              <div class="input-group flex-nowrap rounded">
-                                  <input formControlName="lastName" type="text" class="w-100 border-0 input-field"
-                                  (keypress)="ValidateAlpha($event)"
-                                  (input)="onInput($event, 'lastName')"
-                                      placeholder="Enter Last Name" aria-label=""
-                                      aria-describedby="addon-wrapping" value="Sammak">
-                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
-                                          class="fa-solid fa-pencil"></i></span>
-                              </div>
-                          </div>
-                          <div
-                          *ngIf="
-                            getcontrol('lastName')?.errors &&
-                            getcontrol('lastName')?.touched
-                          "
-                        >
-                          <small
-                            class="text-danger"
-                            *ngIf="getcontrol('lastName')?.errors?.['required']"
-                            >Last name is required</small
-                          >
-                          <small
-                            class="text-danger"
-                            *ngIf="getcontrol('lastName')?.errors?.['minlength']"
-                            >Last name must be at least 3 characters
-                            long.</small
-                          >
-                        </div>
-                      </div> -->
 
               <div class="col-md-4 p-3">
                 <div class="mb-3 input">
-                  <label for="country" 
+                  <label for="country"
                     >Country : <span class="text-danger">*</span></label
                   >
                   <div class="input-group flex-nowrap rounded mt-2">
-                    <!-- <select formControlName="country" name="" id="" class="w-100 border-0 input-field"
-                                      style="background: inherit;">
-                                      <option value="['India','IN']">India</option>
-                                      <option value="['Nigeria','NG']">Nigeria</option>
-                                      <option value="['Afghanistan','AF']">Afghanistan</option>
-                                      <option value="['Ãƒâ€¦land Islands','AX']">Ãƒâ€¦land Islands</option>
-
-                                  </select> -->
-
                     <select
                       formControlName="country"
                       style="cursor: pointer"
                       class="form-select w-100 p-0 px-2"
                       required
+                      id="country"
+                      #country
                       data-error="Please select country"
                       autocomplete="off"
                       (change)="getCountrycode(code)"
@@ -233,18 +193,7 @@
                     >Mobile Number : <span class="text-danger">*</span></label
                   >
                   <div class="input-group flex-nowrap rounded">
-                    <!-- <select formControlName="mobileNumber" name="" id="" style="background: inherit; border: none; outline: none;">
-                                      <option value="+93">+93</option>
-                                      <option value="+355">+355</option>
-                                      <option value="+213">+213</option>
-                                      <option value="+1684">+1684</option>
-                                      <option value="+376">+376</option>
 
-                                  </select> &nbsp;-->
-                    <!-- <input type="text" class="w-100 border-0 input-field" placeholder=""
-                                      aria-label="" formControlName="mobileNumber" aria-describedby="addon-wrapping" value="" readonly>
-                                  <span class="input-group-text border-0 icon" id="addon-wrapping"><i
-                                          class="fa-solid fa-pencil"></i></span>  -->
                     <ngx-intl-tel-input
                       class="custom-width-container w-100 border-0 input-field"
                       [preferredCountries]="[
@@ -266,6 +215,9 @@
                       [maxLength]="12"
                       [(ngModel)]="mobile_number"
                       name="mobile_number"
+                      name="mobile_number"
+                      id="number_mobile1"
+                      #number_mobile1
                       formControlName="mobile_number"
                       (keydown)="onMobileKeyDown($event, mobile_number)"
                       (keypress)="keyPressNumbers($event, mobile_number)"
@@ -311,8 +263,9 @@
                       type="text"
                       class="w-100 border-0 input-field"
                       readonly
+                      id="email"
+                      #email
                       placeholder="Enter Email"
-                      value=""
                       autocomplete="off"
                       (keypress)="ValidateAlpha($event)"
                       (input)="onInput($event, 'email_id')"
@@ -347,7 +300,7 @@
               >
                 <button
                   class="btn btn-success px-3"
-                  (click)="updatePeacekeeper(fileInput)"
+                  (click)="updatePeacekeeper()"
                 >
                   Update
                 </button>

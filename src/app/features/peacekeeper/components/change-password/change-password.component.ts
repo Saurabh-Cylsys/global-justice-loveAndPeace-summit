@@ -25,13 +25,14 @@ private datePipe: DatePipe,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     ) {
-    
+
   }
 
   ngOnInit(): void {
     this.crateChangePasswordForm();
 
   }
+
   crateChangePasswordForm(){
     this.changePasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,7 +45,7 @@ private datePipe: DatePipe,
       ),
     });
   }
-  
+
   passwordMatchValidator(group: FormGroup) {
     debugger
     const password = group.get('password')?.value;
@@ -69,6 +70,7 @@ private datePipe: DatePipe,
       }
     };
   }
+
   getcontrol(name: any): AbstractControl | null {
     return this.changePasswordForm.get(name);
   }
@@ -80,31 +82,35 @@ private datePipe: DatePipe,
       this.showConfirmPassword = !this.showConfirmPassword;
     }
   }
+
   get f() {
     return this.changePasswordForm.controls;
   }
 
   onSubmit() {
-    debugger
-    this.submitted = true;
+
     if (this.changePasswordForm.invalid) {
       return;
     }
-    
-    const formData = this.changePasswordForm.value;
 
+    let body = {
+      "email": this.changePasswordForm.value.email,
+      "password": this.changePasswordForm.value.password,
+      "confirmPassword": this.changePasswordForm.value.confirmPassword
+    }
 
-    const EncryptData = this.sharedService.encryptData(formData);
-    const encryptedPayload = new FormData();
-    encryptedPayload.append('encrypted_data', EncryptData);
-
-    this.peaceKeeperService.changePasswordPeacekeeper(formData).subscribe(
-      (response:any) => {
-        console.log('Password changed successfully', response);
+    this.ngxService.start();
+    this.peaceKeeperService.generatePasswordApi(body).subscribe({
+      next : (res:any)=>{
+        console.log("Res",res);
+        this.ngxService.stop();
+        this.changePasswordForm.reset();
+        this.sharedService.ToastPopup(res.message,'','success');
       },
-      (error:any) => {
-        console.error('Error changing password', error);
+      error : (err)=>{
+        console.log("Error",err);
+        this.ngxService.stop();
       }
-    );
+    })
   }
 }

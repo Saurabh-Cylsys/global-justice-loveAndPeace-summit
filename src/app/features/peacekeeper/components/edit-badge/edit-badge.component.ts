@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, Renderer2, ViewChild } from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -27,10 +27,9 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 @Component({
   selector: 'app-edit-badge',
   templateUrl: './edit-badge.component.html',
-  styleUrls: ['./edit-badge.component.css']
+  styleUrls: ['./edit-badge.component.css'],
 })
 export class EditBadgeComponent {
-
   editBadgeForm!: FormGroup;
   PeaceBadgeData: any;
   disabledDates: Date[] = [];
@@ -76,11 +75,13 @@ export class EditBadgeComponent {
   display: string = '';
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
-  imageUrl: string | ArrayBuffer | null = 'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
+  imageUrl: string | ArrayBuffer | null =
+    'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
   isCollapsed = false;
   isMobileView = false;
 
-  @ViewChild(NgxIntlTelInputComponent, { static: false }) phoneInput?: NgxIntlTelInputComponent;
+  @ViewChild(NgxIntlTelInputComponent, { static: false })
+  phoneInput?: NgxIntlTelInputComponent;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -91,14 +92,19 @@ export class EditBadgeComponent {
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
+    private renderer: Renderer2
   ) {
-    this.sharedService.isCollapsed$.subscribe(state => {
+    this.sharedService.isCollapsed$.subscribe((state) => {
       this.isCollapsed = state;
     });
     const today = new Date();
 
     // Max date is 18 years ago from today
-    this.maxDate1 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    this.maxDate1 = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
 
     // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
@@ -112,8 +118,8 @@ export class EditBadgeComponent {
   ngOnInit() {
     this.createEditBadgeForm();
     this.dobValidator();
-    this.getAllCountrycode()
-    this.getPeaceBadgeData()
+    this.getAllCountrycode();
+    this.getPeaceBadgeData();
     this.checkWindowSize();
   }
 
@@ -122,99 +128,168 @@ export class EditBadgeComponent {
       full_name: ['', [Validators.required]],
       // lastName: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      mobile_number: ['', [Validators.required,
-      this.noRepeatingDigits(),
-      this.containsConsecutiveZeros(),
-      ]],
+      mobile_number: [
+        '',
+        [
+          Validators.required,
+          this.noRepeatingDigits(),
+          this.containsConsecutiveZeros(),
+        ],
+      ],
       email_id: ['', [Validators.required]],
-      dob: ['', [Validators.required, this.ageValidator]]
-
+      dob: ['', [Validators.required, this.ageValidator]],
     });
   }
 
-
   getPeaceBadgeData() {
-    debugger
-    let userData = JSON.parse(localStorage.getItem('userDetails') || '')
-    console.log(userData);
-    let peaceId = userData.peacekeeper_id
+    let userData = JSON.parse(localStorage.getItem('userDetails') || '');
+
+    let peaceId = userData.peacekeeper_id;
     let body = {
-      peace_id: peaceId
-    }
+      peace_id: peaceId,
+    };
     this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
       next: (res: any) => {
-        console.log("Res", res);
         if (res.success) {
           // this.sharedService.ToastPopup('PeacekeeperBadge fetched Successful','','success')
-          this.PeaceBadgeData = this.sharedService.decryptData(res.data)
-          console.log(this.PeaceBadgeData, 'PeaceBadgeData');
+          this.PeaceBadgeData = this.sharedService.decryptData(res.data);
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
-          this.imageUrl = this.PeaceBadgeData?.file_name
-
+          this.imageUrl = this.PeaceBadgeData?.file_name;
 
           const dateString = this.PeaceBadgeData.dob; // DD/MM/YYYY format
           const dateObject = new Date(dateString);
-          console.log(dateObject);
 
-
-          const phoneNumber = parsePhoneNumberFromString(this.PeaceBadgeData.mobile_number);
+          const phoneNumber = parsePhoneNumberFromString(
+            this.PeaceBadgeData.mobile_number
+          );
           if (phoneNumber) {
             const countryDialCode = phoneNumber.countryCallingCode; // e.g., 91
             const nationalNumber = phoneNumber.nationalNumber; // e.g., 8120926413
 
             this.setCountryByDialCode(countryDialCode);
-            setTimeout(() => {
-            }, 100);
+            setTimeout(() => {}, 100);
             this.editBadgeForm.patchValue({
               mobile_number: {
                 number: nationalNumber,
-                countryCode: this.country_codeISO
+                countryCode: this.country_codeISO,
               },
-
             });
           }
-
 
           this.editBadgeForm.patchValue({
             full_name: this.PeaceBadgeData.full_name,
             country: this.PeaceBadgeData.country,
             email_id: this.PeaceBadgeData.email_id,
-            dob: dateObject
-
+            dob: dateObject,
           });
-          console.log(this.editBadgeForm, 'editBadgeForm');
 
           this.ngxService.stop();
-
         }
-
-      }
-    })
+      },
+    });
   }
   setCountryByDialCode(dialCode: string) {
-
     if (this.phoneInput) {
       const countryList = this.phoneInput.allCountries;
-      const country = countryList.find(c => c.dialCode === dialCode);
+      const country = countryList.find((c) => c.dialCode === dialCode);
       if (country) {
         // this.phoneInput.selectedCountry = country;
         this.country_codeISO = country.iso2;
       }
-
-
     }
   }
 
-  updatePeacekeeper(fileInput: HTMLInputElement): void {
-    debugger
+  updatePeacekeeper(): void {
+    if (
+      !this.editBadgeForm.value.full_name?.trim() ||
+      this.editBadgeForm.value.full_name.trim().length < 3
+    ) {
+      this.renderer.selectRootElement('#fullName').focus();
+      this.sharedService.ToastPopup(
+        'Full Name must be at least 3 characters long',
+        '',
+        'error'
+      );
+      return;
+    } else if (
+      this.editBadgeForm.value.dob == '' ||
+      this.editBadgeForm.value.dob == undefined
+    ) {
+      this.renderer.selectRootElement('#dob').focus();
+      this.sharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
+      return;
+    } else if (
+      this.editBadgeForm.value.country == '' ||
+      this.editBadgeForm.value.country == undefined
+    ) {
+      setTimeout(() => {
+        const countryElement = this.renderer.selectRootElement(
+          '#country',
+          true
+        );
+        if (countryElement) {
+          countryElement.focus();
+        }
+      }, 100);
+      this.sharedService.ToastPopup('Please select country', '', 'error');
+      return;
+    }
+    // else if(this.editBadgeForm.value.email_id == "" || this.editBadgeForm.value.email_id == undefined) {
+    //   this.renderer.selectRootElement('#email').focus();
+    //   this.sharedService.ToastPopup("Please Enter Email ID",'','error');
+    //   return;
+    // }
+    // else if (this.editBadgeForm.controls['email_id'].invalid) {
+    //   this.renderer.selectRootElement('#email').focus();
+    //   this.sharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+    //   return;
+    // }
+    else if (
+      this.editBadgeForm.value.mobile_number == '' ||
+      this.editBadgeForm.value.mobile_number == undefined ||
+      this.editBadgeForm.value.mobile_number == null
+    ) {
+      setTimeout(() => {
+        const inputElement = document.querySelector(
+          '#number_mobile1 input'
+        ) as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error('Could not find mobile number input field');
+        }
+      }, 100);
+      this.sharedService.ToastPopup('Please Enter  Mobile Number', '', 'error');
+      return;
+    } else if (
+      this.editBadgeForm.controls['mobile_number'].errors &&
+      !this.editBadgeForm.controls['mobile_number'].errors?.[
+        'validatePhoneNumber'
+      ]?.valid
+    ) {
+      setTimeout(() => {
+        const inputElement = document.querySelector(
+          '#number_mobile1 input'
+        ) as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error('Could not find mobile number input field');
+        }
+      }, 100);
+      this.sharedService.ToastPopup(
+        'Please enter a valid mobile number for the selected country',
+        '',
+        'error'
+      );
+      return;
+    }
+
     const returnmobileNumber = this.editBadgeForm.value.mobile_number;
     const returnDOB = this.editBadgeForm.value.dob;
-    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
-    console.log(formattedMobileNumber);
-    console.log(this.phoneInput, 'phoneInput');
 
     this.editBadgeForm.patchValue({
       is_active: 1,
@@ -222,10 +297,8 @@ export class EditBadgeComponent {
         this.editBadgeForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-      dob: this.formattedDate
-
+      dob: this.formattedDate,
     });
-
 
     const FromData = {
       id: this.PeaceBadgeData.peacekeeper_id,
@@ -236,8 +309,8 @@ export class EditBadgeComponent {
       dob: this.formattedDate,
       Check_email: 1,
       is_active: 1,
-      url: this.PeaceBadgeData.url
-    }
+      url: this.PeaceBadgeData.url,
+    };
 
     const EncryptData = this.sharedService.encryptData(FromData);
     const encryptedPayload = new FormData();
@@ -251,10 +324,6 @@ export class EditBadgeComponent {
       );
     }
 
-
-
-    console.log(this.editBadgeForm.value);
-
     // Show loader
     this.ngxService.start();
 
@@ -264,14 +333,12 @@ export class EditBadgeComponent {
         if (response.success) {
           this.submitted = true;
           this.ngxService.stop();
-          console.log('response', response);
           this.peaceBadge = response.batch;
-          debugger
           const userData = {
             full_name: this.PeaceBadgeData.full_name,
             peacekeeper_id: this.PeaceBadgeData.peacekeeper_id,
             file_name: this.PeaceBadgeData?.file_name,
-          }
+          };
           // this.sharedService.setUserDetails(JSON.stringify(userData));
           localStorage.setItem('userDetails', JSON.stringify(userData));
           this.sharedService.ToastPopup('', response.message, 'success');
@@ -279,7 +346,7 @@ export class EditBadgeComponent {
           this.editBadgeForm.reset();
 
           this.selectedFile = null;
-          fileInput.value = '';
+          // fileInput.value = '';
           this.imageUrl = '';
           setTimeout(() => {
             window.location.reload();
@@ -302,15 +369,11 @@ export class EditBadgeComponent {
     );
   }
 
-
-
   getAllCountrycode() {
     this.peaceKeeperService.getAllCountrycode().subscribe(
       (res: any) => {
-        console.log('code', res.data);
         this.code = res.data;
         const countryToFind = 'India';
-
       },
       (err: any) => {
         console.log('error', err);
@@ -321,8 +384,8 @@ export class EditBadgeComponent {
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
-    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
+    this.formattedDate =
+      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
   get dob() {
@@ -335,7 +398,11 @@ export class EditBadgeComponent {
     const today = new Date();
 
     // Calculate the date 18 years ago from today
-    const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
     this.maxDate = eighteenYearsAgo.toISOString().split('T')[0]; // Max date = 18 years ago
     this.minDate = `${today.getFullYear() - 120}-01-01`; // Min date = 120 years ago
 
@@ -353,7 +420,11 @@ export class EditBadgeComponent {
     }
 
     const today = new Date();
-    const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
 
     // If selected date is after or on the date 18 years ago, it's invalid
     if (selectedDate > eighteenYearsAgo) {
@@ -370,7 +441,6 @@ export class EditBadgeComponent {
 
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     // Check if the pressed key is the space bar and the input is empty
-    console.log('form', this.editBadgeForm.controls['mobile_number']);
 
     if (inputValue !== null) {
       if (event.key === ' ' && inputValue.trim() === '') {
@@ -379,9 +449,7 @@ export class EditBadgeComponent {
         if (inputValue.number.length < 7) {
           this.mobile_numberVal = true;
           // event.preventDefault()
-
         } else {
-          console.log('form', this.editBadgeForm.controls['mobile_number'].errors?.['validatePhoneNumber']['valid']);
           this.mobile_numberVal = false;
         }
       }
@@ -411,7 +479,6 @@ export class EditBadgeComponent {
     };
   }
 
-
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
     //
     if (inputValue !== null) {
@@ -431,7 +498,6 @@ export class EditBadgeComponent {
     }
   }
 
-
   /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
     const control = this.editBadgeForm.controls['mobile_number'];
@@ -441,7 +507,6 @@ export class EditBadgeComponent {
       } else {
         return 'Invalid mobile number for selected country.';
       }
-
     }
     return ''; // Ensure a value is always returned
   }
@@ -458,25 +523,23 @@ export class EditBadgeComponent {
     return true;
   }
 
-
   getCountrycode(code: any) {
     let countryName = this.editBadgeForm.value.country;
     const indiaCodeObject = code.find((item: any) => item.name === countryName);
-    console.log(indiaCodeObject);
 
     this.editBadgeForm.patchValue({
-
       country_code: indiaCodeObject.code,
     });
   }
 
   onInput(event: any, controlName: string) {
     const trimmedValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
-    this.editBadgeForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
+    this.editBadgeForm.controls[controlName].setValue(trimmedValue, {
+      emitEvent: false,
+    });
   }
 
-
-  //image 
+  //image
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -492,11 +555,8 @@ export class EditBadgeComponent {
     }
   }
 
-
   onFileChange(event: any): void {
-
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent, 'on select');
     this.imageFileName = event.target.files[0].name;
     const file = event.target.files[0];
 
@@ -507,14 +567,22 @@ export class EditBadgeComponent {
 
       // Validate the file type
       if (!validExtensions.includes(file.type)) {
-        this.sharedService.ToastPopup('', 'Invalid file type! Please select a JPG or PNG file.', 'error')
+        this.sharedService.ToastPopup(
+          '',
+          'Invalid file type! Please select a JPG or PNG file.',
+          'error'
+        );
         event.target.value = ''; // Reset the file input
         this.is_selectedFile = false;
         return;
       }
       // Validate the file size
       if (file.size < minSize || file.size > maxSize) {
-        this.sharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+        this.sharedService.ToastPopup(
+          '',
+          'Invalid file size! Please select an image between 200KB to 5MB.',
+          'error'
+        );
         event.target.value = ''; // Reset the file input
         this.is_selectedFile = false;
         return;
@@ -522,21 +590,15 @@ export class EditBadgeComponent {
 
       this.isPeaceOn = 2;
       this.showPopup = true;
-      this.display = 'block'
+      this.display = 'block';
       this.formdisplay = false;
-
-    }
-    else {
+    } else {
       console.log('No file selected.');
     }
-
-
   }
-
 
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
-    console.log(this.imageFileName, 'cropping');
 
     // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
     fetch(this.croppedImage)
@@ -554,10 +616,6 @@ export class EditBadgeComponent {
           otherData: 'your other data here',
         };
 
-        // For example, logging the file details
-        console.log(file);
-        console.log(payload);
-
         const newFile = file;
         if (newFile) {
           this.selectedFile = newFile;
@@ -568,7 +626,6 @@ export class EditBadgeComponent {
           this.imageUrl = e.target.result; // Set the preview URL
         };
         reader.readAsDataURL(newFile);
-        console.log('Selected file:', this.selectedFile);
 
         // Proceed with your request or any other operation with 'payload'
       })
@@ -612,26 +669,26 @@ export class EditBadgeComponent {
       this.applyZoom();
     }
   }
-    // Apply Zoom
-    applyZoom(): void {
-      this.transform = {
-        ...this.transform,
-        scale: this.zoomLevel, // Apply zoom level
-      };
+  // Apply Zoom
+  applyZoom(): void {
+    this.transform = {
+      ...this.transform,
+      scale: this.zoomLevel, // Apply zoom level
+    };
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
     }
-  
-checkWindowSize(): void {
-      if (window.innerWidth <= 900) {
-        this.sharedService.isMobileView.next(true);
-        this.isMobileView = true;
-      } else {
-        this.sharedService.isMobileView.next(false);
-        this.isMobileView = false;
-      }
-    }
-    // Listen to window resize events
-    @HostListener('window:resize', ['$event'])
-    onResize(event: any): void {
-      this.checkWindowSize();
-    }
+  }
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
 }

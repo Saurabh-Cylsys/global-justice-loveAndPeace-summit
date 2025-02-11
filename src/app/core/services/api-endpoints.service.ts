@@ -293,17 +293,12 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_PEACKEEPER_BADGE_BY_ID);
   }
 
-  
+
   public updatePeacekeeperEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_UPDATE_PEACEKEEPER);
   }
 
-  
-  public changePasswordPeacekeeperEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CHANGE_PASSWORD_PEACEKEEPER);
-  }
 
-  
   public getAllCountryForDelegatesEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);
   }
@@ -314,6 +309,11 @@ export class ApiEndpointsService {
 
   public getCityByStateEndpoint(country_id:any): string {
     return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
+  }
+
+  public generatePassword() : string{
+    return this.createUrl(this._constants.API_ENDPOINT_GENEARTE_PASSWORD);
+
   }
 
 }
