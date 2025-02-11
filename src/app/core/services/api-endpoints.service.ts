@@ -295,4 +295,12 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
   }
 
+  public getSendOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_SEND_OTP);
+  }
+
+  public getVerifyOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_OTP);
+  }
+
 }
