@@ -443,7 +443,7 @@ export class WebService {
       // "S_No": 17,
       View: '',
       Profile_Photo: 'speaker34.png',
-      Name: 'Nii Tackie Tackie Tsuru 2, King, His Royal Majesty ',
+      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
       Country: 'GHANA',
       Credentials: 'Royalty',
     },
@@ -472,14 +472,13 @@ export class WebService {
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
     },
-    {
-      // "S_No": 28,
-      View: '',
-      Profile_Photo: 'speaker35.png',
-      Name: 'Paco Soleil',
-      Country: 'SPAIN',
-      Credentials: 'Artist, Peace Painter (live performance)',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker35.png',
+    //   Name: 'Paco Soleil',
+    //   Country: 'SPAIN',
+    //   Credentials: 'Artist, Peace Painter (live performance)',
+    // },
     // {
 
     //   View: '',
@@ -489,6 +488,14 @@ export class WebService {
     //   Credentials:
     //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
     // },
+    {
+      // "S_No": 30,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Rahul V Karad, Dr',
+      Country: 'INDIA',
+      Credentials: 'Executive President, MIT World Peace University',
+    },
     {
       // "S_No": 30,
       View: 'rina',
@@ -524,14 +531,7 @@ export class WebService {
       Credentials: 'Prime Minister',
     },
     // list 17
-    {
-      // "S_No": 33,
-      View: '',
-      Profile_Photo: 'speaker37.png',
-      Name: 'Sara Al Madani',
-      Country: 'UAE',
-      Credentials: 'TV personality, entrepreneur',
-    },
+    
     {
       // "S_No": 33,
       View: '',
@@ -547,6 +547,14 @@ export class WebService {
       Name: 'Sanjeev Kapoor',
       Country: 'INDIA',
       Credentials: 'World Renowned Chef',
+    },
+    {
+      // "S_No": 33,
+      View: '',
+      Profile_Photo: 'speaker37.png',
+      Name: 'Sara Al Madani',
+      Country: 'UAE',
+      Credentials: 'TV personality, entrepreneur',
     },
     {
       // "S_No": 33,
@@ -1048,7 +1056,7 @@ export class WebService {
       // "S_No": 17,
       View: '',
       Profile_Photo: 'speaker34.png',
-      Name: 'Nii Tackie Tackie Tsuru 2, King, His Royal Majesty ',
+      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
       Country: 'GHANA',
       Credentials: 'Royalty',
     },
@@ -1077,14 +1085,13 @@ export class WebService {
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
     },
-    {
-      // "S_No": 28,
-      View: '',
-      Profile_Photo: 'speaker35.png',
-      Name: 'Paco Soleil',
-      Country: 'SPAIN',
-      Credentials: 'Artist, Peace Painter (live performance)',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker35.png',
+    //   Name: 'Paco Soleil',
+    //   Country: 'SPAIN',
+    //   Credentials: 'Artist, Peace Painter (live performance)',
+    // },
     // {
 
     //   View: '',
@@ -1094,6 +1101,14 @@ export class WebService {
     //   Credentials:
     //     'Badminton World Champion (2019) (final confirmation based on tournament schedule)',
     // },
+    {
+      // "S_No": 30,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Rahul V Karad, Dr',
+      Country: 'INDIA',
+      Credentials: 'Executive President, MIT World Peace University',
+    },
     {
       // "S_No": 30,
       View: 'rina',
@@ -1129,14 +1144,7 @@ export class WebService {
       Credentials: 'Prime Minister',
     },
     // list 17
-    {
-      // "S_No": 33,
-      View: '',
-      Profile_Photo: 'speaker37.png',
-      Name: 'Sara Al Madani',
-      Country: 'UAE',
-      Credentials: 'TV personality, entrepreneur',
-    },
+    
     {
       // "S_No": 33,
       View: '',
@@ -1152,6 +1160,14 @@ export class WebService {
       Name: 'Sanjeev Kapoor',
       Country: 'INDIA',
       Credentials: 'World Renowned Chef',
+    },
+    {
+      // "S_No": 33,
+      View: '',
+      Profile_Photo: 'speaker37.png',
+      Name: 'Sara Al Madani',
+      Country: 'UAE',
+      Credentials: 'TV personality, entrepreneur',
     },
     {
       // "S_No": 33,
@@ -1781,7 +1797,7 @@ export class WebService {
             // "S_No": 17,
             View: '',
             Profile_Photo: 'speaker34.png',
-            Name: 'Nii Tackie Tackie Tsuru 2, King, His Royal Majesty ',
+            Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
@@ -1828,13 +1844,20 @@ export class WebService {
         speakers: [
           // list 17
 
+          // {
+          //   View: '',
+          //   Profile_Photo: 'speaker35.png',
+          //   Name: 'Paco Soleil',
+          //   Country: 'SPAIN',
+          //   Credentials: 'Artist, Peace Painter (live performance)',
+          // },
           {
-            // "S_No": 28,
+            // "S_No": 30,
             View: '',
-            Profile_Photo: 'speaker35.png',
-            Name: 'Paco Soleil',
-            Country: 'SPAIN',
-            Credentials: 'Artist, Peace Painter (live performance)',
+            Profile_Photo: null,
+            Name: 'Rahul V Karad, Dr',
+            Country: 'INDIA',
+            Credentials: 'Executive President, MIT World Peace University',
           },
           {
             // "S_No": 30,
@@ -1880,14 +1903,13 @@ export class WebService {
             Credentials: 'Prime Minister',
           },
 
-
           {
             // "S_No": 33,
             View: '',
-            Profile_Photo: 'speaker37.png',
-            Name: 'Sara Al Madani',
-            Country: 'UAE',
-            Credentials: 'TV personality, entrepreneur',
+            Profile_Photo: 'speaker36.png',
+            Name: 'Sanjay Khan',
+            Country: 'INDIA',
+            Credentials: 'Producer, Director, & Actor',
           },
 
 
@@ -1897,14 +1919,7 @@ export class WebService {
         speakers: [
           // list 19
 
-          {
-            // "S_No": 33,
-            View: '',
-            Profile_Photo: 'speaker36.png',
-            Name: 'Sanjay Khan',
-            Country: 'INDIA',
-            Credentials: 'Producer, Director, & Actor',
-          },
+          
           {
             // "S_No": 34,
             View: '',
@@ -1914,7 +1929,14 @@ export class WebService {
             Credentials: 'World Renowned Chef',
           },
 
-
+          {
+            // "S_No": 33,
+            View: '',
+            Profile_Photo: 'speaker37.png',
+            Name: 'Sara Al Madani',
+            Country: 'UAE',
+            Credentials: 'TV personality, entrepreneur',
+          },
 
           {
             // "S_No": 33,
