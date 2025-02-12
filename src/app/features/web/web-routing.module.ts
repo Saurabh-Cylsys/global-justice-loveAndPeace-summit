@@ -20,6 +20,7 @@ import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
 import { HumanValuesComponent } from './blog/human-values/human-values.component';
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
 
 const routes: Routes = [
   {
@@ -132,6 +133,10 @@ const routes: Routes = [
       {
         path: 'blog/how-to-use-social-media',
         component: HowToUseSocialMediaComponent,
+      },
+      {
+        path: 'sitemap',
+        component: SitemapComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
