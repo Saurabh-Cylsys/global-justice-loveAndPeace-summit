@@ -139,6 +139,23 @@ export class LoginComponent {
 
   verifyOTP(){
 
+    if(this.emailForm.value.email == "" || this.emailForm.value.email == undefined) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+    else if (this.emailForm.controls['email'].invalid) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      return;
+    }
+    else if (!this.txtVerifyOTP) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup('Please enter OTP', '', 'error');
+      return;
+    }
+
+
     let body = {
       "email": this.emailForm.value.email,
       "otp": this.txtVerifyOTP
@@ -151,6 +168,7 @@ export class LoginComponent {
         this.isOTPReceive = false;
         this.timerExpired = false;
         this.sharedService.ToastPopup(res.message,'','success');
+        this.peaceKeeperService.setToken('authToken');
         this.router.navigate(['/dashboard']);
       },
       error: (err: any) => {
@@ -192,6 +210,7 @@ export class LoginComponent {
           }
           // Store the encrypted token
           this.sharedService.setJWTToken(decreptedToken);
+          this.peaceKeeperService.setToken('authToken');
           this.sharedService.setUserDetails(JSON.stringify(userData));
           this.ngxService.stop();
 

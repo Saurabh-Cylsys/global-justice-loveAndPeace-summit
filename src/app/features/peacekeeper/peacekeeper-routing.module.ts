@@ -9,6 +9,7 @@ import { SentInvitationComponent } from './components/sent-invitation/sent-invit
 import { ContactListComponent } from './components/contact-list/contact-list.component';
 import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 const routes: Routes = [
 
@@ -17,13 +18,13 @@ const routes: Routes = [
     component: PeacekeeperMainComponent,
     children: [
       { path: 'login', component: LoginComponent },
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'edit-badge', component: EditBadgeComponent },
-      { path: 'invitation-List', component: InvitationListComponent },
-      { path: 'sent-invitation', component: SentInvitationComponent },
-      { path: 'contact-list', component: ContactListComponent },
-      { path: 'change-password', component: ChangePasswordComponent },
-      { path: 'upload-contacts', component: UploadContactsComponent }
+      { path: 'dashboard', component: DashboardComponent ,canActivate: [AuthGuard]},
+      { path: 'edit-badge', component: EditBadgeComponent ,canActivate: [AuthGuard]},
+      // { path: 'invitation-List', component: InvitationListComponent ,canActivate: [AuthGuard]},
+      { path: 'sent-invitation', component: SentInvitationComponent ,canActivate: [AuthGuard] },
+      // { path: 'contact-list', component: ContactListComponent },
+      { path: 'change-password', component: ChangePasswordComponent ,canActivate: [AuthGuard]},
+      // { path: 'upload-contacts', component: UploadContactsComponent }
     ],
   },
 

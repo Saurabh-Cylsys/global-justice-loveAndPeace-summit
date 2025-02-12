@@ -8,6 +8,21 @@ import { ApiHttpService } from 'src/app/core/services/api-http.service';
 })
 export class PeacekeeperService {
 
+  private readonly TOKEN_KEY = 'authToken';
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem(this.TOKEN_KEY);
+    return !!token; // Check if token exists
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
   constructor(private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
     private _toastr: ToastrService) { }
