@@ -33,6 +33,7 @@ import { SwiperModule } from 'swiper/angular';
 import { HumanValuesComponent } from './blog/human-values/human-values.component';
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
+import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SitemapComponent } from './sitemap/sitemap.component';
     CustomePipePipe,
     HumanValuesComponent,
     HowToUseSocialMediaComponent,
-    SitemapComponent
+    SitemapComponent,
+    DownloadApplicationsComponent
 
     // WhoShouldAttendAndWhyComponent,
 
