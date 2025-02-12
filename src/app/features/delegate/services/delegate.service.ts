@@ -57,4 +57,13 @@ export class DelegateService {
   verifyOTPApi(body: any){
     return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
   }
+
+  getRelationDataApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getLookupEndpoint(),body);
+  }
+
+  getNominationProfileApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getCreateNominationProfileEndpoint(),body);
+  }
+
 }

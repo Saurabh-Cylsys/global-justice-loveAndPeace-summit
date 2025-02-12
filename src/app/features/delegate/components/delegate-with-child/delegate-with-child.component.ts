@@ -76,6 +76,20 @@ export class DelegateWithChildComponent {
   timerExpired: boolean = false;
   interval: any;
   buttonText :string = 'Send OTP'
+  nominateChild: string = '';
+  nomineeName: string = '';
+  nomineeDob: string = '';
+  nomineeEmail: string = '';
+  nomineeRelation: string = '';
+  relationData : any = [];
+  instituteName : string =""
+  delegateId: any;
+  nomineeAge: number = 0;
+  userAge : number = 0;
+  nominee_mobile_number : any = "";
+  userType: string = '';
+  showNomineeForm: boolean = false;
+  userDob: string = "";
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -97,24 +111,16 @@ export class DelegateWithChildComponent {
   ) {
     this.fullURL = window.location.href;
 
-    const today = new Date();
-
-    // Max date is 18 years ago from today
-    this.maxDate1 = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // Min date is 120 years ago from today
-    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
+
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
+
   get instagramProfileControl() {
     return this.registrationForm.get('instagram_profile');
   }
+
   isInvalidInstagramProfile() {
     return (
       this.instagramProfileControl.hasError('pattern') &&
@@ -144,9 +150,6 @@ export class DelegateWithChildComponent {
     // this.getdates()
     this.getAllCountries();
     // this.getAllCountrycode()
-    this.getIPAddress();
-
-    this.deviceInfo = this.getDeviceOS();
   }
 
   createForm() {
@@ -154,7 +157,7 @@ export class DelegateWithChildComponent {
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      dob: ['', [Validators.required, this.ageValidator]],
+      dob: ['', [Validators.required]],
       country_code: [''],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email_id: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -182,27 +185,7 @@ export class DelegateWithChildComponent {
     });
   }
 
-  ageValidator(control: FormControl) {
-    const selectedDate = new Date(control.value);
 
-    if (isNaN(selectedDate.getTime())) {
-      return { invalidDate: true };
-    }
-
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // If selected date is after or on the date 18 years ago, it's invalid
-    if (selectedDate > eighteenYearsAgo) {
-      return { ageError: 'Date must be at least 18 years ago' };
-    }
-
-    return null; // Valid date
-  }
 
   isDisabledDate(date: Date): boolean {
     const today = new Date();
@@ -262,11 +245,79 @@ export class DelegateWithChildComponent {
     );
   }
 
-  onDateChange(event: string): void {
-    // Convert the date format
-    const parsedDate = new Date(event);
-    this.formattedDate =
-      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+  // onDateChange(event: string): void {
+
+  //   if (!event) return;
+
+  // const dob = new Date(event);
+  // const today = new Date();
+
+  // let age = today.getFullYear() - dob.getFullYear();
+  // const monthDiff = today.getMonth() - dob.getMonth();
+  // const dayDiff = today.getDate() - dob.getDate();
+
+  // if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+  //   age--;
+  // }
+
+  //   this.nomineeAge = age;
+  //   const parsedDate = new Date(event);
+  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+  // }
+
+  onDateChange(event: string, field: 'dob' | 'nomineeDob'): void {
+    if (!event) return; // Handle empty date input
+
+    const dob = new Date(event);
+    const today = new Date();
+
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    const dayDiff = today.getDate() - dob.getDate();
+
+    // Adjust age if the birthday hasn't occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+
+    if (field === 'dob') {
+      this.userAge = age;
+      this.userDob = event;
+      console.log("User Age:", this.userAge);
+    } else if (field === 'nomineeDob') {
+      this.nomineeAge = age;
+      this.nomineeDob = event;
+      console.log("Nominee Age:", this.nomineeAge);
+    }
+
+
+    const formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+    // 🔹 Validation Logic
+    if (this.userType === 'student') {
+      if (field === 'dob' && this.userAge >= 21) {
+        this.registrationForm.patchValue({
+          dob: this.registrationForm.value.dob,
+        })
+        this.SharedService.ToastPopup('As a Student, your age must be less than 21','','error');
+        return;
+        // this.userDob = ''; // Clear invalid input
+      } else if (field === 'nomineeDob' && this.userAge <= 21) {
+        this.SharedService.ToastPopup('Your nominee must be older than 21.','','error');
+        return ;
+      }
+    } else if (this.userType === 'adult') {
+      if (field === 'dob' && this.nomineeAge < 21) {
+        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.','','error');
+        return;
+        // alert('As an Adult, your age must be 21 or older.');
+        // this.userDob = ''; // Clear invalid input
+      } else if (field === 'nomineeDob' && this.nomineeAge >= 21) {
+        this.SharedService.ToastPopup('Your nominee must be younger than 21..','','error');
+        return;
+      }
+    }
   }
 
   getAllCountries() {
@@ -417,8 +468,6 @@ onProfession2Input(event: Event) {
   // Set the cleaned value back to the input field
   this.registrationForm.controls['profession_2'].setValue(inputValue, { emitEvent: false });
 }
-
-
 
   validateAlpha(event: any) {
     const allowedPattern = /^[a-zA-Z\s\-'_‘]$/;
@@ -687,6 +736,31 @@ onProfession2Input(event: Event) {
 
   submitData(): void {
 
+    if (!this.userDob || !this.nomineeDob) {
+      this.SharedService.ToastPopup('Please select both DOB fields.', '', 'error');
+      return;
+    }
+
+    if (this.userType === 'student') {
+      if (this.userAge >= 21) {
+        this.SharedService.ToastPopup('As a Student, your age must be less than 21.', '', 'error');
+        return;
+      }
+      if (this.nomineeAge <= 21) {
+        this.SharedService.ToastPopup('Your nominee must be older than 21.', '', 'error');
+        return;
+      }
+    } else if (this.userType === 'adult') {
+      if (this.userAge < 21) {
+        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.', '', 'error');
+        return;
+      }
+      if (this.nomineeAge >= 21) {
+        this.SharedService.ToastPopup('Your nominee must be younger than 21.', '', 'error');
+        return;
+      }
+    }
+
     if(!this.registrationForm.value.title || this.registrationForm.value.title.length < 2){
       this.renderer.selectRootElement('#title').focus();
       this.SharedService.ToastPopup("Title must be at least 2 characters long.", '', 'error');
@@ -821,8 +895,29 @@ onProfession2Input(event: Event) {
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
 
+            this.delegateId = result.delegate_id;
+
+            if(this.delegateId){
+              let body = {
+                "delegate_id": this.delegateId,
+                "nomination_name": this.nomineeName,
+                "relation_id": this.nomineeRelation,
+                "dob": this.nomineeDob,
+                "email": this.nomineeEmail,
+                "mobile_no": this.nominee_mobile_number,
+                "institution": this.instituteName
+              }
+              this.delegateService.getNominationProfileApi(body).subscribe({
+                next : (res)=>{
+                  console.log("Res",res);
+
+                }
+              })
+            }
+
             setTimeout(() => {
               console.log('get payment URL', result.url);
+
               this.ngxService.stop();
               if (result.url) {
                 window.location.href = result.url; // Redirect to Stripe Checkout
@@ -1049,4 +1144,31 @@ onProfession2Input(event: Event) {
       }
     })
   }
+
+  getRelationData(){
+    let body = {
+       "parent_code":"NOMINATION",
+       "type":"ANSWER"
+    }
+    this.delegateService.getRelationDataApi(body).subscribe({
+      next : (res)=>{
+        console.log("Res",res);
+        this.relationData = res;
+      }
+    })
+  }
+
+  onUserTypeChange(selectedType: string): void {
+    this.userType = selectedType;
+    console.log('User Type Selected:', this.userType);
+    this.registrationForm.get('dob')?.updateValueAndValidity(); // Revalidate on user type change
+
+  }
+
+  // if select student => then nominee form NomeneeDOB validation should  be greater than 21 and another Form field DOB should be less than 21
+
+  // if select adult => then nominee form NomeneeDOB should validation be less than 21 and Form field DOB should greather than 21
+
+
+
 }

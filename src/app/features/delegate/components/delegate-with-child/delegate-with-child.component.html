@@ -12,6 +12,7 @@
           <h2 class="pt-lg-4 text-center fw-600">Delegate Registration</h2>
 
           <div class="clearfix"></div>
+
           <div class="clearfix">
             <div id="regformcontainer">
               <div class="clearfix"></div>
@@ -20,25 +21,343 @@
                 (ngSubmit)="submitData()"
                 autocomplete="off"
               >
+
                 <div
                   class="clearfix section7 p-lg-5 position-relative"
                   style="z-index: 1"
                 >
                   <div class="form-step-wrapper" id="formstep-1">
                     <div class="panel panel-default reg-panel section_1">
+
                       <div class="panel-body">
+
                         <div id="common-field-row-con" class="row mx-0">
+
+                          <div class="row g-2 mt-3">
+
+                            <div class="col-md-12">
+                              <h6>
+                                Are you Adult or Student<span
+                                  class="form-label-span"
+                                  style="color: #ff0000"
+                                >
+                                  </span
+                                >
+                              </h6>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input mt-2"
+                                type="radio"
+                                  id="adult"
+                                  value="adult"
+                                  [(ngModel)]="userType"
+                                  [ngModelOptions]="{standalone: true}"
+                                  name="userType"
+                                  (change)="onUserTypeChange('adult')"
+                              />
+                              <label class="form-check-label" for="adult">Adult</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input mt-2"
+                                type="radio"
+                                id="student"
+                                value="student"
+                                [(ngModel)]="userType"
+                                [ngModelOptions]="{standalone: true}"
+                                name="userType"
+                                (change)="onUserTypeChange('student')"
+                              />
+                              <label class="form-check-label" for="student">Student</label>
+                            </div>
+                          </div>
+
+                          <div class="row g-2 mt-3" *ngIf="userType === 'student' || userType === 'adult' ">
+
+                            <div class="col-md-12">
+                              <h6>
+                                Nominee Details<span
+                                  class="form-label-span"
+                                >
+                                  </span
+                                >
+                              </h6>
+                            </div>
+
+
+                          <div class="row g-2 mt-2 mb-5">
+
+                            <div class="col-md-6">
+                              <div class="">
+                                <label
+                                class="col-md-12 no-padding p-0"
+                                for="child_name"
+                                >Name<span
+                                  class="form-label-span"
+                                  style="color: #ff0000"
+                                >
+                                  *</span
+                                ></label
+                              >
+                                <input
+                                  type="text"
+                                  name="child_name"
+                                  id="child_name"
+                                  placeholder="Enter Name"
+                                  class="form-control p-0"
+                                  [(ngModel)]="nomineeName" [ngModelOptions]="{standalone: true}"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="">
+
+                                <label
+                                class="col-md-12 no-padding p-0"
+                                for="dob"
+                                >Date Of Birth<span
+                                  class="form-label-span"
+                                  style="color: #ff0000"
+                                >
+                                  *</span
+                                ></label
+                              >
+                                <input
+                                  type="text"
+                                  name="childDob"
+                                  class="form-control p-0"
+                                  [(ngModel)]="nomineeDob"
+                                  (ngModelChange)="onDateChange($event, 'nomineeDob')"
+                                  [ngModelOptions]="{standalone: true}"
+                                    placeholder="Select Date of birth"
+                                    id="dob"
+                                    #dob
+                                    [minDate]="minDate1"
+                                    [maxDate]="maxDate1"
+                                    (keydown)="disableManualInput($event)"
+                                    (keydown.tab)="openDatepicker()"
+                                    bsDatepicker
+                                    [bsConfig]="{
+                                      isAnimated: true,
+                                      dateInputFormat: 'DD/MM/YYYY',
+                                      showWeekNumbers: false,
+                                      containerClass: colorTheme
+                                    }"
+                                    readonly
+                                />
+
+                                <!-- <div class="text-danger" *ngIf="userType === 'student' && nomineeAge <= 21">
+                                  Students must be younger than 21.
+                                </div>
+
+                                <div class="text-danger" *ngIf="userType === 'adult' && nomineeAge <= 21">
+                                  Adults must be 21 or older.
+                                </div> -->
+
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="">
+                                <label
+                                class="col-md-12 no-padding p-0"
+                                for="dob"
+                                >Email<span
+                                for="email"
+                                  class="form-label-span"
+                                  style="color: #ff0000"
+                                >
+                                  *</span
+                                ></label
+                              >
+                                <input
+                                  name="email"
+                                  id="email"
+                                  class="form-control p-0"
+                                  [(ngModel)]="nomineeEmail" [ngModelOptions]="{standalone: true}"
+                                  (input)="onInput($event, 'email_id')"
+                                    type="email"
+                                    #email
+                                    placeholder="Enter your email"
+                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                    required
+                                    (keydown)="onKeyDown($event, 'email')"
+                                    (paste)="onEmailPaste($event)"
+                                    maxlength="125"
+                                    autocomplete="off"
+                                    data-error="Please enter valid email id"
+                                />
+                              </div>
+                            </div>
+
+                            <div
+                              class="form-group fg-mobile col-md-6 col-sm-6 my-3"
+                            >
+                              <div class="row no-padding">
+                                <div
+                                  class="form-group form-group-inner mobile-number"
+                                >
+                                  <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="mobile1"
+                                    >Mobile Number<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                  <div class="">
+                                    <ngx-intl-tel-input
+                                      class="custom-width-container"
+                                      [preferredCountries]="[
+                                        CountryISO.India,
+                                        CountryISO.UnitedStates,
+                                        CountryISO.UnitedKingdom
+                                      ]"
+                                      [enableAutoCountrySelect]="false"
+                                      [enablePlaceholder]="false"
+                                      [searchCountryFlag]="true"
+                                      [searchCountryField]="[
+                                        SearchCountryField.Iso2,
+                                        SearchCountryField.Name
+                                      ]"
+                                      [selectFirstCountry]="false"
+                                      [selectedCountryISO]="
+                                        CountryISO.India
+                                      "
+                                      [maxLength]="12"
+                                      [phoneValidation]="true"
+                                      name="mobile_number"
+                                      id="number_mobile1"
+                                      #number_mobile1
+                                      [separateDialCode]="true"
+                                      [(ngModel)]="nominee_mobile_number"
+                                      [ngModelOptions]="{standalone: true}"
+                                      (paste)="onPasteMobileNumber($event)"
+                                      autocomplete="off"
+                                      (keydown)="
+                                        onMobileKeyDown(
+                                          $event,
+                                          mobile_number
+                                        )
+                                      "
+                                      (keypress)="
+                                        keyPressNumbers(
+                                          $event,
+                                          mobile_number
+                                        )
+                                      "
+                                    ></ngx-intl-tel-input>
+                                  </div>
+                                  <small
+                                    class="text-danger"
+                                    *ngIf="mobile_numberVal"
+                                  >
+                                    (Country code + Mobile number) will be 7
+                                    to 15 digits based on country.
+                                  </small>
+                                  <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
+                                      long.</p> -->
+                                </div>
+                                <div
+                                  class="form-group form-group-inner mobile-number"
+                                >
+                                  <div class="help-block with-errors"></div>
+                                  <div
+                                    *ngIf="
+                                      getcontrol('mobile_number')?.errors &&
+                                      getcontrol('mobile_number')?.touched
+                                    "
+                                  >
+                                    <small
+                                      class="text-danger"
+                                      *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                                      >Mobile number is required</small
+                                    >
+                                    <small
+                                      class="text-danger"
+                                      *ngIf="
+                                        !mobile_numberVal &&
+                                        getcontrol('mobile_number')
+                                          ?.invalid &&
+                                        getcontrol('mobile_number')?.touched
+                                      "
+                                    >
+                                      {{ getPhoneErrorMessage() }}
+                                    </small>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="">
+                                <label
+                                  class="col-md-12 no-padding p-0"
+                                  for="child_name"
+                                  >Relation</label
+                                >
+                                <input
+                                type="text"
+                                name="child_name"
+                                id="child_name"
+                                placeholder="Enter Relation"
+                                class="form-control p-0"
+                                [ngModelOptions]="{standalone: true}" [(ngModel)]="nomineeRelation"
+                              />
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="">
+                                <label
+                                  class="col-md-12 no-padding p-0"
+                                  for="child_name"
+                                  >Institute Name</label
+                                >
+                                <input
+                                  type="text"
+                                  name="institute_name"
+                                  id="institute_name"
+                                  placeholder="Enter Institute name"
+                                  class="form-control p-0"
+                                  [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}"
+                                />
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                          <!-- <div id="submit-wrapper" class="text-center my-3">
+                            <input
+                              type="submit"
+                              class="btn btn-success p-2 px-4"
+                              value="Submit"
+                              name="register"
+                            />
+                          </div> -->
+
+                          </div>
+
                           <div
                             id="common-fields-row1"
                             class="common-fields-row clearfix"
                           >
-                            <div class="common-field-container">
+                            <div class="common-field-container" *ngIf="this.userType === 'student' || this.userType === 'adult'">
                               <input
                                 type="hidden"
                                 name="registration_index[]"
                                 value="1"
                               />
-                              <div class="row mb-3">
+                              <div class="row mb-3 pt-3">
                                 <div class="col-md-12">
                                   <h6 class="panel-heading">
                                     Personal Information :
@@ -258,7 +577,7 @@
                                         [minDate]="minDate1"
                                         [maxDate]="maxDate1"
                                         (keydown)="disableManualInput($event)"
-                                        (ngModelChange)="onDateChange($event)"
+                                        (ngModelChange)="onDateChange($event, 'dob')"
                                         (keydown.tab)="openDatepicker()"
                                         bsDatepicker
                                         [bsConfig]="{
@@ -294,10 +613,8 @@
                                   <h6>Contact Information :</h6>
                                 </div>
 
-
-
                                 <div
-                                  class="form-group fg-mobile col-md-3 col-sm-6 my-3"
+                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3"
                                 >
                                   <div class="row no-padding">
                                     <div
@@ -398,7 +715,7 @@
                                 </div>
 
                                 <div
-                                  class="form-group fg-email col-md-3 col-sm-6 my-3"
+                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -968,44 +1285,6 @@
                                 </div>
                               </div>
 
-                              <div class="row g-2 mt-5">
-                                <div class="col-md-12">
-                                  <p class="refLabel">
-                                    The link for the payment (USD
-                                    {{ this.referralCode ? 2604 : 2800 }}) will
-                                    be shared with you after submission of this
-                                    form
-                                  </p>
-                                  <h6>Do you have a Reference code:</h6>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="profession2"
-                                      >Reference Number:</label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="reference_no"
-                                      maxlength="50"
-                                      id="profession2"
-                                      placeholder="Enter reference no."
-                                      class="form-control p-0"
-                                      [readonly]="
-                                        this.referralCode
-                                          ? this.referralCode
-                                          : ''
-                                      "
-                                      formControlName="reference_no"
-                                      minlength="3"
-                                      autocomplete="off"
-                                      (input)="onInput($event, 'reference_no')"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-
                               <div class="row g-2 mt-3">
                                 <div class="col-md-12">
                                   <h6>
@@ -1149,18 +1428,8 @@
                                 </div>
                               </div>
 
-                              <div class="row g-2 mt-3">
-                                <div class="col-md-12">
-                                  <h6>
-                                    Which of the 3 levers of the conference
-                                    interests you the most?<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    >
-                                  </h6>
-                                </div>
+                              <!-- <div class="row g-2 mt-3">
+
                                 <div class="col-md-12">
                                   <h6>
                                     Would you like to nominate a child (Peace Student) , who will receive a FREE summit ticket and can accompany you to the summit – Yes / No?<span
@@ -1172,8 +1441,281 @@
                                   </h6>
                                 </div>
 
-                              </div>
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input mt-2"
+                                    type="radio"
+                                    id="nominateYes"
+                                    value="yes"
+                                    [(ngModel)]="nominateChild"
+                                    [ngModelOptions]="{standalone: true}"
+                                    name="nominateChild"
+                                  />
+                                  <label class="form-check-label" for="nominateYes">Yes</label>
+                                </div>
 
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input mt-2"
+                                    type="radio"
+                                    id="nominateNo"
+                                    value="no"
+                                    [(ngModel)]="nominateChild"
+                                    [ngModelOptions]="{standalone: true}"
+                                    name="nominateChild"
+                                  />
+                                  <label class="form-check-label" for="nominateNo">No</label>
+                                </div>
+                              </div> -->
+
+                              <!-- <div class="row g-2 mt-3" *ngIf="this.userType === 'adult'">
+
+                                <div class="col-md-12">
+                                  <h6>
+                                    Nominee Details<span
+                                      class="form-label-span"
+                                    >
+                                      </span
+                                    >
+                                  </h6>
+                                </div>
+
+
+                              <div class="row g-2 mt-2 mb-5">
+
+                                <div class="col-md-6">
+                                  <div class="">
+                                    <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="child_name"
+                                    >Name<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    <input
+                                      type="text"
+                                      name="child_name"
+                                      id="child_name"
+                                      placeholder="Enter Name"
+                                      class="form-control p-0"
+                                      [(ngModel)]="childName" [ngModelOptions]="{standalone: true}"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="">
+
+                                    <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="dob"
+                                    >Date Of Birth<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    <input
+                                      type="text"
+                                      name="childDob"
+                                      class="form-control p-0"
+                                      [(ngModel)]="childDob"
+                                      [ngModelOptions]="{standalone: true}"
+                                        placeholder="Select Date of birth"
+                                        id="dob"
+                                        #dob
+                                        [minDate]="minDate1"
+                                        [maxDate]="maxDate1"
+                                        (keydown)="disableManualInput($event)"
+                                        (ngModelChange)="onDateChange($event)"
+                                        (keydown.tab)="openDatepicker()"
+                                        bsDatepicker
+                                        [bsConfig]="{
+                                          isAnimated: true,
+                                          dateInputFormat: 'DD/MM/YYYY',
+                                          showWeekNumbers: false,
+                                          containerClass: colorTheme
+                                        }"
+                                        readonly
+                                    />
+
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="">
+                                    <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="dob"
+                                    >Email<span
+                                    for="email"
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    <input
+                                      name="email"
+                                      id="email"
+                                      class="form-control p-0"
+                                      [(ngModel)]="childEmail" [ngModelOptions]="{standalone: true}"
+                                      (input)="onInput($event, 'email_id')"
+                                        type="email"
+                                        #email
+                                        placeholder="Enter your email"
+                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                        required
+                                        (keydown)="onKeyDown($event, 'email')"
+                                        (paste)="onEmailPaste($event)"
+                                        maxlength="125"
+                                        autocomplete="off"
+                                        data-error="Please enter valid email id"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div
+                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3"
+                                >
+                                  <div class="row no-padding">
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
+                                      <label
+                                        class="col-md-12 no-padding p-0"
+                                        for="mobile1"
+                                        >Mobile Number<span
+                                          class="form-label-span"
+                                          style="color: #ff0000"
+                                        >
+                                          *</span
+                                        ></label
+                                      >
+                                      <div class="">
+                                        <ngx-intl-tel-input
+                                          class="custom-width-container"
+                                          [preferredCountries]="[
+                                            CountryISO.India,
+                                            CountryISO.UnitedStates,
+                                            CountryISO.UnitedKingdom
+                                          ]"
+                                          [enableAutoCountrySelect]="false"
+                                          [enablePlaceholder]="false"
+                                          [searchCountryFlag]="true"
+                                          [searchCountryField]="[
+                                            SearchCountryField.Iso2,
+                                            SearchCountryField.Name
+                                          ]"
+                                          [selectFirstCountry]="false"
+                                          [selectedCountryISO]="
+                                            CountryISO.India
+                                          "
+                                          [maxLength]="12"
+                                          [phoneValidation]="true"
+                                          name="mobile_number"
+                                          id="number_mobile1"
+                                          #number_mobile1
+                                          [separateDialCode]="true"
+                                          [(ngModel)]="nominee_mobile_number"
+                                          [ngModelOptions]="{standalone: true}"
+                                          (paste)="onPasteMobileNumber($event)"
+                                          autocomplete="off"
+                                          (keydown)="
+                                            onMobileKeyDown(
+                                              $event,
+                                              mobile_number
+                                            )
+                                          "
+                                          (keypress)="
+                                            keyPressNumbers(
+                                              $event,
+                                              mobile_number
+                                            )
+                                          "
+                                        ></ngx-intl-tel-input>
+                                      </div>
+                                      <small
+                                        class="text-danger"
+                                        *ngIf="mobile_numberVal"
+                                      >
+                                        (Country code + Mobile number) will be 7
+                                        to 15 digits based on country.
+                                      </small>
+                                    </div>
+                                    <div
+                                      class="form-group form-group-inner mobile-number"
+                                    >
+                                      <div class="help-block with-errors"></div>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('mobile_number')?.errors &&
+                                          getcontrol('mobile_number')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                                          >Mobile number is required</small
+                                        >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="
+                                            !mobile_numberVal &&
+                                            getcontrol('mobile_number')
+                                              ?.invalid &&
+                                            getcontrol('mobile_number')?.touched
+                                          "
+                                        >
+                                          {{ getPhoneErrorMessage() }}
+                                        </small>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="">
+                                    <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="child_name"
+                                      >Relation</label
+                                    >
+                                    <input
+                                    type="text"
+                                    name="child_name"
+                                    id="child_name"
+                                    placeholder="Enter Relation"
+                                    class="form-control p-0"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="childRelation"
+                                  />
+                                  </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <div class="">
+                                    <label
+                                      class="col-md-12 no-padding p-0"
+                                      for="child_name"
+                                      >Institute Name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      name="institute_name"
+                                      id="institute_name"
+                                      placeholder="Enter Institute name"
+                                      class="form-control p-0"
+                                      [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}"
+                                    />
+                                  </div>
+                                </div>
+
+                              </div>
+                              </div> -->
 
                               <div id="submit-wrapper" class="text-center my-3">
                                 <input
@@ -1183,6 +1725,7 @@
                                   name="register"
                                 />
                               </div>
+
                             </div>
                           </div>
                         </div>

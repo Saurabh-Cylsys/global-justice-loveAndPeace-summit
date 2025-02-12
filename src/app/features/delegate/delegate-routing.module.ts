@@ -10,7 +10,7 @@ const routes: Routes = [
 
     children:[
       {path:'delegate-registration',component:DelegateRegistrationComponent},
-      {path:'delegate-child-namonation',component:DelegateWithChildComponent},
+      {path:'delegate-child-nomination',component:DelegateWithChildComponent},
 
       // {path:'register',component:},
       // {path:'reset-password',component:ResetPasswordComponent},

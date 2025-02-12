@@ -303,4 +303,12 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_OTP);
   }
 
+  public getLookupEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_LOOKUPDATA);
+  }
+
+  public getCreateNominationProfileEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE);
+  }
+
 }
