@@ -90,6 +90,9 @@ export class DelegateWithChildComponent {
   userType: string = '';
   showNomineeForm: boolean = false;
   userDob: string = "";
+  nomineeFormattedDate: string = "";
+  today = new Date();
+
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -291,30 +294,34 @@ export class DelegateWithChildComponent {
       console.log("Nominee Age:", this.nomineeAge);
     }
 
+    // Perform validation check
+    this.validateAges(field);
 
-    const formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+    const parsedDate = new Date(event);
+    // const formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
 
-    // 🔹 Validation Logic
+    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  }
+
+  validateAges(field: string): void {
     if (this.userType === 'student') {
-      if (field === 'dob' && this.userAge >= 21) {
-        this.registrationForm.patchValue({
-          dob: this.registrationForm.value.dob,
-        })
-        this.SharedService.ToastPopup('As a Student, your age must be less than 21','','error');
+      if ( this.userAge >= 21) {
+        this.SharedService.ToastPopup('As a Student, your age must be less than 21.', '', 'error');
         return;
-        // this.userDob = ''; // Clear invalid input
-      } else if (field === 'nomineeDob' && this.userAge <= 21) {
-        this.SharedService.ToastPopup('Your nominee must be older than 21.','','error');
-        return ;
+      }
+      if (this.nomineeAge <= 21) {
+        this.SharedService.ToastPopup('Your nominee must be older than 21.', '', 'error');
+        return;
       }
     } else if (this.userType === 'adult') {
-      if (field === 'dob' && this.nomineeAge < 21) {
-        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.','','error');
+      if (this.userAge < 21) {
+        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.', '', 'error');
         return;
-        // alert('As an Adult, your age must be 21 or older.');
-        // this.userDob = ''; // Clear invalid input
-      } else if (field === 'nomineeDob' && this.nomineeAge >= 21) {
-        this.SharedService.ToastPopup('Your nominee must be younger than 21..','','error');
+      }
+      if (this.nomineeAge >= 21) {
+        this.SharedService.ToastPopup('Your nominee must be younger than 21.', '', 'error');
         return;
       }
     }
@@ -741,6 +748,12 @@ onProfession2Input(event: Event) {
       return;
     }
 
+    // Ensure both ages are defined before proceeding
+    if (this.userAge === undefined || this.nomineeAge === undefined) {
+      this.SharedService.ToastPopup('Invalid date selection. Please enter valid DOBs.', '', 'error');
+      return;
+    }
+
     if (this.userType === 'student') {
       if (this.userAge >= 21) {
         this.SharedService.ToastPopup('As a Student, your age must be less than 21.', '', 'error');
@@ -760,6 +773,52 @@ onProfession2Input(event: Event) {
         return;
       }
     }
+
+    if(this.nomineeName.length < 2  || this.nomineeName == undefined) {
+      this.SharedService.ToastPopup("Nominee Name must be 2 characters long.", '', 'error');
+      return;
+    }
+
+    if(this.nomineeDob == "" || this.nomineeDob == undefined) {
+      this.SharedService.ToastPopup("Please select Nominee Nominee DOB", '', 'error');
+      return;
+    }
+    else if(this.nomineeEmail == "" || this.nomineeEmail == undefined) {
+      this.renderer.selectRootElement('#nomineemail').focus();
+      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+    // else if (this.nomineeEmail.invalid) {
+    //   this.renderer.selectRootElement('#nomineemail').focus();
+    //   this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+    //   return;
+    // }
+    else if(this.nominee_mobile_number == "" || this.nominee_mobile_number == undefined || this.nominee_mobile_number == null) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#nominee_mobile_number input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
+
+      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      return;
+    }
+    // else if (this.nominee_mobile_number.errors && !nominee_mobile_number.errors?.validatePhoneNumber?.valid) {
+    //   setTimeout(() => {
+    //     const inputElement = document.querySelector('#nominee_mobile_number input') as HTMLInputElement;
+    //     if (inputElement) {
+    //       inputElement.focus();
+    //     } else {
+    //       console.error("Could not find mobile number input field");
+    //     }
+    //   }, 100);
+
+    //   this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
+    //   return;
+    // }
 
     if(!this.registrationForm.value.title || this.registrationForm.value.title.length < 2){
       this.renderer.selectRootElement('#title').focus();
@@ -864,7 +923,6 @@ onProfession2Input(event: Event) {
 
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
-    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
@@ -896,32 +954,52 @@ onProfession2Input(event: Event) {
             this.registrationForm.reset();
 
             this.delegateId = result.delegate_id;
+            const rawNomineeMobileNumber = this.nominee_mobile_number;
 
-            if(this.delegateId){
-              let body = {
-                "delegate_id": this.delegateId,
-                "nomination_name": this.nomineeName,
-                "relation_id": this.nomineeRelation,
-                "dob": this.nomineeDob,
-                "email": this.nomineeEmail,
-                "mobile_no": this.nominee_mobile_number,
-                "institution": this.instituteName
-              }
-              this.delegateService.getNominationProfileApi(body).subscribe({
-                next : (res)=>{
-                  console.log("Res",res);
+            // Extract the actual number (adjust based on actual object structure)
+            let formattedNomineeMobileNumber = '';
 
-                }
-              })
+            if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+              formattedNomineeMobileNumber = rawNomineeMobileNumber.number
+                ? rawNomineeMobileNumber.number.replace(/\s+/g, '') // Remove spaces
+                : '';
+            } else if (typeof rawNomineeMobileNumber === 'string') {
+              formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
             }
+
+            console.log("Formatted Nominee Mobile Number:", formattedNomineeMobileNumber);
+
 
             setTimeout(() => {
               console.log('get payment URL', result.url);
+              console.log("settimeout");
 
-              this.ngxService.stop();
-              if (result.url) {
-                window.location.href = result.url; // Redirect to Stripe Checkout
+              if(this.delegateId){
+                let body = {
+                  "delegate_id": this.delegateId,
+                  "nomination_name": this.nomineeName,
+                  "relation_id": this.nomineeRelation,
+                  "dob": this.nomineeFormattedDate,
+                  "email": this.nomineeEmail,
+                  "mobile_no": formattedNomineeMobileNumber,
+                  "institution": this.instituteName
+                }
+                this.delegateService.getNominationProfileApi(body).subscribe({
+                  next : (res:any)=>{
+                    console.log("Res",res);
+                    if(res.success) {
+                      this.ngxService.stop();
+                      if (result.url) {
+                        window.location.href = result.url; // Redirect to Stripe Checkout
+                      }
+                    }
+                  }
+                })
               }
+              this.ngxService.stop();
+              // if (result.url) {
+              //   window.location.href = result.url; // Redirect to Stripe Checkout
+              // }
             }, 5000);
           } else {
             this.ngxService.stop();
@@ -1165,10 +1243,28 @@ onProfession2Input(event: Event) {
 
   }
 
+  validateNomineeName(event: KeyboardEvent) {
+    const inputChar = event.key;
+
+    // Allow alphabets and space (except at the beginning)
+    if (!/^[A-Za-z ]$/.test(inputChar) && inputChar !== 'Backspace') {
+      event.preventDefault();
+    }
+
+    // Prevent space at the beginning
+    if (event.target instanceof HTMLInputElement && event.target.value.length === 0 && inputChar === ' ') {
+      event.preventDefault();
+    }
+  }
+
+
   // if select student => then nominee form NomeneeDOB validation should  be greater than 21 and another Form field DOB should be less than 21
 
   // if select adult => then nominee form NomeneeDOB should validation be less than 21 and Form field DOB should greather than 21
 
+  // if select student then nominee age should be greter than 21 and another Form field DOB should be less than 21 and minimum 15 not less than 15 ok
+
+  // if selct adult => then nominee age should be less than 21 till 15 less and and Form field DOB should greather than 21
 
 
 }
