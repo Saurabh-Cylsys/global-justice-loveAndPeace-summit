@@ -172,4 +172,24 @@ export class SentInvitationComponent implements OnInit {
     // Mark the content as safe HTML
     return this.sanitizer.bypassSecurityTrustHtml(rawHTML);
   }
+
+  @ViewChild('shareBtn') shareBtn!: ElementRef;
+
+
+  ngAfterViewInit(): void {
+    this.shareBtn.nativeElement.addEventListener('click', this.shareContent.bind(this));
+  }
+
+  shareContent(): void {
+    if (navigator.share) {
+      navigator.share({
+        title: 'GeeksForGeeks',
+        url: 'https://geeksforgeeks.org'
+      })
+      .then(() => console.log('Thanks for sharing!'))
+      .catch(err => console.error('Error while using Web Share API:', err));
+    } else {
+      alert("Browser doesn't support this API!");
+    }
+  }
 }

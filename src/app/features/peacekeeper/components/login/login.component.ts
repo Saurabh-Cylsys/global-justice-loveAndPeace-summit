@@ -163,14 +163,19 @@ export class LoginComponent {
 
   login() {
 
-    let encryptedData = this.sharedService.encryptData({
-      "email": this.emailForm.value.email,
-      "password" : this.emailForm.value.password
-    });
+    // let encryptedData = this.sharedService.encryptData({
+    //   "email": this.emailForm.value.email,
+    //   "password" : this.emailForm.value.password
+    // });
+
+    // let body = {
+    //   "encrypted_data": encryptedData
+    // };
 
     let body = {
-      "encrypted_data": encryptedData
-    };
+      "email": this.emailForm.value.email,
+      "password" : this.emailForm.value.password
+    }
 
     this.ngxService.start();
     this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
