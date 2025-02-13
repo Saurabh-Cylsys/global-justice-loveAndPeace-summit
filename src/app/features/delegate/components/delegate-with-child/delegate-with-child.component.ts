@@ -1164,65 +1164,6 @@ onProfession2Input(event: Event) {
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  sendOTP(){
-
-    if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
-      return;
-    }
-    else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
-      return;
-    }
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "deviceId": this.ipAddress,
-      "deviceOs": this.deviceInfo,
-      "registeration_type":"0"
-    }
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
-
-  verifyOTP(){
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "otp": this.txtVerifyOTP
-    }
-
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.buttonText = "Send OTP";
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
-
   getRelationData(){
     let body = {
        "parent_code":"NOMINATION",
