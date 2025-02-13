@@ -61,3 +61,12 @@ button {
 /* .sidebar-nav .nav-item.active a{
   color: #005a93 !important;
 } */
+
+
+.logo {
+  background-color: white;
+  border-radius: 50%;
+  margin-top: 5px;
+  padding: 4px;
+  width: 60px;
+}

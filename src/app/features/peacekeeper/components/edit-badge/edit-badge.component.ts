@@ -209,6 +209,7 @@ export class EditBadgeComponent {
   }
 
   updatePeacekeeper(): void {
+
     if (!this.editBadgeForm.value.full_name?.trim() || this.editBadgeForm.value.full_name.trim().length < 3) {
       this.renderer.selectRootElement('#fullName').focus();
       this.sharedService.ToastPopup('Full Name must be at least 3 characters long','','error');

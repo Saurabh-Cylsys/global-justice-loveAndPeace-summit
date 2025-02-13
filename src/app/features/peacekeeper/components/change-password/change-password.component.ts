@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,6 +22,7 @@ export class ChangePasswordComponent {
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
+    private router : Router
     ) {
 
   }
@@ -102,14 +102,17 @@ export class ChangePasswordComponent {
       return;
     }
 
-    let encryptedBody = this.sharedService.encryptData({
+    // let encryptedBody = this.sharedService.encryptData({
+    //   "email": this.changePasswordForm.value.email,
+    //   "password": this.changePasswordForm.value.password,
+    //   "confirmPassword": this.changePasswordForm.value.confirmPassword
+    // });
+
+    let body = {
+      // "encrypted_data": encryptedBody
       "email": this.changePasswordForm.value.email,
       "password": this.changePasswordForm.value.password,
       "confirmPassword": this.changePasswordForm.value.confirmPassword
-    });
-
-    let body = {
-      "encrypted_data": encryptedBody
     };
 
     this.ngxService.start();
@@ -117,7 +120,11 @@ export class ChangePasswordComponent {
       next : (res:any)=>{
         console.log("Res",res);
         this.ngxService.stop();
-        this.changePasswordForm.reset();
+        // this.changePasswordForm.patchValue({
+        //   password : "",
+        //   confirmPassword : ""
+        // })
+        this.router.navigate(['/dashboard']);
         this.sharedService.ToastPopup(res.message,'','success');
       },
       error : (err)=>{

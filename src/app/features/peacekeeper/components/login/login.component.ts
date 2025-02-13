@@ -233,9 +233,9 @@ export class LoginComponent {
             full_name : res.data['full_name'],
             peacekeeper_id : res.data['peacekeeper_id'],
             file_name : res.data['file_name'],
+            email :res.data['email_id']
           }
           // Store the encrypted token
-          debugger;
           console.log("Userdata",userData);
           this.sharedService.setJWTToken(res.token);
           this.peaceKeeperService.setToken('authToken');
