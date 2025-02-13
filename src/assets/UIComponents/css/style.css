@@ -2287,13 +2287,13 @@ button:active, button:focus{
   background-color: #004E89;
 }
 
-.logo {
+/* .logo {
   background-color: white;
   border-radius: 50%;
   margin-top: 5px;
   padding: 4px;
   width: 60px;
-}
+} */
 
 .sidebar::-webkit-scrollbar {
   width: 5px;
