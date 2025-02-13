@@ -13,9 +13,55 @@
 
           <div class="clearfix"></div>
 
+          <div class="col-md-12 text-center mt-4">
+            <h6>
+              Are you Adult or Student<span
+                class="form-label-span"
+                style="color: #ff0000"
+              >
+              </span>
+            </h6>
+
+            <div class="align-items-center pt-3">
+              <div class="form-check form-check-inline p-0">
+                <input
+                  class="form-check-input mt-2"
+                  type="radio"
+                  id="adult"
+                  value="adult"
+                  [(ngModel)]="userType"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="userType"
+                  (change)="onUserTypeChange('adult')"
+                />
+                <label class="form-check-label" for="adult"
+                  >Adult</label
+                >
+              </div>
+
+              <div class="form-check form-check-inline p-0">
+                <input
+                  class="form-check-input mt-2"
+                  type="radio"
+                  id="student"
+                  value="student"
+                  [(ngModel)]="userType"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="userType"
+                  (change)="onUserTypeChange('student')"
+                />
+                <label class="form-check-label" for="student"
+                  >Student</label
+                >
+              </div>
+            </div>
+
+          </div>
+
           <div class="clearfix">
-            <div id="regformcontainer">
+            <div id="regformcontainer" *ngIf="this.userType === 'student' || this.userType === 'adult'">
               <div class="clearfix"></div>
+
               <form
                 [formGroup]="registrationForm"
                 (ngSubmit)="submitData()"
@@ -29,310 +75,6 @@
                     <div class="panel panel-default reg-panel section_1">
                       <div class="panel-body">
                         <div id="common-field-row-con" class="row">
-                          <div class="row mt-3 m-0">
-                            <div class="col-md-12">
-                              <h6>
-                                Are you Adult or Student<span
-                                  class="form-label-span"
-                                  style="color: #ff0000"
-                                >
-                                </span>
-                              </h6>
-                            </div>
-
-                            <div class="d-flex align-items-center pt-3">
-                              <div class="form-check form-check-inline p-0">
-                                <input
-                                  class="form-check-input mt-2"
-                                  type="radio"
-                                  id="adult"
-                                  value="adult"
-                                  [(ngModel)]="userType"
-                                  [ngModelOptions]="{ standalone: true }"
-                                  name="userType"
-                                  (change)="onUserTypeChange('adult')"
-                                />
-                                <label class="form-check-label" for="adult"
-                                  >Adult</label
-                                >
-                              </div>
-
-                              <div class="form-check form-check-inline p-0">
-                                <input
-                                  class="form-check-input mt-2"
-                                  type="radio"
-                                  id="student"
-                                  value="student"
-                                  [(ngModel)]="userType"
-                                  [ngModelOptions]="{ standalone: true }"
-                                  name="userType"
-                                  (change)="onUserTypeChange('student')"
-                                />
-                                <label class="form-check-label" for="student"
-                                  >Student</label
-                                >
-                              </div>
-                            </div>
-
-                            <div
-                              class="row mt-5"
-                              *ngIf="
-                                userType === 'student' || userType === 'adult'
-                              "
-                            >
-                              <div class="col-md-12">
-                                <h6>
-                                  Nominee Details<span class="form-label-span">
-                                  </span>
-                                </h6>
-                              </div>
-
-                              <div class="row mt-2 mb-5">
-                                <div class="col-md-6 my-3 px-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="child_name"
-                                      >Nominee Name<span
-                                        class="form-label-span"
-                                        style="color: #ff0000"
-                                      >
-                                        *</span
-                                      ></label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="child_name"
-                                      id="child_name"
-                                      placeholder="Enter Nominee Name"
-                                      class="form-control p-0"
-                                      [(ngModel)]="nomineeName"
-                                      maxlength="60"
-                                      [ngModelOptions]="{ standalone: true }"
-                                      (keypress)="validateNomineeName($event)"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6 my-3 px-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="dob"
-                                      >Date Of Birth<span
-                                        class="form-label-span"
-                                        style="color: #ff0000"
-                                      >
-                                        *</span
-                                      ></label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="childDob"
-                                      class="form-control p-0"
-                                      [(ngModel)]="nomineeDob"
-                                      (ngModelChange)="
-                                        onDateChange($event, 'nomineeDob')
-                                      "
-                                      [ngModelOptions]="{ standalone: true }"
-                                      placeholder="Select Date of birth"
-                                      id="dob"
-                                      #dob
-                                      [minDate]="minDate1"
-                                      [maxDate]="maxDate1"
-                                      (keydown)="disableManualInput($event)"
-                                      (keydown.tab)="openDatepicker()"
-                                      bsDatepicker
-                                      [bsConfig]="{
-                                        isAnimated: true,
-                                        dateInputFormat: 'DD/MM/YYYY',
-                                        showWeekNumbers: false,
-                                        containerClass: colorTheme,
-                                        maxDate: today
-                                      }"
-                                      readonly
-                                    />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6 my-3 px-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="dob"
-                                      >Email<span
-                                        for="email"
-                                        class="form-label-span"
-                                        style="color: #ff0000"
-                                      >
-                                        *</span
-                                      ></label
-                                    >
-                                    <input
-                                      name="email"
-                                      id="email"
-                                      class="form-control p-0"
-                                      [(ngModel)]="nomineeEmail"
-                                      [ngModelOptions]="{ standalone: true }"
-                                      type="email"
-                                      #email
-                                      placeholder="Enter your email"
-                                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
-                                      required
-                                      maxlength="125"
-                                      autocomplete="off"
-                                      data-error="Please enter valid email id"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div
-                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3 px-3"
-                                >
-                                  <div class="row no-padding">
-                                    <div
-                                      class="form-group form-group-inner mobile-number"
-                                    >
-                                      <label
-                                        class="col-md-12 no-padding p-0"
-                                        for="mobile1"
-                                        >Mobile Number<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
-                                      <div class="">
-                                        <ngx-intl-tel-input
-                                          class="custom-width-container"
-                                          [preferredCountries]="[
-                                            CountryISO.India,
-                                            CountryISO.UnitedStates,
-                                            CountryISO.UnitedKingdom
-                                          ]"
-                                          [enableAutoCountrySelect]="false"
-                                          [enablePlaceholder]="false"
-                                          [searchCountryFlag]="true"
-                                          [searchCountryField]="[
-                                            SearchCountryField.Iso2,
-                                            SearchCountryField.Name
-                                          ]"
-                                          [selectFirstCountry]="false"
-                                          [selectedCountryISO]="
-                                            CountryISO.India
-                                          "
-                                          [maxLength]="12"
-                                          [phoneValidation]="true"
-                                          name="mobile_number"
-                                          id="number_mobile1"
-                                          #number_mobile1
-                                          [separateDialCode]="true"
-                                          [(ngModel)]="nominee_mobile_number"
-                                          [ngModelOptions]="{
-                                            standalone: true
-                                          }"
-                                          (paste)="onPasteMobileNumber($event)"
-                                          autocomplete="off"
-                                          (keydown)="
-                                            onMobileKeyDown(
-                                              $event,
-                                              mobile_number
-                                            )
-                                          "
-                                          (keypress)="
-                                            keyPressNumbers(
-                                              $event,
-                                              mobile_number
-                                            )
-                                          "
-                                        ></ngx-intl-tel-input>
-                                      </div>
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="mobile_numberVal"
-                                      >
-                                        (Country code + Mobile number) will be 7
-                                        to 15 digits based on country.
-                                      </small>
-                                      <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                      long.</p> -->
-                                    </div>
-                                    <div
-                                      class="form-group form-group-inner mobile-number"
-                                    >
-                                      <div class="help-block with-errors"></div>
-                                      <div
-                                        *ngIf="
-                                          getcontrol('mobile_number')?.errors &&
-                                          getcontrol('mobile_number')?.touched
-                                        "
-                                      >
-                                        <small
-                                          class="text-danger"
-                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                                          >Mobile number is required</small
-                                        >
-                                        <small
-                                          class="text-danger"
-                                          *ngIf="
-                                            !mobile_numberVal &&
-                                            getcontrol('mobile_number')
-                                              ?.invalid &&
-                                            getcontrol('mobile_number')?.touched
-                                          "
-                                        >
-                                          {{ getPhoneErrorMessage() }}
-                                        </small>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6 my-3 px-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="child_name"
-                                      >Relation</label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="child_name"
-                                      id="child_name"
-                                      placeholder="Enter Relation"
-                                      class="form-control p-0"
-                                      maxlength="60"
-                                      (keypress)="validateNomineeName($event)"
-                                      [ngModelOptions]="{ standalone: true }"
-                                      [(ngModel)]="nomineeRelation"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6 my-3 px-3">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="child_name"
-                                      >Institute Name</label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="institute_name"
-                                      id="institute_name"
-                                      placeholder="Enter Institute name"
-                                      class="form-control p-0"
-                                      maxlength="100"
-                                      (keypress)="validateNomineeName($event)"
-                                      [(ngModel)]="instituteName"
-                                      [ngModelOptions]="{ standalone: true }"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
                           <div class="row m-0">
                             <div
@@ -341,10 +83,6 @@
                             >
                               <div
                                 class="common-field-container"
-                                *ngIf="
-                                  this.userType === 'student' ||
-                                  this.userType === 'adult'
-                                "
                               >
                                 <input
                                   type="hidden"
@@ -576,7 +314,7 @@
                                           [maxDate]="maxDate1"
                                           (keydown)="disableManualInput($event)"
                                           (ngModelChange)="
-                                            onDateChange($event, 'dob')
+                                            onUserDobChange($event)
                                           "
                                           (keydown.tab)="openDatepicker()"
                                           bsDatepicker
@@ -1477,294 +1215,274 @@
                                   </div>
                                 </div>
 
-                                <!-- <div class="row g-2 mt-3">
+                                <div class="row mt-3 m-0">
 
-                                <div class="col-md-12">
-                                  <h6>
-                                    Would you like to nominate a child (Peace Student) , who will receive a FREE summit ticket and can accompany you to the summit – Yes / No?<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      </span
-                                    >
-                                  </h6>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                  <input
-                                    class="form-check-input mt-2"
-                                    type="radio"
-                                    id="nominateYes"
-                                    value="yes"
-                                    [(ngModel)]="nominateChild"
-                                    [ngModelOptions]="{standalone: true}"
-                                    name="nominateChild"
-                                  />
-                                  <label class="form-check-label" for="nominateYes">Yes</label>
-                                </div>
-
-                                <div class="form-check form-check-inline">
-                                  <input
-                                    class="form-check-input mt-2"
-                                    type="radio"
-                                    id="nominateNo"
-                                    value="no"
-                                    [(ngModel)]="nominateChild"
-                                    [ngModelOptions]="{standalone: true}"
-                                    name="nominateChild"
-                                  />
-                                  <label class="form-check-label" for="nominateNo">No</label>
-                                </div>
-                              </div> -->
-
-                                <!-- <div class="row g-2 mt-3" *ngIf="this.userType === 'adult'">
-
-                                <div class="col-md-12">
-                                  <h6>
-                                    Nominee Details<span
-                                      class="form-label-span"
-                                    >
-                                      </span
-                                    >
-                                  </h6>
-                                </div>
-
-
-                              <div class="row g-2 mt-2 mb-5">
-
-                                <div class="col-md-6">
-                                  <div class="">
-                                    <label
-                                    class="col-md-12 no-padding p-0"
-                                    for="child_name"
-                                    >Name<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
+                                  <div
+                                    class="row mt-5"
                                   >
-                                    <input
-                                      type="text"
-                                      name="child_name"
-                                      id="child_name"
-                                      placeholder="Enter Name"
-                                      class="form-control p-0"
-                                      [(ngModel)]="childName" [ngModelOptions]="{standalone: true}"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <div class="">
-
-                                    <label
-                                    class="col-md-12 no-padding p-0"
-                                    for="dob"
-                                    >Date Of Birth<span
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
-                                    <input
-                                      type="text"
-                                      name="childDob"
-                                      class="form-control p-0"
-                                      [(ngModel)]="childDob"
-                                      [ngModelOptions]="{standalone: true}"
-                                        placeholder="Select Date of birth"
-                                        id="dob"
-                                        #dob
-                                        [minDate]="minDate1"
-                                        [maxDate]="maxDate1"
-                                        (keydown)="disableManualInput($event)"
-                                        (ngModelChange)="onDateChange($event)"
-                                        (keydown.tab)="openDatepicker()"
-                                        bsDatepicker
-                                        [bsConfig]="{
-                                          isAnimated: true,
-                                          dateInputFormat: 'DD/MM/YYYY',
-                                          showWeekNumbers: false,
-                                          containerClass: colorTheme
-                                        }"
-                                        readonly
-                                    />
-
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <div class="">
-                                    <label
-                                    class="col-md-12 no-padding p-0"
-                                    for="dob"
-                                    >Email<span
-                                    for="email"
-                                      class="form-label-span"
-                                      style="color: #ff0000"
-                                    >
-                                      *</span
-                                    ></label
-                                  >
-                                    <input
-                                      name="email"
-                                      id="email"
-                                      class="form-control p-0"
-                                      [(ngModel)]="childEmail" [ngModelOptions]="{standalone: true}"
-                                      (input)="onInput($event, 'email_id')"
-                                        type="email"
-                                        #email
-                                        placeholder="Enter your email"
-                                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
-                                        required
-                                        (keydown)="onKeyDown($event, 'email')"
-                                        (paste)="onEmailPaste($event)"
-                                        maxlength="125"
-                                        autocomplete="off"
-                                        data-error="Please enter valid email id"
-                                    />
-                                  </div>
-                                </div>
-
-                                <div
-                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3"
-                                >
-                                  <div class="row no-padding">
-                                    <div
-                                      class="form-group form-group-inner mobile-number"
-                                    >
-                                      <label
-                                        class="col-md-12 no-padding p-0"
-                                        for="mobile1"
-                                        >Mobile Number<span
-                                          class="form-label-span"
-                                          style="color: #ff0000"
-                                        >
-                                          *</span
-                                        ></label
-                                      >
-                                      <div class="">
-                                        <ngx-intl-tel-input
-                                          class="custom-width-container"
-                                          [preferredCountries]="[
-                                            CountryISO.India,
-                                            CountryISO.UnitedStates,
-                                            CountryISO.UnitedKingdom
-                                          ]"
-                                          [enableAutoCountrySelect]="false"
-                                          [enablePlaceholder]="false"
-                                          [searchCountryFlag]="true"
-                                          [searchCountryField]="[
-                                            SearchCountryField.Iso2,
-                                            SearchCountryField.Name
-                                          ]"
-                                          [selectFirstCountry]="false"
-                                          [selectedCountryISO]="
-                                            CountryISO.India
-                                          "
-                                          [maxLength]="12"
-                                          [phoneValidation]="true"
-                                          name="mobile_number"
-                                          id="number_mobile1"
-                                          #number_mobile1
-                                          [separateDialCode]="true"
-                                          [(ngModel)]="nominee_mobile_number"
-                                          [ngModelOptions]="{standalone: true}"
-                                          (paste)="onPasteMobileNumber($event)"
-                                          autocomplete="off"
-                                          (keydown)="
-                                            onMobileKeyDown(
-                                              $event,
-                                              mobile_number
-                                            )
-                                          "
-                                          (keypress)="
-                                            keyPressNumbers(
-                                              $event,
-                                              mobile_number
-                                            )
-                                          "
-                                        ></ngx-intl-tel-input>
-                                      </div>
-                                      <small
-                                        class="text-danger"
-                                        *ngIf="mobile_numberVal"
-                                      >
-                                        (Country code + Mobile number) will be 7
-                                        to 15 digits based on country.
-                                      </small>
+                                    <div class="col-md-12">
+                                      <h6>
+                                        Nominee Details<span class="form-label-span">
+                                        </span>
+                                      </h6>
                                     </div>
-                                    <div
-                                      class="form-group form-group-inner mobile-number"
-                                    >
-                                      <div class="help-block with-errors"></div>
+
+                                    <div class="row mt-2 mb-5">
+                                      <div class="col-md-6 my-3 px-3">
+                                        <div class="">
+                                          <label
+                                            class="col-md-12 no-padding p-0"
+                                            for="child_name"
+                                            >Nominee Name<span
+                                              class="form-label-span"
+                                              style="color: #ff0000"
+                                            >
+                                              *</span
+                                            ></label
+                                          >
+                                          <input
+                                            type="text"
+                                            name="nominee_name"
+                                            id="nominee_name"
+                                            #nominee_name
+                                            placeholder="Enter Nominee Name"
+                                            class="form-control p-0"
+                                            [(ngModel)]="nomineeName"
+                                            maxlength="60"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            (keypress)="validateNomineeName($event)"
+                                            (keydown)="
+                                            handleTabKey($event, 'nomineeName')
+                                          "
+                                          />
+                                        </div>
+                                      </div>
+
+                                      <div class="col-md-6 my-3 px-3">
+                                        <div class="">
+                                          <label
+                                            class="col-md-12 no-padding p-0"
+                                            for="childDob"
+                                            >Date Of Birth<span
+                                              class="form-label-span"
+                                              style="color: #ff0000"
+                                            >
+                                              *</span
+                                            ></label
+                                          >
+                                          <input
+                                            type="text"
+                                            name="nomineeDob"
+                                            id="nomineeDob"
+                                            class="form-control p-0"
+                                            [(ngModel)]="nomineeDob"
+                                            (ngModelChange)="
+                                              onNomineeDobChange($event)
+                                            "
+                                            [ngModelOptions]="{ standalone: true }"
+                                            placeholder="Select Nominee Date of birth"
+                                            #childDob
+                                            [minDate]="minDate1"
+                                            [maxDate]="maxDate1"
+                                            (keydown)="disableManualInput($event)"
+                                            (keydown.tab)="openNomineeDatepicker()"
+                                            bsDatepicker
+                                            [bsConfig]="{
+                                              isAnimated: true,
+                                              dateInputFormat: 'DD/MM/YYYY',
+                                              showWeekNumbers: false,
+                                              containerClass: colorTheme,
+                                              maxDate: today
+                                            }"
+                                            readonly
+                                          />
+                                        </div>
+                                      </div>
+
+                                      <div class="col-md-6 my-3 px-3">
+                                        <div class="">
+                                          <label
+                                            class="col-md-12 no-padding p-0"
+                                            for="dob"
+                                            >Email<span
+                                              for="email"
+                                              class="form-label-span"
+                                              style="color: #ff0000"
+                                            >
+                                              *</span
+                                            ></label
+                                          >
+                                          <input
+                                            name="email"
+                                            id="nomineeEmail"
+                                            class="form-control p-0"
+                                            [(ngModel)]="nomineeEmail"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            type="email"
+                                            #email
+                                            placeholder="Enter Nominee email"
+                                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,12}$"
+                                            required
+                                            maxlength="125"
+                                            autocomplete="off"
+                                            data-error="Please enter valid email id"
+                                          />
+                                        </div>
+                                      </div>
+
                                       <div
-                                        *ngIf="
-                                          getcontrol('mobile_number')?.errors &&
-                                          getcontrol('mobile_number')?.touched
-                                        "
+                                        class="form-group fg-mobile col-md-6 col-sm-6 my-3 px-3"
                                       >
-                                        <small
-                                          class="text-danger"
-                                          *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                                          >Mobile number is required</small
-                                        >
-                                        <small
-                                          class="text-danger"
-                                          *ngIf="
-                                            !mobile_numberVal &&
-                                            getcontrol('mobile_number')
-                                              ?.invalid &&
-                                            getcontrol('mobile_number')?.touched
-                                          "
-                                        >
-                                          {{ getPhoneErrorMessage() }}
-                                        </small>
+                                        <div class="row no-padding">
+                                          <div
+                                            class="form-group form-group-inner mobile-number"
+                                          >
+                                            <label
+                                              class="col-md-12 no-padding p-0"
+                                              for="mobile1"
+                                              >Mobile Number<span
+                                                class="form-label-span"
+                                                style="color: #ff0000"
+                                              >
+                                                *</span
+                                              ></label
+                                            >
+                                            <div class="">
+                                              <ngx-intl-tel-input
+                                                class="custom-width-container"
+                                                [preferredCountries]="[
+                                                  CountryISO.India,
+                                                  CountryISO.UnitedStates,
+                                                  CountryISO.UnitedKingdom
+                                                ]"
+                                                [enableAutoCountrySelect]="false"
+                                                [enablePlaceholder]="false"
+                                                [searchCountryFlag]="true"
+                                                [searchCountryField]="[
+                                                  SearchCountryField.Iso2,
+                                                  SearchCountryField.Name
+                                                ]"
+                                                [selectFirstCountry]="false"
+                                                [selectedCountryISO]="
+                                                  CountryISO.India
+                                                "
+                                                [maxLength]="12"
+                                                [phoneValidation]="true"
+                                                name="number_mobile2"
+                                                id="number_mobile2"
+                                                #number_mobile2
+                                                [separateDialCode]="true"
+                                                [(ngModel)]="nominee_mobile_number"
+                                                [ngModelOptions]="{
+                                                  standalone: true
+                                                }"
+                                                (paste)="onPasteMobileNumber($event)"
+                                                autocomplete="off"
+                                                (keydown)="
+                                                  onMobileKeyDown(
+                                                    $event,
+                                                    mobile_number
+                                                  )
+                                                "
+                                                (keypress)="
+                                                  keyPressNumbers(
+                                                    $event,
+                                                    mobile_number
+                                                  )
+                                                "
+                                              ></ngx-intl-tel-input>
+                                            </div>
+                                            <small
+                                              class="text-danger"
+                                              *ngIf="mobile_numberVal"
+                                            >
+                                              (Country code + Mobile number) will be 7
+                                              to 15 digits based on country.
+                                            </small>
+                                            <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
+                                            long.</p> -->
+                                          </div>
+                                          <div
+                                            class="form-group form-group-inner mobile-number"
+                                          >
+                                            <div class="help-block with-errors"></div>
+                                            <div
+                                              *ngIf="
+                                                getcontrol('mobile_number')?.errors &&
+                                                getcontrol('mobile_number')?.touched
+                                              "
+                                            >
+                                              <small
+                                                class="text-danger"
+                                                *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                                                >Mobile number is required</small
+                                              >
+                                              <small
+                                                class="text-danger"
+                                                *ngIf="
+                                                  !mobile_numberVal &&
+                                                  getcontrol('mobile_number')
+                                                    ?.invalid &&
+                                                  getcontrol('mobile_number')?.touched
+                                                "
+                                              >
+                                                {{ getPhoneErrorMessage() }}
+                                              </small>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="col-md-6 my-3 px-3">
+                                        <div class="">
+                                          <label
+                                            class="col-md-12 no-padding p-0"
+                                            for="child_name"
+                                            >
+                                            Relation <span
+                                            class="form-label-span"
+                                            style="color: #ff0000"
+                                          >
+                                            *</span
+                                          ></label
+                                          >
+                                          <input
+                                            type="text"
+                                            name="child_relation"
+                                            id="child_relation"
+                                            placeholder="Enter Relation"
+                                            class="form-control p-0"
+                                            maxlength="60"
+                                            (keypress)="validateNomineeName($event)"
+                                            [ngModelOptions]="{ standalone: true }"
+                                            [(ngModel)]="nomineeRelation"
+                                          />
+                                        </div>
+                                      </div>
+
+                                      <div class="col-md-6 my-3 px-3">
+                                        <div class="">
+                                          <label
+                                            class="col-md-12 no-padding p-0"
+                                            for="child_name"
+                                            >Institute Name</label
+                                          >
+                                          <input
+                                            type="text"
+                                            name="institute_name"
+                                            id="institute_name"
+                                            placeholder="Enter Institute name"
+                                            class="form-control p-0"
+                                            maxlength="100"
+                                            (keypress)="validateNomineeName($event)"
+                                            [(ngModel)]="instituteName"
+                                            [ngModelOptions]="{ standalone: true }"
+                                          />
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="child_name"
-                                      >Relation</label
-                                    >
-                                    <input
-                                    type="text"
-                                    name="child_name"
-                                    id="child_name"
-                                    placeholder="Enter Relation"
-                                    class="form-control p-0"
-                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="childRelation"
-                                  />
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <div class="">
-                                    <label
-                                      class="col-md-12 no-padding p-0"
-                                      for="child_name"
-                                      >Institute Name</label
-                                    >
-                                    <input
-                                      type="text"
-                                      name="institute_name"
-                                      id="institute_name"
-                                      placeholder="Enter Institute name"
-                                      class="form-control p-0"
-                                      [(ngModel)]="instituteName" [ngModelOptions]="{standalone: true}"
-                                    />
-                                  </div>
-                                </div>
-
-                              </div>
-                              </div> -->
 
                                 <div
                                   id="submit-wrapper"
@@ -1780,6 +1498,9 @@
                               </div>
                             </div>
                           </div>
+
+
+
                         </div>
                       </div>
                     </div>
@@ -1802,6 +1523,8 @@
                   />
                 </div>
               </form>
+
+
             </div>
           </div>
         </div>
