@@ -297,7 +297,7 @@
 
 
                                 <div
-                                  class="form-group fg-mobile col-md-3 col-sm-6 my-3"
+                                  class="form-group fg-mobile col-md-6 col-sm-6 my-3"
                                 >
                                   <div class="row no-padding">
                                     <div
@@ -398,7 +398,7 @@
                                 </div>
 
                                 <div
-                                  class="form-group fg-email col-md-3 col-sm-6 my-3"
+                                  class="form-group fg-email col-md-6 col-sm-6 my-3"
                                 >
                                   <div class="col-md-12 no-padding">
                                     <div class="">
@@ -454,87 +454,6 @@
                                         address.</small
                                       >
                                     </div>
-                                  </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                  <div class="row align-items-end h-100">
-                                    <!-- <div [ngStyle]="{ display: isOTPReceive ? 'block' : 'none' }"
-                                      class="form-group fg-email col-md-4 col-sm-6 my-3"
-                                    >
-                                      <div
-                                        class="col-md-12 no-padding"
-                                      >
-                                        <div class="">
-                                          <label
-                                            class="col-md-12 no-padding p-0"
-                                            for="profileurl"
-                                            >Verify OTP</label
-                                          >
-                                          <input
-                                            type="text"
-                                            name=""
-                                            maxlength="6"
-                                            [(ngModel)]="txtVerifyOTP"
-                                            [ngModelOptions]="{standalone: true}"
-                                            id="linkedIn"
-                                            placeholder="Enter OTP here"
-                                            class="form-control p-0"
-                                            autocomplete="off"
-                                          />
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div *ngIf="!isOTPReceive || timerExpired"
-                                      class="form-group fg-email col-md-3 col-sm-6 my-3"
-                                    >
-                                      <div class="col-md-12 no-padding">
-
-                                          <button type="button"
-                                            class="btn btn-success"
-                                            (click)="sendOTP()"
-                                          >
-                                            {{buttonText}}
-                                          </button>
-                                      </div>
-                                    </div>
-
-                                    <div *ngIf="isOTPReceive"
-                                      class="form-group fg-email col-md-3 col-sm-6"
-                                    >
-                                      <div class="col-md-12 no-padding">
-                                        <div class="">
-                                          <button type="button"
-                                            class="btn btn-success"
-                                            (click)="verifyOTP()"
-                                            [disabled]="timerExpired"
-                                          >
-                                            Verify OTP
-                                          </button>
-                                          <p *ngIf="isOTPReceive" class="text-danger small mb-0" style="font-size: .8rem;">
-                                            OTP will expire in {{ formatTime(countdown) }}
-                                          </p>
-                                        </div>
-                                      </div>
-                                    </div> -->
-
-                                    <!-- <div *ngIf="isOTPReceive"
-                                      class="form-group fg-email col-md-6 col-sm-6"
-                                    >
-                                      <div class="col-md-12 no-padding">
-                                        <div class="">
-                                          <button type="button"
-                                            class="btn btn-success"
-                                            (click)="sendOTP()"
-                                            [disabled]="!timerExpired"
-                                          >
-                                            Resend OTP
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div> -->
-
                                   </div>
                                 </div>
 

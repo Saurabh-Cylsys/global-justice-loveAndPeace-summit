@@ -2492,3 +2492,12 @@ button:active, button:focus{
 .sidebar.collapsed{
   width: 0;
 }
+.downloadAppBg{
+
+    background-image: url(../images/venueBg.png);
+    background-color: var(--color1);
+}
+
+/* .download{
+  background-color: #005487;
+} */

@@ -229,6 +229,12 @@
                   {{ link.label }}
                 </a>
               </li>
+              <li>
+                <a [routerLink]="['/download-applications']" data-bs-dismiss="offcanvas"
+                >
+                  Download Mobile Application
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -444,6 +450,10 @@
                   fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
+                </a>
+                <a [routerLink]="['/download-applications']"
+                >
+                  Download Mobile Application
                 </a>
               </div>
             </div>

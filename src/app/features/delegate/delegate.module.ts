@@ -8,10 +8,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DelegateWithChildComponent } from './components/delegate-with-child/delegate-with-child.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
-    DelegateRegistrationComponent
+    DelegateRegistrationComponent,
+    DelegateWithChildComponent
   ],
   imports: [
     CommonModule,
