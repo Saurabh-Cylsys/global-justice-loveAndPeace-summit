@@ -16,10 +16,9 @@ export class ChangePasswordComponent {
   submitted = false;
   showPassword = false;
   showConfirmPassword = false;
+  userData : any;
 
   constructor(
-    private datePipe: DatePipe,
-    private router: Router,
     private fb: FormBuilder,
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
@@ -31,6 +30,11 @@ export class ChangePasswordComponent {
   ngOnInit(): void {
     this.crateChangePasswordForm();
 
+    this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
+
+    this.changePasswordForm.patchValue({
+      email : this.userData.email
+    })
   }
 
   crateChangePasswordForm(){
@@ -49,7 +53,6 @@ export class ChangePasswordComponent {
   }
 
   passwordMatchValidator(group: FormGroup) {
-    debugger
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { notMatching: true };

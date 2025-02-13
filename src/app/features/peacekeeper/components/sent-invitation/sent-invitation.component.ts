@@ -18,6 +18,7 @@ export class SentInvitationComponent implements OnInit {
   isEditorVisible: boolean = true;
   form!: FormGroup;
   text :string ="";
+  userData: any;
 
   htmlContent: string = ''; // Store HTML content
 
@@ -31,6 +32,8 @@ export class SentInvitationComponent implements OnInit {
   selectedSendVia: string = 'Select';
   selectedSendViaImage: string | null = null;
   sanitizedContent: SafeHtml = ''
+
+
 
   constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef,
     private SharedService: SharedService, private sanitizer: DomSanitizer){
@@ -107,16 +110,15 @@ export class SentInvitationComponent implements OnInit {
       text :[ '']
     });
 
+    this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
     this.checkWindowSize();
   }
 
   ngOnDestroy(): void {
     this.editor.destroy();
-  this.isCollapsed = false;
-   this.isMobileView = false;
-
+    this.isCollapsed = false;
+    this.isMobileView = false;
   }
-
 
   onRecipientChange(option: any) {
     console.log(option);
@@ -173,23 +175,28 @@ export class SentInvitationComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(rawHTML);
   }
 
-  @ViewChild('shareBtn') shareBtn!: ElementRef;
 
+  shareContent(event: Event): void {
 
-  ngAfterViewInit(): void {
-    this.shareBtn.nativeElement.addEventListener('click', this.shareContent.bind(this));
-  }
+    event.preventDefault(); // Ensure it's within a user gesture
 
-  shareContent(): void {
+    console.log("userdata",this.userData);
+
     if (navigator.share) {
       navigator.share({
-        title: 'GeeksForGeeks',
-        url: 'https://geeksforgeeks.org'
+        title: 'Global Justice, Love and Peace Summit | Dubai',
+        url: this.userData.qr_code
       })
       .then(() => console.log('Thanks for sharing!'))
-      .catch(err => console.error('Error while using Web Share API:', err));
+      .catch(err => {
+        if (err.name === 'AbortError') {
+          console.warn('User canceled the sharing action.');
+        } else {
+          console.error('Error while using Web Share API:', err);
+        }
+      });
     } else {
-      alert("Browser doesn't support this API!");
+      this.SharedService.ToastPopup("Your browser doesn't support the Web Share API.",'','error');
     }
   }
 }

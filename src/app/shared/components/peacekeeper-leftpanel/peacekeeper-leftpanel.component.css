@@ -50,3 +50,14 @@ button {
   background: none;
   cursor: pointer;
 }
+
+
+.sidebar-nav .nav-link:hover{
+  color: #fff !important;
+    border-radius: 0px 10px 10px 0px;
+}
+
+
+/* .sidebar-nav .nav-item.active a{
+  color: #005a93 !important;
+} */

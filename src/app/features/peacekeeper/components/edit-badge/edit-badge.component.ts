@@ -148,9 +148,12 @@ export class EditBadgeComponent {
     let body = {
       peace_id: peaceId,
     };
+
+    this.ngxService.start();
     this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
       next: (res: any) => {
         if (res.success) {
+          this.ngxService.stop();
           // this.sharedService.ToastPopup('PeacekeeperBadge fetched Successful','','success')
           this.PeaceBadgeData = this.sharedService.decryptData(res.data);
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
@@ -186,8 +189,14 @@ export class EditBadgeComponent {
           this.ngxService.stop();
         }
       },
+      error : (err)=>{
+        console.log("err",err);
+        this.ngxService.stop();
+      }
     });
   }
+
+
   setCountryByDialCode(dialCode: string) {
     if (this.phoneInput) {
       const countryList = this.phoneInput.allCountries;
@@ -200,33 +209,17 @@ export class EditBadgeComponent {
   }
 
   updatePeacekeeper(): void {
-    if (
-      !this.editBadgeForm.value.full_name?.trim() ||
-      this.editBadgeForm.value.full_name.trim().length < 3
-    ) {
+    if (!this.editBadgeForm.value.full_name?.trim() || this.editBadgeForm.value.full_name.trim().length < 3) {
       this.renderer.selectRootElement('#fullName').focus();
-      this.sharedService.ToastPopup(
-        'Full Name must be at least 3 characters long',
-        '',
-        'error'
-      );
+      this.sharedService.ToastPopup('Full Name must be at least 3 characters long','','error');
       return;
-    } else if (
-      this.editBadgeForm.value.dob == '' ||
-      this.editBadgeForm.value.dob == undefined
-    ) {
+    } else if (this.editBadgeForm.value.dob == '' || this.editBadgeForm.value.dob == undefined) {
       this.renderer.selectRootElement('#dob').focus();
       this.sharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
-    } else if (
-      this.editBadgeForm.value.country == '' ||
-      this.editBadgeForm.value.country == undefined
-    ) {
+    } else if (this.editBadgeForm.value.country == '' || this.editBadgeForm.value.country == undefined) {
       setTimeout(() => {
-        const countryElement = this.renderer.selectRootElement(
-          '#country',
-          true
-        );
+        const countryElement = this.renderer.selectRootElement('#country',true );
         if (countryElement) {
           countryElement.focus();
         }
@@ -234,16 +227,6 @@ export class EditBadgeComponent {
       this.sharedService.ToastPopup('Please select country', '', 'error');
       return;
     }
-    // else if(this.editBadgeForm.value.email_id == "" || this.editBadgeForm.value.email_id == undefined) {
-    //   this.renderer.selectRootElement('#email').focus();
-    //   this.sharedService.ToastPopup("Please Enter Email ID",'','error');
-    //   return;
-    // }
-    // else if (this.editBadgeForm.controls['email_id'].invalid) {
-    //   this.renderer.selectRootElement('#email').focus();
-    //   this.sharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
-    //   return;
-    // }
     else if (
       this.editBadgeForm.value.mobile_number == '' ||
       this.editBadgeForm.value.mobile_number == undefined ||
@@ -297,7 +280,7 @@ export class EditBadgeComponent {
         this.editBadgeForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-      dob: this.formattedDate,
+        dob: this.formattedDate,
     });
 
     const FromData = {
@@ -338,8 +321,10 @@ export class EditBadgeComponent {
             full_name: this.PeaceBadgeData.full_name,
             peacekeeper_id: this.PeaceBadgeData.peacekeeper_id,
             file_name: this.PeaceBadgeData?.file_name,
+            qr_code : this.PeaceBadgeData?.QR_CODE,
+            email : this.PeaceBadgeData?.email_id
           };
-          // this.sharedService.setUserDetails(JSON.stringify(userData));
+
           localStorage.setItem('userDetails', JSON.stringify(userData));
           this.sharedService.ToastPopup('', response.message, 'success');
           this.is_selectedFile = false;
@@ -350,7 +335,7 @@ export class EditBadgeComponent {
           this.imageUrl = '';
           setTimeout(() => {
             window.location.reload();
-          }, 1000);
+          }, 500);
           // this.getPeaceBadgeData();
         } else {
           this.ngxService.stop();
@@ -363,7 +348,6 @@ export class EditBadgeComponent {
           dob: returnDOB,
         });
         this.ngxService.stop();
-
         this.sharedService.ToastPopup('', err.error.message, 'error');
       }
     );
@@ -498,6 +482,18 @@ export class EditBadgeComponent {
     }
   }
 
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
+  }
+
   /** ✅ Function to Display Validation Message */
   getPhoneErrorMessage() {
     const control = this.editBadgeForm.controls['mobile_number'];
@@ -510,6 +506,7 @@ export class EditBadgeComponent {
     }
     return ''; // Ensure a value is always returned
   }
+
 
   ValidateAlpha(event: any) {
     var keyCode = event.which ? event.which : event.keyCode;
@@ -595,6 +592,14 @@ export class EditBadgeComponent {
     } else {
       console.log('No file selected.');
     }
+  }
+
+  openPopup() {
+
+    this.showPopup = true;
+    this.isPeaceOn = 0;
+    this.display = 'block';
+    this.formdisplay = false;
   }
 
   imageCropped(event: ImageCroppedEvent): void {
@@ -690,5 +695,34 @@ export class EditBadgeComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  downloadImage() {
+    if (this.peaceBadge) {
+      fetch(this.peaceBadge)
+      .then(response => response.blob())  // Convert response to Blob
+      .then(blob => {
+        const url = URL.createObjectURL(blob); // Create an object URL for the blob
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url); // Clean up the object URL
+      })
+      .catch(error => console.error('Error downloading the image:', error));
+    }
+
+
+    setTimeout(() => {
+      this.display = 'none';
+      this.showPopup = false;
+    }, 500);
+  }
+
+  closeModal() {
+    this.display = 'none';
+    this.showPopup = false;
   }
 }

@@ -17,7 +17,7 @@ export class LoginComponent {
   deviceInfo: any = "";
   isOTPReceive: boolean = false;
   txtVerifyOTP : string = ""
-  countdown: number = 100; // 5 minutes in seconds
+  countdown: number = 60; // 5 minutes in seconds
   timerExpired: boolean = false;
   interval: any;
   buttonText :string = 'Login with OTP'
@@ -74,7 +74,7 @@ export class LoginComponent {
     }
 
     this.timerExpired =false;
-    this.countdown = 100; // Reset countdown to 100 seconds
+    this.countdown = 60; // Reset countdown to 100 seconds
     this.buttonText = "Resend OTP";
 
     this.interval = setInterval(() => {
@@ -117,7 +117,7 @@ export class LoginComponent {
       "email": this.emailForm.value.email,
       "deviceId": this.ipAddress,
       "deviceOs": this.deviceInfo,
-      "registeration_type":"0"
+      "registeration_type":"1"
     }
     this.ngxService.start();
     this.peaceKeeperService.sendOTPApi(body).subscribe({
@@ -126,8 +126,9 @@ export class LoginComponent {
         this.ngxService.stop();
         this.isOTPReceive = true;
         this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
+        this.countdown = 60; // Reset countdown
         this.startTimer();
+        this.emailForm.value.password = "";
         this.sharedService.ToastPopup(res.message,'','success')
       },
       error: (err: any) => {
@@ -158,18 +159,39 @@ export class LoginComponent {
 
     let body = {
       "email": this.emailForm.value.email,
-      "otp": this.txtVerifyOTP
+      "otp": this.txtVerifyOTP,
+      "deviceId": this.ipAddress,
+      "os_type": this.deviceInfo,
+      "password": "",
+      "loginVia": "0",// for otp
     }
 
-    this.peaceKeeperService.verifyOTPApi(body).subscribe({
+    this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
       next :(res:any)=>{
         console.log("Res",res);
-        this.buttonText = "Send OTP";
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.sharedService.ToastPopup(res.message,'','success');
-        this.peaceKeeperService.setToken('authToken');
-        this.router.navigate(['/dashboard']);
+
+        if (res.success) {
+          // this.sharedService.ToastPopup('Login Successful', '', 'success')
+
+          const userData = {
+            full_name : res.data['full_name'],
+            peacekeeper_id : res.data['peacekeeper_id'],
+            file_name : res.data['file_name'],
+            qr_code : res.data['QR_CODE'],
+            email :res.data['email_id']
+          }
+
+          this.buttonText = "Send OTP";
+          this.isOTPReceive = false;
+          this.timerExpired = false;
+          this.sharedService.ToastPopup('Login Successful','','success');
+          this.sharedService.setJWTToken(res.token);
+          this.peaceKeeperService.setToken('authToken');
+          this.sharedService.setUserDetails(JSON.stringify(userData));
+          this.ngxService.stop();
+          this.emailForm.reset();
+          this.router.navigate(['/dashboard']);
+        }
       },
       error: (err: any) => {
         console.error("Error:", err);
@@ -192,7 +214,11 @@ export class LoginComponent {
 
     let body = {
       "email": this.emailForm.value.email,
-      "password" : this.emailForm.value.password
+      "password" : this.emailForm.value.password,
+      "deviceId": this.ipAddress,
+      "os_type": this.deviceInfo,
+      "loginVia": "1",// for password
+      "otp":""
     }
 
     this.ngxService.start();
@@ -201,24 +227,38 @@ export class LoginComponent {
         console.log("Res", res);
         if (res.success) {
           this.sharedService.ToastPopup('Login Successful', '', 'success')
-          const decreptedToken = this.sharedService.decryptData(res.token);
-          const decreptedUser = this.sharedService.decryptData(res.data)
+          // const decreptedToken = this.sharedService.decryptData(res.token);
+          // const decreptedUser = this.sharedService.decryptData(res.data)
           const userData = {
-            full_name : decreptedUser.full_name,
-            peacekeeper_id : decreptedUser.peacekeeper_id,
-            file_name : decreptedUser.file_name,
+            full_name : res.data['full_name'],
+            peacekeeper_id : res.data['peacekeeper_id'],
+            file_name : res.data['file_name'],
           }
           // Store the encrypted token
-          this.sharedService.setJWTToken(decreptedToken);
+          debugger;
+          console.log("Userdata",userData);
+          this.sharedService.setJWTToken(res.token);
           this.peaceKeeperService.setToken('authToken');
           this.sharedService.setUserDetails(JSON.stringify(userData));
           this.ngxService.stop();
-
+          this.emailForm.reset();
           this.router.navigate(['/dashboard']);
         }
 
+      },
+      error : (err)=>{
+        console.log(err.error);
+        this.sharedService.ToastPopup(err.error['message'],'','error');
+        this.ngxService.stop();
       }
     })
-
   }
+
+  validateEmail(event: any) {
+    let value = event.target.value;
+
+    // Remove leading spaces and spaces inside the email
+    event.target.value = value.replace(/\s+/g, '');
+  }
+
 }

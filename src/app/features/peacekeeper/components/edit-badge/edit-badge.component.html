@@ -127,6 +127,7 @@
                         showWeekNumbers: false,
                         containerClass: colorTheme
                       }"
+                      readonly
                     />
                   </div>
                 </div>
@@ -221,6 +222,8 @@
                       formControlName="mobile_number"
                       (keydown)="onMobileKeyDown($event, mobile_number)"
                       (keypress)="keyPressNumbers($event, mobile_number)"
+                      (paste)="onPasteMobileNumber($event)"
+                                          autocomplete="off"
                     ></ngx-intl-tel-input>
                   </div>
                 </div>
@@ -322,7 +325,7 @@
             />
           </div>
 
-          <button *ngIf="peaceBadge" class="btn btn-success w-100">
+          <button *ngIf="peaceBadge" (click)="openPopup()" class="btn btn-success w-100">
             Preview
           </button>
         </div>
@@ -389,6 +392,67 @@
             "
           >
             Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+  *ngIf="isPeaceOn == 0"
+  [ngStyle]="{ display: display }"
+  class="modal"
+  closeLabel="Close"
+  id="trustUntrust_alert"
+  #trustUntrust_alert
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog come-from-modal new_dialog1 bgModal">
+    <div class="modal-content">
+      <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
+
+          <div id="capture">
+        <ng-container>
+          <table class="main w-100" style="margin: auto">
+            <tr>
+              <td style="position: relative">
+                <img loading="eager"
+                  [src]="peaceBadge"
+                  class="w-100 cpImg"
+                  alt=""
+                  width="100px"
+                />
+              </td>
+            </tr>
+          </table>
+
+        </ng-container>
+      </div>
+      <div class="col-md-12 row ms-2 my-3" style="width: 95%">
+        <div class="col-6">
+          <button
+            class="btn btn-success w-100"
+            (click)="downloadImage()"
+            style="height: 36px; font-size: 15px"
+          >
+            Download now
+          </button>
+        </div>
+        <div class="col-6">
+          <button
+            class="btn btn-success w-100"
+            (click)="closeModal()"
+            style="
+              height: 36px;
+              font-size: 15px;
+              background-color: #ffff;
+              color: #198754;
+            "
+          >
+            Close
           </button>
         </div>
       </div>
