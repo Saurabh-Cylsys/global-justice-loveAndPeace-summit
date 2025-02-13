@@ -607,6 +607,7 @@
                     (keydown.tab)="openDatepicker()"
                     (ngModelChange)="onDateChange($event)"
                     bsDatepicker
+                    readonly
                     [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD/MM/YYYY' ,showWeekNumbers: false, containerClass: colorTheme}"
 
                   />
@@ -911,7 +912,7 @@
             <ul class="list-unstyled text-center badge">
               <div>
                 <img loading="eager"
-                  src="assets/UIComponents/images/join-us.png"
+                  src="assets/UIComponents/images/join-us.webp"
                   alt=""
                   width="100%"
                   class="border"
@@ -922,7 +923,7 @@
               </div>
               <li>
                 <button
-                  [disabled]="!submitted"
+                [disabled]="!submitted"
                   class="btn btn-success"
                   (click)="openPopup()"
                 >
@@ -976,7 +977,8 @@
           <h2>7 Human Values</h2>
         </div>
         <div class="col-md-4 text-center">
-          <img loading="eager" src="assets/UIComponents/images/wpm/pv1.svg" alt="7 Peace Value" class="col-md-8" >
+          <a [routerLink]="['/blog/human-values']">
+          <img loading="eager" src="assets/UIComponents/images/wpm/pv1.svg" alt="7 Peace Value" class="col-md-8" ></a>
         </div>
         <div class="col-md-12">
           <div class="row">
@@ -1218,92 +1220,27 @@
     <div class="modal-content">
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
-      <ng-template #contentTemplate>
-        <table class="main w-100" style="margin: auto">
-          <tr>
-            <td style="position: relative">
-              <img loading="eager"
-                [src]="peacekeeperBadge"
-                class="w-100 cpImg"
-                alt=""
-                width="100px"
-              />
-              <!-- <div
-                style="position: absolute; top: 15px; left: 15px; width: 54%"
-              >
-                <h4
-                  class="fw-bold"
-                  style="
-                    margin: 0px;
-                    font-size: 14px;
-                    text-transform: uppercase;
-                  "
-                >
-                  {{ peacekeeperData.Name }}
-                </h4>
-                <hr
-                  style="margin: 0px; width: 120%; color: #707070; opacity: 0.3"
-                />
-
-                <div class="badgeModal">
-                  <label for="" style="color: #17598e"><b>Country :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Country }}</span
-                  >
-                </div>
-                <div class="badgeModal" *ngIf="isCheckEmail">
-                  <label for="" style="color: #17598e"><b>Mobile :</b> </label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Phone }}</span
-                  >
-                </div>
-                <div class="badgeModal" *ngIf="isCheckEmail">
-                  <label for="" style="color: #17598e"><b>E-mail :</b></label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.Email }}</span
-                  >
-                </div>
-                <div class="badgeModal">
-                  <label for="" style="color: #17598e"><b>ID No. :</b></label>
-                  <span style="outline: none; border: none">
-                    {{ peacekeeperData.ID_NO }}</span
-                  >
-                </div>
-              </div>
-              <div>
+          <div id="capture">
+        <ng-container>
+          <table class="main w-100" style="margin: auto">
+            <tr>
+              <td style="position: relative">
                 <img loading="eager"
-                  class="pix"
-                  [src]="fileUrl"
+                  [src]="peacekeeperBadge"
+                  class="w-100 cpImg"
                   alt=""
-                  style="
-                    position: absolute;
-                    top: 15px;
-                    right: 20px;
-                    border: 2px solid #359138;
-                    border-radius: 50%;
-                    background-color: #fff;
-                  "
+                  width="100px"
                 />
-              </div>
-              <div
-                class="col-12 text-center qr-code-section"
-                style="position: relative"
-              >
-                <img loading="eager" class="pix pix2" [src]="qrCodeImg" alt="" />
-              </div> -->
-            </td>
-          </tr>
-        </table>
-      </ng-template>
+              </td>
+            </tr>
+          </table>
 
-      <div id="capture">
-        <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </ng-container>
       </div>
       <div class="col-md-12 row ms-2 my-3" style="width: 95%">
         <div class="col-6">
           <button
             class="btn btn-success w-100"
-            [disabled]="isConvertedImage"
             (click)="downloadImage()"
             style="height: 36px; font-size: 15px"
           >

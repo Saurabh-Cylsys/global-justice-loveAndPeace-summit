@@ -152,7 +152,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.mobile_numberVal = false;
     const inputElement = document.getElementById('phone') as HTMLInputElement;
 
-    if (inputElement) {
+    if (inputElement != null) {
       const data = int1TelInput(inputElement, {
         initialCountry: 'ae',
         separateDialCode: true,
@@ -287,11 +287,20 @@ onDateChange(event: string): void {
   }
 
   downloadImage() {
-    if (this.convertedImage) {
-      const link = document.createElement('a');
-      link.href = this.convertedImage;
-      link.download = 'peacekeeper-card.png'; // Set the filename
-      link.click();
+    if (this.peacekeeperBadge) {
+      fetch(this.peacekeeperBadge)
+      .then(response => response.blob())  // Convert response to Blob
+      .then(blob => {
+        const url = URL.createObjectURL(blob); // Create an object URL for the blob
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url); // Clean up the object URL
+      })
+      .catch(error => console.error('Error downloading the image:', error));    
     }
 
 
@@ -301,17 +310,14 @@ onDateChange(event: string): void {
     }, 500);
   }
   openPopup() {
-    // this.peacekeeperBadgeId = 124
+    // this.peacekeeperBadgeId = 495
     if (this.peacekeeperBadgeId) {
       let id = this.peacekeeperBadgeId;
       this.DelegateService.getPeacekeeper_Badge(id).subscribe((res: any) => {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code;
         this.fileUrl = this.peacekeeperData.file_urls[0];
-        setTimeout(() => {
-          this.readyImage();
-        }, 1000);
-      });
+          });
     }
 
     this.showPopup = true;
@@ -319,35 +325,7 @@ onDateChange(event: string): void {
     this.display = 'block';
     this.formdisplay = false;
   }
-  readyImage() {
-    if (this.peacekeeperData) {
-      const element: HTMLElement | null = document.getElementById('capture');
-      if (!element) {
-        console.error('Element not found for capturing!');
-        return;
-      }
 
-      html2canvas(element, {
-        useCORS: true, // Ensures cross-origin images are captured
-        scale: 2, // Improves image quality
-      })
-        .then((canvas) => {
-          this.convertedImage = canvas.toDataURL('image/png');
-          // const link = document.createElement('a');
-          // link.href = this.convertedImage;
-          // link.download = 'peacekeeper-card.png'; // Set the filename
-          // link.click();
-        })
-        .catch((error) => {
-          console.error('Error capturing the image:', error);
-        })
-        .finally(() => {
-          // this.isLoading = false; // Hide the spinner if added
-          console.log('converted image', this.convertedImage);
-          this.isConvertedImage = false;
-        });
-    }
-  }
   closeModal() {
     this.display = 'none';
     this.showPopup = false;

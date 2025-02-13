@@ -1,7 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../delegate/services/delegate.service';
 
 @Component({
@@ -16,15 +16,16 @@ export class SuccessComponent implements OnInit {
   errorMessage: string = '';
   sessionId: string | null = null;
   transactionVerified: boolean | undefined;
- 
+
   constructor(private route: ActivatedRoute,
+    private router : Router,
     private DelegateService: DelegateService,
      private http: HttpClient) {
     this.route.queryParams.subscribe((params) => {
       this.sessionId = params['session_id'] || 'No session_id';
     });
   }
- 
+
   ngOnInit() {
 
     this.verifySession();
@@ -45,7 +46,7 @@ let body={
                 this.isPaymentStatus = response.session.status;
                 this.transactionVerified = true;
                 console.log( this.isPaymentStatus , 'transactionVerified.....22');
-                
+
               } else {
                 // this.isPaymentStatus = response.session.status;
                 this.isPaymentStatus = 'failed';
@@ -72,4 +73,8 @@ let body={
   //       error: (err) => console.error('Error verifying session:', err),
   //     });
   // }
+
+  redirectToHome(){
+    this.router.navigate(['/home']);
+  }
 }
