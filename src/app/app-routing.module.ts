@@ -1,25 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
-import { WebHomeComponent } from './features/web/web-home/web-home.component';
-import { LoginComponent } from './features/peacekeeper/components/login/login.component';
-import { DashboardComponent } from './features/peacekeeper/components/dashboard/dashboard.component';
+
 
 const routes: Routes = [
 
 
   // {path:'webhome',component:WebHomeComponent},
 
-  {
-    path: '',
-    loadChildren: () =>
-      import('./features/web/web.module').then((m) => m.WebModule)
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('./features/delegate/delegate.module').then((m) => m.DelegateModule)
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./features/web/web.module').then((m) => m.WebModule)
+  // },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import('./features/delegate/delegate.module').then((m) => m.DelegateModule)
+  // },
   {
     path: '',
     loadChildren: () =>

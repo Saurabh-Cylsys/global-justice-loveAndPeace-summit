@@ -24,6 +24,10 @@ const routes: Routes = [
       { path: 'sent-invitation', component: SentInvitationComponent ,canActivate: [AuthGuard] },
       // { path: 'contact-list', component: ContactListComponent },
       { path: 'change-password', component: ChangePasswordComponent ,canActivate: [AuthGuard]},
+
+      // { path: '', component: LoginComponent },
+
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       // { path: 'upload-contacts', component: UploadContactsComponent }
     ],
   },
