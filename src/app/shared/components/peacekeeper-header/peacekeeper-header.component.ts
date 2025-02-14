@@ -44,4 +44,11 @@ export class PeacekeeperHeaderComponent implements OnInit {
   onResize(event: any): void {
     this.checkWindowSize();
   }
+
+  toggleOffcanvas() {
+    const body = document.getElementById('bodyload');
+    if (body) {
+      body.removeAttribute('style');
+    }
+  }
 }

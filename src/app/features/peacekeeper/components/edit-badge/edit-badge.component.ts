@@ -285,7 +285,7 @@ export class EditBadgeComponent {
         dob: this.formattedDate,
     });
 
-    const FromData = {
+    const formData = {
       id: this.PeaceBadgeData.peacekeeper_id,
       full_name: this.editBadgeForm.value.full_name,
       country: this.editBadgeForm.value.country,
@@ -297,7 +297,7 @@ export class EditBadgeComponent {
       url: this.PeaceBadgeData.url,
     };
 
-    const EncryptData = this.sharedService.encryptData(FromData);
+    const EncryptData = this.sharedService.encryptData(formData);
     const encryptedPayload = new FormData();
     encryptedPayload.append('encrypted_data', EncryptData);
 

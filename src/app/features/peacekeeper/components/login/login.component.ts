@@ -233,7 +233,8 @@ export class LoginComponent {
             full_name : res.data['full_name'],
             peacekeeper_id : res.data['peacekeeper_id'],
             file_name : res.data['file_name'],
-            email :res.data['email_id']
+            email :res.data['email_id'],
+            qr_code : res.data['QR_CODE']
           }
           // Store the encrypted token
           console.log("Userdata",userData);

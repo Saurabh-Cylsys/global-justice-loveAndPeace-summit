@@ -112,14 +112,13 @@ export class SentInvitationComponent implements OnInit {
     this.checkWindowSize();
   }
 
-  ngOnDestroy(): void {
-    this.editor.destroy();
-    this.isCollapsed = false;
-    this.isMobileView = false;
-  }
+  // ngOnDestroy(): void {
+  //   this.editor.destroy();
+  //   this.isCollapsed = false;
+  //   this.isMobileView = false;
+  // }
 
   onRecipientChange(option: any) {
-    console.log(option);
     this.selectedRecipient = option.label;
   }
 
@@ -141,7 +140,6 @@ export class SentInvitationComponent implements OnInit {
   }
 
   changeTemplateType(evt: any) {
-    console.log(evt.target.value);
 
     if (evt.target.value == 1) {
       this.isNew = true;
@@ -199,9 +197,6 @@ export class SentInvitationComponent implements OnInit {
 
 
   shareContent(event: Event): void {
-    event.preventDefault(); // Ensure it's within a user gesture
-
-    console.log("User Data:", this.userData);
 
     // Ensure that userData.qr_code is available
     if (!this.userData || !this.userData.qr_code) {
@@ -209,17 +204,20 @@ export class SentInvitationComponent implements OnInit {
       return;
     }
 
-    const shareTitle = encodeURIComponent('Global Justice, Love and Peace Summit | Dubai');
-    const shareURL = encodeURIComponent(this.userData.qr_code);
+    const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
+    const shareURL = this.userData.qr_code;
 
     // Construct WhatsApp Share URL
-    const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
+    // const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
+
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' ' + shareURL)}`;
+
 
     // Check if Web Share API is supported
     if (navigator.share) {
       navigator.share({
-        title: 'Global Justice, Love and Peace Summit | Dubai',
-        url: this.userData.qr_code
+        title: shareTitle,
+        url: shareURL
       })
       .then(() => console.log('Thanks for sharing!'))
       .catch(err => {

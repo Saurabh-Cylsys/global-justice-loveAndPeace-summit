@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center justify-content-between"  [ngStyle]="{ 'margin-left': (isCollapsed || isMobileView) ? '0px' : '220px' }">
   <div class="d-flex align-items-center justify-content-between">
       <i class="bi bi-list" (click)="toggleSidebar()" style="font-size: 30px;" *ngIf="!isMobileView"></i>
-      <i class="bi bi-list" style="font-size: 30px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" *ngIf="isMobileView"></i>
+      <i class="bi bi-list" style="font-size: 30px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" *ngIf="isMobileView" (click)="toggleOffcanvas()"></i>
   </div>
   <div class="profile d-flex">
       <div class="profile-card">
