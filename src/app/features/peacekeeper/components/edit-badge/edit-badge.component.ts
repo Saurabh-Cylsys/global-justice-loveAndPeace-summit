@@ -82,6 +82,7 @@ export class EditBadgeComponent {
 
   @ViewChild(NgxIntlTelInputComponent, { static: false })
   phoneInput?: NgxIntlTelInputComponent;
+  tempSelectedFile: any;
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -539,19 +540,19 @@ export class EditBadgeComponent {
 
   //image
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files[0]) {
-      const file = input.files[0];
-      const reader = new FileReader();
+  // onFileSelected(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files[0]) {
+  //     const file = input.files[0];
+  //     const reader = new FileReader();
 
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-      };
+  //     reader.onload = () => {
+  //       this.imageUrl = reader.result;
+  //     };
 
-      reader.readAsDataURL(file);
-    }
-  }
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
   onFileChange(event: any): void {
     this.imageChangedEvent = event;
@@ -575,16 +576,19 @@ export class EditBadgeComponent {
         return;
       }
       // Validate the file size
-      if (file.size < minSize || file.size > maxSize) {
-        this.sharedService.ToastPopup(
-          '',
-          'Invalid file size! Please select an image between 200KB to 5MB.',
-          'error'
-        );
-        event.target.value = ''; // Reset the file input
-        this.is_selectedFile = false;
-        return;
-      }
+      // if (file.size < minSize || file.size > maxSize) {
+      //   this.sharedService.ToastPopup(
+      //     '',
+      //     'Invalid file size! Please select an image between 200KB to 5MB.',
+      //     'error'
+      //   );
+      //   event.target.value = ''; // Reset the file input
+      //   this.is_selectedFile = false;
+      //   return;
+      // }
+
+      this.tempSelectedFile = file; // Store the file temporarily
+
 
       this.isPeaceOn = 2;
       this.showPopup = true;
@@ -627,6 +631,7 @@ export class EditBadgeComponent {
           this.selectedFile = newFile;
           this.is_selectedFile = true;
         }
+
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.imageUrl = e.target.result; // Set the preview URL
@@ -648,14 +653,11 @@ export class EditBadgeComponent {
   }
 
   closeImageModal() {
-    const fileInput = document.querySelector(
-      'input[type="file"]'
-    ) as HTMLInputElement;
-    fileInput.value = '';
     this.is_selectedFile = false;
     this.display = 'none';
     this.showPopup = false;
     this.selectedFile = null;
+    this.tempSelectedFile = null;
   }
 
   // Zoom In
