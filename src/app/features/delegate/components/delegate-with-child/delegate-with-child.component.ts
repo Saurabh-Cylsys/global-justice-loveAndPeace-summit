@@ -592,7 +592,6 @@ onProfession2Input(event: Event) {
     }
   }
 
-
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value as string;
@@ -654,7 +653,6 @@ onProfession2Input(event: Event) {
       }
     }
   }
-
 
   onKeyDown(event: KeyboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
     if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
@@ -748,7 +746,6 @@ onProfession2Input(event: Event) {
     }
   }
 
-
   onPasteEvent(event: ClipboardEvent, fieldType: 'website' | 'linkedin'): void {
     event.preventDefault();
     const clipboardData = event.clipboardData?.getData('text') || '';
@@ -773,7 +770,6 @@ onProfession2Input(event: Event) {
       event.preventDefault();
     }
   }
-
 
   onInstagramKeyDown(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
@@ -819,37 +815,6 @@ onProfession2Input(event: Event) {
   submitData(): void {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Ensure both ages are defined before proceeding
-    if (this.userAge === undefined || this.nomineeAge === undefined) {
-      this.SharedService.ToastPopup('Invalid date selection. Please enter valid DOBs.', '', 'error');
-      return;
-    }
-
-
-    if (this.userType === 'student') {
-      if (this.userAge <= 0 || this.userAge >= 21) {
-        this.SharedService.ToastPopup('As a Student, your age must be between 1 and less than 21.', '', 'error');
-        return;
-      }
-      if (this.nomineeAge <= 21) {
-        this.SharedService.ToastPopup('As a Student, your nominee must be older than 21.', '', 'error');
-        return;
-      }
-    }
-    else if (this.userType === 'adult') {
-      if (this.userAge < 21) {
-        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.', '', 'error');
-        return;
-      }
-      if (this.nomineeAge >= 21 || this.nomineeAge <= 0) {
-        this.SharedService.ToastPopup('As an Adult, your nominee must be between 1 and less than 21.', '', 'error');
-        return;
-      }
-    }
-
-    if (!this.userDob ) {
-      this.SharedService.ToastPopup('Please select DOB.', '', 'error');
-      return;
-    }
 
     if(!this.registrationForm.value.title || this.registrationForm.value.title.length < 2){
       this.renderer.selectRootElement('#title').focus();
@@ -952,11 +917,6 @@ onProfession2Input(event: Event) {
       return;
     }
 
-  else if(!this.nomineeDob) {
-      this.SharedService.ToastPopup('Please select nominee DOB field.', '', 'error');
-      return;
-    }
-
    else if(this.nomineeName.length < 2  || this.nomineeName == undefined) {
       this.renderer.selectRootElement('#nominee_name').focus();
       this.SharedService.ToastPopup("Nominee Name must be 2 characters long.", '', 'error');
@@ -970,9 +930,8 @@ onProfession2Input(event: Event) {
     }
 
     else if(!emailPattern.test(this.nomineeEmail)) {
-
       this.renderer.selectRootElement('#nomineeEmail').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      this.SharedService.ToastPopup("Please Enter Valid Email ID",'','error');
       return;
     }
 
@@ -1007,7 +966,6 @@ onProfession2Input(event: Event) {
       return;
     }
 
-
     else if(this.nomineeRelation == ""  || this.nomineeRelation == undefined) {
       this.renderer.selectRootElement('#nominee_relation').focus();
       this.SharedService.ToastPopup("Please Enter Relation ", '', 'error');
@@ -1016,6 +974,16 @@ onProfession2Input(event: Event) {
     else if(this.instituteName.trim() == "" || this.instituteName == undefined) {
       this.renderer.selectRootElement('#institute_Name').focus();
       this.SharedService.ToastPopup("Please Enter Institute Name ", '', 'error');
+      return;
+    }
+
+    else if(!this.nomineeDob) {
+      this.SharedService.ToastPopup('Please select nominee DOB field.', '', 'error');
+      return;
+    }
+
+    if (!this.userDob ) {
+      this.SharedService.ToastPopup('Please select DOB.', '', 'error');
       return;
     }
 
@@ -1030,6 +998,14 @@ onProfession2Input(event: Event) {
       this.SharedService.ToastPopup("Both Mobile numbers should not be the same",'','error');
       return;
     }
+
+    if (this.userAge === undefined || this.nomineeAge === undefined) {
+      this.SharedService.ToastPopup('Invalid date selection. Please enter valid DOBs.', '', 'error');
+      return;
+    }
+
+    this.validateUserAge();
+    this.validateNomineeAge();
 
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
@@ -1099,8 +1075,14 @@ onProfession2Input(event: Event) {
                     console.log("Res",res);
                     if(res.success) {
                       this.ngxService.stop();
+
                       if (result.url) {
                         window.location.href = result.url; // Redirect to Stripe Checkout
+                        this.nomineeName = '';
+                        this.nomineeDob = '';
+                        this.nomineeEmail = '';
+                        this.nomineeRelation = '';
+                        this.nominee_mobile_number = '';
                       }
                     }
                   }
@@ -1257,11 +1239,11 @@ onProfession2Input(event: Event) {
 
   private isNomineeFormDirty(): boolean {
     return (
-      this.nomineeName.trim() !== '' ||
-      this.nomineeDob.trim() !== '' ||
-      this.nomineeEmail.trim() !== '' ||
-      this.nomineeRelation.trim() !== '' ||
-      this.nominee_mobile_number.trim() !== ''
+      (this.nomineeName?.trim() || '') !== '' ||
+      (this.nomineeDob?.trim() || '') !== '' ||
+      (this.nomineeEmail?.trim() || '') !== '' ||
+      (this.nomineeRelation?.trim() || '') !== '' ||
+      (this.nominee_mobile_number?.trim() || '') !== ''
     );
   }
 
@@ -1278,16 +1260,16 @@ onProfession2Input(event: Event) {
   }
 
   onUserTypeChange(selectedType: string): void {
+    this.isFormDirty = this.isNomineeFormDirty(); // Update before checking
+
     if (this.isFormDirty || this.registrationForm.dirty) {
       const confirmation = window.confirm("Warning: Your unsaved data will be lost. Do you want to continue?");
 
       if (confirmation) {
         this.userType = selectedType;
         console.log('User Type Selected:', this.userType);
-        this.isNomineeFormDirty();
         this.clearFormState();
         this.isFormDirty = false; // Reset dirty flag
-        this.registrationForm.markAsPristine(); // Reset form state
         this.registrationForm.reset();
       } else {
         console.log("User type change canceled.");
