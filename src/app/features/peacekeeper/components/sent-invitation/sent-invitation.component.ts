@@ -196,7 +196,7 @@ export class SentInvitationComponent implements OnInit {
   // }
 
 
-  shareContent(event: Event): void {
+  shareContent(): void {
 
     // Ensure that userData.qr_code is available
     if (!this.userData || !this.userData.qr_code) {
@@ -204,20 +204,51 @@ export class SentInvitationComponent implements OnInit {
       return;
     }
 
-    const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
-    const shareURL = this.userData.qr_code;
+    // const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
+    // const shareURL = this.userData.qr_code;
+
+    const shareTitle = `✨ **12 REASONS TO ATTEND GLOBAL JUSTICE, LOVE & PEACE SUMMIT AT DUBAI ON 12, 13 APRIL, 2025** ✨
+👑 Chief Guest: His Excellency Sheikh Nahayan Mabarak Al Nahayan, Minister of Tolerance & Co-Existence, UAE
+🌍 Chairman of the Summit: Dr. Huzaifa Khorakiwala
+🌟 A STAR-STUDDED, SENSITIVE, SPECIAL, SOCIABLE, SAGACIOUS, SWEET, & SATISFYING Summit!
+🎤 1. OUTSTANDING, GLOBAL SPEAKERS 🎓🌎
+72 outstanding, global speakers including 10 Nobel Peace Laureates 🕊️ (including Lech Walesa), Baba Ramdev, Sri Sri Ravishankar (live online), Jacqueline Fernandez, The Great Khali, etc.
+🌐 2. 2800 DELEGATES (PEACEKEEPERS) 🤝💙
+Surely, one of the world's largest private summits on justice, love, & peace, a great place to network with noble & noteworthy Delegates (Peacekeepers).
+📅 3. PEACE NETWORKING 🤲📍
+28 Peace Networking Tables to do private networking by fixing up meetings before the event with Delegates of your choice.
+🏅 4. GLOBAL JUSTICE, LOVE & PEACE CHAMPION AWARDS 🎖️✨
+28 Awards amongst 112 nominees at a glittering Awards ceremony.
+🍛 5. PEACE MENU 🌍🍽️
+28 dishes from 28 different countries in an exotic Peace Menu over 1 meal, so with 2 Lunches & 2 Dinners, there will be 112 dishes from 112 countries!
+📸 6. PRIVATE PHOTOS WITH SPEAKERS 📷✨
+Each Speaker agrees to take individual, private pictures with 28 Delegates—you could be one of them!
+🥇 7. INVITATION TO EXCLUSIVE VIP LUNCHES & DINNERS 🏆🍴
+12% of Delegates will get a Special Invite to a VIP Lunch or Dinner where Speakers & Awardees are likely to be present. Hence, 48% of Delegates will receive an invite to one of the 4 Lunches or Dinners.
+🎁 8. PEACE GIFTS 🎀📦
+Every Delegate will receive exquisite Peace Gifts, which include a Peace Calendar, Peace Coffee Mug, Peace Chocolates, etc.
+🎭 9. SPEAKERS CUT-OUTS 🖼️📷
+Each Delegate can take photos with Speakers' Cut-Outs!
+✊ 10. I AM PEACEKEEPER MOVEMENT ✨🫶
+Become part of a Global "I am Peacekeeper" Movement & network with Global Peacekeepers while receiving attractive offers & discounts!
+👗 11. PEACE FASHION 🌎🧵
+See a unique Peace Fashion Show featuring 7 leading fashion designers from different continents.
+🎼 12. PEACE SONGS 🎶🎙️
+Experience inspiring Peace Songs live!
+🚀 SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED
+"where every smile counts" 😊✨
+📢 Peacekeeper badge
+link: ${this.userData.qr_code}`
 
     // Construct WhatsApp Share URL
     // const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
 
-    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(shareTitle + ' ' + shareURL)}`;
-
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(shareTitle)}`;
 
     // Check if Web Share API is supported
     if (navigator.share) {
       navigator.share({
-        title: shareTitle,
-        url: shareURL
+        text: shareTitle
       })
       .then(() => console.log('Thanks for sharing!'))
       .catch(err => {

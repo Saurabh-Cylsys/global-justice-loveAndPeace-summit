@@ -112,12 +112,15 @@ export class EditBadgeComponent {
     // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
+
   getcontrol(name: any): AbstractControl | null {
     return this.editBadgeForm.get(name);
   }
+
   get f() {
     return this.editBadgeForm.controls;
   }
+
   ngOnInit() {
     this.createEditBadgeForm();
     this.dobValidator();
@@ -125,8 +128,6 @@ export class EditBadgeComponent {
     this.getPeaceBadgeData();
     this.checkWindowSize();
 
-    this.editBadgeForm.get('country')?.disable();  // Disables the country dropdown
-    this.editBadgeForm.get('mobile_number')?.disable();  // Disables the input field
   }
 
   createEditBadgeForm() {
@@ -160,8 +161,9 @@ export class EditBadgeComponent {
       next: (res: any) => {
         if (res.success) {
           this.ngxService.stop();
-          // this.sharedService.ToastPopup('PeacekeeperBadge fetched Successful','','success')
           this.PeaceBadgeData = this.sharedService.decryptData(res.data);
+
+
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
           this.imageUrl = this.PeaceBadgeData?.file_name;
 
@@ -185,15 +187,21 @@ export class EditBadgeComponent {
             });
           }
 
+          console.log("PeaceBadgeData",this.PeaceBadgeData);
           this.editBadgeForm.patchValue({
-            full_name: this.PeaceBadgeData.full_name,
-            country: this.PeaceBadgeData.country,
-            email_id: this.PeaceBadgeData.email_id,
+            full_name: this.PeaceBadgeData?.full_name,
+            country: this.PeaceBadgeData?.country,
+            email_id: this.PeaceBadgeData?.email_id,
             dob: dateObject,
           });
 
-          this.ngxService.stop();
+          // this.editBadgeForm.get('country')?.disable();  // Disables the country dropdown
+          // this.editBadgeForm.get('mobile_number')?.disable();  // Disables the input field
+          console.log("form",this.editBadgeForm.value);
         }
+
+        // this.editBadgeForm.get('country')?.disable();
+        // this.editBadgeForm.get('mobile_number')?.disable();
       },
       error : (err)=>{
         console.log("err",err);
@@ -302,9 +310,11 @@ export class EditBadgeComponent {
       url: this.PeaceBadgeData.url,
     };
 
+
     const EncryptData = this.sharedService.encryptData(formData);
     const encryptedPayload = new FormData();
     encryptedPayload.append('encrypted_data', EncryptData);
+    this.getAllCountrycode();
 
     if (this.selectedFile) {
       encryptedPayload.append(
