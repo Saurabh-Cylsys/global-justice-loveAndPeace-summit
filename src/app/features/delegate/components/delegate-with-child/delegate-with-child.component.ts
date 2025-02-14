@@ -68,15 +68,6 @@ export class DelegateWithChildComponent {
   city_name: any;
   @ViewChild('number_mobile1', { static: false }) mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = "";
-  deviceInfo: any = "";
-  isOTPReceive: boolean = false;
-  txtVerifyOTP : string = ""
-  countdown: number = 100; // 5 minutes in seconds
-  timerExpired: boolean = false;
-  interval: any;
-  buttonText :string = 'Send OTP'
-  nominateChild: string = '';
   nomineeName: string = '';
   nomineeDob: string = '';
   nomineeEmail: string = '';
@@ -92,7 +83,12 @@ export class DelegateWithChildComponent {
   userDob: string = "";
   nomineeFormattedDate: string = "";
   today = new Date();
+  isFormDirty: boolean = false;
 
+
+  markDirty(): void {
+    this.isFormDirty = true;
+  }
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -821,32 +817,13 @@ onProfession2Input(event: Event) {
   }
 
   submitData(): void {
-
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Ensure both ages are defined before proceeding
     if (this.userAge === undefined || this.nomineeAge === undefined) {
       this.SharedService.ToastPopup('Invalid date selection. Please enter valid DOBs.', '', 'error');
       return;
     }
 
-    // if (this.userType === 'student') {
-    //   if (this.userAge >= 21) {
-    //     this.SharedService.ToastPopup('As a Student, your age must be less than 21.', '', 'error');
-    //     return;
-    //   }
-    //   if (this.nomineeAge <= 21) {
-    //     this.SharedService.ToastPopup('Your nominee must be older than 21.', '', 'error');
-    //     return;
-    //   }
-    // } else if (this.userType === 'adult') {
-    //   if (this.userAge < 21) {
-    //     this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.', '', 'error');
-    //     return;
-    //   }
-    //   if (this.nomineeAge >= 21) {
-    //     this.SharedService.ToastPopup('Your nominee must be younger than 21.', '', 'error');
-    //     return;
-    //   }
-    // }
 
     if (this.userType === 'student') {
       if (this.userAge <= 0 || this.userAge >= 21) {
@@ -992,22 +969,53 @@ onProfession2Input(event: Event) {
       return;
     }
 
-    else if(this.nominee_mobile_number == "" || this.nominee_mobile_number == undefined || this.nominee_mobile_number == null) {
+    else if(!emailPattern.test(this.nomineeEmail)) {
+
+      this.renderer.selectRootElement('#nomineeEmail').focus();
+      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      return;
+    }
+
+    // else if(!this.nominee_mobile_number ) {
+    //   setTimeout(() => {
+    //     const inputElement = document.querySelector('#number_mobile2 input') as HTMLInputElement;
+    //     if (inputElement) {
+    //       inputElement.focus();
+    //     } else {
+    //       console.error("Could not find mobile number input field");
+    //     }
+    //   }, 100);
+
+    //   this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+    //   return;
+    // }
+
+    if (!this.nominee_mobile_number) { // Simplified check for empty/undefined/null
       setTimeout(() => {
-        const inputElement = document.querySelector('#number_mobile2 input') as HTMLInputElement;
-        if (inputElement) {
-          inputElement.focus();
-        } else {
-          console.error("Could not find mobile number input field");
+        const intlInput = document.querySelector('#number_mobile2') as HTMLElement;
+        if (intlInput) {
+          const inputField = intlInput.querySelector('input') as HTMLInputElement;
+          if (inputField) {
+            inputField.focus();  // Set focus inside the input
+          } else {
+            console.error("Mobile number input field not found inside ngx-intl-tel-input.");
+          }
         }
       }, 100);
 
-      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      this.SharedService.ToastPopup("Please Enter Mobile Number", '', 'error');
       return;
     }
+
+
     else if(this.nomineeRelation == ""  || this.nomineeRelation == undefined) {
       this.renderer.selectRootElement('#nominee_relation').focus();
       this.SharedService.ToastPopup("Please Enter Relation ", '', 'error');
+      return;
+    }
+    else if(this.instituteName.trim() == "" || this.instituteName == undefined) {
+      this.renderer.selectRootElement('#institute_Name').focus();
+      this.SharedService.ToastPopup("Please Enter Institute Name ", '', 'error');
       return;
     }
 
@@ -1220,121 +1228,12 @@ onProfession2Input(event: Event) {
   }
 
   openNomineeDatepicker() {
-    debugger;
     const dobInput = document.getElementById('nomineeDob') as HTMLInputElement;
     if (dobInput) {
       dobInput.click(); // Open ngx-bootstrap datepicker
     }
   }
 
-  getIPAddress(){
-    this.SharedService.getIPAddress().subscribe({
-      next :(res:any)=>{
-        this.ipAddress = res.ip;
-      }
-    })
-  }
-
-  getDeviceOS(): string {
-    const userAgent = navigator.userAgent;
-    if (/android/i.test(userAgent)) return 'Android';
-    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
-    if (/Win/i.test(userAgent)) return 'Windows';
-    if (/Mac/i.test(userAgent)) return 'MacOS';
-    if (/Linux/i.test(userAgent)) return 'Linux';
-    return 'Unknown';
-  }
-
-  startTimer() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear any existing timer
-    }
-
-    this.timerExpired =false;
-    this.countdown = 100; // Reset countdown to 100 seconds
-    this.buttonText = "Resend OTP";
-
-    this.interval = setInterval(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      } else {
-        this.timerExpired = true;
-        this.buttonText = "Resend OTP";
-        clearInterval(this.interval); // Stop the timer when it reaches 0
-      }
-    }, 1000);
-  }
-
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear timer when component is destroyed
-    }
-  }
-
-  formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  }
-
-  sendOTP(){
-
-    if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
-      return;
-    }
-    else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
-      return;
-    }
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "deviceId": this.ipAddress,
-      "deviceOs": this.deviceInfo,
-      "registeration_type":"0"
-    }
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
-
-  verifyOTP(){
-
-    let body = {
-      "email": this.registrationForm.value.email_id,
-      "otp": this.txtVerifyOTP
-    }
-
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.buttonText = "Send OTP";
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message,'','success')
-      },
-      error: (err: any) => {
-        console.error("Error:", err);
-        this.ngxService.stop();
-      }
-    })
-  }
 
   getRelationData(){
     let body = {
@@ -1349,12 +1248,56 @@ onProfession2Input(event: Event) {
     })
   }
 
-  onUserTypeChange(selectedType: string): void {
-    this.userType = selectedType;
-    console.log('User Type Selected:', this.userType);
-    this.registrationForm.get('dob')?.updateValueAndValidity(); // Revalidate on user type change
+  // onUserTypeChange(selectedType: string): void {
+  //   this.userType = selectedType;
+  //   console.log('User Type Selected:', this.userType);
+  //   this.registrationForm.get('dob')?.updateValueAndValidity(); // Revalidate on user type change
 
+  // }
+
+  private isNomineeFormDirty(): boolean {
+    return (
+      this.nomineeName.trim() !== '' ||
+      this.nomineeDob.trim() !== '' ||
+      this.nomineeEmail.trim() !== '' ||
+      this.nomineeRelation.trim() !== '' ||
+      this.nominee_mobile_number.trim() !== ''
+    );
   }
+
+  // ✅ Reset form and ngModel dirty state
+  private clearFormState(): void {
+    this.nomineeName = '';
+    this.nomineeDob = '';
+    this.nomineeEmail = '';
+    this.nomineeRelation = '';
+    this.nominee_mobile_number = '';
+
+    this.registrationForm.markAsPristine(); // Reset form state
+    this.registrationForm.markAsUntouched();
+  }
+
+  onUserTypeChange(selectedType: string): void {
+    if (this.isFormDirty || this.registrationForm.dirty) {
+      const confirmation = window.confirm("Warning: Your unsaved data will be lost. Do you want to continue?");
+
+      if (confirmation) {
+        this.userType = selectedType;
+        console.log('User Type Selected:', this.userType);
+        this.isNomineeFormDirty();
+        this.clearFormState();
+        this.isFormDirty = false; // Reset dirty flag
+        this.registrationForm.markAsPristine(); // Reset form state
+        this.registrationForm.reset();
+      } else {
+        console.log("User type change canceled.");
+      }
+    } else {
+      this.userType = selectedType;
+      console.log('User Type Selected:', this.userType);
+    }
+  }
+
 
   validateNomineeName(event: KeyboardEvent) {
     const inputChar = event.key;
@@ -1369,15 +1312,5 @@ onProfession2Input(event: Event) {
       event.preventDefault();
     }
   }
-
-
-  // if select student => then nominee form NomeneeDOB validation should  be greater than 21 and another Form field DOB should be less than 21
-
-  // if select adult => then nominee form NomeneeDOB should validation be less than 21 and Form field DOB should greather than 21
-
-  // if select student then nominee age should be greter than 21 and another Form field DOB should be less than 21 and minimum 15 not less than 15 ok
-
-  // if selct adult => then nominee age should be less than 21 till 15 less and and Form field DOB should greather than 21
-
 
 }

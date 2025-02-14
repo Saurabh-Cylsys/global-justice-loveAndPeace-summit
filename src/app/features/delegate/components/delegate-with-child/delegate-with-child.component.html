@@ -14,13 +14,13 @@
           <div class="clearfix"></div>
 
           <div class="col-md-12 text-center mt-4">
-            <h6>
-              Are you Adult or Student<span
+            <h4>
+              Are you Adult or Student ?<span
                 class="form-label-span"
                 style="color: #ff0000"
               >
               </span>
-            </h6>
+            </h4>
 
             <div class="align-items-center pt-3">
               <div class="form-check form-check-inline p-0">
@@ -279,7 +279,7 @@
                                         <small
                                           class="text-danger"
                                           *ngIf="getcontrol('last_name')?.errors?.['minlength']"
-                                          >Last name must be at least 3
+                                          >Last name must be at least 2
                                           characters long.</small
                                         >
                                       </div>
@@ -1254,6 +1254,7 @@
                                             (keydown)="
                                             handleTabKey($event, 'nomineeName')
                                           "
+                                          (ngModelChange)="markDirty()"
                                           />
                                         </div>
                                       </div>
@@ -1326,6 +1327,7 @@
                                             maxlength="125"
                                             autocomplete="off"
                                             data-error="Please enter valid email id"
+                                            (ngModelChange)="markDirty()"
                                           />
                                         </div>
                                       </div>
@@ -1378,6 +1380,7 @@
                                                 }"
                                                 (paste)="onPasteMobileNumber($event)"
                                                 autocomplete="off"
+                                                (ngModelChange)="markDirty()"
                                                 (keydown)="
                                                   onMobileKeyDown(
                                                     $event,
@@ -1448,14 +1451,15 @@
                                           >
                                           <input
                                             type="text"
-                                            name="child_relation"
-                                            id="child_relation"
+                                            name="nominee_relation"
+                                            id="nominee_relation"
                                             placeholder="Enter Relation"
                                             class="form-control p-0"
                                             maxlength="60"
                                             (keypress)="validateNomineeName($event)"
                                             [ngModelOptions]="{ standalone: true }"
                                             [(ngModel)]="nomineeRelation"
+                                            (ngModelChange)="markDirty()"
                                           />
                                         </div>
                                       </div>
@@ -1464,19 +1468,26 @@
                                         <div class="">
                                           <label
                                             class="col-md-12 no-padding p-0"
-                                            for="child_name"
-                                            >Institute Name</label
+                                            for="institute_Name"
+                                            >Institute/School/College Name <span
+                                            class="form-label-span"
+                                            style="color: #ff0000"
+                                          >
+                                            *</span
+                                          ></label
                                           >
                                           <input
                                             type="text"
                                             name="institute_name"
-                                            id="institute_name"
-                                            placeholder="Enter Institute name"
+                                            id="institute_Name"
+                                            placeholder="Enter Institute/school/college name"
                                             class="form-control p-0"
                                             maxlength="100"
+                                            required
                                             (keypress)="validateNomineeName($event)"
                                             [(ngModel)]="instituteName"
                                             [ngModelOptions]="{ standalone: true }"
+                                            (ngModelChange)="markDirty()"
                                           />
                                         </div>
                                       </div>
