@@ -67,6 +67,7 @@ export class EditBadgeComponent {
   isDragging = false;
   imageChangedEvent: any = '';
   imageFileName: any = '';
+  previousCroppedImage: any = '';
   croppedImage: any = '';
   peaceBadge: any;
   formdisplay: boolean = true;
@@ -613,7 +614,7 @@ export class EditBadgeComponent {
 
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
-
+this.previousCroppedImage = this.imageUrl;
     // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
     fetch(this.croppedImage)
       .then((response) => response.blob()) // Fetch the image blob
@@ -657,6 +658,7 @@ export class EditBadgeComponent {
   }
 
   closeImageModal() {
+    this.imageUrl = this.previousCroppedImage
     this.is_selectedFile = false;
     this.display = 'none';
     this.showPopup = false;
