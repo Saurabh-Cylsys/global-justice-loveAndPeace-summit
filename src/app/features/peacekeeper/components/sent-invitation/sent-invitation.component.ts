@@ -33,8 +33,6 @@ export class SentInvitationComponent implements OnInit {
   selectedSendViaImage: string | null = null;
   sanitizedContent: SafeHtml = ''
 
-
-
   constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef,
     private SharedService: SharedService, private sanitizer: DomSanitizer){
     this.SharedService.isCollapsed$.subscribe(state => {
@@ -105,10 +103,10 @@ export class SentInvitationComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.editor = new Editor();
-    this.editorForm = this.fb.group({
-      text :[ '']
-    });
+    // this.editor = new Editor();
+    // this.editorForm = this.fb.group({
+    //   text :[ '']
+    // });
 
     this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
     this.checkWindowSize();
@@ -176,12 +174,48 @@ export class SentInvitationComponent implements OnInit {
   }
 
 
-  shareContent(event: Event): void {
+  // shareContent(event: Event): void {
 
+  //   event.preventDefault(); // Ensure it's within a user gesture
+
+
+  //   if (navigator.share) {
+  //     navigator.share({
+  //       title: 'Global Justice, Love and Peace Summit | Dubai',
+  //       url: this.userData.qr_code
+  //     })
+  //     .then(() => console.log('Thanks for sharing!'))
+  //     .catch(err => {
+  //       if (err.name === 'AbortError') {
+  //         console.warn('User canceled the sharing action.');
+  //       } else {
+  //         console.error('Error while using Web Share API:', err);
+  //       }
+  //     });
+  //   } else {
+  //     this.SharedService.ToastPopup("Your browser doesn't support the Web Share API.",'','error');
+  //   }
+  // }
+
+
+  shareContent(event: Event): void {
     event.preventDefault(); // Ensure it's within a user gesture
 
-    console.log("userdata",this.userData);
+    console.log("User Data:", this.userData);
 
+    // Ensure that userData.qr_code is available
+    if (!this.userData || !this.userData.qr_code) {
+      this.SharedService.ToastPopup("QR Code URL is missing.", '', 'error');
+      return;
+    }
+
+    const shareTitle = encodeURIComponent('Global Justice, Love and Peace Summit | Dubai');
+    const shareURL = encodeURIComponent(this.userData.qr_code);
+
+    // Construct WhatsApp Share URL
+    const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
+
+    // Check if Web Share API is supported
     if (navigator.share) {
       navigator.share({
         title: 'Global Justice, Love and Peace Summit | Dubai',
@@ -196,7 +230,9 @@ export class SentInvitationComponent implements OnInit {
         }
       });
     } else {
-      this.SharedService.ToastPopup("Your browser doesn't support the Web Share API.",'','error');
+      // Open WhatsApp in a new tab for users without Web Share API support
+      window.open(whatsappURL, '_blank');
     }
   }
+
 }
