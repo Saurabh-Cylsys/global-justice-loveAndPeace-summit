@@ -1522,7 +1522,8 @@ header .nav-item .nav-link.active {
 }
 
 .yT {
-  height: 360px;
+  /* height: 360px; */
+  height: 60vh;
 }
 
 .iti__flag {
