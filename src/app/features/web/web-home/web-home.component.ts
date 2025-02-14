@@ -112,7 +112,7 @@ export class WebHomeComponent implements OnInit, OnDestroy {
       time: '1:30 PM- 3:30 PM',
     },
     { title: 'Refreshment', time: '3:30 PM - 4:30 PM' },
-    { title: 'Session 6 Nobel Peace Laurates Session', time: '4:30 PM- 6:30 PM' },
+    { title: 'Session 6 Nobel Peace Laureates Session', time: '4:30 PM- 6:30 PM' },
     { title: 'Awards & Closing Session', time: '7:30 PM-9:00 PM' },
     { title: 'Dinner & Networking', time: '9:00 PM -10:30 PM' },
   ];
