@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 // import { AuthModule } from './features/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxEditorModule } from 'ngx-editor';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 // import { HeaderComponent } from './shared/components/header/header.component';
@@ -46,7 +47,13 @@ import { NgxEditorModule } from 'ngx-editor';
     FormsModule, ReactiveFormsModule,SharedModule,
     QRCodeModule,
     BsDatepickerModule.forRoot(),
-    NgxEditorModule
+    NgxEditorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
 
   providers: [
