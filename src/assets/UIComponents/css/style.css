@@ -1498,7 +1498,7 @@ header .nav-item .nav-link.active {
   width: 100%;
   display: flex !important;
   align-items: center;
-  border-bottom: 1px dotted;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.400);
 }
 .iti .dropdown-menu.show {
   overflow: scroll;
@@ -1539,6 +1539,14 @@ header .nav-item .nav-link.active {
   border-bottom: none;
   padding: 1px 10px;
 }
+
+.ngxinput #phone {
+  padding: 0 5px;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .iti.separate-dial-code .iti__selected-flag,
 .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-2 .iti__selected-flag,
 .iti.separate-dial-code.iti--allow-dropdown.iti-sdc-3 .iti__selected-flag,

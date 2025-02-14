@@ -161,6 +161,8 @@
                       data-error="Please select country"
                       autocomplete="off"
                       (change)="getCountrycode(code)"
+                      [attr.disabled]="'true'"
+
                     >
                       <option selected value="" disabled>
                         --Please select country--
@@ -189,7 +191,7 @@
               </div>
 
               <div class="col-md-6 p-3">
-                <div class="mb-3 input">
+                <div class="mb-3 ngxinput">
                   <label for="password" class="mb-1"
                     >Mobile Number : <span class="text-danger">*</span></label
                   >
@@ -223,7 +225,8 @@
                       (keydown)="onMobileKeyDown($event, mobile_number)"
                       (keypress)="keyPressNumbers($event, mobile_number)"
                       (paste)="onPasteMobileNumber($event)"
-                                          autocomplete="off"
+                      autocomplete="off"
+                      readonly
                     ></ngx-intl-tel-input>
                   </div>
                 </div>
@@ -349,6 +352,8 @@
       <!-- <button class="modal-close" (click)="closeModal()">X</button> -->
 
       <!-- <div class="cropper-container"> -->
+        <!-- (imageCropped)="imageCropped($event)" -->
+
       <image-cropper
         *ngIf="imageChangedEvent"
         [imageChangedEvent]="imageChangedEvent"

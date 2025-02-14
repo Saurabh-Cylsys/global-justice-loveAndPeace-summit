@@ -79,6 +79,7 @@ export class EditBadgeComponent {
     'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
   isCollapsed = false;
   isMobileView = false;
+  isDisabled = true;
 
   @ViewChild(NgxIntlTelInputComponent, { static: false })
   phoneInput?: NgxIntlTelInputComponent;
@@ -122,6 +123,9 @@ export class EditBadgeComponent {
     this.getAllCountrycode();
     this.getPeaceBadgeData();
     this.checkWindowSize();
+
+    this.editBadgeForm.get('country')?.disable();  // Disables the country dropdown
+    this.editBadgeForm.get('mobile_number')?.disable();  // Disables the input field
   }
 
   createEditBadgeForm() {
