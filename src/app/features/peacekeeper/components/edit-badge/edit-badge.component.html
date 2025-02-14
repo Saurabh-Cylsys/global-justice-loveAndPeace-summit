@@ -161,8 +161,6 @@
                       data-error="Please select country"
                       autocomplete="off"
                       (change)="getCountrycode(code)"
-                      [disabled]="true"
-                      readonly
                     >
                       <option selected value="" disabled>
                         --Please select country--
@@ -196,7 +194,7 @@
                     >Mobile Number : <span class="text-danger">*</span></label
                   >
                   <div class="input-group flex-nowrap rounded">
-
+                    <!-- [(ngModel)]="mobile_number" -->
                     <ngx-intl-tel-input
                       class="custom-width-container w-100 border-0 input-field"
                       [preferredCountries]="[
@@ -216,7 +214,7 @@
                       [phoneValidation]="true"
                       [separateDialCode]="true"
                       [maxLength]="12"
-                      [(ngModel)]="mobile_number"
+
                       name="mobile_number"
                       name="mobile_number"
                       id="number_mobile1"
@@ -226,7 +224,6 @@
                       (keypress)="keyPressNumbers($event, mobile_number)"
                       (paste)="onPasteMobileNumber($event)"
                       autocomplete="off"
-                      readonly
                     ></ngx-intl-tel-input>
                   </div>
                 </div>

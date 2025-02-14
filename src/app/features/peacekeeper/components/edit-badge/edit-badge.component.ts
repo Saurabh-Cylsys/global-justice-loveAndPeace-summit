@@ -187,7 +187,6 @@ export class EditBadgeComponent {
             });
           }
 
-          console.log("PeaceBadgeData",this.PeaceBadgeData);
           this.editBadgeForm.patchValue({
             full_name: this.PeaceBadgeData?.full_name,
             country: this.PeaceBadgeData?.country,
@@ -195,8 +194,8 @@ export class EditBadgeComponent {
             dob: dateObject,
           });
 
-          // this.editBadgeForm.get('country')?.disable();  // Disables the country dropdown
-          // this.editBadgeForm.get('mobile_number')?.disable();  // Disables the input field
+          this.editBadgeForm.get('country')?.disable();
+          this.editBadgeForm.get('mobile_number')?.disable();
           console.log("form",this.editBadgeForm.value);
         }
 
@@ -224,6 +223,9 @@ export class EditBadgeComponent {
 
   updatePeacekeeper(): void {
 
+    const peacKeeperformData = this.editBadgeForm.getRawValue(); // ✅ Includes disabled fields
+    console.log(peacKeeperformData);
+
     if (!this.editBadgeForm.value.full_name?.trim() || this.editBadgeForm.value.full_name.trim().length < 3) {
       this.renderer.selectRootElement('#fullName').focus();
       this.sharedService.ToastPopup('Full Name must be at least 3 characters long','','error');
@@ -232,7 +234,7 @@ export class EditBadgeComponent {
       this.renderer.selectRootElement('#dob').focus();
       this.sharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
-    } else if (this.editBadgeForm.value.country == '' || this.editBadgeForm.value.country == undefined) {
+    } else if (peacKeeperformData.country == '' || peacKeeperformData.country == undefined) {
       setTimeout(() => {
         const countryElement = this.renderer.selectRootElement('#country',true );
         if (countryElement) {
@@ -243,9 +245,9 @@ export class EditBadgeComponent {
       return;
     }
     else if (
-      this.editBadgeForm.value.mobile_number == '' ||
-      this.editBadgeForm.value.mobile_number == undefined ||
-      this.editBadgeForm.value.mobile_number == null
+      peacKeeperformData.mobile_number == '' ||
+      peacKeeperformData.mobile_number == undefined ||
+      peacKeeperformData.mobile_number == null
     ) {
       setTimeout(() => {
         const inputElement = document.querySelector(
@@ -283,16 +285,17 @@ export class EditBadgeComponent {
       return;
     }
 
-    const returnmobileNumber = this.editBadgeForm.value.mobile_number;
+
+    const returnmobileNumber = peacKeeperformData.mobile_number;
     const returnDOB = this.editBadgeForm.value.dob;
 
-    const rawMobileNumber = this.editBadgeForm.value.mobile_number.number;
+    const rawMobileNumber = peacKeeperformData.mobile_number.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
 
     this.editBadgeForm.patchValue({
       is_active: 1,
       mobile_number:
-        this.editBadgeForm.value.mobile_number.dialCode +
+      peacKeeperformData.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
         dob: this.formattedDate,
@@ -301,9 +304,10 @@ export class EditBadgeComponent {
     const formData = {
       id: this.PeaceBadgeData.peacekeeper_id,
       full_name: this.editBadgeForm.value.full_name,
-      country: this.editBadgeForm.value.country,
+      country: peacKeeperformData.country,
       email_id: this.editBadgeForm.value.email_id,
-      mobile_number: this.editBadgeForm.value.mobile_number,
+      mobile_number: peacKeeperformData.mobile_number.dialCode + ' ' +
+        formattedMobileNumber,
       dob: this.formattedDate,
       Check_email: 1,
       is_active: 1,
@@ -326,6 +330,8 @@ export class EditBadgeComponent {
 
     // Show loader
     this.ngxService.start();
+
+    console.log("FormData",formData)
 
     // Call the service to submit data
     this.peaceKeeperService.updatePeacekeeper(encryptedPayload).subscribe(

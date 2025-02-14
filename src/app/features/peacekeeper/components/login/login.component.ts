@@ -122,7 +122,7 @@ export class LoginComponent {
     this.ngxService.start();
     this.peaceKeeperService.sendOTPApi(body).subscribe({
       next :(res:any)=>{
-        console.log("Res",res);
+
         this.ngxService.stop();
         this.isOTPReceive = true;
         this.timerExpired = false;
@@ -133,6 +133,7 @@ export class LoginComponent {
       },
       error: (err: any) => {
         console.error("Error:", err);
+        this.sharedService.ToastPopup(err.error['message'],'','error');
         this.ngxService.stop();
       }
     })
@@ -168,7 +169,6 @@ export class LoginComponent {
 
     this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
       next :(res:any)=>{
-        console.log("Res",res);
 
         if (res.success) {
           // this.sharedService.ToastPopup('Login Successful', '', 'success')
@@ -195,6 +195,7 @@ export class LoginComponent {
       },
       error: (err: any) => {
         console.error("Error:", err);
+        this.sharedService.ToastPopup(err.error['message'],'','error');
         this.ngxService.stop();
       }
     })
@@ -224,7 +225,6 @@ export class LoginComponent {
     this.ngxService.start();
     this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
       next: (res: any) => {
-        console.log("Res", res);
         if (res.success) {
           this.sharedService.ToastPopup('Login Successful', '', 'success')
           // const decreptedToken = this.sharedService.decryptData(res.token);
@@ -237,7 +237,6 @@ export class LoginComponent {
             qr_code : res.data['QR_CODE']
           }
           // Store the encrypted token
-          console.log("Userdata",userData);
           this.sharedService.setJWTToken(res.token);
           this.peaceKeeperService.setToken('authToken');
           this.sharedService.setUserDetails(JSON.stringify(userData));
