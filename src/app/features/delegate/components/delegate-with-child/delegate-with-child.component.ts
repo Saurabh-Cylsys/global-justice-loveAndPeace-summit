@@ -184,8 +184,6 @@ export class DelegateWithChildComponent {
     });
   }
 
-
-
   isDisabledDate(date: Date): boolean {
     const today = new Date();
     const eighteenYearsAgo = new Date(
@@ -243,26 +241,6 @@ export class DelegateWithChildComponent {
       }
     );
   }
-
-  // onDateChange(event: string): void {
-
-  //   if (!event) return;
-
-  // const dob = new Date(event);
-  // const today = new Date();
-
-  // let age = today.getFullYear() - dob.getFullYear();
-  // const monthDiff = today.getMonth() - dob.getMonth();
-  // const dayDiff = today.getDate() - dob.getDate();
-
-  // if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-  //   age--;
-  // }
-
-  //   this.nomineeAge = age;
-  //   const parsedDate = new Date(event);
-  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-  // }
 
   onUserDobChange(event: string): void {
     if (!event) return; // Handle empty date input
@@ -342,65 +320,6 @@ export class DelegateWithChildComponent {
     }
   }
 
-
-
-  onDateChange(event: string, field: 'dob' | 'nomineeDob'): void {
-    if (!event) return; // Handle empty date input
-
-    const dob = new Date(event);
-    const today = new Date();
-
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    const dayDiff = today.getDate() - dob.getDate();
-
-    // Adjust age if the birthday hasn't occurred yet this year
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-
-    if (field === 'dob') {
-      this.userAge = age;
-      this.userDob = event;
-      console.log("User Age:", this.userAge);
-    } else if (field === 'nomineeDob') {
-      this.nomineeAge = age;
-      this.nomineeDob = event;
-      console.log("Nominee Age:", this.nomineeAge);
-    }
-
-    // Perform validation check
-    this.validateAges(field);
-
-    const parsedDate = new Date(event);
-    // const formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-  }
-
-  validateAges(field: string): void {
-    if (this.userType === 'student') {
-      if ( this.userAge >= 21) {
-        this.SharedService.ToastPopup('As a Student, your age must be less than 21.', '', 'error');
-        return;
-      }
-      if (this.nomineeAge <= 21) {
-        this.SharedService.ToastPopup('Your nominee must be older than 21.', '', 'error');
-        return;
-      }
-    } else if (this.userType === 'adult') {
-      if (this.userAge < 21) {
-        this.SharedService.ToastPopup('As an Adult, your age must be 21 or older.', '', 'error');
-        return;
-      }
-      if (this.nomineeAge >= 21) {
-        this.SharedService.ToastPopup('Your nominee must be younger than 21.', '', 'error');
-        return;
-      }
-    }
-  }
 
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(
@@ -1052,9 +971,6 @@ onProfession2Input(event: Event) {
             } else if (typeof rawNomineeMobileNumber === 'string') {
               formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
             }
-
-            console.log("Formatted Nominee Mobile Number:", formattedNomineeMobileNumber);
-
 
             setTimeout(() => {
               console.log('get payment URL', result.url);
