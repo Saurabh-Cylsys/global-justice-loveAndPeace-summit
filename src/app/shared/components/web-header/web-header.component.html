@@ -312,22 +312,46 @@
           [routerLink]="['/home']"
           *ngIf="!isHomePage"
         >
-        <img
+        <!-- <img
           loading="eager"
           src="assets/UIComponents/images/logo.gif"
           alt="attach images"
           width="80%"
 
-        />
+        /> -->
+        <video 
+                    autoplay
+                    loop
+                    muted width="80%"
+                  >
+                    <source
+                      src="assets/UIComponents/images/logo.webm"
+                      type="video/webm"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
         </a>
-        <img
+        <!-- <img
           loading="eager"
           src="assets/UIComponents/images/logo.gif"
           alt="attach images"
           id="logo"
           [ngClass]="{ 'small-logo': isScrolled }"
           *ngIf="isHomePage"
-        />
+        /> -->
+        <video id="logo"
+        [ngClass]="{ 'small-logo': isScrolled }"
+        *ngIf="isHomePage"
+                    autoplay
+                    loop
+                    muted
+                  >
+                    <source
+                      src="assets/UIComponents/images/logo.webm"
+                      type="video/webm"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
       </div>
       <div class="col-md">
         <ul

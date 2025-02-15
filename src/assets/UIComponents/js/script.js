@@ -30,7 +30,7 @@ function scrollFunction() {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
       logo.style.width = "80%";
     } else {
-      logo.style.width = "100%";
+      logo.style.width = "auto";
     }
   } else {
     console.warn("Element with ID 'logo' not found!"); // Debugging message

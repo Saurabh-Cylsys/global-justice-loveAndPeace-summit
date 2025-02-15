@@ -7,11 +7,11 @@
     font-size: 14px
   }
   .index .section1 {
-    background: url(../images/index/bannermob.gif);
-    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
-    height: 79.4vh; /* Keeps the height relative to the viewport */
+    /* background: url(../images/index/bannermob.gif);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; */
+    height: 79.4vh; 
   }
 
   .main-body .scroll {
@@ -39,11 +39,11 @@
     text-align: center !important;
   }
   .index .section1 {
-    background: url(../images/index/bannermob.gif);
-    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
-    background-position: center; /* Centers the image */
+    /* background: url(../images/index/bannermob.gif); */
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 67vh; /* Keeps the height relative to the viewport */
+    min-height: 65vh; 
   }
 }
 
@@ -52,11 +52,11 @@
 
 @media (min-width: 375px) {
   .index .section1 {
-    background: url(../images/index/bannermob.gif);
-    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
-    background-position: center; /* Centers the image */
+    /* background: url(../images/index/bannermob.gif); */
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 79vh; /* Keeps the height relative to the viewport */
+    min-height: 79vh; 
   }
 }
 
@@ -76,11 +76,11 @@
     min-height: 100vh;
   }
   .index .section1 {
-    background: url(../images/index/bannermob.gif);
-    background-size: cover; /* Ensures the image covers the section while maintaining aspect ratio */
-    background-position: center; /* Centers the image */
+    /* background: url(../images/index/bannermob.gif); */
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 90vh; /* Keeps the height relative to the viewport */
+    min-height: 90vh; 
   }
 }
 
@@ -91,12 +91,12 @@
     min-height: 50vh;
   }
   .index .section1 {
-    background-image: url(../images/index/banner.gif);
+    /* background-image: url(../images/index/banner.gif); */
     /* background-size: 90% 100%; */
     background-size: 85% 100%;
-    background-position: center; /* Centers the image */
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 60vh; /* Keeps the height relative to the viewport */
+    min-height: 60vh; 
   }
 
   .index .section2 .mainCard .cardP {
@@ -126,12 +126,12 @@
     min-height: 65vh;
   }
   .index .section1 {
-    background-image: url(../images/index/banner.gif);
+    /* background-image: url(../images/index/banner.gif); */
     /* background-size: 90% 100%; */
     background-size: 85% 100%;
-    background-position: center; /* Centers the image */
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 85vh; /* Keeps the height relative to the viewport */
+    min-height: 85vh; 
   }
 }
 
@@ -142,12 +142,12 @@
     /* left: -50px;  */
   }
   .index .section1 {
-    background-image: url(../images/index/banner.gif);
+    /* background-image: url(../images/index/banner.gif); */
     /* background-size: 90% 100%; */
     background-size: 85% 100%;
-    background-position: center; /* Centers the image */
+    background-position: center; 
     background-repeat: no-repeat;
-    min-height: 95vh; /* Keeps the height relative to the viewport */
+    min-height: 95vh; 
   }
 }
 
