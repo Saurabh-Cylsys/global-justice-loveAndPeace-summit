@@ -2,7 +2,7 @@
   border-left: none;
   border-right: none;
   border-top: none;
-  border-bottom: dashed 1px #8D8D8D;
+  border-bottom: dashed 1px #8d8d8d;
   outline: none;
 }
 
@@ -18,8 +18,6 @@
   border-radius: 50%;
   /* padding: 2px; */
   /* border: 1px solid green; */
-
-
 }
 
 .pre {
@@ -51,3 +49,10 @@ button {
   cursor: pointer;
 }
 
+.sidebar-nav li {
+  border-radius: 0 10px 10px 0;
+}
+
+.sidebar-nav li a {
+  padding: 0.25rem !important;
+}
