@@ -12,18 +12,18 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card border-0">
-          <div class="card-body p-0">
+          <div class="card-body">
             <!-- <img src="assets/UIComponents/images/peacekeeper/Badge.jpg" alt="" class="mb-2 w-100"> -->
             <img
-              loading="eager"
+              loading="lazy"
               [src]="peaceBadge"
-              class="w-100"
+              class="col-md-8"
               alt=""
-              width="100px"
+              style="border-radius: 15px; border: 1px solid lightgray;"
             />
           </div>
 
-          <button *ngIf="peaceBadge" (click)="openPopup()" class="btn btn-success w-100">
+          <button *ngIf="peaceBadge" (click)="openPopup()" class="btn btn-success col-md-8">
             Preview
           </button>
         </div>

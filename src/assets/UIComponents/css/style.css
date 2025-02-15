@@ -624,7 +624,9 @@ header .nav-item .nav-link.active {
 }
 
 .offcanvas {
-  background-color: var(--color1);
+  /* background-color: var(--color1); */
+  background: linear-gradient(179.58deg, #004E89 -11.57%, #399847 94.33%);
+
 }
 .offcanvas ul {
   list-style: none;
@@ -2292,7 +2294,9 @@ button:active, button:focus{
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #004E89;
+  /* background-color: #004E89; */
+  background: linear-gradient(179.58deg, #004E89 -11.57%, #399847 94.33%);
+
 }
 
 /* .logo {
@@ -2356,7 +2360,7 @@ button:active, button:focus{
   color: #fff;
 }
 
-.sidebar-nav .nav-link:hover {
+.sidebar-nav .nav-link:hover, .sidebar-nav .active .nav-link {
   color: #112260;
   border-radius: 0px 10px 10px 0px;
   /* background-color: #cecfd1; */

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PeacekeeperService } from '../../services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -63,7 +63,7 @@ export class PreviewBadgeComponent {
   ngOnInit() {
 
     this.getPeaceBadgeData();
-
+    this.checkWindowSize();
   }
 
 
@@ -132,4 +132,19 @@ export class PreviewBadgeComponent {
     this.display = 'none';
     this.showPopup = false;
   }
+
+    checkWindowSize(): void {
+      if (window.innerWidth <= 900) {
+        this.sharedService.isMobileView.next(true);
+        this.isMobileView = true;
+      } else {
+        this.sharedService.isMobileView.next(false);
+        this.isMobileView = false;
+      }
+    }
+    // Listen to window resize events
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+      this.checkWindowSize();
+    }
 }

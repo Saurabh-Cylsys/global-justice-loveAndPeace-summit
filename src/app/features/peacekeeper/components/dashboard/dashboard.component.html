@@ -7,7 +7,22 @@
   <app-peacekeeper-header></app-peacekeeper-header>
 
   <div class="section">
-      <h3 class="main-heading">Dashboard</h3>
+      <h3 class="main-heading" *ngIf="!isMobileView">Dashboard</h3>
+
+      <div class="card" *ngIf="!isMobileView">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <img src="assets/UIComponents/images/index/global justice summit.png" alt="logo" class="col-3">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="isMobileView">
+        <div class="col-md-12 text-center">
+          <img src="assets/UIComponents/images/index/global justice summit.png" alt="logo" class="col-6">
+        </div>
+      </div>
   </div>
 
   <div>
