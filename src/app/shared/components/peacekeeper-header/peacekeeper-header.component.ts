@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { data } from 'jquery';
+import { Subscription } from 'rxjs';
 import { PeacekeeperService } from 'src/app/features/peacekeeper/services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -13,11 +14,18 @@ export class PeacekeeperHeaderComponent implements OnInit {
   isMobileView = false;
   date: any;
   isCollapsed = false;
+  private refreshSubscription: Subscription;
+  PeaceBadgeData: any;
 
   constructor(private SharedService: SharedService,private peaceKeeperService : PeacekeeperService) {
     this.SharedService.isCollapsed$.subscribe((state) => {
       this.isCollapsed = state;
     });
+
+    this.refreshSubscription = this.SharedService.refreshheader$.subscribe(async () => {
+      await this.getPeaceBadgeData();
+    });
+
   }
 
   ngOnInit(): void {
@@ -35,7 +43,15 @@ export class PeacekeeperHeaderComponent implements OnInit {
     };
 
     this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
+      next:(res:any)=>{
+        this.PeaceBadgeData = this.SharedService.decryptData(res.data);
 
+
+         this.userData = localStorage.setItem('userDetails', JSON.stringify(this.PeaceBadgeData));
+
+
+        // this.imageUrl = this.PeaceBadgeData?.file_name;
+      }
     })
   }
 

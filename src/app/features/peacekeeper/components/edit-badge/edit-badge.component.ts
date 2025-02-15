@@ -357,9 +357,18 @@ export class EditBadgeComponent {
           this.selectedFile = null;
           // fileInput.value = '';
           this.imageUrl = '';
+
+          this.sharedService.refreshHeader();
           setTimeout(() => {
-            window.location.reload();
-          }, 500);
+            const currentUrl = this.router.url;
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([currentUrl]);
+            });
+          }, 2000);
+
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 500);
           // this.getPeaceBadgeData();
         } else {
           this.ngxService.stop();

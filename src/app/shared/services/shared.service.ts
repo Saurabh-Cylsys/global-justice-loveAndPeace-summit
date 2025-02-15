@@ -26,6 +26,10 @@ export class SharedService {
   private collapsedState = new BehaviorSubject<boolean>(false);
   isCollapsed$ = this.collapsedState.asObservable();
 
+  //private refreshheader = new BehaviorSubject<boolean>(false);
+  private refresHeaderSubject = new Subject<boolean>();
+  refreshheader$ = this.refresHeaderSubject.asObservable();
+
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
@@ -173,5 +177,10 @@ private getRouteData(): any {
   getIPAddress() {
     return this._apiHttpService.get('https://api64.ipify.org?format=json')
   }
+
+  refreshHeader() {
+    this.refresHeaderSubject.next(true);
+}
+
 
 }
