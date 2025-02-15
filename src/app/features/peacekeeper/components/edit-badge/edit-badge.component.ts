@@ -336,7 +336,7 @@ export class EditBadgeComponent {
 
     // Call the service to submit data
     this.peaceKeeperService.updatePeacekeeper(encryptedPayload).subscribe(
-      (response: any) => {
+      async (response: any) => {
         if (response.success) {
           this.submitted = true;
           this.ngxService.stop();
@@ -350,7 +350,7 @@ export class EditBadgeComponent {
           };
 
           localStorage.setItem('userDetails', JSON.stringify(userData));
-          this.sharedService.ToastPopup('', response.message, 'success');
+          this.sharedService.ToastPopup('Peacekeeper Badge Updated Successfully!', '', 'success');
           this.is_selectedFile = false;
           this.editBadgeForm.reset();
 
@@ -358,17 +358,17 @@ export class EditBadgeComponent {
           // fileInput.value = '';
           this.imageUrl = '';
 
-          this.sharedService.refreshHeader();
-          setTimeout(() => {
-            const currentUrl = this.router.url;
-            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-              this.router.navigate([currentUrl]);
-            });
-          }, 2000);
-
+          await this.sharedService.refreshHeader();
           // setTimeout(() => {
-          //   window.location.reload();
-          // }, 500);
+          //   const currentUrl = this.router.url;
+          //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          //     this.router.navigate([currentUrl]);
+          //   });
+          // }, 2000);
+
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
           // this.getPeaceBadgeData();
         } else {
           this.ngxService.stop();

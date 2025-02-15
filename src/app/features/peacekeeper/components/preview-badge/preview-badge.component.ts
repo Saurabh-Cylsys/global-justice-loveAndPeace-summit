@@ -60,15 +60,17 @@ export class PreviewBadgeComponent {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
-    this.getPeaceBadgeData();
+    await this.getPeaceBadgeData();
     this.checkWindowSize();
   }
 
 
-  getPeaceBadgeData() {
+  async getPeaceBadgeData() {
     let userData = JSON.parse(localStorage.getItem('userDetails') || '');
+
+
 
     let peaceId = userData.peacekeeper_id;
     let body = {
@@ -76,7 +78,7 @@ export class PreviewBadgeComponent {
     };
 
     this.ngxService.start();
-    this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
+    await this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
       next: (res: any) => {
         if (res.success) {
           this.ngxService.stop();
