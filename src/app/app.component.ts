@@ -34,7 +34,7 @@ export class AppComponent {
         if (metaData['title']) {
           this.meta_title.setTitle(metaData['title']);
         }
- 
+
         // Set the meta tags
         Object.keys(metaData).forEach((key) => {
           if (key !== 'title') {
@@ -65,7 +65,11 @@ export class AppComponent {
       this.showInstallButton = true;
     });
 
-    this.swUpdate.activated.subscribe((event) => {
+    swUpdate.checkForUpdate().then(() => {
+      console.log('Checked for updates manually.');
+    });
+
+    swUpdate.activated.subscribe((event) => {
       console.log('Update activated:', event);
       alert('The app has been updated to the latest version.');
     });
@@ -94,6 +98,6 @@ export class AppComponent {
       });
     }
   }
-  
+
 }
 
