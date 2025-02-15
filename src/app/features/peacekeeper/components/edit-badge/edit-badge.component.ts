@@ -196,6 +196,7 @@ export class EditBadgeComponent {
 
           this.editBadgeForm.get('country')?.disable();
           this.editBadgeForm.get('mobile_number')?.disable();
+          this.editBadgeForm.get('email_id')?.disable();
           console.log("form",this.editBadgeForm.value);
         }
 
@@ -305,7 +306,7 @@ export class EditBadgeComponent {
       id: this.PeaceBadgeData.peacekeeper_id,
       full_name: this.editBadgeForm.value.full_name,
       country: peacKeeperformData.country,
-      email_id: this.editBadgeForm.value.email_id,
+      email_id: peacKeeperformData.email_id,
       mobile_number: peacKeeperformData.mobile_number.dialCode + ' ' +
         formattedMobileNumber,
       dob: this.formattedDate,
@@ -630,7 +631,7 @@ export class EditBadgeComponent {
 
   imageCropped(event: ImageCroppedEvent): void {
     this.croppedImage = event.objectUrl;
-this.previousCroppedImage = this.imageUrl;
+    this.previousCroppedImage = this.imageUrl;
     // Assuming 'event.objectUrl' is the Blob URL returned from the cropper
     fetch(this.croppedImage)
       .then((response) => response.blob()) // Fetch the image blob

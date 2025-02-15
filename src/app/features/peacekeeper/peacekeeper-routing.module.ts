@@ -10,6 +10,7 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { UploadContactsComponent } from './components/upload-contacts/upload-contacts.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { PreviewBadgeComponent } from './components/preview-badge/preview-badge.component';
 
 const routes: Routes = [
 
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'dashboard', component: DashboardComponent ,canActivate: [AuthGuard]},
       { path: 'edit-badge', component: EditBadgeComponent ,canActivate: [AuthGuard]},
+      { path: 'preview-badge', component: PreviewBadgeComponent ,canActivate: [AuthGuard]},
       // { path: 'invitation-List', component: InvitationListComponent ,canActivate: [AuthGuard]},
       { path: 'sent-invitation', component: SentInvitationComponent ,canActivate: [AuthGuard] },
       // { path: 'contact-list', component: ContactListComponent },

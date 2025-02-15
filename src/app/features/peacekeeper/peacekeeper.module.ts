@@ -19,6 +19,7 @@ import { IntlInputPhoneModule } from 'intl-input-phone';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { PreviewBadgeComponent } from './components/preview-badge/preview-badge.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
     PeacekeeperMainComponent,
     ContactListComponent,
     UploadContactsComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    PreviewBadgeComponent
 
   ],
   imports: [

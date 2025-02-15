@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { data } from 'jquery';
+import { PeacekeeperService } from 'src/app/features/peacekeeper/services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class PeacekeeperHeaderComponent implements OnInit {
   date: any;
   isCollapsed = false;
 
-  constructor(private SharedService: SharedService) {
+  constructor(private SharedService: SharedService,private peaceKeeperService : PeacekeeperService) {
     this.SharedService.isCollapsed$.subscribe((state) => {
       this.isCollapsed = state;
     });
@@ -23,6 +24,19 @@ export class PeacekeeperHeaderComponent implements OnInit {
     this.date = new Date();
     this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
     this.checkWindowSize();
+  }
+
+  getPeaceBadgeData() {
+    let userData = JSON.parse(localStorage.getItem('userDetails') || '');
+
+    let peaceId = userData.peacekeeper_id;
+    let body = {
+      peace_id: peaceId,
+    };
+
+    this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
+
+    })
   }
 
 
