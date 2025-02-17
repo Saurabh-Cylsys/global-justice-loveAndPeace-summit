@@ -17,7 +17,7 @@ export class LoginComponent {
   deviceInfo: any = "";
   isOTPReceive: boolean = false;
   txtVerifyOTP : string = ""
-  countdown: number = 60; // 5 minutes in seconds
+  countdown: number = 120; // 2 minutes in seconds
   timerExpired: boolean = false;
   interval: any;
   buttonText :string = 'Login with OTP'
@@ -74,7 +74,7 @@ export class LoginComponent {
     }
 
     this.timerExpired =false;
-    this.countdown = 60; // Reset countdown to 100 seconds
+    this.countdown = 120; // Reset countdown to 100 seconds
     this.buttonText = "Resend OTP";
 
     this.interval = setInterval(() => {
@@ -126,7 +126,7 @@ export class LoginComponent {
         this.ngxService.stop();
         this.isOTPReceive = true;
         this.timerExpired = false;
-        this.countdown = 60; // Reset countdown
+        this.countdown = 120; // Reset countdown
         this.startTimer();
         this.emailForm.value.password = "";
         this.sharedService.ToastPopup(res.message,'','success')

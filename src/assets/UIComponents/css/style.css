@@ -2344,7 +2344,8 @@ button:active, button:focus{
 .sidebar-nav .nav-link {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  /* font-size: 12px; */
+  font-size: 14px;
   font-weight: 600;
   color: #fff;
   transition: 0.3;
