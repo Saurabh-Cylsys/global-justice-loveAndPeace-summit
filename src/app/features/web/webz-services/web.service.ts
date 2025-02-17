@@ -491,7 +491,7 @@ export class WebService {
     {
       // "S_No": 30,
       View: '',
-      Profile_Photo: 'speaker74.png',
+      Profile_Photo: 'speaker74.webp',
       Name: 'Rahul V Karad, Dr',
       Country: 'INDIA',
       Credentials: 'Executive President, MIT World Peace University',
@@ -1104,7 +1104,7 @@ export class WebService {
     {
       // "S_No": 30,
       View: '',
-      Profile_Photo: 'speaker74.png',
+      Profile_Photo: 'speaker74.webp',
       Name: 'Rahul V Karad, Dr',
       Country: 'INDIA',
       Credentials: 'Executive President, MIT World Peace University',
@@ -1854,7 +1854,7 @@ export class WebService {
           {
             // "S_No": 30,
             View: '',
-            Profile_Photo: 'speaker74.png',
+            Profile_Photo: 'speaker74.webp',
             Name: 'Rahul V Karad, Dr',
             Country: 'INDIA',
             Credentials: 'Executive President, MIT World Peace University',
