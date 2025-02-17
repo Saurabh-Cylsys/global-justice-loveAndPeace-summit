@@ -238,7 +238,14 @@ Experience inspiring Peace Songs live!
 🚀 SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED
 "where every smile counts" 😊✨
 📢 Peacekeeper badge
-link: ${this.userData.qr_code}`
+link: ${this.userData.qr_code}
+
+📞 *Summit Helpline* ☎️
+INTERNATIONAL : +971543257125
+INDIA : 18002672828
+
+🌐 www.justice-love-peace.com
+`
 
     // Construct WhatsApp Share URL
     // const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
