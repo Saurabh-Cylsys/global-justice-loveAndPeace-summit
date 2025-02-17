@@ -295,4 +295,20 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
   }
 
+
+  // public postPeaceDeleteAccEndpoint() {
+  //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+  // }
+
+  public postPeaceDeleteAccEndpoint(
+    
+    queryParamsObj:any
+  ): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_DELETE_PEACEKEEPER_ACC,
+      (qs: QueryStringParameters) => {
+        qs.push('email', queryParamsObj['email']),
+        qs.push('role', queryParamsObj['role'])
+      });
+  }
+
 }
