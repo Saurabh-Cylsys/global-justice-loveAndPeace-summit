@@ -25,7 +25,7 @@ export class PeacekeeperPreselectComponent {
       // {code: "COININ-0000001-W"
       //   medium: "1"
       // }
-      if(!params && Object.keys(params).length > 0){
+      if(params != undefined && Object.keys(params).length > 0){
 
       this.referralCode = params.code;
       if(params.medium == 1 && params.code) {

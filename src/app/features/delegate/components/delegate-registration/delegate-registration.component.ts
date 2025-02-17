@@ -153,7 +153,7 @@ export class DelegateRegistrationComponent {
       // {code: "COININ-0000001-W"
       //   medium: "1"
       // }
-
+      if(params != undefined && Object.keys(params).length > 0){
       this.referralCode = params.code;
       if(params.medium == 1 && params.code) {
 
@@ -170,7 +170,7 @@ export class DelegateRegistrationComponent {
             queryParams: { code: this.referralCode },
           });
       }
-
+    }
 
 
       // if (params) {
