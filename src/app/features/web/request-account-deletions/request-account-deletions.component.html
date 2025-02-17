@@ -10,15 +10,20 @@
                             <p>If you would like to delete your account and associated data, please fill out the form below or contact us at <a href="mailto:help@justice-love-peace.com">help&#64;justice-love-peace.com</a></p>
                         </div>
                         <div class="col-md-12">
-                          <form>
+                          <form [formGroup]="userForm" novalidate (ngSubmit)="deletePeacekeeperAcc()">
                             <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="email" id="email" class="form-control" aria-describedby="emailHelp" #email required formControlName="email" [ngClass]="{errors:getcontrol('email')?.errors && getcontrol('email')?.touched}">
+                            
                               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                              <div *ngIf="getcontrol('email')?.errors && getcontrol('email')?.touched">
+                                <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['required']">Email is Required.</small>
+                                <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['email']">Please insert a valid email address.</small>
+                               </div>
                             </div>
                             <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Reason</label>
-                              <textarea name="" id="" class="form-control"></textarea>
+                              <label for="exampleInputPassword1" class="form-label" >Reason</label>
+                              <textarea name="" id="" formControlName="reason"  class="form-control"></textarea>
                             </div>
                             <button type="submit" class="btn btn-success rounded">Request Deletion</button>
                           </form>

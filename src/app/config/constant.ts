@@ -62,5 +62,10 @@ export class Constants {
     public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
 
 
+    public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'deactivate-user'
+
+    
+
+
 
 }
