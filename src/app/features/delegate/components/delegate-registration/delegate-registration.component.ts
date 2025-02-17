@@ -979,7 +979,7 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : 0
+        is_nomination : "0"
       };
 
       this.ngxService.start();

@@ -312,6 +312,8 @@ export class DelegateWithChildComponent {
       console.log('No Change in User Age, Skipping Update');
     }
 
+    this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
     if (this.userDob !== event) {
       this.userDob = event;
       this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
@@ -334,10 +336,17 @@ export class DelegateWithChildComponent {
       console.log('No Change in Nominee Age, Skipping Update');
     }
 
+    const parsedDate = new Date(event);
+    // this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
     if (this.nomineeDob !== event) {
+
       this.nomineeDob = event;
-      this.nomineeFormattedDate =
-        this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+
     }
 
     // Perform validation
@@ -1134,7 +1143,7 @@ export class DelegateWithChildComponent {
         ...this.registrationForm.value,
         created_by: 'Admin',
         status: '0',
-        is_nomination : 1
+        is_nomination : "1"
       };
 
       // this.ngxService.start();
