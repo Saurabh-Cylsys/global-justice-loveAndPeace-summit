@@ -309,6 +309,21 @@ export class ApiEndpointsService {
 
   public getCreateNominationProfileEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE);
+
+  // public postPeaceDeleteAccEndpoint() {
+  //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+  // }
+  }
+
+  public postPeaceDeleteAccEndpoint(
+
+    queryParamsObj:any
+  ): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_DELETE_PEACEKEEPER_ACC,
+      (qs: QueryStringParameters) => {
+        qs.push('email', queryParamsObj['email']),
+        qs.push('role', queryParamsObj['role'])
+      });
   }
 
 }

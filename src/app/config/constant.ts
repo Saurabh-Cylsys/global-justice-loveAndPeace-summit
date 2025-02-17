@@ -66,5 +66,10 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_NOMINATION_PROFILE: string = 'registration/create-nomination-profile'
     public readonly API_ENDPOINT_GET_LOOKUPDATA: string = 'getLookupData'
+    public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'deactivate-user'
+
+
+
+
 
 }
