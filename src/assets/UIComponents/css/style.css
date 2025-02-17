@@ -308,6 +308,7 @@ header .nav-item .nav-link.active {
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-transform: uppercase;
 }
 
 /* speaker */
@@ -329,6 +330,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
+  text-transform: uppercase;
 }
 .speakers h5 {
   font-size: 20px;
@@ -690,6 +692,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
+  text-transform: uppercase;
 }
 .awards .section4 h1 span {
   font-size: 20px;
@@ -831,7 +834,7 @@ header .nav-item .nav-link.active {
 
 /* delegate-form css */
 
-.delegate-form h2 {
+.delegate-form h1 {
   font-size: 50px;
   font-weight: 700;
   line-height: 64.4px;
@@ -839,6 +842,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
+  text-transform: uppercase;
 }
 
 .delegate-form form h6 {
@@ -994,6 +998,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: var(--color1);
+  text-transform: uppercase;
 }
 
 .index .section7 table td {

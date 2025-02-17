@@ -35,6 +35,7 @@ import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeep
     HowToUseSocialMediaComponent,
     SitemapComponent,
     DownloadApplicationsComponent,
-    PeacekeeperPreselectComponent
+    PeacekeeperPreselectComponent,
+    RequestAccountDeletionsComponent
 
     // WhoShouldAttendAndWhyComponent,
 
