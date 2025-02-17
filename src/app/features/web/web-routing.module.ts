@@ -22,6 +22,7 @@ import { HumanValuesComponent } from './blog/human-values/human-values.component
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
+import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 
 const routes: Routes = [
   {
@@ -142,6 +143,10 @@ const routes: Routes = [
       {
         path: 'download-applications',
         component: DownloadApplicationsComponent,
+      },
+      {
+        path: 'peacekeeper-preselect',
+        component: PeacekeeperPreselectComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
