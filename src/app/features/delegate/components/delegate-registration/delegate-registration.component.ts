@@ -86,6 +86,9 @@ export class DelegateRegistrationComponent {
   buttonText: string = 'Send OTP';
   mediumValue: string | null = '';
 
+  tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
+  tinyUatURL : string = 'https://tinyurl.com/3322sj49'
+
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
   }
@@ -139,7 +142,6 @@ export class DelegateRegistrationComponent {
     this.checkWindowSize();
     // this.dobValidator();
 
-    debugger;
     this.route.queryParams.subscribe((params: any) => {
       // if (params) {
       //   this.referralCode = params.code;
@@ -166,9 +168,18 @@ export class DelegateRegistrationComponent {
 
       else if(!params.medium) {
         console.log('Medium value not found, redirecting...');
-          this.router.navigate(['/peacekeeper-preselect'], {
-            queryParams: { code: this.referralCode },
-          });
+
+        const params = new URLSearchParams();
+        params.set('code', this.referralCode);
+        const tinyUrlWithParams = `${this.tinyUrl}?${params.toString()}`; //live
+
+        // const tinyUrlWithParams = `${this.tinyUatURL}?${params.toString()}`;
+
+        window.location.href = tinyUrlWithParams;
+
+          // this.router.navigate(['/peacekeeper-preselect'], {
+          //   queryParams: { code: this.referralCode },
+          // });
       }
     }
 
@@ -968,6 +979,7 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
+        is_nomination : 0
       };
 
       this.ngxService.start();

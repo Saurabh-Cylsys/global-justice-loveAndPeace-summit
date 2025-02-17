@@ -43,17 +43,13 @@ export class PeacekeeperPreselectComponent {
             queryParams: { code: this.referralCode },
           });
       }
-
     }
-    else {
 
-    }
     });
   }
 
   goToDelegatePage() {
 
-    debugger;
     this.router.navigate(['/delegate-registration'], {
       queryParams: { code: this.referralCode ,medium :1 }
     });

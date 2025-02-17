@@ -1134,6 +1134,7 @@ export class DelegateWithChildComponent {
         ...this.registrationForm.value,
         created_by: 'Admin',
         status: '0',
+        is_nomination : 1
       };
 
       // this.ngxService.start();
