@@ -1465,9 +1465,9 @@ export class DelegateWithChildComponent {
       if (confirmation) {
         this.userType = selectedType;
         console.log('User Type Selected:', this.userType);
-        this.clearFormState();
+        // this.clearFormState();
         this.isFormDirty = false; // Reset dirty flag
-        this.registrationForm.reset();
+        // this.registrationForm.reset();
       } else {
         console.log('User type change canceled.');
         this.userType = this.previousType;
