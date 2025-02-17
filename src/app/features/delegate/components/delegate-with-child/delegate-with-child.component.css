@@ -430,3 +430,11 @@ li#iti-0__item-us-preferred {
 
   width: 100%;
 }
+
+input[readonly] {
+  cursor: text !important; /* Forces the cursor to appear */
+  caret-color: black; /* Ensures caret visibility */
+  pointer-events: auto !important;
+
+}
+

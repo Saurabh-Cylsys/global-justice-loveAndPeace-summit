@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import {
   FormGroup,
   Validators,
@@ -19,6 +26,7 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -65,16 +73,18 @@ export class DelegateRegistrationComponent {
   country_name: any;
   state_name: any;
   city_name: any;
-  @ViewChild('number_mobile1', { static: false }) mobileNumberInput!: ElementRef;
+  @ViewChild('number_mobile1', { static: false })
+  mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = "";
-  deviceInfo: any = "";
+  ipAddress: string = '';
+  deviceInfo: any = '';
   isOTPReceive: boolean = false;
-  txtVerifyOTP : string = ""
+  txtVerifyOTP: string = '';
   countdown: number = 100; // 5 minutes in seconds
   timerExpired: boolean = false;
   interval: any;
-  buttonText :string = 'Send OTP'
+  buttonText: string = 'Send OTP';
+  mediumValue: string | null = '';
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -92,7 +102,7 @@ export class DelegateRegistrationComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer : Renderer2
+    private renderer: Renderer2
   ) {
     this.fullURL = window.location.href;
 
@@ -129,13 +139,71 @@ export class DelegateRegistrationComponent {
     this.checkWindowSize();
     // this.dobValidator();
 
+    debugger;
     this.route.queryParams.subscribe((params: any) => {
-      if (params) {
-        this.referralCode = params.code;
+      // if (params) {
+      //   this.referralCode = params.code;
+      // }
+      // if (this.referralCode) {
+      //   console.log(this.referralCode, 'referralCode..........');
+      // }
+
+
+      console.log("Params",params);
+      // {code: "COININ-0000001-W"
+      //   medium: "1"
+      // }
+
+      this.referralCode = params.code;
+      if(params.medium == 1 && params.code) {
+
+        this.router.navigate(['/delegate-registration'], {
+          queryParams: { code: this.referralCode }, // Pass query params
+          queryParamsHandling: 'merge', // Preserve existing query params (optional)
+          relativeTo: this.route, // Stay on the same route
+        })
       }
-      if (this.referralCode) {
-        console.log(this.referralCode, 'referralCode..........');
+
+      else if(!params.medium) {
+        console.log('Medium value not found, redirecting...');
+          this.router.navigate(['/peacekeeper-preselect'], {
+            queryParams: { code: this.referralCode },
+          });
       }
+
+
+
+      // if (params) {
+      //   const decodedCode = decodeURIComponent(params.code);
+      //   console.log('Decoded Code:', decodedCode);
+      //   this.referralCode = decodedCode.split('?')[0];
+
+      //   // Extract 'medium' value using regex
+      //   const match = decodedCode.match(/medium=(\d+)/);
+      //   this.mediumValue = match ? match[1] : null;
+
+      //   console.log('Medium Value:', this.mediumValue);
+
+      //   if(params.medium == 1  && this.referralCode) {
+      //     // this.router.navigate(['/delegate-registration'], {
+      //     //   queryParams: { code: this.referralCode },
+      //     // });
+      //     this.router.navigate(['/delegate-registration'], {
+      //       queryParams: { code: this.referralCode }, // Pass query params
+      //       queryParamsHandling: 'merge', // Preserve existing query params (optional)
+      //       relativeTo: this.route, // Stay on the same route
+      //     })
+      //   }
+
+      //   else if(!this.mediumValue) {
+      //     console.log('Medium value not found, redirecting...');
+      //     this.router.navigate(['/peacekeeper-preselect'], {
+      //       queryParams: { code: this.referralCode },
+      //     });
+      //   }
+
+
+      // }
     });
 
     this.createForm();
@@ -156,16 +224,30 @@ export class DelegateRegistrationComponent {
       dob: ['', [Validators.required, this.ageValidator]],
       country_code: [''],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
-      email_id: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      email_id: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
       linkedIn_profile: [''],
       instagram_profile: [''],
       profession_1: ['', [Validators.required]],
       profession_2: [''],
-      website: ['', [Validators.pattern('^(https?:\\/\\/)?([\\w.-]+)\\.([a-z]{2,6})([\\/\\w .-]*)*\\/?$')]],
+      website: [
+        '',
+        [
+          Validators.pattern(
+            '^(https?:\\/\\/)?([\\w.-]+)\\.([a-z]{2,6})([\\/\\w .-]*)*\\/?$'
+          ),
+        ],
+      ],
       organization_name: [''],
       address: [''],
       country: ['', [Validators.required]],
-      state: ['',[Validators.required]],
+      state: ['', [Validators.required]],
       city: ['', [Validators.required]],
       city_id: ['', [Validators.required]],
       state_id: ['', [Validators.required]],
@@ -280,27 +362,25 @@ export class DelegateRegistrationComponent {
   }
 
   changeCountry(e: any) {
-
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
 
-      this.ngxService.start();
-      this.delegateService.getAllStates(countryObj.id).subscribe(
-        (res: any) => {
-          this.ngxService.stop();
-          this.statesData = res.data;
-        },
-        (err: any) => {
-          console.log('Err', err);
-          // this.ngxService.stop();
-        }
-      );
+    this.ngxService.start();
+    this.delegateService.getAllStates(countryObj.id).subscribe(
+      (res: any) => {
+        this.ngxService.stop();
+        this.statesData = res.data;
+      },
+      (err: any) => {
+        console.log('Err', err);
+        // this.ngxService.stop();
+      }
+    );
   }
 
   changeStates(e: any) {
-
     const selectedValue = e.target.value;
     const stateObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ state_id: stateObj.id });
@@ -314,10 +394,10 @@ export class DelegateRegistrationComponent {
   }
 
   changeCity(e: any) {
-      const selectedValue = e.target.value;
-      const cityObj = JSON.parse(selectedValue); // Convert JSON string back to object
-      this.registrationForm.patchValue({ city_id: cityObj.id });
-      this.city_name = cityObj.name;
+    const selectedValue = e.target.value;
+    const cityObj = JSON.parse(selectedValue); // Convert JSON string back to object
+    this.registrationForm.patchValue({ city_id: cityObj.id });
+    this.city_name = cityObj.name;
   }
 
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
@@ -379,8 +459,7 @@ export class DelegateRegistrationComponent {
       const input = event.target as HTMLInputElement;
       input.value = text; // Paste valid text into the input field
       input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
-    }
-    else {
+    } else {
       event.preventDefault();
     }
   }
@@ -398,26 +477,28 @@ export class DelegateRegistrationComponent {
     inputValue = inputValue.replace(/\s{2,}/g, ' ');
 
     // Set the cleaned value back to the input field
-    this.registrationForm.controls['profession_1'].setValue(inputValue, { emitEvent: false });
-}
+    this.registrationForm.controls['profession_1'].setValue(inputValue, {
+      emitEvent: false,
+    });
+  }
 
-onProfession2Input(event: Event) {
-  const input = event.target as HTMLInputElement;
+  onProfession2Input(event: Event) {
+    const input = event.target as HTMLInputElement;
 
-  // Remove leading spaces
-  let inputValue = input.value.replace(/^\s+/, '');
+    // Remove leading spaces
+    let inputValue = input.value.replace(/^\s+/, '');
 
-  // Allow alphabets, _, @, &, -, and spaces (but no special characters other than these)
-  inputValue = inputValue.replace(/[^a-zA-Z_@&-\s]/g, '');
+    // Allow alphabets, _, @, &, -, and spaces (but no special characters other than these)
+    inputValue = inputValue.replace(/[^a-zA-Z_@&-\s]/g, '');
 
-  // Prevent multiple spaces
-  inputValue = inputValue.replace(/\s{2,}/g, ' ');
+    // Prevent multiple spaces
+    inputValue = inputValue.replace(/\s{2,}/g, ' ');
 
-  // Set the cleaned value back to the input field
-  this.registrationForm.controls['profession_2'].setValue(inputValue, { emitEvent: false });
-}
-
-
+    // Set the cleaned value back to the input field
+    this.registrationForm.controls['profession_2'].setValue(inputValue, {
+      emitEvent: false,
+    });
+  }
 
   validateAlpha(event: any) {
     const allowedPattern = /^[a-zA-Z\s\-'_‘]$/;
@@ -443,7 +524,6 @@ onProfession2Input(event: Event) {
     }
   }
 
-
   onPasteAddress(event: ClipboardEvent) {
     event.preventDefault(); // Block default paste action
     const text = event.clipboardData?.getData('text') || '';
@@ -456,10 +536,13 @@ onProfession2Input(event: Event) {
       input.value += text; // Append valid text
       input.dispatchEvent(new Event('input')); // Trigger input event to update Angular form control
     } else {
-      this.SharedService.ToastPopup("Only letters, numbers, spaces, and @, . - _ ( ) are allowed.",'',"error");
+      this.SharedService.ToastPopup(
+        'Only letters, numbers, spaces, and @, . - _ ( ) are allowed.',
+        '',
+        'error'
+      );
     }
   }
-
 
   containsConsecutiveZeros(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -500,14 +583,22 @@ onProfession2Input(event: Event) {
   onMobileKeyDown(event: KeyboardEvent, inputValue: any): void {
     if (inputValue !== null) {
       // Prevent space at the beginning
-      if (event.key === ' ' && event.code === 'Space' && inputValue.number.length === 0) {
+      if (
+        event.key === ' ' &&
+        event.code === 'Space' &&
+        inputValue.number.length === 0
+      ) {
         event.preventDefault();
         return;
       }
 
       // Allow only numbers, Backspace, Delete, Arrow Keys, and Tab
-      if (!/^[0-9]$/.test(event.key) &&
-          !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+      if (
+        !/^[0-9]$/.test(event.key) &&
+        !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
+          event.key
+        )
+      ) {
         event.preventDefault();
         return;
       }
@@ -523,9 +614,15 @@ onProfession2Input(event: Event) {
     }
   }
 
-
-  onKeyDown(event: KeyboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
-    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
+  onKeyDown(
+    event: KeyboardEvent,
+    fieldType: 'email' | 'website' | 'linkedin'
+  ): void {
+    if (
+      ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
+        event.key
+      )
+    ) {
       return; // Allow these keys
     }
 
@@ -554,11 +651,15 @@ onProfession2Input(event: Event) {
     }
   }
 
-  onInputEvent(event: KeyboardEvent | ClipboardEvent, fieldType: 'email' | 'website' | 'linkedin'): void {
+  onInputEvent(
+    event: KeyboardEvent | ClipboardEvent,
+    fieldType: 'email' | 'website' | 'linkedin'
+  ): void {
     if (event.type === 'paste') {
       // Handle paste event
       event.preventDefault();
-      const clipboardData = (event as ClipboardEvent).clipboardData?.getData('text') || '';
+      const clipboardData =
+        (event as ClipboardEvent).clipboardData?.getData('text') || '';
 
       let allowedPattern: RegExp;
       switch (fieldType) {
@@ -587,7 +688,11 @@ onProfession2Input(event: Event) {
 
     // Handle keydown event
     const keyEvent = event as KeyboardEvent;
-    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(keyEvent.key)) {
+    if (
+      ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
+        keyEvent.key
+      )
+    ) {
       return; // Allow these keys
     }
 
@@ -616,7 +721,6 @@ onProfession2Input(event: Event) {
     }
   }
 
-
   onPasteEvent(event: ClipboardEvent, fieldType: 'website' | 'linkedin'): void {
     event.preventDefault();
     const clipboardData = event.clipboardData?.getData('text') || '';
@@ -641,7 +745,6 @@ onProfession2Input(event: Event) {
       event.preventDefault();
     }
   }
-
 
   onInstagramKeyDown(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
@@ -685,105 +788,161 @@ onProfession2Input(event: Event) {
   }
 
   submitData(): void {
-
-    if(!this.registrationForm.value.title || this.registrationForm.value.title.length < 2){
+    if (
+      !this.registrationForm.value.title ||
+      this.registrationForm.value.title.length < 2
+    ) {
       this.renderer.selectRootElement('#title').focus();
-      this.SharedService.ToastPopup("Title must be at least 2 characters long.", '', 'error');
+      this.SharedService.ToastPopup(
+        'Title must be at least 2 characters long.',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(!this.registrationForm.value.first_name || this.registrationForm.value.first_name.length < 3) {
+    } else if (
+      !this.registrationForm.value.first_name ||
+      this.registrationForm.value.first_name.length < 3
+    ) {
       this.renderer.selectRootElement('#f_name').focus();
-      this.SharedService.ToastPopup("First Name must be at least 3 characters long.", '', 'error');
+      this.SharedService.ToastPopup(
+        'First Name must be at least 3 characters long.',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(!this.registrationForm.value.last_name || this.registrationForm.value.last_name.length < 2) {
+    } else if (
+      !this.registrationForm.value.last_name ||
+      this.registrationForm.value.last_name.length < 2
+    ) {
       this.renderer.selectRootElement('#l_name').focus();
-      this.SharedService.ToastPopup("Last Name must be at least 3 characters long.", '', 'error');
+      this.SharedService.ToastPopup(
+        'Last Name must be at least 3 characters long.',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(this.registrationForm.value.dob == "" || this.registrationForm.value.dob == undefined) {
+    } else if (
+      this.registrationForm.value.dob == '' ||
+      this.registrationForm.value.dob == undefined
+    ) {
       this.renderer.selectRootElement('#dob').focus();
-      this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
+      this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
-    }
-    else if(this.registrationForm.value.mobile_number == "" || this.registrationForm.value.mobile_number == undefined || this.registrationForm.value.mobile_number == null) {
+    } else if (
+      this.registrationForm.value.mobile_number == '' ||
+      this.registrationForm.value.mobile_number == undefined ||
+      this.registrationForm.value.mobile_number == null
+    ) {
       setTimeout(() => {
-        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        const inputElement = document.querySelector(
+          '#number_mobile1 input'
+        ) as HTMLInputElement;
         if (inputElement) {
           inputElement.focus();
         } else {
-          console.error("Could not find mobile number input field");
+          console.error('Could not find mobile number input field');
         }
       }, 100);
 
-      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      this.SharedService.ToastPopup('Please Enter  Mobile Number', '', 'error');
       return;
-    }
-    else if (this.registrationForm.controls['mobile_number'].errors && !this.registrationForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+    } else if (
+      this.registrationForm.controls['mobile_number'].errors &&
+      !this.registrationForm.controls['mobile_number'].errors
+        ?.validatePhoneNumber?.valid
+    ) {
       setTimeout(() => {
-        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        const inputElement = document.querySelector(
+          '#number_mobile1 input'
+        ) as HTMLInputElement;
         if (inputElement) {
           inputElement.focus();
         } else {
-          console.error("Could not find mobile number input field");
+          console.error('Could not find mobile number input field');
         }
       }, 100);
 
-      this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
+      this.SharedService.ToastPopup(
+        'Please enter a valid mobile number for the selected country',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
+    } else if (
+      this.registrationForm.value.email_id == '' ||
+      this.registrationForm.value.email_id == undefined
+    ) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
       return;
-    }
-    else if (this.registrationForm.controls['email_id'].invalid) {
+    } else if (this.registrationForm.controls['email_id'].invalid) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      this.SharedService.ToastPopup(
+        'Please enter a valid Email ID',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(!this.registrationForm.value.profession_1 || this.registrationForm.value.profession_1.trim().length < 2) {
+    } else if (
+      !this.registrationForm.value.profession_1 ||
+      this.registrationForm.value.profession_1.trim().length < 2
+    ) {
       this.renderer.selectRootElement('#profession1').focus();
-      this.SharedService.ToastPopup("Profession must be at least 2 characters long.", '', 'error');
+      this.SharedService.ToastPopup(
+        'Profession must be at least 2 characters long.',
+        '',
+        'error'
+      );
       return;
-    }
-    else if(this.country_name == "" || this.country_name == undefined) {
-
+    } else if (this.country_name == '' || this.country_name == undefined) {
       setTimeout(() => {
-        const countryElement = this.renderer.selectRootElement('#country', true);
+        const countryElement = this.renderer.selectRootElement(
+          '#country',
+          true
+        );
         if (countryElement) {
           countryElement.focus();
         }
       }, 100);
-      this.SharedService.ToastPopup("Please Select Country",'','error');
+      this.SharedService.ToastPopup('Please Select Country', '', 'error');
       return;
-    }
-    else if(this.state_name == "" || this.state_name == undefined) {
+    } else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
         const stateElement = this.renderer.selectRootElement('#state', true);
         if (stateElement) {
           stateElement.focus();
         }
       }, 100);
-      this.SharedService.ToastPopup("Please Select State",'','error');
+      this.SharedService.ToastPopup('Please Select State', '', 'error');
       return;
-    }
-    else if(this.city_name == "" || this.city_name == undefined) {
+    } else if (this.city_name == '' || this.city_name == undefined) {
       setTimeout(() => {
         const cityElement = this.renderer.selectRootElement('#city', true);
         if (cityElement) {
           cityElement.focus();
         }
       }, 100);
-      this.SharedService.ToastPopup("Please Select City",'','error');
+      this.SharedService.ToastPopup('Please Select City', '', 'error');
       return;
-    }
-    else if(!this.registrationForm.value.attendee_purpose || this.registrationForm.value.attendee_purpose.trim() === "") {
-      this.SharedService.ToastPopup("Please Select Attending purpose",'','error');
+    } else if (
+      !this.registrationForm.value.attendee_purpose ||
+      this.registrationForm.value.attendee_purpose.trim() === ''
+    ) {
+      this.SharedService.ToastPopup(
+        'Please Select Attending purpose',
+        '',
+        'error'
+      );
       return;
-    }
-    else if (!this.registrationForm.get('conference_lever_interest')?.value || this.registrationForm.get('conference_lever_interest')?.value.length === 0) {
-      this.SharedService.ToastPopup("Please select at least one interest.",'','error');
+    } else if (
+      !this.registrationForm.get('conference_lever_interest')?.value ||
+      this.registrationForm.get('conference_lever_interest')?.value.length === 0
+    ) {
+      this.SharedService.ToastPopup(
+        'Please select at least one interest.',
+        '',
+        'error'
+      );
       return;
     }
 
@@ -799,9 +958,9 @@ onProfession2Input(event: Event) {
       country_code: this.registrationForm.value.mobile_number.dialCode,
       mobile_number: formattedMobileNumber,
       dob: this.formattedDate,
-      country : this.country_name,
-      state : this.state_name,
-      city : this.city_name
+      country: this.country_name,
+      state: this.state_name,
+      city: this.city_name,
     });
 
     this.submitted = true;
@@ -882,7 +1041,7 @@ onProfession2Input(event: Event) {
 
     switch (controlName) {
       case 'first_name':
-        allowedPattern =  /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
+        allowedPattern = /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
         break;
       case 'last_name':
         allowedPattern = /^[a-zA-Z\s-]+$/; // Allows only alphabets, spaces, and hyphens
@@ -908,14 +1067,16 @@ onProfession2Input(event: Event) {
     }
 
     // Remove invalid characters dynamically
-    inputValue = inputValue.split('').filter((char:any) => allowedPattern.test(char)).join('');
+    inputValue = inputValue
+      .split('')
+      .filter((char: any) => allowedPattern.test(char))
+      .join('');
 
     // Update the form control with the cleaned value
     this.registrationForm.controls[controlName].setValue(inputValue, {
       emitEvent: false,
     });
   }
-
 
   handleTabKey(event: KeyboardEvent, nextFieldId: string) {
     if (event.key === 'Tab') {
@@ -940,12 +1101,12 @@ onProfession2Input(event: Event) {
     }
   }
 
-  getIPAddress(){
+  getIPAddress() {
     this.SharedService.getIPAddress().subscribe({
-      next :(res:any)=>{
+      next: (res: any) => {
         this.ipAddress = res.ip;
-      }
-    })
+      },
+    });
   }
 
   getDeviceOS(): string {
@@ -963,16 +1124,16 @@ onProfession2Input(event: Event) {
       clearInterval(this.interval); // Clear any existing timer
     }
 
-    this.timerExpired =false;
+    this.timerExpired = false;
     this.countdown = 100; // Reset countdown to 100 seconds
-    this.buttonText = "Resend OTP";
+    this.buttonText = 'Resend OTP';
 
     this.interval = setInterval(() => {
       if (this.countdown > 0) {
         this.countdown--;
       } else {
         this.timerExpired = true;
-        this.buttonText = "Resend OTP";
+        this.buttonText = 'Resend OTP';
         clearInterval(this.interval); // Stop the timer when it reaches 0
       }
     }, 1000);
@@ -990,65 +1151,66 @@ onProfession2Input(event: Event) {
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  sendOTP(){
-
-    if(this.registrationForm.value.email_id == "" || this.registrationForm.value.email_id == undefined) {
+  sendOTP() {
+    if (
+      this.registrationForm.value.email_id == '' ||
+      this.registrationForm.value.email_id == undefined
+    ) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
       return;
-    }
-    else if (this.registrationForm.controls['email_id'].invalid) {
+    } else if (this.registrationForm.controls['email_id'].invalid) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      this.SharedService.ToastPopup(
+        'Please enter a valid Email ID',
+        '',
+        'error'
+      );
       return;
     }
 
     let body = {
-      "email": this.registrationForm.value.email_id,
-      "deviceId": this.ipAddress,
-      "deviceOs": this.deviceInfo,
-      "registeration_type":"0"
-    }
+      email: this.registrationForm.value.email_id,
+      deviceId: this.ipAddress,
+      deviceOs: this.deviceInfo,
+      registeration_type: '0',
+    };
     this.ngxService.start();
     this.delegateService.sendOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
+      next: (res: any) => {
+        console.log('Res', res);
         this.ngxService.stop();
         this.isOTPReceive = true;
         this.timerExpired = false;
         this.countdown = 100; // Reset countdown
         this.startTimer();
-        this.SharedService.ToastPopup(res.message,'','success')
+        this.SharedService.ToastPopup(res.message, '', 'success');
       },
       error: (err: any) => {
-        console.error("Error:", err);
+        console.error('Error:', err);
         this.ngxService.stop();
-      }
-    })
+      },
+    });
   }
 
-  verifyOTP(){
-
+  verifyOTP() {
     let body = {
-      "email": this.registrationForm.value.email_id,
-      "otp": this.txtVerifyOTP
-    }
+      email: this.registrationForm.value.email_id,
+      otp: this.txtVerifyOTP,
+    };
 
     this.delegateService.verifyOTPApi(body).subscribe({
-      next :(res:any)=>{
-        console.log("Res",res);
-        this.buttonText = "Send OTP";
+      next: (res: any) => {
+        console.log('Res', res);
+        this.buttonText = 'Send OTP';
         this.isOTPReceive = false;
         this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message,'','success')
+        this.SharedService.ToastPopup(res.message, '', 'success');
       },
       error: (err: any) => {
-        console.error("Error:", err);
+        console.error('Error:', err);
         this.ngxService.stop();
-      }
-    })
+      },
+    });
   }
-
-
-
 }

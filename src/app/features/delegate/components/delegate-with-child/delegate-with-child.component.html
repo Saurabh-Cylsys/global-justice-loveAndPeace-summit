@@ -28,11 +28,11 @@
                   class="form-check-input mt-2"
                   type="radio"
                   id="adult"
-                  value="adult"
+                  [value]="'adult'"
                   [(ngModel)]="userType"
                   [ngModelOptions]="{ standalone: true }"
                   name="userType"
-                  (change)="onUserTypeChange('adult')"
+                  (click)="onUserTypeChange('adult')"
                 />
                 <label class="form-check-label" for="adult"
                   >Adult</label
@@ -48,7 +48,7 @@
                   [(ngModel)]="userType"
                   [ngModelOptions]="{ standalone: true }"
                   name="userType"
-                  (change)="onUserTypeChange('student')"
+                  (click)="onUserTypeChange('student')"
                 />
                 <label class="form-check-label" for="student"
                   >Student</label
@@ -313,6 +313,7 @@
                                           [minDate]="minDate1"
                                           [maxDate]="maxDate1"
                                           (keydown)="disableManualInput($event)"
+                                          tabindex="0"
                                           (ngModelChange)="
                                             onUserDobChange($event)
                                           "
@@ -1251,7 +1252,7 @@
                                             [ngModelOptions]="{ standalone: true }"
                                             (keypress)="validateNomineeName($event)"
                                             (keydown)="
-                                            handleTabKey($event, 'nomineeDob')
+                                            handleTabKey($event, 'childDob')
                                           "
                                           (ngModelChange)="markDirty()"
                                           />
@@ -1273,7 +1274,7 @@
                                           <input
                                             type="text"
                                             name="nomineeDob"
-                                            id="nomineeDob"
+                                            id="childDob"
                                             class="form-control p-0"
                                             [(ngModel)]="nomineeDob"
                                             (ngModelChange)="
@@ -1468,7 +1469,7 @@
                                           <label
                                             class="col-md-12 no-padding p-0"
                                             for="institute_Name"
-                                            >Institute/School/College Name <span
+                                            >Student Institute/School/College Name <span
                                             class="form-label-span"
                                             style="color: #ff0000"
                                           >
@@ -1479,7 +1480,7 @@
                                             type="text"
                                             name="institute_name"
                                             id="institute_Name"
-                                            placeholder="Enter Institute/school/college name"
+                                            placeholder="Enter Student Institute/school/college name"
                                             class="form-control p-0"
                                             maxlength="100"
                                             required
