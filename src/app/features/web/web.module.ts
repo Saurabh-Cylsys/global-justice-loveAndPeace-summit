@@ -34,6 +34,7 @@ import { HumanValuesComponent } from './blog/human-values/human-values.component
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
+import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { DownloadApplicationsComponent } from './download-applications/download-
     HumanValuesComponent,
     HowToUseSocialMediaComponent,
     SitemapComponent,
-    DownloadApplicationsComponent
+    DownloadApplicationsComponent,
+    RequestAccountDeletionsComponent
 
     // WhoShouldAttendAndWhyComponent,
 
