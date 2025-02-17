@@ -532,12 +532,12 @@ onDateChange(event: string): void {
         return;
       }
           // Validate the file size
-    if (file.size < minSize || file.size > maxSize) {
-      this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-      event.target.value = ''; // Reset the file input
-      this.is_selectedFile = false;
-      return;
-    }
+    // if (file.size < minSize || file.size > maxSize) {
+    //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+    //   event.target.value = ''; // Reset the file input
+    //   this.is_selectedFile = false;
+    //   return;
+    // }
 
       this.isPeaceOn = 2;
       this.showPopup = true;

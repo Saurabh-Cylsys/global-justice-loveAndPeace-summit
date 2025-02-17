@@ -10,12 +10,17 @@ import * as AOS  from 'aos';
 })
 export class WebMainComponent {
   hideHeaderFooter = false;
+  url : any;
+
   ngOnInit(): void {
     AOS.init({
       duration: 1200,
+
   })
   console.log("web main");
-  
+  console.log("router", this.router.url);
+  this.url = this.router.url;
+
   }
   constructor(
     // private _shared: SharedService,
