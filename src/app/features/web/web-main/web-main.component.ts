@@ -9,11 +9,16 @@ import * as AOS  from 'aos';
   styleUrls: ['./web-main.component.css']
 })
 export class WebMainComponent {
+  url : any;
+
   ngOnInit(): void {
     AOS.init({
       duration: 1200,
+
   })
   console.log("web main");
+  console.log("router", this.router.url);
+  this.url = this.router.url;
   
   }
   constructor(
