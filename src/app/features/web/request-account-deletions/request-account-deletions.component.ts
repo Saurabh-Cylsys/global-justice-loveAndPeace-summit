@@ -78,7 +78,7 @@ console.log(peaceDeleteAcc,'peaceDeleteAcc');
     this.sharedService.ToastPopup(res.message, '', 'success');
 this.ngxService.stop();
     setTimeout(() => {
-      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(['/home']));
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(['/request-account-deletion']));
     }, 2000);
   }, (err) => {
     this.ngxService.stop();
