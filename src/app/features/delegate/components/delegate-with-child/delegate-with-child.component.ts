@@ -26,14 +26,13 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
-import { param } from 'jquery';
 
 @Component({
-  selector: 'app-delegate-registration',
-  templateUrl: './delegate-registration.component.html',
-  styleUrls: ['./delegate-registration.component.css'],
+  selector: 'app-delegate-with-child',
+  templateUrl: './delegate-with-child.component.html',
+  styleUrls: ['./delegate-with-child.component.css'],
 })
-export class DelegateRegistrationComponent {
+export class DelegateWithChildComponent {
   showPopup: boolean = false;
   formdisplay: boolean = true;
   display: string = '';
@@ -76,18 +75,30 @@ export class DelegateRegistrationComponent {
   @ViewChild('number_mobile1', { static: false })
   mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = '';
-  deviceInfo: any = '';
-  isOTPReceive: boolean = false;
-  txtVerifyOTP: string = '';
-  countdown: number = 100; // 5 minutes in seconds
-  timerExpired: boolean = false;
-  interval: any;
-  buttonText: string = 'Send OTP';
-  mediumValue: string | null = '';
+  nomineeName: string = '';
+  nomineeDob: string = '';
+  nomineeEmail: string = '';
+  nomineeRelation: string = '';
+  relationData: any = [];
+  instituteName: string = '';
+  delegateId: any;
+  nomineeAge: number = 0;
+  userAge: number = 0;
+  nominee_mobile_number: any = '';
+  userType: string = '';
+  showNomineeForm: boolean = false;
+  userDob: string = '';
+  nomineeFormattedDate: string = '';
+  today = new Date();
+  isFormDirty: boolean = false;
+  previousUserType: any;
+  selectedRadioValue: string = '';
+  previousType: string = '';
 
-  tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
-  tinyUatURL : string = 'https://tinyurl.com/3322sj49'
+  markDirty(): void {
+    this.isFormDirty = true;
+    console.log('Form is now dirty'); // Debugging log
+  }
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -108,25 +119,16 @@ export class DelegateRegistrationComponent {
     private renderer: Renderer2
   ) {
     this.fullURL = window.location.href;
-
-    const today = new Date();
-
-    // Max date is 18 years ago from today
-    this.maxDate1 = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // Min date is 120 years ago from today
-    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
+
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
+
   get instagramProfileControl() {
     return this.registrationForm.get('instagram_profile');
   }
+
   isInvalidInstagramProfile() {
     return (
       this.instagramProfileControl.hasError('pattern') &&
@@ -143,88 +145,20 @@ export class DelegateRegistrationComponent {
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
-      // if (params) {
-      //   this.referralCode = params.code;
-      // }
-      // if (this.referralCode) {
-      //   console.log(this.referralCode, 'referralCode..........');
-      // }
-
-
-      console.log("Params",params);
-      // {code: "COININ-0000001-W"
-      //   medium: "1"
-      // }
-      if(params != undefined && Object.keys(params).length > 0){
-      this.referralCode = params.code;
-      if(params.medium == 1 && params.code) {
-
-        this.router.navigate(['/delegate-registration'], {
-          queryParams: { code: this.referralCode }, // Pass query params
-          queryParamsHandling: 'merge', // Preserve existing query params (optional)
-          relativeTo: this.route, // Stay on the same route
-        })
+      if (params) {
+        this.referralCode = params.code;
       }
-
-      else if(!params.medium) {
-        console.log('Medium value not found, redirecting...');
-
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
-        const tinyUrlWithParams = `${this.tinyUrl}?${params.toString()}`; //live
-
-        // const tinyUrlWithParams = `${this.tinyUatURL}?${params.toString()}`;
-
-        window.location.href = tinyUrlWithParams;
-
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
+      if (this.referralCode) {
+        console.log(this.referralCode, 'referralCode..........');
       }
-    }
-
-
-      // if (params) {
-      //   const decodedCode = decodeURIComponent(params.code);
-      //   console.log('Decoded Code:', decodedCode);
-      //   this.referralCode = decodedCode.split('?')[0];
-
-      //   // Extract 'medium' value using regex
-      //   const match = decodedCode.match(/medium=(\d+)/);
-      //   this.mediumValue = match ? match[1] : null;
-
-      //   console.log('Medium Value:', this.mediumValue);
-
-      //   if(params.medium == 1  && this.referralCode) {
-      //     // this.router.navigate(['/delegate-registration'], {
-      //     //   queryParams: { code: this.referralCode },
-      //     // });
-      //     this.router.navigate(['/delegate-registration'], {
-      //       queryParams: { code: this.referralCode }, // Pass query params
-      //       queryParamsHandling: 'merge', // Preserve existing query params (optional)
-      //       relativeTo: this.route, // Stay on the same route
-      //     })
-      //   }
-
-      //   else if(!this.mediumValue) {
-      //     console.log('Medium value not found, redirecting...');
-      //     this.router.navigate(['/peacekeeper-preselect'], {
-      //       queryParams: { code: this.referralCode },
-      //     });
-      //   }
-
-
-      // }
     });
 
     this.createForm();
+    // this.selectedRadioValue = this.userType;
 
     // this.getdates()
     this.getAllCountries();
     // this.getAllCountrycode()
-    this.getIPAddress();
-
-    this.deviceInfo = this.getDeviceOS();
   }
 
   createForm() {
@@ -232,7 +166,7 @@ export class DelegateRegistrationComponent {
       title: ['', [Validators.required]],
       first_name: ['', [Validators.required]],
       last_name: ['', [Validators.required]],
-      dob: ['', [Validators.required, this.ageValidator]],
+      dob: ['', [Validators.required]],
       country_code: [''],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email_id: [
@@ -269,31 +203,7 @@ export class DelegateRegistrationComponent {
       reference_no: [this.referralCode ? this.referralCode : ''],
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
-      created_by: 'Admin',
-      status: ['0'],
     });
-  }
-
-  ageValidator(control: FormControl) {
-    const selectedDate = new Date(control.value);
-
-    if (isNaN(selectedDate.getTime())) {
-      return { invalidDate: true };
-    }
-
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // If selected date is after or on the date 18 years ago, it's invalid
-    if (selectedDate > eighteenYearsAgo) {
-      return { ageError: 'Date must be at least 18 years ago' };
-    }
-
-    return null; // Valid date
   }
 
   isDisabledDate(date: Date): boolean {
@@ -354,11 +264,153 @@ export class DelegateRegistrationComponent {
     );
   }
 
-  onDateChange(event: string): void {
-    // Convert the date format
+  // onUserDobChange(event: string): void {
+  //   if (!event) return; // Handle empty date input
+
+  //   const dob = new Date(event);
+  //   this.userAge = this.calculateAge(dob);
+
+  //   this.userDob = event;
+  //   console.log("User Age:", this.userAge);
+
+  //   const parsedDate = new Date(event);
+  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   // Perform validation
+  //   this.validateUserAge();
+  // }
+
+  // onNomineeDobChange(event: string): void {
+  //   if (!event) return; // Handle empty date input
+
+  //   const dob = new Date(event);
+  //   this.nomineeAge = this.calculateAge(dob);
+  //   this.nomineeDob = event;
+  //   console.log("Nominee Age:", this.nomineeAge);
+
+  //   const parsedDate = new Date(event);
+  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   // Perform validation
+  //   this.validateNomineeAge();
+  // }
+
+  onUserDobChange(event: string): void {
+    if (!event) return; // Handle empty date input
+
+    const dob = new Date(event);
+    const newAge = this.calculateAge(dob);
+
+    if (this.userAge !== newAge) {
+      this.userAge = newAge;
+      console.log('User Age Updated:', this.userAge);
+    } else {
+      console.log('No Change in User Age, Skipping Update');
+    }
+
+    this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+    if (this.userDob !== event) {
+      this.userDob = event;
+      this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+    }
+
+    // Perform validation
+    this.validateUserAge();
+  }
+
+  onNomineeDobChange(event: string): void {
+    if (!event) return; // Handle empty date input
+
+    const dob = new Date(event);
+    const newAge = this.calculateAge(dob);
+
+    if (this.nomineeAge !== newAge) {
+      this.nomineeAge = newAge;
+      console.log('Nominee Age Updated:', this.nomineeAge);
+    } else {
+      console.log('No Change in Nominee Age, Skipping Update');
+    }
+
     const parsedDate = new Date(event);
-    this.formattedDate =
-      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    // this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+    if (this.nomineeDob !== event) {
+
+      this.nomineeDob = event;
+      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+
+    }
+
+    // Perform validation
+    this.validateNomineeAge();
+  }
+
+  // Common function to calculate age
+  private calculateAge(dob: Date): number {
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    const dayDiff = today.getDate() - dob.getDate();
+
+    // Adjust age if the birthday hasn't occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+    return age;
+  }
+
+  // Validation for User Age (Student or Adult)
+  private validateUserAge(): void {
+    if (this.userType === 'student') {
+      if (this.userAge <= 0 || this.userAge >= 21) {
+        this.SharedService.ToastPopup(
+          'As a Student, your age must be between 1 and less than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    } else if (this.userType === 'adult') {
+      if (this.userAge < 21) {
+        this.SharedService.ToastPopup(
+          'As an Adult, your age must be 21 or older.',
+          '',
+          'error'
+        );
+        return;
+      }
+    }
+  }
+
+  // Validation for Nominee Age
+  private validateNomineeAge(): void {
+    if (this.userType === 'student') {
+      if (this.nomineeAge <= 21) {
+        this.SharedService.ToastPopup(
+          'As a Student, your nominee must be older than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    } else if (this.userType === 'adult') {
+      if (this.nomineeAge >= 21 || this.nomineeAge <= 0) {
+        this.SharedService.ToastPopup(
+          'As an Adult, your nominee must be between 1 and less than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    }
   }
 
   getAllCountries() {
@@ -386,7 +438,7 @@ export class DelegateRegistrationComponent {
       },
       (err: any) => {
         console.log('Err', err);
-        // this.ngxService.stop();
+        this.ngxService.stop();
       }
     );
   }
@@ -397,9 +449,9 @@ export class DelegateRegistrationComponent {
     this.registrationForm.patchValue({ state_id: stateObj.id });
     this.state_name = stateObj.name;
 
-    // this.ngxService.start();
+    this.ngxService.start();
     this.delegateService.getAllCities(stateObj.id).subscribe((res: any) => {
-      // this.ngxService.stop();
+      this.ngxService.stop();
       this.cityData = res.data;
     });
   }
@@ -799,6 +851,9 @@ export class DelegateRegistrationComponent {
   }
 
   submitData(): void {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Ensure both ages are defined before proceeding
+
     if (
       !this.registrationForm.value.title ||
       this.registrationForm.value.title.length < 2
@@ -827,7 +882,7 @@ export class DelegateRegistrationComponent {
     ) {
       this.renderer.selectRootElement('#l_name').focus();
       this.SharedService.ToastPopup(
-        'Last Name must be at least 3 characters long.',
+        'Last Name must be at least 2 characters long.',
         '',
         'error'
       );
@@ -837,6 +892,7 @@ export class DelegateRegistrationComponent {
       this.registrationForm.value.dob == undefined
     ) {
       this.renderer.selectRootElement('#dob').focus();
+      this.openDatepicker();
       this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
     } else if (
@@ -955,15 +1011,121 @@ export class DelegateRegistrationComponent {
         'error'
       );
       return;
+    } else if (this.nomineeName.length < 2 || this.nomineeName == undefined) {
+      this.renderer.selectRootElement('#nominee_name').focus();
+      this.SharedService.ToastPopup(
+        'Nominee Name must be 2 characters long.',
+        '',
+        'error'
+      );
+      return;
+    } else if (!this.nomineeDob || this.nomineeDob == undefined) {
+      this.renderer.selectRootElement('#childDob').focus();
+      this.openNomineeDatepicker();
+      this.SharedService.ToastPopup(
+        'Please Select nominee Date Of Birth',
+        '',
+        'error'
+      );
+      return;
+    } else if (this.nomineeEmail == '' || this.nomineeEmail == undefined) {
+      this.renderer.selectRootElement('#nomineeEmail').focus();
+      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
+      return;
+    } else if (!emailPattern.test(this.nomineeEmail)) {
+      this.renderer.selectRootElement('#nomineeEmail').focus();
+      this.SharedService.ToastPopup('Please Enter Valid Email ID', '', 'error');
+      return;
     }
+
+    if (!this.nominee_mobile_number) {
+      // Simplified check for empty/undefined/null
+      setTimeout(() => {
+        const intlInput = document.querySelector(
+          '#number_mobile2'
+        ) as HTMLElement;
+        if (intlInput) {
+          const inputField = intlInput.querySelector(
+            'input'
+          ) as HTMLInputElement;
+          if (inputField) {
+            inputField.focus(); // Set focus inside the input
+          } else {
+            console.error(
+              'Mobile number input field not found inside ngx-intl-tel-input.'
+            );
+          }
+        }
+      }, 100);
+
+      this.SharedService.ToastPopup('Please Enter Mobile Number', '', 'error');
+      return;
+    } else if (
+      this.nomineeRelation == '' ||
+      this.nomineeRelation == undefined
+    ) {
+      this.renderer.selectRootElement('#nominee_relation').focus();
+      this.SharedService.ToastPopup('Please Enter Relation ', '', 'error');
+      return;
+    } else if (
+      this.instituteName.trim() == '' ||
+      this.instituteName == undefined
+    ) {
+      this.renderer.selectRootElement('#institute_Name').focus();
+      this.SharedService.ToastPopup(
+        'Please Enter Institute Name ',
+        '',
+        'error'
+      );
+      return;
+    } else if (
+      this.nominee_mobile_number === this.registrationForm.value.mobile_number
+    ) {
+      this.SharedService.ToastPopup(
+        'Both Mobile numbers should not be the same',
+        '',
+        'error'
+      );
+      return;
+    }
+
+    // if (this.userAge === undefined || this.nomineeAge === undefined) {
+    //   this.SharedService.ToastPopup('Invalid date selection. Please enter valid DOBs.', '', 'error');
+    //   return;
+    // }
+
+    this.validateUserAge();
+    this.validateNomineeAge();
+
+    // Delegate Mobile Number
 
     const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
-    console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
     let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
     console.log(formattedMobileNumber);
+
+    // Nominee Mobile Number
+    let formattedNomineeMobileNumber = '';
+    const rawNomineeMobileNumber = this.nominee_mobile_number;
+
+    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.number
+        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        : '';
+    } else if (typeof rawNomineeMobileNumber === 'string') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
+    }
+
+    if (formattedMobileNumber === formattedNomineeMobileNumber) {
+      this.SharedService.ToastPopup(
+        'Both Mobile numbers should not be the same',
+        '',
+        'error'
+      );
+      return;
+    }
 
     this.registrationForm.patchValue({
       country_code: this.registrationForm.value.mobile_number.dialCode,
@@ -979,41 +1141,169 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0"
+        created_by: 'Admin',
+        status: '0',
+        is_nomination : "1"
       };
 
+      // this.ngxService.start();
+      // this.SharedService.registration(this.reqBody).subscribe(
+      //   async (result: any) => {
+      //     if (result.success) {
+      //       console.log('result', result);
+      //       this.SharedService.ToastPopup('', result.message, 'success');
+      //       this.registrationForm.reset();
+
+      //       this.delegateId = result.delegate_id;
+      //       const rawNomineeMobileNumber = this.nominee_mobile_number;
+
+      //       let formattedNomineeMobileNumber = '';
+
+      //       if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      //         formattedNomineeMobileNumber = rawNomineeMobileNumber.number
+      //           ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+      //           : '';
+      //       } else if (typeof rawNomineeMobileNumber === 'string') {
+      //         formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
+      //       }
+
+      //       setTimeout(() => {
+      //         console.log('get payment URL', result.url);
+      //         console.log("settimeout");
+
+      //         if(this.delegateId){
+      //           let body = {
+      //             "delegate_id": this.delegateId,
+      //             "nomination_name": this.nomineeName,
+      //             "relation_id": this.nomineeRelation,
+      //             "dob": this.nomineeFormattedDate,
+      //             "email": this.nomineeEmail,
+      //             "mobile_no": formattedNomineeMobileNumber,
+      //             "institution": this.instituteName
+      //           }
+      //           this.delegateService.getNominationProfileApi(body).subscribe({
+      //             next : (res:any)=>{
+      //               console.log("Res",res);
+      //               if(res.success) {
+      //                 this.ngxService.stop();
+
+      //                 if (result.url) {
+      //                   window.location.href = result.url;
+      //                   this.nomineeName = '';
+      //                   this.nomineeDob = '';
+      //                   this.nomineeEmail = '';
+      //                   this.nomineeRelation = '';
+      //                   this.nominee_mobile_number = '';
+      //                 }
+      //               }
+      //             },error : (err)=>{
+      //               console.log("Error",err);
+      //               this.ngxService.stop();
+      //               this.SharedService.ToastPopup('', err.error.message, 'error');
+      //             }
+      //           })
+      //         }
+      //         this.ngxService.stop();
+      //       }, 5000);
+      //     } else {
+      //       this.ngxService.stop();
+      //       this.SharedService.ToastPopup('', result.message, 'error');
+      //     }
+      //   },
+      //   (err) => {
+      //     this.ngxService.stop();
+      //     this.registrationForm.patchValue({
+      //       mobile_number: returnmobileNumber,
+      //       dob: returnDOB,
+      //     });
+
+      //     this.SharedService.ToastPopup('', err.error.message, 'error');
+      //   }
+      // );
+
       this.ngxService.start();
-      this.SharedService.registration(this.reqBody).subscribe(
-        async (result: any) => {
+
+      this.SharedService.registration(this.reqBody).subscribe({
+        next: async (result: any) => {
+          this.ngxService.stop(); // Stop the loader here, after first API completes
+
           if (result.success) {
-            console.log('result', result);
-            // this.ngxService.stop();
+            console.log('Registration Successful:', result);
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
 
-            setTimeout(() => {
-              console.log('get payment URL', result.url);
-              this.ngxService.stop();
-              if (result.url) {
-                window.location.href = result.url; // Redirect to Stripe Checkout
-              }
-            }, 5000);
+            this.delegateId = result.delegate_id;
+            const formattedNomineeMobileNumber = this.formatNomineeMobileNumber(
+              this.nominee_mobile_number
+            );
+
+            if (this.delegateId) {
+              const nomineeBody = {
+                delegate_id: this.delegateId,
+                nomination_name: this.nomineeName,
+                relation_id: this.nomineeRelation,
+                dob: this.nomineeFormattedDate,
+                email: this.nomineeEmail,
+                mobile_no: formattedNomineeMobileNumber,
+                institution: this.instituteName,
+              };
+
+              this.callNominationProfileAPI(nomineeBody, result.url);
+            }
           } else {
-            this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'error');
           }
         },
-        (err) => {
+        error: (err) => {
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
-
           this.SharedService.ToastPopup('', err.error.message, 'error');
-        }
-      );
+        },
+      });
     }
+  }
+
+  private callNominationProfileAPI(nomineeBody: any, paymentUrl: string): void {
+    this.ngxService.start();
+
+    this.delegateService.getNominationProfileApi(nomineeBody).subscribe({
+      next: (res: any) => {
+        this.ngxService.stop();
+        console.log('Nomination Profile Response:', res);
+
+        if (res.success && paymentUrl) {
+          window.location.href = paymentUrl; // Redirect to payment
+          this.clearNomineeFields();
+        }
+      },
+      error: (err) => {
+        this.ngxService.stop();
+        console.error('Nomination API Error:', err);
+        this.SharedService.ToastPopup('', err.error.message, 'error');
+      },
+    });
+  }
+
+  private formatNomineeMobileNumber(rawNomineeMobileNumber: any): string {
+    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      return rawNomineeMobileNumber.number
+        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        : '';
+    }
+    return typeof rawNomineeMobileNumber === 'string'
+      ? rawNomineeMobileNumber.replace(/\s+/g, '')
+      : '';
+  }
+
+  private clearNomineeFields(): void {
+    this.nomineeName = '';
+    this.nomineeDob = '';
+    this.nomineeEmail = '';
+    this.nomineeRelation = '';
+    this.nominee_mobile_number = '';
   }
 
   openPopup() {
@@ -1101,6 +1391,8 @@ export class DelegateRegistrationComponent {
         // Open the datepicker when moving to DOB field
         if (nextFieldId === 'dob') {
           this.openDatepicker();
+        } else if (nextFieldId === 'nomineeDob') {
+          this.openNomineeDatepicker();
         }
       }
     }
@@ -1113,116 +1405,104 @@ export class DelegateRegistrationComponent {
     }
   }
 
-  getIPAddress() {
-    this.SharedService.getIPAddress().subscribe({
-      next: (res: any) => {
-        this.ipAddress = res.ip;
+  openNomineeDatepicker() {
+    const dobInput = document.getElementById('nomineeDob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
+  getRelationData() {
+    let body = {
+      parent_code: 'NOMINATION',
+      type: 'ANSWER',
+    };
+    this.delegateService.getRelationDataApi(body).subscribe({
+      next: (res) => {
+        console.log('Res', res);
+        this.relationData = res;
       },
     });
   }
 
-  getDeviceOS(): string {
-    const userAgent = navigator.userAgent;
-    if (/android/i.test(userAgent)) return 'Android';
-    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
-    if (/Win/i.test(userAgent)) return 'Windows';
-    if (/Mac/i.test(userAgent)) return 'MacOS';
-    if (/Linux/i.test(userAgent)) return 'Linux';
-    return 'Unknown';
+  // onUserTypeChange(selectedType: string): void {
+  //   this.userType = selectedType;
+  //   console.log('User Type Selected:', this.userType);
+  //   this.registrationForm.get('dob')?.updateValueAndValidity(); // Revalidate on user type change
+
+  // }
+
+  private isNomineeFormDirty(): boolean {
+    return (
+      (this.nomineeName?.trim() || '') !== '' ||
+      (this.nomineeDob?.trim() || '') !== '' ||
+      (this.nomineeEmail?.trim() || '') !== '' ||
+      (this.nomineeRelation?.trim() || '') !== '' ||
+      (this.nominee_mobile_number?.trim() || '') !== ''
+    );
   }
 
-  startTimer() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear any existing timer
-    }
+  // ✅ Reset form and ngModel dirty state
+  private clearFormState(): void {
+    this.nomineeName = '';
+    this.nomineeDob = '';
+    this.nomineeEmail = '';
+    this.nomineeRelation = '';
+    this.nominee_mobile_number = '';
 
-    this.timerExpired = false;
-    this.countdown = 100; // Reset countdown to 100 seconds
-    this.buttonText = 'Resend OTP';
-
-    this.interval = setInterval(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      } else {
-        this.timerExpired = true;
-        this.buttonText = 'Resend OTP';
-        clearInterval(this.interval); // Stop the timer when it reaches 0
-      }
-    }, 1000);
+    this.registrationForm.markAsPristine(); // Reset form state
+    this.registrationForm.markAsUntouched();
   }
 
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear timer when component is destroyed
-    }
-  }
+  onUserTypeChange(selectedType: string): void {
+    this.isFormDirty = this.isNomineeFormDirty(); // Update before checking
 
-  formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  }
-
-  sendOTP() {
-    if (
-      this.registrationForm.value.email_id == '' ||
-      this.registrationForm.value.email_id == undefined
-    ) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup(
-        'Please enter a valid Email ID',
-        '',
-        'error'
+    if (this.isFormDirty || this.registrationForm.dirty) {
+      const confirmation = window.confirm(
+        'Warning: Your unsaved data will be lost. Do you want to continue?'
       );
-      return;
-    }
 
-    let body = {
-      email: this.registrationForm.value.email_id,
-      deviceId: this.ipAddress,
-      deviceOs: this.deviceInfo,
-      registeration_type: '0',
-    };
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
+      if (confirmation) {
+        this.userType = selectedType;
+        console.log('User Type Selected:', this.userType);
+        // this.clearFormState();
+        this.isFormDirty = false; // Reset dirty flag
+        // this.registrationForm.reset();
+      } else {
+        console.log('User type change canceled.');
+        this.userType = this.previousType;
+      }
+    } else {
+      this.userType = selectedType;
+      console.log('User Type Selected:', this.userType);
+    }
   }
 
-  verifyOTP() {
-    let body = {
-      email: this.registrationForm.value.email_id,
-      otp: this.txtVerifyOTP,
-    };
+  // Disable the user type selection
+  disableUserTypeChange(): void {
+    const checkbox = document.getElementById(
+      'userTypeCheckbox'
+    ) as HTMLInputElement;
+    if (checkbox) {
+      checkbox.disabled = true;
+    }
+  }
 
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.buttonText = 'Send OTP';
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
+  validateNomineeName(event: KeyboardEvent) {
+    const inputChar = event.key;
+
+    // Allow alphabets and space (except at the beginning)
+    if (!/^[A-Za-z ]$/.test(inputChar) && inputChar !== 'Backspace') {
+      event.preventDefault();
+    }
+
+    // Prevent space at the beginning
+    if (
+      event.target instanceof HTMLInputElement &&
+      event.target.value.length === 0 &&
+      inputChar === ' '
+    ) {
+      event.preventDefault();
+    }
   }
 }

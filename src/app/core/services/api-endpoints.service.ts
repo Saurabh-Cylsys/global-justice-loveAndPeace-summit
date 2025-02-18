@@ -295,13 +295,28 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
   }
 
+  public getSendOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_SEND_OTP);
+  }
+
+  public getVerifyOTPEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_OTP);
+  }
+
+  public getLookupEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_LOOKUPDATA);
+  }
+
+  public getCreateNominationProfileEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE);
 
   // public postPeaceDeleteAccEndpoint() {
   //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
   // }
+  }
 
   public postPeaceDeleteAccEndpoint(
-    
+
     queryParamsObj:any
   ): string {
     return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_DELETE_PEACEKEEPER_ACC,

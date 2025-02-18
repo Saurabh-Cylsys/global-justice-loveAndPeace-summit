@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as AOS  from 'aos';
 // declare var AOS:any;
 
@@ -9,6 +9,7 @@ import * as AOS  from 'aos';
   styleUrls: ['./web-main.component.css']
 })
 export class WebMainComponent {
+  hideHeaderFooter = false;
   url : any;
 
   ngOnInit(): void {
@@ -19,7 +20,7 @@ export class WebMainComponent {
   console.log("web main");
   console.log("router", this.router.url);
   this.url = this.router.url;
-  
+
   }
   constructor(
     // private _shared: SharedService,
@@ -27,6 +28,12 @@ export class WebMainComponent {
     private _route: ActivatedRoute,
     // private CompanyService: CompanyService,
 
-  ) { }
+  ) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.hideHeaderFooter = this.router.url.includes('peacekeeper-preselect') || this.router.url.includes('/request-account-deletion');
+      }
+    });
+   }
 
 }
