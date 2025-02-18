@@ -346,19 +346,20 @@ export class EditBadgeComponent {
             peacekeeper_id: this.PeaceBadgeData.peacekeeper_id,
             file_name: this.PeaceBadgeData?.file_name,
             qr_code : this.PeaceBadgeData?.QR_CODE,
-            email : this.PeaceBadgeData?.email_id
+            email_id : this.PeaceBadgeData?.email_id
           };
 
           localStorage.setItem('userDetails', JSON.stringify(userData));
           this.sharedService.ToastPopup('Peacekeeper Badge Updated Successfully!', '', 'success');
           this.is_selectedFile = false;
-          this.editBadgeForm.reset();
+          // this.editBadgeForm.reset();
 
           this.selectedFile = null;
           // fileInput.value = '';
           this.imageUrl = '';
 
           await this.sharedService.refreshHeader();
+
           // setTimeout(() => {
           //   const currentUrl = this.router.url;
           //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -366,9 +367,17 @@ export class EditBadgeComponent {
           //   });
           // }, 2000);
 
+          // this.router.navigate(['/dashboard']);
+
           setTimeout(() => {
-            window.location.reload();
-          }, 5000);
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate(['/dashboard']);
+            });
+          }, 1000);
+
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 5000);
           // this.getPeaceBadgeData();
         } else {
           this.ngxService.stop();

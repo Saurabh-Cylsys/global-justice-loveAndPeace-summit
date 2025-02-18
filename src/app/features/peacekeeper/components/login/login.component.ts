@@ -178,7 +178,7 @@ export class LoginComponent {
             peacekeeper_id : res.data['peacekeeper_id'],
             file_name : res.data['file_name'],
             qr_code : res.data['QR_CODE'],
-            email :res.data['email_id']
+            email_id :res.data['email_id']
           }
 
           this.buttonText = "Send OTP";
@@ -233,7 +233,7 @@ export class LoginComponent {
             full_name : res.data['full_name'],
             peacekeeper_id : res.data['peacekeeper_id'],
             file_name : res.data['file_name'],
-            email :res.data['email_id'],
+            email_id :res.data['email_id'],
             qr_code : res.data['QR_CODE']
           }
           // Store the encrypted token

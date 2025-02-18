@@ -5,9 +5,9 @@
   </div>
   <div class="profile d-flex">
       <div class="profile-card">
-          <img [src]="this.userData.file_name" alt="Profile Picture" class="profile-img">
+          <img [src]="this.userData?.file_name" alt="Profile Picture" class="profile-img">
           <div style="font-size: 15px;">
-              <h6 class="mb-0">{{this.userData.full_name}}</h6>
+              <h6 class="mb-0">{{this.userData?.full_name}}</h6>
               <small class="text-nowrap">{{ date | date: 'MMM d, y h:mm a' }}</small>
           </div>
       </div>

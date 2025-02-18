@@ -33,7 +33,7 @@ export class ChangePasswordComponent {
     this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
 
     this.changePasswordForm.patchValue({
-      email : this.userData.email
+      email : this.userData.email || this.userData.email_id
     })
   }
 

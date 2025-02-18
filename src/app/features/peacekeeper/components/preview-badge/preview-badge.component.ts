@@ -13,30 +13,6 @@ export class PreviewBadgeComponent {
   editBadgeForm!: FormGroup;
   PeaceBadgeData: any;
   disabledDates: Date[] = [];
-  formattedDate: string = '';
-  minDate: string | null = null;
-  maxDate: string | null = null;
-  maxDate1: any;
-  minDate1: any;
-  colorTheme: string = 'theme-dark-blue';
-  separateDialCode = false;
-
-  submitted = false;
-  is_selectedFile: boolean = false;
-  countryData: any;
-  fileUrl: any;
-  isMobile: any;
-  mobile_number: string = '';
-  mobile_numberVal: boolean = false;
-  code: any;
-  selectedFile: File | null = null;
-  convertedImage: string | null = null;
-  isConvertedImage: boolean = true;
-  isDragging = false;
-  imageChangedEvent: any = '';
-  imageFileName: any = '';
-  previousCroppedImage: any = '';
-  croppedImage: any = '';
   peaceBadge: any;
   formdisplay: boolean = true;
   showPopup: boolean = false;
@@ -52,7 +28,6 @@ export class PreviewBadgeComponent {
 
 
   constructor(
-
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
@@ -70,8 +45,6 @@ export class PreviewBadgeComponent {
   async getPeaceBadgeData() {
     let userData = JSON.parse(localStorage.getItem('userDetails') || '');
 
-
-
     let peaceId = userData.peacekeeper_id;
     let body = {
       peace_id: peaceId,
@@ -83,7 +56,6 @@ export class PreviewBadgeComponent {
         if (res.success) {
           this.ngxService.stop();
           this.PeaceBadgeData = this.sharedService.decryptData(res.data);
-
 
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
           this.imageUrl = this.PeaceBadgeData?.file_name;
