@@ -141,6 +141,7 @@ export class LoginComponent {
 
   verifyOTP(){
 
+    debugger;
     if(this.emailForm.value.email == "" || this.emailForm.value.email == undefined) {
       // this.renderer.selectRootElement('#email').focus();
       this.sharedService.ToastPopup("Please Enter Email ID",'','error');
@@ -149,6 +150,12 @@ export class LoginComponent {
     else if (this.emailForm.controls['email'].invalid) {
       // this.renderer.selectRootElement('#email').focus();
       this.sharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
+      return;
+    }
+
+    else if (this.txtVerifyOTP.trim().length !== 6) {
+      // this.renderer.selectRootElement('#email').focus();
+      this.sharedService.ToastPopup('Please enter 6-digit OTP', '', 'error');
       return;
     }
     else if (!this.txtVerifyOTP) {
@@ -167,12 +174,13 @@ export class LoginComponent {
       "loginVia": "0",// for otp
     }
 
+    this.ngxService.start();
     this.peaceKeeperService.postPeacekeeperLogin(body).subscribe({
       next :(res:any)=>{
 
         if (res.success) {
           // this.sharedService.ToastPopup('Login Successful', '', 'success')
-
+          this.ngxService.stop();
           const userData = {
             full_name : res.data['full_name'],
             peacekeeper_id : res.data['peacekeeper_id'],

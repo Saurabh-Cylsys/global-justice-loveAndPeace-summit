@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class PeacekeeperLeftpanelComponent {
   isCollapsed = false;
   isMobileView = false;
-  constructor(private SharedService: SharedService) {
+  constructor(private SharedService: SharedService,private router : Router) {
     this.SharedService.isCollapsed$.subscribe((state) => {
       this.isCollapsed = state;
     });
@@ -31,5 +32,11 @@ export class PeacekeeperLeftpanelComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.checkWindowSize();
+  }
+
+  logout(){
+    localStorage.clear(); // Optional: Clear sessionStorage if used
+    sessionStorage.clear();
+    this.router.navigate(['/login']); // Redirect to login
   }
 }

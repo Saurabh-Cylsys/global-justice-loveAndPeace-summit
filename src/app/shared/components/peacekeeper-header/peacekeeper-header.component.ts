@@ -34,6 +34,12 @@ export class PeacekeeperHeaderComponent implements OnInit {
     this.checkWindowSize();
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.refreshSubscription.unsubscribe();
+  }
+
   getPeaceBadgeData() {
     let userData = JSON.parse(localStorage.getItem('userDetails') || '');
 

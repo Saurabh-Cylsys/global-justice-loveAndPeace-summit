@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { PeacekeeperService } from '../../services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-preview-badge',
@@ -26,7 +27,6 @@ export class PreviewBadgeComponent {
   isMobileView = false;
   isDisabled = true;
 
-
   constructor(
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
@@ -39,6 +39,12 @@ export class PreviewBadgeComponent {
 
     await this.getPeaceBadgeData();
     this.checkWindowSize();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    // this.refreshSubscription.unsubscribe();
   }
 
 

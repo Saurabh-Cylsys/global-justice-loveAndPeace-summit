@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Renderer2 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PeacekeeperService } from '../../services/peacekeeper.service';
@@ -16,15 +16,20 @@ export class ChangePasswordComponent {
   showPassword = false;
   showConfirmPassword = false;
   userData : any;
+  isCollapsed = false;
+  isMobileView = false;
 
   constructor(
     private fb: FormBuilder,
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
-    private router : Router
+    private router : Router,
+    private renderer: Renderer2
     ) {
-
+      this.sharedService.isCollapsed$.subscribe((state) => {
+        this.isCollapsed = state;
+      });
   }
 
   ngOnInit(): void {
@@ -32,15 +37,67 @@ export class ChangePasswordComponent {
 
     this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
 
+
+    this.changePasswordForm.get('email')?.disable();
+
     this.changePasswordForm.patchValue({
       email : this.userData.email || this.userData.email_id
     })
+
+    this.checkWindowSize();
   }
+
+  ngAfterViewInit() {
+    const emailField = document.getElementById('email');
+
+    if (emailField) {
+      const observer = new MutationObserver(() => {
+        if (!emailField.hasAttribute('disabled')) {
+          emailField.setAttribute('disabled', 'true');
+        }
+      });
+
+      observer.observe(emailField, { attributes: true, attributeFilter: ['disabled'] });
+    }
+
+    // setTimeout(() => {
+    //   const passwordField = document.getElementById('password');
+    //   if (passwordField) {
+    //     this.renderer.selectRootElement(passwordField).focus();
+    //   }
+    // }, 0);
+  }
+
+  focusField(fieldId: string) {
+    setTimeout(() => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        this.renderer.selectRootElement(field).focus();
+      }
+    }, 0);
+  }
+
+  checkWindowSize(): void {
+    if (window.innerWidth <= 900) {
+      this.sharedService.isMobileView.next(true);
+      this.isMobileView = true;
+    } else {
+      this.sharedService.isMobileView.next(false);
+      this.isMobileView = false;
+    }
+  }
+  // Listen to window resize events
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.checkWindowSize();
+  }
+
 
   crateChangePasswordForm(){
     this.changePasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,Validators.minLength(8),
+      password: ['', [Validators.required,
+        Validators.minLength(8),
         Validators.maxLength(16),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,16}$')]],
       confirmPassword: ['', Validators.required]
@@ -99,18 +156,20 @@ export class ChangePasswordComponent {
   onSubmit() {
 
     if (this.changePasswordForm.invalid) {
+      if (this.changePasswordForm.get('password')?.invalid) {
+        this.focusField('password');
+      } else if (this.changePasswordForm.get('confirmPassword')?.invalid) {
+        this.focusField('confirmPassword');
+      }
       return;
     }
 
-    // let encryptedBody = this.sharedService.encryptData({
-    //   "email": this.changePasswordForm.value.email,
-    //   "password": this.changePasswordForm.value.password,
-    //   "confirmPassword": this.changePasswordForm.value.confirmPassword
-    // });
+    const peacKeeperformData = this.changePasswordForm.getRawValue(); // ✅ Includes disabled fields
+    console.log(peacKeeperformData);
 
     let body = {
       // "encrypted_data": encryptedBody
-      "email": this.changePasswordForm.value.email,
+      "email": peacKeeperformData.email,
       "password": this.changePasswordForm.value.password,
       "confirmPassword": this.changePasswordForm.value.confirmPassword
     };
@@ -129,6 +188,7 @@ export class ChangePasswordComponent {
       },
       error : (err)=>{
         console.log("Error",err);
+        this.sharedService.ToastPopup('', err.error.message, 'error');
         this.ngxService.stop();
       }
     })

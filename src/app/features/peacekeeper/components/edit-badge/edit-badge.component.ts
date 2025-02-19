@@ -77,7 +77,7 @@ export class EditBadgeComponent {
   zoomLevel: number = 1; // Initial zoom level
   transform: ImageTransform = {}; // Object for applying transformations
   imageUrl: string | ArrayBuffer | null =
-    'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
+    'assets/UIComponents/images/peacekeeper/ProfileAavtar.png'; // Default image
   isCollapsed = false;
   isMobileView = false;
   isDisabled = true;
