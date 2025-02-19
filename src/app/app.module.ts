@@ -4,14 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
-// import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
-// import { SharedModule } from './shared/shared.module';
-
-
-// import { HeaderComponent } from './shared/components/header/header.component';
-// import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-// import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,8 +11,7 @@ import { DatePipe } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Constants } from './config/constant';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxEditorModule } from 'ngx-editor';
@@ -39,12 +30,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    SharedModule,
     BrowserModule,
     ToastrModule.forRoot(),
     NgxUiLoaderModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule,SharedModule,
+    FormsModule, ReactiveFormsModule,
     QRCodeModule,
     BsDatepickerModule.forRoot(),
     NgxEditorModule,

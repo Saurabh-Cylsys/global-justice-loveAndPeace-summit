@@ -3,39 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-
-
-  // {path:'webhome',component:WebHomeComponent},
-
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./features/web/web.module').then((m) => m.WebModule)
-  // },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./features/delegate/delegate.module').then((m) => m.DelegateModule)
-  // },
   {
     path: '',
     loadChildren: () =>
       import('./features/peacekeeper/peacekeeper.module').then((m) => m.PeacekeeperModule)
   },
-
-
-  // {path : 'login' , component :LoginComponent},
-  // {path:'dashboard', component : DashboardComponent },
-
-  // {path : '' , component :LoginComponent}
-
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./shared/shared.module').then((m) => m.SharedModule)
-  // },
-
-  // { path: '**', redirectTo: '/web', pathMatch: 'full' }
 ];
 
 @NgModule({
