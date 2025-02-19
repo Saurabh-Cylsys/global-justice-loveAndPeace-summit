@@ -2256,6 +2256,7 @@ button:active, button:focus{
             background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
+    text-align: left !important;
 }
 
 .committee-list .justiceLogo::before {
