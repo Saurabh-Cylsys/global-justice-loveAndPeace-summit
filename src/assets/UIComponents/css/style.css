@@ -2219,6 +2219,26 @@ button:focus {
 .preselect {
   min-height: 100vh;
 }
+.speaker-details select:after{
+  background-color: #004e8a;
+  height: 20px;
+  width: 20px;
+}
+.speaker-details input, .speaker-details input:focus{
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
+
+.speaker-details select, .speaker-details select:focus{
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
 
 .speaker-details .card {
   position: relative;
