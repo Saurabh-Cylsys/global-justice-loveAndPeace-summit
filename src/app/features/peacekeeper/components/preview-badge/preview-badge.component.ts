@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { PeacekeeperService } from '../../services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -22,7 +22,7 @@ export class PreviewBadgeComponent {
   zoomLevel: number = 1; // Initial zoom level
 
   imageUrl: string | ArrayBuffer | null =
-    'assets/UIComponents/images/speakers/ProfileAavtar.png'; // Default image
+    'assets/UIComponents/images/peacekeeper/ProfileAavtar.png'; // Default image
   isCollapsed = false;
   isMobileView = false;
   isDisabled = true;
@@ -31,13 +31,27 @@ export class PreviewBadgeComponent {
     private peaceKeeperService: PeacekeeperService,
     private sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
+    private cdr: ChangeDetectorRef
   ) {
 
   }
 
-  async ngOnInit() {
+  ngOnInit() {
 
-    await this.getPeaceBadgeData();
+    // setTimeout(() => {
+    //     window.location.reload();
+    //   }, 1000);
+
+    //   this.ngxService.start();
+    // setTimeout(() => {
+    //   this.ngxService.stop();
+    //   this.getPeaceBadgeData();
+    // }, 1000);
+
+    this.cdr.detectChanges();
+
+    this.getPeaceBadgeData();
+
     this.checkWindowSize();
   }
 
@@ -48,7 +62,7 @@ export class PreviewBadgeComponent {
   }
 
 
-  async getPeaceBadgeData() {
+ getPeaceBadgeData() {
     let userData = JSON.parse(localStorage.getItem('userDetails') || '');
 
     let peaceId = userData.peacekeeper_id;
@@ -57,7 +71,7 @@ export class PreviewBadgeComponent {
     };
 
     this.ngxService.start();
-    await this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
+    this.peaceKeeperService.getPeacekeeperBadgeById(body).subscribe({
       next: (res: any) => {
         if (res.success) {
           this.ngxService.stop();
@@ -65,6 +79,8 @@ export class PreviewBadgeComponent {
 
           this.peaceBadge = this.PeaceBadgeData.coupon_code;
           this.imageUrl = this.PeaceBadgeData?.file_name;
+
+          console.log("Call",this.PeaceBadgeData);
         }
 
       },

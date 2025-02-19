@@ -206,6 +206,7 @@ export class EditBadgeComponent {
       error : (err)=>{
         console.log("err",err);
         this.ngxService.stop();
+        this.sharedService.ToastPopup('', err.error.message, 'error');
       }
     });
   }
@@ -347,6 +348,7 @@ export class EditBadgeComponent {
             file_name: this.PeaceBadgeData?.file_name,
             qr_code : this.PeaceBadgeData?.QR_CODE,
             email_id : this.PeaceBadgeData?.email_id
+
           };
 
           localStorage.setItem('userDetails', JSON.stringify(userData));
