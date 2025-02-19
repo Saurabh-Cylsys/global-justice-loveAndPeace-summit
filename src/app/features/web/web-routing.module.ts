@@ -24,6 +24,7 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 
 const routes: Routes = [
   {
@@ -153,6 +154,10 @@ const routes: Routes = [
           path: 'request-account-deletion',
         component: RequestAccountDeletionsComponent,
       },
+      {
+        path: 'speaker-details',
+      component: SpeakerDetailsComponent,
+    },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ],

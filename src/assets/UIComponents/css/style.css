@@ -300,7 +300,8 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
 }
 
-.index .section5 h2, .index .section5 h1 {
+.index .section5 h2,
+.index .section5 h1 {
   color: var(--color1);
   font-size: 25px;
   font-weight: 700;
@@ -990,7 +991,8 @@ header .nav-item .nav-link.active {
   font-weight: 600;
 }
 
-.index .section7 h2, .partner .section7 h1 {
+.index .section7 h2,
+.partner .section7 h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 51.52px;
@@ -1408,8 +1410,7 @@ header .nav-item .nav-link.active {
   color: #8d8d8d !important;
 }
 
-
-#logo{
+#logo {
   transition: 0.4s;
   position: absolute;
 }
@@ -1497,7 +1498,6 @@ header .nav-item .nav-link.active {
   outline: none;
   box-shadow: none;
 }
-
 
 .iti {
   width: 100%;
@@ -1628,7 +1628,7 @@ header .nav-item .nav-link.active {
   letter-spacing: 1px;
 }
 
-.head ul li .dropbtn{
+.head ul li .dropbtn {
   border: 1px solid #fff;
 }
 
@@ -1942,10 +1942,6 @@ header .nav-item .nav-link.active {
   padding: 2rem 0;
 }
 
-
-
-
-
 #p4 h3,
 #p4 p {
   color: var(--color1);
@@ -2204,18 +2200,16 @@ border-color: #005b94;
   border-image-source: linear-gradient(180deg, #005b94 0%, #128940 100%);
 } */
 
-
-
-button:active, button:focus{
+button:active,
+button:focus {
   outline: none !important;
   box-shadow: none;
   border: none;
 }
 
-.downloadAppBg{
-
-    background-image: url(../images/venueBg.png);
-    background-color: var(--color1);
+.downloadAppBg {
+  background-image: url(../images/venueBg.png);
+  background-color: var(--color1);
 }
 
 /* .download{
@@ -2224,4 +2218,62 @@ button:active, button:focus{
 
 .preselect {
   min-height: 100vh;
+}
+
+.speaker-details .card {
+  position: relative;
+  border-radius: 14.35px;
+  min-height: 55vh;
+}
+.speaker-details .card .card-header {
+  position: absolute;
+  height: 14vh;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background-color: #bdc78c;
+  border-radius: 14.35px 14.35px 0 0;
+}
+
+.speaker-details .card .card-body {
+  position: relative;
+  padding: 20px 0 !important;
+}
+.speaker-details .card .card-body h5 {
+  font-weight: 700;
+  font-size: 18.1px;
+  line-height: 32.33px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color6);
+}
+.speaker-details .card .card-body .country {
+  font-weight: 700;
+  font-size: 15.06px;
+  line-height: 19.4px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color1);
+  margin: 0 0 2vh;
+}
+.speaker-details .card .card-body .credentials {
+  font-weight: 500;
+  font-size: 13.81px;
+  line-height: 17.78px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #8a8a8a;
+}
+
+.speaker-details .card .card-body button {
+  background-color: transparent;
+  border: 1px solid var(--color3);
+  color: var(--color3);
+  border-radius: 14.35px;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto 10px;
 }
