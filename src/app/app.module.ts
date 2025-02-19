@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AuthModule } from './features/auth/auth.module';
+// import { AuthModule } from './features/auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
@@ -34,12 +34,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
   imports: [
     CommonModule,
     FormsModule,
-
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AuthModule,
     SharedModule,
     BrowserModule,
     ToastrModule.forRoot(),

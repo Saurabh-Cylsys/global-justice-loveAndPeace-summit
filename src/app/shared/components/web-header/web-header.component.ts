@@ -1,7 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-web-header',
@@ -60,10 +61,20 @@ export class WebHeaderComponent implements OnInit {
     { label: 'Messages', fragment: 'cc2' },
     { label: 'Songs', fragment: 'cc3' },
   ];
+
+  isScrolled = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollY = window.scrollY;
+    this.isScrolled = scrollY > 50; // Change logo size after 50px of scroll
+  }
   constructor(
     public _router: Router,
     private _activeRouter: ActivatedRoute,
-    private SharedService: SharedService
+    private SharedService: SharedService,
+    private location: Location,
+    private renderer: Renderer2
   ) {}
   ngOnInit(): void {
     this.checkWindowSize();
@@ -72,7 +83,7 @@ export class WebHeaderComponent implements OnInit {
     console.log(this._activeRouter.url, 'WebHeaderComponent initialized');
 
     this._router.events.subscribe(() => {
-      this.isHomePage = this._router.url === '/home';
+      this.isHomePage = this._router.url === '/'; // Check if the route is home
     });
 
     this._activeRouter.fragment.subscribe((fragment) => {
@@ -86,17 +97,16 @@ export class WebHeaderComponent implements OnInit {
   }
 
   navigateUrl() {
-    debugger;
     // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
     this._router.navigate(['/delegate-registration']);
   }
+
 
   scrollById(route:any,id:any){
     this._router.navigate([route],{ queryParams: { id: id }});
 
   }
   downloadPDF() {
-    debugger;
     const fileUrl = 'assets/UIComponents/files/GJLPS-Brochure-01-ENGLISH-241227.pdf'; // Path to your PDF file in the assets folder
     const a = document.createElement('a');
     a.href = fileUrl;
@@ -264,4 +274,22 @@ export class WebHeaderComponent implements OnInit {
     this.checkWindowSize();
   }
 
+
+  navigateToSection(fragment: string | undefined) {
+    const offcanvasElement = document.getElementById('offcanvasScrolling');
+
+  if (offcanvasElement) {
+    offcanvasElement.classList.remove('show'); // Remove the "show" class
+  }
+    if (fragment) {
+      setTimeout(() => {
+        this.location.replaceState(this._router.url.split('#')[0]); // Remove fragment
+      }, 1000); // Delay to allow scrolling
+    } else {
+      // Ensure we remove the trailing #
+      setTimeout(() => {
+        this.location.replaceState(this._router.url.split('#')[0]);
+      }, 100);
+    }
+  }
 }
