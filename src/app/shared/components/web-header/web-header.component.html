@@ -149,6 +149,15 @@
                   {{ link.label }}
                 </a>
               </li>
+              <li>
+                <a
+                  [routerLink]="['/committee']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                >
+                  Committee
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -400,6 +409,11 @@
                   fragment="{{ link.fragment }}"
                 >
                   {{ link.label }}
+                </a>
+                <a
+                  [routerLink]="['/committee']"
+                >
+                  Committee
                 </a>
               </div>
             </div>
