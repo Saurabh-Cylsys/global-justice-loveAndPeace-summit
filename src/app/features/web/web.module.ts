@@ -36,6 +36,7 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
+import { CommitteeComponent } from './committee/committee.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { RequestAccountDeletionsComponent } from './request-account-deletions/re
     SitemapComponent,
     DownloadApplicationsComponent,
     PeacekeeperPreselectComponent,
-    RequestAccountDeletionsComponent
+    RequestAccountDeletionsComponent,
+    CommitteeComponent
 
     // WhoShouldAttendAndWhyComponent,
 
