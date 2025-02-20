@@ -117,7 +117,7 @@ export class WebService {
       // "S_No": 2,
       View: '',
       Profile_Photo: 'speaker21.png',
-      Name: 'Banagala Upatissa Thero, Most Venerable ',
+      Name: 'Banagala Upatissa Thero, Most Venerable',
       Country: 'SRI LANKA',
       Credentials:
         'President of Mahabodhi Society, Sri Lanka : Buddhist Religious Leader',
@@ -126,7 +126,7 @@ export class WebService {
       // "S_No": 3,
       View: 'binod',
       Profile_Photo: 'speaker14.png',
-      Name: 'Binod Kumar Chaudhary  ',
+      Name: 'Binod Kumar Chaudhary',
       Country: 'NEPAL',
       Credentials:
         'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
@@ -135,10 +135,10 @@ export class WebService {
       // "S_No": 4,
       View: '',
       Profile_Photo: 'speaker22.png',
-      Name: 'Chandra Kumar Bose ',
+      Name: 'Chandra Kumar Bose',
       Country: 'INDIA',
       Credentials:
-        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
+        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
     },
     // list 4
     {
@@ -156,7 +156,7 @@ export class WebService {
       Name: 'Deepa Malik, Dr.',
       Country: 'INDIA',
       Credentials:
-        'Sports Champion : Silver Medallist at 2016 Rio Paralympics ',
+        'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
     },
     {
       // "S_No": 6,
@@ -172,7 +172,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker54.png',
       Name: 'Ekaterina Zagladina',
-      Country: 'RUSSIA ',
+      Country: 'RUSSIA',
       Credentials:
         'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
     },
@@ -181,7 +181,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker23.png',
       Name: 'Esha Deol',
-      Country: 'INDIA ',
+      Country: 'INDIA',
       Credentials: 'Actress',
     },
     {
@@ -207,7 +207,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker24.png',
       Name: 'Hassan Babacar Jallow, Lord Chief Justice',
-      Country: 'GAMBIA ',
+      Country: 'GAMBIA',
       Credentials: 'Chief Justice of the Supreme Court of Gambia',
     },
     {
@@ -258,7 +258,7 @@ export class WebService {
       Profile_Photo: 'speaker27.png',
       Name: 'Juan Carlos Sainz-Borgo, Dr.',
       Country: 'COSTA RICA',
-      Credentials: 'Vice Rector, University of Peace ',
+      Credentials: 'Vice Rector, University of Peace',
     },
     // list 8
     {
@@ -291,7 +291,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker28.png',
       Name: 'Latifa Ibn Ziaten',
-      Country: 'MOROCCO, FRANCE ',
+      Country: 'MOROCCO, FRANCE',
       Credentials:
         'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
     },
@@ -339,7 +339,7 @@ export class WebService {
       Name: 'Mahesh Bhupathi',
       Country: 'INDIA',
       Credentials:
-        'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner ',
+        'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
     },
     {
       // "S_No": 18,
@@ -448,7 +448,7 @@ export class WebService {
       // "S_No": 17,
       View: '',
       Profile_Photo: 'speaker34.png',
-      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
+      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty',
       Country: 'GHANA',
       Credentials: 'Royalty',
     },
@@ -473,7 +473,7 @@ export class WebService {
       // "S_No": 27,
       View: '',
       Profile_Photo: 'speaker67.png',
-      Name: 'Oscar Arias Sanchez, His Excellency ',
+      Name: 'Oscar Arias Sanchez, His Excellency',
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
     },
@@ -574,7 +574,7 @@ export class WebService {
       // "S_No": 34,
       View: '',
       Profile_Photo: 'speaker48.png',
-      Name: 'Shirin Ebadi, Dr. ',
+      Name: 'Shirin Ebadi, Dr.',
       Country: 'IRAN',
       Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
     },
@@ -730,7 +730,7 @@ export class WebService {
       // "S_No": 2,
       View: '',
       Profile_Photo: 'speaker21.png',
-      Name: 'Banagala Upatissa Thero, Most Venerable ',
+      Name: 'Banagala Upatissa Thero, Most Venerable',
       Country: 'SRI LANKA',
       Credentials:
         'President of Mahabodhi Society, Sri Lanka : Buddhist Religious Leader',
@@ -739,7 +739,7 @@ export class WebService {
       // "S_No": 3,
       View: 'binod',
       Profile_Photo: 'speaker14.png',
-      Name: 'Binod Kumar Chaudhary  ',
+      Name: 'Binod Kumar Chaudhary',
       Country: 'NEPAL',
       Credentials:
         'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
@@ -748,10 +748,10 @@ export class WebService {
       // "S_No": 4,
       View: '',
       Profile_Photo: 'speaker22.png',
-      Name: 'Chandra Kumar Bose ',
+      Name: 'Chandra Kumar Bose',
       Country: 'INDIA',
       Credentials:
-        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
+        'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
     },
     // list 4
     {
@@ -769,7 +769,7 @@ export class WebService {
       Name: 'Deepa Malik, Dr.',
       Country: 'INDIA',
       Credentials:
-        'Sports Champion : Silver Medallist at 2016 Rio Paralympics ',
+        'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
     },
     {
       // "S_No": 6,
@@ -785,7 +785,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker54.png',
       Name: 'Ekaterina Zagladina',
-      Country: 'RUSSIA ',
+      Country: 'RUSSIA',
       Credentials:
         'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
     },
@@ -794,7 +794,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker23.png',
       Name: 'Esha Deol',
-      Country: 'INDIA ',
+      Country: 'INDIA',
       Credentials: 'Actress',
     },
     {
@@ -820,7 +820,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker24.png',
       Name: 'Hassan Babacar Jallow, Lord Chief Justice',
-      Country: 'GAMBIA ',
+      Country: 'GAMBIA',
       Credentials: 'Chief Justice of the Supreme Court of Gambia',
     },
     {
@@ -871,7 +871,7 @@ export class WebService {
       Profile_Photo: 'speaker27.png',
       Name: 'Juan Carlos Sainz-Borgo, Dr.',
       Country: 'COSTA RICA',
-      Credentials: 'Vice Rector, University of Peace ',
+      Credentials: 'Vice Rector, University of Peace',
     },
     // list 8
     {
@@ -904,7 +904,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker28.png',
       Name: 'Latifa Ibn Ziaten',
-      Country: 'MOROCCO, FRANCE ',
+      Country: 'MOROCCO, FRANCE',
       Credentials:
         'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
     },
@@ -952,7 +952,7 @@ export class WebService {
       Name: 'Mahesh Bhupathi',
       Country: 'INDIA',
       Credentials:
-        'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner ',
+        'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
     },
     {
       // "S_No": 18,
@@ -1062,7 +1062,7 @@ export class WebService {
       // "S_No": 17,
       View: '',
       Profile_Photo: 'speaker34.png',
-      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
+      Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty',
       Country: 'GHANA',
       Credentials: 'Royalty',
     },
@@ -1087,7 +1087,7 @@ export class WebService {
       // "S_No": 27,
       View: '',
       Profile_Photo: 'speaker67.png',
-      Name: 'Oscar Arias Sanchez, His Excellency ',
+      Name: 'Oscar Arias Sanchez, His Excellency',
       Country: 'COSTA RICA',
       Credentials: 'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
     },
@@ -1188,7 +1188,7 @@ export class WebService {
       // "S_No": 34,
       View: '',
       Profile_Photo: 'speaker48.png',
-      Name: 'Shirin Ebadi, Dr. ',
+      Name: 'Shirin Ebadi, Dr.',
       Country: 'IRAN',
       Credentials: 'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
     },
@@ -1385,7 +1385,7 @@ export class WebService {
             // "S_No": 2,
             View: '',
             Profile_Photo: 'speaker21.png',
-            Name: 'Banagala Upatissa Thero, Most Venerable ',
+            Name: 'Banagala Upatissa Thero, Most Venerable',
             Country: 'SRI LANKA',
             Credentials:
               'President of Mahabodhi Society, Sri Lanka : Buddhist Religious Leader',
@@ -1394,7 +1394,7 @@ export class WebService {
             // "S_No": 3,
             View: 'binod',
             Profile_Photo: 'speaker14.png',
-            Name: 'Binod Kumar Chaudhary  ',
+            Name: 'Binod Kumar Chaudhary',
             Country: 'NEPAL',
             Credentials:
               'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
@@ -1403,10 +1403,10 @@ export class WebService {
             // "S_No": 4,
             View: '',
             Profile_Photo: 'speaker22.png',
-            Name: 'Chandra Kumar Bose ',
+            Name: 'Chandra Kumar Bose',
             Country: 'INDIA',
             Credentials:
-              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
+              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
           },
         ],
       },
@@ -1431,7 +1431,7 @@ export class WebService {
             Name: 'Deepa Malik, Dr.',
             Country: 'INDIA',
             Credentials:
-              'Sports Champion : Silver Medallist at 2016 Rio Paralympics ',
+              'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
           },
           {
             // "S_No": 6,
@@ -1453,7 +1453,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker54.png',
             Name: 'Ekaterina Zagladina',
-            Country: 'RUSSIA ',
+            Country: 'RUSSIA',
             Credentials:
               'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
           },
@@ -1462,7 +1462,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker23.png',
             Name: 'Esha Deol',
-            Country: 'INDIA ',
+            Country: 'INDIA',
             Credentials: 'Actress',
           },
           {
@@ -1493,7 +1493,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker24.png',
             Name: 'Hassan Babacar Jallow, Lord Chief Justice',
-            Country: 'GAMBIA ',
+            Country: 'GAMBIA',
             Credentials: 'Chief Justice of the Supreme Court of Gambia',
           },
           {
@@ -1558,7 +1558,7 @@ export class WebService {
             Profile_Photo: 'speaker27.png',
             Name: 'Juan Carlos Sainz-Borgo, Dr.',
             Country: 'COSTA RICA',
-            Credentials: 'Vice Rector, University of Peace ',
+            Credentials: 'Vice Rector, University of Peace',
           },
           {
             // "S_No": 13,
@@ -1596,7 +1596,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker28.png',
             Name: 'Latifa Ibn Ziaten',
-            Country: 'MOROCCO, FRANCE ',
+            Country: 'MOROCCO, FRANCE',
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
@@ -1657,7 +1657,7 @@ export class WebService {
             Name: 'Mahesh Bhupathi',
             Country: 'INDIA',
             Credentials:
-              'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner ',
+              'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
           },
           {
             // "S_No": 18,
@@ -1789,7 +1789,7 @@ export class WebService {
             // "S_No": 17,
             View: '',
             Profile_Photo: 'speaker34.png',
-            Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
+            Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty',
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
@@ -1821,7 +1821,7 @@ export class WebService {
             // "S_No": 27,
             View: '',
             Profile_Photo: 'speaker67.png',
-            Name: 'Oscar Arias Sanchez, His Excellency ',
+            Name: 'Oscar Arias Sanchez, His Excellency',
             Country: 'COSTA RICA',
             Credentials:
               'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
@@ -1938,7 +1938,7 @@ export class WebService {
             // "S_No": 34,
             View: '',
             Profile_Photo: 'speaker48.png',
-            Name: 'Shirin Ebadi, Dr. ',
+            Name: 'Shirin Ebadi, Dr.',
             Country: 'IRAN',
             Credentials:
               'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
@@ -2169,7 +2169,7 @@ export class WebService {
             // "S_No": 3,
             View: 'binod',
             Profile_Photo: 'speaker14.png',
-            Name: 'Binod Kumar Chaudhary  ',
+            Name: 'Binod Kumar Chaudhary',
             Country: 'NEPAL',
             Credentials:
               'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
@@ -2178,10 +2178,10 @@ export class WebService {
             // "S_No": 4,
             View: '',
             Profile_Photo: 'speaker22.png',
-            Name: 'Chandra Kumar Bose ',
+            Name: 'Chandra Kumar Bose',
             Country: 'INDIA',
             Credentials:
-              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose ) ',
+              'Socio-Political Activist & Convenor, The Open Platform for Netaji : ( grand nephew of Subhash Chandra Bose )',
           },
         ],
       },
@@ -2206,7 +2206,7 @@ export class WebService {
             Name: 'Deepa Malik, Dr.',
             Country: 'INDIA',
             Credentials:
-              'Sports Champion : Silver Medallist at 2016 Rio Paralympics ',
+              'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
           },
           {
             // "S_No": 6,
@@ -2228,7 +2228,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker54.png',
             Name: 'Ekaterina Zagladina',
-            Country: 'RUSSIA ',
+            Country: 'RUSSIA',
             Credentials:
               'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
           },
@@ -2237,7 +2237,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker23.png',
             Name: 'Esha Deol',
-            Country: 'INDIA ',
+            Country: 'INDIA',
             Credentials: 'Actress',
           },
           {
@@ -2268,7 +2268,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker24.png',
             Name: 'Hassan Babacar Jallow',
-            Country: 'GAMBIA ',
+            Country: 'GAMBIA',
             Credentials: 'Chief Justice of the Supreme Court of Gambia',
           },
           {
@@ -2333,7 +2333,7 @@ export class WebService {
             Profile_Photo: 'speaker27.png',
             Name: 'Juan Carlos Sainz-Borgo, Dr.',
             Country: 'COSTA RICA',
-            Credentials: 'Vice Rector, University of Peace ',
+            Credentials: 'Vice Rector, University of Peace',
           },
           {
             // "S_No": 13,
@@ -2371,7 +2371,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker28.png',
             Name: 'Latifa Ibn Ziaten',
-            Country: 'MOROCCO, FRANCE ',
+            Country: 'MOROCCO, FRANCE',
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
@@ -2432,7 +2432,7 @@ export class WebService {
             Name: 'Mahesh Bhupathi',
             Country: 'INDIA',
             Credentials:
-              'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner ',
+              'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
           },
           {
             // "S_No": 18,
@@ -2564,7 +2564,7 @@ export class WebService {
             // "S_No": 17,
             View: '',
             Profile_Photo: 'speaker34.png',
-            Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty ',
+            Name: 'Nii Tackie Tackie Tsuru II, King, His Royal Majesty',
             Country: 'GHANA',
             Credentials: 'Royalty',
           },
@@ -2596,7 +2596,7 @@ export class WebService {
             // "S_No": 27,
             View: '',
             Profile_Photo: 'speaker67.png',
-            Name: 'Oscar Arias Sanchez, His Excellency ',
+            Name: 'Oscar Arias Sanchez, His Excellency',
             Country: 'COSTA RICA',
             Credentials:
               'Nobel Peace Laureate 1987, Ex-President of Costa Rica',
@@ -2713,7 +2713,7 @@ export class WebService {
             // "S_No": 34,
             View: '',
             Profile_Photo: 'speaker48.png',
-            Name: 'Shirin Ebadi, Dr. ',
+            Name: 'Shirin Ebadi, Dr.',
             Country: 'IRAN',
             Credentials:
               'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
@@ -2860,5 +2860,9 @@ export class WebService {
         ],
       },
     ];
+  }
+
+  getSpeakerCategories() {
+    return this.http.get('assets/speaker_categories.json');
   }
 }
