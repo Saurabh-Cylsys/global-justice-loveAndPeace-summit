@@ -2338,29 +2338,12 @@ header .nav-item .nav-link.active {
 }
 
 .custom-list .lifetime:nth-child(3) ul {
-  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 15;  /* Start counter at 4 (3+1) */
 }
 .custom-list .lifetime:nth-child(4) ul {
-  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
-}
-.custom-list .lifetime:nth-child(5) ul {
-  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
-}
-.custom-list .lifetime:nth-child(6) ul {
-  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
-}
-.custom-list .lifetime:nth-child(7) ul {
   counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
 }
-.custom-list .lifetime:nth-child(8) ul {
-  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
-}
-.custom-list .lifetime:nth-child(9) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
-}
-.custom-list .lifetime:nth-child(10) ul {
-  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
-}
+
 
 .awardLink a:nth-child(2) {
   background-color: #3e8e41;
