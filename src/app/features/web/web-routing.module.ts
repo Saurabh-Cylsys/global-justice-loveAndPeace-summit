@@ -25,6 +25,7 @@ import { DownloadApplicationsComponent } from './download-applications/download-
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
+import { CommitteeComponent } from './committee/committee.component';
 
 const routes: Routes = [
   {
@@ -149,15 +150,18 @@ const routes: Routes = [
       {
         path: 'peacekeeper-preselect',
         component: PeacekeeperPreselectComponent,
-        },
-        {
-          path: 'request-account-deletion',
+      },
+      {
+        path: 'request-account-deletion',
         component: RequestAccountDeletionsComponent,
       },
       {
         path: 'speaker-details',
       component: SpeakerDetailsComponent,
-    },
+    },{
+        path: 'committee',
+        component: CommitteeComponent,
+      },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ],

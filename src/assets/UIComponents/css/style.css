@@ -2297,3 +2297,64 @@ button:focus {
   right: 0;
   margin: 0 auto 10px;
 }
+
+
+.committee-list {
+  list-style: none; /* Remove default list style */
+  padding-left: 40px; /* Adjust padding for visibility */
+  /* border-left: ; */
+  padding: 0 0.99rem;
+}
+
+.committee-list li {
+  position: relative;
+  margin-bottom: 10px;
+  list-style: none;
+  text-transform: uppercase;
+}
+.committee-list .custom-list-head p {
+  /* font-size: 17px; */
+  font-size: clamp(14px, 2.5vw, 16px);
+  font-weight: 700;
+  line-height: 30.91px;
+  text-align: left;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: auto;
+  /* color: #005b94; */
+  background: linear-gradient(90deg, #005B94 0%, #128940 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    text-align: left !important;
+}
+
+.committee-list .justiceLogo::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 5px;
+  width: 24px; /* Adjust the size of the marker */
+  height: 24px;
+  background-image: url("../../UIComponents/images/committee.svg"); /* Path to your SVG file */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.committee-list .custom-list-head li {
+  list-style: disc;
+  line-height: 24px !important;
+  margin: 0;
+  font-size: 16px !important;
+  /* font-weight: 600 !important; */
+  letter-spacing: 0.02em !important;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.committee-list .custom-list-head li span {
+  color: var(--color3);
+}
