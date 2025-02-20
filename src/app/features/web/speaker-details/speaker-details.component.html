@@ -6,10 +6,12 @@
           <div class="col-md-4 col-12 mb-3">
             <input
               type="search"
-              name=""
-              id=""
+              [(ngModel)]="searchText"
+              name="search"
+              id="speakerSearch"
               class="form-control"
               placeholder="Search"
+              (input)="filterSpeakers()"
             />
           </div>
           <div class="col-md-8 col-12 mb-3">
