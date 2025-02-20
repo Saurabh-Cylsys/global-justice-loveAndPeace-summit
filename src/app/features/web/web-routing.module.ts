@@ -155,7 +155,7 @@ const routes: Routes = [
         component: RequestAccountDeletionsComponent,
       },
       {
-        path: 'committee',
+        path: 'contact-us/working-committee',
         component: CommitteeComponent,
       },
 
