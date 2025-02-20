@@ -145,12 +145,37 @@ export class DelegateWithChildComponent {
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
-      if (params) {
-        this.referralCode = params.code;
+
+       // Remove 'code' if it's an empty string
+      //  / Create a new params object excluding 'code' if it's empty
+       const updatedParams = { ...params };
+       if (!updatedParams.code || updatedParams.code === '') {
+        delete updatedParams['code'];
       }
-      if (this.referralCode) {
-        console.log(this.referralCode, 'referralCode..........');
-      }
+
+       console.log("params after filtering:", updatedParams);
+
+       // Navigate with the updated query params to remove 'code' from the URL
+       this.router.navigate([], {
+         queryParams: updatedParams,
+         replaceUrl: true, // Prevents history stack clutter
+       });
+          // this.referralCode = params.code ? params.code : null;
+
+          this.referralCode = updatedParams.code ? updatedParams.code : null;
+
+
+          if (this.referralCode) {
+            console.log(this.referralCode, 'referralCode..........');
+          }
+
+
+      // if (params) {
+      //   this.referralCode = params.code;
+      // }
+      // if (this.referralCode) {
+      //   console.log(this.referralCode, 'referralCode..........');
+      // }
     });
 
     this.createForm();
