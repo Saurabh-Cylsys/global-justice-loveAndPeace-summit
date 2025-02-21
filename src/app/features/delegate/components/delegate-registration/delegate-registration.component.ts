@@ -21,12 +21,11 @@ import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import {
   CountryISO,
-  NgxIntlTelInputComponent,
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
-import { param } from 'jquery';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -86,8 +85,10 @@ export class DelegateRegistrationComponent {
   buttonText: string = 'Send OTP';
   mediumValue: string | null = '';
 
-  tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
-  tinyUatURL : string = 'https://tinyurl.com/3322sj49'
+  tinyURL : string = environment.tinyUrl;
+
+  // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
+  // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
 
   changePreferredCountries() {
     this.preferredCountries = [CountryISO.India, CountryISO.Canada];
@@ -150,7 +151,6 @@ export class DelegateRegistrationComponent {
       //   console.log(this.referralCode, 'referralCode..........');
       // }
 
-
       console.log("Params",params);
       // {code: "COININ-0000001-W"
       //   medium: "1"
@@ -168,12 +168,13 @@ export class DelegateRegistrationComponent {
 
       else if(!params.medium) {
         console.log('Medium value not found, redirecting...');
-
+        // this.mediumValue = params.medium
         const params = new URLSearchParams();
         params.set('code', this.referralCode);
-        const tinyUrlWithParams = `${this.tinyUrl}?${params.toString()}`; //live
 
-        // const tinyUrlWithParams = `${this.tinyUatURL}?${params.toString()}`;
+        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+
+        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
 
         window.location.href = tinyUrlWithParams;
 
