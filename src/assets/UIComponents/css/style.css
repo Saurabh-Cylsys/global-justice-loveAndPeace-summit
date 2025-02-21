@@ -2050,7 +2050,9 @@ header .nav-item .nav-link.active {
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  width: fit-content;
+  width: 100%;
+  font-weight: 600;
+  font-size: clamp(14px, 2.5vw, 20px);
 }
 
 .custom-list {
@@ -2076,6 +2078,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: auto;
   color: #005b94;
+  margin: 0;
 }
 
 .custom-list .justiceLogo::before {
@@ -2090,6 +2093,59 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
 }
 
+.custom-list .justiceLogo ul {
+  counter-reset: justice-counter;  /* First counter starts at 1 */
+}
+
+.custom-list .justiceLogo ul li {
+  list-style: none;
+  border-left: 2px solid var(--color1);
+  padding: 0 1rem;
+}
+
+.custom-list .justiceLogo ul li::before {
+  counter-increment: justice-counter;
+  content: "J" counter(justice-counter);
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: var(--color1);
+  border-bottom: 2px solid;
+  border-color: var(--color1);
+  text-align: center;
+}
+.custom-list .justiceLogo:nth-child(2) ul {
+  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+}
+
+.custom-list .justiceLogo:nth-child(3) ul {
+  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(4) ul {
+  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(5) ul {
+  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(6) ul {
+  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(7) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(8) ul {
+  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(9) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .justiceLogo:nth-child(10) ul {
+  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
+}
 .custom-list .custom-list-head li {
   list-style: disc;
   line-height: 31px !important;
@@ -2117,6 +2173,59 @@ header .nav-item .nav-link.active {
   background-size: contain;
   background-repeat: no-repeat;
 }
+.custom-list .loveLogo ul {
+  counter-reset: justice-counter;  /* First counter starts at 1 */
+}
+
+.custom-list .loveLogo ul li {
+  list-style: none;
+  border-left: 2px solid var(--color1);
+  padding: 0 1rem;
+}
+
+.custom-list .loveLogo ul li::before {
+  counter-increment: justice-counter;
+  content: "L" counter(justice-counter);
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: var(--color1);
+  border-bottom: 2px solid;
+  border-color: var(--color1);
+  text-align: center;
+}
+.custom-list .loveLogo:nth-child(2) ul {
+  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+}
+
+.custom-list .loveLogo:nth-child(3) ul {
+  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(4) ul {
+  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(5) ul {
+  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(6) ul {
+  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(7) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(8) ul {
+  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(9) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .loveLogo:nth-child(10) ul {
+  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
+}
 
 .custom-list .peaceLogo::before {
   content: "";
@@ -2128,6 +2237,59 @@ header .nav-item .nav-link.active {
   background-image: url("../../UIComponents/images/awards/peaceLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+}
+.custom-list .peaceLogo ul {
+  counter-reset: justice-counter;  /* First counter starts at 1 */
+}
+
+.custom-list .peaceLogo ul li {
+  list-style: none;
+  border-left: 2px solid var(--color1);
+  padding: 0 1rem;
+}
+
+.custom-list .peaceLogo ul li::before {
+  counter-increment: justice-counter;
+  content: "P" counter(justice-counter);
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: var(--color1);
+  border-bottom: 2px solid;
+  border-color: var(--color1);
+  text-align: center;
+}
+.custom-list .peaceLogo:nth-child(2) ul {
+  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+}
+
+.custom-list .peaceLogo:nth-child(3) ul {
+  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(4) ul {
+  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(5) ul {
+  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(6) ul {
+  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(7) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(8) ul {
+  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(9) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+.custom-list .peaceLogo:nth-child(10) ul {
+  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
 }
 
 .custom-list .lifetime::before {
@@ -2141,6 +2303,43 @@ header .nav-item .nav-link.active {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.custom-list .lifetime ul {
+  counter-reset: justice-counter;  /* First counter starts at 1 */
+}
+
+.custom-list .lifetime ul li {
+  list-style: none;
+  border-left: 2px solid var(--color1);
+  padding: 0 1rem;
+}
+
+.custom-list .lifetime ul li::before {
+  counter-increment: justice-counter;
+  content: "LA" counter(justice-counter);
+  position: absolute;
+  left: -36px;
+  top: 0;
+  width: 35px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: var(--color1);
+  border-bottom: 2px solid;
+  border-color: var(--color1);
+  text-align: center;
+}
+.custom-list .lifetime:nth-child(2) ul {
+  counter-reset: justice-counter 7;  /* Start counter at 4 (3+1) */
+}
+
+.custom-list .lifetime:nth-child(3) ul {
+  counter-reset: justice-counter 15;  /* Start counter at 4 (3+1) */
+}
+.custom-list .lifetime:nth-child(4) ul {
+  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+}
+
 
 .awardLink a:nth-child(2) {
   background-color: #3e8e41;

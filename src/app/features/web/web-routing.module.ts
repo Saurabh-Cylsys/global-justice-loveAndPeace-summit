@@ -159,7 +159,7 @@ const routes: Routes = [
         path: 'speaker-details',
       component: SpeakerDetailsComponent,
     },{
-        path: 'committee',
+        path: 'contact-us/working-committee',
         component: CommitteeComponent,
       },
 

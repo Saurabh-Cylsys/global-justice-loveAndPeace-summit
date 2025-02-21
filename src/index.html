@@ -37,6 +37,21 @@
   gtag('event', 'conversion', {'send_to': 'AW-16849057294/E3iBCJ2eypgaEI7soOI-'});
 </script>
 
+<script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-16849057294/DNXdCK_Sx6AaEI7soOI-',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+
     <!--Start of Tawk.to Script-->
 <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
