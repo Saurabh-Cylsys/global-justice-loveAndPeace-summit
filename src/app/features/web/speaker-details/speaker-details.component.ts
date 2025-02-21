@@ -20,6 +20,7 @@ export class SpeakerDetailsComponent implements OnInit {
   searchText: string = '';
   countries: string[] = [];
   selectedCountry: string = '';
+  isLoading = true;
 
    constructor(
       private webService: WebService,
@@ -34,6 +35,7 @@ export class SpeakerDetailsComponent implements OnInit {
       this.originalSpeakersList = [...this.speakersList]; // Make a copy of original list
     console.log('list', this.speakersList);
     this.loadCountries();
+    this.isLoading = false;
     }
 
   loadCountries() {
