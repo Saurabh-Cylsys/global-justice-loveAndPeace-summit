@@ -172,9 +172,9 @@ export class DelegateRegistrationComponent {
         const params = new URLSearchParams();
         params.set('code', this.referralCode);
 
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+        // const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
 
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+        const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
 
         window.location.href = tinyUrlWithParams;
 
@@ -980,7 +980,9 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0"
+        is_nomination : "0",
+        p_type:"DELEGATE_OFFLINE",
+        p_reference_by:'0'
       };
 
       this.ngxService.start();
