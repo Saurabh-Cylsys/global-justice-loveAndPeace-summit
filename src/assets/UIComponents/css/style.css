@@ -2468,90 +2468,220 @@ button:focus {
   font-weight: 600;
   font-size: clamp(14px, 80vw, 16px);
 }
-.committeeRow .col-md-12:nth-child(2) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 0;
 }
-.committeeRow .col-md-12:nth-child(2) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 1;
 }
-.committeeRow .col-md-12:nth-child(2) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 2;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(3) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 3;
 }
-.committeeRow .col-md-12:nth-child(3) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 4;
 }
-.committeeRow .col-md-12:nth-child(3) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 5;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(4) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 6;
 }
-.committeeRow .col-md-12:nth-child(4) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 7;
 }
-.committeeRow .col-md-12:nth-child(4) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 8;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(5) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 9;
 }
-.committeeRow .col-md-12:nth-child(5) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 10;
 }
-.committeeRow .col-md-12:nth-child(5) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 11;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(6) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 12;
 }
-.committeeRow .col-md-12:nth-child(6) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 13;
 }
-.committeeRow .col-md-12:nth-child(6) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 14;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(7) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 15;
 }
-.committeeRow .col-md-12:nth-child(7) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 16;
 }
-.committeeRow .col-md-12:nth-child(7) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 17;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(8) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 18;
 }
-.committeeRow .col-md-12:nth-child(8) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 19;
 }
-.committeeRow .col-md-12:nth-child(8) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 20;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(9) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 21;
 }
-.committeeRow .col-md-12:nth-child(9) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 22;
 }
-.committeeRow .col-md-12:nth-child(9) .row .col-md-4:nth-child(3) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 23;
 }
 /* committee list row */
-.committeeRow .col-md-12:nth-child(10) .row .col-md-4:nth-child(1) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(10)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 24;
 }
-.committeeRow .col-md-12:nth-child(10) .row .col-md-4:nth-child(2) .committee-list .justiceLogo {
+.committeeRow
+  .col-md-12:nth-child(10)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
   counter-reset: justice-counter 25;
 }
 
@@ -2565,8 +2695,29 @@ button:focus {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-transform: capitalize;
 }
 
 .committee-list .custom-list-head li span {
   color: var(--color3);
+}
+
+.note span {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #128940;
+  font-weight: 900;
+  line-height: 23.18px;
+  letter-spacing: 0%;
+}
+
+.note {
+  font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 23.18px;
+  letter-spacing: 0%;
+  color: #12894080;
+  text-transform: capitalize;
+}
+.awards .section4 ul li{
+  color: #131313 !important;
 }
