@@ -159,11 +159,23 @@ export class DelegateRegistrationComponent {
       this.referralCode = params.code;
       if(params.medium == 1 && params.code) {
 
-        this.router.navigate(['/delegate-registration'], {
-          queryParams: { code: this.referralCode }, // Pass query params
-          queryParamsHandling: 'merge', // Preserve existing query params (optional)
-          relativeTo: this.route, // Stay on the same route
-        })
+        // this.router.navigate(['/delegate-registration'], {
+        //   queryParams: { code: this.referralCode }, // Pass query params
+        //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
+        //   relativeTo: this.route, // Stay on the same route
+        // })
+        const params = new URLSearchParams();
+        params.set('code', this.referralCode);
+
+        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+
+        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+
+        window.location.href = tinyUrlWithParams;
+
+          // this.router.navigate(['/peacekeeper-preselect'], {
+          //   queryParams: { code: this.referralCode },
+          // });
       }
 
       else if(!params.medium) {

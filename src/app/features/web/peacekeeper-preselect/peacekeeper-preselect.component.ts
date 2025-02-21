@@ -51,7 +51,7 @@ export class PeacekeeperPreselectComponent {
   goToDelegatePage() {
 
     this.router.navigate(['/delegate-registration'], {
-      queryParams: { code: this.referralCode ,medium :1 }
+      queryParams: { code: this.referralCode ,medium :0 }
     });
   }
 
