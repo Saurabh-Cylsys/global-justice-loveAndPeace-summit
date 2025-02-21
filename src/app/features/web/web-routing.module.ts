@@ -24,6 +24,7 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { CommitteeComponent } from './committee/committee.component';
 
 const routes: Routes = [
   {
@@ -148,10 +149,14 @@ const routes: Routes = [
       {
         path: 'peacekeeper-preselect',
         component: PeacekeeperPreselectComponent,
-        },
-        {
-          path: 'request-account-deletion',
+      },
+      {
+        path: 'request-account-deletion',
         component: RequestAccountDeletionsComponent,
+      },
+      {
+        path: 'contact-us/working-committee',
+        component: CommitteeComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
