@@ -979,7 +979,9 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0"
+        is_nomination : "0",
+        p_type:"DELEGATE_OFFLINE",
+        p_reference_by:'0'
       };
 
       this.ngxService.start();
