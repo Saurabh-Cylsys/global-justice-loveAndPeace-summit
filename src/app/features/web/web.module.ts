@@ -38,6 +38,7 @@ import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeep
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { CommitteeComponent } from './committee/committee.component';
     PeacekeeperPreselectComponent,
     RequestAccountDeletionsComponent,
     SpeakerDetailsComponent,
-    CommitteeComponent
+    CommitteeComponent,
+    SpeakersProfileComponent
 
     // WhoShouldAttendAndWhyComponent,
 

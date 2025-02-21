@@ -26,6 +26,7 @@ import { RequestAccountDeletionsComponent } from './request-account-deletions/re
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 
 const routes: Routes = [
   {
@@ -157,8 +158,13 @@ const routes: Routes = [
       },
       {
         path: 'speaker-details',
-      component: SpeakerDetailsComponent,
-    },{
+        component: SpeakerDetailsComponent
+      },
+      {
+        path: 'speaker-details/:speakerName',
+        component: SpeakersProfileComponent
+      },
+      {
         path: 'contact-us/working-committee',
         component: CommitteeComponent,
       },
