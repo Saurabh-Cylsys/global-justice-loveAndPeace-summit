@@ -300,7 +300,8 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
 }
 
-.index .section5 h2, .index .section5 h1 {
+.index .section5 h2,
+.index .section5 h1 {
   color: var(--color1);
   font-size: 25px;
   font-weight: 700;
@@ -990,7 +991,8 @@ header .nav-item .nav-link.active {
   font-weight: 600;
 }
 
-.index .section7 h2, .partner .section7 h1 {
+.index .section7 h2,
+.partner .section7 h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 51.52px;
@@ -1408,8 +1410,7 @@ header .nav-item .nav-link.active {
   color: #8d8d8d !important;
 }
 
-
-#logo{
+#logo {
   transition: 0.4s;
   position: absolute;
 }
@@ -1497,7 +1498,6 @@ header .nav-item .nav-link.active {
   outline: none;
   box-shadow: none;
 }
-
 
 .iti {
   width: 100%;
@@ -1628,7 +1628,7 @@ header .nav-item .nav-link.active {
   letter-spacing: 1px;
 }
 
-.head ul li .dropbtn{
+.head ul li .dropbtn {
   border: 1px solid #fff;
 }
 
@@ -1942,10 +1942,6 @@ header .nav-item .nav-link.active {
   padding: 2rem 0;
 }
 
-
-
-
-
 #p4 h3,
 #p4 p {
   color: var(--color1);
@@ -2098,7 +2094,7 @@ header .nav-item .nav-link.active {
 }
 
 .custom-list .justiceLogo ul {
-  counter-reset: justice-counter;  /* First counter starts at 1 */
+  counter-reset: justice-counter; /* First counter starts at 1 */
 }
 
 .custom-list .justiceLogo ul li {
@@ -2123,32 +2119,32 @@ header .nav-item .nav-link.active {
   text-align: center;
 }
 .custom-list .justiceLogo:nth-child(2) ul {
-  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 4; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .justiceLogo:nth-child(3) ul {
-  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 8; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(4) ul {
-  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 12; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(5) ul {
-  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 16; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(6) ul {
-  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 20; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(7) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(8) ul {
-  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 28; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(9) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .justiceLogo:nth-child(10) ul {
-  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 27; /* Start counter at 4 (3+1) */
 }
 .custom-list .custom-list-head li {
   list-style: disc;
@@ -2178,7 +2174,7 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
 }
 .custom-list .loveLogo ul {
-  counter-reset: justice-counter;  /* First counter starts at 1 */
+  counter-reset: justice-counter; /* First counter starts at 1 */
 }
 
 .custom-list .loveLogo ul li {
@@ -2203,32 +2199,32 @@ header .nav-item .nav-link.active {
   text-align: center;
 }
 .custom-list .loveLogo:nth-child(2) ul {
-  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 4; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .loveLogo:nth-child(3) ul {
-  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 8; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(4) ul {
-  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 12; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(5) ul {
-  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 16; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(6) ul {
-  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 20; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(7) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(8) ul {
-  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 28; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(9) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo:nth-child(10) ul {
-  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 27; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .peaceLogo::before {
@@ -2243,7 +2239,7 @@ header .nav-item .nav-link.active {
   background-repeat: no-repeat;
 }
 .custom-list .peaceLogo ul {
-  counter-reset: justice-counter;  /* First counter starts at 1 */
+  counter-reset: justice-counter; /* First counter starts at 1 */
 }
 
 .custom-list .peaceLogo ul li {
@@ -2268,32 +2264,32 @@ header .nav-item .nav-link.active {
   text-align: center;
 }
 .custom-list .peaceLogo:nth-child(2) ul {
-  counter-reset: justice-counter 4;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 4; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .peaceLogo:nth-child(3) ul {
-  counter-reset: justice-counter 8;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 8; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(4) ul {
-  counter-reset: justice-counter 12;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 12; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(5) ul {
-  counter-reset: justice-counter 16;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 16; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(6) ul {
-  counter-reset: justice-counter 20;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 20; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(7) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(8) ul {
-  counter-reset: justice-counter 28;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 28; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(9) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 .custom-list .peaceLogo:nth-child(10) ul {
-  counter-reset: justice-counter 27;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 27; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .lifetime::before {
@@ -2309,7 +2305,7 @@ header .nav-item .nav-link.active {
 }
 
 .custom-list .lifetime ul {
-  counter-reset: justice-counter;  /* First counter starts at 1 */
+  counter-reset: justice-counter; /* First counter starts at 1 */
 }
 
 .custom-list .lifetime ul li {
@@ -2334,16 +2330,15 @@ header .nav-item .nav-link.active {
   text-align: center;
 }
 .custom-list .lifetime:nth-child(2) ul {
-  counter-reset: justice-counter 7;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 7; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .lifetime:nth-child(3) ul {
-  counter-reset: justice-counter 15;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 15; /* Start counter at 4 (3+1) */
 }
 .custom-list .lifetime:nth-child(4) ul {
-  counter-reset: justice-counter 24;  /* Start counter at 4 (3+1) */
+  counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
-
 
 .awardLink a:nth-child(2) {
   background-color: #3e8e41;
@@ -2403,18 +2398,16 @@ border-color: #005b94;
   border-image-source: linear-gradient(180deg, #005b94 0%, #128940 100%);
 } */
 
-
-
-button:active, button:focus{
+button:active,
+button:focus {
   outline: none !important;
   box-shadow: none;
   border: none;
 }
 
-.downloadAppBg{
-
-    background-image: url(../images/venueBg.png);
-    background-color: var(--color1);
+.downloadAppBg {
+  background-image: url(../images/venueBg.png);
+  background-color: var(--color1);
 }
 
 /* .download{
@@ -2424,7 +2417,6 @@ button:active, button:focus{
 .preselect {
   min-height: 100vh;
 }
-
 
 .committee-list {
   list-style: none; /* Remove default list style */
@@ -2450,24 +2442,247 @@ button:active, button:focus{
   text-underline-position: from-font;
   text-decoration-skip-ink: auto;
   /* color: #005b94; */
-  background: linear-gradient(90deg, #005B94 0%, #128940 100%);
-    -webkit-background-clip: text;
-            background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-    text-align: left !important;
+  background: linear-gradient(90deg, #005b94 0%, #128940 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  text-align: left !important;
 }
 
-.committee-list .justiceLogo::before {
-  content: "";
+.committeeRow .committee-list .justiceLogo::before {
+  counter-increment: justice-counter;
+  content: "" counter(justice-counter);
   position: absolute;
-  left: -28px;
-  top: 5px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/committee.svg"); /* Path to your SVG file */
+  left: -45px;
+  top: -3px;
+  width: 40px;
+  height: 40px;
+  background-image: url(../../UIComponents/images/committee.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: clamp(14px, 80vw, 16px);
+}
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 0;
+}
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 1;
+}
+.committeeRow
+  .col-md-12:nth-child(2)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 2;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 3;
+}
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 4;
+}
+.committeeRow
+  .col-md-12:nth-child(3)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 5;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 6;
+}
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 7;
+}
+.committeeRow
+  .col-md-12:nth-child(4)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 8;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 9;
+}
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 10;
+}
+.committeeRow
+  .col-md-12:nth-child(5)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 11;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 12;
+}
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 13;
+}
+.committeeRow
+  .col-md-12:nth-child(6)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 14;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 15;
+}
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 16;
+}
+.committeeRow
+  .col-md-12:nth-child(7)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 17;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 18;
+}
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 19;
+}
+.committeeRow
+  .col-md-12:nth-child(8)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 20;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 21;
+}
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 22;
+}
+.committeeRow
+  .col-md-12:nth-child(9)
+  .row
+  .col-md-4:nth-child(3)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 23;
+}
+/* committee list row */
+.committeeRow
+  .col-md-12:nth-child(10)
+  .row
+  .col-md-4:nth-child(1)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 24;
+}
+.committeeRow
+  .col-md-12:nth-child(10)
+  .row
+  .col-md-4:nth-child(2)
+  .committee-list
+  .justiceLogo {
+  counter-reset: justice-counter 25;
 }
 
 .committee-list .custom-list-head li {
@@ -2480,8 +2695,29 @@ button:active, button:focus{
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  text-transform: capitalize;
 }
 
 .committee-list .custom-list-head li span {
   color: var(--color3);
+}
+
+.note span {
+  font-size: clamp(14px, 1.5vw, 18px);
+  color: #128940;
+  font-weight: 900;
+  line-height: 23.18px;
+  letter-spacing: 0%;
+}
+
+.note {
+  font-weight: 500;
+  font-size: clamp(14px, 1.5vw, 18px);
+  line-height: 23.18px;
+  letter-spacing: 0%;
+  color: #12894080;
+  text-transform: capitalize;
+}
+.awards .section4 ul li{
+  color: #131313 !important;
 }
