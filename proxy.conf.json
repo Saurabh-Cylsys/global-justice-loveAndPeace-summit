@@ -4,5 +4,10 @@
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": { "^/api": "" }
+  },
+  "/": {
+    "target": "http://localhost:4200/assets/static/index.html",
+    "pathRewrite": { "^/$": "" },
+    "changeOrigin": true
   }
 }
