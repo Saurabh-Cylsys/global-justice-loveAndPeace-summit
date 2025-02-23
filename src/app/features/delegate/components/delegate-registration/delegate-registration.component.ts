@@ -975,7 +975,7 @@ export class DelegateRegistrationComponent {
     console.log(returnmobileNumber, 'mobileNumber');
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-    let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
     console.log(formattedMobileNumber);
 
     this.registrationForm.patchValue({

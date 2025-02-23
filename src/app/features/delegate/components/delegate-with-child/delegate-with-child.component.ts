@@ -1128,7 +1128,7 @@ export class DelegateWithChildComponent {
     const returnDOB = this.registrationForm.value.dob;
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-    let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
     console.log(formattedMobileNumber);
 
     // Nominee Mobile Number
@@ -1137,10 +1137,10 @@ export class DelegateWithChildComponent {
 
     if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
       formattedNomineeMobileNumber = rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
         : '';
     } else if (typeof rawNomineeMobileNumber === 'string') {
-      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
     }
 
     if (formattedMobileNumber === formattedNomineeMobileNumber) {
@@ -1317,11 +1317,11 @@ export class DelegateWithChildComponent {
   private formatNomineeMobileNumber(rawNomineeMobileNumber: any): string {
     if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
       return rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
         : '';
     }
     return typeof rawNomineeMobileNumber === 'string'
-      ? rawNomineeMobileNumber.replace(/\s+/g, '')
+      ? rawNomineeMobileNumber.replace(/[^0-9]/g, '')
       : '';
   }
 
