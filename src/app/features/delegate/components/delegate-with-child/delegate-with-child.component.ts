@@ -145,12 +145,37 @@ export class DelegateWithChildComponent {
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
-      if (params) {
-        this.referralCode = params.code;
+
+       // Remove 'code' if it's an empty string
+      //  / Create a new params object excluding 'code' if it's empty
+       const updatedParams = { ...params };
+       if (!updatedParams.code || updatedParams.code === '') {
+        delete updatedParams['code'];
       }
-      if (this.referralCode) {
-        console.log(this.referralCode, 'referralCode..........');
-      }
+
+       console.log("params after filtering:", updatedParams);
+
+       // Navigate with the updated query params to remove 'code' from the URL
+       this.router.navigate([], {
+         queryParams: updatedParams,
+         replaceUrl: true, // Prevents history stack clutter
+       });
+          // this.referralCode = params.code ? params.code : null;
+
+          this.referralCode = updatedParams.code ? updatedParams.code : null;
+
+
+          if (this.referralCode) {
+            console.log(this.referralCode, 'referralCode..........');
+          }
+
+
+      // if (params) {
+      //   this.referralCode = params.code;
+      // }
+      // if (this.referralCode) {
+      //   console.log(this.referralCode, 'referralCode..........');
+      // }
     });
 
     this.createForm();
@@ -1103,7 +1128,7 @@ export class DelegateWithChildComponent {
     const returnDOB = this.registrationForm.value.dob;
 
     const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-    let formattedMobileNumber = rawMobileNumber.replace(/\s+/g, '');
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
     console.log(formattedMobileNumber);
 
     // Nominee Mobile Number
@@ -1112,10 +1137,10 @@ export class DelegateWithChildComponent {
 
     if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
       formattedNomineeMobileNumber = rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
         : '';
     } else if (typeof rawNomineeMobileNumber === 'string') {
-      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/\s+/g, '');
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
     }
 
     if (formattedMobileNumber === formattedNomineeMobileNumber) {
@@ -1143,7 +1168,9 @@ export class DelegateWithChildComponent {
         ...this.registrationForm.value,
         created_by: 'Admin',
         status: '0',
-        is_nomination : "1"
+        is_nomination : "1",
+        p_type:"DELEGATE_CHILD_NOMINATION",
+        p_reference_by:'0'
       };
 
       // this.ngxService.start();
@@ -1290,11 +1317,11 @@ export class DelegateWithChildComponent {
   private formatNomineeMobileNumber(rawNomineeMobileNumber: any): string {
     if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
       return rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/\s+/g, '')
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
         : '';
     }
     return typeof rawNomineeMobileNumber === 'string'
-      ? rawNomineeMobileNumber.replace(/\s+/g, '')
+      ? rawNomineeMobileNumber.replace(/[^0-9]/g, '')
       : '';
   }
 

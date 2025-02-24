@@ -827,7 +827,8 @@
                         id="number_mobile1"
                         #number_mobile1
                         formControlName="mobile_number"
-                        (keydown)="onMobileNumberKeyDown($event)"
+                        (keydown)="onMobileNumberKeyDown($event,
+                                              mobile_number)"
                         (keypress)="keyPressNumbers($event, mobile_number)"
                       ></ngx-intl-tel-input>
 
