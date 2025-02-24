@@ -45,7 +45,7 @@
         *ngFor="let group of speakersList; let i = index"
       >
         <ng-container *ngFor="let speaker of group.speakers">
-          <div class="card my-3">
+          <div class="card my-3 speaker-card">
             <div class="card-header"></div>
             <div class="card-body p-0 text-center col-10 mx-auto">
               <img
@@ -63,7 +63,7 @@
               <h5 class="mt-3">{{ speaker.Name }}</h5>
               <p class="country">{{ speaker.Country }}</p>
               <p class="credentials">{{ speaker.Credentials }}</p>
-              <button class="btn btn-primary" [routerLink]="['/speaker-details', speaker.Name]">View Profile</button>
+              <button class="btn btn-primary hover-scale" [routerLink]="['/speaker-details', speaker.Name]">View Profile</button>
             </div>
           </div>
         </ng-container>

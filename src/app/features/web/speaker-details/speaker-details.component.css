@@ -1,0 +1,31 @@
+.speaker-card {
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.speaker-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.profile-photo {
+  transition: transform 0.3s ease;
+}
+
+.speaker-card:hover .profile-photo {
+  transform: scale(1.05);
+}
+
+/* Ensure smooth animation for all interactive elements */
+.card-body * {
+  transition: all 0.2s ease-in-out;
+}
