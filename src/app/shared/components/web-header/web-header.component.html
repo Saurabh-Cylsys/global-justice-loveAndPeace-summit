@@ -149,6 +149,15 @@
                   {{ link.label }}
                 </a>
               </li>
+              <!-- <li>
+                <a
+                  [routerLink]="['/committee']"
+                  aria-label="Close"
+                  data-bs-dismiss="offcanvas"
+                >
+                  Committee
+                </a>
+              </li> -->
             </ul>
           </div>
         </div>
@@ -270,7 +279,7 @@
         <a
           type="btn"
           class="btn btn-success ms-2"
-          [routerLink]="['/delegate-registration']"
+          (click)="navigateUrl()"
           aria-label="Close"
           data-bs-dismiss="offcanvas"
           >Register As a Delegate</a
@@ -401,6 +410,11 @@
                 >
                   {{ link.label }}
                 </a>
+                <!-- <a
+                  [routerLink]="['/committee']"
+                >
+                  Committee
+                </a> -->
               </div>
             </div>
           </li>

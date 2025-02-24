@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-web-header',
@@ -14,6 +15,8 @@ export class WebHeaderComponent implements OnInit {
   isHomePage: boolean = false;
   isMobileView = false;
   ReferenceCode: any = '';
+  tinyURL : string = environment.tinyUrl;
+
   summitLinks = [
     { label: 'Highlights of Summit', fragment: undefined },
     { label: 'Chairman', fragment: 'ts2' },
@@ -98,7 +101,21 @@ export class WebHeaderComponent implements OnInit {
 
   navigateUrl() {
     // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
-    this._router.navigate(['/delegate-registration']);
+    // this._router.navigate(['/delegate-registration']);
+
+    // this._router.navigate(['/delegate-registration'], {
+    //   queryParams: { medium :1 }
+    // });
+
+    const tinyUrlWithParams = `${this.tinyURL}`;
+
+    // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
+
+        window.location.href = tinyUrlWithParams;
+
+    // this._router.navigate(['/peacekeeper-preselect'], {
+    //   queryParams: { medium :1 },
+    // });
   }
 
 

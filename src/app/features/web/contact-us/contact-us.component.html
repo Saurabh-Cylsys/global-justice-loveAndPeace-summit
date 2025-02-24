@@ -15,7 +15,9 @@
           <h1 class="modal-title fs-5" id="staticBackdropLabel">
             INTERNATIONAL RELATIONS COMMITTEE
           </h1>
-          <a href="mailto:international@justice-love-peace.com">international&#64;justice-love-peace.com</a>
+          <a href="mailto:international@justice-love-peace.com"
+            >international&#64;justice-love-peace.com</a
+          >
         </div>
         <button
           type="button"
@@ -54,7 +56,7 @@
 
 <!-- modal end -->
 
-<main class="index delegate-form" style="position: relative;z-index: 1;">
+<main class="index delegate-form" style="position: relative; z-index: 1">
   <form [formGroup]="contactUsForm" (ngSubmit)="submitData()">
     <section class="section7 p-lg-5 position-relative">
       <div class="container-fluid">
@@ -69,7 +71,10 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img loading="eager" src="assets/UIComponents/images/fb.svg" alt="attach image"
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/fb.svg"
+                    alt="attach image"
                 /></a>
                 <a
                   class="mx-2"
@@ -78,7 +83,10 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img loading="eager" src="assets/UIComponents/images/insta.svg" alt="attach image"
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/insta.svg"
+                    alt="attach image"
                 /></a>
                 <a
                   class="mx-2"
@@ -86,7 +94,10 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img loading="eager" src="assets/UIComponents/images/youtube.svg" alt="attach image"
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/youtube.svg"
+                    alt="attach image"
                 /></a>
                 <a
                   class="mx-2"
@@ -94,7 +105,10 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img loading="eager" src="assets/UIComponents/images/whatsApp.svg" alt="attach image"
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/whatsApp.svg"
+                    alt="attach image"
                 /></a>
                 <a
                   class="mx-2"
@@ -102,7 +116,10 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img loading="eager" src="assets/UIComponents/images/linkedIn.svg" alt="attach image"
+                  <img
+                    loading="eager"
+                    src="assets/UIComponents/images/linkedIn.svg"
+                    alt="attach image"
                 /></a>
               </div>
 
@@ -130,7 +147,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>Secretariat: (All Queries)</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -150,7 +168,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>Delegates: (Peacekeepers)</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -169,7 +188,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>Speakers: (Peace Ambassadors )</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -192,7 +212,8 @@
                               (Peace Patrons)
                             </h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -212,7 +233,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>Travel, Hotel, Car, Concierge:</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -232,7 +254,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>International Relations:</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -252,7 +275,8 @@
                           <div class="flex-grow-1 ms-3">
                             <h3>Emergency Number:</h3>
                             <p>
-                              <img loading="eager"
+                              <img
+                                loading="eager"
                                 src="assets/UIComponents/images/contact-us/phone-call.svg"
                                 alt="assets/UIComponents/images/contact-us/phone-call.svg"
                               />
@@ -269,13 +293,27 @@
                       </li>
                     </ul>
 
-                    <button
-                      class="btn btn-success mt-lg-4"
-                      data-bs-toggle="modal"
-                      data-bs-target="#international_committee"
-                    >
-                      International Committee
-                    </button>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6 mt-4">
+                          <button
+                            class="btn btn-success w-100 text-center"
+                            data-bs-toggle="modal"
+                            data-bs-target="#international_committee"
+                          >
+                            International Committee
+                          </button>
+                        </div>
+                        <div class="col-md-6 text-end mt-4">
+                          <a
+                            class="btn btn-success  w-100 text-center"
+                            [routerLink]="['working-committee']"
+                          >
+                            Working Committees
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -321,9 +359,7 @@
                     <option value="Lord">Lord</option>
                   </select>
                   <label for="title">Title</label> -->
-                  <label
-                    class="col-md-12 no-padding px-0"
-                    for="nametitle1"
+                  <label class="col-md-12 no-padding px-0" for="nametitle1"
                     >Title
                     <!-- <span
                       class="form-label-span"
@@ -331,20 +367,19 @@
                     >
                       *</span
                     > -->
-                    </label
-                  >
+                  </label>
                   <input
-                  type="text"
-                  name="fname[1]"
-                  id="fname1"
-                  placeholder="Enter title"
-                  class="form-control p-0"
-                  (paste)="onPaste($event)"
-                  (keypress)="ValidateAlpha($event)"
-                  [maxlength]="10"
-                  data-error="Please select option"
-                  formControlName="title"
-                  (input)="onInput($event, 'title')"
+                    type="text"
+                    name="fname[1]"
+                    id="fname1"
+                    placeholder="Enter title"
+                    class="form-control p-0"
+                    (paste)="onPaste($event)"
+                    (keypress)="ValidateAlpha($event)"
+                    [maxlength]="10"
+                    data-error="Please select option"
+                    formControlName="title"
+                    (input)="onInput($event, 'title')"
                   />
 
                   <!-- <div
@@ -377,7 +412,6 @@
                     (input)="onInput($event, 'firstName')"
                   />
 
-
                   <div
                     class="text-danger"
                     *ngIf="
@@ -408,7 +442,6 @@
                     value=""
                     (input)="onInput($event, 'lastName')"
                   />
-
 
                   <div
                     *ngIf="
@@ -487,12 +520,15 @@
                       >Mobile number is required</small
                     >
                     <small
-                    class="text-danger"
-                    *ngIf="!mobile_numberVal && getcontrol('phoneNumber')?.invalid && getcontrol('phoneNumber')?.touched"
+                      class="text-danger"
+                      *ngIf="
+                        !mobile_numberVal &&
+                        getcontrol('phoneNumber')?.invalid &&
+                        getcontrol('phoneNumber')?.touched
+                      "
                     >
-                    {{ getPhoneErrorMessage() }}
-                    </small
-                  >
+                      {{ getPhoneErrorMessage() }}
+                    </small>
                   </div>
                 </div>
               </div>
@@ -512,7 +548,6 @@
                     value=""
                     (input)="onInput($event, 'email')"
                   />
-
 
                   <div class="help-block with-errors"></div>
                   <div
@@ -586,7 +621,8 @@
               <div class="mb-4 col-md-12 text-center">
                 <button
                   type="submit"
-                  class="btn btn-success p-2 w-50 text-center position-relative" style="z-index: 1;"
+                  class="btn btn-success p-2 w-50 text-center position-relative"
+                  style="z-index: 1"
                   [disabled]="this.contactUsForm.invalid"
                 >
                   Send
@@ -596,20 +632,22 @@
           </div>
         </div>
       </div>
-      <img loading="eager"
-            src="assets/UIComponents/images/watermark.png"
-            alt="attach image"
-            class="position-absolute"
-            style="right: 0; bottom: 0; width: 10rem; z-index: -1"
-            *ngIf="isMobileView"
-          />
-          <img loading="eager"
-            src="assets/UIComponents/images/watermark.png"
-            alt="attach image"
-            class="position-absolute"
-            style="right: 0; bottom: 0; width: 20rem; z-index: -1"
-            *ngIf="!isMobileView"
-          />
+      <img
+        loading="eager"
+        src="assets/UIComponents/images/watermark.png"
+        alt="attach image"
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 10rem; z-index: -1"
+        *ngIf="isMobileView"
+      />
+      <img
+        loading="eager"
+        src="assets/UIComponents/images/watermark.png"
+        alt="attach image"
+        class="position-absolute"
+        style="right: 0; bottom: 0; width: 20rem; z-index: -1"
+        *ngIf="!isMobileView"
+      />
     </section>
   </form>
 </main>
