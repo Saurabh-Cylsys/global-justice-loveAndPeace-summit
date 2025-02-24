@@ -1,0 +1,25 @@
+{
+  "onlineSpeakersList": [
+    {
+      "View": "",
+      "Profile_Photo": "speaker60.png",
+      "Name": "Jose Manuel Ramos Horta, His Excellency",
+      "Country": "EAST TIMOR",
+      "Credentials": "President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)"
+    },
+    {
+      "View": "",
+      "Profile_Photo": "speaker61.png",
+      "Name": "Joseph Boakai, His Excellency",
+      "Country": "LIBERIA",
+      "Credentials": "President of Liberia (ONLINE)"
+    },
+    {
+      "View": "",
+      "Profile_Photo": "speaker49.png",
+      "Name": "Sri Sri Ravishankar, Gurudev",
+      "Country": "INDIA",
+      "Credentials": "World Spiritual Guru : Founder, Art of Living (ONLINE)"
+    }
+  ]
+}
