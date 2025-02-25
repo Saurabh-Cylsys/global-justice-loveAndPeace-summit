@@ -37,7 +37,7 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getCityByStateEndpoint(state_id));
 
   }
-
+  
   getPeacekeeper_Badge(id: any) {
     return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
 
@@ -48,7 +48,7 @@ export class DelegateService {
 
   }
   postVerifySession(body: any) {
-    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(),body);
   }
 
   sendOTPApi(body: any){
@@ -74,5 +74,9 @@ export class DelegateService {
   postPeaceDeleteAcc(queryParamsObj: any): Observable<any> {
 
     return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
+  }
+
+  postDelegateOnline(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
   }
 }

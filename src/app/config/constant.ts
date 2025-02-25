@@ -68,6 +68,7 @@ export class Constants {
     public readonly API_ENDPOINT_GET_LOOKUPDATA: string = 'getLookupData'
     public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'delete-user'
 
+    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create_delgate_online'
 
 
 

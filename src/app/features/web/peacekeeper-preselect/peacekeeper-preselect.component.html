@@ -1,5 +1,8 @@
 <!-- <div class="section5"> -->
   <div class="col-md-8 m-auto" style="height: 90vh;">
+    <button class="btn btn-outline-primary position-absolute" style="top: 20px; left: 20px; z-index: 1000;" (click)="goBack()">
+      <i class="fas fa-arrow-left me-2"></i>Back
+    </button>
     <div class="row align-items-center h-100">
       <div class="col-md-12">
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -38,7 +41,7 @@
                 <img src="assets/UIComponents/images/pre-select/user.jpg" class="card-img-top" alt="Silver" />
                 <!-- <h5 class="card-title mt-3">User Delegate</h5>
                 <p>Join as a user delegate to participate in our peace-building initiatives.</p> -->
-                <a class="btn btn-success my-3">As a Delegate</a>
+                <a class="btn btn-success my-3" (click)="goToDelegatePage()">As a Delegate</a>
                 <p class="px-3"> <b>Join global leaders, attend exclusive 
                   events & contribute to peace.</b></p>
               </div>
@@ -54,7 +57,7 @@
                 <img src="assets/UIComponents/images/pre-select/student.jpg" class="card-img-top" alt="Silver" />
                 <!-- <h5 class="card-title mt-3">Peacebook Student</h5>
                 <p>Join our student community and make a difference.</p> -->
-                <a class="btn btn-success my-3">As a Peace Student</a>
+                <a class="btn btn-success my-3" (click)="goToChildNomination()">As a Peace Student</a>
                   <p class="px-3"><b>Become a young ambassador for peace 
                     & learn leadership skills.</b></p>
                 
@@ -71,7 +74,7 @@
                 <img src="assets/UIComponents/images/pre-select/online.jpg" class="card-img-top" alt="Silver" />
                 <!-- <h5 class="card-title mt-3">Online Delegate</h5>
                 <p>Participate virtually in our global community.</p> -->
-                <a class="btn btn-success my-3">As an Online Delegate</a> 
+                <a class="btn btn-success my-3" (click)="goToOnlineDelegate()">As an Online Delegate</a> 
                 <p class="px-3"><b>Become an online delegate for peace 
                   & learn leadership skills.</b></p>
               </div>

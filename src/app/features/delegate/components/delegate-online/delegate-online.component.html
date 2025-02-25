@@ -1,47 +1,36 @@
-<div class="container">
-  <div class="row">
-    <!-- First Column: User Form -->
+<div class="container py-5">
+  <div class="row justify-content-center">
     <div class="col-md-6">
-      <form [formGroup]="userForm">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input id="name" type="text" formControlName="name" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="email">Email <span class="text-danger">*</span></label>
-          <input id="email" type="email" formControlName="email" class="form-control" />
-          <!-- Optionally display error messages -->
-          <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="text-danger">
-            A valid email is required.
+      <h2 class="text-center fw-bold mb-4">Online Delegate Registration</h2>
+      <div class="card shadow p-4">
+        <form [formGroup]="userForm">
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" type="text" formControlName="name" class="form-control" placeholder="Enter your name" />
           </div>
-        </div>
-        <div class="form-group">
-          <label for="mobile">Mobile <span class="text-danger">*</span></label>
-          <input id="mobile" type="text" formControlName="mobile" class="form-control" />
-          <div *ngIf="userForm.get('mobile')?.touched && userForm.get('mobile')?.invalid" class="text-danger">
-            Mobile is required.
+          <div class="form-group mb-3">
+            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+            <input id="email" type="email" formControlName="email" class="form-control" placeholder="Enter your email" />
+            <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="text-danger small mt-1">
+              A valid email is required.
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
-
-    <!-- Second Column: Payment Section (shown only if email and mobile are valid) -->
-    <div class="col-md-6" *ngIf="showPaymentSection">
-      <div class="payment-section">
-        <!-- You could also embed an iframe here if needed -->
-        <button (click)="openPaymentPopup()" class="btn btn-primary">Pay Now</button>
+          <div class="form-group mb-3">
+            <label for="mobile" class="form-label">Mobile <span class="text-danger">*</span></label>
+            <input id="mobile" type="text" formControlName="mobile" class="form-control" placeholder="Enter your mobile number" />
+            <div *ngIf="userForm.get('mobile')?.touched && userForm.get('mobile')?.invalid" class="text-danger small mt-1">
+              Mobile is required.
+            </div>
+          </div>
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-success  p-2 px-4" (click)="onSubmit()" [disabled]="!userForm.valid || loading">
+              <span *ngIf="!loading">Submit Registration</span>
+              <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              <span *ngIf="loading">Processing...</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
-
-  <!-- Third Section: Shown after successful payment -->
-  <div class="third-section mt-4" *ngIf="paymentSuccess">
-    <h3>Payment Successful!</h3>
-    <p>Thank you for your payment. Here’s your complete information:</p>
-    <ul>
-      <li><strong>Name:</strong> {{ userForm.value.name }}</li>
-      <li><strong>Email:</strong> {{ userForm.value.email }}</li>
-      <li><strong>Mobile:</strong> {{ userForm.value.mobile }}</li>
-    </ul>
   </div>
 </div>

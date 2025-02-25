@@ -326,4 +326,8 @@ export class ApiEndpointsService {
       });
   }
 
+  public postCreateDelegateOnlineEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
+  }
+
 }
