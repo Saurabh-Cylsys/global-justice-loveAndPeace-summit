@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DelegateMainComponent } from './components/delegate-main/delegate-main.component';
 import { DelegateRegistrationComponent } from './components/delegate-registration/delegate-registration.component';
 import { DelegateWithChildComponent } from './components/delegate-with-child/delegate-with-child.component';
+import { DelegateOnlineComponent } from './components/delegate-online/delegate-online.component';
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +12,7 @@ const routes: Routes = [
     children:[
       {path:'delegate-registration',component:DelegateRegistrationComponent},
       {path:'delegate-child-nomination',component:DelegateWithChildComponent},
-
+      {path:'delegate-online',component:DelegateOnlineComponent},
       // {path:'register',component:},
       // {path:'reset-password',component:ResetPasswordComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
