@@ -496,7 +496,7 @@ h5 {
 
 /* Card Variations */
 .ui-card2 .ui-card-image {
-  background: url("https://img.freepik.com/free-photo/empowered-business-woman-working-city_23-2149589063.jpg?t=st=1740536053~exp=1740539653~hmac=b2806fb9de4c1c515413b2bdb9b48cbcec6dfbad9ca2a252808469733b3e4725&w=1060") center/cover;
+  background: url("../../../../assets/UIComponents/images/pre-select/student.jpeg") center/cover;
 }
 .ui-card2 .ui-card-text .date {
   color: rgb(255, 77, 7);

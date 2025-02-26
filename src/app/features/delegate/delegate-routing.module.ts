@@ -14,7 +14,7 @@ const routes: Routes = [
       {path:'delegate-registration',component:DelegateRegistrationComponent},
       {path:'delegate-child-nomination',component:DelegateWithChildComponent},
       {path:'delegate-online',component:DelegateOnlineComponent},
-      {path:'delegate-seo',component:DelegateRegistrationSeoComponent},
+      {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },
