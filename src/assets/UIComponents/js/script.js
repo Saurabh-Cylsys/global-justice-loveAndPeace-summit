@@ -66,15 +66,61 @@ const summitLinks = [
     { label: 'Venue', fragment: 'ts9' },
 ];
 
-const link1 = document.getElementById('summitLinks-container');
-
-summitLinks.forEach(link => {
+// Common function to create styled links
+function createStyledLink(link, href) {
   const aTag = document.createElement('a');
-  aTag.href = `the-summit.html${link.fragment ? '#' + link.fragment : ''}`;
+  aTag.href = href;
   aTag.textContent = link.label;
-  aTag.style.display = 'block'; // Makes links appear on new lines
-  link1.appendChild(aTag);
-});
+  aTag.style.display = 'block';
+  aTag.style.padding = '8px 12px';
+  aTag.style.textDecoration = 'none';
+  aTag.style.color = '#333';
+  aTag.style.transition = 'all 0.3s ease';
+  
+  // Add hover effect
+  aTag.addEventListener('mouseenter', () => {
+    aTag.style.backgroundColor = '#f0f0f0';
+    aTag.style.color = '#000';
+    aTag.style.paddingLeft = '15px';
+  });
+  
+  aTag.addEventListener('mouseleave', () => {
+    aTag.style.backgroundColor = 'transparent';
+    aTag.style.color = '#333';
+    aTag.style.paddingLeft = '12px';
+  });
+  
+  // Add click handling
+  aTag.addEventListener('click', (e) => {
+    if (link.fragment) {
+      e.preventDefault();
+      const targetElement = document.getElementById(link.fragment);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = href;
+      }
+    }
+  });
+  
+  return aTag;
+}
+
+// Update summit links
+const link1 = document.getElementById('summitLinks-container');
+if (link1) {
+  summitLinks.forEach(link => {
+    const href = `assets/static/the-summit.html${link.fragment ? '#' + link.fragment : ''}`;
+    link1.appendChild(createStyledLink(link, href));
+  });
+}
+const mobileLink1 = document.getElementById('summitLinks-container2');
+if (mobileLink1) {
+  summitLinks.forEach(link => {
+    const href = `assets/static/the-summit.html${link.fragment ? '#' + link.fragment : ''}`;
+    mobileLink1.appendChild(createStyledLink(link, href));
+  });
+}
 
 // partnersLinks
 const partnersLinks = [
@@ -84,15 +130,21 @@ const partnersLinks = [
   { label: 'Service Partners', fragment: 'p5' }
 ];
 
+// Update partners links
 const link2 = document.getElementById('partnersLinks-container');
-
-partnersLinks.forEach(link => {
-  const aTag = document.createElement('a');
-  aTag.href = `partners.html${link.fragment ? '#' + link.fragment : ''}`;
-  aTag.textContent = link.label;
-  aTag.style.display = 'block'; // Makes links appear on new lines
-  link2.appendChild(aTag);
-});
+if (link2) {
+  partnersLinks.forEach(link => {
+    const href = `assets/static/partners.html${link.fragment ? '#' + link.fragment : ''}`;
+    link2.appendChild(createStyledLink(link, href));
+  });
+}
+const mobilelink2 = document.getElementById('partnersLinks-container2');
+if (mobilelink2) {
+  partnersLinks.forEach(link => {
+    const href = `assets/static/partners.html${link.fragment ? '#' + link.fragment : ''}`;
+    mobilelink2.appendChild(createStyledLink(link, href));
+  });
+}
 
 // awardsLinks
 const awardsLinks = [
@@ -101,16 +153,21 @@ const awardsLinks = [
     { label: 'Awards Research Committee', fragment: 'aw3' },
 ];
 
+// Update awards links
 const link3 = document.getElementById('awardsLinks-container');
-
-awardsLinks.forEach(link => {
-  const aTag = document.createElement('a');
-  aTag.href = `awards.html${link.fragment ? '#' + link.fragment : ''}`;
-  aTag.textContent = link.label;
-  aTag.style.display = 'block'; // Makes links appear on new lines
-  link3.appendChild(aTag);
-});
-
+if (link3) {
+  awardsLinks.forEach(link => {
+    const href = `assets/static/awards.html${link.fragment ? '#' + link.fragment : ''}`;
+    link3.appendChild(createStyledLink(link, href));
+  });
+}
+const mobilelink3 = document.getElementById('awardsLinks-container2');
+if (mobilelink3) {
+  awardsLinks.forEach(link => {
+    const href = `assets/static/awards.html${link.fragment ? '#' + link.fragment : ''}`;
+    mobilelink3.appendChild(createStyledLink(link, href));
+  });
+}
 // peacekeeperLinks
 const peacekeeperLinks = [
   { label: 'The Movement', fragment: undefined },
@@ -120,15 +177,22 @@ const peacekeeperLinks = [
     { label: 'Song and Graphics', fragment: 'pe5' },
 ];
 
+// Update peacekeeper links
 const link4 = document.getElementById('peacekeeperLinks-container');
+if (link4) {
+  peacekeeperLinks.forEach(link => {
+    const href = `assets/static/world-peacekeepers-movement.html${link.fragment ? '#' + link.fragment : ''}`;
+    link4.appendChild(createStyledLink(link, href));
+  });
+}
 
-peacekeeperLinks.forEach(link => {
-  const aTag = document.createElement('a');
-  aTag.href = `world-peacekeepers-movement.html${link.fragment ? '#' + link.fragment : ''}`;
-  aTag.textContent = link.label;
-  aTag.style.display = 'block'; // Makes links appear on new lines
-  link4.appendChild(aTag);
-});
+const mobilelink4 = document.getElementById('peacekeeperLinks-container2');
+if (mobilelink4) {
+  peacekeeperLinks.forEach(link => {
+    const href = `assets/static/world-peacekeepers-movement.html${link.fragment ? '#' + link.fragment : ''}`;
+    mobilelink4.appendChild(createStyledLink(link, href));
+  });
+}
 
 // downloadLinks
 const downloadLinks = [
@@ -145,12 +209,18 @@ const downloadLinks = [
     { label: '28 Sayings', fragment: 'dc11' },
 ];
 
+// Update download links
 const link5 = document.getElementById('downloadLinks-container');
-
-downloadLinks.forEach(link => {
-  const aTag = document.createElement('a');
-  aTag.href = `DownloadCenter.html${link.fragment ? '#' + link.fragment : ''}`;
-  aTag.textContent = link.label;
-  aTag.style.display = 'block'; // Makes links appear on new lines
-  link5.appendChild(aTag);
-});
+if (link5) {
+  downloadLinks.forEach(link => {
+    const href = `assets/static/DownloadCenter.html${link.fragment ? '#' + link.fragment : ''}`;
+    link5.appendChild(createStyledLink(link, href));
+  });
+}
+const mobilelink5 = document.getElementById('downloadLinks-container2');
+if (mobilelink5) {
+  downloadLinks.forEach(link => {
+    const href = `assets/static/DownloadCenter.html${link.fragment ? '#' + link.fragment : ''}`;
+    mobilelink5.appendChild(createStyledLink(link, href));
+  });
+}

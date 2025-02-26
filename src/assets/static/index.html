@@ -173,7 +173,7 @@
             >
               <div class="accordion-body">
                 <ul>
-                  <li class="summitLinks-container">
+                  <li id="summitLinks-container2">
                     <!-- <a
                       href="assets/static/the-summit.html"
                       aria-label="Close"
@@ -211,14 +211,14 @@
             >
               <div class="accordion-body">
                 <ul>
-                  <li>
-                    <a
+                  <li id="partnersLinks-container2">
+                    <!-- <a
                       href="assets/static/partners.html"
                       aria-label="Close"
                       data-bs-dismiss="offcanvas"
                     >
                       {{ link.label }}
-                    </a>
+                    </a> -->
                   </li>
                 </ul>
               </div>
@@ -249,14 +249,14 @@
             >
               <div class="accordion-body">
                 <ul class="awardLink">
-                  <li *ngFor="let link of awardsLinks">
-                    <a
+                  <li id="awardsLinks-container2">
+                    <!-- <a
                       href="assets/static/awards.html"
                       aria-label="Close"
                       data-bs-dismiss="offcanvas"
                     >
                       {{ link.label }}
-                    </a>
+                    </a> -->
                   </li>
                 </ul>
               </div>
@@ -287,14 +287,14 @@
             >
               <div class="accordion-body">
                 <ul>
-                  <li>
-                    <a
+                  <li id="peacekeeperLinks-container2">
+                    <!-- <a
                       href="assets/static/world-peacekeepers-movement.html"
                       aria-label="Close"
                       data-bs-dismiss="offcanvas"
                     >
                       {{ link.label }}
-                    </a>
+                    </a> -->
                   </li>
                 </ul>
               </div>
@@ -325,8 +325,8 @@
             >
               <div class="accordion-body">
                 <ul>
-                  <li>
-                    <a
+                  <li id="downloadLinks-container2">
+                    <!-- <a
                       [routerLink]="['/DownloadCenter']"
                       aria-label="Close"
                       data-bs-dismiss="offcanvas"
@@ -334,7 +334,7 @@
                       fragment="{{ link.fragment }}"
                     >
                       {{ link.label }}
-                    </a>
+                    </a> -->
                   </li>
                 </ul>
               </div>
@@ -731,7 +731,27 @@
                           <th>Credentials</th>
                         </tr>
                       </thead>
-                      <tbody id="onlineSpeakersTable"></tbody>
+                      <!-- <tbody id="onlineSpeakersTable"></tbody> -->
+                       <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>Jose Manuel Ramos Horta, His Excellency</td>
+                          <td>EAST TIMOR</td>
+                          <td>President, East Timor & Nobel Peace Laureate, 1996</td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Joseph Boakai, His Excellency</td>
+                          <td>LIBERIA</td>
+                          <td>President of Liberia</td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Sri Sri Ravishankar, Gurudev</td>
+                          <td>INDIA</td>
+                          <td>World Spiritual Guru : Founder, Art of Living</td>
+                        </tr>
+                       </tbody>
                     </table>
                   </div>
                 </div>
@@ -943,7 +963,7 @@
                     <div class="progress-bar" style="width: 25%"></div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                   <h1 class="mb-3">
                     SCHEDULE <br />
                     AND AGENDA
@@ -956,7 +976,7 @@
                     DOWNLOAD SCHEDULE
                   </button>
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-6 col-md-8">
                   <div class="row">
                     <!---->
                     <div class="col-12">
