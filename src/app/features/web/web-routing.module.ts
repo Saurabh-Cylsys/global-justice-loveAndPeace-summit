@@ -25,6 +25,10 @@ import { DownloadApplicationsComponent } from './download-applications/download-
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { VideoComponent } from './media/video/video.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 const routes: Routes = [
   {
@@ -157,6 +161,22 @@ const routes: Routes = [
       {
         path: 'contact-us/working-committee',
         component: CommitteeComponent,
+      },
+      {
+        path: 'media/videos',
+        component: VideoComponent,
+      },
+      {
+        path: 'media/photos',
+        component: PhotosComponent,
+      },
+      {
+        path: 'media/articles',
+        component: ArticlesComponent,
+      },
+      {
+        path: 'media/news-paper',
+        component: NewsPaperComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },
