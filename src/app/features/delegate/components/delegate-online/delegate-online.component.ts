@@ -35,13 +35,16 @@ export class DelegateOnlineComponent implements OnInit {
   paymentLink: SafeResourceUrl | null = null;
   loading = false;
   registrationData: RegistrationData | null = null;
+  sessionId: any;
+  isPaymentStatus: any;
+  transactionVerified: boolean = false;
   constructor(
     private fb: FormBuilder,
     private delegateService: DelegateService,
     private sanitizer: DomSanitizer,
     private sharedService: SharedService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit() {
     this.initializeForms();
     this.checkQueryParams();
@@ -54,7 +57,7 @@ export class DelegateOnlineComponent implements OnInit {
       countryCode: ['', Validators.required],
       mobile: ['', Validators.required]
     });
-  this.completeProfileForm = this.fb.group({
+    this.completeProfileForm = this.fb.group({
       title: ['', Validators.required],
       dob: ['', Validators.required],
       profession: ['', Validators.required],
@@ -67,6 +70,7 @@ export class DelegateOnlineComponent implements OnInit {
   private checkQueryParams() {
     this.route.queryParams.subscribe(params => {
       if (params['session_id']) {
+        this.sessionId = params['session_id'] || 'No session_id';
         this.registrationData = {
           name: decodeURIComponent(params['name'] || ''),
           email: decodeURIComponent(params['email'] || ''),
@@ -74,6 +78,7 @@ export class DelegateOnlineComponent implements OnInit {
         };
         this.handlePaymentSuccess();
       }
+
     });
   }
   private setupFormSubscriptions() {
@@ -84,15 +89,43 @@ export class DelegateOnlineComponent implements OnInit {
       this.checkFormValidity();
     });
   }
+
+  verifySession() {
+
+
+    let body = {
+      // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
+      sessionId: this.sessionId
+
+    }
+    this.delegateService.postVerifySession(body).subscribe({
+      next: (response: any) => {
+        if (response.success) {
+          console.log('Session Verified:', response.session);
+          this.isPaymentStatus = response.session.status;
+          this.transactionVerified = true;
+          console.log(this.isPaymentStatus, 'transactionVerified.....22');
+
+        } else {
+          // this.isPaymentStatus = response.session.status;
+          this.isPaymentStatus = 'failed';
+          console.error('Payment not completed:', response.message);
+        }
+      },
+      error: (err) => console.error('Error verifying session:', err),
+    });
+  }
+
+
   onSubmit() {
     if (this.userForm.valid) {
       this.loading = true;
       const payload = {
         name: this.userForm.get('name')?.value,
         email: this.userForm.get('email')?.value,
-        mobile_no: `${(this.userForm.get('countryCode')?.value || '').replace(/[^0-9]/g, '')}${(this.userForm.get('mobile')?.value || '').replace(/[^0-9]/g, '')}`
+        mobile_no: `${this.userForm.get('countryCode')?.value}${this.userForm.get('mobile')?.value}`
       };
-      
+
       this.delegateService.postDelegateOnline(payload).subscribe({
         next: (response: any) => {
           console.log('Delegate created successfully:', response);
@@ -104,7 +137,7 @@ export class DelegateOnlineComponent implements OnInit {
               window.location.href = response.payment_link;
             }
           }, 5000);
-          
+
           this.loading = false;
         },
         error: (error: any) => {

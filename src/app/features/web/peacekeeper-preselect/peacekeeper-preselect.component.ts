@@ -61,13 +61,7 @@ export class PeacekeeperPreselectComponent {
       queryParams: { code: this.referralCode }
     });
   }
-
-  goToOnlineDelegate() {
+  navigateToOnlineDelegate() {
     this.router.navigate(['/delegate-online']);
   }
-
-  goBack() {
-    this.router.navigate(['/peacekeeper-preselect']);
-  }
-
 }
