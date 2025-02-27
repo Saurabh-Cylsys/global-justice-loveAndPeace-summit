@@ -69,7 +69,7 @@ export class Constants {
     public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'delete-user'
 
     public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create_delgate_online'
-
+    public readonly API_ENDPOINT_VERIFY_SESSION_ONLINE: string = 'registration/verify_session_stripe_payment_online'
 
 
 

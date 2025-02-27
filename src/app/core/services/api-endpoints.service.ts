@@ -330,4 +330,8 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
   }
 
+  public postVerifySessionOnlineEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ONLINE);
+  }
+
 }

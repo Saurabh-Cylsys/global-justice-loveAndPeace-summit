@@ -48,7 +48,7 @@ export class DelegateService {
 
   }
   postVerifySession(body: any) {
-    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(),body);
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
   }
 
   sendOTPApi(body: any){
@@ -78,5 +78,9 @@ export class DelegateService {
 
   postDelegateOnline(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+  }
+
+  postVerifySessionOnline(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
   }
 }

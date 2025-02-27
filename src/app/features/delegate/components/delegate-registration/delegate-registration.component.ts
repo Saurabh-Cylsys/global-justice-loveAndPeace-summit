@@ -27,6 +27,7 @@ import {
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { environment } from 'src/environments/environment';
 import { param } from 'jquery';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -91,17 +92,6 @@ export class DelegateRegistrationComponent {
   tinyURL: string = environment.tinyUrl;
   isOnline: any;
 
-  // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
-  // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
-
-  changePreferredCountries() {
-    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
-  }
-
-  onCountryChange(event: any): void {
-    this.selectedCountryISO = event.iso2; // Update the selected country ISO
-  }
-
   constructor(
     private datePipe: DatePipe,
     private formBuilder: FormBuilder,
@@ -110,7 +100,8 @@ export class DelegateRegistrationComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService:EncryptionService
   ) {
     this.fullURL = window.location.href;
 
@@ -126,6 +117,18 @@ export class DelegateRegistrationComponent {
     // Min date is 120 years ago from today
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
+  // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
+  // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
+
+  changePreferredCountries() {
+    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+  }
+
+  onCountryChange(event: any): void {
+    this.selectedCountryISO = event.iso2; // Update the selected country ISO
+  }
+
+  
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
@@ -150,13 +153,21 @@ export class DelegateRegistrationComponent {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
-        if (params.email != undefined && params.email != null && params.email.trim() !== '' &&
-          params.mobile_no != undefined && params.mobile_no != null && params.mobile_no.trim() !== '') {
-            this.email = params.email;
-            this.mobileNo = params.mobile_no;
-            this.name = params.name;
-            this.isOnline = params.isOnline
+        debugger;
+
+        if (params['data']) {
+          if (params['data']) {
+            const decryptedData = this.encryptionService.decryptData(params['data']);
+            
+            if (decryptedData) {
+              this.email = decryptedData.email;
+              this.mobileNo = decryptedData.mobile_no;
+              this.name = decryptedData.name;
+              this.isOnline = decryptedData.isOnline;
+            }
+          }
         }
+        
         else if (params.medium == 1 && params.code) {
           const params = new URLSearchParams();
           params.set('code', this.referralCode);
@@ -927,12 +938,26 @@ export class DelegateRegistrationComponent {
     this.submitted = true;
 
     if (this.submitted) {
-      this.reqBody = {
-        ...this.registrationForm.value,
-        is_nomination: "0",
-        p_type: "DELEGATE_OFFLINE",
-        p_reference_by: '0'
-      };
+
+      if(this.isOnline || sessionStorage.getItem('isOnline') == 'true'){
+        this.reqBody = {
+          ...this.registrationForm.value,
+          is_nomination: "1",
+          p_type: "DELEGATE_ONLINE",
+          p_reference_by: '0'
+        };
+
+      }
+      else {
+        this.reqBody = {
+          ...this.registrationForm.value,
+          is_nomination: "0",
+          p_type: "DELEGATE_OFFLINE",
+          p_reference_by: '0'
+        };
+      }
+
+      
 
       this.ngxService.start();
       this.SharedService.registration(this.reqBody).subscribe(

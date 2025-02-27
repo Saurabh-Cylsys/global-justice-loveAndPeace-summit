@@ -4,6 +4,9 @@ import { DelegateService } from '../../services/delegate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
+import { environment } from 'src/environments/environment';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 interface RegistrationData {
   name: string;
@@ -44,19 +47,27 @@ export class DelegateOnlineComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private sharedService: SharedService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private encryptionService: EncryptionService
   ) { }
   ngOnInit() {
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
   }
+  private encrypt(text: string): string {
+    return this.encryptionService.encrypt(text);
+  }
+  private decrypt(encryptedText: string): string {
+    return this.encryptionService.decrypt(encryptedText);
+  }
+
   private initializeForms() {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       countryCode: ['', Validators.required],
-      mobile: ['', Validators.required]
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
     });
     this.completeProfileForm = this.fb.group({
       title: ['', Validators.required],
@@ -73,13 +84,12 @@ export class DelegateOnlineComponent implements OnInit {
       if (params['session_id']) {
         this.sessionId = params['session_id'] || 'No session_id';
         this.registrationData = {
-          name: decodeURIComponent(params['name'] || ''),
-          email: decodeURIComponent(params['email'] || ''),
-          mobile_no: decodeURIComponent(params['mobile_no'] || '')
+          name: params['name'] || '',
+          email: params['email'],
+          mobile_no: params['mobile_no']
         };
         this.handlePaymentSuccess();
       }
-
     });
   }
   private setupFormSubscriptions() {
@@ -90,16 +100,15 @@ export class DelegateOnlineComponent implements OnInit {
       this.checkFormValidity();
     });
   }
-
-  verifySession() {
+  async verifySession() {
     let body = {      
       sessionId: this.sessionId
     }
-    this.delegateService.postVerifySession(body).subscribe({
+    await this.delegateService.postVerifySessionOnline(body).subscribe({
       next: (response: any) => {
         if (response.success) {
-          console.log('Session Verified:', response.session);
-          this.isPaymentStatus = response.session.status;
+          //console.log('Session Verified:', response.session);
+          this.isPaymentStatus = true;
           this.transactionVerified = true;          
         } else {          
           this.isPaymentStatus = 'failed';          
@@ -108,15 +117,13 @@ export class DelegateOnlineComponent implements OnInit {
       error: (err) => console.error('Error verifying session:', err),
     });
   }
-
-
   onSubmit() {
     if (this.userForm.valid) {
       this.loading = true;
       const payload = {
         name: this.userForm.get('name')?.value,
         email: this.userForm.get('email')?.value,
-        mobile_no: `${this.userForm.get('countryCode')?.value}${this.userForm.get('mobile')?.value}`
+        mobile_no: `${String(this.userForm.get('countryCode')?.value).replace(/[^0-9]/g, '')}${String(this.userForm.get('mobile')?.value).replace(/[^0-9]/g, '')}`
       };
 
       this.delegateService.postDelegateOnline(payload).subscribe({
@@ -146,10 +153,13 @@ export class DelegateOnlineComponent implements OnInit {
       //this.createDelegateOnline();
     }
   }
-  handlePaymentSuccess() {
-    this.showPaymentSuccess = true;
-    this.paymentSuccess = true;
-    if (this.registrationData) {
+  async handlePaymentSuccess() {
+
+    await this.verifySession();
+
+
+  
+    if (this.registrationData && this.paymentSuccess) {
       this.userForm.patchValue({
         name: this.registrationData.name,
         email: this.registrationData.email,
@@ -158,15 +168,25 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
   showCompleteProfile() {
-    //this.showCompleteProfileForm = true;
+    const params = {
+      email: this.registrationData?.email || '',
+      mobile_no: this.registrationData?.mobile_no || '',
+      name: this.registrationData?.name || '',
+      isOnline: true
+    };
+    sessionStorage.setItem('IsOnline', 'true');
+    const encryptedParams = this.encryptionService.encryptData(params);
     this.router.navigate(['/delegate-registration'], {
-      queryParams: {
-        email: this.registrationData?.email,
-        mobile_no: this.registrationData?.mobile_no,
-        name: this.registrationData?.name,
-        isOnline: true
-      }
+      queryParams: { data: encryptedParams }
     });
+    // this.router.navigate(['/delegate-registration'], {
+    //   queryParams: {
+    //     email: this.encrypt(this.registrationData?.email || ''),
+    //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
+    //     name: this.encrypt(this.registrationData?.name || ''),
+    //     isOnline: true
+    //   }
+    // });
   }
   onCompleteProfile() {
     if (this.completeProfileForm.valid) {

@@ -992,8 +992,8 @@ showPopup: boolean = false;
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0",
-        p_type:"DELEGATE_OFFLINE",
+        is_nomination : "1",
+        p_type:"DELEGATE_SEO",
         p_reference_by:'0'
       };
 

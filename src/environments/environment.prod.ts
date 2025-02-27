@@ -15,7 +15,7 @@ export const environment = {
 
   apiMockUrl:'/api/v1',
   app_env: 'production',
-
+  encryptionKey: 'np9dYaGAsDAswUhBUmrF5DsKDUXD5xlG4yn+6+wvaRoyP0UYgdOlSw5uGAa5iBNu'
   // tinyUrlLive :  'https://tinyurl.com/ys5z7n2z',
   // tinyURLUAT :  'https://tinyurl.com/3322sj49'
 };
