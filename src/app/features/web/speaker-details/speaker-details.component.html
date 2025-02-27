@@ -8,18 +8,18 @@
       </div>
     </div>
 
-    <div class="row" *ngIf="!isLoading">
+    <div class="row">
       <div class="col-md-12 my-3">
         <div class="row">
           <div class="col-md-4 col-12 mb-3">
             <input
               type="search"
-              [(ngModel)]="searchText"
+              [ngModel]="searchText"
+              (ngModelChange)="onSearchChange($event)"
               name="search"
               id="speakerSearch"
               class="form-control"
-              placeholder="Search"
-              (input)="filterSpeakers()"
+              placeholder="Search by name, country or credentials"
             />
           </div>
           <div class="col-md-8 col-12 mb-3">
@@ -31,8 +31,13 @@
                 </select>
               </div> -->
               <div class="col-md-4 col-6">
-                <select [(ngModel)]="selectedCountry" (change)="filterSpeakers()" class="form-control" name="country">
-                  <option value="" selected>All Countries</option>
+                <select 
+                  [ngModel]="selectedCountry" 
+                  (ngModelChange)="onCountryChange($event)" 
+                  class="form-control" 
+                  name="country"
+                >
+                  <option value="">All Countries</option>
                   <option *ngFor="let country of countries" [value]="country">{{country}}</option>
                 </select>
               </div>
@@ -40,34 +45,33 @@
           </div>
         </div>
       </div>
-      <div
-        class="col-lg-3 col-md-4 col-sm-6 col-12"
-        *ngFor="let group of speakersList; let i = index"
-      >
-        <ng-container *ngFor="let speaker of group.speakers">
-          <div class="card my-3 speaker-card">
-            <div class="card-header"></div>
-            <div class="card-body p-0 text-center col-10 mx-auto">
-              <img
-                loading="lazy"
-                [src]="
-                  speaker.Profile_Photo
-                    ? 'assets/UIComponents/images/speakers/' +
-                      speaker.Profile_Photo
-                    : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
-                "
-                alt=""
-                class="profile-photo img-fluid"
-                width="50%"
-              />
-              <h5 class="mt-3">{{ speaker.Name }}</h5>
-              <p class="country">{{ speaker.Country }}</p>
-              <p class="credentials">{{ speaker.Credentials }}</p>
-              <button class="btn btn-primary hover-scale" [routerLink]="['/speaker-details', speaker.Name]">View Profile</button>
+    </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-0" *ngIf="!isLoading">
+        <ng-container *ngFor="let group of speakersList; let i = index">
+          <div class="col" *ngFor="let speaker of group.speakers">
+            <div class="card h-100 speaker-card">
+              <div class="card-header"></div>
+              <div class="card-body p-0 text-center col-10 mx-auto">
+                <img
+                  loading="lazy"
+                  [src]="
+                    speaker.profile_photo
+                      ? 'assets/UIComponents/images/speakers/' +
+                        speaker.profile_photo
+                      : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
+                  "
+                  alt="{{ speaker.speaker_name }}"
+                  class="profile-photo img-fluid"
+                  width="50%"
+                />
+                <h5 class="mt-3">{{ speaker.speaker_name }}</h5>
+                <p class="country">{{ speaker.speaker_country }}</p>
+                <p class="credentials">{{ speaker.speaker_credentials }}</p>
+                <button class="btn btn-primary hover-scale mb-3" [routerLink]="['/speaker-details', speaker.speaker_name]">View Profile</button>
+              </div>
             </div>
           </div>
         </ng-container>
       </div>
-    </div>
   </div>
 </section>
