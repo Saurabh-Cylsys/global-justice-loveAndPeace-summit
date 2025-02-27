@@ -170,10 +170,10 @@ const routes: Routes = [
         path: 'media/photos',
         component: PhotosComponent,
       },
-      {
-        path: 'media/articles',
-        component: ArticlesComponent,
-      },
+      // {
+      //   path: 'media/articles',
+      //   component: ArticlesComponent,
+      // },
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
