@@ -4,8 +4,6 @@ import { DelegateService } from '../../services/delegate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
-import { environment } from 'src/environments/environment';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 interface RegistrationData {
