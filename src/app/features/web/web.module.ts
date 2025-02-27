@@ -39,6 +39,11 @@ import { RequestAccountDeletionsComponent } from './request-account-deletions/re
 import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 import { CommitteeComponent } from './committee/committee.component';
 import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
+import { VideoComponent } from './media/video/video.component';
+import { MediaHeaderComponent } from 'src/app/shared/components/media-header/media-header.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 
 @NgModule({
@@ -71,7 +76,11 @@ import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.co
     RequestAccountDeletionsComponent,
     SpeakerDetailsComponent,
     CommitteeComponent,
-    SpeakersProfileComponent
+    SpeakersProfileComponent,
+    VideoComponent,
+    PhotosComponent,
+    ArticlesComponent,
+    NewsPaperComponent,
 
     // WhoShouldAttendAndWhyComponent,
 
