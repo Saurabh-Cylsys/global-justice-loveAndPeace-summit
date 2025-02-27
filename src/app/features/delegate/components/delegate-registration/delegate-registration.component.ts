@@ -26,6 +26,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { environment } from 'src/environments/environment';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -84,8 +85,11 @@ export class DelegateRegistrationComponent {
   interval: any;
   buttonText: string = 'Send OTP';
   mediumValue: string | null = '';
-
-  tinyURL : string = environment.tinyUrl;
+  email: string = '';
+  mobileNo: string = '';
+  name: string = '';
+  tinyURL: string = environment.tinyUrl;
+  isOnline: any;
 
   // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
   // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
@@ -144,112 +148,45 @@ export class DelegateRegistrationComponent {
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
-      // if (params) {
-      //   this.referralCode = params.code;
-      // }
-      // if (this.referralCode) {
-      //   console.log(this.referralCode, 'referralCode..........');
-      // }
-
-      console.log("Params",params);
-      // {code: "COININ-0000001-W"
-      //   medium: "1"
-      // }
-      if(params != undefined && Object.keys(params).length > 0){
-      this.referralCode = params.code;
-      if(params.medium == 1 && params.code) {
-
-        // this.router.navigate(['/delegate-registration'], {
-        //   queryParams: { code: this.referralCode }, // Pass query params
-        //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
-        //   relativeTo: this.route, // Stay on the same route
-        // })
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
-
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
-
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
-
-        window.location.href = tinyUrlWithParams;
-
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
+      if (params != undefined && Object.keys(params).length > 0) {
+        this.referralCode = params.code;
+        if (params.email != undefined && params.email != null && params.email.trim() !== '' &&
+          params.mobile_no != undefined && params.mobile_no != null && params.mobile_no.trim() !== '') {
+            this.email = params.email;
+            this.mobileNo = params.mobile_no;
+            this.name = params.name;
+            this.isOnline = params.isOnline
+        }
+        else if (params.medium == 1 && params.code) {
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+          window.location.href = tinyUrlWithParams;
+        }
+        else if (!params.medium) {
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+          window.location.href = tinyUrlWithParams;
+        }
       }
-
-      else if(!params.medium) {
-        console.log('Medium value not found, redirecting...');
-        // this.mediumValue = params.medium
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
-
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
-
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
-
-        window.location.href = tinyUrlWithParams;
-
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
-      }
-    }
-
-
-      // if (params) {
-      //   const decodedCode = decodeURIComponent(params.code);
-      //   console.log('Decoded Code:', decodedCode);
-      //   this.referralCode = decodedCode.split('?')[0];
-
-      //   // Extract 'medium' value using regex
-      //   const match = decodedCode.match(/medium=(\d+)/);
-      //   this.mediumValue = match ? match[1] : null;
-
-      //   console.log('Medium Value:', this.mediumValue);
-
-      //   if(params.medium == 1  && this.referralCode) {
-      //     // this.router.navigate(['/delegate-registration'], {
-      //     //   queryParams: { code: this.referralCode },
-      //     // });
-      //     this.router.navigate(['/delegate-registration'], {
-      //       queryParams: { code: this.referralCode }, // Pass query params
-      //       queryParamsHandling: 'merge', // Preserve existing query params (optional)
-      //       relativeTo: this.route, // Stay on the same route
-      //     })
-      //   }
-
-      //   else if(!this.mediumValue) {
-      //     console.log('Medium value not found, redirecting...');
-      //     this.router.navigate(['/peacekeeper-preselect'], {
-      //       queryParams: { code: this.referralCode },
-      //     });
-      //   }
-
-
-      // }
     });
-
-    this.createForm();
-
-    // this.getdates()
-    this.getAllCountries();
-    // this.getAllCountrycode()
+    this.createForm();    // this.getdates()
+    this.getAllCountries();    
     this.getIPAddress();
-
     this.deviceInfo = this.getDeviceOS();
   }
 
   createForm() {
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
+      first_name: [this.name || '', [Validators.required]],
       last_name: ['', [Validators.required]],
       dob: ['', [Validators.required, this.ageValidator]],
       country_code: [''],
-      mobile_number: ['', [Validators.minLength(7), Validators.required]],
+      mobile_number: [this.mobileNo || '', [Validators.minLength(7), Validators.required]],
       email_id: [
-        '',
+        this.email || '',
         [
           Validators.required,
           Validators.email,
@@ -992,9 +929,9 @@ export class DelegateRegistrationComponent {
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "0",
-        p_type:"DELEGATE_OFFLINE",
-        p_reference_by:'0'
+        is_nomination: "0",
+        p_type: "DELEGATE_OFFLINE",
+        p_reference_by: '0'
       };
 
       this.ngxService.start();

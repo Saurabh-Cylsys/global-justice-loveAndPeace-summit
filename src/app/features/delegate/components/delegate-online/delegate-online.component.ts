@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DelegateService } from '../../services/delegate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface RegistrationData {
   name: string;
@@ -43,7 +43,8 @@ export class DelegateOnlineComponent implements OnInit {
     private delegateService: DelegateService,
     private sanitizer: DomSanitizer,
     private sharedService: SharedService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
   ngOnInit() {
     this.initializeForms();
@@ -91,25 +92,17 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   verifySession() {
-
-
-    let body = {
-      // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
+    let body = {      
       sessionId: this.sessionId
-
     }
     this.delegateService.postVerifySession(body).subscribe({
       next: (response: any) => {
         if (response.success) {
           console.log('Session Verified:', response.session);
           this.isPaymentStatus = response.session.status;
-          this.transactionVerified = true;
-          console.log(this.isPaymentStatus, 'transactionVerified.....22');
-
-        } else {
-          // this.isPaymentStatus = response.session.status;
-          this.isPaymentStatus = 'failed';
-          console.error('Payment not completed:', response.message);
+          this.transactionVerified = true;          
+        } else {          
+          this.isPaymentStatus = 'failed';          
         }
       },
       error: (err) => console.error('Error verifying session:', err),
@@ -165,7 +158,15 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
   showCompleteProfile() {
-    this.showCompleteProfileForm = true;
+    //this.showCompleteProfileForm = true;
+    this.router.navigate(['/delegate-registration'], {
+      queryParams: {
+        email: this.registrationData?.email,
+        mobile_no: this.registrationData?.mobile_no,
+        name: this.registrationData?.name,
+        isOnline: true
+      }
+    });
   }
   onCompleteProfile() {
     if (this.completeProfileForm.valid) {
