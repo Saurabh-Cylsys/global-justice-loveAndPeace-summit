@@ -353,12 +353,12 @@ export class EditBadgeComponent {
 
           localStorage.setItem('userDetails', JSON.stringify(userData));
           this.sharedService.ToastPopup('Peacekeeper Badge Updated Successfully!', '', 'success');
-          this.is_selectedFile = false;
+          //this.is_selectedFile = false;
           // this.editBadgeForm.reset();
 
-          this.selectedFile = null;
-          // fileInput.value = '';
-          this.imageUrl = '';
+          // this.selectedFile = null;
+          // // fileInput.value = '';
+          // this.imageUrl = '';
 
           await this.sharedService.refreshHeader();
 
@@ -375,7 +375,7 @@ export class EditBadgeComponent {
             this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
               this.router.navigate(['/dashboard']);
             });
-          }, 1000);
+          }, 3000);
 
           // setTimeout(() => {
           //   window.location.reload();
@@ -695,7 +695,7 @@ export class EditBadgeComponent {
   }
 
   closeImageModal() {
-    this.imageUrl = this.previousCroppedImage
+    this.imageUrl = this.PeaceBadgeData?.file_name// this.previousCroppedImage
     this.is_selectedFile = false;
     this.display = 'none';
     this.showPopup = false;
