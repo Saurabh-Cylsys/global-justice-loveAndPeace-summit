@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   templateUrl: './speakers-profile.component.html',
   styleUrls: ['./speakers-profile.component.css']
 })
-export class SpeakersProfileComponent implements OnInit, OnDestroy {
+export class SpeakersProfileComponent implements OnInit {
   speakersDetails: any[] = [];
   speakersId: any;
   speakersName: any = '';
@@ -77,6 +77,6 @@ export class SpeakersProfileComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    
   }
 }
