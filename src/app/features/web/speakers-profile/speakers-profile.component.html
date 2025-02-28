@@ -1,34 +1,31 @@
 <main class="global-justice">
   <div class="all-frames-wrapper">
-    <div class="all-frames">
+    <div class="all-frames" *ngFor="let speaker of this.speakersDetails" >
       <header class="element">
         <div class="overlap">
           <div class="overlap-group">
             <div class="div">
               <div class="text">
-                <h1 class="text-wrapper">Dia Mirza</h1>
-                <p class="p">INDIA : Beauty Queen, Actress</p>
+                <h1 class="text-wrapper">{{speaker.speaker_name}}</h1>
+                <p class="p">{{speaker.speaker_country}} : {{speaker.speaker_credentials}}</p>
               </div>
               <div class="ellipse" aria-hidden="true"></div>
               <div class="ellipse-2" aria-hidden="true"></div>
               <div class="ellipse-3" aria-hidden="true"></div>
               <div class="ellipse-4" aria-hidden="true"></div>
-              <img class="image" src="logo.webp" alt="Logo" />
+              <img class="image" src="assets/UIComponents/images/index/global justice summit.png" alt="Logo" />
             </div>
-            <img class="img" src="img/image.png" alt="Dia Mirza portrait" />
+            <img class="img" *ngIf="speaker.profile_photo" [src]="speaker.profile_photo" alt="{{speaker.speaker_name}} portrait" />
           </div>
           <div class="scroll">
-            <p class="text-wrapper-2">Scroll down</p>
-            <img
-              class="chevron-down"
-              src="img/chevron-down.svg"
-              alt="Scroll down icon"
-            />
+            <p class="text-wrapper-2">Join Me</p>
+            <a type="btn" class="btn btn-success me-2" style="width: 150px;margin: -10px 0 0 0;">Be a Delegate</a
+          >
           </div>
         </div>
       </header>
       <section class="element-2">
-        <h2 class="text-wrapper-3">About Dia Mirza</h2>
+        <h2 class="text-wrapper-3">About {{speaker.speaker_name}}</h2>
         <div class="cards">
           <div class="element-3">
             <article class="frame-wrapper">
@@ -39,7 +36,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  UNEP Goodwill Ambassador and UN SDGs Advocate
+                  {{speaker.speaker_details[0]}}
                 </p>
               </div>
             </article>
@@ -51,8 +48,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  Supports wildlife conservation and environmental
-                  sustainability
+                  {{speaker.speaker_details[1]}}
                 </p>
               </div>
             </article>
@@ -66,7 +62,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  Actively promotes climate action and women's empowerment
+                  {{speaker.speaker_details[2]}}
                 </p>
               </div>
             </article>
@@ -78,8 +74,8 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  Received Champions of Change Award social welfare in
-                  Maharashtra
+                  {{speaker.speaker_details[3]}}
+
                 </p>
               </div>
             </article>
@@ -93,8 +89,8 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  Recipient of multiple awards for environmental and social
-                  work
+                  {{speaker.speaker_details[4]}}
+
                 </p>
               </div>
             </article>
@@ -106,7 +102,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  Winner of Miss Asia Pacific International 2000
+                  {{speaker.speaker_details[5]}}
                 </p>
               </div>
             </article>
@@ -119,7 +115,7 @@
                 </div>
               </div>
               <p class="acted-in-bollywood">
-                Acted in Bollywood films like 'Rehnaa Hai Terre Dil Mein'
+                {{speaker.speaker_details[6]}}
               </p>
             </div>
           </article>
@@ -127,10 +123,10 @@
       </section>
       <section class="element-10">
         <div class="frame-4">
-          <img
+          <img 
             class="image-2"
-            src="img/image-4.png"
-            alt="Dia Mirza at an event"
+            [src]="speaker.profile_photo"
+            alt="{{speaker.speaker_name}} at an event"
           />
           <div class="frame-5">
             <h2 class="text-wrapper-9">Meet me at</h2>

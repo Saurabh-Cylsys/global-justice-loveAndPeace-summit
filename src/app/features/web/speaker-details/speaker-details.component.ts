@@ -88,13 +88,15 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.webService.getSpeakersList(searchQuery, '73', 'All')
-      .subscribe({
-        next: (response: any) => {
-          if (response?.data) {
+    .subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+            debugger
             // Map the API response data and filter out excluded countries
             const mappedData = response.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
+                speaker_id: item.speaker_id || '',
                 speaker_name: item.speaker_name || '',
                 speaker_country: item.speaker_country || '',
                 speaker_credentials: item.speaker_credentials || '',
@@ -109,6 +111,9 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
             if (!this.countries.length) {
               this.loadCountries();
             }
+
+            console.log(this.speakersList , 'list of speakers');
+            
           } else {
             this.speakersList = [];
             this.originalSpeakersList = [];
