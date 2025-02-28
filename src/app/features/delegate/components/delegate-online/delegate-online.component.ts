@@ -5,6 +5,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
+import { HostListener } from '@angular/core';
 
 interface RegistrationData {
   name: string;
@@ -39,6 +40,11 @@ export class DelegateOnlineComponent implements OnInit {
   sessionId: any;
   isPaymentStatus: any;
   transactionVerified: boolean = false;
+  countryData: any = [];
+  showCountryDropdown = false;
+  filteredCountries: any[] = [];
+  selectedCountryName = '';
+
   constructor(
     private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -48,19 +54,37 @@ export class DelegateOnlineComponent implements OnInit {
     private router: Router,
     private encryptionService: EncryptionService
   ) { }
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getAllCountries();
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
+    
   }
   
+  getAllCountries() {
+    this.delegateService.getAllCountries().subscribe(
+      (res: any) => {
+        this.countryData = res.data;
+      },
+      (err: any) => {
+        console.log('error', err);
+      }
+    );
+  }
+
+  get f() {
+    return this.userForm.controls;
+  }
 
   private initializeForms() {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       countryCode: ['', Validators.required],
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      country: [null, Validators.required],
+      countrySearch: [''],
     });
     this.completeProfileForm = this.fb.group({
       title: ['', Validators.required],
@@ -193,5 +217,32 @@ export class DelegateOnlineComponent implements OnInit {
       //   }
       // });
     }
+  }
+  filterCountries(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    this.showCountryDropdown = true;
+    this.filteredCountries = this.countryData.filter((country: any) =>
+      country.name.toLowerCase().includes(searchTerm)
+    );
+  }
+  selectCountry(country: any) {
+    this.selectedCountryName = country.name;
+    this.userForm.patchValue({
+      country: JSON.stringify(country),
+      countrySearch: country.name
+    });
+    this.showCountryDropdown = false;
+    this.changeCountry({ target: { value: JSON.stringify(country) } });
+  }
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: any) {
+    if (!event.target.closest('.position-relative')) {
+      this.showCountryDropdown = false;
+    }
+  }
+  changeCountry(e: any) {
+    const selectedValue = e.target.value;
+    const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
+    this.userForm.patchValue({ country_id: countryObj.id });    
   }
 }

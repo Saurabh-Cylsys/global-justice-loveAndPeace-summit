@@ -1,0 +1,78 @@
+.feature-list {
+  display: none;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.feature-item {
+  padding: 15px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item i {
+  font-size: 2rem;
+  color: #005a93;
+  margin-bottom: 15px;
+}
+
+.feature-item h4 {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.feature-item p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Animation for feature list appearance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feature-list.show {
+  display: block;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .feature-item {
+    margin-bottom: 15px;
+  }
+  
+  .feature-item i {
+    font-size: 1.5rem;
+  }
+  
+  .feature-item h4 {
+    font-size: 1rem;
+  }
+  
+  .feature-item p {
+    font-size: 0.8rem;
+  }
+}

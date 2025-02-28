@@ -38,93 +38,98 @@
 
     <div class="ui-card-container mb-2">
       <div class="ui-card ui-card1">
+        <div class="price-ribbon">$2800</div>
         <div class="ui-card-image"></div>
         <div class="ui-card-text">
           <a class="btn btn-success my-3" (click)="goToDelegatePage()">Join as a Delegate</a>
           <p>Join global leaders, attend exclusive events & contribute to peace.</p>
         </div>
         <div class="ui-card-buttons">
-          <button>Know More</button>
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#userdelegate" aria-expanded="true" aria-controls="userdelegate">Know More</button>
           <button>Register</button>
         </div>
       </div>
 
       <div class="ui-card ui-card2">
+        <div class="price-ribbon">$2800</div>
         <div class="ui-card-image"></div>
         <div class="ui-card-text">
           <a class="btn btn-success my-3" (click)="goToChildNomination()">As a Peace Student</a>
+         
           <p>Support global peace initiatives & leadership training.</p>
         </div>
         <div class="ui-card-buttons">
-          <button>Know More</button>
+          <button class="accordion-button"  type="button" data-bs-toggle="collapse" data-bs-target="#studentdelegate" aria-expanded="true" aria-controls="studentdelegate">Know More</button>
           <button>Register</button>
         </div>
       </div>
 
       <div class="ui-card ui-card3">
+        <div class="price-ribbon">$280</div>
         <div class="ui-card-image"></div>
         <div class="ui-card-text">
           <a class="btn btn-success my-3" (click)="goToOnlineDelegate()">As an Online Delegate</a>
+          
           <p>Engage in leadership programs and network with professionals.</p>
         </div>
         <div class="ui-card-buttons">
-          <button>Know More</button>
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#olinedelegate" aria-expanded="true" aria-controls="olinedelegate">Know More</button>
           <button>Register</button>
         </div>
       </div>
     </div>
 
-
-
-    <div class="col-md-12 d-none" id="card-list">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <div class="card shadow">
-            <div class="card-body text-center">
-              <img src="assets/UIComponents/images/pre-select/user.jpg" class="card-img-top" alt="Silver" />
-              <a class="btn btn-success my-3" (click)="goToDelegatePage()">As a Delegate</a>
-              <p class="px-3"> <b>Join global leaders, attend exclusive
-                  events & contribute to peace.</b></p>
-            </div>
-            <div class="card-footer text-center" style="background-color: #005a93;">
-
-              <a href="" class="text-white">Know more</a>
-            </div>
+    <div class="container-fluid" id="accordionContainer">
+      <div id="userdelegate" class="content-section accordion-collapse collapse" aria-labelledby="userdelegate" data-bs-parent="#accordionContainer">
+        <div class="list-container border-1 shadow-lg p-5">
+          <h3>Delegate Information</h3>
+          <p class="lead fw-500 mt-3">Join as a Delegate and Experience:</p>
+          <ul class="mt-4 wrap">
+            <li><i class="fa fa-check" aria-hidden="true"></i>Access to exclusive summit events</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Networking with global leaders</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Participation in peace initiatives</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Leadership development opportunities</li>
+          </ul>
+        </div>
+      </div>
+      <div id="studentdelegate" class="content-section accordion-collapse collapse" aria-labelledby="studentdelegate" data-bs-parent="#accordionContainer">
+        <div class="list-container border-1 shadow-lg p-5">
+          <h3>Peace Student Program</h3>
+          
+          <div class="row">
+          <div class="col-md-6">
+            <img src="../../../../assets/UIComponents/images/pre-select/student_info.jpeg">
+          </div>
+          <div class="col-md-6">
+            <p class="lead fw-500 mt-3">Benefits of Joining as a Peace Student:</p>
+            <ul class="mt-4 wrap">
+              <li><i class="fa fa-check" aria-hidden="true"></i>Mentorship from global leaders</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Peace education workshops</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>Leadership training sessions</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i>International networking opportunities</li>
+              
+            </ul>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card shadow">
-            <div class="card-body text-center">
-              <img src="assets/UIComponents/images/pre-select/student.jpg" class="card-img-top" alt="Silver" />
-              <a class="btn btn-success my-3" (click)="goToChildNomination()">As a Peace Student</a>
-              <p class="px-3"><b>Become a young ambassador for peace
-                  & learn leadership skills.</b></p>
-
-            </div>
-            <div class="card-footer text-center" style="background-color: #005a93;">
-
-              <a href="" class="text-white">Know more</a>
-            </div>
-          </div>
+          
+          
         </div>
-        <div class="col-md-4">
-          <div class="card shadow">
-            <div class="card-body text-center">
-              <img src="assets/UIComponents/images/pre-select/online.jpg" class="card-img-top" alt="Silver" />
-              <!-- <h5 class="card-title mt-3">Online Delegate</h5>
-                <p>Participate virtually in our global community.</p> -->
-              <a class="btn btn-success my-3" (click)="goToOnlineDelegate()">As an Online Delegate</a>
-              <p class="px-3"><b>Become an online delegate for peace
-                  & learn leadership skills.</b></p>
-            </div>
-            <div class="card-footer  text-center" style="background-color: #005a93;">
-
-              <a href="" class="text-white">Know more</a>
-            </div>
-          </div>
+      </div>
+      <div id="olinedelegate" class="content-section accordion-collapse collapse" aria-labelledby="olinedelegate" data-bs-parent="#accordionContainer">
+        <div class="list-container border-1 shadow-lg p-5">
+          <h3>Online Delegate Experience</h3>
+          <p class="lead fw-500 mt-3">Virtual Participation Benefits:</p>
+          <ul class="mt-4 wrap">
+            <li><i class="fa fa-check" aria-hidden="true"></i>Remote access to summit events</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Digital networking platform</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Online learning resources</li>
+            <li><i class="fa fa-check" aria-hidden="true"></i>Virtual collaboration tools</li>
+          </ul>
         </div>
       </div>
     </div>
+
+    
   </div>
 </div>
 <!-- </div> -->
