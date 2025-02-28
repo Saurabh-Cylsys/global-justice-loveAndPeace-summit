@@ -59,7 +59,7 @@
           </div>
 
           <div class="clearfix">
-            <div id="regformcontainer" *ngIf="this.userType === 'student' || this.userType === 'adult'">
+            <div id="regformcontainer" *ngIf="this.userType === 'student' || this.userType === 'adult' ">
               <div class="clearfix"></div>
 
               <form
@@ -310,8 +310,8 @@
                                           id="dob"
                                           #dob
                                           formControlName="dob"
-                                          [minDate]="minDate1"
-                                          [maxDate]="maxDate1"
+                                          [minDate]="userType == 'adult'? nomineeMinDate1 : minDate1"
+                                          [maxDate]="userType == 'adult'? nomineeMaxDate1 : maxDate1"
                                           (keydown)="disableManualInput($event)"
                                           tabindex="0"
                                           (ngModelChange)="
@@ -1295,8 +1295,8 @@
                                             [ngModelOptions]="{ standalone: true }"
                                             placeholder="Select Nominee Date of birth"
                                             #childDob
-                                            [minDate]="minDate1"
-                                            [maxDate]="maxDate1"
+                                            [minDate]="userType == 'adult'? minDate1 : nomineeMinDate1"
+                                            [maxDate]="userType == 'adult'? maxDate1 : nomineeMaxDate1"
                                             (keydown)="disableManualInput($event)"
                                             (keydown.tab)="openNomineeDatepicker()"
                                             bsDatepicker

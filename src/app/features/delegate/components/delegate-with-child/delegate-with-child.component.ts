@@ -65,7 +65,8 @@ export class DelegateWithChildComponent {
     { value: 'Peace', label: 'Peace' },
   ];
   disabledDates: Date[] = [];
-
+  nomineeMaxDate1: any;
+  nomineeMinDate1: any;
   maxDate1: any;
   minDate1: any;
   colorTheme: string = 'theme-dark-blue';
@@ -119,6 +120,31 @@ export class DelegateWithChildComponent {
     private renderer: Renderer2
   ) {
     this.fullURL = window.location.href;
+
+    const today = new Date();
+
+    this.maxDate1 = new Date(
+      today.getFullYear() - 1,
+      today.getMonth(),
+      today.getDate()
+   );
+
+    // Min date is 21 years ago from today
+    this.minDate1 = new Date(
+    today.getFullYear() - 21,
+    today.getMonth(),
+    today.getDate() + 1
+  );
+
+        // Max date is 21 years ago from today
+    this.nomineeMaxDate1 = new Date(
+      today.getFullYear() - 21,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    // Min date is 120 years ago from today
+    this.nomineeMinDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -417,8 +443,9 @@ export class DelegateWithChildComponent {
 
   // Validation for Nominee Age
   private validateNomineeAge(): void {
+    debugger
     if (this.userType === 'student') {
-      if (this.nomineeAge <= 21) {
+      if (this.nomineeAge < 21) {
         this.SharedService.ToastPopup(
           'As a Student, your nominee must be older than 21.',
           '',
@@ -1482,6 +1509,7 @@ export class DelegateWithChildComponent {
   }
 
   onUserTypeChange(selectedType: string): void {
+    debugger
     this.isFormDirty = this.isNomineeFormDirty(); // Update before checking
 
     if (this.isFormDirty || this.registrationForm.dirty) {
