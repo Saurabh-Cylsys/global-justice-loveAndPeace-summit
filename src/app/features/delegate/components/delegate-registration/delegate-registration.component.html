@@ -7,7 +7,7 @@
       class="innerpage-content-area-wrap pb-0 pt-0"
       style="min-height: calc(100vh - 180px)"
     >
-      <div class="fb-container p-0 border-1 ">
+      <div class="fb-container p-0 border-1 " *ngIf="isEnabled">
         <div class="single-content-container shadow-lg">
           <h1 class="fs-3 fs-md-2 fs-lg-1 text-center">Delegate Registration</h1>
 
@@ -942,15 +942,15 @@
 
                             <div class="row g-2 mt-5">
                               <div class="col-md-12">
-                                <p class="refLabel col-md-8">
+                                <!-- <p class="refLabel col-md-8">
                                   On submission of this form, you will be
                                   redirected to the payment gateway page ,
                                   where you can complete the payment of (USD
                                   {{ this.referralCode ? 2604 : 2800 }}). You
                                   will also receive the payment link on your
                                   registered email.
-                                </p>
-                                <h6>Do you have a Reference code:</h6>
+                                </p> -->
+                                <h6>Reference code:</h6>
                               </div>
                               <div class="col-md-3">
                                 <div class="">

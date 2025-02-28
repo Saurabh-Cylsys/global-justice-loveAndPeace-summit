@@ -91,6 +91,7 @@ export class DelegateRegistrationComponent {
   name: string = '';
   tinyURL: string = environment.tinyUrl;
   isOnline: any;
+  isEnabled:boolean = false;
 
   constructor(
     private datePipe: DatePipe,
@@ -155,20 +156,21 @@ export class DelegateRegistrationComponent {
         this.referralCode = params.code;
         debugger;
 
-        if (params['data']) {
-          if (params['data']) {
-            const decryptedData = this.encryptionService.decryptData(params['data']);
+        // if (params['data']) {
+        //   if (params['data']) {
+        //     const decryptedData = this.encryptionService.decryptData(params['data']);
             
-            if (decryptedData) {
-              this.email = decryptedData.email;
-              this.mobileNo = decryptedData.mobile_no;
-              this.name = decryptedData.name;
-              this.isOnline = decryptedData.isOnline;
-            }
-          }
-        }
+        //     if (decryptedData) {
+        //       this.email = decryptedData.email;
+        //       this.mobileNo = decryptedData.mobile_no;
+        //       this.name = decryptedData.name;
+        //       this.isOnline = decryptedData.isOnline;
+        //     }
+        //   }
+        // }
         
-        else if (params.medium == 1 && params.code) {
+        // else 
+        if (params.medium == 1 && params.code) {
           const params = new URLSearchParams();
           params.set('code', this.referralCode);
           const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
@@ -182,6 +184,7 @@ export class DelegateRegistrationComponent {
         }
       }
     });
+    this.isEnabled = true;
     this.createForm();    // this.getdates()
     this.getAllCountries();    
     this.getIPAddress();
