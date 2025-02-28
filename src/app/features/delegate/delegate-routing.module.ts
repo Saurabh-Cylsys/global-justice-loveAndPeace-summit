@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DelegateMainComponent } from './components/delegate-main/delegate-main.component';
 import { DelegateRegistrationComponent } from './components/delegate-registration/delegate-registration.component';
+import { DelegateWithChildComponent } from './components/delegate-with-child/delegate-with-child.component';
 const routes: Routes = [
   {
     path: '',
     component: DelegateMainComponent,
 
     children:[
-      {path:'delegate-registration',component:DelegateRegistrationComponent,
-        data: {
-          metaKey: 'delegate-registration'
-        },
-      },
+      {path:'delegate-registration',component:DelegateRegistrationComponent},
+      {path:'delegate-child-nomination',component:DelegateWithChildComponent},
 
       // {path:'register',component:},
       // {path:'reset-password',component:ResetPasswordComponent},

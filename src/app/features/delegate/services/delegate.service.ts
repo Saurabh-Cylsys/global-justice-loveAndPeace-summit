@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiEndpointsService } from "src/app/core/services/api-endpoints.service";
 import { ApiHttpService } from "src/app/core/services/api-http.service";
-
 
 
 @Injectable({
@@ -49,6 +49,30 @@ export class DelegateService {
   }
   postVerifySession(body: any) {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
+  }
 
+  sendOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getSendOTPEndpoint(),body);
+  }
+
+  verifyOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
+  }
+
+  getRelationDataApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getLookupEndpoint(),body);
+  }
+
+  getNominationProfileApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getCreateNominationProfileEndpoint(),body);
+  }
+
+  // postPeaceDeleteAcc(body: any) {
+  //   return this._apiHttpService.post(this._apiEndpointsService.postPeaceDeleteAccEndpoint(),body);
+
+  // }
+  postPeaceDeleteAcc(queryParamsObj: any): Observable<any> {
+
+    return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
   }
 }

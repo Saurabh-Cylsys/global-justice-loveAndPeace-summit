@@ -9,13 +9,17 @@
     >
       <div class="fb-container p-0">
         <div class="single-content-container">
-          <h2 class="pt-lg-4 text-center fw-600">Delegate Registration</h2>
+          <h1 class="pt-lg-4 text-center fw-600">Delegate Registration</h1>
 
           <div class="clearfix"></div>
           <div class="clearfix">
             <div id="regformcontainer">
               <div class="clearfix"></div>
-              <form [formGroup]="registrationForm" (ngSubmit)="submitData()" autocomplete="off">
+              <form
+                [formGroup]="registrationForm"
+                (ngSubmit)="submitData()"
+                autocomplete="off"
+              >
                 <div
                   class="clearfix section7 p-lg-5 position-relative"
                   style="z-index: 1"
@@ -289,6 +293,7 @@
                                 <div class="col-md-12">
                                   <h6>Contact Information :</h6>
                                 </div>
+
                                 <div
                                   class="form-group fg-mobile col-md-6 col-sm-6 my-3"
                                 >
@@ -389,6 +394,7 @@
                                     </div>
                                   </div>
                                 </div>
+
                                 <div
                                   class="form-group fg-email col-md-6 col-sm-6 my-3"
                                 >
@@ -425,7 +431,6 @@
                                             submitted && f.email_id.errors
                                         }"
                                       />
-
                                     </div>
                                     <div class="help-block with-errors"></div>
                                     <div
@@ -449,6 +454,7 @@
                                     </div>
                                   </div>
                                 </div>
+
                                 <div
                                   class="form-group fg-email col-md-6 col-sm-6 my-3"
                                 >
@@ -466,8 +472,12 @@
                                         placeholder="Enter linkedIn profile"
                                         class="form-control p-0"
                                         maxlength="100"
-                                        (keydown)="onKeyDown($event, 'linkedin')"
-                                        (paste)="onPasteEvent($event, 'linkedin')"
+                                        (keydown)="
+                                          onKeyDown($event, 'linkedin')
+                                        "
+                                        (paste)="
+                                          onPasteEvent($event, 'linkedin')
+                                        "
                                         formControlName="linkedIn_profile"
                                         autocomplete="off"
                                       />
@@ -487,6 +497,7 @@
                                     </div> -->
                                   </div>
                                 </div>
+
                                 <div
                                   class="form-group fg-email col-md-6 col-sm-6 my-3"
                                 >
@@ -503,9 +514,7 @@
                                         id="instagram_profile"
                                         placeholder="Enter instagram ID"
                                         class="form-control p-0"
-                                        (keydown)="
-                                          onInstagramKeyDown($event)
-                                        "
+                                        (keydown)="onInstagramKeyDown($event)"
                                         (paste)="onInstagramPaste($event)"
                                         formControlName="instagram_profile"
                                         autocomplete="off"
@@ -664,8 +673,10 @@
                                         class="form-control p-0"
                                         (keydown)="onKeyDown($event, 'website')"
                                         formControlName="website"
-                                        (input)="onInput($event,'website')"
-                                        (paste)="onPasteEvent($event, 'website')"
+                                        (input)="onInput($event, 'website')"
+                                        (paste)="
+                                          onPasteEvent($event, 'website')
+                                        "
                                         autocomplete="off"
                                         maxlength="200"
                                         [ngClass]="{
@@ -728,7 +739,6 @@
                                         }"
                                       />
                                     </div>
-
                                   </div>
                                 </div>
                               </div>
@@ -773,7 +783,6 @@
                                       />
                                     </div>
                                     <div class="help-block with-errors"></div>
-
                                   </div>
                                 </div>
                                 <div
@@ -788,8 +797,8 @@
                                           style="color: #ff0000"
                                         >
                                           *</span
-                                        > </label
-                                      >
+                                        >
+                                      </label>
                                       <!-- <input
                                         type="text"
                                         name="country"
@@ -808,43 +817,43 @@
                                       /> -->
 
                                       <select
-                                    (change)="changeCountry($event)"
-                                    class="form-control p-0 form-select"
-                                    id="country"
-                                    formControlName="country"
-                                    #country
-                                    name="India"
-                                    [ngClass]="{
-                                      'is-invalid':
-                                        submitted && f.country.errors
-                                    }"
-                                  >
-                                    <option value="" disabled>
-                                      Select Country
-                                    </option>
-                                    <option
-                                      *ngFor="
-                                        let country of countryData;
-                                        let j = index
-                                      "
-                                      [value]="country | json"
-                                    >
-                                      {{ country.name }}
-                                    </option>
-                                  </select>
-                                  <div class="help-block with-errors"></div>
-                                  <div
-                                    *ngIf="
-                                      getcontrol('country')?.errors &&
-                                      getcontrol('country')?.touched
-                                    "
-                                  >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('country')?.errors?.['required']"
-                                      >Country is required.</small
-                                    >
-                                  </div>
+                                        (change)="changeCountry($event)"
+                                        class="form-control p-0 form-select"
+                                        id="country"
+                                        formControlName="country"
+                                        #country
+                                        name="India"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.country.errors
+                                        }"
+                                      >
+                                        <option value="" disabled>
+                                          Select Country
+                                        </option>
+                                        <option
+                                          *ngFor="
+                                            let country of countryData;
+                                            let j = index
+                                          "
+                                          [value]="country | json"
+                                        >
+                                          {{ country.name }}
+                                        </option>
+                                      </select>
+                                      <div class="help-block with-errors"></div>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('country')?.errors &&
+                                          getcontrol('country')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('country')?.errors?.['required']"
+                                          >Country is required.</small
+                                        >
+                                      </div>
                                     </div>
                                     <div class="help-block with-errors"></div>
                                   </div>
@@ -860,39 +869,45 @@
                                           style="color: #ff0000"
                                         >
                                           *</span
-                                        > </label
-                                      >
+                                        >
+                                      </label>
                                       <select
-                                    class="form-control p-0 form-select"
-                                    (change)="changeStates($event)"
-                                    id="state"
-                                    #state
-                                    formControlName="state"
-                                    [ngClass]="{
-                                      'is-invalid': submitted && f.state.errors
-                                    }"
-                                  >
-                                    <option value="" disabled selected>
-                                      Select State
-                                    </option>
+                                        class="form-control p-0 form-select"
+                                        (change)="changeStates($event)"
+                                        id="state"
+                                        #state
+                                        formControlName="state"
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f.state.errors
+                                        }"
+                                      >
+                                        <option value="" disabled selected>
+                                          Select State
+                                        </option>
 
-                                    <option *ngFor="let state of statesData; let j = index" [value]="state | json">
-                                        {{ state.name }}
-                                      </option>
-
-                                  </select>
-                                  <div
-                                    *ngIf="
-                                      getcontrol('state')?.errors &&
-                                      getcontrol('state')?.touched
-                                    "
-                                  >
-                                    <small
-                                      class="text-danger"
-                                      *ngIf="getcontrol('state')?.errors?.['required']"
-                                      >State is required.</small
-                                    >
-                                  </div>
+                                        <option
+                                          *ngFor="
+                                            let state of statesData;
+                                            let j = index
+                                          "
+                                          [value]="state | json"
+                                        >
+                                          {{ state.name }}
+                                        </option>
+                                      </select>
+                                      <div
+                                        *ngIf="
+                                          getcontrol('state')?.errors &&
+                                          getcontrol('state')?.touched
+                                        "
+                                      >
+                                        <small
+                                          class="text-danger"
+                                          *ngIf="getcontrol('state')?.errors?.['required']"
+                                          >State is required.</small
+                                        >
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -909,30 +924,31 @@
                                       </label>
 
                                       <select
-                                      class="form-control p-0 form-select"
-                                      (change)="changeCity($event)"
-                                      id="city"
-                                      #city
-                                      formControlName="city"
-                                      value
-                                      [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f['city'].errors
-                                      }"
-                                    >
-                                      <option selected value="" disabled>
-                                        Select City
-                                      </option>
-
-                                      <option
-                                        *ngFor="
-                                          let city of cityData;
-                                          let k = index"
-                                        [value]="city | json"
+                                        class="form-control p-0 form-select"
+                                        (change)="changeCity($event)"
+                                        id="city"
+                                        #city
+                                        formControlName="city"
+                                        value
+                                        [ngClass]="{
+                                          'is-invalid':
+                                            submitted && f['city'].errors
+                                        }"
                                       >
-                                        {{ city.name }}
-                                      </option>
-                                    </select>
+                                        <option selected value="" disabled>
+                                          Select City
+                                        </option>
+
+                                        <option
+                                          *ngFor="
+                                            let city of cityData;
+                                            let k = index
+                                          "
+                                          [value]="city | json"
+                                        >
+                                          {{ city.name }}
+                                        </option>
+                                      </select>
                                       <div
                                         *ngIf="
                                           getcontrol('city')?.errors &&
@@ -952,11 +968,13 @@
 
                               <div class="row g-2 mt-5">
                                 <div class="col-md-12">
-                                  <p class="refLabel">
-                                    The link for the payment (USD
-                                    {{ this.referralCode ? 2604 : 2800 }}) will
-                                    be shared with you after submission of this
-                                    form
+                                  <p class="refLabel col-md-8">
+                                    On submission of this form, you will be
+                                    redirected to the payment gateway page ,
+                                    where you can complete the payment of (USD
+                                    {{ this.referralCode ? 2604 : 2800 }}). You
+                                    will also receive the payment link on your
+                                    registered email.
                                   </p>
                                   <h6>Do you have a Reference code:</h6>
                                 </div>
@@ -1127,13 +1145,11 @@
                                         {{ interest.label }}
                                       </label>
                                     </div>
-
                                   </div>
                                 </div>
                               </div>
 
                               <div id="submit-wrapper" class="text-center my-3">
-
                                 <input
                                   type="submit"
                                   class="btn btn-success p-2 px-4"
@@ -1152,7 +1168,7 @@
                     src="assets/UIComponents/images/watermark.png"
                     alt="attach image"
                     class="position-absolute"
-                    style="right: 0; bottom: 0; width: 10rem; z-index: -1;"
+                    style="right: 0; bottom: 0; width: 10rem; z-index: -1"
                     *ngIf="isMobileView"
                   />
                   <img

@@ -61,6 +61,15 @@ export class Constants {
     public readonly API_ENDPOINT_STATE_BY_COUNTRY: string = 'get_delegate_state'
     public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
 
+    public readonly API_ENDPOINT_SEND_OTP: string = 'send-otp'
+    public readonly API_ENDPOINT_VERIFY_OTP: string = 'verify-otp'
+
+    public readonly API_ENDPOINT_CREATE_NOMINATION_PROFILE: string = 'registration/create-nomination-profile'
+    public readonly API_ENDPOINT_GET_LOOKUPDATA: string = 'getLookupData'
+    public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'delete-user'
+
+
+
 
 
 }

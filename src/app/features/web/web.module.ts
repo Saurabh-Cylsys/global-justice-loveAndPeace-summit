@@ -34,6 +34,14 @@ import { HumanValuesComponent } from './blog/human-values/human-values.component
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
+import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
+import { CommitteeComponent } from './committee/committee.component';
+import { VideoComponent } from './media/video/video.component';
+import { MediaHeaderComponent } from 'src/app/shared/components/media-header/media-header.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 
 @NgModule({
@@ -61,7 +69,14 @@ import { DownloadApplicationsComponent } from './download-applications/download-
     HumanValuesComponent,
     HowToUseSocialMediaComponent,
     SitemapComponent,
-    DownloadApplicationsComponent
+    DownloadApplicationsComponent,
+    PeacekeeperPreselectComponent,
+    RequestAccountDeletionsComponent,
+    CommitteeComponent,
+    VideoComponent,
+    PhotosComponent,
+    ArticlesComponent,
+    NewsPaperComponent,
 
     // WhoShouldAttendAndWhyComponent,
 

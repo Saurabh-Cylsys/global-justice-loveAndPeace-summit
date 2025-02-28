@@ -22,6 +22,13 @@ import { HumanValuesComponent } from './blog/human-values/human-values.component
 import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
 import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
+import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
+import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { CommitteeComponent } from './committee/committee.component';
+import { VideoComponent } from './media/video/video.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
 
 const routes: Routes = [
   {
@@ -142,6 +149,34 @@ const routes: Routes = [
       {
         path: 'download-applications',
         component: DownloadApplicationsComponent,
+      },
+      {
+        path: 'peacekeeper-preselect',
+        component: PeacekeeperPreselectComponent,
+      },
+      {
+        path: 'request-account-deletion',
+        component: RequestAccountDeletionsComponent,
+      },
+      {
+        path: 'contact-us/working-committee',
+        component: CommitteeComponent,
+      },
+      {
+        path: 'media/videos',
+        component: VideoComponent,
+      },
+      {
+        path: 'media/photos',
+        component: PhotosComponent,
+      },
+      // {
+      //   path: 'media/articles',
+      //   component: ArticlesComponent,
+      // },
+      {
+        path: 'media/news-paper',
+        component: NewsPaperComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

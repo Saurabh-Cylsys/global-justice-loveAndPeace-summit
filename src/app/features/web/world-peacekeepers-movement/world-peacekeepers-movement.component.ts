@@ -396,7 +396,7 @@ onDateChange(event: string): void {
     this.isMobile =
       this.peacekeepersForm.value.mobile_number.dialCode +
       ' ' +
-      this.peacekeepersForm.value.mobile_number.number;
+      this.peacekeepersForm.value.mobile_number.number.replace(/[^0-9]/g, ''); // Keeps only numbers;
     this.display = 'block';
     this.showPopup = true;
     this.isPeaceOn = 1;
@@ -533,12 +533,12 @@ onDateChange(event: string): void {
         return;
       }
           // Validate the file size
-    if (file.size < minSize || file.size > maxSize) {
-      this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-      event.target.value = ''; // Reset the file input
-      this.is_selectedFile = false;
-      return;
-    }
+    // if (file.size < minSize || file.size > maxSize) {
+    //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+    //   event.target.value = ''; // Reset the file input
+    //   this.is_selectedFile = false;
+    //   return;
+    // }
 
       this.isPeaceOn = 2;
       this.showPopup = true;
@@ -672,7 +672,7 @@ onDateChange(event: string): void {
     const returnDOB = this.peacekeepersForm.value.dob;
 
     const rawMobileNumber = this.peacekeepersForm.value.mobile_number.number;
-    const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
+    const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
 
     this.isCheckEmail = this.peacekeepersForm.value.Check_email;
     this.peacekeepersForm.patchValue({
@@ -745,18 +745,31 @@ onDateChange(event: string): void {
     );
   }
 
-  onMobileNumberKeyDown(event: KeyboardEvent): void {
-    // Allow only numbers and essential keys
-    if (['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(event.key)) {
-      return; // Allow these keys
+  onMobileNumberKeyDown(event: KeyboardEvent , inputValue: any): void {
+
+    if (inputValue !== null) {
+      // Prevent space at the beginning
+      if (
+        event.key === ' ' &&
+        event.code === 'Space' &&
+        inputValue.number.length === 0
+      ) {
+        event.preventDefault();
+        return;
+      }
+
+       // Allow only numbers and essential keys
+       if (
+        !/^[0-9]$/.test(event.key) &&
+        !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
+          event.key
+        )
+      ) {
+        event.preventDefault();
+        return;
+      }
     }
 
-    // Block everything except numbers (0-9)
-    const allowedPattern = /^[0-9]$/;
-
-    if (!allowedPattern.test(event.key)) {
-      event.preventDefault(); // Block invalid characters
-    }
   }
 
 

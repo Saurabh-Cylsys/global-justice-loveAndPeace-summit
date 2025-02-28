@@ -26,10 +26,11 @@
                     <div class="row">
                       <div class="col-12" *ngIf="!isMobileView">
                         <h5>12th -13th April, 2025</h5>
-                        <p>Dubai Expo City</p>
+                        <p>DEC at Dubai Expo City</p>
                       </div>
                       <div class="col-12" *ngIf="isMobileView">
-                        <h5>12th - 13th April 2025, Dubai Expo City</h5>
+                        <h5>12th - 13th April 2025</h5>
+                        <p class="text-dark"><b>DEC at Dubai Expo City</b></p>
                       </div>
                       <div class="col-4">
                         <div class="card">
@@ -111,15 +112,18 @@
             </div>
           </div>
         </section>
-        <section class="section6 speakers scroll">
+        <section class="section6 scroll">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12 text-center mb-4">
-                <h1>Dr. Huzaifa Khorakiwala on ET NOW</h1>
+            <div class="row justify-content-center">
+              <div class="col-md-12 text-center">
+                <h1 class="col-xl-6 col-md-12 mx-auto">
+                  Chairman, Global Justice, Love & Peace Summit Dr. Huzaifa
+                  khorakiwala
+                </h1>
               </div>
-              <div class="col-md-12 text-center mt-5">
-                <iframe
-                  class="yT col-lg-6 col-md-12 col-12"
+              <div class="col-xl-8 text-center mt-5">
+                <!-- <iframe
+                  class="yT col-xl-12 col-md-12 col-12"
                   src="https://www.youtube.com/embed/TRgcLU_S-9o"
                   title="ET Interview"
                   frameborder="0"
@@ -127,7 +131,8 @@
                   referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
                   style="border-radius: 10px"
-                ></iframe>
+                ></iframe> -->
+                <img src="assets/UIComponents/images/chairman.webp" alt="et_now" class="col-md-5">
               </div>
             </div>
           </div>
@@ -342,7 +347,11 @@
                   >
                     <ng-template swiperSlide *ngFor="let slide of slides">
                       <div class="mycard">
-                          <img [src]="slide.path" class="speaker-image" loading="lazy" />
+                        <img
+                          [src]="slide.path"
+                          class="speaker-image"
+                          loading="lazy"
+                        />
                       </div>
                     </ng-template>
                   </swiper>
@@ -355,12 +364,68 @@
                   >
                     <ng-template swiperSlide *ngFor="let slide of slides">
                       <div class="mycard">
-                          <img [src]="slide.path" class="speaker-image" />
+                        <img [src]="slide.path" class="speaker-image" />
                       </div>
                     </ng-template>
                   </swiper>
-                  <button class="see-all-button btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#seeAllSpeakers">See all Speakers</button>
+                  <button
+                    class="see-all-button btn btn-success mb-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#seeAllSpeakers"
+                  >
+                    See all Speakers
+                  </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section6 p-lg-5 indexSec2">
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="speakers-container">
+                  <h2>OUR Peace Collaborators</h2>
+                </div>
+              </div>
+              <!-- <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc1.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc2.webp" alt="pc" width="100%">
+              </div> -->
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc3.webp" alt="pc" width="100%">
+              </div>
+              <!-- <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc4.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc5.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc6.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc7.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc8.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc9.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc10.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc11.webp" alt="pc" width="100%">
+              </div> -->
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc12.webp" alt="pc" width="100%">
+              </div>
+              <div class="col-md-3 col-4 my-3">
+                <img src="assets/UIComponents/images/peace_collaborators/pc13.webp" alt="pc" width="100%">
               </div>
             </div>
           </div>
@@ -387,7 +452,7 @@
                       href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
                       style="text-decoration: none"
                       target="_blank"
-                      >Exhibition Centre (DEC), Expo City, Dubai</a
+                      >DEC at Dubai Expo City</a
                     >
                   </h4>
                 </div>
@@ -402,15 +467,19 @@
                   <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-12 col-12 text-lg-start text-center text-md-center">
+              <div
+                class="col-lg-6 col-md-12 col-12 text-lg-start text-center text-md-center"
+              >
                 <!-- <label for="" class="mb-3">SCHEDULE</label> -->
-                <h1 class="mb-3 col-lg-6 text-lg-start text-center text-md-center">
-                  SCHEDULE 
-                  AND AGENDA
+                <h1
+                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
+                >
+                  SCHEDULE AND AGENDA
                 </h1>
-                <p class="mb-3 col-lg-6 text-lg-start text-center text-md-center">
-                  A representation of the event 
-                  planning of Global Summit
+                <p
+                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
+                >
+                  A representation of the event planning of Global Summit
                 </p>
 
                 <button (click)="downloadPDF()" class="btn btn-success p-md-3">
@@ -430,7 +499,7 @@
                       href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
                       style="text-decoration: none"
                       target="_blank"
-                      >Exhibition Centre (DEC), Expo City, Dubai</a
+                      >DEC at Dubai Expo City</a
                     >
                   </h4>
                 </div>
@@ -455,10 +524,7 @@
                           class="event"
                           [attr.data-date]="event.time"
                           [attr.data-count]="i + 1"
-                          *ngFor="
-                            let event of events_day1 ;
-                            let i = index
-                          "
+                          *ngFor="let event of events_day1; let i = index"
                         >
                           <h3
                             class="fw-bold"
@@ -524,7 +590,6 @@
                     </p>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -607,15 +672,24 @@
 
 <!-- Modal -->
 
-
-
-<div class="modal fade" id="seeAllSpeakers" tabindex="-1" aria-labelledby="seeAllSpeakersLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="seeAllSpeakers"
+  tabindex="-1"
+  aria-labelledby="seeAllSpeakersLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12 text-end">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="col-md-3 py-3" *ngFor="let slide of slides">
             <div class="card">

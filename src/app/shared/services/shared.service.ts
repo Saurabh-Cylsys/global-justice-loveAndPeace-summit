@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ApiEndpointsService } from 'src/app/core/services/api-endpoints.service';
 import { ApiHttpService } from 'src/app/core/services/api-http.service';
-import { Observable, Subject } from 'rxjs';
-import { delay, filter } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { META_CONFIG } from '../classes/meta.config';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +29,8 @@ export class SharedService {
     private meta: Meta,
     private titleService: Title,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -55,7 +56,7 @@ export class SharedService {
             const link: HTMLLinkElement = document.querySelector('link[rel="canonical"]') || document.createElement('link');
             link.setAttribute('rel', 'canonical');
             link.setAttribute('href', metaInfo.link);
-            
+
             if (!document.head.contains(link)) {
                 document.head.appendChild(link);
             }
@@ -130,6 +131,10 @@ private getRouteData(): any {
   brochure(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.sales_brochureEndpoint(), data
     )
+  }
+
+  getIPAddress() {
+    return this._apiHttpService.get('https://api64.ipify.org?format=json')
   }
 
 }
