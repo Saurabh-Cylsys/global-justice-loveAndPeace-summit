@@ -9,11 +9,13 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { IntlInputPhoneModule } from 'intl-input-phone';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DelegateWithChildComponent } from './components/delegate-with-child/delegate-with-child.component';
+import { DelegateRegistrationSeoComponent } from './components/delegate-registration-seo/delegate-registration-seo.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
     DelegateRegistrationComponent,
-    DelegateWithChildComponent
+    DelegateWithChildComponent,
+    DelegateRegistrationSeoComponent
   ],
   imports: [
     CommonModule,
