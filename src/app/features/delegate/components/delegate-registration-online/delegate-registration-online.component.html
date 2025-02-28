@@ -8,9 +8,8 @@
       style="min-height: calc(100vh - 180px)"
     >
       <div class="fb-container p-0 border-1 ">
-        <div class="single-content-container shadow-lg">
-          <h1 class="fs-3 fs-md-2 fs-lg-1 text-center">Delegate Registration</h1>
-
+        <div class="container border-1 shadow-sm">
+          <h1 class="fs-3 fs-md-2 fs-lg-1 text-center">Delegate Registration</h1>          
           <div class="clearfix"></div>
           <div id="regformcontainer">
             <div class="clearfix"></div>
@@ -20,7 +19,7 @@
               autocomplete="off"
             >
               <div
-                class="clearfix section7 p-lg-5 position-relative"
+                class="clearfix p-lg-5 position-relative"
                 style="z-index: 1"
               >
                 <div class="form-step-wrapper" id="formstep-1">
@@ -373,7 +372,7 @@
                                 class="form-group fg-email col-md-6 col-sm-6 my-3"
                               >
                                 <div class="col-md-12 no-padding">
-                                  <div class="">
+                                  <div class="">                                
                                     <label
                                       class="col-md-12 no-padding p-0"
                                       for="email1"
@@ -400,6 +399,8 @@
                                       autocomplete="off"
                                       data-error="Please enter valid email id"
                                       formControlName="email_id"
+                                      [readonly]="isOnline"
+                                      [disabled]="isOnline"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.email_id.errors

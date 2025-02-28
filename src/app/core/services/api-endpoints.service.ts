@@ -334,4 +334,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ONLINE);
   }
 
+  public postRegistrationOnlineEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE);
+  }
 }

@@ -53,12 +53,7 @@ export class DelegateOnlineComponent implements OnInit {
     this.checkQueryParams();
     this.setupFormSubscriptions();
   }
-  private encrypt(text: string): string {
-    return this.encryptionService.encrypt(text);
-  }
-  private decrypt(encryptedText: string): string {
-    return this.encryptionService.decrypt(encryptedText);
-  }
+  
 
   private initializeForms() {
     this.userForm = this.fb.group({
@@ -108,6 +103,14 @@ export class DelegateOnlineComponent implements OnInit {
           //console.log('Session Verified:', response.session);
           this.isPaymentStatus = true;
           this.transactionVerified = true;          
+          this.showPaymentSuccess = true;
+          if (this.registrationData && this.paymentSuccess) {
+            this.userForm.patchValue({
+              name: this.registrationData.name,
+              email: this.registrationData.email,
+              mobile: this.registrationData.mobile_no
+            });
+          }
         } else {          
           this.isPaymentStatus = 'failed';          
         }
@@ -153,17 +156,8 @@ export class DelegateOnlineComponent implements OnInit {
   }
   async handlePaymentSuccess() {
 
-    await this.verifySession();
-
-
-  
-    if (this.registrationData && this.paymentSuccess) {
-      this.userForm.patchValue({
-        name: this.registrationData.name,
-        email: this.registrationData.email,
-        mobile: this.registrationData.mobile_no
-      });
-    }
+    await this.verifySession();  
+    
   }
   showCompleteProfile() {
     const params = {
@@ -174,7 +168,7 @@ export class DelegateOnlineComponent implements OnInit {
     };
     sessionStorage.setItem('IsOnline', 'true');
     const encryptedParams = this.encryptionService.encryptData(params);
-    this.router.navigate(['/delegate-registration'], {
+    this.router.navigate(['/delegate-registration-online'], {
       queryParams: { data: encryptedParams }
     });
     // this.router.navigate(['/delegate-registration'], {
