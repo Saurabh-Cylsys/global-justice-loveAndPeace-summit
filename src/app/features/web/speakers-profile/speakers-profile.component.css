@@ -35,6 +35,45 @@
         html {
           font-size: 12px;
         }
+        .global-justice .ellipse {
+          position: absolute;
+          width: 77px;
+          height: 77px;
+          top: 143px;
+          left: 215px;
+          background-color: #1b288e;
+          border-radius: 38.5px;
+        }
+  
+        .global-justice .ellipse-2 {
+          position: absolute;
+          width: 38px;
+          height: 38px;
+          top: 74px;
+          left: 205px;
+          background-color: #fdeeb3;
+          border-radius: 19px;
+        }
+  
+        .global-justice .ellipse-3 {
+          position: absolute;
+          width: 34px;
+          height: 34px;
+          top: 16px;
+          left: 362px;
+          background-color: #ffc000;
+          border-radius: 17px;
+        }
+  
+        .global-justice .ellipse-4 {
+          position: absolute;
+          width: 110px;
+          height: 110px;
+          top: 74px;
+          left: 292px;
+          background-color: #f19434;
+          border-radius: 55px;
+        }
       }
       .global-justice {
         background-color: #ffffff;
@@ -45,10 +84,10 @@
       }
 
       .global-justice .all-frames-wrapper {
-        background-color: #ffffff;
+        /* background-color: #ffffff; */
         overflow: hidden;
         width: 80%;
-        height: 1825px;
+        height: auto;
       }
 
       .global-justice .all-frames {
@@ -113,7 +152,7 @@
         font-family: "DINPro-Bold", Helvetica;
         font-weight: 700;
         color: #040000;
-        font-size: 20px;
+        font-size: clamp(13px, 2vw, 20px);
         letter-spacing: 0;
         line-height: normal;
       }
@@ -237,7 +276,7 @@
         font-family: "DINPro-Bold", Helvetica;
         font-weight: 700;
         color: #040000;
-        font-size: 24px;
+        font-size: clamp(16px, 2vw, 24px);
         letter-spacing: 0;
         line-height: normal;
       }
@@ -322,7 +361,7 @@
         font-family: "DINPro-Medium", Helvetica;
         font-weight: 500;
         color: #000000;
-        font-size: 20px;
+        font-size: clamp(14px, 2vw, 20px);
         letter-spacing: 0;
         line-height: 20px;
       }
@@ -378,7 +417,8 @@
         display: flex;
         flex-direction: column;
         width: 50%;
-        height: 116px;
+        /* height: 116px; */
+        height: clamp(100px, 2vw, 116px);
         align-items: flex-start;
         gap: 10px;
         padding: 8px;
@@ -538,7 +578,7 @@
         font-family: "DINPro-Medium", Helvetica;
         font-weight: 500;
         color: #000000;
-        font-size: 20px;
+        font-size: clamp(14px, 2vw, 20px);
         letter-spacing: 0;
         line-height: 20px;
         white-space: nowrap;
@@ -548,7 +588,7 @@
         position: relative;
         align-self: stretch;
         width: 100%;
-        height: 235px;
+        height: auto;
         background: linear-gradient(
           180deg,
           rgb(58, 153, 72) 0%,
@@ -560,8 +600,8 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        top: 16px;
-        right: 16px;
+        /* top: 16px;
+        right: 16px; */
         display: flex;
         position: relative;
       }
@@ -590,7 +630,7 @@
         font-family: "DINPro-Bold", Helvetica;
         font-weight: 700;
         color: #ffffff;
-        font-size: 34px;
+        font-size: clamp(20px, 2vw, 34px);
         letter-spacing: 0;
         line-height: normal;
       }
@@ -914,5 +954,9 @@
         .global-justice .frame-6,
         .global-justice .frame-7 {
           width: 100%;
+        }
+
+        .global-justice .frame-wrapper, .global-justice .element-4, .global-justice .element-5, .global-justice .element-6, .global-justice .element-7, .global-justice .element-8 {
+          height: 150px;
         }
       }
