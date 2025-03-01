@@ -149,6 +149,7 @@
         <div class="frame-4">
           <div class="w-50">
             <img 
+            *ngif="speaker.photo"
               class="image-2"
               [src]="speaker.photo"
               alt="{{speaker.speaker_name}} at an event"
@@ -166,14 +167,19 @@
       </section>
       <section class="card-wrapper">
         <div class="card">
-          <img
+          <!-- <img
             class="share-link-pana"
-            src="c:/Users/akash/Downloads/1707486828.svg"
+            src="img/pana.png"
             alt="Share illustration"
-          />
+          /> -->
           <p class="share-with-your">
             Share with your friends<br />about this event.
           </p>
+          
+      <div class="contianer-fluid text-center mt-5">
+        <button #shareBtn class="btn btn-success px-5" (click)="shareContent()">Share</button>
+      </div>
+    
         </div>
       </section>
       <section class="element-11">
