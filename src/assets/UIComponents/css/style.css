@@ -1544,6 +1544,7 @@ header .nav-item .nav-link.active {
 .list:focus {
   outline: none;
   box-shadow: none;
+  border: 1px solid #ffffff;
 }
 
 .iti {
