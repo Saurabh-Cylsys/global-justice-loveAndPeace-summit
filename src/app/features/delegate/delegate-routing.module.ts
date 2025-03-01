@@ -6,6 +6,7 @@ import { DelegateWithChildComponent } from './components/delegate-with-child/del
 import { DelegateOnlineComponent } from './components/delegate-online/delegate-online.component';
 import { DelegateRegistrationSeoComponent } from './components/delegate-registration-seo/delegate-registration-seo.component';
 import { DelegateRegistrationOnlineComponent } from './components/delegate-registration-online/delegate-registration-online.component';
+import { DelegatePeaceStudentComponent } from './components/delegate-peace-student/delegate-peace-student.component';
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +18,7 @@ const routes: Routes = [
       {path:'delegate-online',component:DelegateOnlineComponent},
       {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
       {path:'delegate-registration-online',component:DelegateRegistrationOnlineComponent},
+      {path:'delegate-student',component:DelegatePeaceStudentComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },

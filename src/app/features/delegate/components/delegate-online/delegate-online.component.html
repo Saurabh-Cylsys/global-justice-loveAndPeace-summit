@@ -108,14 +108,25 @@
               <span class="required-icon"></span>
               <label for="country" class="p-0">Country<span class="form-label" style="color: #ff0000">*</span></label>
               <div class="position-relative">
-                <input type="text" class="form-control" [formControlName]="'countrySearch'" (input)="filterCountries($event)" placeholder="Search country..." [value]="selectedCountryName" autocomplete="off">
+                <input type="text" class="form-control" [formControlName]="'countrySearch'"
+                  (input)="filterCountries($event)" placeholder="Search country..." [value]="selectedCountryName"
+                  autocomplete="off">
                 <div class="dropdown-menu w-100" [class.show]="showCountryDropdown && filteredCountries.length > 0">
-                  <button type="button" class="dropdown-item" *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
+                  <button type="button" class="dropdown-item" *ngFor="let country of filteredCountries"
+                    (click)="selectCountry(country)">
                     {{ country.name }}
                   </button>
                 </div>
               </div>
             </div>
+            <div class="mb-3">
+              <label for="reference_no" class="form-label">Reference No</label>
+              <input type="text" name="reference_no" maxlength="50" id="profession2" placeholder="Enter reference no."
+                class="form-control" [readonly]="this.referralCode? this.referralCode: ''" formControlName="reference_no" minlength="3" autocomplete="off"
+                (input)="onInput($event, 'reference_no')" />
+                
+            </div>
+
 
             <div class="d-grid">
               <button type="submit" class="btn btn-success" [disabled]="!userForm.valid || loading">

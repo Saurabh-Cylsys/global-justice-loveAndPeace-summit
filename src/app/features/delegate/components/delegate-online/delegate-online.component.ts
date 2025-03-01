@@ -44,7 +44,7 @@ export class DelegateOnlineComponent implements OnInit {
   showCountryDropdown = false;
   filteredCountries: any[] = [];
   selectedCountryName = '';
-
+  referralCode:any;
   constructor(
     private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -173,6 +173,51 @@ export class DelegateOnlineComponent implements OnInit {
       });
     }
   }
+
+  onInput(event: any, controlName: string) {
+    let inputValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
+
+    let allowedPattern: RegExp;
+
+    switch (controlName) {
+      case 'first_name':
+        allowedPattern = /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
+        break;
+      case 'last_name':
+        allowedPattern = /^[a-zA-Z\s-]+$/; // Allows only alphabets, spaces, and hyphens
+        break;
+      case 'email_id':
+        allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
+        inputValue = inputValue.toLowerCase(); // Convert email to lowercase
+        break;
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs
+        break;
+      case 'title':
+        allowedPattern = /^[a-zA-Z]+$/; // **Alphabets only (A-Z, a-z), no spaces**
+        break;
+      case 'organization_name':
+        allowedPattern = /^[a-zA-Z. ]+$/; // Allows alphabets, a single space, and a period (.)
+        break;
+      default:
+        allowedPattern = /.*/; // No restriction for other fields
+    }
+
+    // Remove invalid characters dynamically
+    inputValue = inputValue
+      .split('')
+      .filter((char: any) => allowedPattern.test(char))
+      .join('');
+
+    // Update the form control with the cleaned value
+    this.userForm.controls[controlName].setValue(inputValue, {
+      emitEvent: false,
+    });
+  }
+
   checkFormValidity() {
     if (this.userForm.valid) {
       //this.createDelegateOnline();

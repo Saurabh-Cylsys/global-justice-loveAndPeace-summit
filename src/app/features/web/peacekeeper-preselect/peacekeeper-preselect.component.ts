@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PeacekeeperPreselectComponent {
   referralCode: string = '';
   mediumValue: string | null = '';
+  packageAmt: number = 2800;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -29,7 +30,7 @@ export class PeacekeeperPreselectComponent {
 
       this.referralCode = params.code;
       if(params.medium == 1 && params.code) {
-
+        this.packageAmt = 2640;
         this.router.navigate(['/delegate-registration'], {
           queryParams: { code: this.referralCode }, // Pass query params
           queryParamsHandling: 'merge', // Preserve existing query params (optional)
@@ -50,14 +51,14 @@ export class PeacekeeperPreselectComponent {
 
   goToDelegatePage() {
 
-    this.router.navigate(['/delegate-registration'], {
+    this.router.navigate(['/delegate-online'], {
       queryParams: { code: this.referralCode ,medium :0 }
     });
   }
 
   goToChildNomination() {
 
-    this.router.navigate(['/delegate-child-nomination'], {
+    this.router.navigate(['/delegate-student'], {
       queryParams: { code: this.referralCode }
     });
   }
