@@ -219,7 +219,7 @@
 
       .global-justice .img {
         position: absolute;
-        width: 194px;
+        /* width: 194px; */
         height: 290px;
         top: 16px;
         right: 214px;
@@ -608,7 +608,7 @@
 
       .global-justice .image-2 {
         position: relative;
-        width: 176.56px;
+        /* width: 176.56px; */
         height: 219px;
         object-fit: cover;
         left: 17px;

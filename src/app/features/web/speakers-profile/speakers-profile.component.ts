@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -16,6 +17,9 @@ export class SpeakersProfileComponent implements OnInit {
   speakersId: any;
   speakersName: any = '';
   isLoading = true;
+ totalColor :  any[] = [];
+  tinyURL : string = environment.tinyUrl;
+
   constructor(
     private webService: WebService,
     private datePipe: DatePipe,
@@ -25,9 +29,13 @@ export class SpeakersProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2
   ) { }
+  
+  
 
+  
 
   ngOnInit(): void {
+    this.getrandomcolor(10)
 
 
     this.route.params.subscribe((params: any) => {
@@ -45,6 +53,21 @@ export class SpeakersProfileComponent implements OnInit {
 
 
   }
+
+  
+  getrandomcolor(length:any) {
+    let letters = '0123456789ABCDEF';
+  
+    for (let i = 0; i < length; i++) {
+      let color = '#';
+      for (let j = 0; j < 6; j++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }    this.totalColor.push(color);
+    }
+  
+    console.log(this.totalColor);
+  }
+
   loadSpeakers() {
     this.isLoading = true;
 
@@ -58,8 +81,12 @@ export class SpeakersProfileComponent implements OnInit {
             debugger
             this.speakersDetails = response?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
+
             console.log(this.speakersDetails, 'list of speakers');
 
+
+            // this.speakersDetails[0].speaker_details = this.transformSpeakerData(this.speakersDetails[0].speaker_details);
+            // this.speakersDetails[0].speaker_details = [...this.speakersDetails[0].speaker_details];
 
           } else {
             this.speakersDetails = [];
@@ -74,8 +101,27 @@ export class SpeakersProfileComponent implements OnInit {
         }
       });
   }
+ 
+  private transformSpeakerData(data:any): any[] {
+    // Group speakers into chunks of 4 speakers per group
+    const groupSize = 2;
+    const groups = [];
+    
+    for (let i = 0; i < data.length; i += groupSize) {
+      groups.push({
+        details: data.slice(i, i + groupSize)
+      });
+    }
+    
+    return groups;
+  }
 
+  navigateUrl() {
+     const tinyUrlWithParams = `${this.tinyURL}`;
+    // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
+        window.location.href = tinyUrlWithParams;
 
+  }
   ngOnDestroy(): void {
     
   }

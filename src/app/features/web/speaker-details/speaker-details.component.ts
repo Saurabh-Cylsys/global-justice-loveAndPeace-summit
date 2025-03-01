@@ -100,7 +100,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
                 speaker_name: item.speaker_name || '',
                 speaker_country: item.speaker_country || '',
                 speaker_credentials: item.speaker_credentials || '',
-                profile_photo: item.profile_photo || ''
+                profile_photo: item.photo_1 || ''
               }));
             
             // Transform the mapped data into groups

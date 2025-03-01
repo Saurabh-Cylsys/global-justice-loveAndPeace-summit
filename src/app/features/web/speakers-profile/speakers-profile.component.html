@@ -15,11 +15,11 @@
               <div class="ellipse-4" aria-hidden="true"></div>
               <img class="image" src="assets/UIComponents/images/index/global justice summit.png" alt="Logo" />
             </div>
-            <img class="img" *ngIf="speaker.profile_photo" [src]="speaker.profile_photo" alt="{{speaker.speaker_name}} portrait" />
+            <img class="img" *ngIf="speaker.photo" [src]="speaker.photo" alt="{{speaker.speaker_name}} portrait" />
           </div>
           <div class="scroll">
             <p class="text-wrapper-2">Join Me</p>
-            <a type="btn" class="btn btn-success me-2" style="width: 150px;margin: -10px 0 0 0;">Be a Delegate</a
+            <a type="btn" class="btn btn-success me-2"  (click)="navigateUrl()" style="width: 150px;margin: -10px 0 0 0;">Be a Delegate</a
           >
           </div>
         </div>
@@ -120,19 +120,46 @@
             </div>
           </article>
         </div>
+
+
+
+
+
+        <!-- new card -->
+<!--  <div class="cards">
+          <div *ngFor="let details of speakersDetails[0]?.speaker_details; let i = index"  [ngStyle]="{'border-color': totalColor[i % totalColor.length]}"
+               class="element-3" 
+            >
+            <article class="frame-wrapper"  *ngFor="let detail of details.details;">
+              <div class="frame">
+                <div class="group">
+                  <div class="div-wrapper"  [ngStyle]="{'background-color': totalColor[i % totalColor.length]}">
+                    <span class="text-wrapper-4">{{ i + 1 }}</span>
+                  </div>
+                </div>
+                <p class="text-wrapper-5">{{ detail }}</p>
+              </div>
+            </article>
+          </div>
+        </div> -->
+        
+
       </section>
       <section class="element-10">
         <div class="frame-4">
-          <img 
-            class="image-2 w-50"
-            [src]="speaker.profile_photo"
-            alt="{{speaker.speaker_name}} at an event"
-          />
+          <div class="w-50">
+            <img 
+              class="image-2"
+              [src]="speaker.photo"
+              alt="{{speaker.speaker_name}} at an event"
+            />
+          </div>
           <div class="frame-5 w-50">
             <h2 class="text-wrapper-9">Meet me at</h2>
             <p class="the-global-justice">
               the Global Justice, Love & Peace Summit 2025! I am a
-              Peacekeeper—join me in making a difference. Register now!
+              Peacekeeper—join me in making a difference.   <a type="btn" class="btn btn-success me-2"> Register now!</a
+                >
             </p>
           </div>
         </div>
@@ -141,7 +168,7 @@
         <div class="card">
           <img
             class="share-link-pana"
-            src="img/pana.png"
+            src="c:/Users/akash/Downloads/1707486828.svg"
             alt="Share illustration"
           />
           <p class="share-with-your">
@@ -167,7 +194,7 @@
             🚀 Some experiences are too powerful to miss—be there!
           </p>
         </div>
-        <a href="#" class="frame-7" role="button"
+        <a (click)="navigateUrl()" class="frame-7" role="button"
           ><span class="text-wrapper-11">Register as a Delegate</span></a
         >
       </section>
