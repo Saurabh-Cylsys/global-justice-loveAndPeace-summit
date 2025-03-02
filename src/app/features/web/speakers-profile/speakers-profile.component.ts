@@ -80,7 +80,7 @@ export class SpeakersProfileComponent implements OnInit {
           if (response?.data) {
             this.speakersDetails = response?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
-            this.speakersDetails[0].qr_code =  ""
+            this.speakersDetails[0].qr_code =  this.speakersDetails[0].url
             console.log(this.speakersDetails, 'list of speakers');
 
 
@@ -116,7 +116,7 @@ export class SpeakersProfileComponent implements OnInit {
   }
 
   navigateUrl() {
-     const tinyUrlWithParams = `${this.tinyURL}`;
+     const tinyUrlWithParams = `${this.speakersDetails[0].url}`;
     // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
         window.location.href = tinyUrlWithParams;
 
@@ -135,7 +135,7 @@ export class SpeakersProfileComponent implements OnInit {
   shareContent(): void {
 
     // Ensure that speakersDetails.qr_code is available
-    if (!this.speakersDetails[0].qr_code && !this.speakersDetails[0].QR_CODE) {
+    if (!this.speakersDetails[0].url && !this.speakersDetails[0].QR_CODE) {
       this._sharedService.ToastPopup("QR Code URL is missing.", '', 'error');
       return;
     }
@@ -194,7 +194,7 @@ _"where every smile counts"_ 😊✨
 
 📢 *Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.*
 
- ${this.speakersDetails[0].qr_code || this.speakersDetails[0].QR_CODE}
+ ${this.speakersDetails[0].url || this.speakersDetails[0].QR_CODE}
 
 📞 *Summit Helpline* ☎️
 INTERNATIONAL : +971543257125
