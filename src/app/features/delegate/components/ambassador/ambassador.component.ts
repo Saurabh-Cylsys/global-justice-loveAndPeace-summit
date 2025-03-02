@@ -8,10 +8,10 @@ import { DelegateService } from '../../services/delegate.service';
   styleUrls: ['./ambassador.component.css']
 })
 export class AmbassadorComponent {
-  
+
   name: string | null = null;
 
-  constructor(private router: Router, private route: ActivatedRoute,private delegateService:DelegateService) {}
+  constructor(private router: Router, private route: ActivatedRoute, private delegateService: DelegateService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(async params => {
@@ -21,8 +21,8 @@ export class AmbassadorComponent {
         let body = {
           "coupon_code": this.name
         }
-        await this.delegateService.getAmbassadorURL(body).subscribe((resp:any) => {
-          console.log(resp);         
+        await this.delegateService.getAmbassadorURL(body).subscribe((resp: any) => {
+          console.log(resp);
           /**{
           "url": "https://www.justice-love-peace.com/delegate-registration?code=COIND-0000072-A",
           "success": true,
@@ -30,21 +30,23 @@ export class AmbassadorComponent {
       } */
 
 
-          if(resp.success){
+          if (resp.success) {
             let url = resp.url;
-            url = url.replace('https://www.justice-love-peace.com', '/');
 
-            // Extract the 'code' parameter from the URL
-            const urlObj = new URL(resp.url);
-            const codeParam = urlObj.searchParams.get('code');
+            // Use URLSearchParams to parse the query string
+            const queryString = url.split('?')[1];
+            const params = new URLSearchParams(queryString);
 
-            url = urlObj.searchParams.delete('code');
+            // Extract the 'code' parameter
+            const code = params.get('code');
+
+            console.log(code); // Output: COIND-0000072-A
             // Navigate to the new URL with the 'code' parameter
-            if (codeParam) {
-              this.router.navigate(['/peacekeeper-preselect'], { queryParams: { code: codeParam } });
+            if (code) {
+              this.router.navigate(['/peacekeeper-preselect'], { queryParams: { code: code } });
             }
           }
-          
+
         });
       }
     });
