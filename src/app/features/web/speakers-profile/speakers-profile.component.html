@@ -1,31 +1,49 @@
-<main class="global-justice section5">
+<div class="section5">
+<main class="global-justice ">
   <div class="all-frames-wrapper shadow">
-    <div class="all-frames" *ngFor="let speaker of this.speakersDetails" >
+    <div class="all-frames" *ngFor="let speaker of this.speakersDetails">
       <header class="element">
         <div class="overlap">
           <div class="overlap-group">
             <div class="div">
               <div class="text">
-                <h1 class="text-wrapper">{{speaker.speaker_name}}</h1>
-                <p class="p">{{speaker.speaker_country}} : {{speaker.speaker_credentials}}</p>
+                <h1 class="text-wrapper">{{ speaker.speaker_name }}</h1>
+                <p class="p">
+                  {{ speaker.speaker_country }} :
+                  {{ speaker.speaker_credentials }}
+                </p>
               </div>
               <div class="ellipse" aria-hidden="true"></div>
               <div class="ellipse-2" aria-hidden="true"></div>
               <div class="ellipse-3" aria-hidden="true"></div>
               <div class="ellipse-4" aria-hidden="true"></div>
-              <img class="image" src="assets/UIComponents/images/index/global justice summit.png" alt="Logo" />
+              <img
+                class="image"
+                src="assets/UIComponents/images/index/global justice summit.png"
+                alt="Logo"
+              />
             </div>
-            <img class="img" *ngIf="speaker.photo" [src]="speaker.photo" alt="{{speaker.speaker_name}} portrait" />
+            <img
+              class="img"
+              *ngIf="speaker.photo"
+              [src]="speaker.photo"
+              alt="{{ speaker.speaker_name }} portrait"
+            />
           </div>
           <div class="scroll">
             <p class="text-wrapper-2">Join Me</p>
-            <a type="btn" class="btn btn-success me-2"  (click)="navigateUrl()" style="width: 150px;margin: -10px 0 0 0;">Be a Delegate</a
-          >
+            <a
+              type="btn"
+              class="btn btn-success me-2"
+              (click)="navigateUrl()"
+              style="width: 150px; margin: -10px 0 0 0"
+              >Be a Delegate</a
+            >
           </div>
         </div>
       </header>
       <section class="element-2">
-        <h2 class="text-wrapper-3">About {{speaker.speaker_name}}</h2>
+        <h2 class="text-wrapper-3">About {{ speaker.speaker_name }}</h2>
         <div class="cards">
           <div class="element-3">
             <article class="frame-wrapper">
@@ -36,7 +54,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[0]}}
+                  {{ speaker.speaker_details[0] }}
                 </p>
               </div>
             </article>
@@ -48,7 +66,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[1]}}
+                  {{ speaker.speaker_details[1] }}
                 </p>
               </div>
             </article>
@@ -62,7 +80,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[2]}}
+                  {{ speaker.speaker_details[2] }}
                 </p>
               </div>
             </article>
@@ -74,8 +92,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[3]}}
-
+                  {{ speaker.speaker_details[3] }}
                 </p>
               </div>
             </article>
@@ -89,8 +106,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[4]}}
-
+                  {{ speaker.speaker_details[4] }}
                 </p>
               </div>
             </article>
@@ -102,7 +118,7 @@
                   </div>
                 </div>
                 <p class="text-wrapper-5">
-                  {{speaker.speaker_details[5]}}
+                  {{ speaker.speaker_details[5] }}
                 </p>
               </div>
             </article>
@@ -115,18 +131,14 @@
                 </div>
               </div>
               <p class="acted-in-bollywood">
-                {{speaker.speaker_details[6]}}
+                {{ speaker.speaker_details[6] }}
               </p>
             </div>
           </article>
         </div>
 
-
-
-
-
         <!-- new card -->
-        
+
         <!-- <div class="row">
           <article class="frame-wrapper"  *ngFor="let detail of speakersDetails[0]?.speaker_details; let i = index" [ngClass]="{'w-100':  i % 2 == 0 && i === speakersDetails[0]?.speaker_details.length - 1}"   [ngStyle]="{'border-color': totalColor[i % totalColor.length]}">
             <div class="frame">
@@ -139,24 +151,24 @@
             </div>
           </article>         
         </div> -->
-
       </section>
       <section class="element-10">
         <div class="frame-4">
-          <div class="w-50">
-            <img 
-            *ngIf="speaker.photo" [src]="speaker.photo"
+          <div class="col-5">
+            <img
+              *ngIf="speaker.photo"
+              [src]="speaker.photo"
               class="image-2"
-              alt="{{speaker.speaker_name}} at an event"
+              alt="{{ speaker.speaker_name }} at an event"
             />
           </div>
-          <div class="frame-5 w-50">
+          <div class="col-7">
             <h2 class="text-wrapper-9">Meet me at</h2>
             <p class="the-global-justice">
-              the Global Justice, Love & Peace Summit 2025! I am a
-              Peacekeeper—join me in making a difference.   <a type="btn" class="btn btn-success me-2"> Register now!</a
-                >
+              the Global Justice, Love & Peace Summit 2025! I am a Peacekeeper.
             </p>
+            <p class="the-global-justice">—join me in making a difference.</p>
+            <a type="btn" class="btn btn-success me-2"> Register now!</a>
           </div>
         </div>
       </section>
@@ -167,14 +179,97 @@
             src="img/pana.png"
             alt="Share illustration"
           /> -->
-          <p class="share-with-your">
-            Share with your friends<br />about this event.
-          </p>
-          
-      <div class="contianer-fluid text-center mt-5">
-        <button #shareBtn class="btn btn-success px-5" (click)="shareContent()">Share</button>
-      </div>
-    
+          <div class="row align-items-center">
+            <div class="col-12">
+              <h2 class="share-with-your m-auto">
+                Share with your friends about this event.
+              </h2>
+            </div>
+            <div class="col-md-6">
+              <img
+                src="assets/UIComponents/images/share.svg"
+                alt="Share illustration"
+                class="img-fluid"
+                width="100%"
+              />
+            </div>
+            <div class="col-md-6 text-center">
+              <ul
+                style="
+                  display: flex;
+                  justify-content: space-around;
+                  list-style: none;
+                  padding: 0;
+                "
+              >
+                <li>
+                  <img
+                    src="assets/UIComponents/images/index/fb.svg"
+                    alt="Facebook"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/index/insta.svg"
+                    alt="insta"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/index/whatsapp.svg"
+                    alt="wa"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/index/linkedIn.svg"
+                    alt="link"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="assets/UIComponents/images/index/telegram.svg"
+                    alt="tel"
+                  />
+                </li>
+              </ul>
+              <!-- <div class="input-group">
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  value="www.justice-love-peace.com"
+                />
+              </div> -->
+              <div class="link-share">
+                <div class="link-container">
+                  <label for="link-input" class="link-label">Link</label>
+                  <div class="link-input-wrapper">
+                    <input
+                      type="text"
+                      id="link-input"
+                      class="link-input"
+                      value="www.justice-love-peace.com"
+                      readonly
+                      aria-label="Link to share"
+                    />
+                    <button class="copy-button" aria-label="Copy link">
+                      <img class="copy-icon" src="assets/UIComponents/images/link.svg" alt="Copy icon" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="contianer-fluid text-center mt-5">
+                <button
+                  #shareBtn
+                  class="btn btn-success px-5"
+                  (click)="shareContent()"
+                >
+                  Share
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section class="element-11">
@@ -183,13 +278,12 @@
             Be Part of the Peace<br />keeper Movement!
           </h2>
           <p class="text-wrapper-10">
-            Feeling inspired by Dia Mirza's journey? Now it's your turn to
-            make an impact! Join the Global Justice, Love & Peace Summit as
-            a Delegate and connect with 72 renowned speakers, network with
-            2,800 Peacekeepers, and be part of exclusive VIP experiences.
-            Register now to engage in meaningful conversations, celebrate
-            changemakers, and contribute to a world of justice, love, and
-            peace.
+            Feeling inspired by Dia Mirza's journey? Now it's your turn to make
+            an impact! Join the Global Justice, Love & Peace Summit as a
+            Delegate and connect with 72 renowned speakers, network with 2,800
+            Peacekeepers, and be part of exclusive VIP experiences. Register now
+            to engage in meaningful conversations, celebrate changemakers, and
+            contribute to a world of justice, love, and peace.
           </p>
           <p class="text-wrapper-10">
             🚀 Some experiences are too powerful to miss—be there!
@@ -201,4 +295,4 @@
       </section>
     </div>
   </div>
-</main>
+</main></div>
