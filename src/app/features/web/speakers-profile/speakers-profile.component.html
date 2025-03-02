@@ -168,7 +168,7 @@
               the Global Justice, Love & Peace Summit 2025! I am a Peacekeeper.
             </p>
             <p class="the-global-justice">—join me in making a difference.</p>
-            <a type="btn" class="btn btn-success me-2"> Register now!</a>
+            <a type="btn" (click)="navigateUrl()" class="btn btn-success me-2"> Register now!</a>
           </div>
         </div>
       </section>
@@ -249,11 +249,14 @@
                       type="text"
                       id="link-input"
                       class="link-input"
-                      value="www.justice-love-peace.com"
+                      value="www.justice-love-peace.com"                      
                       readonly
+                      #webQRcode
                       aria-label="Link to share"
                     />
-                    <button class="copy-button" aria-label="Copy link">
+                    <button class="copy-button" (click)="
+                    copyInputMessage(webQRcode)
+                  " value="click to copy" aria-label="Copy link">
                       <img class="copy-icon" src="assets/UIComponents/images/link.svg" alt="Copy icon" />
                     </button>
                   </div>

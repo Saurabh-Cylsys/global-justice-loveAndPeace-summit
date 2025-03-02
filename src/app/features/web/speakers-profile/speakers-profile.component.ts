@@ -23,7 +23,7 @@ export class SpeakersProfileComponent implements OnInit {
   constructor(
     private webService: WebService,
     private datePipe: DatePipe,
-    private SharedService: SharedService,
+    private _sharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
@@ -78,7 +78,6 @@ export class SpeakersProfileComponent implements OnInit {
 
         next: (response: any) => {
           if (response?.data) {
-            debugger
             this.speakersDetails = response?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
             this.speakersDetails[0].qr_code =  ""
@@ -123,11 +122,21 @@ export class SpeakersProfileComponent implements OnInit {
 
   }
 
+  copyInputMessage(inputElement: HTMLInputElement) {
+    if (inputElement && inputElement.value) {
+      navigator.clipboard.writeText(inputElement.value).then(() => {
+        this._sharedService.ToastPopup("Copied to clipboard!", "", "success");
+      }).catch(err => {
+        console.error("Failed to copy: ", err);
+      });
+    }
+  }
+
   shareContent(): void {
 
     // Ensure that speakersDetails.qr_code is available
     if (!this.speakersDetails[0].qr_code && !this.speakersDetails[0].QR_CODE) {
-      this.SharedService.ToastPopup("QR Code URL is missing.", '', 'error');
+      this._sharedService.ToastPopup("QR Code URL is missing.", '', 'error');
       return;
     }
 

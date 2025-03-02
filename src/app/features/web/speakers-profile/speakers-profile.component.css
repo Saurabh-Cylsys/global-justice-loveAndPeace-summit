@@ -287,7 +287,7 @@ html {
 .global-justice .cards {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   align-items: flex-start;
   gap: 10px;
   position: relative;
@@ -364,7 +364,7 @@ html {
   font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #000000;
-  font-size: clamp(14px, 2vw, 20px);
+  font-size: clamp(14px, 2vw, 16px);
   letter-spacing: 0;
   line-height: 20px;
 }
@@ -421,7 +421,7 @@ html {
   flex-direction: column;
   width: 50%;
   /* height: 116px; */
-  height: clamp(100px, 2vw, 116px);
+  height: clamp(116px, 2vw, 116px);
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -581,7 +581,7 @@ html {
   font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #000000;
-  font-size: clamp(14px, 2vw, 20px);
+  font-size: clamp(14px, 2vw, 16px);
   letter-spacing: 0;
   line-height: 20px;
   white-space: nowrap;
