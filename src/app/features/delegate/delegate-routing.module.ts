@@ -4,6 +4,7 @@ import { DelegateMainComponent } from './components/delegate-main/delegate-main.
 import { DelegateRegistrationComponent } from './components/delegate-registration/delegate-registration.component';
 import { DelegateWithChildComponent } from './components/delegate-with-child/delegate-with-child.component';
 import { DelegateRegistrationSeoComponent } from './components/delegate-registration-seo/delegate-registration-seo.component';
+import { AmbassadorComponent } from './components/ambassador/ambassador.component';
 const routes: Routes = [
   {
     path: '',
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path:'delegate-registration',component:DelegateRegistrationComponent},
       {path:'delegate-child-nomination',component:DelegateWithChildComponent},
       {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
+      { path: 'ambassador/:name', component: AmbassadorComponent },
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },
