@@ -22,8 +22,29 @@ export class AmbassadorComponent {
           "coupon_code": this.name
         }
         await this.delegateService.getAmbassadorURL(body).subscribe((resp:any) => {
-          console.log(resp);          
-          this.router.navigate(['']);
+          console.log(resp);         
+          /**{
+          "url": "https://www.justice-love-peace.com/delegate-registration?code=COIND-0000072-A",
+          "success": true,
+          "error": false
+      } */
+
+
+          if(resp.success){
+            let url = resp.url;
+            url = url.replace('https://www.justice-love-peace.com', '/');
+
+            // Extract the 'code' parameter from the URL
+            const urlObj = new URL(resp.url);
+            const codeParam = urlObj.searchParams.get('code');
+
+            url = urlObj.searchParams.delete('code');
+            // Navigate to the new URL with the 'code' parameter
+            if (codeParam) {
+              this.router.navigate(['/peacekeeper-preselect'], { queryParams: { code: codeParam } });
+            }
+          }
+          
         });
       }
     });
