@@ -2,51 +2,81 @@
   <h2 class="text-center mb-4">Student/Delegate Information Form</h2>
 
   <!-- User Type Selection -->
-  <div class="mb-4 text-center">
+  <!-- <div *ngIf="!userType" class="mb-4 text-center">
     <label class="form-label"><strong>Are you a student or a delegate?</strong></label>
     <div class="btn-group" role="group">
-      <!-- Student Button -->
       <button
-        class="btn btn-outline-success d-flex flex-column align-items-center p-4 shadow-lg"
+        class="btn btn-outline-primary"
         (click)="setUserType('student')"
-        [class.active]="userType === 'student'"
       >
-        <i class="fas fa-user-graduate fa-3x mb-2"></i>
-        
-        <span>Student</span>
+        Student
       </button>
-
-      <!-- Delegate Button -->
       <button
-        class="btn btn-outline-success d-flex flex-column align-items-center p-4  shadow-lg"
+        class="btn btn-outline-primary"
         (click)="setUserType('delegate')"
-        [class.active]="userType === 'delegate'"
       >
-        <i class="fas fa-users fa-3x mb-2"></i>
-        <span>Adult</span>
+        Delegate
       </button>
+    </div>
+  </div> -->
+  <div class="mb-4 text-center">
+    <label class="form-label"><strong>Are you a student or a delegate?</strong></label>
+    <div class="d-flex justify-content-center gap-4">
+      <!-- Student Image Box -->
+      <div
+        class="image-box"
+        [class.active]="userType === 'student'"
+        (click)="setUserType('student')"
+      >
+        <img
+          src="https://source.unsplash.com/150x150/?student"
+          alt="Student"
+          class="img-fluid rounded"
+        />
+        <div class="overlay">
+          <i class="fas fa-user-graduate fa-2x"></i>
+          <span class="mt-2">Student</span>
+        </div>
+      </div>
+
+      <!-- Delegate Image Box -->
+      <div
+        class="image-box"
+        [class.active]="userType === 'delegate'"
+        (click)="setUserType('delegate')"
+      >
+        <img
+          src="https://source.unsplash.com/150x150/?business"
+          alt="Delegate"
+          class="img-fluid rounded"
+        />
+        <div class="overlay">
+          <i class="fas fa-users fa-2x"></i>
+          <span class="mt-2">Delegate</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Forms -->
-  <form *ngIf="showForms" (ngSubmit)="onSubmit()">
+  <!-- Step 1: Student or Delegate Form -->
+  <form *ngIf="userType && step === 1" (ngSubmit)="nextStep()">
     <!-- Student Form -->
-    <div [ngClass]="{'order-1': userType === 'student', 'order-2': userType === 'delegate'}">
+    <div *ngIf="userType === 'student'" [formGroup]="studentForm">
       <h3>Student Information</h3>
       <div class="row">
         <!-- Column 1 -->
         <div class="col-md-6">
           <div class="mb-3">
             <label for="studentName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="studentName" formControlName="name" [formGroup]="studentForm">
+            <input type="text" class="form-control" id="studentName" formControlName="name">
           </div>
           <div class="mb-3">
             <label for="studentMobileNo" class="form-label">Mobile No</label>
-            <input type="text" class="form-control" id="studentMobileNo" formControlName="mobileNo" [formGroup]="studentForm">
+            <input type="text" class="form-control" id="studentMobileNo" formControlName="mobileNo">
           </div>
           <div class="mb-3">
             <label for="studentEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="studentEmail" formControlName="email" [formGroup]="studentForm">
+            <input type="email" class="form-control" id="studentEmail" formControlName="email">
           </div>
         </div>
 
@@ -54,37 +84,37 @@
         <div class="col-md-6">
           <div class="mb-3">
             <label for="studentCountry" class="form-label">Country</label>
-            <input type="text" class="form-control" id="studentCountry" formControlName="country" [formGroup]="studentForm">
+            <input type="text" class="form-control" id="studentCountry" formControlName="country">
           </div>
           <div class="mb-3">
             <label for="studentInstitution" class="form-label">Institution Name</label>
-            <input type="text" class="form-control" id="studentInstitution" formControlName="institutionName" [formGroup]="studentForm">
+            <input type="text" class="form-control" id="studentInstitution" formControlName="institutionName">
           </div>
           <div class="mb-3">
             <label for="studentRelation" class="form-label">Relation to Delegate</label>
-            <input type="text" class="form-control" id="studentRelation" formControlName="relation" [formGroup]="studentForm">
+            <input type="text" class="form-control" id="studentRelation" formControlName="relation">
           </div>
         </div>
       </div>
     </div>
 
     <!-- Delegate Form -->
-    <div [ngClass]="{'order-1': userType === 'delegate', 'order-2': userType === 'student'}">
+    <div *ngIf="userType === 'delegate'" [formGroup]="delegateForm">
       <h3>Delegate Information</h3>
       <div class="row">
         <!-- Column 1 -->
         <div class="col-md-6">
           <div class="mb-3">
             <label for="delegateName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="delegateName" formControlName="name" [formGroup]="delegateForm">
+            <input type="text" class="form-control" id="delegateName" formControlName="name">
           </div>
           <div class="mb-3">
             <label for="delegateMobileNo" class="form-label">Mobile No</label>
-            <input type="text" class="form-control" id="delegateMobileNo" formControlName="mobileNo" [formGroup]="delegateForm">
+            <input type="text" class="form-control" id="delegateMobileNo" formControlName="mobileNo">
           </div>
           <div class="mb-3">
             <label for="delegateEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="delegateEmail" formControlName="email" [formGroup]="delegateForm">
+            <input type="email" class="form-control" id="delegateEmail" formControlName="email">
           </div>
         </div>
 
@@ -92,22 +122,107 @@
         <div class="col-md-6">
           <div class="mb-3">
             <label for="delegateCountry" class="form-label">Country</label>
-            <input type="text" class="form-control" id="delegateCountry" formControlName="country" [formGroup]="delegateForm">
+            <input type="text" class="form-control" id="delegateCountry" formControlName="country">
           </div>
           <div class="mb-3">
             <label for="delegateInstitution" class="form-label">Institution Name</label>
-            <input type="text" class="form-control" id="delegateInstitution" formControlName="institutionName" [formGroup]="delegateForm">
+            <input type="text" class="form-control" id="delegateInstitution" formControlName="institutionName">
           </div>
           <div class="mb-3">
             <label for="delegateRelation" class="form-label">Relation to Student</label>
-            <input type="text" class="form-control" id="delegateRelation" formControlName="relation" [formGroup]="delegateForm">
+            <input type="text" class="form-control" id="delegateRelation" formControlName="relation">
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Submit Button -->
+    <!-- Next Button -->
     <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">Next</button>
+    </div>
+  </form>
+
+  <!-- Step 2: Delegate or Student Form -->
+  <form *ngIf="userType && step === 2" (ngSubmit)="onSubmit()">
+    <!-- Delegate Form -->
+    <div *ngIf="userType === 'student'" [formGroup]="delegateForm">
+      <h3>Delegate Information</h3>
+      <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="delegateName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="delegateName" formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label for="delegateMobileNo" class="form-label">Mobile No</label>
+            <input type="text" class="form-control" id="delegateMobileNo" formControlName="mobileNo">
+          </div>
+          <div class="mb-3">
+            <label for="delegateEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="delegateEmail" formControlName="email">
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="delegateCountry" class="form-label">Country</label>
+            <input type="text" class="form-control" id="delegateCountry" formControlName="country">
+          </div>
+          <div class="mb-3">
+            <label for="delegateInstitution" class="form-label">Institution Name</label>
+            <input type="text" class="form-control" id="delegateInstitution" formControlName="institutionName">
+          </div>
+          <div class="mb-3">
+            <label for="delegateRelation" class="form-label">Relation to Student</label>
+            <input type="text" class="form-control" id="delegateRelation" formControlName="relation">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Form -->
+    <div *ngIf="userType === 'delegate'" [formGroup]="studentForm">
+      <h3>Student Information</h3>
+      <div class="row">
+        <!-- Column 1 -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="studentName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="studentName" formControlName="name">
+          </div>
+          <div class="mb-3">
+            <label for="studentMobileNo" class="form-label">Mobile No</label>
+            <input type="text" class="form-control" id="studentMobileNo" formControlName="mobileNo">
+          </div>
+          <div class="mb-3">
+            <label for="studentEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="studentEmail" formControlName="email">
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="studentCountry" class="form-label">Country</label>
+            <input type="text" class="form-control" id="studentCountry" formControlName="country">
+          </div>
+          <div class="mb-3">
+            <label for="studentInstitution" class="form-label">Institution Name</label>
+            <input type="text" class="form-control" id="studentInstitution" formControlName="institutionName">
+          </div>
+          <div class="mb-3">
+            <label for="studentRelation" class="form-label">Relation to Delegate</label>
+            <input type="text" class="form-control" id="studentRelation" formControlName="relation">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Previous and Submit Buttons -->
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-secondary me-2" (click)="previousStep()">Previous</button>
       <button type="submit" class="btn btn-success">Submit</button>
     </div>
   </form>

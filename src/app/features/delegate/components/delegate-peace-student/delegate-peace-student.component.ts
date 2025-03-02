@@ -7,8 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   
 })
 export class DelegatePeaceStudentComponent {
-  userType: 'student' | 'delegate' | null = null; // No default selection
-  showForms: boolean = false; // Controls form visibility
+  userType: 'student' | 'delegate' | null = null; // Tracks user selection
+  step: number = 1; // Tracks the current step
   studentForm: FormGroup;
   delegateForm: FormGroup;
 
@@ -34,10 +34,24 @@ export class DelegatePeaceStudentComponent {
     });
   }
 
-  // Set user type and show forms
+  // Set user type and move to the first step
   setUserType(type: 'student' | 'delegate') {
     this.userType = type;
-    this.showForms = true; // Show forms when a selection is made
+    this.step = 1; // Start with step 1
+  }
+
+  // Move to the next step
+  nextStep() {
+    if (this.step === 1 && this.userType === 'student' && this.studentForm.valid) {
+      this.step = 2; // Move to Delegate Form
+    } else if (this.step === 1 && this.userType === 'delegate' && this.delegateForm.valid) {
+      this.step = 2; // Move to Student Form
+    }
+  }
+
+  // Move to the previous step
+  previousStep() {
+    this.step = 1; // Go back to the first step
   }
 
   // Handle form submission

@@ -1,13 +1,13 @@
 <div class="container mt-5">
   <!-- Initial Registration Form -->
-  <div *ngIf="!showPaymentSuccess" class="row justify-content-center">
+  <div *ngIf="!showPaymentSuccess" class="row justify-content-center ">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card shadow-lg">
         <div class="card-body">
-          <h2 class="card-title text-center mb-4">Online Delegate Registration</h2>
+          <h2 class="card-title text-center mb-4">Delegate Registration</h2>
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-              <label for="name" class="form-label">Full Name</label>
+              <label for="name" class="form-label">Full Name<span class="form-label" style="color: #ff0000">*</span></label>
               <input type="text" class="form-control" id="name" formControlName="name" required>
               <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-danger">
                 Name is required
@@ -15,7 +15,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Email<span class="form-label" style="color: #ff0000">*</span></label>
               <input type="email" class="form-control" id="email" formControlName="email" required>
               <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
                 Please enter a valid email
@@ -23,7 +23,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="mobile" class="form-label">Mobile Number</label>
+              <label for="mobile" class="form-label">Mobile Number <span class="form-label" style="color: #ff0000">*</span></label>
               <div class="input-group">
                 <select class="form-select" style="max-width: 150px;" formControlName="countryCode" required>
                   <option value="+1">+1 (USA/Canada)</option>
@@ -119,19 +119,40 @@
                 </div>
               </div>
             </div>
+
             <div class="mb-3">
-              <label for="reference_no" class="form-label">Reference No</label>
-              <input type="text" name="reference_no" maxlength="50" id="profession2" placeholder="Enter reference no."
-                class="form-control" [readonly]="this.referralCode? this.referralCode: ''" formControlName="reference_no" minlength="3" autocomplete="off"
-                (input)="onInput($event, 'reference_no')" />
-                
+
+              <label class="col-md-12 no-padding p-0" for="lname1">DOB<span class="form-label-span"
+                  style="color: #ff0000">
+                  *</span></label>
+
+              <input type="text" class="form-control" placeholder="Select Date of birth" id="dob" #dob
+                formControlName="dob" [minDate]="minDate1" [maxDate]="maxDate1" (keydown)="disableManualInput($event)"
+                (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
+                    isAnimated: true,dateInputFormat: 'DD/MM/YYYY',showWeekNumbers: false,containerClass: colorTheme}" readonly />
+
+              <div *ngIf="getcontrol('dob')?.errors &&getcontrol('dob')?.touched">
+                <small class="text-danger" *ngIf="getcontrol('dob')?.errors?.['required']">Date of birth is
+                  required</small>
+              </div>
+
+              <div class="help-block with-errors"></div>
             </div>
 
+            <div class="mb-3">
+              <label for="reference_no" class="form-label">Reference No</label>
+              <input type="text" name="reference_no" maxlength="50" id="reference_no" #reference_no placeholder="Enter reference no."
+                class="form-control" [readonly]="this.referralCode? this.referralCode: ''"
+                formControlName="reference_no" minlength="3" autocomplete="off"
+                (input)="onInput($event, 'reference_no')" />
+            </div>
 
-            <div class="d-grid">
+            
+
+
+            <div class="d-grid justify-content-center">
               <button type="submit" class="btn btn-success" [disabled]="!userForm.valid || loading">
-                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
-                  aria-hidden="true"></span>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                 Register
               </button>
             </div>

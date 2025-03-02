@@ -419,7 +419,7 @@ h5 {
 /* Text section */
 .ui-card-text {
   grid-area: text;
-  padding: 20px;
+  padding: 10px;
   background: #dde8f09e;
 }
 
@@ -543,7 +543,7 @@ h5 {
 
 /* Buttons Styling */
 .ui-card-buttons button {
-  width: 120px;
+  width: 100px;
   background: white;
   border: none;
   padding: 10px 18px;
@@ -557,6 +557,7 @@ h5 {
 
 .ui-card-buttons button:hover {
   background: rgba(255, 255, 255, 0.8);
+  transition-timing-function: ease-in-out;
 }
 
 /* Different Background Colors for Cards */

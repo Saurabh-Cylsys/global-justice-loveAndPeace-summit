@@ -11,7 +11,7 @@ export class PeacekeeperPreselectComponent {
   mediumValue: string | null = '';
   packageAmt: number = 2800;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: any) => {
@@ -22,29 +22,31 @@ export class PeacekeeperPreselectComponent {
       //   console.log(this.referralCode, 'referralCode..........');
       // }
 
-      console.log("Params",params);
+      console.log("Params", params);
       // {code: "COININ-0000001-W"
       //   medium: "1"
       // }
-      if(params != undefined && Object.keys(params).length > 0){
+      if (params != undefined && Object.keys(params).length > 0) {
+        debugger
+        this.referralCode = params.code;
+        if (params.medium == 1 && params.code) {
+          this.packageAmt = 2640;
+          this.router.navigate(['/delegate-registration'], {
+            queryParams: { code: this.referralCode }, // Pass query params
+            queryParamsHandling: 'merge', // Preserve existing query params (optional)
+            relativeTo: this.route, // Stay on the same route
+          })
+        }
 
-      this.referralCode = params.code;
-      if(params.medium == 1 && params.code) {
-        this.packageAmt = 2640;
-        this.router.navigate(['/delegate-registration'], {
-          queryParams: { code: this.referralCode }, // Pass query params
-          queryParamsHandling: 'merge', // Preserve existing query params (optional)
-          relativeTo: this.route, // Stay on the same route
-        })
-      }
-
-      else if(!params.medium) {
-        console.log('Medium value not found, redirecting...');
+        else if (!params.medium) {
+          console.log('Medium value not found, redirecting...');
+          if(this.referralCode)
+            this.packageAmt = 2640;
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
           });
+        }
       }
-    }
 
     });
   }
@@ -52,7 +54,7 @@ export class PeacekeeperPreselectComponent {
   goToDelegatePage() {
 
     this.router.navigate(['/delegate-online'], {
-      queryParams: { code: this.referralCode ,medium :0 }
+      queryParams: { code: this.referralCode, medium: 0 }
     });
   }
 
@@ -66,5 +68,5 @@ export class PeacekeeperPreselectComponent {
     this.router.navigate(['/delegate-online']);
   }
 
-  
+
 }
