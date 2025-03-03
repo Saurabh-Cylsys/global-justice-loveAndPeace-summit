@@ -2153,11 +2153,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .justiceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "J" counter(justice-counter);
+  content: "AJ" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2233,11 +2233,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .loveLogo ul li::before {
   counter-increment: justice-counter;
-  content: "L" counter(justice-counter);
+  content: "AL" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2298,11 +2298,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .peaceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "P" counter(justice-counter);
+  content: "AP" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
