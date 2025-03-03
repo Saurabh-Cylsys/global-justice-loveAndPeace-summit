@@ -25,12 +25,12 @@ html {
   font-size: 16px;
 }
 
-
 .global-justice {
   /* background-color: #ffffff; */
   display: flex;
   flex-direction: row;
   justify-content: center;
+  min-width: 50%;
   width: 50%;
   margin: 0 auto;
 }
@@ -104,10 +104,10 @@ html {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-  text-align: justify;
+  text-align: left;
   font-weight: 700;
   color: #040000;
-  font-size: clamp(13px, 2vw, 20px);
+  font-size: clamp(12px, 1.5vw, 17px);
   letter-spacing: 0;
   line-height: normal;
 }
@@ -117,7 +117,7 @@ html {
   width: fit-content;
   font-weight: 500;
   color: #040000;
-  font-size: clamp(12px, 2vw, 16px);
+  font-size: clamp(12px, 2vw, 14px);
   letter-spacing: 0;
   line-height: normal;
   z-index: 1;
@@ -157,12 +157,12 @@ html {
 
 .global-justice .ellipse-4 {
   position: absolute;
-    width: 140px;
-    height: 140px;
-    top: 60px;
-    right: 10px;
-    background-color: #f19434;
-    border-radius: 100%;
+  width: 140px;
+  height: 140px;
+  top: 60px;
+  right: 10px;
+  background-color: #f19434;
+  border-radius: 100%;
 }
 
 .global-justice .image {
@@ -186,12 +186,18 @@ html {
 .global-justice .scroll {
   display: flex;
   flex-direction: column;
-  width: 71px;
+  /* width: 71px; */
   align-items: center;
   gap: 4px;
   position: absolute;
   top: 239px;
-  left: 72px;
+  text-align: center;
+  /* left: 72px; */
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 239px; */
 }
 
 .global-justice .text-wrapper-2 {
@@ -203,7 +209,7 @@ html {
   font-size: 14px;
   letter-spacing: 0;
   line-height: normal;
-  width: 100px;
+  width: 100%;
 }
 
 .global-justice .chevron-down {
@@ -242,7 +248,7 @@ html {
 .global-justice .cards {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   align-items: flex-start;
   gap: 10px;
   position: relative;
@@ -253,6 +259,7 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 200px;
   position: relative;
   align-self: stretch;
   width: 100%;
@@ -263,7 +270,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 116px;
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -327,7 +334,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 116px;
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -373,7 +380,7 @@ html {
   flex-direction: column;
   width: 50%;
   /* height: 116px; */
-  height: clamp(116px, 2vw, 116px);
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -410,7 +417,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 116px;
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -445,7 +452,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 116px;
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -470,7 +477,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 116px;
+  height: 100%;
   align-items: flex-start;
   gap: 10px;
   padding: 8px;
@@ -826,15 +833,14 @@ html {
   outline: none;
 }
 
-.card-wrapper img{
+.card-wrapper img {
   width: 80%;
 }
 
 .btn-success {
   box-shadow: 0px 0px 4px 1px #128940;
-  border: 1px solid #FFFFFF
+  border: 1px solid #ffffff;
 }
-
 
 @media (max-width: 1024px) {
   .global-justice .all-frames-wrapper {
@@ -874,6 +880,9 @@ html {
 }
 
 @media (max-width: 768px) {
+  .global-justice .element-3 {
+    height: 160px;
+  }
   html {
     font-size: 14px;
   }
@@ -921,6 +930,9 @@ html {
   html {
     font-size: 12px;
   }
+  .global-justice .element-3 {
+    height: 180px;
+  }
   .global-justice .all-frames-wrapper {
     width: 100%;
   }
@@ -966,14 +978,14 @@ html {
     width: 100%;
   }
 
-  .global-justice .frame-wrapper,
+  /* .global-justice .frame-wrapper,
   .global-justice .element-4,
   .global-justice .element-5,
   .global-justice .element-6,
   .global-justice .element-7,
   .global-justice .element-8 {
     height: 150px;
-  }
+  } */
   .global-justice .ellipse {
     position: absolute;
     width: 77px;
@@ -1012,5 +1024,11 @@ html {
     left: 292px;
     background-color: #f19434;
     border-radius: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .global-justice .element-3 {
+    height: 200px;
   }
 }

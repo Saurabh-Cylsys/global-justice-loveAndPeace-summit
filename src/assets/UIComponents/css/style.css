@@ -2493,7 +2493,7 @@ button:focus {
 .speaker-details .card {
   position: relative;
   border-radius: 14.35px;
-  min-height: 55vh;
+  min-height: 30vh;
 }
 .speaker-details .card .card-header {
   position: absolute;
