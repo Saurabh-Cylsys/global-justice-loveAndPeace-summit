@@ -53,7 +53,7 @@ export class PeacekeeperPreselectComponent {
 
   goToDelegatePage() {
 
-    this.router.navigate(['/delegate-online'], {
+    this.router.navigate(['/delegate-registration'], {
       queryParams: { code: this.referralCode, medium: 0 }
     });
   }
@@ -65,8 +65,8 @@ export class PeacekeeperPreselectComponent {
     });
   }
   goToOnlineDelegate() {
-    this.router.navigate(['/delegate-online']);
+    this.router.navigate(['/delegate-online'], {
+      queryParams: { code: this.referralCode }
+    });    
   }
-
-
 }

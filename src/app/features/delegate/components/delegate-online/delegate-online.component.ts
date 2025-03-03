@@ -67,11 +67,11 @@ export class DelegateOnlineComponent implements OnInit {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
 
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL          
-          replaceUrl: true // Replace the current URL in the browser history
-        });
+        // this.router.navigate([], {
+        //   relativeTo: this.route,
+        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL          
+        //   replaceUrl: true // Replace the current URL in the browser history
+        // });
       }
     });
   }
@@ -205,7 +205,8 @@ export class DelegateOnlineComponent implements OnInit {
             this.userForm.patchValue({
               name: this.registrationData.name,
               email: this.registrationData.email,
-              mobile: this.registrationData.mobile_no
+              mobile: this.registrationData.mobile_no,
+              reference_no:this.referralCode
             });
           }
         } else {
@@ -370,5 +371,100 @@ export class DelegateOnlineComponent implements OnInit {
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.userForm.patchValue({ country_id: countryObj.id });
+  }
+
+  onInputEvent(
+    event: KeyboardEvent | ClipboardEvent,
+    fieldType: 'email' | 'website' | 'linkedin'
+  ): void {
+    if (event.type === 'paste') {
+      // Handle paste event
+      event.preventDefault();
+      const clipboardData =
+        (event as ClipboardEvent).clipboardData?.getData('text') || '';
+
+      let allowedPattern: RegExp;
+      switch (fieldType) {
+        case 'email':
+          allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
+          break;
+        case 'website':
+          allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
+          break;
+        case 'linkedin':
+          allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs (including % for encoding)
+          break;
+        default:
+          return;
+      }
+
+      if (allowedPattern.test(clipboardData)) {
+        const input = event.target as HTMLInputElement;
+        input.value += clipboardData; // Append valid text
+        input.dispatchEvent(new Event('input')); // Update Angular form control
+      } else {
+        alert('Invalid characters pasted.');
+      }
+      return;
+    }
+
+    // Handle keydown event
+    const keyEvent = event as KeyboardEvent;
+    if (
+      ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
+        keyEvent.key
+      )
+    ) {
+      return; // Allow these keys
+    }
+
+    if (keyEvent.key === ' ' && keyEvent.code === 'Space') {
+      keyEvent.preventDefault(); // Prevent leading spaces
+      return;
+    }
+
+    let allowedPattern: RegExp;
+    switch (fieldType) {
+      case 'email':
+        allowedPattern = /^[a-zA-Z0-9@._-]$/;
+        break;
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]$/;
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]$/;
+        break;
+      default:
+        return;
+    }
+
+    if (!allowedPattern.test(keyEvent.key)) {
+      keyEvent.preventDefault(); // Block invalid characters
+    }
+  }
+
+  onPasteEvent(event: ClipboardEvent, fieldType: 'website' | 'linkedin'): void {
+    event.preventDefault();
+    const clipboardData = event.clipboardData?.getData('text') || '';
+
+    let allowedPattern: RegExp;
+    switch (fieldType) {
+      case 'website':
+        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/;
+        break;
+      case 'linkedin':
+        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/;
+        break;
+      default:
+        return;
+    }
+
+    if (allowedPattern.test(clipboardData)) {
+      const input = event.target as HTMLInputElement;
+      input.value += clipboardData; // Append valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    } else {
+      event.preventDefault();
+    }
   }
 }
