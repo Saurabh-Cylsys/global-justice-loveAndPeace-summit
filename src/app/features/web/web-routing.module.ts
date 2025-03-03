@@ -24,7 +24,9 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
@@ -157,6 +159,14 @@ const routes: Routes = [
       {
         path: 'request-account-deletion',
         component: RequestAccountDeletionsComponent,
+      },
+      {
+        path: 'speaker-details',
+        component: SpeakerDetailsComponent
+      },
+      {
+        path: 'speaker-details/:speakerId/:speakerName',
+        component: SpeakersProfileComponent
       },
       {
         path: 'contact-us/working-committee',

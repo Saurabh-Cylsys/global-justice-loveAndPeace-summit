@@ -1680,6 +1680,10 @@ header .nav-item .nav-link.active {
   border: 1px solid #fff;
 }
 
+.head ul li .dropbtn:hover {
+  background-color: var(--color3);
+}
+
 .head form a {
   font-weight: 400 !important;
   display: inline-flex;
@@ -2153,11 +2157,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .justiceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "J" counter(justice-counter);
+  content: "AJ" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2233,11 +2237,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .loveLogo ul li::before {
   counter-increment: justice-counter;
-  content: "L" counter(justice-counter);
+  content: "AL" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2298,11 +2302,11 @@ header .nav-item .nav-link.active {
 
 .custom-list .peaceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "P" counter(justice-counter);
+  content: "AP" counter(justice-counter);
   position: absolute;
-  left: -30px;
+  left: -40px;
   top: 0;
-  width: 30px;
+  width: 40px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
@@ -2464,6 +2468,86 @@ button:focus {
 
 .preselect {
   min-height: 100vh;
+}
+.speaker-details select:after{
+  background-color: #004e8a;
+  height: 20px;
+  width: 20px;
+}
+.speaker-details input, .speaker-details input:focus{
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
+
+.speaker-details select, .speaker-details select:focus{
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  border-color: var(--color6);
+}
+
+.speaker-details .card {
+  position: relative;
+  border-radius: 14.35px;
+  min-height: 30vh;
+}
+.speaker-details .card .card-header {
+  position: absolute;
+  height: 14vh;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  /* background-color: #bdc78c; */
+  border-radius: 14.35px 14.35px 0 0;
+  background: linear-gradient(180deg, #005B94 0%, #0573BA 100%);
+
+}
+
+.speaker-details .card .card-body {
+  position: relative;
+  padding: 20px 0 !important;
+}
+.speaker-details .card .card-body h5 {
+  font-weight: 700;
+  font-size: clamp(14px, 1.5vw, 18.1px);
+  line-height: 32.33px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color6);
+}
+.speaker-details .card .card-body .country {
+  font-weight: 700;
+  font-size: 15.06px;
+  line-height: 19.4px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color1);
+  margin: 0 0 2vh;
+}
+.speaker-details .card .card-body .credentials {
+  font-weight: 500;
+  font-size: 13.81px;
+  line-height: 17.78px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #8a8a8a;
+}
+
+.speaker-details .card .card-footer button {
+  background-color: transparent;
+  border: 1px solid #005B94;
+  color: #005B94;
+  border-radius: 14.35px;
+  /* width: 50%; */
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  margin: 0 auto;
 }
 
 .committee-list {
