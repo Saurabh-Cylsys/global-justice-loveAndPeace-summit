@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-0" *ngIf="!isLoading">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 m-0" *ngIf="!isLoading && speakersList.length > 0 else noDataTemplate;" >
         <ng-container *ngFor="let group of speakersList; let i = index">
           <div class="col-xl-3 col-lg-4 col-md-6 col" *ngFor="let speaker of group.speakers">
             <div class="card h-100 speaker-card">
@@ -58,7 +58,7 @@
                     speaker.profile_photo
                       ? speaker.profile_photo
                       : 'assets/UIComponents/images/speakers/ProfileAavtar.png'
-                  "
+                  "onerror="this.onerror=null; this.src='assets/UIComponents/images/speakers/ProfileAavtar.png';"
                   alt="{{ speaker.speaker_name }}"
                   class="profile-photo img-fluid"
                   width="50%"
@@ -75,5 +75,9 @@
           </div>
         </ng-container>
       </div>
+
+      <ng-template #noDataTemplate >
+        <h5 class="align-items-center d-flex justify-content-center" *ngIf="!isLoading" style="text-align: center; height: 50vh;"><span >No Data Found</span></h5>
+      </ng-template>
   </div>
 </section>
