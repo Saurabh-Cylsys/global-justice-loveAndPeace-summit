@@ -25,62 +25,13 @@ html {
   font-size: 16px;
 }
 
-@media (max-width: 768px) {
-  html {
-    font-size: 14px;
-  }
-}
 
-@media (max-width: 480px) {
-  html {
-    font-size: 12px;
-  }
-  .global-justice .ellipse {
-    position: absolute;
-    width: 77px;
-    height: 77px;
-    top: 143px;
-    left: 215px;
-    background-color: #1b288e;
-    border-radius: 38.5px;
-  }
-
-  .global-justice .ellipse-2 {
-    position: absolute;
-    width: 38px;
-    height: 38px;
-    top: 74px;
-    left: 205px;
-    background-color: #fdeeb3;
-    border-radius: 19px;
-  }
-
-  .global-justice .ellipse-3 {
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    top: 16px;
-    left: 362px;
-    background-color: #ffc000;
-    border-radius: 17px;
-  }
-
-  .global-justice .ellipse-4 {
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    top: 74px;
-    left: 292px;
-    background-color: #f19434;
-    border-radius: 55px;
-  }
-}
 .global-justice {
   /* background-color: #ffffff; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -110,6 +61,8 @@ html {
     rgb(58, 153, 72) 0%,
     rgb(0, 91, 148) 100%
   );
+  /* background-image: url(../../../../assets/UIComponents/images/sp_bg_1.png);
+  background-repeat: no-repeat; */
 }
 
 .global-justice .overlap {
@@ -162,7 +115,6 @@ html {
 .global-justice .p {
   position: relative;
   width: fit-content;
-  font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #040000;
   font-size: clamp(12px, 2vw, 16px);
@@ -186,7 +138,7 @@ html {
   width: 38px;
   height: 38px;
   top: 74px;
-  right: 205px;
+  right: 260px;
   background-color: #fdeeb3;
   border-radius: 19px;
 }
@@ -195,36 +147,39 @@ html {
   position: absolute;
   width: 34px;
   height: 34px;
-  top: 16px;
-  right: 362px;
+  /* top: 16px;
+  right: 362px; */
+  top: 5px;
+  right: 50px;
   background-color: #ffc000;
   border-radius: 17px;
 }
 
 .global-justice .ellipse-4 {
   position: absolute;
-  width: 110px;
-  height: 110px;
-  top: 74px;
-  right: 0;
-  background-color: #f19434;
-  border-radius: 55px;
+    width: 140px;
+    height: 140px;
+    top: 60px;
+    right: 10px;
+    background-color: #f19434;
+    border-radius: 100%;
 }
 
 .global-justice .image {
   position: absolute;
-  width: 64px;
-  height: 62px;
+  width: 75px;
+  height: 75px;
   top: 16px;
   left: 16px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .global-justice .img {
   position: absolute;
   /* width: 194px; */
-  height: 290px;
-  top: 16px;
+  height: 100%;
+  /* top: 16px; */
+  top: 0;
   right: 0;
 }
 
@@ -243,7 +198,6 @@ html {
   position: relative;
   align-self: stretch;
   margin-top: -6px;
-  font-family: "El Messiri-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
   font-size: 14px;
@@ -282,6 +236,7 @@ html {
   font-size: clamp(16px, 2vw, 24px);
   letter-spacing: 0;
   line-height: normal;
+  text-transform: capitalize;
 }
 
 .global-justice .cards {
@@ -350,7 +305,6 @@ html {
   left: 11px;
   position: absolute;
   top: 4px;
-  font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -361,7 +315,6 @@ html {
 .global-justice .text-wrapper-5 {
   position: relative;
   align-self: stretch;
-  font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #000000;
   font-size: clamp(14px, 2vw, 16px);
@@ -408,7 +361,6 @@ html {
   width: 12px;
   top: 4px;
   left: 10px;
-  font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -446,7 +398,6 @@ html {
   left: 10px;
   position: absolute;
   top: 4px;
-  font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -483,7 +434,6 @@ html {
   left: 9px;
   position: absolute;
   top: 4px;
-  font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
@@ -578,13 +528,12 @@ html {
 .global-justice .acted-in-bollywood {
   position: relative;
   width: fit-content;
-  font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #000000;
   font-size: clamp(14px, 2vw, 16px);
   letter-spacing: 0;
   line-height: 20px;
-  white-space: nowrap;
+  white-space: wrap;
 }
 
 .global-justice .element-10 {
@@ -641,7 +590,6 @@ html {
 .global-justice .the-global-justice {
   position: relative;
   align-self: stretch;
-  font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #ffffff;
   font-size: clamp(14px, 2vw, 20px);
@@ -654,7 +602,7 @@ html {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-  padding: 16px;
+  padding: 0px;
   position: relative;
   align-self: stretch;
   width: 100%;
@@ -669,7 +617,7 @@ html {
   align-items: center;
   justify-content: center;
   gap: 36px;
-  padding: 26px 16px;
+  padding: 16px 16px;
   position: relative;
   flex: 0 0 auto;
   background-color: #ffffff;
@@ -698,7 +646,7 @@ html {
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   color: transparent;
-  font-size: clamp(16px, 2vw, 40px);
+  font-size: clamp(16px, 1.5vw, 40px);
   text-align: center;
   letter-spacing: 0;
   font-weight: 700;
@@ -738,19 +686,18 @@ html {
   position: relative;
   width: fit-content;
   margin-top: -1px;
-
   font-weight: 700;
   color: #ffffff;
   font-size: 27px;
   text-align: center;
   letter-spacing: 0;
   line-height: 36px;
+  text-transform: capitalize;
 }
 
 .global-justice .text-wrapper-10 {
   position: relative;
   align-self: stretch;
-  font-family: "DINPro-Medium", Helvetica;
   font-weight: 500;
   color: #ffffff;
   font-size: 14px;
@@ -845,6 +792,50 @@ html {
   white-space: nowrap;
 }
 
+.link-share .link-container .link-label {
+  font-weight: 500;
+  font-size: 18px;
+  leading-trim: Cap height;
+  /* line-height: 67px; */
+  letter-spacing: 0%;
+  width: 100%;
+  text-align: left;
+  color: #b2b2b2;
+}
+.link-share .link-container .link-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #005b94;
+  border-radius: 20px;
+}
+
+.link-share .link-container .link-input-wrapper .link-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  color: #005b94;
+}
+
+.link-share .link-container .link-input-wrapper .copy-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.card-wrapper img{
+  width: 80%;
+}
+
+.btn-success {
+  box-shadow: 0px 0px 4px 1px #128940;
+  border: 1px solid #FFFFFF
+}
+
+
 @media (max-width: 1024px) {
   .global-justice .all-frames-wrapper {
     width: 100%;
@@ -857,12 +848,12 @@ html {
     width: 100%;
   }
 
-  .global-justice .img {
+  /* .global-justice .img {
     width: 50%;
     height: auto;
     left: 50%;
     transform: translateX(-50%);
-  }
+  } */
 
   .global-justice .cards,
   .global-justice .element-3,
@@ -883,6 +874,9 @@ html {
 }
 
 @media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
   .global-justice {
     width: 100%;
   }
@@ -900,7 +894,7 @@ html {
 
   .global-justice .img {
     width: 50%;
-    height: 95%;
+    height: 100%;
     right: 0;
     transform: none;
   }
@@ -924,6 +918,9 @@ html {
 }
 
 @media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
   .global-justice .all-frames-wrapper {
     width: 100%;
   }
@@ -937,7 +934,7 @@ html {
 
   .global-justice .img {
     width: 50%;
-    height: 95%;
+    height: 100%;
     right: 0;
     transform: none;
   }
@@ -949,7 +946,7 @@ html {
     top: 109px;
     left: 16px;
     flex-wrap: wrap;
-    width: 55%;
+    width: 50%;
   }
 
   .global-justice .cards,
@@ -977,37 +974,43 @@ html {
   .global-justice .element-8 {
     height: 150px;
   }
-}
+  .global-justice .ellipse {
+    position: absolute;
+    width: 77px;
+    height: 77px;
+    top: 143px;
+    left: 215px;
+    background-color: #1b288e;
+    border-radius: 38.5px;
+  }
 
-.link-share .link-container .link-label {
-  font-weight: 500;
-  font-size: 18px;
-  leading-trim: Cap height;
-  /* line-height: 67px; */
-  letter-spacing: 0%;
-  width: 100%;
-  text-align: left;
-  color: #b2b2b2;
-}
-.link-share .link-container .link-input-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid #005b94;
-  border-radius: 20px;
-}
+  .global-justice .ellipse-2 {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    top: 74px;
+    left: 205px;
+    background-color: #fdeeb3;
+    border-radius: 19px;
+  }
 
-.link-share .link-container .link-input-wrapper .link-input {
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 10px;
-  background-color: transparent;
-}
+  .global-justice .ellipse-3 {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    top: 16px;
+    left: 362px;
+    background-color: #ffc000;
+    border-radius: 17px;
+  }
 
-.link-share .link-container .link-input-wrapper .copy-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
+  .global-justice .ellipse-4 {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    top: 74px;
+    left: 292px;
+    background-color: #f19434;
+    border-radius: 100%;
+  }
 }

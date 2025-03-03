@@ -2513,7 +2513,7 @@ button:focus {
 }
 .speaker-details .card .card-body h5 {
   font-weight: 700;
-  font-size: 18.1px;
+  font-size: clamp(14px, 1.5vw, 18.1px);
   line-height: 32.33px;
   letter-spacing: 0%;
   text-align: center;
@@ -2537,17 +2537,17 @@ button:focus {
   color: #8a8a8a;
 }
 
-.speaker-details .card .card-body button {
+.speaker-details .card .card-footer button {
   background-color: transparent;
   border: 1px solid #005B94;
   color: #005B94;
   border-radius: 14.35px;
-  width: 50%;
-  position: absolute;
+  /* width: 50%; */
+  /* position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  margin: 0 auto 10px;
+  right: 0; */
+  margin: 0 auto;
 }
 
 .committee-list {
