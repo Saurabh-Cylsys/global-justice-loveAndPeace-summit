@@ -192,6 +192,7 @@ html {
   position: absolute;
   top: 239px;
   text-align: center;
+  padding: 0 5px;
   /* left: 72px; */
   /* display: flex;
   flex-direction: column;
@@ -259,7 +260,7 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 200px;
+  height: 150px;
   position: relative;
   align-self: stretch;
   width: 100%;
