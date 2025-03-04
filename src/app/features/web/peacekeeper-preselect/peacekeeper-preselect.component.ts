@@ -15,19 +15,9 @@ export class PeacekeeperPreselectComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: any) => {
-      // if (params) {
-      //   this.referralCode = params.code;
-      // }
-      // if (this.referralCode) {
-      //   console.log(this.referralCode, 'referralCode..........');
-      // }
-
-      console.log("Params", params);
-      // {code: "COININ-0000001-W"
-      //   medium: "1"
-      // }
+     
       if (params != undefined && Object.keys(params).length > 0) {
-        debugger
+        
         this.referralCode = params.code;
         if (params.medium == 1 && params.code) {
           this.packageAmt = 2640;
@@ -40,8 +30,9 @@ export class PeacekeeperPreselectComponent {
 
         else if (!params.medium) {
           console.log('Medium value not found, redirecting...');
-          if(this.referralCode)
+          if (this.referralCode)
             this.packageAmt = 2640;
+          
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
           });
@@ -52,10 +43,14 @@ export class PeacekeeperPreselectComponent {
   }
 
   goToDelegatePage() {
-
-    this.router.navigate(['/delegate-registration'], {
-      queryParams: { code: this.referralCode, medium: 0 }
-    });
+    if (this.referralCode) {
+      this.router.navigate(['/delegate-online'], {
+        queryParams: { code: this.referralCode, medium: 0 }
+      });
+    }
+    else {
+      this.router.navigate(['/delegate-online']);
+    }
   }
 
   goToChildNomination() {
@@ -65,8 +60,13 @@ export class PeacekeeperPreselectComponent {
     });
   }
   goToOnlineDelegate() {
-    this.router.navigate(['/delegate-online'], {
-      queryParams: { code: this.referralCode }
-    });    
+    if (this.referralCode) {
+      this.router.navigate(['/delegate-online'], {
+        queryParams: { code: this.referralCode }
+      });
+    }
+    else {
+      this.router.navigate(['/delegate-online']);
+    }
   }
 }
