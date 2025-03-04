@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {"name": "Nobel Peace Laureates", "count": 11},
+    {"name": "Royalty", "count": 10},
+    {"name": "Heads of State", "count": 3},
+    {"name": "Religious Leaders", "count": 9},
+    {"name": "Industrialist (Business)", "count": 5},
+    {"name": "Sports Champions", "count": 6},
+    {"name": "Artist", "count": 1},
+    {"name": "Chief Justices", "count": 3},
+    {"name": "Attorney Generals", "count": 2},
+    {"name": "Judge", "count": 2},
+    {"name": "Film Stars, Glamour", "count": 12},
+    {"name": "Politicians", "count": 3},
+    {"name": "Beauty Queen", "count": 4},
+    {"name": "Social Activist", "count": 5},
+    {"name": "Ex-Head of State", "count": 2},
+    {"name": "Academician", "count": 2},
+    {"name": "Others", "count": 12}
+  ]
+}

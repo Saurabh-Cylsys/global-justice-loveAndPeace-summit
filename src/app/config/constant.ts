@@ -72,5 +72,7 @@ export class Constants {
     public readonly API_ENDPOINT_VERIFY_SESSION_ONLINE: string = 'verify_session_online'
 
     public readonly API_ENDPOINT_REGISTRATION_ONLINE: string = 'create-delegate-profile-online'
+    public readonly API_ENDPOINT_GET_AMBASSADOR : string = 'get_ambassador_by_code'
+
 
 }

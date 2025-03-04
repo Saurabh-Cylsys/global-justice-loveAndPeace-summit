@@ -46,3 +46,7 @@ src/environments/environment.prod.ts
 src/environments/environment.ts
 package-lock.json
 package.json
+src/environments/environment.prod.ts
+src/environments/environment.ts
+.gitignore
+src/environments/environment.ts

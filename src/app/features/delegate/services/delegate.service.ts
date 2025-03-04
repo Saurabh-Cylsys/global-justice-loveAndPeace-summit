@@ -37,7 +37,7 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getCityByStateEndpoint(state_id));
 
   }
-  
+
   getPeacekeeper_Badge(id: any) {
     return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
 
@@ -82,5 +82,9 @@ export class DelegateService {
 
   postVerifySessionOnline(body: any) {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
+  }
+
+  getAmbassadorURL(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
   }
 }

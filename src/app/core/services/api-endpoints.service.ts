@@ -337,4 +337,8 @@ export class ApiEndpointsService {
   public postRegistrationOnlineEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE);
   }
+
+  public getAmbassadorURLEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_AMBASSADOR);
+  }
 }
