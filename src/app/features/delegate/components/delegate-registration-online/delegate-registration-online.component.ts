@@ -338,9 +338,6 @@ export class DelegateRegistrationOnlineComponent {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
         this.countryData = res.data;
-        if (this.isOnline) {
-          this.registrationForm.patchValue({ country_id: this.country_id });
-        }
       },
       (err: any) => {
         console.log('error', err);
@@ -354,15 +351,13 @@ export class DelegateRegistrationOnlineComponent {
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
 
-    this.ngxService.start();
+    //this.ngxService.start();
     this.delegateService.getAllStates(countryObj.id).subscribe(
       (res: any) => {
-        this.ngxService.stop();
+        //this.ngxService.stop();
         this.statesData = res.data;
       },
       (err: any) => {
-        console.log('Err', err);
-        // this.ngxService.stop();
       }
     );
   }
@@ -975,7 +970,7 @@ export class DelegateRegistrationOnlineComponent {
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
             setTimeout(() => {
-                this.router.navigateByUrl('/delegate-message');
+              this.router.navigateByUrl('/delegate-message');
             }, 3000);
 
           } else {
@@ -1019,7 +1014,7 @@ export class DelegateRegistrationOnlineComponent {
 
     // Use a mapping of country codes to determine the correct split
     // Country codes can be 1-3 digits in length
-    const countryCodes: {[key: string]: string} = {
+    const countryCodes: { [key: string]: string } = {
       '1': 'United States/Canada',
       '7': 'Russia/Kazakhstan',
       '20': 'Egypt',
