@@ -5,11 +5,11 @@
       <div class="card shadow-lg">
         <div class="card-body">
           <h2 class="card-title text-center mb-4">Online Delegate Registration</h2>
-          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="mb-3">
               <label for="name" class="form-label">Full Name<span class="form-label"
                   style="color: #ff0000">*</span></label>
-              <input type="text" class="form-control" id="name" formControlName="name" required>
+              <input type="text" class="form-control" id="name" formControlName="name" required autocomplete="off">
               <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-danger">
                 Name is required
               </div>
@@ -18,7 +18,7 @@
             <div class="mb-3">
               <label for="email" class="form-label">Email<span class="form-label"
                   style="color: #ff0000">*</span></label>
-              <input type="email" class="form-control" id="email" formControlName="email" required>
+              <input type="email" class="form-control" id="email" formControlName="email" required autocomplete="off">
               <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
                 Please enter a valid email
               </div>
@@ -97,7 +97,7 @@
                   <option value="+994">+994 (Azerbaijan)</option>
                 </select>
                 <input type="tel" class="form-control" id="mobile" formControlName="mobile" required
-                  placeholder="Enter mobile number">
+                  placeholder="Enter mobile number" autocomplete="off">
               </div>
               <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="text-danger">
                 Mobile number is required
