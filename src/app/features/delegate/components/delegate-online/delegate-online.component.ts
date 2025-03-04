@@ -12,6 +12,7 @@ interface RegistrationData {
   name: string;
   email: string;
   mobile_no: string;
+  country_id:string;
 }
 
 interface CompleteProfileData {
@@ -62,14 +63,14 @@ export class DelegateOnlineComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private encryptionService: EncryptionService
-  ) { 
+  ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
 
         // this.router.navigate([], {
         //   relativeTo: this.route,
-        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL          
+        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
         //   replaceUrl: true // Replace the current URL in the browser history
         // });
       }
@@ -134,17 +135,18 @@ export class DelegateOnlineComponent implements OnInit {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email:  ['',
-        Validators.required,
+
+        [Validators.required,
         Validators.email,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
       ],
-      countryCode: ['', Validators.required],
+      countryCode: ['-1', Validators.required],
       mobile: ['', [Validators.required, Validators.minLength(7)]],
       country: [null, Validators.required],
       countrySearch: [''],
-      dob: ['', [Validators.required, this.ageValidator]],
-      reference_no: [this.referralCode ? this.referralCode : ''],
-    });    
+      // dob: ['', [Validators.required, this.ageValidator]],
+      // reference_no: [this.referralCode ? this.referralCode : ''],
+    });
   }
 
   ageValidator(control: FormControl) {
@@ -168,7 +170,7 @@ export class DelegateOnlineComponent implements OnInit {
 
     return null; // Valid date
   }
-  
+
   private checkQueryParams() {
     this.route.queryParams.subscribe(params => {
       if (params['session_id']) {
@@ -176,7 +178,8 @@ export class DelegateOnlineComponent implements OnInit {
         this.registrationData = {
           name: params['name'] || '',
           email: params['email'],
-          mobile_no: params['mobile_no']
+          mobile_no: params['mobile_no'],
+          country_id: params['country_id']
         };
         this.handlePaymentSuccess();
       }
@@ -230,12 +233,13 @@ export class DelegateOnlineComponent implements OnInit {
       const payload = {
         name: this.userForm.get('name')?.value,
         email: this.userForm.get('email')?.value,
-        mobile_no: `${String(this.userForm.get('countryCode')?.value).replace(/[^0-9]/g, '')}${String(this.userForm.get('mobile')?.value).replace(/[^0-9]/g, '')}`
+        mobile_no: `${String(this.userForm.get('countryCode')?.value).replace(/[^0-9]/g, '')}${String(this.userForm.get('mobile')?.value).replace(/[^0-9]/g, '')}`,
+        country_id: JSON.parse(this.userForm.value.country).id,
       };
 
       this.delegateService.postDelegateOnline(payload).subscribe({
         next: (response: any) => {
-          console.log('Delegate created successfully:', response);
+
           this.sharedService.ToastPopup('Success', response.message, 'success');
           this.registrationData = payload;
           setTimeout(() => {
@@ -315,6 +319,7 @@ export class DelegateOnlineComponent implements OnInit {
       email: this.registrationData?.email || '',
       mobile_no: this.registrationData?.mobile_no || '',
       name: this.registrationData?.name || '',
+      country_id:this.registrationData?.country_id || '',
       isOnline: true
     };
     sessionStorage.setItem('IsOnline', 'true');

@@ -92,6 +92,7 @@ export class DelegateRegistrationOnlineComponent {
   name: string = '';
   tinyURL: string = environment.tinyUrl;
   isOnline: boolean = false;
+  country_id: any;
 
   constructor(
     private datePipe: DatePipe,
@@ -126,24 +127,50 @@ export class DelegateRegistrationOnlineComponent {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
 
-        if (params['data']) {
-          if (params['data']) {
-            const decryptedData = this.encryptionService.decryptData(params['data']);
 
-            if (decryptedData) {
-              this.email = decryptedData.email;
-              this.mobileNo = decryptedData.mobile_no;
-              this.name = decryptedData.name;
-              this.isOnline = decryptedData.isOnline;
-            }
+        if (params['data']) {
+          const decryptedData = this.encryptionService.decryptData(params['data']);
+
+          if (decryptedData) {
+            this.email = decryptedData.email;
+            this.mobileNo = decryptedData.mobile_no;
+            this.name = decryptedData.name;
+            this.isOnline = decryptedData.isOnline;
+            this.country_id = decryptedData.country_id
           }
         }
+
       }
     });
     this.createForm();    // this.getdates()
     this.getAllCountries();
     this.getIPAddress();
     this.deviceInfo = this.getDeviceOS();
+
+    if (this.isOnline) {
+      this.registrationForm.patchValue({ country_id: this.country_id });
+    }
+  }
+
+  // Function to extract mobile number without country code
+  async extractMobileNumber(rawMobileNumber: any) {
+    // Remove all non-numeric characters
+    let cleanedNumber = rawMobileNumber.replace(/[^0-9]/g, '');
+
+    await this.getAllCountrycode();
+    // Possible country code lengths (1 to 3 digits)
+    for (let countryCodeLength = 1; countryCodeLength <= 3; countryCodeLength++) {
+      // Extract the potential mobile number
+      let mobileNumber = cleanedNumber.slice(countryCodeLength);
+
+      // Check if the remaining number length is reasonable (7 to 12 digits)
+      if (mobileNumber.length >= 7 && mobileNumber.length <= 12) {
+        return mobileNumber;
+      }
+    }
+
+    // If no valid country code length is found, return the cleaned number (or handle as needed)
+    return cleanedNumber;
   }
 
   changePreferredCountries() {
@@ -172,7 +199,7 @@ export class DelegateRegistrationOnlineComponent {
     return this.registrationForm.controls;
   }
 
-  createForm() {   
+  createForm() {
 
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
@@ -278,8 +305,8 @@ export class DelegateRegistrationOnlineComponent {
     event.preventDefault();
   }
 
-  getAllCountrycode() {
-    this.delegateService.getAllCountrycode().subscribe(
+  async getAllCountrycode() {
+    await this.delegateService.getAllCountrycode().subscribe(
       (res: any) => {
         this.code = res.data;
         // Define the country name you want to find (e.g., "India (+91)")
@@ -785,10 +812,12 @@ export class DelegateRegistrationOnlineComponent {
       this.renderer.selectRootElement('#dob').focus();
       this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
-    } else if (
-      this.registrationForm.value.mobile_number == '' ||
-      this.registrationForm.value.mobile_number == undefined ||
-      this.registrationForm.value.mobile_number == null
+    }
+    else if (
+      !this.isOnline &&
+      (this.registrationForm.value.mobile_number == '' ||
+        this.registrationForm.value.mobile_number == undefined ||
+        this.registrationForm.value.mobile_number == null)
     ) {
       setTimeout(() => {
         const inputElement = document.querySelector(
@@ -825,7 +854,8 @@ export class DelegateRegistrationOnlineComponent {
         'error'
       );
       return;
-    } else if (
+    }
+    else if (
       this.registrationForm.value.email_id == '' ||
       this.registrationForm.value.email_id == undefined
     ) {
@@ -903,16 +933,18 @@ export class DelegateRegistrationOnlineComponent {
       return;
     }
 
-    const returnmobileNumber = this.registrationForm.value.mobile_number;
+    // const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
-    console.log(returnmobileNumber, 'mobileNumber');
 
-    const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
+
+    // let formattedMobileNumber = returnmobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+    // console.log(formattedMobileNumber);
+    const result = this.extractPhoneComponents(this.mobileNo);
+    let formattedMobileNumber = result.mobileNumber;
+    let countryCode = result.countryCode
 
     this.registrationForm.patchValue({
-      country_code: this.registrationForm.value.mobile_number.dialCode,
+      country_code: countryCode,
       mobile_number: formattedMobileNumber,
       dob: this.formattedDate,
       country: this.country_name,
@@ -936,11 +968,13 @@ export class DelegateRegistrationOnlineComponent {
       this.SharedService.registrationOnline(this.reqBody).subscribe(
         async (result: any) => {
           if (result.success) {
-            console.log('result', result);
-            // this.ngxService.stop();
+            this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
-            
+            setTimeout(() => {
+                this.router.navigateByUrl('/delegate-message');
+            }, 3000);
+
           } else {
             this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'error');
@@ -949,7 +983,7 @@ export class DelegateRegistrationOnlineComponent {
         (err) => {
           this.ngxService.stop();
           this.registrationForm.patchValue({
-            mobile_number: returnmobileNumber,
+            mobile_number: formattedMobileNumber,
             dob: returnDOB,
           });
 
@@ -971,6 +1005,247 @@ export class DelegateRegistrationOnlineComponent {
     this.formdisplay = true;
     this.registrationForm.reset({});
     this.router.navigateByUrl('/home');
+  }
+
+  extractPhoneComponents(phoneNumber: string): {
+    countryCode: string;
+    mobileNumber: string;
+  } {
+    // Remove any non-digit characters
+    const cleanedNumber = phoneNumber.replace(/\D/g, '');
+
+    // Use a mapping of country codes to determine the correct split
+    // Country codes can be 1-3 digits in length
+    const countryCodes: {[key: string]: string} = {
+      '1': 'United States/Canada',
+      '7': 'Russia/Kazakhstan',
+      '20': 'Egypt',
+      '27': 'South Africa',
+      '30': 'Greece',
+      '31': 'Netherlands',
+      '32': 'Belgium',
+      '33': 'France',
+      '34': 'Spain',
+      '36': 'Hungary',
+      '39': 'Italy',
+      '40': 'Romania',
+      '41': 'Switzerland',
+      '43': 'Austria',
+      '44': 'United Kingdom',
+      '45': 'Denmark',
+      '46': 'Sweden',
+      '47': 'Norway',
+      '48': 'Poland',
+      '49': 'Germany',
+      '51': 'Peru',
+      '52': 'Mexico',
+      '53': 'Cuba',
+      '54': 'Argentina',
+      '55': 'Brazil',
+      '56': 'Chile',
+      '57': 'Colombia',
+      '58': 'Venezuela',
+      '60': 'Malaysia',
+      '61': 'Australia',
+      '62': 'Indonesia',
+      '63': 'Philippines',
+      '64': 'New Zealand',
+      '65': 'Singapore',
+      '66': 'Thailand',
+      '81': 'Japan',
+      '82': 'South Korea',
+      '84': 'Vietnam',
+      '86': 'China',
+      '90': 'Turkey',
+      '91': 'India',
+      '92': 'Pakistan',
+      '93': 'Afghanistan',
+      '94': 'Sri Lanka',
+      '95': 'Myanmar',
+      '98': 'Iran',
+      '212': 'Morocco',
+      '213': 'Algeria',
+      '216': 'Tunisia',
+      '218': 'Libya',
+      '220': 'Gambia',
+      '221': 'Senegal',
+      '222': 'Mauritania',
+      '223': 'Mali',
+      '224': 'Guinea',
+      '225': 'Ivory Coast',
+      '226': 'Burkina Faso',
+      '227': 'Niger',
+      '228': 'Togo',
+      '229': 'Benin',
+      '230': 'Mauritius',
+      '231': 'Liberia',
+      '232': 'Sierra Leone',
+      '233': 'Ghana',
+      '234': 'Nigeria',
+      '235': 'Chad',
+      '236': 'Central African Republic',
+      '237': 'Cameroon',
+      '238': 'Cape Verde',
+      '239': 'São Tomé and Príncipe',
+      '240': 'Equatorial Guinea',
+      '241': 'Gabon',
+      '242': 'Republic of the Congo',
+      '243': 'Democratic Republic of the Congo',
+      '244': 'Angola',
+      '245': 'Guinea-Bissau',
+      '246': 'British Indian Ocean Territory',
+      '248': 'Seychelles',
+      '249': 'Sudan',
+      '250': 'Rwanda',
+      '251': 'Ethiopia',
+      '252': 'Somalia',
+      '253': 'Djibouti',
+      '254': 'Kenya',
+      '255': 'Tanzania',
+      '256': 'Uganda',
+      '257': 'Burundi',
+      '258': 'Mozambique',
+      '260': 'Zambia',
+      '261': 'Madagascar',
+      '262': 'Réunion',
+      '263': 'Zimbabwe',
+      '264': 'Namibia',
+      '265': 'Malawi',
+      '266': 'Lesotho',
+      '267': 'Botswana',
+      '268': 'Eswatini',
+      '269': 'Comoros',
+      '297': 'Aruba',
+      '298': 'Faroe Islands',
+      '299': 'Greenland',
+      '350': 'Gibraltar',
+      '351': 'Portugal',
+      '352': 'Luxembourg',
+      '353': 'Ireland',
+      '354': 'Iceland',
+      '355': 'Albania',
+      '356': 'Malta',
+      '357': 'Cyprus',
+      '358': 'Finland',
+      '359': 'Bulgaria',
+      '370': 'Lithuania',
+      '371': 'Latvia',
+      '372': 'Estonia',
+      '373': 'Moldova',
+      '374': 'Armenia',
+      '375': 'Belarus',
+      '376': 'Andorra',
+      '377': 'Monaco',
+      '378': 'San Marino',
+      '379': 'Vatican City',
+      '380': 'Ukraine',
+      '381': 'Serbia',
+      '382': 'Montenegro',
+      '383': 'Kosovo',
+      '385': 'Croatia',
+      '386': 'Slovenia',
+      '387': 'Bosnia and Herzegovina',
+      '389': 'North Macedonia',
+      '420': 'Czech Republic',
+      '421': 'Slovakia',
+      '423': 'Liechtenstein',
+      '500': 'Falkland Islands',
+      '501': 'Belize',
+      '502': 'Guatemala',
+      '503': 'El Salvador',
+      '504': 'Honduras',
+      '505': 'Nicaragua',
+      '506': 'Costa Rica',
+      '507': 'Panama',
+      '509': 'Haiti',
+      '590': 'Guadeloupe',
+      '591': 'Bolivia',
+      '592': 'Guyana',
+      '593': 'Ecuador',
+      '595': 'Paraguay',
+      '597': 'Suriname',
+      '598': 'Uruguay',
+      '599': 'Curaçao',
+      '670': 'East Timor',
+      '672': 'Norfolk Island',
+      '673': 'Brunei',
+      '674': 'Nauru',
+      '675': 'Papua New Guinea',
+      '676': 'Tonga',
+      '677': 'Solomon Islands',
+      '678': 'Vanuatu',
+      '679': 'Fiji',
+      '680': 'Palau',
+      '681': 'Wallis and Futuna',
+      '682': 'Cook Islands',
+      '683': 'Niue',
+      '685': 'Samoa',
+      '686': 'Kiribati',
+      '687': 'New Caledonia',
+      '688': 'Tuvalu',
+      '689': 'French Polynesia',
+      '690': 'Tokelau',
+      '691': 'Micronesia',
+      '692': 'Marshall Islands',
+      '850': 'North Korea',
+      '852': 'Hong Kong',
+      '853': 'Macau',
+      '855': 'Cambodia',
+      '856': 'Laos',
+      '880': 'Bangladesh',
+      '886': 'Taiwan',
+      '960': 'Maldives',
+      '961': 'Lebanon',
+      '962': 'Jordan',
+      '963': 'Syria',
+      '964': 'Iraq',
+      '965': 'Kuwait',
+      '966': 'Saudi Arabia',
+      '967': 'Yemen',
+      '968': 'Oman',
+      '970': 'Palestine',
+      '971': 'United Arab Emirates',
+      '972': 'Israel',
+      '973': 'Bahrain',
+      '974': 'Qatar',
+      '975': 'Bhutan',
+      '976': 'Mongolia',
+      '977': 'Nepal',
+      '992': 'Tajikistan',
+      '993': 'Turkmenistan',
+      '994': 'Azerbaijan',
+      '995': 'Georgia',
+      '996': 'Kyrgyzstan',
+      '998': 'Uzbekistan'
+    };
+
+    // Try to find the country code
+    let countryCode = '';
+    let mobileNumber = cleanedNumber;
+
+    // Try 3-digit codes first, then 2-digit, then 1-digit
+    for (let i = 3; i >= 1; i--) {
+      if (cleanedNumber.length > i) {
+        const potentialCode = cleanedNumber.substring(0, i);
+        if (countryCodes[potentialCode]) {
+          countryCode = potentialCode;
+          mobileNumber = cleanedNumber.substring(i);
+          break;
+        }
+      }
+    }
+
+    // If no country code is found, use a default approach
+    if (!countryCode) {
+      // Assume first 1-3 digits might be country code
+      countryCode = cleanedNumber.substring(0, Math.min(3, cleanedNumber.length - 6));
+      mobileNumber = cleanedNumber.substring(countryCode.length);
+    }
+
+    return {
+      countryCode,
+      mobileNumber
+    };
   }
 
   checkWindowSize(): void {

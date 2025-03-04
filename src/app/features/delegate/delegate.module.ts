@@ -13,6 +13,7 @@ import { DelegateOnlineComponent } from './components/delegate-online/delegate-o
 import { DelegateRegistrationSeoComponent } from './components/delegate-registration-seo/delegate-registration-seo.component';
 import { DelegateRegistrationOnlineComponent } from './components/delegate-registration-online/delegate-registration-online.component';
 import { DelegatePeaceStudentComponent } from './components/delegate-peace-student/delegate-peace-student.component';
+import { DelegateMessageComponent } from './components/delegate-message/delegate-message.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -21,7 +22,8 @@ import { DelegatePeaceStudentComponent } from './components/delegate-peace-stude
     DelegateOnlineComponent,
     DelegateRegistrationSeoComponent,
     DelegateRegistrationOnlineComponent,
-    DelegatePeaceStudentComponent
+    DelegatePeaceStudentComponent,
+    DelegateMessageComponent
   ],
   imports: [
     CommonModule,
