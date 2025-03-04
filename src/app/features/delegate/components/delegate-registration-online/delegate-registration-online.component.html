@@ -118,6 +118,8 @@
                                       (paste)="onPaste($event)"
                                       autocomplete="off"
                                       (input)="onInput($event, 'first_name')"
+                                      [readonly]="isOnline"
+                                      [disabled]="isOnline"
                                       [ngClass]="{
                                         'text-danger':
                                           submitted && f.first_name.errors
@@ -177,6 +179,8 @@
                                       (keydown)="handleTabKey($event, 'dob')"
                                       autocomplete="off"
                                       (input)="onInput($event, 'last_name')"
+                                      [readonly]="isOnline"
+                                      [disabled]="isOnline"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.last_name.errors

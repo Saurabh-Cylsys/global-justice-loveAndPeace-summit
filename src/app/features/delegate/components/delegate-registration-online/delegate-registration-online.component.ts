@@ -338,6 +338,9 @@ export class DelegateRegistrationOnlineComponent {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
         this.countryData = res.data;
+        if (this.isOnline) {
+          this.registrationForm.patchValue({ country_id: this.country_id });
+        }
       },
       (err: any) => {
         console.log('error', err);
