@@ -2157,7 +2157,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .justiceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AJ" counter(justice-counter);
+  content: "J" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
@@ -2237,7 +2237,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .loveLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AL" counter(justice-counter);
+  content: "L" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
@@ -2302,7 +2302,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .peaceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AP" counter(justice-counter);
+  content: "P" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
