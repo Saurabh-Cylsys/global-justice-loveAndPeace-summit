@@ -31,7 +31,7 @@ html {
   flex-direction: row;
   justify-content: center;
   min-width: 50%;
-  width: 50%;
+  /* width: 50%; */
   margin: 0 auto;
 }
 
@@ -887,9 +887,9 @@ html {
   html {
     font-size: 14px;
   }
-  .global-justice {
+  /* .global-justice {
     width: 100%;
-  }
+  } */
 
   .global-justice .all-frames-wrapper {
     width: 100%;
