@@ -60,13 +60,13 @@ export class PeacekeeperPreselectComponent {
 
   goToChildNomination() {
 
-    this.router.navigate(['/delegate-student'], {
+    this.router.navigate(['/delegate-child-nomination'], {
       queryParams: { code: this.referralCode }
     });
   }
   goToOnlineDelegate() {
     this.router.navigate(['/delegate-online'], {
       queryParams: { code: this.referralCode }
-    });    
+    });
   }
 }

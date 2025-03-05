@@ -6,7 +6,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { HostListener } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, LocationStrategy } from '@angular/common';
 
 interface RegistrationData {
   name: string;
@@ -53,6 +53,7 @@ export class DelegateOnlineComponent implements OnInit {
   colorTheme: string = "theme-dark-blue";
   minDate1:any;
   maxDate1:any;
+  isBackNavigation: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -62,6 +63,7 @@ export class DelegateOnlineComponent implements OnInit {
     private sharedService: SharedService,
     private route: ActivatedRoute,
     private router: Router,
+    private locationStrategy: LocationStrategy,
     private encryptionService: EncryptionService
   ) {
     this.route.queryParams.subscribe((params: any) => {
@@ -75,6 +77,36 @@ export class DelegateOnlineComponent implements OnInit {
         // });
       }
     });
+
+    this.locationStrategy.onPopState((event) => {
+      if (event.type === 'popstate') {
+        this.isBackNavigation = true;
+        this.handleBackNavigation();
+      }
+    });
+  }
+
+  private handleBackNavigation() {
+    // Clear stored data
+    localStorage.removeItem('delegateRegistration');
+
+    // Reset form to initial state
+    if (this.userForm) {
+      this.userForm.reset();
+      this.initializeForms();
+    }
+
+    // Reset component state
+    this.showPaymentSuccess = false;
+    this.showCompleteProfileForm = false;
+    this.paymentSuccess = false;
+    this.paymentLink = null;
+    this.loading = false;
+    this.registrationData = null;
+    this.sessionId = null;
+    this.isPaymentStatus = null;
+    this.transactionVerified = false;
+    this.selectedCountryName = '';
   }
 
   async ngOnInit() {
@@ -82,6 +114,11 @@ export class DelegateOnlineComponent implements OnInit {
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
+
+    if (this.isBackNavigation) {
+      this.handleBackNavigation();
+      this.isBackNavigation = false; // Reset flag
+    }
 
   }
 

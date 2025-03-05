@@ -118,8 +118,8 @@
                                       (paste)="onPaste($event)"
                                       autocomplete="off"
                                       (input)="onInput($event, 'first_name')"
-                                      [readonly]="isOnline"
-                                      [disabled]="isOnline"
+                                      [readonly]="this.firstname != ''" 
+                                      [disabled]="this.firstname != ''"
                                       [ngClass]="{
                                         'text-danger':
                                           submitted && f.first_name.errors
@@ -179,8 +179,8 @@
                                       (keydown)="handleTabKey($event, 'dob')"
                                       autocomplete="off"
                                       (input)="onInput($event, 'last_name')"
-                                      [readonly]="isOnline"
-                                      [disabled]="isOnline"
+                                      [readonly]="this.lastname != ''"
+                                      [disabled]="this.lastname != ''"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.last_name.errors
@@ -950,8 +950,8 @@
                             </div>
 
                             <div class="row g-2 mt-5">
-                              <div class="col-md-12" *ngIf="!this.isOnline">
-                                <p class="refLabel col-md-8">
+                              <div class="col-md-12" >
+                                <p class="refLabel col-md-8" *ngIf="!this.isOnline">
                                   On submission of this form, you will be
                                   redirected to the payment gateway page ,
                                   where you can complete the payment of (USD

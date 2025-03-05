@@ -93,7 +93,8 @@ export class DelegateRegistrationOnlineComponent {
   tinyURL: string = environment.tinyUrl;
   isOnline: boolean = false;
   country_id: any;
-
+  firstname: any;
+  lastname:any;
   constructor(
     private datePipe: DatePipe,
     private formBuilder: FormBuilder,
@@ -201,10 +202,16 @@ export class DelegateRegistrationOnlineComponent {
 
   createForm() {
 
+    const nameParts = this.name ? this.name.split(' ') : [];
+    const firstName = nameParts.length > 0 ? nameParts[0] : '';
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+    this.firstname = firstName;
+    this.lastname = lastName;
     this.registrationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
-      first_name: [this.name ? this.name.split(' ')[0] : '', [Validators.required]],
-      last_name: [this.name ? this.name.split(' ')[1] : '', [Validators.required]],
+      first_name: [this.firstname, [Validators.required]],
+      last_name: [this.lastname, [Validators.required]],
       dob: ['', [Validators.required, this.ageValidator]],
       country_code: [''],
       mobile_number: [this.mobileNo || '', [Validators.minLength(7), Validators.required]],
