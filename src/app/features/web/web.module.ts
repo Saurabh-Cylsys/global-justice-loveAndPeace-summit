@@ -44,6 +44,7 @@ import { MediaHeaderComponent } from 'src/app/shared/components/media-header/med
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { NewsPaperComponent } from './media/news-paper/news-paper.component';
     PhotosComponent,
     ArticlesComponent,
     NewsPaperComponent,
+    PeaceShopComponent,
 
     // WhoShouldAttendAndWhyComponent,
 

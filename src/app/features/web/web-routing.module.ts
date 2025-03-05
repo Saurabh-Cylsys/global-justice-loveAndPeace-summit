@@ -31,6 +31,7 @@ import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
 
 const routes: Routes = [
   {
@@ -187,6 +188,10 @@ const routes: Routes = [
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
+      },
+      {
+        path: 'peace-shop',
+        component: PeaceShopComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -2905,3 +2905,9 @@ button:focus {
 .awards .section4 ul li {
   color: #131313 !important;
 }
+
+
+#pe6{
+  background-image: url(../images/venueBg.png) !important;
+  background-color: var(--color5) !important;
+}
