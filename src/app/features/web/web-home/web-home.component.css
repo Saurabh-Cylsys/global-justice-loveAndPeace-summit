@@ -452,3 +452,29 @@ video {
   border-color: #004d7a;
 
 }
+
+.chiefGuest p{
+font-weight: 900;
+font-size: clamp(16px, 2vw, 20px);
+line-height: 100%;
+letter-spacing: 0%;
+text-align: center;
+}
+
+.chiefGuest p:nth-child(2){
+  color: #004d7a;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.chiefGuest p:nth-child(3){
+  color: #1d1d1d;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.chiefGuest p:nth-child(4){
+  opacity: 0.4;
+  margin-bottom: 15px;
+}
