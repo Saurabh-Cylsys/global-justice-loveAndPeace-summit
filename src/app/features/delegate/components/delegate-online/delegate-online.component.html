@@ -1,0 +1,226 @@
+<div class="container mt-5">
+  <!-- Initial Registration Form -->
+  <div *ngIf="!showPaymentSuccess" class="row justify-content-center ">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Online Delegate Registration</h2>
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name<span class="form-label"
+                  style="color: #ff0000">*</span></label>
+              <input type="text" class="form-control" id="name" formControlName="name" required autocomplete="off">
+              <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched" class="text-danger">
+                Name is required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email<span class="form-label"
+                  style="color: #ff0000">*</span></label>
+              <input type="email" class="form-control" id="email" formControlName="email" required autocomplete="off">
+              <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
+                Please enter a valid email
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile Number <span class="form-label"
+                  style="color: #ff0000">*</span></label>
+              <div class="input-group">
+                <select class="form-select" style="max-width: 150px;" formControlName="countryCode" required>
+                  <option value="-1" selected>Select Country Code</option>
+                  <option value="+91">+91 (India)</option>
+                  <option value="+971">+971 (UAE)</option>
+                  <option value="+1">+1 (USA/Canada)</option>
+                  <option value="+7">+7 (Russia/Kazakhstan)</option>
+                  <option value="+20">+20 (Egypt)</option>
+                  <option value="+27">+27 (South Africa)</option>
+                  <option value="+30">+30 (Greece)</option>
+                  <option value="+31">+31 (Netherlands)</option>
+                  <option value="+32">+32 (Belgium)</option>
+                  <option value="+33">+33 (France)</option>
+                  <option value="+34">+34 (Spain)</option>
+                  <option value="+36">+36 (Hungary)</option>
+                  <option value="+39">+39 (Italy)</option>
+                  <option value="+40">+40 (Romania)</option>
+                  <option value="+41">+41 (Switzerland)</option>
+                  <option value="+43">+43 (Austria)</option>
+                  <option value="+44">+44 (UK)</option>
+                  <option value="+45">+45 (Denmark)</option>
+                  <option value="+46">+46 (Sweden)</option>
+                  <option value="+47">+47 (Norway)</option>
+                  <option value="+48">+48 (Poland)</option>
+                  <option value="+49">+49 (Germany)</option>
+                  <option value="+51">+51 (Peru)</option>
+                  <option value="+52">+52 (Mexico)</option>
+                  <option value="+54">+54 (Argentina)</option>
+                  <option value="+55">+55 (Brazil)</option>
+                  <option value="+56">+56 (Chile)</option>
+                  <option value="+57">+57 (Colombia)</option>
+                  <option value="+60">+60 (Malaysia)</option>
+                  <option value="+61">+61 (Australia)</option>
+                  <option value="+62">+62 (Indonesia)</option>
+                  <option value="+63">+63 (Philippines)</option>
+                  <option value="+64">+64 (New Zealand)</option>
+                  <option value="+65">+65 (Singapore)</option>
+                  <option value="+66">+66 (Thailand)</option>
+                  <option value="+81">+81 (Japan)</option>
+                  <option value="+82">+82 (South Korea)</option>
+                  <option value="+84">+84 (Vietnam)</option>
+                  <option value="+86">+86 (China)</option>
+                  <option value="+90">+90 (Turkey)</option>
+                  <option value="+92">+92 (Pakistan)</option>
+                  <option value="+93">+93 (Afghanistan)</option>
+                  <option value="+94">+94 (Sri Lanka)</option>
+                  <option value="+95">+95 (Myanmar)</option>
+                  <option value="+98">+98 (Iran)</option>
+                  <option value="+212">+212 (Morocco)</option>
+                  <option value="+213">+213 (Algeria)</option>
+                  <option value="+216">+216 (Tunisia)</option>
+                  <option value="+218">+218 (Libya)</option>
+                  <option value="+234">+234 (Nigeria)</option>
+                  <option value="+254">+254 (Kenya)</option>
+                  <option value="+351">+351 (Portugal)</option>
+                  <option value="+352">+352 (Luxembourg)</option>
+                  <option value="+358">+358 (Finland)</option>
+                  <option value="+359">+359 (Bulgaria)</option>
+                  <option value="+370">+370 (Lithuania)</option>
+                  <option value="+371">+371 (Latvia)</option>
+                  <option value="+372">+372 (Estonia)</option>
+                  <option value="+380">+380 (Ukraine)</option>
+                  <option value="+420">+420 (Czech Republic)</option>
+                  <option value="+421">+421 (Slovakia)</option>
+                  <option value="+886">+886 (Taiwan)</option>
+                  <option value="+972">+972 (Israel)</option>
+                  <option value="+977">+977 (Nepal)</option>
+                  <option value="+994">+994 (Azerbaijan)</option>
+                </select>
+                <input type="tel" class="form-control" id="mobile" formControlName="mobile" required
+                  placeholder="Enter mobile number" autocomplete="off">
+              </div>
+              <div *ngIf="userForm.get('mobile')?.invalid && userForm.get('mobile')?.touched" class="text-danger">
+                Mobile number is required
+              </div>
+              <div *ngIf="userForm.get('countryCode')?.invalid && userForm.get('countryCode')?.touched"
+                class="text-danger">
+                Country code is required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <span class="required-icon"></span>
+              <label for="country" class="p-0">Country<span class="form-label" style="color: #ff0000">*</span></label>
+              <div class="position-relative">
+                <input type="text" class="form-control" [formControlName]="'countrySearch'"
+                  (input)="filterCountries($event)" placeholder="Search country..." [value]="selectedCountryName"
+                  autocomplete="off">
+                <div class="dropdown-menu w-100" [class.show]="showCountryDropdown && filteredCountries.length > 0">
+                  <button type="button" class="dropdown-item" *ngFor="let country of filteredCountries"
+                    (click)="selectCountry(country)">
+                    {{ country.name }}
+                  </button>
+                </div>
+                <div *ngIf="userForm.get('countrySearch')?.invalid && userForm.get('countrySearch')?.touched"
+                  class="text-danger">
+                  Country is required
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="mb-3 d-none">
+
+              <label class="col-md-12 no-padding p-0" for="lname1">DOB<span class="form-label-span"
+                  style="color: #ff0000">
+                  *</span></label>
+
+              <input type="text" class="form-control" placeholder="Select Date of birth" id="dob" #dob
+                formControlName="dob" [minDate]="minDate1" [maxDate]="maxDate1" (keydown)="disableManualInput($event)"
+                (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
+                    isAnimated: true,dateInputFormat: 'DD/MM/YYYY',showWeekNumbers: false,containerClass: colorTheme}"
+                readonly />
+
+              <div *ngIf="getcontrol('dob')?.errors &&getcontrol('dob')?.touched">
+                <small class="text-danger" *ngIf="getcontrol('dob')?.errors?.['required']">Date of birth is
+                  required</small>
+              </div>
+
+              <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="mb-3 d-none">
+              <label for="reference_no" class="form-label">Reference No</label>
+              <input type="text" name="reference_no" maxlength="50" id="reference_no" #reference_no
+                placeholder="Enter reference no." class="form-control"
+                [readonly]="this.referralCode? this.referralCode: ''" formControlName="reference_no" minlength="3"
+                autocomplete="off" (input)="onInput($event, 'reference_no')" />
+            </div> -->
+
+            <div class="d-grid justify-content-center">
+              <button type="submit" class="btn btn-success" [disabled]="!userForm.valid || loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
+                  aria-hidden="true"></span>
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Success Message -->
+  <div *ngIf="showPaymentSuccess" class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card border-1 shadow-lg">
+        <div class="card-body text-center p-5">
+          <div class="success-checkmark mb-4">
+            <div class="check-icon">
+              <span class="icon-line line-tip"></span>
+              <span class="icon-line line-long"></span>
+              <div class="icon-circle"></div>
+              <div class="icon-fix"></div>
+            </div>
+          </div>
+          <h2 class="card-title mb-3 text-success">Payment Successful!</h2>
+          <p class="card-text text-muted">Thank you for registering as an online delegate.</p>
+
+          <div class="registration-details mt-4 p-4 bg-light rounded">
+            <h4 class="mb-4 text-success">Registration Details</h4>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong class="text-muted">Name:</strong>
+                  <span>{{registrationData?.name}}</span>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong class="text-muted">Email:</strong>
+                  <span>{{registrationData?.email}}</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center">
+                  <strong class="text-muted">Mobile:</strong>
+                  <span>{{registrationData?.mobile_no}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 text-muted">You will receive a confirmation email shortly with further instructions.</p>
+
+          <div class="mt-4">
+            <button class="btn btn-success btn-lg px-5" (click)="showCompleteProfile()">
+              Complete Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complete Profile Form -->
+
+</div>

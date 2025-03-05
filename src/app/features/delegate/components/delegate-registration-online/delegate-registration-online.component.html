@@ -7,10 +7,9 @@
       class="innerpage-content-area-wrap pb-0 pt-0"
       style="min-height: calc(100vh - 180px)"
     >
-      <div class="fb-container p-0 border-1 " *ngIf="isEnabled">
-        <div class="single-content-container shadow-lg">
+      <div class="fb-container p-0 border-1 ">
+        <div class="container border-1 shadow-sm">
           <h1 class="fs-3 fs-md-2 fs-lg-1 text-center">Delegate Registration</h1>
-
           <div class="clearfix"></div>
           <div id="regformcontainer">
             <div class="clearfix"></div>
@@ -20,7 +19,7 @@
               autocomplete="off"
             >
               <div
-                class="clearfix section7 p-lg-5 position-relative"
+                class="clearfix p-lg-5 position-relative"
                 style="z-index: 1"
               >
                 <div class="form-step-wrapper" id="formstep-1">
@@ -47,7 +46,7 @@
                                 class="form-group fg-nametitle col-md-4 col-sm-4 my-3"
                               >
                                 <div class="col-md-12 no-padding">
-                                  <div class="">                                      
+                                  <div class="">
                                     <label
                                       class="col-md-12 no-padding p-0"
                                       for="nametitle1"
@@ -119,6 +118,8 @@
                                       (paste)="onPaste($event)"
                                       autocomplete="off"
                                       (input)="onInput($event, 'first_name')"
+                                      [readonly]="this.firstname != ''" 
+                                      [disabled]="this.firstname != ''"
                                       [ngClass]="{
                                         'text-danger':
                                           submitted && f.first_name.errors
@@ -178,6 +179,8 @@
                                       (keydown)="handleTabKey($event, 'dob')"
                                       autocomplete="off"
                                       (input)="onInput($event, 'last_name')"
+                                      [readonly]="this.lastname != ''"
+                                      [disabled]="this.lastname != ''"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.last_name.errors
@@ -285,8 +288,12 @@
                                         *</span
                                       ></label
                                     >
-                                    <div class="">
+                                    <div class="" *ngIf="this.isOnline">
+                                      <label>+{{this.mobileNo}}</label>
+                                    </div>
+                                    <div class="" *ngIf="!this.isOnline">
                                       <ngx-intl-tel-input
+
                                         class="custom-width-container"
                                         [preferredCountries]="[
                                           CountryISO.India,
@@ -400,6 +407,8 @@
                                       autocomplete="off"
                                       data-error="Please enter valid email id"
                                       formControlName="email_id"
+                                      [readonly]="isOnline"
+                                      [disabled]="isOnline"
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.email_id.errors
@@ -941,16 +950,16 @@
                             </div>
 
                             <div class="row g-2 mt-5">
-                              <div class="col-md-12">
-                                <!-- <p class="refLabel col-md-8">
+                              <div class="col-md-12" >
+                                <p class="refLabel col-md-8" *ngIf="!this.isOnline">
                                   On submission of this form, you will be
                                   redirected to the payment gateway page ,
                                   where you can complete the payment of (USD
                                   {{ this.referralCode ? 2604 : 2800 }}). You
                                   will also receive the payment link on your
                                   registered email.
-                                </p> -->
-                                <h6>Reference code:</h6>
+                                </p>
+                                <h6>Do you have a Reference code:</h6>
                               </div>
                               <div class="col-md-3">
                                 <div class="">

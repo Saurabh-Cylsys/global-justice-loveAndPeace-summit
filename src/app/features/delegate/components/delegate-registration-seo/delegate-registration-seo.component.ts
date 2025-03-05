@@ -1241,5 +1241,3 @@ showPopup: boolean = false;
     });
   }
 }
-
-

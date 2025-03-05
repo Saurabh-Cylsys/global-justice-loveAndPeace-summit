@@ -76,6 +76,14 @@ export class DelegateService {
     return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
   }
 
+  postDelegateOnline(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+  }
+
+  postVerifySessionOnline(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
+  }
+
   getAmbassadorURL(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
   }
