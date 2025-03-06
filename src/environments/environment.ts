@@ -8,11 +8,13 @@ export const environment = {
 
   apiUrl : 'https://devglobaljusticeapis.cylsys.com/api/v1',   //development
   domainUrl:'https://globaljusticeuat.cylsys.com',           //development for peackeeper qrcode
-  tinyUrl :'https://tinyurl.com/3322sj49',          //tiny url for mediator page UAT
+  // tinyUrl :'https://tinyurl.com/3322sj49',          //tiny url for mediator page UAT
 
   // apiUrl : 'https://globaljusticeqcapi.cylsys.com/api/v1' ,       //QC
   // domainUrl:'https://globaljusticeqc.cylsys.com',         //QC for peackeeper qrcode
   // tinyUrl : 'https://tinyurl.com/7yuvnmyj',               //tiny url for mediator page
+
+  tinyUrl : 'https://tinyurl.com/3322sj49',   // For Local
 
   apiMockUrl: '/api/v1',
   app_env: 'development',

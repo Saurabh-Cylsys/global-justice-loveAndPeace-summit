@@ -778,23 +778,8 @@
                                         *</span
                                       >
                                     </label>
-                                    <!-- <input
-                                      type="text"
-                                      name="country"
-                                      id="country"
-                                      placeholder="Enter country"
-                                      class="form-control p-0"
-                                      required
-                                      formControlName="country"
-                                      autocomplete="off"
-                                      (input)="onInput($event, 'country')"
-                                      minlength="3"
-                                      [ngClass]="{
-                                        'is-invalid':
-                                          submitted && f.country.errors
-                                      }"
-                                    /> -->
 
+                                    {{registrationForm.value.country | json}}
                                     <select
                                       (change)="changeCountry($event)"
                                       class="form-control p-0 form-select"
@@ -815,7 +800,7 @@
                                           let country of countryData;
                                           let j = index
                                         "
-                                        [value]="country | json"
+                                        [ngValue]="country"
                                       >
                                         {{ country.name }}
                                       </option>

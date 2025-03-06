@@ -191,3 +191,19 @@
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0,123,255,0.2);
 }
+
+#number_mobile1 {
+  padding: 0 0px !important;
+}
+
+#number_mobile1 {
+  border-bottom: none !important;
+  padding: 0px 0px !important;
+}
+
+.iti {
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  border-bottom: 1px !important;
+}

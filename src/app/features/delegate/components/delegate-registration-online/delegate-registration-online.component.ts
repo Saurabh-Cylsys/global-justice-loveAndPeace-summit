@@ -1,5 +1,6 @@
 
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -103,7 +104,8 @@ export class DelegateRegistrationOnlineComponent {
     private router: Router,
     private route: ActivatedRoute,
     private renderer: Renderer2,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private cdr: ChangeDetectorRef
   ) {
     this.fullURL = window.location.href;
 
@@ -119,14 +121,13 @@ export class DelegateRegistrationOnlineComponent {
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
 
-  ngOnInit(): void {
+async ngOnInit() {
     this.checkWindowSize();
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
-
 
         if (params['data']) {
           const decryptedData = this.encryptionService.decryptData(params['data']);
@@ -139,17 +140,37 @@ export class DelegateRegistrationOnlineComponent {
             this.country_id = decryptedData.country_id
           }
         }
-
       }
     });
     this.createForm();    // this.getdates()
-    this.getAllCountries();
-    this.getIPAddress();
-    this.deviceInfo = this.getDeviceOS();
+    await this.getAllCountries();
 
-    if (this.isOnline) {
-      this.registrationForm.patchValue({ country_id: this.country_id });
+    console.log("this.countryData", this.countryData);
+
+   if (this.isOnline && this.countryData.length > 0) {
+       this.setCountry();
     }
+  }
+
+  setCountry() {
+    const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
+
+    if (selectedCountry) {
+      this.registrationForm.patchValue({
+        country: selectedCountry.name,
+        country_id: +selectedCountry.id
+      });
+
+      this.cdr.detectChanges(); // 👈 Force UI update
+
+      // this.registrationForm.patchValue({ country: selectedCountry });
+
+    } else {
+      console.warn("Country not found for ID:", this.country_id);
+    }
+
+    console.log("Selected Country:", this.registrationForm.value.country);
+    console.log("Selected CountryID:", this.registrationForm.value.country_id);
   }
 
   // Function to extract mobile number without country code
@@ -205,7 +226,7 @@ export class DelegateRegistrationOnlineComponent {
       title: ['', [Validators.required]],
       first_name: [this.name ? this.name.split(' ')[0] : '', [Validators.required]],
       last_name: [this.name ? this.name.split(' ')[1] : '', [Validators.required]],
-      dob: ['', [Validators.required, this.ageValidator]],
+      dob: ['', [Validators.required]],
       country_code: [''],
       mobile_number: [this.mobileNo || '', [Validators.minLength(7), Validators.required]],
       email_id: [
@@ -245,38 +266,6 @@ export class DelegateRegistrationOnlineComponent {
       created_by: 'Admin',
       status: ['0'],
     });
-  }
-
-  ageValidator(control: FormControl) {
-    const selectedDate = new Date(control.value);
-
-    if (isNaN(selectedDate.getTime())) {
-      return { invalidDate: true };
-    }
-
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // If selected date is after or on the date 18 years ago, it's invalid
-    if (selectedDate > eighteenYearsAgo) {
-      return { ageError: 'Date must be at least 18 years ago' };
-    }
-
-    return null; // Valid date
-  }
-
-  isDisabledDate(date: Date): boolean {
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-    return date >= eighteenYearsAgo;
   }
 
   onCheckboxChange(event: any) {
@@ -334,15 +323,20 @@ export class DelegateRegistrationOnlineComponent {
       this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
-  getAllCountries() {
-    this.delegateService.getAllCountries().subscribe(
-      (res: any) => {
-        this.countryData = res.data;
-      },
-      (err: any) => {
-        console.log('error', err);
-      }
-    );
+ async getAllCountries() {
+  try {
+    const response = await this.delegateService.getAllCountryApi();
+    this.countryData = response.data;
+    console.log("Country Data:", this.countryData);
+
+    // Ensure we bind the country only after fetching data
+    if (this.isOnline) {
+      this.setCountry();
+    }
+
+  } catch (error) {
+    console.error("Error fetching countries:", error);
+  }
   }
 
   changeCountry(e: any) {
@@ -359,7 +353,6 @@ export class DelegateRegistrationOnlineComponent {
       },
       (err: any) => {
         console.log('Err', err);
-        // this.ngxService.stop();
       }
     );
   }
@@ -1329,119 +1322,6 @@ export class DelegateRegistrationOnlineComponent {
     if (dobInput) {
       dobInput.click(); // Open ngx-bootstrap datepicker
     }
-  }
-
-  getIPAddress() {
-    this.SharedService.getIPAddress().subscribe({
-      next: (res: any) => {
-        this.ipAddress = res.ip;
-      },
-    });
-  }
-
-  getDeviceOS(): string {
-    const userAgent = navigator.userAgent;
-    if (/android/i.test(userAgent)) return 'Android';
-    if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
-    if (/Win/i.test(userAgent)) return 'Windows';
-    if (/Mac/i.test(userAgent)) return 'MacOS';
-    if (/Linux/i.test(userAgent)) return 'Linux';
-    return 'Unknown';
-  }
-
-  startTimer() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear any existing timer
-    }
-
-    this.timerExpired = false;
-    this.countdown = 100; // Reset countdown to 100 seconds
-    this.buttonText = 'Resend OTP';
-
-    this.interval = setInterval(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      } else {
-        this.timerExpired = true;
-        this.buttonText = 'Resend OTP';
-        clearInterval(this.interval); // Stop the timer when it reaches 0
-      }
-    }, 1000);
-  }
-
-  ngOnDestroy() {
-    if (this.interval) {
-      clearInterval(this.interval); // Clear timer when component is destroyed
-    }
-  }
-
-  formatTime(seconds: number): string {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-  }
-
-  sendOTP() {
-    if (
-      this.registrationForm.value.email_id == '' ||
-      this.registrationForm.value.email_id == undefined
-    ) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup(
-        'Please enter a valid Email ID',
-        '',
-        'error'
-      );
-      return;
-    }
-
-    let body = {
-      email: this.registrationForm.value.email_id,
-      deviceId: this.ipAddress,
-      deviceOs: this.deviceInfo,
-      registeration_type: '0',
-    };
-    this.ngxService.start();
-    this.delegateService.sendOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.ngxService.stop();
-        this.isOTPReceive = true;
-        this.timerExpired = false;
-        this.countdown = 100; // Reset countdown
-        this.startTimer();
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
-  }
-
-  verifyOTP() {
-    let body = {
-      email: this.registrationForm.value.email_id,
-      otp: this.txtVerifyOTP,
-    };
-
-    this.delegateService.verifyOTPApi(body).subscribe({
-      next: (res: any) => {
-        console.log('Res', res);
-        this.buttonText = 'Send OTP';
-        this.isOTPReceive = false;
-        this.timerExpired = false;
-        this.SharedService.ToastPopup(res.message, '', 'success');
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        this.ngxService.stop();
-      },
-    });
   }
 }
 

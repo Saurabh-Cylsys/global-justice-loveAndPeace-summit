@@ -2740,3 +2740,19 @@ button:focus {
   margin: auto; /* Center alignment */
   max-width: 320px; /* Prevents too much stretching */
 }
+
+.delegateonline .iti{
+  border-bottom:  0 !important;
+}
+
+.delegateonline .iti #phone{
+  border: 0 !important;
+}
+
+.delegateonline .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: none;
+  outline: 0 !important;
+  box-shadow: none !important;
+}

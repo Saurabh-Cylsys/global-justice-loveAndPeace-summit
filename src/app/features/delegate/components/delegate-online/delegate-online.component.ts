@@ -7,12 +7,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 
 interface RegistrationData {
-  name: string;
-  email: string;
-  mobile_no: string;
+  // name: string;
+  // email: string;
+  // mobile_no: string;
+
+
+  first_name : string,
+  last_name : string,
+  email_id: string,
+  mobile_number:  string,
   country_id:string;
+  title ?: string,
+  reference_no? : any,
+  dob ?: string,
+  is_nomination?: string,
+  p_type?: string,
+  p_reference_by?: string
 }
 
 interface CompleteProfileData {
@@ -46,13 +59,21 @@ export class DelegateOnlineComponent implements OnInit {
   showCountryDropdown = false;
   filteredCountries: any[] = [];
   selectedCountryName = '';
-  referralCode: any;
-  formattedDate: string = '';
-  minDate: string | null = null;
-  maxDate: string | null = null;
+  referralCode: any = "";
+  formattedDateOfBirth: string = '';
+  minDate: any;
+  maxDate: any;
   colorTheme: string = "theme-dark-blue";
-  minDate1:any;
-  maxDate1:any;
+  mobile_numberVal: boolean = false;
+
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [
+    CountryISO.UnitedStates,
+    CountryISO.UnitedKingdom,
+  ];
+  selectedCountryISO: any;
+  SearchCountryField = SearchCountryField;
 
   constructor(
     private fb: FormBuilder,
@@ -75,14 +96,26 @@ export class DelegateOnlineComponent implements OnInit {
         // });
       }
     });
+
+    const today = new Date();
+    // Max date is 18 years ago from today
+    this.maxDate = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    // Min date is 120 years ago from today
+    this.minDate = new Date(today.getFullYear() - 120, 0, 1);
   }
 
   async ngOnInit() {
-    await this.getAllCountries();
+
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
 
+    await this.getAllCountries();
   }
 
   getAllCountries() {
@@ -135,19 +168,56 @@ export class DelegateOnlineComponent implements OnInit {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       email:  ['',
-
         [Validators.required,
         Validators.email,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
+        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
       ],
-      countryCode: ['-1', Validators.required],
-      mobile: ['', [Validators.required, Validators.minLength(7)]],
-      country: [null, Validators.required],
-      countrySearch: [''],
-      // dob: ['', [Validators.required, this.ageValidator]],
-      // reference_no: [this.referralCode ? this.referralCode : ''],
+      // countryCode: ['-1', Validators.required],
+      mobile_number: ['', [Validators.required, Validators.minLength(7)]],
+      country: ['', Validators.required],
+      dob: ['', [Validators.required]],
+      reference_no: [this.referralCode ? this.referralCode : ''],
     });
   }
+
+  keyPressNumbers(event: KeyboardEvent) {
+    const inputValue = this.userForm.controls['mobile_number'].value; // Get value from form control
+    if (inputValue && inputValue.number) {
+      if (inputValue.number.length < 7) {
+        this.mobile_numberVal = true;
+      } else {
+        this.mobile_numberVal = false;
+      }
+    }
+  }
+
+
+  // getPhoneErrorMessage() {
+  //   const control = this.userForm.controls['mobile_number'];
+  //   if (control.value) {
+  //     if (control?.errors?.validatePhoneNumber['valid']) {
+  //       return '';
+  //     } else {
+  //       return 'Invalid mobile number for selected country.';
+  //     }
+  //   }
+  //   return '';
+  // }
+
+  getPhoneErrorMessage() {
+    const control = this.userForm.controls['mobile_number'];
+    if (control.value && control.errors) {
+      const phoneError = control.errors['validatePhoneNumber']; // Use bracket notation
+      if (phoneError?.valid) {
+        return '';
+      } else {
+        return 'Invalid mobile number for selected country.';
+      }
+    }
+    return '';
+  }
+
+
 
   ageValidator(control: FormControl) {
     const selectedDate = new Date(control.value);
@@ -172,13 +242,17 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   private checkQueryParams() {
+    debugger;
     this.route.queryParams.subscribe(params => {
+
+      console.log('params...', params);
       if (params['session_id']) {
         this.sessionId = params['session_id'] || 'No session_id';
         this.registrationData = {
-          name: params['name'] || '',
-          email: params['email'],
-          mobile_no: params['mobile_no'],
+          first_name: params['first_name'] || '',
+          last_name: params['last_name'] || '',
+          email_id: params['email_id'],
+          mobile_number: params['mobile_no'],
           country_id: params['country_id']
         };
         this.handlePaymentSuccess();
@@ -193,10 +267,12 @@ export class DelegateOnlineComponent implements OnInit {
       this.checkFormValidity();
     });
   }
+
   async verifySession() {
     let body = {
       sessionId: this.sessionId
     }
+    console.log('body', body);
     await this.delegateService.postVerifySessionOnline(body).subscribe({
       next: (response: any) => {
         if (response.success) {
@@ -206,9 +282,10 @@ export class DelegateOnlineComponent implements OnInit {
           this.showPaymentSuccess = true;
           if (this.registrationData && this.paymentSuccess) {
             this.userForm.patchValue({
-              name: this.registrationData.name,
-              email: this.registrationData.email,
-              mobile: this.registrationData.mobile_no,
+              first_name: this.registrationData.first_name,
+              last_name: this.registrationData.last_name,
+              email_id: this.registrationData.email_id,
+              mobile_number: this.registrationData.mobile_number,
               reference_no:this.referralCode
             });
           }
@@ -223,18 +300,48 @@ export class DelegateOnlineComponent implements OnInit {
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
-    this.formattedDate =
+    this.formattedDateOfBirth =
       this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
   onSubmit() {
+    console.log("Userform",this.userForm.value);
+
+    const returnmobileNumber = this.userForm.value.mobile_number;
+    console.log(returnmobileNumber, 'mobileNumber');
+    const country_code = this.userForm.value.mobile_number.dialCode;
+    const rawMobileNumber = this.userForm.value.mobile_number.number;
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+    console.log(formattedMobileNumber);
+
+    // Get the full name entered by the user
+      const fullName = this.userForm.get('name')?.value.trim();
+
+      // Split the full name into parts
+      const nameParts = fullName.split(' ');
+
+      // Extract first and last name
+      const firstName = nameParts[0] || ''; // First part as first name
+      const lastName = nameParts.slice(1).join(' ') || ''; // Remaining as last name
+
     if (this.userForm.valid) {
       this.loading = true;
       const payload = {
+        title: "Mr",
+        first_name : firstName,
+        last_name : lastName,
         name: this.userForm.get('name')?.value,
-        email: this.userForm.get('email')?.value,
-        mobile_no: `${String(this.userForm.get('countryCode')?.value).replace(/[^0-9]/g, '')}${String(this.userForm.get('mobile')?.value).replace(/[^0-9]/g, '')}`,
+        email_id: this.userForm.get('email')?.value.toLowerCase(),
+        // mobile_number: country_code + formattedMobileNumber,
+        mobile_number: formattedMobileNumber,
         country_id: JSON.parse(this.userForm.value.country).id,
+        // country_id: this.userForm.value.country.id,
+
+        reference_no: this.referralCode,
+        dob: this.formattedDateOfBirth,
+        is_nomination:"0",
+        p_type:"DELEGATE_ONLINE",
+        p_reference_by:"0"
       };
 
       this.delegateService.postDelegateOnline(payload).subscribe({
@@ -243,9 +350,9 @@ export class DelegateOnlineComponent implements OnInit {
           this.sharedService.ToastPopup('Success', response.message, 'success');
           this.registrationData = payload;
           setTimeout(() => {
-            if (response.payment_link) {
+            if (response.url) {
               localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-              window.location.href = response.payment_link;
+              window.location.href = response.url;
             }
           }, 5000);
 
@@ -314,11 +421,13 @@ export class DelegateOnlineComponent implements OnInit {
     await this.verifySession();
 
   }
+
   showCompleteProfile() {
     const params = {
-      email: this.registrationData?.email || '',
-      mobile_no: this.registrationData?.mobile_no || '',
-      name: this.registrationData?.name || '',
+      email_id: this.registrationData?.email_id || '',
+      mobile_number: this.registrationData?.mobile_number || '',
+      first_name: this.registrationData?.first_name || '',
+      last_name: this.registrationData?.last_name || '',
       country_id:this.registrationData?.country_id || '',
       isOnline: true
     };

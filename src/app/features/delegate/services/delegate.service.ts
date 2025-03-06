@@ -29,6 +29,10 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint());
   }
 
+  getAllCountryApi(): Promise<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint()).toPromise();
+  }
+
   getAllStates(country_id: any) {
     return this._apiHttpService.get(this._apiEndpointsService.getStatesByCountryEndpoint(country_id));
   }
@@ -37,7 +41,7 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getCityByStateEndpoint(state_id));
 
   }
-  
+
   getPeacekeeper_Badge(id: any) {
     return this._apiHttpService.get(this._apiEndpointsService.getPeacekeeper_Badge_Data(id));
 
