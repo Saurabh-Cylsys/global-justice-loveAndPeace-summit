@@ -31,6 +31,9 @@ import { VideoComponent } from './media/video/video.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
+import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
+import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
 
 const routes: Routes = [
   {
@@ -187,6 +190,18 @@ const routes: Routes = [
       {
         path: 'media/news-paper',
         component: NewsPaperComponent,
+      },
+      {
+        path: 'peace-shop',
+        component: PeaceShopComponent,
+      },
+      {
+        path: 'peace-menu',
+        component: PeaceMenuComponent,
+      },
+      {
+        path: 'peace-fashion',
+        component: PeaceFashionComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

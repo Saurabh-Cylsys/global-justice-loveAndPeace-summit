@@ -65,6 +65,63 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="d-md-flex list-unstyled" *ngIf="!isMobileView">
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-shop']">
+                          <img
+                            src="assets/UIComponents/images/peaceBtn1.png"
+                            alt=""
+                            class="col-12"
+                        /></a>
+                      </li>
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-menu']">
+                        <img
+                          src="assets/UIComponents/images/peaceBtn2.png"
+                          alt=""
+                          class="col-12"
+                        /></a>
+                      </li>
+                      <li class="p-1">
+                        <a [routerLink]="['/peace-fashion']">
+                          <img
+                            src="assets/UIComponents/images/peaceBtn3.png"
+                            alt=""
+                            class="col-12"
+                        /></a>
+                      </li>
+                    </ul>
+                    <ul class="d-md-flex list-unstyled" *ngIf="isMobileView">
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-shop']">
+                          <img
+                            src="assets/UIComponents/images/peaceShop.svg"
+                            alt=""
+                            width="35px"
+                        /></a>
+                      </li>
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-menu']">
+                        <img
+                          src="assets/UIComponents/images/peaceMenu.svg"
+                          alt=""
+                          width="35px"
+                        /></a>
+                      </li>
+                      <li class="p-1 text-end">
+                        <a [routerLink]="['/peace-fashion']">
+                          <img
+                            src="assets/UIComponents/images/peaceFashion.svg"
+                            alt=""
+                            width="35px"
+                        /></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <div class="col-12 tableBox">
                 <div class="row">
@@ -112,27 +169,36 @@
             </div>
           </div>
         </section>
-        <section class="section6 scroll">
-          <div class="container-fluid">
+        <section class="section6 chiefGuest">
+          <div class="container">
             <div class="row justify-content-center">
-              <div class="col-md-12 text-center">
+              <!-- <div class="col-md-12 text-center">
                 <h1 class="col-xl-6 col-md-12 mx-auto">
                   Chairman, Global Justice, Love & Peace Summit Dr. Huzaifa
                   khorakiwala
                 </h1>
+              </div> -->
+              <div class="col-md-6 text-center mt-5">
+                <img
+                  src="assets/UIComponents/images/chiefguest.webp"
+                  alt="et_now"
+                  class="col-8"
+                />
+                <p>Chief Guest</p>
+                <p>H.E. SHEIKH NAHAYAN MABARAK AL NAHAYAN</p>
+                <p>
+                  Cabinet Member, Minister of Tolerance and Co-existence, UAE
+                </p>
               </div>
-              <div class="col-xl-8 text-center mt-5">
-                <!-- <iframe
-                  class="yT col-xl-12 col-md-12 col-12"
-                  src="https://www.youtube.com/embed/TRgcLU_S-9o"
-                  title="ET Interview"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                  style="border-radius: 10px"
-                ></iframe> -->
-                <img src="assets/UIComponents/images/chairman.webp" alt="et_now" class="col-md-5">
+              <div class="col-md-6 text-center mt-5">
+                <img
+                  src="assets/UIComponents/images/chairman.webp"
+                  alt="et_now"
+                  class="col-8"
+                />
+                <p>Chairman</p>
+                <p>DR. HUZAIFA KHORAKIWALA</p>
+                <p>Global Justice, Love & Peace Summit</p>
               </div>
             </div>
           </div>
@@ -375,7 +441,8 @@
                   >
                     See all Speakers
                   </button> -->
-                  <a [routerLink]="['/speaker-details']"
+                  <a
+                    [routerLink]="['/speaker-details']"
                     class="see-all-button btn btn-success mb-4"
                   >
                     See all Speakers
@@ -390,47 +457,29 @@
             <div class="row justify-content-center">
               <div class="col-12">
                 <div class="speakers-container">
-                  <h2>OUR Peace Collaborators</h2>
+                  <h2>Our Peace Collaborators</h2>
                 </div>
               </div>
-              <!-- <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc1.webp" alt="pc" width="100%">
+              <div class="col-md-3 col-4 my-3">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc3.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc2.webp" alt="pc" width="100%">
-              </div> -->
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc3.webp" alt="pc" width="100%">
-              </div>
-              <!-- <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc4.webp" alt="pc" width="100%">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc12.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
               <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc5.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc6.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc7.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc8.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc9.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc10.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc11.webp" alt="pc" width="100%">
-              </div> -->
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc12.webp" alt="pc" width="100%">
-              </div>
-              <div class="col-md-3 col-4 my-3">
-                <img src="assets/UIComponents/images/peace_collaborators/pc13.webp" alt="pc" width="100%">
+                <img
+                  src="assets/UIComponents/images/peace_collaborators/pc13.webp"
+                  alt="pc"
+                  width="100%"
+                />
               </div>
             </div>
           </div>

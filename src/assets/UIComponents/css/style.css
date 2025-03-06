@@ -195,6 +195,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
   /* text-shadow: 0px 1.11px 4.44px #00000099; */
   text-shadow: 0px 1.11px 4.44px #000000;
+  margin: 0;
 }
 
 /* .index .section1 .tableBox table tr td p span {
@@ -1296,7 +1297,7 @@ header .nav-item .nav-link.active {
 }
 
 .hover-dropdown-content::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -20px;
   left: 0;
@@ -2136,13 +2137,25 @@ header .nav-item .nav-link.active {
 .custom-list .justiceLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/justiceLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AJ" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .justiceLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .justiceLogo ul {
@@ -2157,7 +2170,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .justiceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AJ" counter(justice-counter);
+  content: "J" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
@@ -2217,13 +2230,25 @@ header .nav-item .nav-link.active {
 .custom-list .loveLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/loveLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AL" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .loveLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 .custom-list .loveLogo ul {
   counter-reset: justice-counter; /* First counter starts at 1 */
@@ -2237,7 +2262,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .loveLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AL" counter(justice-counter);
+  content: "L" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
@@ -2282,14 +2307,28 @@ header .nav-item .nav-link.active {
 .custom-list .peaceLogo::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/peaceLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "AP" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 }
+
+.custom-list .peaceLogo:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
+}
+
 .custom-list .peaceLogo ul {
   counter-reset: justice-counter; /* First counter starts at 1 */
 }
@@ -2302,7 +2341,7 @@ header .nav-item .nav-link.active {
 
 .custom-list .peaceLogo ul li::before {
   counter-increment: justice-counter;
-  content: "AP" counter(justice-counter);
+  content: "P" counter(justice-counter);
   position: absolute;
   left: -40px;
   top: 0;
@@ -2347,13 +2386,25 @@ header .nav-item .nav-link.active {
 .custom-list .lifetime::before {
   content: "";
   position: absolute;
-  left: -28px;
+  left: -33px;
   top: 8px;
-  width: 24px; /* Adjust the size of the marker */
-  height: 24px;
-  background-image: url("../../UIComponents/images/awards/lifetimeLogo.svg"); /* Path to your SVG file */
+  width: 30px;
+  height: 30px;
+  background-image: url("../../UIComponents/images/awards/nomineeLogo.svg"); /* Path to your SVG file */
   background-size: contain;
   background-repeat: no-repeat;
+  counter-increment: justice-counter;
+  content: "ALA" counter(justice-counter);
+  color: var(--color1);
+  text-align: center;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+.custom-list .lifetime:nth-child(2) {
+  counter-reset: justice-counter 1; /* Start counter at 4 (3+1) */
 }
 
 .custom-list .lifetime ul {
@@ -2469,18 +2520,20 @@ button:focus {
 .preselect {
   min-height: 100vh;
 }
-.speaker-details select:after{
+.speaker-details select:after {
   background-color: #004e8a;
   height: 20px;
   width: 20px;
 }
-.speaker-details input, .speaker-details input:focus{
+.speaker-details input,
+.speaker-details input:focus {
   outline: none;
   box-shadow: none;
   border-color: var(--color6);
 }
 
-.speaker-details select, .speaker-details select:focus{
+.speaker-details select,
+.speaker-details select:focus {
   border-left: none;
   border-right: none;
   border-top: none;
@@ -2503,8 +2556,7 @@ button:focus {
   z-index: 0;
   /* background-color: #bdc78c; */
   border-radius: 14.35px 14.35px 0 0;
-  background: linear-gradient(180deg, #005B94 0%, #0573BA 100%);
-
+  background: linear-gradient(180deg, #005b94 0%, #0573ba 100%);
 }
 
 .speaker-details .card .card-body {
@@ -2539,8 +2591,8 @@ button:focus {
 
 .speaker-details .card .card-footer button {
   background-color: transparent;
-  border: 1px solid #005B94;
-  color: #005B94;
+  border: 1px solid #005b94;
+  color: #005b94;
   border-radius: 14.35px;
   /* width: 50%; */
   /* position: absolute;
@@ -2850,6 +2902,47 @@ button:focus {
   color: #12894080;
   text-transform: capitalize;
 }
-.awards .section4 ul li{
+.awards .section4 ul li {
   color: #131313 !important;
+}
+
+#pe6 {
+  background-image: url(../images/venueBg.png) !important;
+  background-color: var(--color5) !important;
+}
+
+.chiefGuest p {
+  font-weight: 900;
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.chiefGuest p:nth-child(2) {
+  color: #004d7a;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.chiefGuest p:nth-child(3) {
+  color: #1d1d1d;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.chiefGuest p:nth-child(4) {
+  opacity: 0.4;
+  margin-bottom: 15px;
+}
+
+.chiefGuest p:nth-child(5),
+.chiefGuest p:nth-child(6) {
+  font-weight: 500;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.3;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #1e1e1e;
 }
