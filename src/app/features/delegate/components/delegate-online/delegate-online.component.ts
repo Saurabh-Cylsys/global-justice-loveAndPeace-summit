@@ -112,16 +112,47 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
+    //await this.fnTestPayment();
+
+    await this.getAllCountries();
+    this.initializeForms();
+    this.checkQueryParams();
+    this.setupFormSubscriptions();
+
+    if (this.isBackNavigation) {
+      this.handleBackNavigation();
+      this.isBackNavigation = false; // Reset flag
+    }
+
+
+
+    await this.getAllCountries();
+    this.initializeForms();
+    this.checkQueryParams();
+    this.setupFormSubscriptions();
+
+    if (this.isBackNavigation) {
+      this.handleBackNavigation();
+      this.isBackNavigation = false; // Reset flag
+    }
+
+  }
+
+  private async fnTestPayment() {
     try {
-      // Validate amount before initiating payment
       const amount = 100.00;
       if (isNaN(amount) || amount <= 0) {
         throw new Error('Invalid payment amount');
       }
+      let obj = {
+        "amount": 100.00,
+        "currency": "AED"
+      }
+      const response = await this.delegateService.postDelegateOnlineMP(obj).toPromise();
 
-      const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
-        amount: amount
-      }).toPromise();
+      // const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
+      //   amount: amount
+      // }).toPromise();
 
       if (!response || !response.hasOwnProperty('gatewayUrl') || !response.hasOwnProperty('formData')) {
         throw new Error('Invalid payment gateway response');
@@ -139,7 +170,7 @@ export class DelegateOnlineComponent implements OnInit {
       // Add hidden inputs with validation
       const formData = (response as any).formData;
       const requiredFields = ['hash_algorithm', 'storename', 'txndatetime', 'txntype', 'chargetotal', 'currency'];
-      
+
       requiredFields.forEach(field => {
         if (!formData[field]) {
           throw new Error(`Required field ${field} is missing`);
@@ -162,29 +193,6 @@ export class DelegateOnlineComponent implements OnInit {
       console.error('Payment initiation failed:', error);
       this.sharedService.ToastPopup('Error', 'Payment initiation failed. Please try again.', 'error');
     }
-
-    await this.getAllCountries();
-    this.initializeForms();
-    this.checkQueryParams();
-    this.setupFormSubscriptions();
-
-    if (this.isBackNavigation) {
-      this.handleBackNavigation();
-      this.isBackNavigation = false; // Reset flag
-    }
-
-
-
-    await this.getAllCountries();
-    this.initializeForms();
-    this.checkQueryParams();
-    this.setupFormSubscriptions();
-
-    if (this.isBackNavigation) {
-      this.handleBackNavigation();
-      this.isBackNavigation = false; // Reset flag
-    }
-
   }
 
   getAllCountries() {
@@ -374,8 +382,6 @@ export class DelegateOnlineComponent implements OnInit {
 
                   document.body.appendChild(form);
                   form.submit();
-
-
 
                 },
                 error: (error: any) => {
