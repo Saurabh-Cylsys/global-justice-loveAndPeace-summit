@@ -195,6 +195,7 @@ header .nav-item .nav-link.active {
   text-decoration-skip-ink: none;
   /* text-shadow: 0px 1.11px 4.44px #00000099; */
   text-shadow: 0px 1.11px 4.44px #000000;
+  margin: 0;
 }
 
 /* .index .section1 .tableBox table tr td p span {
