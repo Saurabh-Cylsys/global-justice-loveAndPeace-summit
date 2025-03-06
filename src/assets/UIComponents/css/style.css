@@ -2913,7 +2913,7 @@ button:focus {
 
 .chiefGuest p {
   font-weight: 900;
-  font-size: clamp(16px, 2vw, 20px);
+  font-size: clamp(12px, 1.5vw, 20px);
   line-height: 100%;
   letter-spacing: 0%;
   text-align: center;
