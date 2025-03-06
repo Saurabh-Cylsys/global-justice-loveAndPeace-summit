@@ -35,6 +35,8 @@ export class DelegatePeaceStudentComponent {
   studentDob: string = '';
   delegateDob: string = '';
   nomineeFormattedDate: string = "";
+  delegateMaxDate: Date;
+  delegateMinDate: Date;
 
   constructor(private fb: FormBuilder, private delegateService: DelegateService,private datePipe: DatePipe,private sharedService:SharedService) {
 
@@ -49,6 +51,31 @@ export class DelegatePeaceStudentComponent {
 
     // Min date is 120 years ago from today
     this.minDate = new Date(today.getFullYear() - 120, 0, 1);
+
+
+    this.maxDate = new Date(
+      today.getFullYear() - 1,
+      today.getMonth(),
+      today.getDate()
+   );
+
+    // Min date is 21 years ago from today
+    this.minDate = new Date(
+    today.getFullYear() - 21,
+    today.getMonth(),
+    today.getDate() + 1
+  );
+
+        // Max date is 21 years ago from today
+    this.delegateMaxDate = new Date(
+      today.getFullYear() - 21,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    // Min date is 120 years ago from today
+    this.delegateMinDate = new Date(today.getFullYear() - 120, 0, 1);
+
   }
 
   ngOnInit(){
