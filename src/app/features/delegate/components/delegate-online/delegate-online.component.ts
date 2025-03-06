@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { HostListener } from '@angular/core';
 import { DatePipe, LocationStrategy } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 interface RegistrationData {
   name: string;
@@ -64,7 +65,8 @@ export class DelegateOnlineComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private locationStrategy: LocationStrategy,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private http:HttpClient
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -110,6 +112,69 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
+    try {
+      // Validate amount before initiating payment
+      const amount = 100.00;
+      if (isNaN(amount) || amount <= 0) {
+        throw new Error('Invalid payment amount');
+      }
+
+      const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
+        amount: amount
+      }).toPromise();
+
+      if (!response || !response.hasOwnProperty('gatewayUrl') || !response.hasOwnProperty('formData')) {
+        throw new Error('Invalid payment gateway response');
+      }
+
+      // Create hidden form with validation
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = (response as any).gatewayUrl;
+
+      if (!form.action) {
+        throw new Error('Gateway URL is required');
+      }
+
+      // Add hidden inputs with validation
+      const formData = (response as any).formData;
+      const requiredFields = ['hash_algorithm', 'storename', 'txndatetime', 'txntype', 'chargetotal', 'currency'];
+      
+      requiredFields.forEach(field => {
+        if (!formData[field]) {
+          throw new Error(`Required field ${field} is missing`);
+        }
+      });
+
+      Object.entries(formData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = String(value);
+        form.appendChild(input);
+      });
+
+      // Submit form
+      document.body.appendChild(form);
+      form.submit();
+
+    } catch (error) {
+      console.error('Payment initiation failed:', error);
+      this.sharedService.ToastPopup('Error', 'Payment initiation failed. Please try again.', 'error');
+    }
+
+    await this.getAllCountries();
+    this.initializeForms();
+    this.checkQueryParams();
+    this.setupFormSubscriptions();
+
+    if (this.isBackNavigation) {
+      this.handleBackNavigation();
+      this.isBackNavigation = false; // Reset flag
+    }
+
+
+
     await this.getAllCountries();
     this.initializeForms();
     this.checkQueryParams();
@@ -279,10 +344,45 @@ export class DelegateOnlineComponent implements OnInit {
 
           this.sharedService.ToastPopup('Success', response.message, 'success');
           this.registrationData = payload;
+
+          let obj = {
+            "amount": 100.00,
+            "currency": "AED"
+          }
           setTimeout(() => {
             if (response.payment_link) {
               localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-              window.location.href = response.payment_link;
+              //window.location.href = response.payment_link;
+
+              this.delegateService.postDelegateOnlineMP(obj).subscribe({
+                next: (response: any) => {
+                  //window.location.href = response.paymentUrl
+
+                  // Redirect to the IPG gateway
+                  const form = document.createElement('form');
+                  form.method = 'POST';
+                  form.action = response.paymentUrl;
+
+                  Object.keys(response.paymentData).forEach((key) => {
+                    debugger
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = response.paymentData[key];
+                    form.appendChild(input);
+                  });
+
+                  document.body.appendChild(form);
+                  form.submit();
+
+
+
+                },
+                error: (error: any) => {
+                  console.error('Error creating delegate:', error);
+                  this.loading = false;
+                }
+              });
             }
           }, 5000);
 

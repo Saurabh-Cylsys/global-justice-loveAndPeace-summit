@@ -1,0 +1,9 @@
+<div *ngIf="status === 'success'">
+  <h2>Payment Successful!</h2>
+  <p>Transaction ID: {{ transactionId }}</p>
+</div>
+
+<div *ngIf="status === 'error'">
+  <h2>Payment Failed</h2>
+  <p>Error Code: {{ errorCode }}</p>
+</div>

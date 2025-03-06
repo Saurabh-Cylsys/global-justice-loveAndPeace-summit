@@ -341,4 +341,8 @@ export class ApiEndpointsService {
   public getAmbassadorURLEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_AMBASSADOR);
   }
+
+  public postCreateDelegateOnlineMPEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP);
+  }
 }

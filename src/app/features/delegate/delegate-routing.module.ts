@@ -8,6 +8,8 @@ import { DelegateRegistrationSeoComponent } from './components/delegate-registra
 import { DelegateRegistrationOnlineComponent } from './components/delegate-registration-online/delegate-registration-online.component';
 import { DelegatePeaceStudentComponent } from './components/delegate-peace-student/delegate-peace-student.component';
 import { DelegateMessageComponent } from './components/delegate-message/delegate-message.component';
+import { DelegatePaymentSuccessComponent } from './components/delegate-payment-success/delegate-payment-success.component';
+import { DelegatePaymentFailComponent } from './components/delegate-payment-fail/delegate-payment-fail.component';
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,9 @@ const routes: Routes = [
       {path:'delegate-registration-online',component:DelegateRegistrationOnlineComponent},
       {path:'delegate-student',component:DelegatePeaceStudentComponent},
       {path:'delegate-message',component:DelegateMessageComponent},
+      {path:'delegate-payment-success',component:DelegatePaymentSuccessComponent},
+      {path:'delegate-payment-fail',component:DelegatePaymentFailComponent},
+
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },
