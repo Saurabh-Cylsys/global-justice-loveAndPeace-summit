@@ -29,13 +29,13 @@
                         <p>DEC at Dubai Expo City</p>
                       </div>
                       <div class="col-12" *ngIf="isMobileView">
-                        <h5>12th - 13th April 2025</h5>
-                        <p class="text-dark"><b>DEC at Dubai Expo City</b></p>
+                        <h5 class="m-0">12th - 13th April 2025</h5>
+                        <p class="text-dark mb-2"><b>DEC at Dubai Expo City</b></p>
                       </div>
                       <div class="col-4">
                         <div class="card">
                           <div class="card-body p-1">
-                            <h6>
+                            <h6 class="m-0">
                               <span id="days">{{ days }}</span> <br />
                               Days
                             </h6>
@@ -45,7 +45,7 @@
                       <div class="col-4">
                         <div class="card">
                           <div class="card-body p-1">
-                            <h6>
+                            <h6 class="m-0">
                               <span id="hours">{{ hours }}</span> <br />
                               Hours
                             </h6>
@@ -55,7 +55,7 @@
                       <div class="col-4">
                         <div class="card">
                           <div class="card-body p-1">
-                            <h6>
+                            <h6 class="m-0">
                               <span id="minutes">{{ minutes }}</span> <br />
                               Minutes
                             </h6>
@@ -72,7 +72,7 @@
                       <li class="p-1">
                         <a [routerLink]="['/peace-shop']">
                           <img
-                            src="assets/UIComponents/images/peaceBtn1.png"
+                            src="assets/UIComponents/images/peaceBtn1.svg"
                             alt=""
                             class="col-12"
                         /></a>
@@ -80,7 +80,7 @@
                       <li class="p-1">
                         <a [routerLink]="['/peace-menu']">
                         <img
-                          src="assets/UIComponents/images/peaceBtn2.png"
+                          src="assets/UIComponents/images/peaceBtn2.svg"
                           alt=""
                           class="col-12"
                         /></a>
@@ -88,35 +88,35 @@
                       <li class="p-1">
                         <a [routerLink]="['/peace-fashion']">
                           <img
-                            src="assets/UIComponents/images/peaceBtn3.png"
+                            src="assets/UIComponents/images/peaceBtn3.svg"
                             alt=""
                             class="col-12"
                         /></a>
                       </li>
                     </ul>
-                    <ul class="d-md-flex list-unstyled" *ngIf="isMobileView">
+                    <ul class="d-flex list-unstyled" *ngIf="isMobileView">
                       <li class="p-1 text-end">
                         <a [routerLink]="['/peace-shop']">
                           <img
-                            src="assets/UIComponents/images/peaceShop.svg"
+                            src="assets/UIComponents/images/peaceBtn1.svg"
                             alt=""
-                            width="35px"
+                            
                         /></a>
                       </li>
                       <li class="p-1 text-end">
                         <a [routerLink]="['/peace-menu']">
                         <img
-                          src="assets/UIComponents/images/peaceMenu.svg"
+                          src="assets/UIComponents/images/peaceBtn2.svg"
                           alt=""
-                          width="35px"
+                          
                         /></a>
                       </li>
                       <li class="p-1 text-end">
                         <a [routerLink]="['/peace-fashion']">
                           <img
-                            src="assets/UIComponents/images/peaceFashion.svg"
+                            src="assets/UIComponents/images/peaceBtn3.svg"
                             alt=""
-                            width="35px"
+                            
                         /></a>
                       </li>
                     </ul>
