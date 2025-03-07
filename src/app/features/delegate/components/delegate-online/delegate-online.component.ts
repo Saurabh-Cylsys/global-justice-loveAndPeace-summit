@@ -89,6 +89,11 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   private handleBackNavigation() {
+    // Save form state before clearing
+    if(this.userForm.dirty) {
+      sessionStorage.setItem('delegateFormState', JSON.stringify(this.userForm.value));
+    }
+
     // Clear stored data
     localStorage.removeItem('delegateRegistration');
 
@@ -112,7 +117,14 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
-    //await this.fnTestPayment();
+    // // Restore form state if exists
+    // const savedState = sessionStorage.getItem('delegateFormState');
+    // if(savedState) {
+    //   this.userForm.patchValue(JSON.parse(savedState));
+    //   sessionStorage.removeItem('delegateFormState');
+    // }
+
+    await this.fnTestPayment();
 
     await this.getAllCountries();
     this.initializeForms();
@@ -123,19 +135,6 @@ export class DelegateOnlineComponent implements OnInit {
       this.handleBackNavigation();
       this.isBackNavigation = false; // Reset flag
     }
-
-
-
-    await this.getAllCountries();
-    this.initializeForms();
-    this.checkQueryParams();
-    this.setupFormSubscriptions();
-
-    if (this.isBackNavigation) {
-      this.handleBackNavigation();
-      this.isBackNavigation = false; // Reset flag
-    }
-
   }
 
   private async fnTestPayment() {
@@ -148,11 +147,11 @@ export class DelegateOnlineComponent implements OnInit {
         "amount": 100.00,
         "currency": "AED"
       }
-      const response = await this.delegateService.postDelegateOnlineMP(obj).toPromise();
+      //const response = await this.delegateService.postDelegateOnlineMP(obj).toPromise();
 
-      // const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
-      //   amount: amount
-      // }).toPromise();
+      const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
+        amount: amount
+      }).toPromise();
 
       if (!response || !response.hasOwnProperty('gatewayUrl') || !response.hasOwnProperty('formData')) {
         throw new Error('Invalid payment gateway response');
