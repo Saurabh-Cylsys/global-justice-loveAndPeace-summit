@@ -357,12 +357,12 @@ export class DelegateOnlineComponent implements OnInit {
             "amount": 100.00,
             "currency": "AED"
           }
-          setTimeout(() => {
+          setTimeout(async () => {
             if (response.payment_link) {
               localStorage.setItem('delegateRegistration', JSON.stringify(payload));
               //window.location.href = response.payment_link;
 
-              this.delegateService.postDelegateOnlineMP(obj).subscribe({
+              await this.delegateService.postDelegateOnlineMP(obj).subscribe({
                 next: (response: any) => {
                   //window.location.href = response.paymentUrl
 
@@ -372,7 +372,6 @@ export class DelegateOnlineComponent implements OnInit {
                   form.action = response.paymentUrl;
 
                   Object.keys(response.paymentData).forEach((key) => {
-                    debugger
                     const input = document.createElement('input');
                     input.type = 'hidden';
                     input.name = key;

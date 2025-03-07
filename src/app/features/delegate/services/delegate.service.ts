@@ -91,4 +91,11 @@ export class DelegateService {
   postDelegateOnlineMP(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
   }
+
+  private storePaymentData(data: any) {
+    sessionStorage.setItem('pendingPayment', JSON.stringify({
+      data,
+      timestamp: new Date().getTime()
+    }));
+  }
 }
