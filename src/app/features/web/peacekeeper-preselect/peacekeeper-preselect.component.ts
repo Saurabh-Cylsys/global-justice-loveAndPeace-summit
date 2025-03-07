@@ -15,9 +15,9 @@ export class PeacekeeperPreselectComponent {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params: any) => {
-     
+
       if (params != undefined && Object.keys(params).length > 0) {
-        
+
         this.referralCode = params.code;
         if (params.medium == 1 && params.code) {
           this.packageAmt = 2640;
@@ -32,7 +32,7 @@ export class PeacekeeperPreselectComponent {
           console.log('Medium value not found, redirecting...');
           if (this.referralCode)
             this.packageAmt = 2640;
-          
+
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
           });
@@ -43,6 +43,7 @@ export class PeacekeeperPreselectComponent {
   }
 
   goToDelegatePage() {
+
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
         queryParams: { code: this.referralCode, medium: 0 }
@@ -59,6 +60,7 @@ export class PeacekeeperPreselectComponent {
       queryParams: { code: this.referralCode }
     });
   }
+
   goToOnlineDelegate() {
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {

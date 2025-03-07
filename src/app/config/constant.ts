@@ -75,4 +75,6 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create-delegate-profile-short'
 
+    public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
+
 }

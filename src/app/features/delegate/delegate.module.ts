@@ -15,6 +15,7 @@ import { DelegateRegistrationOnlineComponent } from './components/delegate-regis
 import { DelegatePeaceStudentComponent } from './components/delegate-peace-student/delegate-peace-student.component';
 import { DelegateMessageComponent } from './components/delegate-message/delegate-message.component';
 import { DelegatePaymentSuccessComponent } from './components/delegate-payment-success/delegate-payment-success.component';
+import { DelegatePaymentFailComponent } from './components/delegate-payment-fail/delegate-payment-fail.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -25,7 +26,8 @@ import { DelegatePaymentSuccessComponent } from './components/delegate-payment-s
     DelegateRegistrationOnlineComponent,
     DelegatePeaceStudentComponent,
     DelegateMessageComponent,
-    DelegatePaymentSuccessComponent
+    DelegatePaymentSuccessComponent,
+    DelegatePaymentFailComponent
   ],
   imports: [
     CommonModule,

@@ -35,46 +35,33 @@ export class DelegatePeaceStudentComponent {
   studentDob: string = '';
   delegateDob: string = '';
   nomineeFormattedDate: string = "";
-  delegateMaxDate: Date;
-  delegateMinDate: Date;
+  nominee_mobile_number: any;
+  delegateId: any;
+
+  minStudentDate!: Date;
+  maxStudentDate!: Date;
+  minDelegateDate!: Date;
+  maxDelegateDate!: Date;
 
   constructor(private fb: FormBuilder, private delegateService: DelegateService,private datePipe: DatePipe,private sharedService:SharedService) {
 
     const today = new Date();
 
-    // Max date is 18 years ago from today
-    this.maxDate = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
 
-    // Min date is 120 years ago from today
-    this.minDate = new Date(today.getFullYear() - 120, 0, 1);
+    // Student: Age between 1 to 21 years
+    this.maxStudentDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()); // 1 year old
+    this.minStudentDate = new Date(today.getFullYear() - 21, today.getMonth(), today.getDate()); // 21 years old
 
+    // Delegate: Must be strictly older than 21 years
 
-    this.maxDate = new Date(
-      today.getFullYear() - 1,
-      today.getMonth(),
-      today.getDate()
-   );
-
-    // Min date is 21 years ago from today
-    this.minDate = new Date(
-    today.getFullYear() - 21,
-    today.getMonth(),
-    today.getDate() + 1
-  );
-
-        // Max date is 21 years ago from today
-    this.delegateMaxDate = new Date(
+    this.maxDelegateDate = new Date(
       today.getFullYear() - 21,
       today.getMonth(),
       today.getDate()
     );
 
     // Min date is 120 years ago from today
-    this.delegateMinDate = new Date(today.getFullYear() - 120, 0, 1);
+    this.minDelegateDate = new Date(today.getFullYear() - 120, 0, 1);
 
   }
 
@@ -90,7 +77,7 @@ export class DelegatePeaceStudentComponent {
   initializeStudentForm() {
      // Initialize student form
      this.studentForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       studentDob :['', Validators.required],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -125,6 +112,7 @@ export class DelegatePeaceStudentComponent {
 
   // Move to the next step
   nextStep() {
+    debugger
     if (this.step === 1 && this.userType === 'student' && this.studentForm.valid) {
       this.step = 2; // Move to Delegate Form
     } else if (this.step === 1 && this.userType === 'delegate' && this.delegateForm.valid) {
@@ -139,6 +127,27 @@ export class DelegatePeaceStudentComponent {
 
   disableManualInput(event: KeyboardEvent): void {
     event.preventDefault();
+  }
+
+  validateAlpha(event: any) {
+    const allowedPattern = /^[a-zA-Z\s\-'_‘]$/;
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
+    }
+  }
+
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+    const text = event.clipboardData?.getData('text') || '';
+
+    // Allow only alphabets and spaces
+    const allowedPattern = /^[a-zA-Z\s\-_‘]$/;
+    if (allowedPattern.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
 
   onDateChange(event: string): void {
@@ -314,9 +323,92 @@ export class DelegatePeaceStudentComponent {
     if (this.studentForm.valid && this.delegateForm.valid) {
       console.log('Student Form Data:', this.studentForm.value);
       console.log('Delegate Form Data:', this.delegateForm.value);
-      alert('Forms submitted successfully!');
+      this.sharedService.ToastPopup('Please enter required Fields', '', 'error');
+      return;
     } else {
-      alert('Please fill out all required fields.');
+
     }
   }
-}
+
+
+  submitData(): void {
+
+    if (this.studentForm.valid && this.delegateForm.valid) {
+      console.log('Student Form Data:', this.studentForm.value);
+      console.log('Delegate Form Data:', this.delegateForm.value);
+      this.sharedService.ToastPopup('Please enter required Fields', '', 'error');
+      return;
+    }
+
+    const returnmobileNumber = this.studentForm.value.mobile_number;
+    const returnDOB = this.studentForm.value.dob;
+
+    const rawMobileNumber = this.studentForm.value.mobile_number.number;
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+    console.log(formattedMobileNumber);
+
+    // Nominee Mobile Number
+    let formattedNomineeMobileNumber = '';
+    const rawNomineeMobileNumber = this.nominee_mobile_number;
+
+    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.number
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
+        : '';
+    } else if (typeof rawNomineeMobileNumber === 'string') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
+    }
+
+    if (formattedMobileNumber === formattedNomineeMobileNumber) {
+      this.sharedService.ToastPopup(
+        'Both Mobile numbers should not be the same',
+        '',
+        'error'
+      );
+      return;
+    }
+
+    this.studentForm.patchValue({
+      country_code: this.studentForm.value.mobile_number.dialCode,
+      mobile_number: formattedMobileNumber,
+      dob: this.formattedDate
+    });
+
+
+    let payload = {
+        ...this.studentForm.value,
+        created_by: 'Admin',
+        status: '0',
+        is_nomination : "1",
+        p_type:"DELEGATE_CHILD_NOMINATION",
+        p_reference_by:'0'
+    }
+
+      this.sharedService.registration(payload).subscribe({
+        next: async (result: any) => {
+
+
+          if (result.success) {
+
+            this.delegateId = result.delegate_id;
+
+
+            if (this.delegateId) {
+              const nomineeBody = {
+                delegate_id: this.delegateId,
+
+                mobile_no: formattedNomineeMobileNumber,
+              };
+
+              // this.callNominationProfileAPI(nomineeBody, result.url);
+            }
+          } else {
+            // this.SharedService.ToastPopup('', result.message, 'error');
+          }
+        },
+        error: (err) => {
+
+        },
+      });
+    }
+  }

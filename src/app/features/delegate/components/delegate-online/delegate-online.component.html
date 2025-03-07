@@ -12,249 +12,266 @@
             (ngSubmit)="onSubmit()"
             autocomplete="off"
           >
-          <div class="row">
+            <div class="row">
+              <div class="mb-3 col-md-6">
+                <label for="name" class="form-label"
+                  >Full Name<span class="form-label" style="color: #ff0000"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Enter Full Name"
+                  formControlName="name"
+                  required
+                  autocomplete="off"
+                  maxlength="50"
 
-
-            <div class="mb-3 col-md-6">
-              <label for="name" class="form-label"
-                >Full Name<span class="form-label" style="color: #ff0000"
-                  >*</span
-                ></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Enter Full Name"
-                formControlName="name"
-                required
-                autocomplete="off"
-              />
-              <div
-                *ngIf="
-                  userForm.get('name')?.invalid && userForm.get('name')?.touched
-                "
-                class="text-danger"
-              >
-                Name is required
-              </div>
-            </div>
-
-            <div class="mb-3 col-md-6">
-              <label for="email" class="form-label"
-                >Email<span class="form-label" style="color: #ff0000"
-                  >*</span
-                ></label
-              >
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Enter Email"
-                id="email"
-                formControlName="email"
-                required
-                autocomplete="off"
-              />
-              <div
-                *ngIf="
-                  userForm.get('email')?.invalid &&
-                  userForm.get('email')?.touched
-                "
-                class="text-danger"
-              >
-                Please enter a valid email
-              </div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-              <div class="row no-padding">
-                <div class="form-group form-group-inner mobile-number">
-                  <label class="col-md-12 no-padding p-0" for="mobile1"
-                    >Mobile Number<span
-                      class="form-label-span"
-                      style="color: #ff0000"
-                    >
-                      *</span
-                    ></label
-                  >
-                  <div class="delegateonline form-control">
-                    <ngx-intl-tel-input
-                      class="custom-width-container"
-                      [preferredCountries]="[
-                        CountryISO.India,
-                        CountryISO.UnitedStates,
-                        CountryISO.UnitedKingdom
-                      ]"
-                      [enableAutoCountrySelect]="false"
-                      [enablePlaceholder]="false"
-                      [searchCountryFlag]="true"
-                      [searchCountryField]="[
-                        SearchCountryField.Iso2,
-                        SearchCountryField.Name
-                      ]"
-                      [selectFirstCountry]="false"
-                      [selectedCountryISO]="CountryISO.India"
-                      [maxLength]="12"
-                      [phoneValidation]="true"
-                      name="mobile_number"
-                      id="number_mobile1"
-                      #number_mobile1
-                      [separateDialCode]="true"
-                      formControlName="mobile_number"
-                      autocomplete="off"
-                      (keypress)="keyPressNumbers($event)"
-                    ></ngx-intl-tel-input>
-                  </div>
-                  <small class="text-danger" *ngIf="mobile_numberVal">
-                    (Country code + Mobile number) will be 7 to 15 digits based
-                    on country.
-                  </small>
-                  <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                        long.</p> -->
+                />
+                <!-- (keypress)="validateInput($event)" -->
+                <div
+                  *ngIf="
+                    userForm.get('name')?.hasError('required') &&
+                    userForm.get('name')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Name is required
                 </div>
-                <div class="form-group form-group-inner mobile-number">
-                  <div class="help-block with-errors"></div>
-                  <div
-                    *ngIf="
-                      getcontrol('mobile_number')?.errors &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    <small
-                      class="text-danger"
-                      *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                      >Mobile number is required</small
+
+                <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                <span
+                  class="text-danger small"
+                  *ngIf="
+                    !userForm.get('name')?.hasError('required') &&
+                    userForm.get('name')?.hasError('minlength')
+                  "
+                >
+                  Name must be at least 3 characters long
+                </span>
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label for="email" class="form-label"
+                  >Email<span class="form-label" style="color: #ff0000"
+                    >*</span
+                  ></label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter Email"
+                  id="email"
+                  formControlName="email"
+                  required
+                  autocomplete="off"
+
+                />
+                <!-- (keypress)="validateInput($event)" -->
+                <div
+                  *ngIf="
+                    userForm.get('email')?.invalid &&
+                    userForm.get('email')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Please enter a valid email
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <div class="row no-padding">
+                  <div class="form-group form-group-inner mobile-number">
+                    <label class="col-md-12 no-padding p-0" for="mobile1"
+                      >Mobile Number<span
+                        class="form-label-span"
+                        style="color: #ff0000"
+                      >
+                        *</span
+                      ></label
                     >
-                    <small
-                      class="text-danger"
+                    <div class="delegateonline form-control">
+                      <ngx-intl-tel-input
+                        class="custom-width-container"
+                        [preferredCountries]="[
+                          CountryISO.India,
+                          CountryISO.UnitedStates,
+                          CountryISO.UnitedKingdom
+                        ]"
+                        [enableAutoCountrySelect]="false"
+                        [enablePlaceholder]="false"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name
+                        ]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.India"
+                        [maxLength]="12"
+                        [phoneValidation]="true"
+                        name="mobile_number"
+                        id="mobile_number"
+                        #mobile_number
+                        [separateDialCode]="true"
+                        formControlName="mobile_number"
+                        autocomplete="off"
+                        (keypress)="keyPressNumbers($event)"
+                      ></ngx-intl-tel-input>
+                    </div>
+                    <small class="text-danger small" *ngIf="mobile_numberVal">
+                      (Country code + Mobile number) will be 7 to 15 digits
+                      based on country.
+                    </small>
+                    <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
+                                        long.</p> -->
+                  </div>
+                  <div class="form-group form-group-inner mobile-number">
+                    <div class="help-block with-errors"></div>
+                    <div
                       *ngIf="
-                        !mobile_numberVal &&
-                        getcontrol('mobile_number')?.invalid &&
+                        getcontrol('mobile_number')?.errors &&
                         getcontrol('mobile_number')?.touched
                       "
                     >
-                      {{ getPhoneErrorMessage() }}
-                    </small>
+                      <small
+                        class="text-danger small"
+                        *ngIf="getcontrol('mobile_number')?.errors?.['required']"
+                        >Mobile number is required</small
+                      >
+                      <small
+                        class="text-danger small"
+                        *ngIf="
+                          !mobile_numberVal &&
+                          getcontrol('mobile_number')?.invalid &&
+                          getcontrol('mobile_number')?.touched
+                        "
+                      >
+                        {{ getPhoneErrorMessage() }}
+                      </small>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div class="mb-3 col-md-6">
-              <span class="required-icon"></span>
-              <label for="country" class="p-0"
-                >Country<span class="form-label" style="color: #ff0000"
-                  >*</span
-                ></label
-              >
-              <div class="position-relative">
-                <select
-                  (change)="changeCountry($event)"
-                  class="form-control form-select"
-                  id="country"
-                  formControlName="country"
-                  #country
-                  name="India"
+              <div class="mb-3 col-md-6">
+                <span class="required-icon"></span>
+                <label for="country" class="p-0"
+                  >Country<span class="form-label" style="color: #ff0000"
+                    >*</span
+                  ></label
                 >
-                  <option value="" disabled>Select Country</option>
-                  <option
-                    *ngFor="let country of countryData; let j = index"
-                    [value]="country | json"
+                <div class="position-relative">
+                  <select
+                    (change)="changeCountry($event)"
+                    class="form-control form-select"
+                    id="country"
+                    formControlName="country"
+                    #country
+                    name="India"
                   >
-                    {{ country.name }}
-                  </option>
-                </select>
-                <div class="help-block with-errors"></div>
+                    <option value="" disabled>Select Country</option>
+                    <option
+                      *ngFor="let country of countryData; let j = index"
+                      [value]="country | json"
+                    >
+                      {{ country.name }}
+                    </option>
+                  </select>
+                  <div class="help-block with-errors"></div>
+                  <div
+                    *ngIf="
+                      getcontrol('country')?.errors &&
+                      getcontrol('country')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger small"
+                      *ngIf="getcontrol('country')?.errors?.['required']"
+                      >Country is required.</small
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label class="col-md-12 no-padding p-0" for="lname1"
+                  >DOB<span class="form-label-span" style="color: #ff0000">
+                    *</span
+                  ></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Select Date of birth"
+                  id="dob"
+                  #dob
+                  formControlName="dob"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                  (keydown)="disableManualInput($event)"
+                  (ngModelChange)="onDateChange($event)"
+                  (keydown.tab)="openDatepicker()"
+                  bsDatepicker
+                  [bsConfig]="{
+                    isAnimated: true,
+                    dateInputFormat: 'DD/MM/YYYY',
+                    showWeekNumbers: false,
+                    containerClass: colorTheme
+                  }"
+                  readonly
+                />
+
                 <div
                   *ngIf="
-                    getcontrol('country')?.errors &&
-                    getcontrol('country')?.touched
+                    getcontrol('dob')?.errors && getcontrol('dob')?.touched
                   "
                 >
                   <small
-                    class="text-danger"
-                    *ngIf="getcontrol('country')?.errors?.['required']"
-                    >Country is required.</small
+                    class="text-danger small"
+                    *ngIf="getcontrol('dob')?.errors?.['required']"
+                    >Date of birth is required</small
                   >
                 </div>
+
+                <div class="help-block with-errors"></div>
               </div>
-            </div>
 
-            <div class="mb-3 col-md-6">
-              <label class="col-md-12 no-padding p-0" for="lname1"
-                >DOB<span class="form-label-span" style="color: #ff0000">
-                  *</span
-                ></label
-              >
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Select Date of birth"
-                id="dob"
-                #dob
-                formControlName="dob"
-                [minDate]="minDate"
-                [maxDate]="maxDate"
-                (keydown)="disableManualInput($event)"
-                (ngModelChange)="onDateChange($event)"
-                (keydown.tab)="openDatepicker()"
-                bsDatepicker
-                [bsConfig]="{
-                  isAnimated: true,
-                  dateInputFormat: 'DD/MM/YYYY',
-                  showWeekNumbers: false,
-                  containerClass: colorTheme
-                }"
-                readonly
-              />
-
-              <div
-                *ngIf="getcontrol('dob')?.errors && getcontrol('dob')?.touched"
-              >
-                <small
-                  class="text-danger"
-                  *ngIf="getcontrol('dob')?.errors?.['required']"
-                  >Date of birth is required</small
+              <div class="mb-3 col-md-6">
+                <label for="reference_no" class="form-label"
+                  >Reference No</label
                 >
+                <input
+                  type="text"
+                  name="reference_no"
+                  maxlength="50"
+                  id="reference_no"
+                  #reference_no
+                  placeholder="Enter reference no."
+                  class="form-control"
+                  [readonly]="this.referralCode ? this.referralCode : ''"
+                  formControlName="reference_no"
+                  autocomplete="off"
+                />
               </div>
 
-              <div class="help-block with-errors"></div>
+              <div class="d-grid justify-content-center">
+                <button
+                  type="submit"
+                  class="btn btn-success"
+                  [disabled]="!userForm.valid || loading"
+                >
+                  <span
+                    *ngIf="loading"
+                    class="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Register And Pay Now
+                </button>
+              </div>
             </div>
-
-            <div class="mb-3 col-md-6">
-              <label for="reference_no" class="form-label">Reference No</label>
-              <input
-                type="text"
-                name="reference_no"
-                maxlength="50"
-                id="reference_no"
-                #reference_no
-                placeholder="Enter reference no."
-                class="form-control"
-                [readonly]="this.referralCode ? this.referralCode : ''"
-                formControlName="reference_no"
-                minlength="3"
-                autocomplete="off"
-                (input)="onInput($event, 'reference_no')"
-              />
-            </div>
-
-            <div class="d-grid justify-content-center">
-              <button
-                type="submit"
-                class="btn btn-success"
-                [disabled]="!userForm.valid || loading"
-              >
-                <span
-                  *ngIf="loading"
-                  class="spinner-border spinner-border-sm me-2"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Register
-              </button>
-            </div>
-          </div>
           </form>
         </div>
       </div>
@@ -285,7 +302,10 @@
               <div class="col-md-12 mb-3">
                 <div class="d-flex justify-content-between align-items-center">
                   <strong class="text-muted">Name:</strong>
-                  <span>{{ registrationData?.first_name}} {{ registrationData?.last_name}}</span>
+                  <span
+                    >{{ registrationData?.first_name }}
+                    {{ registrationData?.last_name }}</span
+                  >
                 </div>
               </div>
               <div class="col-md-12 mb-3">

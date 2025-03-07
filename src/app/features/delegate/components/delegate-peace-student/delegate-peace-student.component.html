@@ -1,26 +1,15 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Student/Delegate Information Form</h2>
+  <h2 class="text-center mb-4">Peace Student Registration Form</h2>
 
   <!-- User Type Selection -->
 
   <div class="mb-4 text-center">
-    <label class="form-label"
-      ><strong>Are you a student or a delegate?</strong></label
-    >
+    <label class="form-label"><strong>Are you a student or a delegate?</strong></label>
     <div class="d-flex justify-content-center gap-4">
       <!-- Student Image Box -->
-      <div
-        class="image-box"
-        [class.active]="userType === 'student'"
-        (click)="setUserType('student')"
-      >
-        <input
-          type="radio"
-          name="userType"
-          value="student"
-          [(ngModel)]="userType"
-          (click)="$event.stopPropagation(); setUserType('student')"
-        />
+      <div class="image-box" [class.active]="userType === 'student'" (click)="setUserType('student')">
+        <input type="radio" name="userType" value="student" [(ngModel)]="userType"
+          (click)="$event.stopPropagation(); setUserType('student')" />
         <div class="overlay">
           <i class="fas fa-user-graduate fa-2x"></i>
           <span class="mt-2">Student</span>
@@ -28,18 +17,9 @@
       </div>
 
       <!-- Delegate Image Box -->
-      <div
-        class="image-box"
-        [class.active]="userType === 'delegate'"
-        (click)="setUserType('delegate')"
-      >
-        <input
-          type="radio"
-          name="userType"
-          value="delegate"
-          [(ngModel)]="userType"
-          (click)="$event.stopPropagation(); setUserType('delegate')"
-        />
+      <div class="image-box" [class.active]="userType === 'delegate'" (click)="setUserType('delegate')">
+        <input type="radio" name="userType" value="delegate" [(ngModel)]="userType"
+          (click)="$event.stopPropagation(); setUserType('delegate')" />
         <div class="overlay">
           <i class="fas fa-users fa-2x"></i>
           <span class="mt-2">Delegate</span>
@@ -48,793 +28,560 @@
     </div>
   </div>
 
-  <!-- Step 1: Student or Delegate Form -->
-  <form *ngIf="userType && step === 1" (ngSubmit)="nextStep()">
-    <!-- Student Form -->
-    <div *ngIf="userType === 'student'" [formGroup]="studentForm">
-      <h3>Student Information</h3>
+  <div class="row" *ngIf="userType === 'student'">
+    <form (ngSubmit)="onSubmit()">
       <div class="row">
-        <!-- Column 1 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="studentName" class="form-label">Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="studentName"
-              formControlName="name"
-              placeholder="Enter your name"
-              autocomplete="off"
-            />
-          </div>
 
-          <div class="mb-3">
-            <div class="row no-padding">
-              <div class="form-group-inner mobile-number">
-                <label class="col-md-12 no-padding form-label" for="studentMobileNo"
-                  >Mobile Number<span
-                    class="form-label-span"
-                    style="color: #ff0000"
-                  >
-                    *</span
-                  ></label
-                >
-                <div class="delegateonline form-control">
-                  <ngx-intl-tel-input
-                    class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="false"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="12"
-                    [phoneValidation]="true"
-                    name="mobile_number"
-                    id="studentMobileNo"
-                    #number_mobile1
-                    [separateDialCode]="true"
-                    formControlName="mobile_number"
-                    autocomplete="off"
-                    (keypress)="keyPressNumbers($event)"
-                  ></ngx-intl-tel-input>
-                </div>
-                <small class="text-danger" *ngIf="mobile_numberVal">
-                  (Country code + Mobile number) will be 7 to 15 digits based on
-                  country.
-                </small>
-              </div>
-              <div class="form-group form-group-inner mobile-number">
-                <div class="help-block with-errors"></div>
-                <div
+        <!-- Student Form (Left Side) -->
+        <div class="col-md-6">
+          <div [formGroup]="studentForm" class="border shadow-lg p-4 h-100">
+            <h3>Student Information</h3>
+            <div class="row">
+              <!-- Column 1 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="studentName" class="form-label">Name<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="studentName" formControlName="name"
+                    placeholder="Enter your name" autocomplete="off" (keypress)="validateAlpha($event)"
+                    (paste)="onPaste($event)" />
+                    <div
                   *ngIf="
-                    getcontrol('mobile_number')?.errors &&
-                    getcontrol('mobile_number')?.touched
+                    studentForm.get('name')?.hasError('required') &&
+                    studentForm.get('name')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Name is required
+                </div>
+
+                <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                <span
+                  class="text-danger small"
+                  *ngIf="
+                    !studentForm.get('name')?.hasError('required') &&
+                    studentForm.get('name')?.hasError('minlength')
                   "
                 >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                    >Mobile number is required</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="
-                      !mobile_numberVal &&
-                      getcontrol('mobile_number')?.invalid &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    {{ getPhoneErrorMessage() }}
-                  </small>
+                  Name must be at least 3 characters long
+                </span>
+                </div>
+
+                <div class="mb-3">
+                  <div class="row no-padding">
+                    <div class="form-group-inner mobile-number">
+                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
+                          class="form-label-span" style="color: #ff0000">
+                          *</span></label>
+                      <div class="delegateonline form-control">
+                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
+                            CountryISO.India,
+                            CountryISO.UnitedStates,
+                            CountryISO.UnitedKingdom
+                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
+                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
+                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
+                          (keypress)="keyPressNumbers($event)"></ngx-intl-tel-input>
+                      </div>
+                      <small class="text-danger" *ngIf="mobile_numberVal">
+                        (Country code + Mobile number) will be 7 to 15 digits based on
+                        country.
+                      </small>
+                    </div>
+                    <div class="form-group form-group-inner mobile-number">
+                      <div class="help-block with-errors"></div>
+                      <div *ngIf="
+                          getcontrol('mobile_number')?.errors &&
+                          getcontrol('mobile_number')?.touched
+                        ">
+                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                          number is
+                          required</small>
+                        <small class="text-danger" *ngIf="
+                            !mobile_numberVal &&
+                            getcontrol('mobile_number')?.invalid &&
+                            getcontrol('mobile_number')?.touched
+                          ">
+                          {{ getPhoneErrorMessage() }}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentEmail" class="form-label">Email<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="email" class="form-control" id="studentEmail" formControlName="email"
+                    placeholder="Enter your email" autocomplete="off" maxlength="125" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentRelation" class="form-label">Relation to Delegate<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="studentRelation" formControlName="relation"
+                    placeholder="Enter your relation" />
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="mb-3">
-            <label for="studentEmail" class="form-label">Email<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="email"
-              class="form-control"
-              id="studentEmail"
-              formControlName="email"
-              placeholder="Enter your email"
-              autocomplete="off"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="studentRelation" class="form-label"
-              >Relation to Delegate<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="studentRelation"
-              formControlName="relation"
-              placeholder="Enter your relation to delegate"
-            />
-          </div>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label class="col-md-12 no-padding form-label" for="dob">
-              DOB<span class="form-label-span" style="color: #ff0000">
-                *</span
-              ></label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Select date of birth"
-              id="dob"
-              #dob
-              formControlName="studentDob"
-              [minDate]="userType == 'student'? minDate  : delegateMinDate"
-              [maxDate]="userType == 'student'? maxDate  : delegateMaxDate"
-              (keydown)="disableManualInput($event)"
-              (ngModelChange)="onDateChange($event)"
-              (keydown.tab)="openDatepicker()"
-              (ngModelChange)="onUserDobChange($event)"
-              bsDatepicker
-              [bsConfig]="{
+              <!-- Column 2 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="dob" class="form-label">DOB<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
+                    formControlName="studentDob"
+                    [minDate]="minStudentDate"
+                    [maxDate]="maxStudentDate"
+                    (keydown)="disableManualInput($event)"
+                    (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()"
+                    (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
                 isAnimated: true,
                 dateInputFormat: 'DD/MM/YYYY',
                 showWeekNumbers: false,
                 containerClass: colorTheme
-              }"
-              readonly
-            />
-            <div
-              *ngIf="getcontrol('studentDob')?.errors && getcontrol('studentDob')?.touched"
-            >
-              <small
-                class="text-danger"
-                *ngIf="getcontrol('studentDob')?.errors?.['required']"
-                >Date of birth is required</small
-              >
+              }" readonly />
+                  <div *ngIf="
+                getcontrol('studentDob')?.errors &&
+                getcontrol('studentDob')?.touched
+              ">
+                    <small class="text-danger" *ngIf="getcontrol('studentDob')?.errors?.['required']">Date of birth is
+                      required</small>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <select class="form-control form-select" id="studentCountry" formControlName="country">
+                    <option value="" disabled>Select Country</option>
+                    <option *ngFor="let country of countryData" [value]="country.id">{{ country.name }}</option>
+                  </select>
+
+                  <div
+                    *ngIf="
+                      getcontrol('country')?.errors &&
+                      getcontrol('country')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger small"
+                      *ngIf="getcontrol('country')?.errors?.['required']"
+                      >Country is required.</small
+                    >
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentInstitution" class="form-label">Institution Name<span class="form-label-span"
+                      style="color: #ff0000">
+                      *</span></label>
+                  <input type="text" class="form-control" id="studentInstitution" formControlName="institutionName"
+                    placeholder="Enter your institution name" />
+
+                    <div
+                    *ngIf="
+                      getcontrol('institutionName')?.errors &&
+                      getcontrol('institutionName')?.touched
+                    "
+                  >
+                    <small
+                      class="text-danger small"
+                      *ngIf="getcontrol('institutionName')?.errors?.['required']"
+                      >institute name is required.</small
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="help-block with-errors"></div>
           </div>
+        </div>
 
-          <div class="mb-3">
-            <label for="studentCountry" class="form-label">Country<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
+        <!-- Delegate Form (Right Side) -->
+        <div class="col-md-6">
+          <div [formGroup]="delegateForm" class="border shadow-lg p-4 h-100">
+            <h3>Delegate Information</h3>
+            <div class="row">
+              <!-- Column 1 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="delegateName" class="form-label">Name<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="delegateName" formControlName="name"
+                    placeholder="Enter name" />
 
-            <select
-              (change)="changeCountry($event)"
-              class="form-control form-select"
-              id="studentCountry"
-              formControlName="country"
-              #country
-              name="India"
-            >
-              <option value="" disabled>Select Country</option>
-              <option
-                *ngFor="let country of countryData; let j = index"
-                [value]="country.id"
-              >
-                {{ country.name }}
-              </option>
-            </select>
-          </div>
+                    <div
+                    *ngIf="
+                      delegateForm.get('name')?.hasError('required') &&
+                      delegateForm.get('name')?.touched
+                    "
+                    class="text-danger small"
+                  >
+                    Name is required
+                  </div>
 
-          <div class="mb-3">
-            <label for="studentInstitution" class="form-label"
-              >Institution Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="studentInstitution"
-              formControlName="institutionName"
-              placeholder="Enter your institution name"
-            />
+                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                  <span
+                    class="text-danger small"
+                    *ngIf="
+                      !delegateForm.get('name')?.hasError('required') &&
+                      delegateForm.get('name')?.hasError('minlength')
+                    "
+                  >
+                    Name must be at least 3 characters long
+                  </span>
+                </div>
+
+                <div class="mb-3">
+                  <div class="row no-padding">
+                    <div class="form-group-inner mobile-number">
+                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
+                          class="form-label-span" style="color: #ff0000">
+                          *</span></label>
+                      <div class="delegateonline form-control">
+                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
+                            CountryISO.India,
+                            CountryISO.UnitedStates,
+                            CountryISO.UnitedKingdom
+                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
+                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
+                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
+                          (keypress)="keyPressNumbers($event)"></ngx-intl-tel-input>
+                      </div>
+                      <small class="text-danger" *ngIf="mobile_numberVal">
+                        (Country code + Mobile number) will be 7 to 15 digits based on
+                        country.
+                      </small>
+                    </div>
+                    <div class="form-group form-group-inner mobile-number">
+                      <div class="help-block with-errors"></div>
+                      <div *ngIf="
+                          getcontrol('mobile_number')?.errors &&
+                          getcontrol('mobile_number')?.touched
+                        ">
+                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                          number is
+                          required</small>
+                        <small class="text-danger" *ngIf="
+                            !mobile_numberVal &&
+                            getcontrol('mobile_number')?.invalid &&
+                            getcontrol('mobile_number')?.touched
+                          ">
+                          {{ getPhoneErrorMessage() }}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="delegateEmail" class="form-label">Email<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="email" class="form-control" id="delegateEmail" formControlName="email"
+                    placeholder="Enter email" />
+                </div>
+              </div>
+
+              <!-- Column 2 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label" for="dob">DOB<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
+                    formControlName="delegateDob"
+                    [minDate]="minDelegateDate"
+                    [maxDate]="maxDelegateDate"
+                    (keydown)="disableManualInput($event)"
+                    (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()"
+                    (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                  isAnimated: true,
+                  dateInputFormat: 'DD/MM/YYYY',
+                  showWeekNumbers: false,
+                  containerClass: colorTheme
+                }" readonly />
+                  <div *ngIf="
+                  getcontrol('delegateDob')?.errors &&
+                  getcontrol('studendelegateDobtDob')?.touched
+                ">
+                    <small class="text-danger" *ngIf="getcontrol('delegateDob')?.errors?.['required']">Date of birth is
+                      required</small>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <select class="form-control form-select" id="studentCountry" formControlName="country">
+                    <option value="" disabled>Select Country</option>
+                    <option *ngFor="let country of countryData" [value]="country.id">{{ country.name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Delegate Form -->
-    <div *ngIf="userType === 'delegate'" [formGroup]="delegateForm">
-      <h3>Delegate Information</h3>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
+
+
+  </div>
+
+
+  <div class="row" *ngIf="userType === 'delegate'">
+    <!-- Delegate Form (Right Side) -->
+    <form (ngSubmit)="onSubmit()">
       <div class="row">
-        <!-- Column 1 -->
         <div class="col-md-6">
-          <div class="mb-3">
-            <label for="delegateName" class="form-label">Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="delegateName"
-              formControlName="name"
-              placeholder="Enter name"
-            />
-          </div>
-
-          <div class="mb-3">
-            <div class="row no-padding">
-              <div class="form-group-inner mobile-number">
-                <label class="col-md-12 no-padding form-label" for="studentMobileNo"
-                  >Mobile Number<span
-                    class="form-label-span"
-                    style="color: #ff0000"
-                  >
-                    *</span
-                  ></label
-                >
-                <div class="delegateonline form-control">
-                  <ngx-intl-tel-input
-                    class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="false"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="12"
-                    [phoneValidation]="true"
-                    name="mobile_number"
-                    id="studentMobileNo"
-                    #number_mobile1
-                    [separateDialCode]="true"
-                    formControlName="mobile_number"
-                    autocomplete="off"
-                    (keypress)="keyPressNumbers($event)"
-                  ></ngx-intl-tel-input>
+          <div [formGroup]="delegateForm" class="border shadow-lg p-4 h-100">
+            <h3>Delegate Information</h3>
+            <div class="row">
+              <!-- Column 1 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="delegateName" class="form-label">Name<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="delegateName" formControlName="name"
+                    placeholder="Enter name" />
                 </div>
-                <small class="text-danger" *ngIf="mobile_numberVal">
-                  (Country code + Mobile number) will be 7 to 15 digits based on
-                  country.
-                </small>
-                <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                      long.</p> -->
+
+                <div class="mb-3">
+                  <div class="row no-padding">
+                    <div class="form-group-inner mobile-number">
+                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
+                          class="form-label-span" style="color: #ff0000">
+                          *</span></label>
+                      <div class="delegateonline form-control">
+                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
+                            CountryISO.India,
+                            CountryISO.UnitedStates,
+                            CountryISO.UnitedKingdom
+                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
+                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
+                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
+                          (keypress)="keyPressNumbers($event)"></ngx-intl-tel-input>
+                      </div>
+                      <small class="text-danger" *ngIf="mobile_numberVal">
+                        (Country code + Mobile number) will be 7 to 15 digits based on
+                        country.
+                      </small>
+                    </div>
+                    <div class="form-group form-group-inner mobile-number">
+                      <div class="help-block with-errors"></div>
+                      <div *ngIf="
+                          getcontrol('mobile_number')?.errors &&
+                          getcontrol('mobile_number')?.touched
+                        ">
+                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                          number is
+                          required</small>
+                        <small class="text-danger" *ngIf="
+                            !mobile_numberVal &&
+                            getcontrol('mobile_number')?.invalid &&
+                            getcontrol('mobile_number')?.touched
+                          ">
+                          {{ getPhoneErrorMessage() }}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="delegateEmail" class="form-label">Email<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="email" class="form-control" id="delegateEmail" formControlName="email"
+                    placeholder="Enter email" />
+                </div>
               </div>
-              <div class="form-group form-group-inner mobile-number">
-                <div class="help-block with-errors"></div>
-                <div
-                  *ngIf="
-                    getcontrol('mobile_number')?.errors &&
-                    getcontrol('mobile_number')?.touched
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                    >Mobile number is required</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="
-                      !mobile_numberVal &&
-                      getcontrol('mobile_number')?.invalid &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    {{ getPhoneErrorMessage() }}
-                  </small>
+
+              <!-- Column 2 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label" for="dob">DOB<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
+                    formControlName="delegateDob"
+                    [minDate]="minDelegateDate"
+                    [maxDate]="maxDelegateDate"
+                    (keydown)="disableManualInput($event)" (ngModelChange)="onDateChange($event)"
+                    (keydown.tab)="openDatepicker()" (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                  isAnimated: true,
+                  dateInputFormat: 'DD/MM/YYYY',
+                  showWeekNumbers: false,
+                  containerClass: colorTheme
+                }" readonly />
+                  <div *ngIf="
+                  getcontrol('delegateDob')?.errors &&
+                  getcontrol('delegateDob')?.touched
+                ">
+                    <small class="text-danger" *ngIf="getcontrol('delegateDob')?.errors?.['required']">Date of birth is
+                      required</small>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <select class="form-control form-select" id="studentCountry" formControlName="country">
+                    <option value="" disabled>Select Country</option>
+                    <option *ngFor="let country of countryData" [value]="country.id">{{ country.name }}</option>
+                  </select>
                 </div>
               </div>
             </div>
           </div>
-
-          <div class="mb-3">
-            <label for="delegateEmail" class="form-label">Email<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="email"
-              class="form-control"
-              id="delegateEmail"
-              formControlName="email"
-              placeholder="Enter email"
-            />
-          </div>
         </div>
 
-        <!-- Column 2 -->
+        <!-- Student Form (Left Side) -->
         <div class="col-md-6">
-          <div class="mb-3">
-            <label class="col-md-12 no-padding form-label" for="dob">
-              DOB<span class="form-label-span" style="color: #ff0000">
-                *</span
-              ></label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Select date of birth"
-              id="dob"
-              #dob
-              formControlName="delegateDob"
-              [minDate]="minDate"
-              [maxDate]="maxDate"
-              [minDate]="userType === 'delegate'?  delegateMinDate : minDate"
-              [maxDate]="userType === 'delegate'?  delegateMaxDate : maxDate"
-              (keydown)="disableManualInput($event)"
-              (ngModelChange)="onDateChange($event)"
-              (keydown.tab)="openDatepicker()"
-              bsDatepicker
-              [bsConfig]="{
+          <div [formGroup]="studentForm" class="border shadow-lg p-4 h-100">
+            <h3>Student Information</h3>
+            <div class="row">
+              <!-- Column 1 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="studentName" class="form-label">Name<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="studentName" formControlName="name"
+                    placeholder="Enter your name" autocomplete="off" (keypress)="validateAlpha($event)"
+                    (paste)="onPaste($event)" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentEmail" class="form-label">Email<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="email" class="form-control" id="studentEmail" formControlName="email"
+                    placeholder="Enter your email" autocomplete="off" maxlength="125" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentRelation" class="form-label">Relation to Delegate<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" id="studentRelation" formControlName="relation"
+                    placeholder="Enter your relation" />
+                </div>
+
+                <div class="mb-3">
+                  <label for="studentInstitution" class="form-label">Institution Name<span class="form-label-span"
+                      style="color: #ff0000">
+                      *</span></label>
+                  <input type="text" class="form-control" id="studentInstitution" formControlName="institutionName"
+                    placeholder="Enter your institution name" />
+                </div>
+              </div>
+
+              <!-- Column 2 -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="dob" class="form-label">DOB<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <input type="text" class="form-control" placeholder="Select date of birth" id="dob" #dob
+                    formControlName="studentDob"
+                    [minDate]="minStudentDate"
+                    [maxDate]="maxStudentDate"
+                    (keydown)="disableManualInput($event)" (ngModelChange)="onDateChange($event)"
+                    (keydown.tab)="openDatepicker()" (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
                 isAnimated: true,
                 dateInputFormat: 'DD/MM/YYYY',
                 showWeekNumbers: false,
                 containerClass: colorTheme
-              }"
-              readonly
-            />
-            <div
-              *ngIf="getcontrol('dob')?.errors && getcontrol('dob')?.touched"
-            >
-              <small
-                class="text-danger"
-                *ngIf="getcontrol('dob')?.errors?.['required']"
-                >Date of birth is required</small
-              >
-            </div>
-            <div class="help-block with-errors"></div>
-          </div>
-
-          <div class="mb-3">
-            <label for="delegateCountry" class="form-label">Country<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <select
-              (change)="changeCountry($event)"
-              class="form-control form-select"
-              id="studentCountry"
-              formControlName="country"
-              #country
-              name="India"
-            >
-              <option value="" disabled>Select Country</option>
-              <option
-                *ngFor="let country of countryData; let j = index"
-                [value]="country.id"
-              >
-                {{ country.name }}
-              </option>
-            </select>
-          </div>
-          <!-- <div class="mb-3">
-            <label for="delegateInstitution" class="form-label"
-              >Institution Name</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="delegateInstitution"
-              formControlName="institutionName"
-            />
-          </div> -->
-          <div class="mb-3">
-            <label for="delegateRelation" class="form-label"
-              >Relation to Student<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="delegateRelation"
-              formControlName="relation"
-              placeholder="Enter relation to student"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Next Button -->
-    <div class="text-center mt-4">
-      <button type="submit" class="btn btn-primary">Next</button>
-    </div>
-  </form>
-
-  <!-- Step 2: Delegate or Student Form -->
-  <form *ngIf="userType && step === 2" (ngSubmit)="onSubmit()">
-    <!-- Delegate Form -->
-    <div *ngIf="userType === 'student'" [formGroup]="delegateForm">
-      <h3>Delegate Information</h3>
-      <div class="row">
-        <!-- Column 1 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="delegateName" class="form-label">Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="delegateName"
-              formControlName="name"
-            />
-          </div>
-
-          <div class="mb-3">
-            <div class="row no-padding">
-              <div class="form-group form-group-inner mobile-number">
-                <label class="col-md-12 no-padding form-label" for="studentMobileNo"
-                  >Mobile Number<span
-                    class="form-label-span"
-                    style="color: #ff0000"
-                  >
-                    *</span
-                  ></label
-                >
-                <div class="delegateonline form-control">
-                  <ngx-intl-tel-input
-                    class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="false"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="12"
-                    [phoneValidation]="true"
-                    name="mobile_number"
-                    id="studentMobileNo"
-                    #number_mobile1
-                    [separateDialCode]="true"
-                    formControlName="mobile_number"
-                    autocomplete="off"
-                    (keypress)="keyPressNumbers($event)"
-                  ></ngx-intl-tel-input>
+              }" readonly />
+                  <div *ngIf="
+                getcontrol('studentDob')?.errors &&
+                getcontrol('studentDob')?.touched
+              ">
+                    <small class="text-danger" *ngIf="getcontrol('studentDob')?.errors?.['required']">Date of birth is
+                      required</small>
+                  </div>
+                  <div class="help-block with-errors"></div>
                 </div>
-                <small class="text-danger" *ngIf="mobile_numberVal">
-                  (Country code + Mobile number) will be 7 to 15 digits based on
-                  country.
-                </small>
-                <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                      long.</p> -->
-              </div>
-              <div class="form-group form-group-inner mobile-number">
-                <div class="help-block with-errors"></div>
-                <div
-                  *ngIf="
-                    getcontrol('mobile_number')?.errors &&
-                    getcontrol('mobile_number')?.touched
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                    >Mobile number is required</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="
-                      !mobile_numberVal &&
-                      getcontrol('mobile_number')?.invalid &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    {{ getPhoneErrorMessage() }}
-                  </small>
+
+                <div class="mb-3">
+                  <div class="row no-padding">
+                    <div class="form-group-inner mobile-number">
+                      <label class="col-md-12 no-padding form-label" for="studentMobileNo">Mobile Number<span
+                          class="form-label-span" style="color: #ff0000">
+                          *</span></label>
+                      <div class="delegateonline form-control">
+                        <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
+                            CountryISO.India,
+                            CountryISO.UnitedStates,
+                            CountryISO.UnitedKingdom
+                          ]" [enableAutoCountrySelect]="false" [enablePlaceholder]="false" [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                          ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="12"
+                          [phoneValidation]="true" name="mobile_number" id="studentMobileNo" #number_mobile1
+                          [separateDialCode]="true" formControlName="mobile_number" autocomplete="off"
+                          (keypress)="keyPressNumbers($event)"></ngx-intl-tel-input>
+                      </div>
+                      <small class="text-danger" *ngIf="mobile_numberVal">
+                        (Country code + Mobile number) will be 7 to 15 digits based on
+                        country.
+                      </small>
+                    </div>
+                    <div class="form-group form-group-inner mobile-number">
+                      <div class="help-block with-errors"></div>
+                      <div *ngIf="
+                          getcontrol('mobile_number')?.errors &&
+                          getcontrol('mobile_number')?.touched
+                        ">
+                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                          number is
+                          required</small>
+                        <small class="text-danger" *ngIf="
+                            !mobile_numberVal &&
+                            getcontrol('mobile_number')?.invalid &&
+                            getcontrol('mobile_number')?.touched
+                          ">
+                          {{ getPhoneErrorMessage() }}
+                        </small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <div class="mb-3">
+                  <label for="studentCountry" class="form-label">Country<span class="form-label-span"
+                      style="color: #ff0000">*</span></label>
+                  <select class="form-control form-select" id="studentCountry" formControlName="country">
+                    <option value="" disabled>Select Country</option>
+                    <option *ngFor="let country of countryData" [value]="country.id">{{ country.name }}</option>
+                  </select>
+                </div>
+
               </div>
             </div>
           </div>
-
-          <div class="mb-3">
-            <label for="delegateEmail" class="form-label">Email<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="email"
-              class="form-control"
-              id="delegateEmail"
-              formControlName="email"
-              placeholder="Enter email"
-            />
-          </div>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="delegateCountry" class="form-label">Country<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="delegateCountry"
-              formControlName="country"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="delegateInstitution" class="form-label"
-              >Institution Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="delegateInstitution"
-              formControlName="institutionName"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="delegateRelation" class="form-label"
-              >Relation to Student<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="delegateRelation"
-              formControlName="relation"
-            />
-          </div>
-
         </div>
       </div>
-    </div>
 
-    <!-- Student Form -->
-    <div *ngIf="userType === 'delegate'" [formGroup]="studentForm">
-      <h3>Student Information</h3>
-      <div class="row">
-        <!-- Column 1 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="studentName" class="form-label">Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="studentName"
-              formControlName="name"
-              placeholder="Enter"
-            />
-          </div>
 
-          <div class="mb-3">
-            <div class="row no-padding">
-              <div class="form-group form-group-inner mobile-number">
-                <label class="col-md-12 no-padding form-label" for="studentMobileNo"
-                  >Mobile Number<span
-                    class="form-label-span"
-                    style="color: #ff0000"
-                  >
-                    *</span
-                  ></label
-                >
-                <div class="delegateonline form-control">
-                  <ngx-intl-tel-input
-                    class="custom-width-container"
-                    [preferredCountries]="[
-                      CountryISO.India,
-                      CountryISO.UnitedStates,
-                      CountryISO.UnitedKingdom
-                    ]"
-                    [enableAutoCountrySelect]="false"
-                    [enablePlaceholder]="false"
-                    [searchCountryFlag]="true"
-                    [searchCountryField]="[
-                      SearchCountryField.Iso2,
-                      SearchCountryField.Name
-                    ]"
-                    [selectFirstCountry]="false"
-                    [selectedCountryISO]="CountryISO.India"
-                    [maxLength]="12"
-                    [phoneValidation]="true"
-                    name="mobile_number"
-                    id="studentMobileNo"
-                    #number_mobile1
-                    [separateDialCode]="true"
-                    formControlName="mobile_number"
-                    autocomplete="off"
-                    (keypress)="keyPressNumbers($event)"
-                  ></ngx-intl-tel-input>
-                </div>
-                <small class="text-danger" *ngIf="mobile_numberVal">
-                  (Country code + Mobile number) will be 7 to 15 digits based on
-                  country.
-                </small>
-                <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                      long.</p> -->
-              </div>
-              <div class="form-group form-group-inner mobile-number">
-                <div class="help-block with-errors"></div>
-                <div
-                  *ngIf="
-                    getcontrol('mobile_number')?.errors &&
-                    getcontrol('mobile_number')?.touched
-                  "
-                >
-                  <small
-                    class="text-danger"
-                    *ngIf="getcontrol('mobile_number')?.errors?.['required']"
-                    >Mobile number is required</small
-                  >
-                  <small
-                    class="text-danger"
-                    *ngIf="
-                      !mobile_numberVal &&
-                      getcontrol('mobile_number')?.invalid &&
-                      getcontrol('mobile_number')?.touched
-                    "
-                  >
-                    {{ getPhoneErrorMessage() }}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="studentEmail" class="form-label">Email<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="email"
-              class="form-control"
-              id="studentEmail"
-              formControlName="email"
-              placeholder="Enter email"
-              autocomplete="off"
-            />
-          </div>
-        </div>
-
-        <!-- Column 2 -->
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="studentCountry" class="form-label">Country<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label>
-            <input
-              type="text"
-              class="form-control"
-              id="studentCountry"
-              formControlName="country"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="studentInstitution" class="form-label"
-              >Institution Name<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="studentInstitution"
-              formControlName="institutionName"
-              placeholder="Enter institution name"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="studentRelation" class="form-label"
-              >Relation to Delegate<span
-              class="form-label-span"
-              style="color: #ff0000"
-            >
-              *</span
-            ></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="studentRelation"
-              formControlName="relation"
-              placeholder="Enter relation to delegate"
-            />
-          </div>
-        </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Submit</button>
       </div>
-    </div>
+    </form>
 
-    <!-- Previous and Submit Buttons -->
-    <div class="text-center mt-4">
-      <button
-        type="button"
-        class="btn btn-secondary me-2"
-        (click)="previousStep()"
-      >
-        Previous
-      </button>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </div>
-  </form>
+  </div>
+
 </div>

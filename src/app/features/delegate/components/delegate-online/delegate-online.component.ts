@@ -89,6 +89,8 @@ export class DelegateOnlineComponent implements OnInit {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
 
+        console.log('params', params);
+
         // this.router.navigate([], {
         //   relativeTo: this.route,
         //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
@@ -110,12 +112,16 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
+    // await this.fnTestPayment();
 
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
 
     await this.getAllCountries();
+
+
+
   }
 
   getAllCountries() {
@@ -166,7 +172,7 @@ export class DelegateOnlineComponent implements OnInit {
 
   private initializeForms() {
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required,Validators.minLength(3)]],
       email:  ['',
         [Validators.required,
         Validators.email,
@@ -174,35 +180,126 @@ export class DelegateOnlineComponent implements OnInit {
       ],
       // countryCode: ['-1', Validators.required],
       mobile_number: ['', [Validators.required, Validators.minLength(7)]],
-      country: ['', Validators.required],
+      country: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
     });
   }
 
-  keyPressNumbers(event: KeyboardEvent) {
-    const inputValue = this.userForm.controls['mobile_number'].value; // Get value from form control
-    if (inputValue && inputValue.number) {
-      if (inputValue.number.length < 7) {
-        this.mobile_numberVal = true;
-      } else {
-        this.mobile_numberVal = false;
+  private async fnTestPayment() {
+    try {
+      const amount = 100.00;
+      if (isNaN(amount) || amount <= 0) {
+        throw new Error('Invalid payment amount');
       }
+      let obj = {
+        "amount": 100.00,
+        "currency": "AED"
+      }
+      const response = await this.delegateService.postDelegateOnlineMP(obj).toPromise();
+
+      // const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
+      //   amount: amount
+      // }).toPromise();
+
+      debugger;
+      if (!response || !response.hasOwnProperty('gatewayUrl') || !response.hasOwnProperty('formData')) {
+        throw new Error('Invalid payment gateway response');
+      }
+
+      // Create hidden form with validation
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = (response as any).gatewayUrl;
+
+      if (!form.action) {
+        throw new Error('Gateway URL is required');
+      }
+
+      // Add hidden inputs with validation
+      const formData = (response as any).formData;
+      const requiredFields = ['hash_algorithm', 'storename', 'txndatetime', 'txntype', 'chargetotal', 'currency'];
+
+      requiredFields.forEach(field => {
+        if (!formData[field]) {
+          throw new Error(`Required field ${field} is missing`);
+        }
+      });
+
+      Object.entries(formData).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = String(value);
+        form.appendChild(input);
+      });
+
+      // Submit form
+      document.body.appendChild(form);
+      form.submit();
+
+    } catch (error) {
+      console.error('Payment initiation failed:', error);
+      this.sharedService.ToastPopup('Error', 'Payment initiation failed. Please try again.', 'error');
+    }
+  }
+
+  validateInput(event: any) {
+    const inputType = event.target.id; // Get input field id
+    let allowedPattern: RegExp;
+
+    switch (inputType) {
+      case 'name': // First name should allow only lowercase, uppercase, and underscore (_)
+        allowedPattern = /^[a-zA-Z_]$/;
+        break;
+
+      case 'email': // Email should allow letters, numbers, dot (.), and @
+        allowedPattern = /^[a-zA-Z0-9.@]$/;
+        break;
+
+      case 'mobile': // Mobile number should allow only numbers (0-9)
+        allowedPattern = /^[0-9]$/;
+        break;
+
+      default:
+        return; // Exit if no matching case
+    }
+
+    if (!allowedPattern.test(event.key)) {
+      event.preventDefault(); // Block invalid characters
     }
   }
 
 
-  // getPhoneErrorMessage() {
-  //   const control = this.userForm.controls['mobile_number'];
-  //   if (control.value) {
-  //     if (control?.errors?.validatePhoneNumber['valid']) {
-  //       return '';
-  //     } else {
-  //       return 'Invalid mobile number for selected country.';
-  //     }
-  //   }
-  //   return '';
-  // }
+  keyPressNumbers(event: KeyboardEvent) {
+    const inputElement = event.target as HTMLInputElement; // Get the input field
+    const inputId = inputElement.id;
+
+    // Allow only numbers (0-9)
+    if (inputId === 'mobile_number') {
+      const allowedPattern = /^[0-9]$/;
+
+      if (!allowedPattern.test(event.key)) {
+        event.preventDefault(); // Block invalid characters
+      }
+    }
+
+    // Allow Backspace, Delete, Arrow keys for user convenience
+    const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+    if (allowedKeys.includes(event.key)) {
+      return; // Allow these keys
+    }
+
+    // Prevent non-numeric input
+    if (!/^[0-9]$/.test(event.key)) {
+      event.preventDefault();
+    }
+
+    // Validate mobile number length (min 7 digits)
+    const inputValue = this.userForm.controls['mobile_number'].value || ''; // Get value from form control
+    this.mobile_numberVal = inputValue.length < 7;
+  }
+
 
   getPhoneErrorMessage() {
     const control = this.userForm.controls['mobile_number'];
@@ -217,33 +314,10 @@ export class DelegateOnlineComponent implements OnInit {
     return '';
   }
 
-
-
-  ageValidator(control: FormControl) {
-    const selectedDate = new Date(control.value);
-
-    if (isNaN(selectedDate.getTime())) {
-      return { invalidDate: true };
-    }
-
-    const today = new Date();
-    const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // If selected date is after or on the date 18 years ago, it's invalid
-    if (selectedDate > eighteenYearsAgo) {
-      return { ageError: 'Date must be at least 18 years ago' };
-    }
-
-    return null; // Valid date
-  }
-
   private checkQueryParams() {
-    debugger;
+
     this.route.queryParams.subscribe(params => {
+
 
       console.log('params...', params);
       if (params['session_id']) {
@@ -259,6 +333,7 @@ export class DelegateOnlineComponent implements OnInit {
       }
     });
   }
+
   private setupFormSubscriptions() {
     this.userForm.get('email')?.valueChanges.subscribe(() => {
       this.checkFormValidity();
@@ -307,6 +382,10 @@ export class DelegateOnlineComponent implements OnInit {
   onSubmit() {
     console.log("Userform",this.userForm.value);
 
+    if (!this.userForm.valid || this.loading) {
+      return; // Prevent submission if the form is invalid or loading
+    }
+
     const returnmobileNumber = this.userForm.value.mobile_number;
     console.log(returnmobileNumber, 'mobileNumber');
     const country_code = this.userForm.value.mobile_number.dialCode;
@@ -349,10 +428,45 @@ export class DelegateOnlineComponent implements OnInit {
 
           this.sharedService.ToastPopup('Success', response.message, 'success');
           this.registrationData = payload;
-          setTimeout(() => {
-            if (response.url) {
+
+          debugger;
+          setTimeout(async () => {
+            if (response.success && response.gatewayUrl) {
               localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-              window.location.href = response.url;
+              //window.location.href = response.payment_link;
+
+              let obj = {
+                "amount": 100.00,
+                "currency": "AED",
+                "email": this.userForm.get('email')?.value.toLowerCase(),
+              }
+
+              await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+                next: (response: any) => {
+                  //window.location.href = response.paymentUrl
+
+                  // Redirect to the IPG gateway
+                  const form = document.createElement('form');
+                  form.method = 'POST';
+                  form.action = response.gatewayUrl;
+
+                  Object.keys(response.formData).forEach((key) => {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = response.formData[key];
+                    form.appendChild(input);
+                  });
+
+                  document.body.appendChild(form);
+                  form.submit();
+
+                },
+                error: (error: any) => {
+                  console.error('Error creating delegate:', error);
+                  this.loading = false;
+                }
+              });
             }
           }, 5000);
 
@@ -367,49 +481,6 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
 
-  onInput(event: any, controlName: string) {
-    let inputValue = event.target.value.replace(/^\s+/, ''); // Remove leading spaces
-
-    let allowedPattern: RegExp;
-
-    switch (controlName) {
-      case 'first_name':
-        allowedPattern = /^[a-zA-Z\s'-]+$/; // Allows only alphabets, spaces, and hyphens
-        break;
-      case 'last_name':
-        allowedPattern = /^[a-zA-Z\s-]+$/; // Allows only alphabets, spaces, and hyphens
-        break;
-      case 'email_id':
-        allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
-        inputValue = inputValue.toLowerCase(); // Convert email to lowercase
-        break;
-      case 'website':
-        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
-        break;
-      case 'linkedin':
-        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs
-        break;
-      case 'title':
-        allowedPattern = /^[a-zA-Z]+$/; // **Alphabets only (A-Z, a-z), no spaces**
-        break;
-      case 'organization_name':
-        allowedPattern = /^[a-zA-Z. ]+$/; // Allows alphabets, a single space, and a period (.)
-        break;
-      default:
-        allowedPattern = /.*/; // No restriction for other fields
-    }
-
-    // Remove invalid characters dynamically
-    inputValue = inputValue
-      .split('')
-      .filter((char: any) => allowedPattern.test(char))
-      .join('');
-
-    // Update the form control with the cleaned value
-    this.userForm.controls[controlName].setValue(inputValue, {
-      emitEvent: false,
-    });
-  }
 
   checkFormValidity() {
     if (this.userForm.valid) {
@@ -459,126 +530,18 @@ export class DelegateOnlineComponent implements OnInit {
       // });
     }
   }
-  filterCountries(event: any) {
-    const searchTerm = event.target.value.toLowerCase();
-    this.showCountryDropdown = true;
-    this.filteredCountries = this.countryData.filter((country: any) =>
-      country.name.toLowerCase().includes(searchTerm)
-    );
-  }
-  selectCountry(country: any) {
-    this.selectedCountryName = country.name;
-    this.userForm.patchValue({
-      country: JSON.stringify(country),
-      countrySearch: country.name
-    });
-    this.showCountryDropdown = false;
-    this.changeCountry({ target: { value: JSON.stringify(country) } });
-  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: any) {
     if (!event.target.closest('.position-relative')) {
       this.showCountryDropdown = false;
     }
   }
+
   changeCountry(e: any) {
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.userForm.patchValue({ country_id: countryObj.id });
   }
 
-  onInputEvent(
-    event: KeyboardEvent | ClipboardEvent,
-    fieldType: 'email' | 'website' | 'linkedin'
-  ): void {
-    if (event.type === 'paste') {
-      // Handle paste event
-      event.preventDefault();
-      const clipboardData =
-        (event as ClipboardEvent).clipboardData?.getData('text') || '';
-
-      let allowedPattern: RegExp;
-      switch (fieldType) {
-        case 'email':
-          allowedPattern = /^[a-zA-Z0-9@._-]+$/; // Allowed characters for email
-          break;
-        case 'website':
-          allowedPattern = /^[a-zA-Z0-9.:/_-]+$/; // Allowed characters for website
-          break;
-        case 'linkedin':
-          allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/; // Allows LinkedIn profile URLs (including % for encoding)
-          break;
-        default:
-          return;
-      }
-
-      if (allowedPattern.test(clipboardData)) {
-        const input = event.target as HTMLInputElement;
-        input.value += clipboardData; // Append valid text
-        input.dispatchEvent(new Event('input')); // Update Angular form control
-      } else {
-        alert('Invalid characters pasted.');
-      }
-      return;
-    }
-
-    // Handle keydown event
-    const keyEvent = event as KeyboardEvent;
-    if (
-      ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
-        keyEvent.key
-      )
-    ) {
-      return; // Allow these keys
-    }
-
-    if (keyEvent.key === ' ' && keyEvent.code === 'Space') {
-      keyEvent.preventDefault(); // Prevent leading spaces
-      return;
-    }
-
-    let allowedPattern: RegExp;
-    switch (fieldType) {
-      case 'email':
-        allowedPattern = /^[a-zA-Z0-9@._-]$/;
-        break;
-      case 'website':
-        allowedPattern = /^[a-zA-Z0-9.:/_-]$/;
-        break;
-      case 'linkedin':
-        allowedPattern = /^[a-zA-Z0-9.:/_%+-]$/;
-        break;
-      default:
-        return;
-    }
-
-    if (!allowedPattern.test(keyEvent.key)) {
-      keyEvent.preventDefault(); // Block invalid characters
-    }
-  }
-
-  onPasteEvent(event: ClipboardEvent, fieldType: 'website' | 'linkedin'): void {
-    event.preventDefault();
-    const clipboardData = event.clipboardData?.getData('text') || '';
-
-    let allowedPattern: RegExp;
-    switch (fieldType) {
-      case 'website':
-        allowedPattern = /^[a-zA-Z0-9.:/_-]+$/;
-        break;
-      case 'linkedin':
-        allowedPattern = /^[a-zA-Z0-9.:/_%+-]+$/;
-        break;
-      default:
-        return;
-    }
-
-    if (allowedPattern.test(clipboardData)) {
-      const input = event.target as HTMLInputElement;
-      input.value += clipboardData; // Append valid text
-      input.dispatchEvent(new Event('input')); // Update Angular form control
-    } else {
-      event.preventDefault();
-    }
-  }
 }

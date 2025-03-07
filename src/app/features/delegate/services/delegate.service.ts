@@ -87,4 +87,8 @@ export class DelegateService {
   postVerifySessionOnline(body: any) {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
   }
+
+ postDelegateOnlineMP(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
+  }
 }
