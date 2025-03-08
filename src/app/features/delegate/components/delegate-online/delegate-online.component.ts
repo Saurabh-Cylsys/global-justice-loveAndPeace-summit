@@ -92,7 +92,6 @@ export class DelegateOnlineComponent implements OnInit {
         debugger;
         this.referralCode = params.code;
 
-        console.log('params', params);
         this.delagateType = params.dType;
 
         // this.router.navigate([], {
