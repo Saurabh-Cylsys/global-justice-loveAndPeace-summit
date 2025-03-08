@@ -57,6 +57,7 @@
             <h3>Student Information</h3>
             <div class="row">
               <!-- Column 1 -->
+
               <div class="col-md-6">
 
                 <div class="mb-3">
@@ -70,7 +71,7 @@
                     class="form-control"
                     id="studentTitle"
                     formControlName="title"
-                    placeholder="Enter Title"
+                    placeholder="Enter title"
                     autocomplete="off"
                     maxlength="15"
                     (keypress)="validateAlpha($event)"
@@ -183,7 +184,7 @@
                     class="form-control"
                     id="studentEmail"
                     formControlName="email"
-                    placeholder="Enter your email"
+                    placeholder="Enter email"
                     autocomplete="off"
                     maxlength="125"
                   />
@@ -212,7 +213,7 @@
                     class="form-control"
                     id="studentRelation"
                     formControlName="relation"
-                    placeholder="Enter your relation"
+                    placeholder="Enter relation"
                   />
 
                   <div
@@ -321,7 +322,7 @@
                     id="studentCountry"
                     formControlName="country"
                   >
-                    <option value="" disabled>Select Country</option>
+                    <option value="" disabled>Select country</option>
                     <option
                       *ngFor="let country of countryData"
                       [value]="country.id"
@@ -358,7 +359,7 @@
                     class="form-control"
                     id="studentInstitution"
                     formControlName="institutionName"
-                    placeholder="Enter your institution name"
+                    placeholder="Enter institution name"
                   />
 
                   <div
@@ -375,6 +376,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -398,7 +400,7 @@
                     class="form-control"
                     id="studentTitle"
                     formControlName="title"
-                    placeholder="Enter Title"
+                    placeholder="Enter title"
                     autocomplete="off"
                     maxlength="15"
                     (keypress)="validateAlpha($event)"
@@ -528,7 +530,7 @@
                 <div class="mb-3">
                   <label for="reference_no" class="form-label">Reference No</label>
                   <input type="text" name="reference_no" maxlength="50" id="reference_no" #reference_no
-                    placeholder="Enter reference no." class="form-control"
+                    placeholder="Enter reference no" class="form-control"
                     [readonly]="this.referralCode ? this.referralCode : ''" formControlName="reference_no"
                     autocomplete="off" />
                 </div>
@@ -539,7 +541,7 @@
 
                 <div class="mb-3">
                   <label for="delegateName" class="form-label"
-                    >Name<span class="form-label-span" style="color: #ff0000"
+                    >Full Name<span class="form-label-span" style="color: #ff0000"
                       >*</span
                     ></label
                   >
@@ -548,7 +550,7 @@
                     class="form-control"
                     id="delegateName"
                     formControlName="name"
-                    placeholder="Enter name"
+                    placeholder="Enter fullname"
                   />
 
                   <div
@@ -626,7 +628,7 @@
                     id="studentCountry"
                     formControlName="country"
                   >
-                    <option value="" disabled>Select Country</option>
+                    <option value="" disabled>Select country</option>
                     <option
                       *ngFor="let country of countryData"
                       [value]="country.id"
@@ -668,39 +670,43 @@
             <div class="row">
               <!-- Column 1 -->
               <div class="col-md-6">
+
                 <div class="mb-3">
-                  <label for="delegateName" class="form-label"
-                    >Name<span class="form-label-span" style="color: #ff0000"
+                  <label for="studentTitle" class="form-label"
+                    >Title<span class="form-label-span" style="color: #ff0000"
                       >*</span
                     ></label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="delegateName"
-                    formControlName="name"
-                    placeholder="Enter name"
+                    id="studentTitle"
+                    formControlName="title"
+                    placeholder="Enter title"
+                    autocomplete="off"
+                    maxlength="15"
+                    (keypress)="validateAlpha($event)"
+                    (paste)="onPaste($event)"
                   />
-
                   <div
                     *ngIf="
-                      getDelegateControl('name')?.hasError('required') &&
-                      getDelegateControl('name')?.touched
+                      getDelegateControl('title')?.hasError('required') &&
+                      getDelegateControl('title')?.touched
                     "
                     class="text-danger small"
                   >
-                    Name is required
+                    Title is required
                   </div>
 
                   <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
                   <span
                     class="text-danger small"
                     *ngIf="
-                      !getDelegateControl('name')?.hasError('required') &&
-                      getDelegateControl('name')?.hasError('minlength')
+                      !getStudentControl('title')?.hasError('required') &&
+                      getStudentControl('title')?.hasError('minlength')
                     "
                   >
-                    Name must be at least 3 characters long
+                    Title must be at least 2 characters long
                   </span>
                 </div>
 
@@ -802,10 +808,55 @@
                     Please enter a valid email
                   </div>
                 </div>
+
+                <div class="mb-3">
+                  <label for="reference_no" class="form-label">Reference No</label>
+                  <input type="text" name="reference_no" maxlength="50" id="reference_no" #reference_no
+                    placeholder="Enter reference no" class="form-control"
+                    [readonly]="this.referralCode ? this.referralCode : ''" formControlName="reference_no"
+                    autocomplete="off" />
+                </div>
               </div>
 
               <!-- Column 2 -->
               <div class="col-md-6">
+
+                <div class="mb-3">
+                  <label for="delegateName" class="form-label"
+                    >Full Name<span class="form-label-span" style="color: #ff0000"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="delegateName"
+                    formControlName="name"
+                    placeholder="Enter fullname"
+                  />
+
+                  <div
+                    *ngIf="
+                      getDelegateControl('name')?.hasError('required') &&
+                      getDelegateControl('name')?.touched
+                    "
+                    class="text-danger small"
+                  >
+                    Name is required
+                  </div>
+
+                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                  <span
+                    class="text-danger small"
+                    *ngIf="
+                      !getDelegateControl('name')?.hasError('required') &&
+                      getDelegateControl('name')?.hasError('minlength')
+                    "
+                  >
+                    Name must be at least 3 characters long
+                  </span>
+                </div>
+
                 <div class="mb-3">
                   <label class="form-label" for="dob"
                     >DOB<span class="form-label-span" style="color: #ff0000"
@@ -859,7 +910,7 @@
                     id="studentCountry"
                     formControlName="country"
                   >
-                    <option value="" disabled>Select Country</option>
+                    <option value="" disabled>Select country</option>
                     <option
                       *ngFor="let country of countryData"
                       [value]="country.id"
@@ -880,7 +931,10 @@
                     >
                   </div>
                 </div>
+
+
               </div>
+
             </div>
           </div>
         </div>
@@ -892,41 +946,43 @@
             <div class="row">
               <!-- Column 1 -->
               <div class="col-md-6">
+
                 <div class="mb-3">
-                  <label for="studentName" class="form-label"
-                    >Name<span class="form-label-span" style="color: #ff0000"
+                  <label for="studentTitle" class="form-label"
+                    >Title<span class="form-label-span" style="color: #ff0000"
                       >*</span
                     ></label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="studentName"
-                    formControlName="name"
-                    placeholder="Enter your name"
+                    id="studentTitle"
+                    formControlName="title"
+                    placeholder="Enter title"
                     autocomplete="off"
+                    maxlength="15"
                     (keypress)="validateAlpha($event)"
                     (paste)="onPaste($event)"
                   />
                   <div
                     *ngIf="
-                      getStudentControl('name')?.hasError('required') &&
-                      getStudentControl('name')?.touched
+                      getStudentControl('title')?.hasError('required') &&
+                      getStudentControl('title')?.touched
                     "
                     class="text-danger small"
                   >
-                    Name is required
+                    Title is required
                   </div>
 
                   <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
                   <span
                     class="text-danger small"
                     *ngIf="
-                      !getStudentControl('name')?.hasError('required') &&
-                      getStudentControl('name')?.hasError('minlength')
+                      !getStudentControl('title')?.hasError('required') &&
+                      getStudentControl('title')?.hasError('minlength')
                     "
                   >
-                    Name must be at least 3 characters long
+                    Title must be at least 2 characters long
                   </span>
                 </div>
 
@@ -1015,7 +1071,7 @@
                     class="form-control"
                     id="studentEmail"
                     formControlName="email"
-                    placeholder="Enter your email"
+                    placeholder="Enter email"
                     autocomplete="off"
                     maxlength="125"
                   />
@@ -1044,7 +1100,7 @@
                     class="form-control"
                     id="studentRelation"
                     formControlName="relation"
-                    placeholder="Enter your relation"
+                    placeholder="Enter relation"
                   />
 
                   <div
@@ -1061,6 +1117,45 @@
 
               <!-- Column 2 -->
               <div class="col-md-6">
+
+                <div class="mb-3">
+                  <label for="studentName" class="form-label"
+                    >Full Name<span class="form-label-span" style="color: #ff0000"
+                      >*</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="studentName"
+                    formControlName="name"
+                    placeholder="Enter fullname"
+                    autocomplete="off"
+                    (keypress)="validateAlpha($event)"
+                    (paste)="onPaste($event)"
+                  />
+                  <div
+                    *ngIf="
+                      getStudentControl('name')?.hasError('required') &&
+                      getStudentControl('name')?.touched
+                    "
+                    class="text-danger small"
+                  >
+                    Name is required
+                  </div>
+
+                  <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                  <span
+                    class="text-danger small"
+                    *ngIf="
+                      !getStudentControl('name')?.hasError('required') &&
+                      getStudentControl('name')?.hasError('minlength')
+                    "
+                  >
+                    Name must be at least 3 characters long
+                  </span>
+                </div>
+
                 <div class="mb-3">
                   <label for="dob" class="form-label"
                     >DOB<span class="form-label-span" style="color: #ff0000"
@@ -1114,7 +1209,7 @@
                     id="studentCountry"
                     formControlName="country"
                   >
-                    <option value="" disabled>Select Country</option>
+                    <option value="" disabled>Select country</option>
                     <option
                       *ngFor="let country of countryData"
                       [value]="country.id"
@@ -1151,7 +1246,7 @@
                     class="form-control"
                     id="studentInstitution"
                     formControlName="institutionName"
-                    placeholder="Enter your institution name"
+                    placeholder="Enter institution name"
                   />
 
                   <div
@@ -1168,6 +1263,8 @@
                   </div>
                 </div>
               </div>
+
+
             </div>
           </div>
         </div>
