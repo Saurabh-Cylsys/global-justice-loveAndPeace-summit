@@ -341,4 +341,8 @@ export class ApiEndpointsService {
   public postCreateDelegateOnlineMPEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_MP);
   }
+
+  public getDataByTransactionIdEndpoint(transactionId:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
+  }
 }

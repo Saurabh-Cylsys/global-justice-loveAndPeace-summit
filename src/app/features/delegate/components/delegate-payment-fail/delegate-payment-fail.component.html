@@ -1,1 +1,25 @@
-<p>delegate-payment-fail works!</p>
+<!-- payment-failed.component.html -->
+<div class="payment-failed">
+  <h2>Payment Failed</h2>
+
+  <div class="error-details">
+    <p>{{ errorMessage }}</p>
+    <p>Transaction ID: {{ transactionId }}</p>
+    <p>Error Code: {{ errorCode }}</p>
+  </div>
+
+  <div class="retry-section">
+    <h3>Payment Details</h3>
+    <form #retryForm="ngForm" (ngSubmit)="retryPayment()">
+      <div class="form-group">
+        <label>Amount (AED)</label>
+        <input type="number" [(ngModel)]="formData.chargetotal" name="amount" required>
+      </div>
+
+      <!-- Add other fields as needed -->
+
+      <button type="submit" [disabled]="retryForm.invalid">Retry Payment</button>
+      <button type="button" (click)="cancelPayment()">Cancel</button>
+    </form>
+  </div>
+</div>

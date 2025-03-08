@@ -77,4 +77,6 @@ export class Constants {
 
     public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
 
+    public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
+
 }

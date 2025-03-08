@@ -78,25 +78,23 @@ export class DelegatePeaceStudentComponent {
      // Initialize student form
      this.studentForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      studentDob :['', Validators.required],
+      studentDob :['', [Validators.required]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required],
-      institutionName: ['', Validators.required],
-      relation: ['']
+      country: ['', [Validators.required]],
+      institutionName: ['', [Validators.required]],
+      relation: ['',[Validators.required]]
     });
   }
 
   initializeDelegateForm(){
     // Initialize delegate form
     this.delegateForm = this.fb.group({
-      name: ['', Validators.required],
-      mobile_number: ['', Validators.required],
+      name: ['', [Validators.required]],
+      mobile_number: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      country: ['', Validators.required],
-      // institutionName: ['', Validators.required],
-      delegateDob :['', Validators.required],
-      relation: ['']
+      country: ['', [Validators.required]],
+      delegateDob :['', [Validators.required]]
     });
   }
 
@@ -109,6 +107,16 @@ export class DelegatePeaceStudentComponent {
   getcontrol(name: any): AbstractControl | null {
     return this.delegateForm.get(name);
   }
+
+  getStudentControl(name: string): AbstractControl | null {
+    return this.studentForm.get(name);
+  }
+
+  getDelegateControl(name: string): AbstractControl | null {
+    return this.delegateForm.get(name);
+  }
+
+
 
   // Move to the next step
   nextStep() {
@@ -155,118 +163,6 @@ export class DelegatePeaceStudentComponent {
     const parsedDate = new Date(event);
     this.formattedDate =
       this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-  }
-
-  onUserDobChange(event: string): void {
-    if (!event) return; // Handle empty date input
-
-    const dob = new Date(event);
-    const newAge = this.calculateAge(dob);
-
-    if (this.StudentAge !== newAge) {
-      this.StudentAge = newAge;
-      console.log('User Age Updated:', this.StudentAge);
-    } else {
-      console.log('No Change in User Age, Skipping Update');
-    }
-
-    this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-
-    if (this.studentDob !== event) {
-      this.studentDob = event;
-      this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-    }
-
-    // Perform validation
-    this.validateUserAge();
-  }
-
-  onNomineeDobChange(event: string): void {
-    if (!event) return; // Handle empty date input
-
-    const dob = new Date(event);
-    const newAge = this.calculateAge(dob);
-
-    if (this.delegateAge !== newAge) {
-      this.delegateAge = newAge;
-      console.log('Nominee Age Updated:', this.delegateAge);
-    } else {
-      console.log('No Change in Nominee Age, Skipping Update');
-    }
-
-    const parsedDate = new Date(event);
-    // this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-    if (this.delegateDob !== event) {
-
-      this.delegateDob = event;
-      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-    }
-
-    // Perform validation
-    this.validateNomineeAge();
-  }
-
-  // Common function to calculate age
-  private calculateAge(dob: Date): number {
-    const today = new Date();
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    const dayDiff = today.getDate() - dob.getDate();
-
-    // Adjust age if the birthday hasn't occurred yet this year
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-    return age;
-  }
-
-  // Validation for User Age (Student or Adult)
-  private validateUserAge(): void {
-    if (this.userType === 'student') {
-      if (this.StudentAge <= 0 || this.StudentAge >= 21) {
-        this.sharedService.ToastPopup(
-          'As a Student, your age must be between 1 and less than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    } else if (this.userType === 'delegate') {
-      if (this.StudentAge < 21) {
-        this.sharedService.ToastPopup(
-          'As an Adult, your age must be 21 or older.',
-          '',
-          'error'
-        );
-        return;
-      }
-    }
-  }
-
-  // Validation for Nominee Age
-  private validateNomineeAge(): void {
-    if (this.userType === 'student') {
-      if (this.delegateAge <= 21) {
-        this.sharedService.ToastPopup(
-          'As a Student, your nominee must be older than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    } else if (this.userType === 'delegate') {
-      if (this.delegateAge >= 21 || this.delegateAge <= 0) {
-        this.sharedService.ToastPopup(
-          'As an Adult, your nominee must be between 1 and less than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    }
   }
 
   openDatepicker() {

@@ -47,8 +47,8 @@
                     (paste)="onPaste($event)" />
                     <div
                   *ngIf="
-                    studentForm.get('name')?.hasError('required') &&
-                    studentForm.get('name')?.touched
+                    getStudentControl('name')?.hasError('required') &&
+                    getStudentControl('name')?.touched
                   "
                   class="text-danger small"
                 >
@@ -59,8 +59,8 @@
                 <span
                   class="text-danger small"
                   *ngIf="
-                    !studentForm.get('name')?.hasError('required') &&
-                    studentForm.get('name')?.hasError('minlength')
+                    getStudentControl('name')?.hasError('required') &&
+                    getStudentControl('name')?.hasError('minlength')
                   "
                 >
                   Name must be at least 3 characters long
@@ -95,16 +95,16 @@
                     <div class="form-group form-group-inner mobile-number">
                       <div class="help-block with-errors"></div>
                       <div *ngIf="
-                          getcontrol('mobile_number')?.errors &&
-                          getcontrol('mobile_number')?.touched
+                          getStudentControl('mobile_number')?.errors &&
+                          getStudentControl('mobile_number')?.touched
                         ">
-                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                        <small class="text-danger" *ngIf="getStudentControl('mobile_number')?.errors?.['required']">Mobile
                           number is
                           required</small>
                         <small class="text-danger" *ngIf="
                             !mobile_numberVal &&
-                            getcontrol('mobile_number')?.invalid &&
-                            getcontrol('mobile_number')?.touched
+                            getStudentControl('mobile_number')?.invalid &&
+                            getStudentControl('mobile_number')?.touched
                           ">
                           {{ getPhoneErrorMessage() }}
                         </small>
@@ -118,6 +118,16 @@
                       style="color: #ff0000">*</span></label>
                   <input type="email" class="form-control" id="studentEmail" formControlName="email"
                     placeholder="Enter your email" autocomplete="off" maxlength="125" />
+
+                    <div
+                  *ngIf="
+                    getStudentControl('email')?.invalid &&
+                    getStudentControl('email')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Please enter a valid email
+                </div>
                 </div>
 
                 <div class="mb-3">
@@ -125,6 +135,16 @@
                       style="color: #ff0000">*</span></label>
                   <input type="text" class="form-control" id="studentRelation" formControlName="relation"
                     placeholder="Enter your relation" />
+
+                    <div
+                  *ngIf="
+                    getStudentControl('relation')?.invalid &&
+                    getStudentControl('relation')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Please enter a relation to delegate
+                </div>
                 </div>
               </div>
 
@@ -139,17 +159,17 @@
                     [maxDate]="maxStudentDate"
                     (keydown)="disableManualInput($event)"
                     (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()"
-                    (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                    bsDatepicker [bsConfig]="{
                 isAnimated: true,
                 dateInputFormat: 'DD/MM/YYYY',
                 showWeekNumbers: false,
                 containerClass: colorTheme
               }" readonly />
                   <div *ngIf="
-                getcontrol('studentDob')?.errors &&
-                getcontrol('studentDob')?.touched
+                getStudentControl('studentDob')?.errors &&
+                getStudentControl('studentDob')?.touched
               ">
-                    <small class="text-danger" *ngIf="getcontrol('studentDob')?.errors?.['required']">Date of birth is
+                    <small class="text-danger" *ngIf="getStudentControl('studentDob')?.errors?.['required']">Date of birth is
                       required</small>
                   </div>
                   <div class="help-block with-errors"></div>
@@ -165,13 +185,13 @@
 
                   <div
                     *ngIf="
-                      getcontrol('country')?.errors &&
-                      getcontrol('country')?.touched
+                      getStudentControl('country')?.errors &&
+                      getStudentControl('country')?.touched
                     "
                   >
                     <small
                       class="text-danger small"
-                      *ngIf="getcontrol('country')?.errors?.['required']"
+                      *ngIf="getStudentControl('country')?.errors?.['required']"
                       >Country is required.</small
                     >
                   </div>
@@ -186,13 +206,13 @@
 
                     <div
                     *ngIf="
-                      getcontrol('institutionName')?.errors &&
-                      getcontrol('institutionName')?.touched
+                      getStudentControl('institutionName')?.errors &&
+                      getStudentControl('institutionName')?.touched
                     "
                   >
                     <small
                       class="text-danger small"
-                      *ngIf="getcontrol('institutionName')?.errors?.['required']"
+                      *ngIf="getStudentControl('institutionName')?.errors?.['required']"
                       >institute name is required.</small
                     >
                   </div>
@@ -217,8 +237,8 @@
 
                     <div
                     *ngIf="
-                      delegateForm.get('name')?.hasError('required') &&
-                      delegateForm.get('name')?.touched
+                      getDelegateControl('name')?.hasError('required') &&
+                      getDelegateControl('name')?.touched
                     "
                     class="text-danger small"
                   >
@@ -229,8 +249,8 @@
                   <span
                     class="text-danger small"
                     *ngIf="
-                      !delegateForm.get('name')?.hasError('required') &&
-                      delegateForm.get('name')?.hasError('minlength')
+                      !getDelegateControl('name')?.hasError('required') &&
+                      getDelegateControl('name')?.hasError('minlength')
                     "
                   >
                     Name must be at least 3 characters long
@@ -265,16 +285,16 @@
                     <div class="form-group form-group-inner mobile-number">
                       <div class="help-block with-errors"></div>
                       <div *ngIf="
-                          getcontrol('mobile_number')?.errors &&
-                          getcontrol('mobile_number')?.touched
+                          getDelegateControl('mobile_number')?.errors &&
+                          getDelegateControl('mobile_number')?.touched
                         ">
-                        <small class="text-danger" *ngIf="getcontrol('mobile_number')?.errors?.['required']">Mobile
+                        <small class="text-danger" *ngIf="getDelegateControl('mobile_number')?.errors?.['required']">Mobile
                           number is
                           required</small>
                         <small class="text-danger" *ngIf="
                             !mobile_numberVal &&
-                            getcontrol('mobile_number')?.invalid &&
-                            getcontrol('mobile_number')?.touched
+                            getDelegateControl('mobile_number')?.invalid &&
+                            getDelegateControl('mobile_number')?.touched
                           ">
                           {{ getPhoneErrorMessage() }}
                         </small>
@@ -288,6 +308,16 @@
                       style="color: #ff0000">*</span></label>
                   <input type="email" class="form-control" id="delegateEmail" formControlName="email"
                     placeholder="Enter email" />
+
+                    <div
+                  *ngIf="
+                    getDelegateControl('email')?.invalid &&
+                    getDelegateControl('email')?.touched
+                  "
+                  class="text-danger small"
+                >
+                  Please enter a valid email
+                </div>
                 </div>
               </div>
 
@@ -301,18 +331,18 @@
                     [minDate]="minDelegateDate"
                     [maxDate]="maxDelegateDate"
                     (keydown)="disableManualInput($event)"
-                    (ngModelChange)="onDateChange($event)" (keydown.tab)="openDatepicker()"
-                    (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                    (ngModelChange)="onDateChange($event)"
+                    bsDatepicker [bsConfig]="{
                   isAnimated: true,
                   dateInputFormat: 'DD/MM/YYYY',
                   showWeekNumbers: false,
                   containerClass: colorTheme
                 }" readonly />
                   <div *ngIf="
-                  getcontrol('delegateDob')?.errors &&
-                  getcontrol('studendelegateDobtDob')?.touched
+                  getDelegateControl('delegateDob')?.errors &&
+                  getDelegateControl('studendelegateDobtDob')?.touched
                 ">
-                    <small class="text-danger" *ngIf="getcontrol('delegateDob')?.errors?.['required']">Date of birth is
+                    <small class="text-danger" *ngIf="getDelegateControl('delegateDob')?.errors?.['required']">Date of birth is
                       required</small>
                   </div>
                   <div class="help-block with-errors"></div>
@@ -325,6 +355,19 @@
                     <option value="" disabled>Select Country</option>
                     <option *ngFor="let country of countryData" [value]="country.id">{{ country.name }}</option>
                   </select>
+                  <div
+                  *ngIf="
+                    getDelegateControl('country')?.errors &&
+                    getDelegateControl('country')?.touched
+                  "
+                >
+                  <small
+                    class="text-danger small"
+                    *ngIf="getDelegateControl('country')?.errors?.['required']"
+                    >Country is required.</small
+                  >
+                </div>
+
                 </div>
               </div>
             </div>
@@ -333,7 +376,7 @@
       </div>
 
       <div class="text-center mt-4">
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success" [disabled]="delegateForm.invalid && studentForm.invalid">Submit</button>
       </div>
     </form>
 
@@ -422,7 +465,7 @@
                     [minDate]="minDelegateDate"
                     [maxDate]="maxDelegateDate"
                     (keydown)="disableManualInput($event)" (ngModelChange)="onDateChange($event)"
-                    (keydown.tab)="openDatepicker()" (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                    (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
                   isAnimated: true,
                   dateInputFormat: 'DD/MM/YYYY',
                   showWeekNumbers: false,
@@ -499,7 +542,7 @@
                     [minDate]="minStudentDate"
                     [maxDate]="maxStudentDate"
                     (keydown)="disableManualInput($event)" (ngModelChange)="onDateChange($event)"
-                    (keydown.tab)="openDatepicker()" (ngModelChange)="onUserDobChange($event)" bsDatepicker [bsConfig]="{
+                    (keydown.tab)="openDatepicker()" bsDatepicker [bsConfig]="{
                 isAnimated: true,
                 dateInputFormat: 'DD/MM/YYYY',
                 showWeekNumbers: false,

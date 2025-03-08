@@ -1,1 +1,50 @@
-<p>delegate-payment-success works!</p>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card border-1 shadow-lg">
+      <div class="card-body text-center p-5">
+        <div class="success-checkmark mb-4">
+          <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
+          </div>
+        </div>
+        <h2 class="card-title mb-3 text-success">Payment Successful!</h2>
+        <p class="card-text text-muted">Thank you for registering as an online delegate.</p>
+
+        <div class="registration-details mt-4 p-4 bg-light rounded">
+          <h4 class="mb-4 text-success">Registration Details</h4>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Name:</strong>
+                <span>{{registrationData?.name}}</span>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Email:</strong>
+                <span>{{registrationData?.email}}</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="d-flex justify-content-between align-items-center">
+                <strong class="text-muted">Mobile:</strong>
+                <span>{{registrationData?.mobile_no}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-muted">You will receive a confirmation email shortly with further instructions.</p>
+
+        <div class="mt-4">
+          <button class="btn btn-success btn-lg px-5" (click)="showCompleteProfile()">
+            Complete Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

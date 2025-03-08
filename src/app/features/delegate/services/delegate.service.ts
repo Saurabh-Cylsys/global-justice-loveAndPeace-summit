@@ -91,4 +91,9 @@ export class DelegateService {
  postDelegateOnlineMP(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
   }
+
+  getDataByTransactionIdApi(transactionId: any): Observable<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
+  }
+
 }
