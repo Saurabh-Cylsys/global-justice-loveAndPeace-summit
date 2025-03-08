@@ -73,7 +73,8 @@ export class Constants {
 
     public readonly API_ENDPOINT_REGISTRATION_ONLINE: string = 'create-delegate-profile-online'
 
-    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create-delegate-profile-short'
+    // 'create-delegate-profile-short'
+    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'pre_delegate_user'
 
     public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
 

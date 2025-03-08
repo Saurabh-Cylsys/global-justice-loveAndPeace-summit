@@ -123,7 +123,7 @@
                   <select (change)="changeCountry($event)" class="form-control form-select" id="country"
                     formControlName="country" #country name="India">
                     <option value="" disabled>Select Country</option>
-                    <option *ngFor="let country of countryData; let j = index" [value]="country | json">
+                    <option *ngFor="let country of countryData" [value]="country.id">
                       {{ country.name }}
                     </option>
                   </select>

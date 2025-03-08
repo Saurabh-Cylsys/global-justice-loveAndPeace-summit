@@ -75,6 +75,7 @@ export class DelegateOnlineComponent implements OnInit {
   selectedCountryISO: any;
   SearchCountryField = SearchCountryField;
   delagateType: any;
+  pType: string = "";
 
   constructor(
     private fb: FormBuilder,
@@ -348,21 +349,26 @@ export class DelegateOnlineComponent implements OnInit {
 
     if (this.userForm.valid) {
       this.loading = true;
+
+      if(this.delagateType == 'offline'){
+        this.pType = "DELEGATE_ONLINE";
+      }
+      else{
+        this.pType = "DELEGATE_ONLINE";
+      }
+
       const payload = {
         title: this.userForm.get('title')?.value,
         first_name : firstName,
         last_name : lastName,
-        name: this.userForm.get('name')?.value,
-        email_id: this.userForm.get('email')?.value.toLowerCase(),
-        // mobile_number: country_code + formattedMobileNumber,
         mobile_number: formattedMobileNumber,
-        country_id: JSON.parse(this.userForm.value.country).id,
-        // country_id: this.userForm.value.country.id,
-
+        email_id: this.userForm.get('email')?.value.toLowerCase(),
+        country_code:  this.userForm.get('mobile_number')?.value.dialCode,
         reference_no: this.referralCode ? this.referralCode : '',
         dob: this.formattedDateOfBirth,
+        country_id: this.userForm.value.country,
         is_nomination:"0",
-        p_type:"DELEGATE_ONLINE",
+        p_type: this.pType,
         p_reference_by:"0"
       };
 
@@ -457,6 +463,7 @@ export class DelegateOnlineComponent implements OnInit {
     //   }
     // });
   }
+
   onCompleteProfile() {
     if (this.completeProfileForm.valid) {
       const profileData: CompleteProfileData = this.completeProfileForm.value;
