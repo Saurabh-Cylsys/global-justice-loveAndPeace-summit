@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { DelegateService } from '../../services/delegate.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
@@ -10,16 +16,20 @@ import { HttpClient } from '@angular/common/http';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface RegistrationData {
-  name: string;
+  title :string
+  first_name: string;
+  last_name: string;
   email: string;
-  mobile_no: string;
-  country_id:string;
+  mobile_number: string;
+  transcation_id: string;
+  transcation_json: any;
+  country_id: string;
 }
 
 @Component({
   selector: 'app-delegate-payment-success',
   templateUrl: './delegate-payment-success.component.html',
-  styleUrls: ['./delegate-payment-success.component.css']
+  styleUrls: ['./delegate-payment-success.component.css'],
 })
 export class DelegatePaymentSuccessComponent {
   userForm!: FormGroup;
@@ -41,9 +51,9 @@ export class DelegatePaymentSuccessComponent {
   formattedDate: string = '';
   minDate: string | null = null;
   maxDate: string | null = null;
-  colorTheme: string = "theme-dark-blue";
-  minDate1:any;
-  maxDate1:any;
+  colorTheme: string = 'theme-dark-blue';
+  minDate1: any;
+  maxDate1: any;
   isBackNavigation: boolean = false;
   transactionId: any;
 
@@ -55,7 +65,7 @@ export class DelegatePaymentSuccessComponent {
     private router: Router,
     private locationStrategy: LocationStrategy,
     private encryptionService: EncryptionService,
-    private ngxService:NgxUiLoaderService
+    private ngxService: NgxUiLoaderService
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -68,8 +78,6 @@ export class DelegatePaymentSuccessComponent {
         // });
 
         //api call
-
-
       }
     });
 
@@ -81,24 +89,29 @@ export class DelegatePaymentSuccessComponent {
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getUserDataByTransactionId();
   }
 
-  getUserDataByTransactionId(){
-    this.delegateService.getDataByTransactionIdApi(this.transactionId).subscribe((response: any)=> {
-      if (response && response.status === 200) {
-        this.registrationData = response.data;
-        this.showPaymentSuccess = true;
-      } else {
-        this.showPaymentSuccess = false;
-      }
-    },(err)=>{
-      console.log(err.error);
-      this.sharedService.ToastPopup(err.error.message,'','error');
-    });
+  getUserDataByTransactionId() {
+    this.delegateService
+      .getDataByTransactionIdApi(this.transactionId)
+      .subscribe(
+        (response: any) => {
+          if (response) {
+            this.registrationData = response.data[0];
+            console.log(this.registrationData);
+            this.showPaymentSuccess = true;
+          } else {
+            this.showPaymentSuccess = false;
+          }
+        },
+        (err) => {
+          console.log(err.error);
+          this.sharedService.ToastPopup(err.error.message, '', 'error');
+        }
+      );
   }
-
 
   private handleBackNavigation() {
     // Clear stored data
@@ -118,18 +131,21 @@ export class DelegatePaymentSuccessComponent {
   }
 
   showCompleteProfile() {
-
     const params = {
+      title : this.registrationData?.title,
       email: this.registrationData?.email || '',
-      mobile_no: this.registrationData?.mobile_no || '',
-      name: this.registrationData?.name || '',
+      mobile_no: this.registrationData?.mobile_number || '',
+      name:
+        this.registrationData?.first_name +
+        ' ' +
+        this.registrationData?.last_name || '',
       country_id:this.registrationData?.country_id || '',
-      isOnline: true
+      isOnline: true,
     };
     sessionStorage.setItem('IsOnline', 'true');
     const encryptedParams = this.encryptionService.encryptData(params);
     this.router.navigate(['/delegate-registration-online'], {
-      queryParams: { data: encryptedParams }
+      queryParams: { data: encryptedParams },
     });
     // this.router.navigate(['/delegate-registration'], {
     //   queryParams: {
@@ -140,5 +156,4 @@ export class DelegatePaymentSuccessComponent {
     //   }
     // });
   }
-
 }

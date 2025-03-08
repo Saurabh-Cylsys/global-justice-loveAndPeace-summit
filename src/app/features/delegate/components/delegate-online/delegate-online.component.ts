@@ -74,6 +74,7 @@ export class DelegateOnlineComponent implements OnInit {
   ];
   selectedCountryISO: any;
   SearchCountryField = SearchCountryField;
+  delagateType: any;
 
   constructor(
     private fb: FormBuilder,
@@ -87,9 +88,11 @@ export class DelegateOnlineComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
+        debugger;
         this.referralCode = params.code;
 
         console.log('params', params);
+        this.delagateType = params.dType;
 
         // this.router.navigate([], {
         //   relativeTo: this.route,
@@ -112,15 +115,12 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   async ngOnInit() {
-    // await this.fnTestPayment();
 
     this.initializeForms();
     this.checkQueryParams();
     this.setupFormSubscriptions();
 
     await this.getAllCountries();
-
-
 
   }
 
@@ -172,6 +172,7 @@ export class DelegateOnlineComponent implements OnInit {
 
   private initializeForms() {
     this.userForm = this.fb.group({
+      title: ['', [Validators.required,Validators.minLength(2)]],
       name: ['', [Validators.required,Validators.minLength(3)]],
       email:  ['',
         [Validators.required,
@@ -184,64 +185,6 @@ export class DelegateOnlineComponent implements OnInit {
       dob: ['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
     });
-  }
-
-  private async fnTestPayment() {
-    try {
-      const amount = 100.00;
-      if (isNaN(amount) || amount <= 0) {
-        throw new Error('Invalid payment amount');
-      }
-      let obj = {
-        "amount": 100.00,
-        "currency": "AED"
-      }
-      const response = await this.delegateService.postDelegateOnlineMP(obj).toPromise();
-
-      // const response = await this.http.post('http://localhost:3000/api/initiate-payment', {
-      //   amount: amount
-      // }).toPromise();
-
-      debugger;
-      if (!response || !response.hasOwnProperty('gatewayUrl') || !response.hasOwnProperty('formData')) {
-        throw new Error('Invalid payment gateway response');
-      }
-
-      // Create hidden form with validation
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = (response as any).gatewayUrl;
-
-      if (!form.action) {
-        throw new Error('Gateway URL is required');
-      }
-
-      // Add hidden inputs with validation
-      const formData = (response as any).formData;
-      const requiredFields = ['hash_algorithm', 'storename', 'txndatetime', 'txntype', 'chargetotal', 'currency'];
-
-      requiredFields.forEach(field => {
-        if (!formData[field]) {
-          throw new Error(`Required field ${field} is missing`);
-        }
-      });
-
-      Object.entries(formData).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = String(value);
-        form.appendChild(input);
-      });
-
-      // Submit form
-      document.body.appendChild(form);
-      form.submit();
-
-    } catch (error) {
-      console.error('Payment initiation failed:', error);
-      this.sharedService.ToastPopup('Error', 'Payment initiation failed. Please try again.', 'error');
-    }
   }
 
   validateInput(event: any) {
@@ -406,7 +349,7 @@ export class DelegateOnlineComponent implements OnInit {
     if (this.userForm.valid) {
       this.loading = true;
       const payload = {
-        title: "Mr",
+        title: this.userForm.get('title')?.value,
         first_name : firstName,
         last_name : lastName,
         name: this.userForm.get('name')?.value,
@@ -416,7 +359,7 @@ export class DelegateOnlineComponent implements OnInit {
         country_id: JSON.parse(this.userForm.value.country).id,
         // country_id: this.userForm.value.country.id,
 
-        reference_no: this.referralCode,
+        reference_no: this.referralCode ? this.referralCode : '',
         dob: this.formattedDateOfBirth,
         is_nomination:"0",
         p_type:"DELEGATE_ONLINE",
@@ -429,16 +372,14 @@ export class DelegateOnlineComponent implements OnInit {
           this.sharedService.ToastPopup('Success', response.message, 'success');
           this.registrationData = payload;
 
-          debugger;
           setTimeout(async () => {
             if (response.success && response.gatewayUrl) {
               localStorage.setItem('delegateRegistration', JSON.stringify(payload));
               //window.location.href = response.payment_link;
 
               let obj = {
-                "amount": 100.00,
-                "currency": "AED",
                 "email": this.userForm.get('email')?.value.toLowerCase(),
+                "pay_type": "DELEGATE_ONLINE",
               }
 
               await this.delegateService.postDelegateOnlineMP(obj).subscribe({

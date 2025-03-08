@@ -50,7 +50,9 @@ export class PeacekeeperPreselectComponent {
       });
     }
     else {
-      this.router.navigate(['/delegate-online']);
+      this.router.navigate(['/delegate-online'], {
+        queryParams: { dType: 'offline' }
+      });
     }
   }
 
@@ -68,7 +70,9 @@ export class PeacekeeperPreselectComponent {
       });
     }
     else {
-      this.router.navigate(['/delegate-online']);
+      this.router.navigate(['/delegate-online'], {
+        queryParams: { dType: 'online' }
+      });
     }
   }
 }

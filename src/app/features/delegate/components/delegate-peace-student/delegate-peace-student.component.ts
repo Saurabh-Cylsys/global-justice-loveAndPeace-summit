@@ -4,6 +4,7 @@ import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-
 import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -15,7 +16,8 @@ export class DelegatePeaceStudentComponent {
   step: number = 1; // Tracks the current step
   studentForm!: FormGroup;
   delegateForm!: FormGroup;
-  mobile_numberVal: boolean = false;
+  studentMobileNumberVal: boolean = false;
+  deleagetMobileNumberVal: boolean = false;
   countryData: any = [];
 
   CountryISO = CountryISO;
@@ -42,11 +44,34 @@ export class DelegatePeaceStudentComponent {
   maxStudentDate!: Date;
   minDelegateDate!: Date;
   maxDelegateDate!: Date;
+  referralCode: any = "";
+  delagateType: any;
 
-  constructor(private fb: FormBuilder, private delegateService: DelegateService,private datePipe: DatePipe,private sharedService:SharedService) {
+  constructor(private fb: FormBuilder,
+    private delegateService: DelegateService,
+    private datePipe: DatePipe,
+    private sharedService:SharedService,
+    private route: ActivatedRoute,) {
+
+    this.route.queryParams.subscribe((params: any) => {
+      if (params != undefined && Object.keys(params).length > 0) {
+        debugger;
+        this.referralCode = params.code;
+
+        console.log('params', params);
+        this.delagateType = params.dType;
+
+        // this.router.navigate([], {
+        //   relativeTo: this.route,
+        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
+        //   replaceUrl: true // Replace the current URL in the browser history
+        // });
+      }
+    });
+
+
 
     const today = new Date();
-
 
     // Student: Age between 1 to 21 years
     this.maxStudentDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()); // 1 year old
@@ -77,6 +102,7 @@ export class DelegatePeaceStudentComponent {
   initializeStudentForm() {
      // Initialize student form
      this.studentForm = this.fb.group({
+      title: ['',[Validators.required, Validators.minLength(2)]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       studentDob :['', [Validators.required]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
@@ -90,22 +116,46 @@ export class DelegatePeaceStudentComponent {
   initializeDelegateForm(){
     // Initialize delegate form
     this.delegateForm = this.fb.group({
-      name: ['', [Validators.required]],
+      title: ['',[Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       mobile_number: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       country: ['', [Validators.required]],
-      delegateDob :['', [Validators.required]]
+      delegateDob :['', [Validators.required]],
+      reference_no: [this.referralCode ? this.referralCode : ''],
     });
   }
 
   // Set user type and move to the first step
-  setUserType(type: 'student' | 'delegate') {
-    this.userType = type;
-    this.step = 1; // Start with step 1
+  setUserType(type: 'student' | 'delegate',event: Event) {
+
+    if (this.userType === type) return;
+
+    // if (this.isFormDirty()) {
+    //   const confirmed = confirm(
+    //     'Warning: Your unsaved data will be lost. Do you want to continue?'
+    //   );
+
+    //   if (!confirmed) {
+
+    //     return; // Exit without changing userType
+    //   }
+    //   this.resetForms();
+    // }
+
+    this.userType = type; // Update only after confirmation
+
   }
 
-  getcontrol(name: any): AbstractControl | null {
-    return this.delegateForm.get(name);
+  private isFormDirty(): boolean {
+    return this.studentForm?.dirty || this.delegateForm?.dirty;
+  }
+
+  private resetForms(): void {
+    this.initializeStudentForm();
+    this.initializeDelegateForm();
+    this.studentForm?.reset();
+    this.delegateForm?.reset();
   }
 
   getStudentControl(name: string): AbstractControl | null {
@@ -114,23 +164,6 @@ export class DelegatePeaceStudentComponent {
 
   getDelegateControl(name: string): AbstractControl | null {
     return this.delegateForm.get(name);
-  }
-
-
-
-  // Move to the next step
-  nextStep() {
-    debugger
-    if (this.step === 1 && this.userType === 'student' && this.studentForm.valid) {
-      this.step = 2; // Move to Delegate Form
-    } else if (this.step === 1 && this.userType === 'delegate' && this.delegateForm.valid) {
-      this.step = 2; // Move to Student Form
-    }
-  }
-
-  // Move to the previous step
-  previousStep() {
-    this.step = 1; // Go back to the first step
   }
 
   disableManualInput(event: KeyboardEvent): void {
@@ -172,13 +205,31 @@ export class DelegatePeaceStudentComponent {
     }
   }
 
-  keyPressNumbers(event: KeyboardEvent) {
+  openDelageteDatepicker() {
+    const dobInput = document.getElementById('delegateDob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
+  keyPressNumbersForStudent(event: KeyboardEvent) {
     const inputValue = this.studentForm.controls['mobile_number'].value; // Get value from form control
     if (inputValue && inputValue.number) {
       if (inputValue.number.length < 7) {
-        this.mobile_numberVal = true;
+        this.studentMobileNumberVal = true;
       } else {
-        this.mobile_numberVal = false;
+        this.studentMobileNumberVal = false;
+      }
+    }
+  }
+
+  keyPressNumbersForDelegate(event: KeyboardEvent) {
+    const inputValue = this.delegateForm.controls['mobile_number'].value; // Get value from form control
+    if (inputValue && inputValue.number) {
+      if (inputValue.number.length < 7) {
+        this.deleagetMobileNumberVal = true;
+      } else {
+        this.deleagetMobileNumberVal = false;
       }
     }
   }
@@ -210,8 +261,6 @@ export class DelegatePeaceStudentComponent {
   changeCountry(e: any) {
     const selectedValue = e.target.value;
     console.log('selectedValue', selectedValue);
-
-
   }
 
   // Handle form submission
@@ -221,9 +270,58 @@ export class DelegatePeaceStudentComponent {
       console.log('Delegate Form Data:', this.delegateForm.value);
       this.sharedService.ToastPopup('Please enter required Fields', '', 'error');
       return;
-    } else {
-
     }
+    // Get the full name entered by the user
+    const fullName = this.delegateForm.get('name')?.value.trim();
+
+    // Split the full name into parts
+    const nameParts = fullName.split(' ');
+
+    // Extract first and last name
+    const delegate_firstName = nameParts[0] || ''; // First part as first name
+    const delegate_lastName = nameParts.slice(1).join(' ') || ''; // Remaining as last name
+
+    const returnmobileNumber = this.delegateForm.value.mobile_number;
+    console.log(returnmobileNumber, 'mobileNumber');
+    const delCountryCode = this.delegateForm.value.mobile_number.dialCode;
+    const rawMobileNumber = this.delegateForm.value.mobile_number.number;
+    let delegateMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+    console.log(delegateMobileNumber);
+
+    let body = {
+
+      "title": this.delegateForm.value.title,
+      "first_name": delegate_firstName,
+      "last_name": delegate_lastName,
+      "mobile_number": delegateMobileNumber,
+      "email_id": this.delegateForm.value.email,
+      "country_code": delCountryCode,
+      "reference_no": this.referralCode ? this.referralCode : '',
+      "dob":"2000-02-19",
+      "nom_title":"Mr",
+      "nom_first_name":"kunal",
+      "nom_last_name":"sharma",
+      "nom_mobile_number":"245565",
+      "nom_country_code":"",
+      "nom_email_id":"kunal@gmail.com",
+      "nom_dob":"2000-02-19",
+      "nom_country_id":"12",
+      "country_id":"",
+      "nom_relation":"relation",
+      "nom_institution":"nom_institution"
+    }
+    this.delegateService.postPreDelegateNominationApi(body).subscribe({
+      next: async (result: any) => {
+        if (result.success) {
+          this.sharedService.ToastPopup('', result.message, 'success');
+        } else {
+          this.sharedService.ToastPopup('', result.message, 'error');
+        }
+      },
+      error: (err) => {
+        this.sharedService.ToastPopup('', err.message, 'error');
+      },
+    })
   }
 
 

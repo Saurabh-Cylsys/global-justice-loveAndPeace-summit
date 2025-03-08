@@ -96,4 +96,9 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
   }
 
+  postPreDelegateNominationApi(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postPreDelegateNominationEndpoint(), body);
+  }
+
+
 }

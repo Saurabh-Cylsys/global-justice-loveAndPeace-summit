@@ -345,4 +345,9 @@ export class ApiEndpointsService {
   public getDataByTransactionIdEndpoint(transactionId:any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
   }
+
+  public postPreDelegateNominationEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
+  }
+
 }
