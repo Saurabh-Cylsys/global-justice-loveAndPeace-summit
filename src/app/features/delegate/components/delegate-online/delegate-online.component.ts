@@ -378,42 +378,10 @@ export class DelegateOnlineComponent implements OnInit {
           this.registrationData = payload;
 
           setTimeout(async () => {
-            if (response.success && response.gatewayUrl) {
-              localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-              //window.location.href = response.payment_link;
-
-              let obj = {
-                "email": this.userForm.get('email')?.value.toLowerCase(),
-                "pay_type": "DELEGATE_ONLINE",
-              }
-
-              await this.delegateService.postDelegateOnlineMP(obj).subscribe({
-                next: (response: any) => {
-                  //window.location.href = response.paymentUrl
-
-                  // Redirect to the IPG gateway
-                  const form = document.createElement('form');
-                  form.method = 'POST';
-                  form.action = response.gatewayUrl;
-
-                  Object.keys(response.formData).forEach((key) => {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = key;
-                    input.value = response.formData[key];
-                    form.appendChild(input);
-                  });
-
-                  document.body.appendChild(form);
-                  form.submit();
-
-                },
-                error: (error: any) => {
-                  console.error('Error creating delegate:', error);
-                  this.loading = false;
-                }
-              });
-            }
+            if(response.isStripe)
+              await this.fnStripePG(response, payload);
+            else
+              await this.fnMagnatiPG(response, payload);
           }, 5000);
 
           this.loading = false;
@@ -427,6 +395,50 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
 
+  private async fnStripePG(response: any, payload: any) {
+    if (response.success && response.gatewayUrl) {     
+      window.location.href = response.gatewayUrl;
+    } else {
+      this.sharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
+    }
+  }
+
+  private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
+    if (response.success && response.gatewayUrl) {
+      localStorage.setItem('delegateRegistration', JSON.stringify(payload));
+      //window.location.href = response.payment_link;
+      let obj = {
+        "email": this.userForm.get('email')?.value.toLowerCase(),
+        "pay_type": "DELEGATE_ONLINE",
+      };
+
+      await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+        next: (response: any) => {
+          //window.location.href = response.paymentUrl
+          // Redirect to the IPG gateway
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = response.gatewayUrl;
+
+          Object.keys(response.formData).forEach((key) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = response.formData[key];
+            form.appendChild(input);
+          });
+
+          document.body.appendChild(form);
+          form.submit();
+
+        },
+        error: (error: any) => {
+          console.error('Error creating delegate:', error);
+          this.loading = false;
+        }
+      });
+    }
+  }
 
   checkFormValidity() {
     if (this.userForm.valid) {
