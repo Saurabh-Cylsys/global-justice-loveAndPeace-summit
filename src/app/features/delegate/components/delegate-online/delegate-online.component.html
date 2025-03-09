@@ -10,7 +10,7 @@
           <form [formGroup]="userForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <div class="row">
 
-              <div class="mb-3 col-md-2">
+              <div class="mb-3 col-md-6">
                 <label for="name" class="form-label">Title<span class="form-label"
                     style="color: #ff0000">*</span></label>
 
@@ -33,23 +33,45 @@
                 </span>
               </div>
 
-              <div class="mb-3 col-md-4">
-                <label for="name" class="form-label">Full Name<span class="form-label"
+              <div class="mb-3 col-md-6">
+                <label for="name" class="form-label">First Name<span class="form-label"
                     style="color: #ff0000">*</span></label>
-                <input type="text" class="form-control" id="name" placeholder="Enter Full Name" formControlName="name"
+                <input type="text" class="form-control" id="name" placeholder="Enter first name" formControlName="first_name"
                   required autocomplete="off" maxlength="50" />
                 <!-- (keypress)="validateInput($event)" -->
                 <div *ngIf="
-                    userForm.get('name')?.hasError('required') &&
-                    userForm.get('name')?.touched
+                    userForm.get('first_name')?.hasError('required') &&
+                    userForm.get('first_name')?.touched
                   " class="text-danger small">
-                  Name is required
+                  First name is required
                 </div>
 
                 <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
                 <span class="text-danger small" *ngIf="
-                    !userForm.get('name')?.hasError('required') &&
-                    userForm.get('name')?.hasError('minlength')
+                    !userForm.get('first_name')?.hasError('required') &&
+                    userForm.get('first_name')?.hasError('minlength')
+                  ">
+                  Name must be at least 3 characters long
+                </span>
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label for="name" class="form-label">Last Name<span class="form-label"
+                    style="color: #ff0000">*</span></label>
+                <input type="text" class="form-control" id="name" placeholder="Enter last name" formControlName="last_name"
+                  required autocomplete="off" maxlength="50" />
+                <!-- (keypress)="validateInput($event)" -->
+                <div *ngIf="
+                    userForm.get('last_name')?.hasError('required') &&
+                    userForm.get('last_name')?.touched
+                  " class="text-danger small">
+                  Last name is required
+                </div>
+
+                <!-- Show "Name must be at least 3 characters" only if not empty but too short -->
+                <span class="text-danger small" *ngIf="
+                    !userForm.get('last_name')?.hasError('required') &&
+                    userForm.get('last_name')?.hasError('minlength')
                   ">
                   Name must be at least 3 characters long
                 </span>

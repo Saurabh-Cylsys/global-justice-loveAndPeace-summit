@@ -173,7 +173,8 @@ export class DelegateOnlineComponent implements OnInit {
   private initializeForms() {
     this.userForm = this.fb.group({
       title: ['', [Validators.required,Validators.minLength(2)]],
-      name: ['', [Validators.required,Validators.minLength(3)]],
+      first_name: ['', [Validators.required,Validators.minLength(3)]],
+      last_name: ['', [Validators.required,Validators.minLength(2)]],
       email:  ['',
         [Validators.required,
         Validators.email,
@@ -336,16 +337,6 @@ export class DelegateOnlineComponent implements OnInit {
     let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
     console.log(formattedMobileNumber);
 
-    // Get the full name entered by the user
-      const fullName = this.userForm.get('name')?.value.trim();
-
-      // Split the full name into parts
-      const nameParts = fullName.split(' ');
-
-      // Extract first and last name
-      const firstName = nameParts[0] || ''; // First part as first name
-      const lastName = nameParts.slice(1).join(' ') || ''; // Remaining as last name
-
     if (this.userForm.valid) {
       this.loading = true;
 
@@ -358,8 +349,8 @@ export class DelegateOnlineComponent implements OnInit {
 
       const payload = {
         title: this.userForm.get('title')?.value,
-        first_name : firstName,
-        last_name : lastName,
+        first_name : this.userForm.get('first_name')?.value,
+        last_name : this.userForm.get('last_name')?.value,
         mobile_number: formattedMobileNumber,
         email_id: this.userForm.get('email')?.value.toLowerCase(),
         country_code:  this.userForm.get('mobile_number')?.value.dialCode,
@@ -396,7 +387,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   private async fnStripePG(response: any, payload: any) {
-    if (response.success && response.gatewayUrl) {     
+    if (response.success && response.gatewayUrl) {
       window.location.href = response.gatewayUrl;
     } else {
       this.sharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
