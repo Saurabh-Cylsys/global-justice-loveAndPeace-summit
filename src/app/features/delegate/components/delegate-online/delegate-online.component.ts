@@ -378,6 +378,7 @@ export class DelegateOnlineComponent implements OnInit {
           this.registrationData = payload;
 
           setTimeout(async () => {
+            debugger
             if(response.isStripe)
               await this.fnStripePG(response, payload);
             else

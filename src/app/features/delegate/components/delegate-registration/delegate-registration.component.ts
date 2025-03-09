@@ -65,7 +65,7 @@ export class DelegateRegistrationComponent {
     { value: 'Peace', label: 'Peace' },
   ];
   disabledDates: Date[] = [];
-
+  isEnabled:boolean = false;
   maxDate1: any;
   minDate1: any;
   colorTheme: string = 'theme-dark-blue';
