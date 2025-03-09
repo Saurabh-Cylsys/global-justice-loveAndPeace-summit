@@ -345,4 +345,8 @@ export class ApiEndpointsService {
   public getDataByTransactionIdEndpoint(transactionId:any): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID + '/' + transactionId);
   }
+
+  public postVerifyPaymentStatusEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PAYMENT_STATUS);
+  }
 }

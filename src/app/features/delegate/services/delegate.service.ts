@@ -96,4 +96,7 @@ export class DelegateService {
     return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
   }
 
+  postverifyPaymentStatus(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifyPaymentStatusEndpoint(), body);
+  }
 }

@@ -79,4 +79,6 @@ export class Constants {
 
     public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
 
+    public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
+
 }

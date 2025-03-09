@@ -25,6 +25,7 @@ const routes: Routes = [
       {path:'delegate-message',component:DelegateMessageComponent},
       {path:'delegate-payment-success',component:DelegatePaymentSuccessComponent},
       {path:'delegate-payment-fail',component:DelegatePaymentFailComponent},
+      {path:'delegate-payment-status',component:DelegateMessageComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },
