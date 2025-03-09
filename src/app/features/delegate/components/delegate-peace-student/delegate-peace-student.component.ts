@@ -4,6 +4,8 @@ import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-
 import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ActivatedRoute } from '@angular/router';
+import { th } from 'intl-tel-input/i18n';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -15,7 +17,8 @@ export class DelegatePeaceStudentComponent {
   step: number = 1; // Tracks the current step
   studentForm!: FormGroup;
   delegateForm!: FormGroup;
-  mobile_numberVal: boolean = false;
+  studentMobileNumberVal: boolean = false;
+  deleagetMobileNumberVal: boolean = false;
   countryData: any = [];
 
   CountryISO = CountryISO;
@@ -28,7 +31,8 @@ export class DelegatePeaceStudentComponent {
   SearchCountryField = SearchCountryField;
   maxDate: any;
   minDate: any;
-  formattedDate: string = '';
+  formattedDelagateDob: string = '';
+  formattedStudentDob: string = '';
   colorTheme: string = 'theme-dark-blue';
   delegateAge: number = 0;
   StudentAge: number = 0;
@@ -42,11 +46,35 @@ export class DelegatePeaceStudentComponent {
   maxStudentDate!: Date;
   minDelegateDate!: Date;
   maxDelegateDate!: Date;
+  referralCode: any = "";
+  delagateType: any;
+  showPaymentSuccess = false;
 
-  constructor(private fb: FormBuilder, private delegateService: DelegateService,private datePipe: DatePipe,private sharedService:SharedService) {
+  constructor(private fb: FormBuilder,
+    private delegateService: DelegateService,
+    private datePipe: DatePipe,
+    private sharedService:SharedService,
+    private route: ActivatedRoute,) {
+
+    this.route.queryParams.subscribe((params: any) => {
+      if (params != undefined && Object.keys(params).length > 0) {
+
+        this.referralCode = params.code;
+
+        console.log('params', params);
+        this.delagateType = params.dType;
+
+        // this.router.navigate([], {
+        //   relativeTo: this.route,
+        //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
+        //   replaceUrl: true // Replace the current URL in the browser history
+        // });
+      }
+    });
+
+
 
     const today = new Date();
-
 
     // Student: Age between 1 to 21 years
     this.maxStudentDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()); // 1 year old
@@ -77,6 +105,7 @@ export class DelegatePeaceStudentComponent {
   initializeStudentForm() {
      // Initialize student form
      this.studentForm = this.fb.group({
+      title: ['',[Validators.required, Validators.minLength(2)]],
       name: ['', [Validators.required, Validators.minLength(3)]],
       studentDob :['', [Validators.required]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
@@ -90,22 +119,46 @@ export class DelegatePeaceStudentComponent {
   initializeDelegateForm(){
     // Initialize delegate form
     this.delegateForm = this.fb.group({
-      name: ['', [Validators.required]],
-      mobile_number: ['', [Validators.required]],
+      title: ['',[Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       country: ['', [Validators.required]],
-      delegateDob :['', [Validators.required]]
+      delegateDob :['', [Validators.required]],
+      reference_no: [this.referralCode ? this.referralCode : ''],
     });
   }
 
   // Set user type and move to the first step
-  setUserType(type: 'student' | 'delegate') {
-    this.userType = type;
-    this.step = 1; // Start with step 1
+  setUserType(type: 'student' | 'delegate',event: Event) {
+
+    if (this.userType === type) return;
+
+    // if (this.isFormDirty()) {
+    //   const confirmed = confirm(
+    //     'Warning: Your unsaved data will be lost. Do you want to continue?'
+    //   );
+
+    //   if (!confirmed) {
+
+    //     return; // Exit without changing userType
+    //   }
+    //   this.resetForms();
+    // }
+
+    this.userType = type; // Update only after confirmation
+
   }
 
-  getcontrol(name: any): AbstractControl | null {
-    return this.delegateForm.get(name);
+  private isFormDirty(): boolean {
+    return this.studentForm?.dirty || this.delegateForm?.dirty;
+  }
+
+  private resetForms(): void {
+    this.initializeStudentForm();
+    this.initializeDelegateForm();
+    this.studentForm?.reset();
+    this.delegateForm?.reset();
   }
 
   getStudentControl(name: string): AbstractControl | null {
@@ -114,23 +167,6 @@ export class DelegatePeaceStudentComponent {
 
   getDelegateControl(name: string): AbstractControl | null {
     return this.delegateForm.get(name);
-  }
-
-
-
-  // Move to the next step
-  nextStep() {
-    debugger
-    if (this.step === 1 && this.userType === 'student' && this.studentForm.valid) {
-      this.step = 2; // Move to Delegate Form
-    } else if (this.step === 1 && this.userType === 'delegate' && this.delegateForm.valid) {
-      this.step = 2; // Move to Student Form
-    }
-  }
-
-  // Move to the previous step
-  previousStep() {
-    this.step = 1; // Go back to the first step
   }
 
   disableManualInput(event: KeyboardEvent): void {
@@ -160,9 +196,9 @@ export class DelegatePeaceStudentComponent {
 
   onDateChange(event: string): void {
     // Convert the date format
-    const parsedDate = new Date(event);
-    this.formattedDate =
-      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+        const parsedDate = new Date(event);
+        this.formattedStudentDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+        this.formattedDelagateDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
   openDatepicker() {
@@ -172,13 +208,31 @@ export class DelegatePeaceStudentComponent {
     }
   }
 
-  keyPressNumbers(event: KeyboardEvent) {
+  openDelageteDatepicker() {
+    const dobInput = document.getElementById('delegateDob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
+  keyPressNumbersForStudent(event: KeyboardEvent) {
     const inputValue = this.studentForm.controls['mobile_number'].value; // Get value from form control
     if (inputValue && inputValue.number) {
       if (inputValue.number.length < 7) {
-        this.mobile_numberVal = true;
+        this.studentMobileNumberVal = true;
       } else {
-        this.mobile_numberVal = false;
+        this.studentMobileNumberVal = false;
+      }
+    }
+  }
+
+  keyPressNumbersForDelegate(event: KeyboardEvent) {
+    const inputValue = this.delegateForm.controls['mobile_number'].value; // Get value from form control
+    if (inputValue && inputValue.number) {
+      if (inputValue.number.length < 7) {
+        this.deleagetMobileNumberVal = true;
+      } else {
+        this.deleagetMobileNumberVal = false;
       }
     }
   }
@@ -210,20 +264,74 @@ export class DelegatePeaceStudentComponent {
   changeCountry(e: any) {
     const selectedValue = e.target.value;
     console.log('selectedValue', selectedValue);
-
-
   }
 
   // Handle form submission
   onSubmit() {
-    if (this.studentForm.valid && this.delegateForm.valid) {
+    if (this.studentForm.invalid || this.delegateForm.invalid) {
       console.log('Student Form Data:', this.studentForm.value);
       console.log('Delegate Form Data:', this.delegateForm.value);
       this.sharedService.ToastPopup('Please enter required Fields', '', 'error');
       return;
-    } else {
-
     }
+    // Get the full name entered by the user
+    const delagateFullName = this.delegateForm.get('name')?.value.trim();
+    const studentFullName = this.delegateForm.get('name')?.value.trim();
+
+    // Split the full name into parts
+    const delagateNameParts = delagateFullName.split(' ');
+    const studentNameParts = studentFullName.split(' ');
+
+    // Extract first and last name
+    const delegate_firstName = delagateNameParts[0] || ''; // First part as first name
+    const delegate_lastName = delagateNameParts.slice(1).join(' ') || ''; // Remaining as last name
+
+    const student_firstName = delagateNameParts[0] || ''; // First part as first name
+    const student_lastName = delagateNameParts.slice(1).join(' ') || ''; // Remaining as last name
+
+    const delegaterawMobileNumber = this.delegateForm.value.mobile_number.number;
+    let delegateMobileNumber = delegaterawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+
+    const studentrawMobileNumber = this.delegateForm.value.mobile_number.number;
+    let studentMobileNumber = studentrawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+
+    let body = {
+
+      "title": this.delegateForm.value.title,
+      "first_name": delegate_firstName,
+      "last_name": delegate_lastName,
+      "mobile_number": delegateMobileNumber,
+      "email_id": this.delegateForm.value.email,
+      "country_code": this.delegateForm.value.mobile_number.dialCode,
+      "reference_no": this.referralCode ? this.referralCode : '',
+      "dob": this.formattedDelagateDob,
+      "nom_title": this.studentForm.value.title,
+      "nom_first_name": student_firstName,
+      "nom_last_name": student_lastName,
+      "nom_mobile_number": studentMobileNumber,
+      "nom_country_code": this.studentForm.value.mobile_number.dialCode,
+      "nom_email_id": this.studentForm.value.email,
+      "nom_dob": this.formattedStudentDob,
+      "nom_country_id": this.studentForm.value.country,
+      "country_id": this.delegateForm.value.country,
+      "nom_relation": this.studentForm.value.relation,
+      "nom_institution": this.studentForm.value.institutionName,
+    }
+    debugger;
+    this.delegateService.postPreDelegateNominationApi(body).subscribe({
+      next: async (result: any) => {
+        if (result.success) {
+          this.sharedService.ToastPopup('', result.message, 'success');
+
+
+        } else {
+          this.sharedService.ToastPopup('', result.message, 'error');
+        }
+      },
+      error: (err) => {
+        this.sharedService.ToastPopup('', err.message, 'error');
+      },
+    })
   }
 
 
@@ -264,12 +372,6 @@ export class DelegatePeaceStudentComponent {
       return;
     }
 
-    this.studentForm.patchValue({
-      country_code: this.studentForm.value.mobile_number.dialCode,
-      mobile_number: formattedMobileNumber,
-      dob: this.formattedDate
-    });
-
 
     let payload = {
         ...this.studentForm.value,
@@ -306,5 +408,29 @@ export class DelegatePeaceStudentComponent {
 
         },
       });
+    }
+
+    showCompleteProfile() {
+      const params = {
+        // email_id: this.registrationData?.email_id || '',
+        // mobile_number: this.registrationData?.mobile_number || '',
+        // first_name: this.registrationData?.first_name || '',
+        // last_name: this.registrationData?.last_name || '',
+        // country_id:this.registrationData?.country_id || '',
+        // isOnline: true
+      };
+      sessionStorage.setItem('IsOnline', 'true');
+      // const encryptedParams = this.encryptionService.encryptData(params);
+      // this.router.navigate(['/delegate-registration-online'], {
+      //   queryParams: { data: encryptedParams }
+      // });
+      // this.router.navigate(['/delegate-registration'], {
+      //   queryParams: {
+      //     email: this.encrypt(this.registrationData?.email || ''),
+      //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
+      //     name: this.encrypt(this.registrationData?.name || ''),
+      //     isOnline: true
+      //   }
+      // });
     }
   }

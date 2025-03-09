@@ -349,4 +349,8 @@ export class ApiEndpointsService {
   public postVerifyPaymentStatusEndpoint() {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PAYMENT_STATUS);
   }
+  public postPreDelegateNominationEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
+  }
+
 }

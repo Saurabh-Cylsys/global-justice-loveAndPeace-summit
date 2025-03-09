@@ -73,12 +73,14 @@ export class Constants {
 
     public readonly API_ENDPOINT_REGISTRATION_ONLINE: string = 'create-delegate-profile-online'
 
-    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'create-delegate-profile-short'
+    // 'create-delegate-profile-short'
+    public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'pre_delegate_user'
 
     public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
 
     public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
 
     public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
+    public readonly API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION: string ='pre_delegate_nomination'
 
 }

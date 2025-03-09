@@ -99,4 +99,9 @@ export class DelegateService {
   postverifyPaymentStatus(body: any): Observable<any> {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifyPaymentStatusEndpoint(), body);
   }
+  postPreDelegateNominationApi(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postPreDelegateNominationEndpoint(), body);
+  }
+
+
 }

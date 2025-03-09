@@ -91,6 +91,7 @@ export class DelegateRegistrationOnlineComponent {
   email: string = '';
   mobileNo: string = '';
   name: string = '';
+  title : string = '';
   tinyURL: string = environment.tinyUrl;
   isOnline: boolean = false;
   country_id: any;
@@ -133,6 +134,7 @@ async ngOnInit() {
           const decryptedData = this.encryptionService.decryptData(params['data']);
 
           if (decryptedData) {
+            this.title = decryptedData.title;
             this.email = decryptedData.email;
             this.mobileNo = decryptedData.mobile_no;
             this.name = decryptedData.name;
