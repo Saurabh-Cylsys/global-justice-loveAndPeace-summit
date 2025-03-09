@@ -157,8 +157,8 @@ export class DelegatePeaceStudentComponent {
   private resetForms(): void {
     this.initializeStudentForm();
     this.initializeDelegateForm();
-    this.studentForm?.reset();
-    this.delegateForm?.reset();
+    // this.studentForm?.reset();
+    // this.delegateForm?.reset();
   }
 
   getStudentControl(name: string): AbstractControl | null {
@@ -363,6 +363,50 @@ private trimValue(value: any): any {
   return value;
 }
 
+private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
+  if (response.success && response.gatewayUrl) {
+    localStorage.setItem('delegateRegistration', JSON.stringify(payload));
+    //window.location.href = response.payment_link;
+    let obj = {
+      "email": this.delegateForm.get('email')?.value.toLowerCase(),
+      "pay_type": "DELEGATE_ONLINE",
+    };
+
+    await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+      next: (response: any) => {
+        //window.location.href = response.paymentUrl
+        // Redirect to the IPG gateway
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = response.gatewayUrl;
+
+        Object.keys(response.formData).forEach((key) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = response.formData[key];
+          form.appendChild(input);
+        });
+
+        document.body.appendChild(form);
+        form.submit();
+
+      },
+      error: (error: any) => {
+        console.error('Error creating delegate:', error);
+        // this.loading = false;
+      }
+    });
+  }
+}
+
+private async fnStripePG(response: any, payload: any) {
+  if (response.success && response.gatewayUrl) {
+    window.location.href = response.gatewayUrl;
+  } else {
+    this.sharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
+  }
+}
 
   // Handle form submission
   onSubmit() {
@@ -434,16 +478,24 @@ private trimValue(value: any): any {
     }
 
     this.delegateService.postPreDelegateNominationApi(this.requestBody).subscribe({
-      next: async (result: any) => {
-        if (result.success) {
-          this.sharedService.ToastPopup('', result.message, 'success');
+      next: async (response: any) => {
+        if (response.success) {
+          this.sharedService.ToastPopup('', response.message, 'success');
 
-        } else {
-          this.sharedService.ToastPopup('', result.message, 'error');
+          setTimeout(async () => {
+            debugger
+            if(response.isStripe)
+              await this.fnStripePG(response, this.requestBody);
+            else
+              await this.fnMagnatiPG(response, this.requestBody);
+          }, 5000);
+
         }
       },
       error: (err) => {
-        this.sharedService.ToastPopup('', err?.error?.message, 'error');
+
+        console.error('Error creating delegate:', err);
+        this.sharedService.ToastPopup('Error', err.error?.message || 'Registration failed', 'error');
       },
     })
   }

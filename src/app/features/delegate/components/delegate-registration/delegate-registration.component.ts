@@ -86,7 +86,6 @@ export class DelegateRegistrationComponent {
   mediumValue: string | null = '';
 
   tinyURL : string = environment.tinyUrl;
-  isEnabled : boolean = false;
 
   // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
   // tinyUatURL : string = 'https://tinyurl.com/3322sj49'

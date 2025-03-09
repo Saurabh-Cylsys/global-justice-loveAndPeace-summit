@@ -12,8 +12,6 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { DatePipe, LocationStrategy } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 interface RegistrationData {
   title: string
@@ -24,6 +22,27 @@ interface RegistrationData {
   transcation_id: string;
   transcation_json: any;
   country_id: string;
+}
+
+interface PeaceStudentData {
+  studentTitle: string
+  studentFirstName: string;
+  studentLastName: string;
+  studentEmail: string;
+  studentMobileNumber: string;
+  studentCountry_id: string;
+  studentDob:string;
+  studentRelation:string;
+  studentInstituteName :string
+  adultTitle: string;
+  adultFirstName: string;
+  adultLastName: string;
+  adultEmail: string;
+  adultMobileNumber: string;
+  adultCountryId: string;
+  transcation_id: string;
+  transcation_json: any;
+
 }
 
 @Component({
@@ -40,6 +59,7 @@ export class DelegatePaymentSuccessComponent {
   paymentLink: SafeResourceUrl | null = null;
   loading = false;
   registrationData: RegistrationData | null = null;
+  peaceStudentData: PeaceStudentData | null = null;
   sessionId: any;
   isPaymentStatus: any;
   transactionVerified: boolean = false;
@@ -56,6 +76,7 @@ export class DelegatePaymentSuccessComponent {
   maxDate1: any;
   isBackNavigation: boolean = false;
   transactionId: any;
+  pType: any;
 
   constructor(
 
@@ -68,10 +89,11 @@ export class DelegatePaymentSuccessComponent {
   ) {
     // Prevent browser back navigation to payment URL
     history.pushState(null, '', window.location.href);
-    
+
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.sessionId = params['session_id'] || 'No session_id';
+        this.pType = params['p_type'];
         if (this.sessionId != 'No session_id' && this.sessionId != '') {
           this.verifySession();
         }
@@ -119,13 +141,15 @@ export class DelegatePaymentSuccessComponent {
     this.loading = true;
     let body = {
       // sessionId: "cs_test_a1wx1VFhgcGnSFpvXZ36uXOna2QbD3gYfXdi1ZefYj9MYOwUv6bpj1v2Ak"
-      sessionId: this.sessionId
+      sessionId: this.sessionId,
+      p_type: this.pType
 
     }
+    debugger;
     this.delegateService.postVerifySession(body).subscribe({
       next: (response: any) => {
         this.loading = false;
-        if (response.success) {         
+        if (response.success) {
           this.isPaymentStatus = response.session.payment_status;
           this.registrationData = {
             title: '',
@@ -154,8 +178,8 @@ export class DelegatePaymentSuccessComponent {
           }
           this.transactionVerified = true;
           this.showPaymentSuccess = true;
-        } else {          
-          this.isPaymentStatus = 'failed';         
+        } else {
+          this.isPaymentStatus = 'failed';
         }
       },
       error: (err: any) => {
@@ -192,6 +216,34 @@ export class DelegatePaymentSuccessComponent {
   }
 
   showCompleteProfile() {
+
+    if(this.pType == 'DELEGATE_ONLINE'){
+      const params = {
+        title: this.registrationData?.title,
+        email: this.registrationData?.email || '',
+        mobile_no: this.registrationData?.mobile_number || '',
+        name:
+          this.registrationData?.first_name +
+          ' ' +
+          this.registrationData?.last_name || '',
+        country_id: this.registrationData?.country_id || '',
+        isOnline: true,
+      };
+      sessionStorage.setItem('IsOnline', 'true');
+      const encryptedParams = this.encryptionService.encryptData(params);
+      this.router.navigate(['/delegate-registration-online'], {
+        queryParams: { data: encryptedParams },
+      });
+      // this.router.navigate(['/delegate-registration'], {
+      //   queryParams: {
+      //     email: this.encrypt(this.registrationData?.email || ''),
+      //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
+      //     name: this.encrypt(this.registrationData?.name || ''),
+      //     isOnline: true
+      //   }
+      // });
+    }
+   else if(this.pType == 'DELEGATE_OFFLINE'){
     const params = {
       title: this.registrationData?.title,
       email: this.registrationData?.email || '',
@@ -203,7 +255,7 @@ export class DelegatePaymentSuccessComponent {
       country_id: this.registrationData?.country_id || '',
       isOnline: true,
     };
-    sessionStorage.setItem('IsOnline', 'true');
+    sessionStorage.setItem('IsOffline', 'true');
     const encryptedParams = this.encryptionService.encryptData(params);
     this.router.navigate(['/delegate-registration-online'], {
       queryParams: { data: encryptedParams },
@@ -216,5 +268,37 @@ export class DelegatePaymentSuccessComponent {
     //     isOnline: true
     //   }
     // });
+    }
+    else if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
+      const params = {
+        studentTitle: this.peaceStudentData?.studentTitle,
+        studentFirstName: this.peaceStudentData?.studentFirstName,
+        studentLastName : this.peaceStudentData?.studentLastName || '',
+        studentEmail: this.peaceStudentData?.studentEmail || '',
+        studentMobileNumber: this.peaceStudentData?.studentMobileNumber || '',
+        studentCountryId: this.peaceStudentData?.studentCountry_id || '',
+        studentDob : this.peaceStudentData?.studentDob || '',
+        studentRelation : this.peaceStudentData?.studentRelation || '',
+        studentInstituteName : this.peaceStudentData?.studentInstituteName || '',
+
+        adultTitle: this.peaceStudentData?.adultTitle,
+        adultFirstName: this.peaceStudentData?.adultFirstName,
+        adultLastName: this.peaceStudentData?.adultLastName || '',
+        adultEmail: this.peaceStudentData?.adultEmail || '',
+        adultMobileNumber: this.peaceStudentData?.adultMobileNumber || '',
+        adultCountryId: this.peaceStudentData?.adultCountryId || '',
+        transcation_id: this.peaceStudentData?.transcation_id || '',
+        transcation_json: this.peaceStudentData?.transcation_json || '',
+
+        IsChildNomination: true,
+
+      };
+      sessionStorage.setItem('IsChildNomination', 'false');
+      const encryptedParams = this.encryptionService.encryptData(params);
+      this.router.navigate(['/delegate-child-nomination'], {
+        queryParams: { data: encryptedParams },
+      });
+    }
+
   }
 }
