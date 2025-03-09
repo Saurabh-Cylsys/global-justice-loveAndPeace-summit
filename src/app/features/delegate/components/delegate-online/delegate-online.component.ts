@@ -262,7 +262,6 @@ export class DelegateOnlineComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
 
-
       console.log('params...', params);
       if (params['session_id']) {
         this.sessionId = params['session_id'] || 'No session_id';
@@ -325,6 +324,7 @@ export class DelegateOnlineComponent implements OnInit {
 
   onSubmit() {
     console.log("Userform",this.userForm.value);
+    debugger;
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
@@ -341,7 +341,7 @@ export class DelegateOnlineComponent implements OnInit {
       this.loading = true;
 
       if(this.delagateType == 'offline'){
-        this.pType = "DELEGATE_ONLINE";
+        this.pType = "DELEGATE_OFFLINE";
       }
       else{
         this.pType = "DELEGATE_ONLINE";
@@ -365,7 +365,7 @@ export class DelegateOnlineComponent implements OnInit {
       this.delegateService.postDelegateOnline(payload).subscribe({
         next: (response: any) => {
 
-          this.sharedService.ToastPopup('Success', response.message, 'success');
+          this.sharedService.ToastPopup(response.message, '', 'success');
           this.registrationData = payload;
 
           setTimeout(async () => {

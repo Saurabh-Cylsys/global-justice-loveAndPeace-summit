@@ -1,42 +1,47 @@
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
-import {
-  FormGroup,
-  Validators,
-  FormBuilder,
-  AbstractControl,
-  ValidatorFn,
-  FormControl,
-} from '@angular/forms';
+import {FormGroup,Validators,FormBuilder,AbstractControl,ValidatorFn,FormControl} from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import {
-  CountryISO,
-  PhoneNumberFormat,
-  SearchCountryField,
-} from 'ngx-intl-tel-input';
+import {CountryISO,NgxIntlTelInputComponent,PhoneNumberFormat,SearchCountryField} from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
-import { environment } from 'src/environments/environment';
-import { param } from 'jquery';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
+
+interface PeaceStudentData {
+  studentTitle: string
+  studentFirstName: string;
+  studentLastName: string;
+  studentEmail: string;
+  studentMobileNumber: string;
+  studentCountry_id: string;
+  studentDob:string;
+  studentRelation:string;
+  studentInstituteName :string
+  adultTitle: string;
+  adultFirstName: string;
+  adultLastName: string;
+  adultEmail: string;
+  adultMobileNumber: string;
+  adultCountryId: string;
+  transcation_id: string;
+  transcation_json: any;
+
+}
+
 @Component({
-  selector: 'app-delegate-registration-online',
-  templateUrl: './delegate-registration-online.component.html',
-  styleUrls: ['./delegate-registration-online.component.css']
+  selector: 'app-delegate-with-child-nomination',
+  templateUrl: './delegate-with-child-nomination.component.html',
+  styleUrls: ['./delegate-with-child-nomination.component.css']
 })
-export class DelegateRegistrationOnlineComponent {
+
+
+
+export class DelegateWithChildNominationComponent {
+
   showPopup: boolean = false;
   formdisplay: boolean = true;
   display: string = '';
@@ -79,22 +84,44 @@ export class DelegateRegistrationOnlineComponent {
   @ViewChild('number_mobile1', { static: false })
   mobileNumberInput!: ElementRef;
   @ViewChild('dobPicker') dobPicker!: BsDatepickerDirective;
-  ipAddress: string = '';
-  deviceInfo: any = '';
-  isOTPReceive: boolean = false;
-  txtVerifyOTP: string = '';
-  countdown: number = 100; // 5 minutes in seconds
-  timerExpired: boolean = false;
-  interval: any;
-  buttonText: string = 'Send OTP';
-  mediumValue: string | null = '';
+  nomineeName: string = '';
+  nomineeDob: string = '';
+  nomineeEmail: string = '';
+  nomineeRelation: string = '';
+  relationData: any = [];
+  instituteName: string = '';
+  delegateId: any;
+  nomineeAge: number = 0;
+  userAge: number = 0;
+  nominee_mobile_number: any = '';
+  userType: string = '';
+  showNomineeForm: boolean = false;
+  userDob: string = '';
+  nomineeFormattedDate: string = '';
+  today = new Date();
+  isFormDirty: boolean = false;
+  previousUserType: any;
+  selectedRadioValue: string = '';
+  previousType: string = '';
+
   email: string = '';
   mobileNo: string = '';
   name: string = '';
-  title : string = '';
-  tinyURL: string = environment.tinyUrl;
-  isOnline: boolean = false;
-  country_id: any;
+
+  peaceStudentData: PeaceStudentData | null = null;
+
+  markDirty(): void {
+    this.isFormDirty = true;
+    console.log('Form is now dirty'); // Debugging log
+  }
+
+  changePreferredCountries() {
+    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+  }
+
+  onCountryChange(event: any): void {
+    this.selectedCountryISO = event.iso2; // Update the selected country ISO
+  }
 
   constructor(
     private datePipe: DatePipe,
@@ -106,111 +133,19 @@ export class DelegateRegistrationOnlineComponent {
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
-    private cdr: ChangeDetectorRef
   ) {
     this.fullURL = window.location.href;
 
-    const today = new Date();
-
-    // Max date is 18 years ago from today
-    this.maxDate1 = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-    );
-    // Min date is 120 years ago from today
-    this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
-
-async ngOnInit() {
-    this.checkWindowSize();
-    // this.dobValidator();
-
-    this.route.queryParams.subscribe((params: any) => {
-      if (params != undefined && Object.keys(params).length > 0) {
-        this.referralCode = params.code;
-
-        if (params['data']) {
-          const decryptedData = this.encryptionService.decryptData(params['data']);
-
-          if (decryptedData) {
-            this.title = decryptedData.title;
-            this.email = decryptedData.email;
-            this.mobileNo = decryptedData.mobile_no;
-            this.name = decryptedData.name;
-            this.isOnline = decryptedData.isOnline;
-            this.country_id = decryptedData.country_id
-          }
-        }
-      }
-    });
-    this.createForm();    // this.getdates()
-    await this.getAllCountries();
-
-    console.log("this.countryData", this.countryData);
-
-   if (this.isOnline && this.countryData.length > 0) {
-       this.setCountry();
-    }
-  }
-
-  setCountry() {
-    const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
-
-    if (selectedCountry) {
-      this.registrationForm.patchValue({
-        country: selectedCountry.name,
-        country_id: +selectedCountry.id
-      });
-
-      this.cdr.detectChanges(); // 👈 Force UI update
-
-      // this.registrationForm.patchValue({ country: selectedCountry });
-
-    } else {
-      console.warn("Country not found for ID:", this.country_id);
-    }
-
-    console.log("Selected Country:", this.registrationForm.value.country);
-    console.log("Selected CountryID:", this.registrationForm.value.country_id);
-  }
-
-  // Function to extract mobile number without country code
-  async extractMobileNumber(rawMobileNumber: any) {
-    // Remove all non-numeric characters
-    let cleanedNumber = rawMobileNumber.replace(/[^0-9]/g, '');
-
-    await this.getAllCountrycode();
-    // Possible country code lengths (1 to 3 digits)
-    for (let countryCodeLength = 1; countryCodeLength <= 3; countryCodeLength++) {
-      // Extract the potential mobile number
-      let mobileNumber = cleanedNumber.slice(countryCodeLength);
-
-      // Check if the remaining number length is reasonable (7 to 12 digits)
-      if (mobileNumber.length >= 7 && mobileNumber.length <= 12) {
-        return mobileNumber;
-      }
-    }
-
-    // If no valid country code length is found, return the cleaned number (or handle as needed)
-    return cleanedNumber;
-  }
-
-  changePreferredCountries() {
-    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
-  }
-
-  onCountryChange(event: any): void {
-    this.selectedCountryISO = event.iso2; // Update the selected country ISO
-  }
-
 
   getcontrol(name: any): AbstractControl | null {
     return this.registrationForm.get(name);
   }
+
   get instagramProfileControl() {
     return this.registrationForm.get('instagram_profile');
   }
+
   isInvalidInstagramProfile() {
     return (
       this.instagramProfileControl.hasError('pattern') &&
@@ -222,17 +157,57 @@ async ngOnInit() {
     return this.registrationForm.controls;
   }
 
-  createForm() {
+  ngOnInit(): void {
+    this.checkWindowSize();
+    // this.dobValidator();
 
+    this.route.queryParams.subscribe((params: any) => {
+
+       const updatedParams = { ...params };
+       if (!updatedParams.code || updatedParams.code === '') {
+        delete updatedParams['code'];
+      }
+
+       this.router.navigate([], {
+         queryParams: updatedParams,
+         replaceUrl: true, // Prevents history stack clutter
+       });
+
+          this.referralCode = updatedParams.code ? updatedParams.code : null;
+
+          if (params['data']) {
+            const decryptedData = this.encryptionService.decryptData(params['data']);
+
+            if (decryptedData) {
+              // this.peaceStudentData?.studentTitle = decryptedData.title;
+              // this.email = decryptedData.email;
+              // this.mobileNo = decryptedData.mobile_no;
+              // this.name = decryptedData.name;
+              // this.isOnline = decryptedData.isOnline;
+              // this.country_id = decryptedData.country_id
+            }
+          }
+
+    });
+
+    this.createForm();
+    // this.selectedRadioValue = this.userType;
+
+    // this.getdates()
+    this.getAllCountries();
+    // this.getAllCountrycode()
+  }
+
+  createForm() {
     this.registrationForm = this.formBuilder.group({
-      title: [this.title, [Validators.required]],
-      first_name: [this.name ? this.name.split(' ')[0] : '', [Validators.required]],
-      last_name: [this.name ? this.name.split(' ')[1] : '', [Validators.required]],
+      title: ['', [Validators.required]],
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
       dob: ['', [Validators.required]],
       country_code: [''],
-      mobile_number: [this.mobileNo || '', [Validators.minLength(7), Validators.required]],
+      mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email_id: [
-        this.email || '',
+        '',
         [
           Validators.required,
           Validators.email,
@@ -265,9 +240,17 @@ async ngOnInit() {
       reference_no: [this.referralCode ? this.referralCode : ''],
       attendee_purpose: ['0', [Validators.required]],
       conference_lever_interest: [[], [Validators.required]], // Initialize as empty array
-      created_by: 'Admin',
-      status: ['0'],
     });
+  }
+
+  isDisabledDate(date: Date): boolean {
+    const today = new Date();
+    const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+    );
+    return date >= eighteenYearsAgo;
   }
 
   onCheckboxChange(event: any) {
@@ -296,8 +279,8 @@ async ngOnInit() {
     event.preventDefault();
   }
 
-  async getAllCountrycode() {
-    await this.delegateService.getAllCountrycode().subscribe(
+  getAllCountrycode() {
+    this.delegateService.getAllCountrycode().subscribe(
       (res: any) => {
         this.code = res.data;
         // Define the country name you want to find (e.g., "India (+91)")
@@ -318,27 +301,164 @@ async ngOnInit() {
     );
   }
 
-  onDateChange(event: string): void {
-    // Convert the date format
-    const parsedDate = new Date(event);
-    this.formattedDate =
-      this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-  }
+  // onUserDobChange(event: string): void {
+  //   if (!event) return; // Handle empty date input
 
- async getAllCountries() {
-  try {
-    const response = await this.delegateService.getAllCountryApi();
-    this.countryData = response.data;
-    console.log("Country Data:", this.countryData);
+  //   const dob = new Date(event);
+  //   this.userAge = this.calculateAge(dob);
 
-    // Ensure we bind the country only after fetching data
-    if (this.isOnline) {
-      this.setCountry();
+  //   this.userDob = event;
+  //   console.log("User Age:", this.userAge);
+
+  //   const parsedDate = new Date(event);
+  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   // Perform validation
+  //   this.validateUserAge();
+  // }
+
+  // onNomineeDobChange(event: string): void {
+  //   if (!event) return; // Handle empty date input
+
+  //   const dob = new Date(event);
+  //   this.nomineeAge = this.calculateAge(dob);
+  //   this.nomineeDob = event;
+  //   console.log("Nominee Age:", this.nomineeAge);
+
+  //   const parsedDate = new Date(event);
+  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+  //   // Perform validation
+  //   this.validateNomineeAge();
+  // }
+
+  onUserDobChange(event: string): void {
+    if (!event) return; // Handle empty date input
+
+    const dob = new Date(event);
+    const newAge = this.calculateAge(dob);
+
+    if (this.userAge !== newAge) {
+      this.userAge = newAge;
+      console.log('User Age Updated:', this.userAge);
+    } else {
+      console.log('No Change in User Age, Skipping Update');
     }
 
-  } catch (error) {
-    console.error("Error fetching countries:", error);
+    this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+    if (this.userDob !== event) {
+      this.userDob = event;
+      this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+    }
+
+    // Perform validation
+    this.validateUserAge();
   }
+
+  onNomineeDobChange(event: string): void {
+    if (!event) return; // Handle empty date input
+
+    const dob = new Date(event);
+    const newAge = this.calculateAge(dob);
+
+    if (this.nomineeAge !== newAge) {
+      this.nomineeAge = newAge;
+      console.log('Nominee Age Updated:', this.nomineeAge);
+    } else {
+      console.log('No Change in Nominee Age, Skipping Update');
+    }
+
+    const parsedDate = new Date(event);
+    // this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+
+    if (this.nomineeDob !== event) {
+
+      this.nomineeDob = event;
+      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+
+
+    }
+
+    // Perform validation
+    this.validateNomineeAge();
+  }
+
+  // Common function to calculate age
+  private calculateAge(dob: Date): number {
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    const dayDiff = today.getDate() - dob.getDate();
+
+    // Adjust age if the birthday hasn't occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+    return age;
+  }
+
+  // Validation for User Age (Student or Adult)
+  private validateUserAge(): void {
+    if (this.userType === 'student') {
+      if (this.userAge <= 0 || this.userAge >= 21) {
+        this.SharedService.ToastPopup(
+          'As a Student, your age must be between 1 and less than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    } else if (this.userType === 'adult') {
+      if (this.userAge < 21) {
+        this.SharedService.ToastPopup(
+          'As an Adult, your age must be 21 or older.',
+          '',
+          'error'
+        );
+        return;
+      }
+    }
+  }
+
+  // Validation for Nominee Age
+  private validateNomineeAge(): void {
+    if (this.userType === 'student') {
+      if (this.nomineeAge <= 21) {
+        this.SharedService.ToastPopup(
+          'As a Student, your nominee must be older than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    } else if (this.userType === 'adult') {
+      if (this.nomineeAge >= 21 || this.nomineeAge <= 0) {
+        this.SharedService.ToastPopup(
+          'As an Adult, your nominee must be between 1 and less than 21.',
+          '',
+          'error'
+        );
+        return;
+      }
+    }
+  }
+
+  getAllCountries() {
+    this.delegateService.getAllCountries().subscribe(
+      (res: any) => {
+        this.countryData = res.data;
+      },
+      (err: any) => {
+        console.log('error', err);
+      }
+    );
   }
 
   changeCountry(e: any) {
@@ -355,6 +475,7 @@ async ngOnInit() {
       },
       (err: any) => {
         console.log('Err', err);
+        this.ngxService.stop();
       }
     );
   }
@@ -365,9 +486,9 @@ async ngOnInit() {
     this.registrationForm.patchValue({ state_id: stateObj.id });
     this.state_name = stateObj.name;
 
-    // this.ngxService.start();
+    this.ngxService.start();
     this.delegateService.getAllCities(stateObj.id).subscribe((res: any) => {
-      // this.ngxService.stop();
+      this.ngxService.stop();
       this.cityData = res.data;
     });
   }
@@ -767,6 +888,9 @@ async ngOnInit() {
   }
 
   submitData(): void {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    // Ensure both ages are defined before proceeding
+
     if (
       !this.registrationForm.value.title ||
       this.registrationForm.value.title.length < 2
@@ -795,7 +919,7 @@ async ngOnInit() {
     ) {
       this.renderer.selectRootElement('#l_name').focus();
       this.SharedService.ToastPopup(
-        'Last Name must be at least 3 characters long.',
+        'Last Name must be at least 2 characters long.',
         '',
         'error'
       );
@@ -805,14 +929,13 @@ async ngOnInit() {
       this.registrationForm.value.dob == undefined
     ) {
       this.renderer.selectRootElement('#dob').focus();
+      this.openDatepicker();
       this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
       return;
-    }
-    else if (
-      !this.isOnline &&
-      (this.registrationForm.value.mobile_number == '' ||
-        this.registrationForm.value.mobile_number == undefined ||
-        this.registrationForm.value.mobile_number == null)
+    } else if (
+      this.registrationForm.value.mobile_number == '' ||
+      this.registrationForm.value.mobile_number == undefined ||
+      this.registrationForm.value.mobile_number == null
     ) {
       setTimeout(() => {
         const inputElement = document.querySelector(
@@ -849,8 +972,7 @@ async ngOnInit() {
         'error'
       );
       return;
-    }
-    else if (
+    } else if (
       this.registrationForm.value.email_id == '' ||
       this.registrationForm.value.email_id == undefined
     ) {
@@ -926,20 +1048,120 @@ async ngOnInit() {
         'error'
       );
       return;
+    } else if (this.nomineeName.length < 2 || this.nomineeName == undefined) {
+      this.renderer.selectRootElement('#nominee_name').focus();
+      this.SharedService.ToastPopup(
+        'Nominee Name must be 2 characters long.',
+        '',
+        'error'
+      );
+      return;
+    } else if (!this.nomineeDob || this.nomineeDob == undefined) {
+      this.renderer.selectRootElement('#childDob').focus();
+      this.openNomineeDatepicker();
+      this.SharedService.ToastPopup(
+        'Please Select nominee Date Of Birth',
+        '',
+        'error'
+      );
+      return;
+    } else if (this.nomineeEmail == '' || this.nomineeEmail == undefined) {
+      this.renderer.selectRootElement('#nomineeEmail').focus();
+      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
+      return;
+    } else if (!emailPattern.test(this.nomineeEmail)) {
+      this.renderer.selectRootElement('#nomineeEmail').focus();
+      this.SharedService.ToastPopup('Please Enter Valid Email ID', '', 'error');
+      return;
     }
 
-    // const returnmobileNumber = this.registrationForm.value.mobile_number;
+    if (!this.nominee_mobile_number) {
+      // Simplified check for empty/undefined/null
+      setTimeout(() => {
+        const intlInput = document.querySelector(
+          '#number_mobile2'
+        ) as HTMLElement;
+        if (intlInput) {
+          const inputField = intlInput.querySelector(
+            'input'
+          ) as HTMLInputElement;
+          if (inputField) {
+            inputField.focus(); // Set focus inside the input
+          } else {
+            console.error(
+              'Mobile number input field not found inside ngx-intl-tel-input.'
+            );
+          }
+        }
+      }, 100);
+
+      this.SharedService.ToastPopup('Please Enter Mobile Number', '', 'error');
+      return;
+    } else if (
+      this.nomineeRelation == '' ||
+      this.nomineeRelation == undefined
+    ) {
+      this.renderer.selectRootElement('#nominee_relation').focus();
+      this.SharedService.ToastPopup('Please Enter Relation ', '', 'error');
+      return;
+    } else if (
+      this.instituteName.trim() == '' ||
+      this.instituteName == undefined
+    ) {
+      this.renderer.selectRootElement('#institute_Name').focus();
+      this.SharedService.ToastPopup(
+        'Please Enter Institute Name ',
+        '',
+        'error'
+      );
+      return;
+    } else if (
+      this.nominee_mobile_number === this.registrationForm.value.mobile_number
+    ) {
+      this.SharedService.ToastPopup(
+        'Both Mobile numbers should not be the same',
+        '',
+        'error'
+      );
+      return;
+    }
+
+
+    this.validateUserAge();
+    this.validateNomineeAge();
+
+    // Delegate Mobile Number
+
+    const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
 
+    const rawMobileNumber = this.registrationForm.value.mobile_number.number;
+    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
+    console.log(formattedMobileNumber);
 
-    // let formattedMobileNumber = returnmobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    // console.log(formattedMobileNumber);
-    const result = this.extractPhoneComponents(this.mobileNo);
-    let formattedMobileNumber = result.mobileNumber;
-    let countryCode = result.countryCode
+    // Nominee Mobile Number
+    let formattedNomineeMobileNumber = '';
+    const rawNomineeMobileNumber = this.nominee_mobile_number;
+
+    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.number
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
+        : '';
+    } else if (typeof rawNomineeMobileNumber === 'string') {
+      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
+    }
+
+    if (formattedMobileNumber === formattedNomineeMobileNumber) {
+      this.SharedService.ToastPopup(
+        'Both Mobile numbers should not be the same',
+        '',
+        'error'
+      );
+      return;
+    }
 
     this.registrationForm.patchValue({
-      country_code: countryCode,
+      country_code: this.registrationForm.value.mobile_number.dialCode,
       mobile_number: formattedMobileNumber,
       dob: this.formattedDate,
       country: this.country_name,
@@ -950,297 +1172,98 @@ async ngOnInit() {
     this.submitted = true;
 
     if (this.submitted) {
-
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination: "0",
-        p_type: "DELEGATE_ONLINE",
-        p_reference_by: '0'
+        created_by: 'Admin',
+        status: '0',
+        is_nomination : "1",
+        p_type:"DELEGATE_CHILD_NOMINATION",
+        p_reference_by:'0'
       };
 
-
       this.ngxService.start();
-      this.SharedService.registrationOnline(this.reqBody).subscribe(
-        async (result: any) => {
+
+      this.SharedService.registration(this.reqBody).subscribe({
+        next: async (result: any) => {
+          this.ngxService.stop(); // Stop the loader here, after first API completes
+
           if (result.success) {
-            this.ngxService.stop();
+            console.log('Registration Successful:', result);
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
-            setTimeout(() => {
-                this.router.navigateByUrl('/delegate-message');
-            }, 3000);
 
+            this.delegateId = result.delegate_id;
+            const formattedNomineeMobileNumber = this.formatNomineeMobileNumber(
+              this.nominee_mobile_number
+            );
+
+            if (this.delegateId) {
+              const nomineeBody = {
+                delegate_id: this.delegateId,
+                nomination_name: this.nomineeName,
+                relation_id: this.nomineeRelation,
+                dob: this.nomineeFormattedDate,
+                email: this.nomineeEmail,
+                mobile_no: formattedNomineeMobileNumber,
+                institution: this.instituteName,
+              };
+
+              this.callNominationProfileAPI(nomineeBody, result.url);
+            }
           } else {
-            this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'error');
           }
         },
-        (err) => {
+        error: (err) => {
           this.ngxService.stop();
           this.registrationForm.patchValue({
-            mobile_number: formattedMobileNumber,
+            mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
-
           this.SharedService.ToastPopup('', err.error.message, 'error');
+        },
+      });
+    }
+  }
+
+  private callNominationProfileAPI(nomineeBody: any, paymentUrl: string): void {
+    this.ngxService.start();
+
+    this.delegateService.getNominationProfileApi(nomineeBody).subscribe({
+      next: (res: any) => {
+        this.ngxService.stop();
+        console.log('Nomination Profile Response:', res);
+
+        if (res.success && paymentUrl) {
+          window.location.href = paymentUrl; // Redirect to payment
+          this.clearNomineeFields();
         }
-      );
-    }
+      },
+      error: (err) => {
+        this.ngxService.stop();
+        console.error('Nomination API Error:', err);
+        this.SharedService.ToastPopup('', err.error.message, 'error');
+      },
+    });
   }
 
-  openPopup() {
-    this.showPopup = true;
-    this.display = 'block';
-    this.formdisplay = false;
+  private formatNomineeMobileNumber(rawNomineeMobileNumber: any): string {
+    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
+      return rawNomineeMobileNumber.number
+        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
+        : '';
+    }
+    return typeof rawNomineeMobileNumber === 'string'
+      ? rawNomineeMobileNumber.replace(/[^0-9]/g, '')
+      : '';
   }
 
-  closeModal() {
-    this.display = 'none';
-    this.showPopup = false;
-    this.formdisplay = true;
-    this.registrationForm.reset({});
-    this.router.navigateByUrl('/home');
-  }
-
-  extractPhoneComponents(phoneNumber: string): {
-    countryCode: string;
-    mobileNumber: string;
-  } {
-    // Remove any non-digit characters
-    const cleanedNumber = phoneNumber.replace(/\D/g, '');
-
-    // Use a mapping of country codes to determine the correct split
-    // Country codes can be 1-3 digits in length
-    const countryCodes: {[key: string]: string} = {
-      '1': 'United States/Canada',
-      '7': 'Russia/Kazakhstan',
-      '20': 'Egypt',
-      '27': 'South Africa',
-      '30': 'Greece',
-      '31': 'Netherlands',
-      '32': 'Belgium',
-      '33': 'France',
-      '34': 'Spain',
-      '36': 'Hungary',
-      '39': 'Italy',
-      '40': 'Romania',
-      '41': 'Switzerland',
-      '43': 'Austria',
-      '44': 'United Kingdom',
-      '45': 'Denmark',
-      '46': 'Sweden',
-      '47': 'Norway',
-      '48': 'Poland',
-      '49': 'Germany',
-      '51': 'Peru',
-      '52': 'Mexico',
-      '53': 'Cuba',
-      '54': 'Argentina',
-      '55': 'Brazil',
-      '56': 'Chile',
-      '57': 'Colombia',
-      '58': 'Venezuela',
-      '60': 'Malaysia',
-      '61': 'Australia',
-      '62': 'Indonesia',
-      '63': 'Philippines',
-      '64': 'New Zealand',
-      '65': 'Singapore',
-      '66': 'Thailand',
-      '81': 'Japan',
-      '82': 'South Korea',
-      '84': 'Vietnam',
-      '86': 'China',
-      '90': 'Turkey',
-      '91': 'India',
-      '92': 'Pakistan',
-      '93': 'Afghanistan',
-      '94': 'Sri Lanka',
-      '95': 'Myanmar',
-      '98': 'Iran',
-      '212': 'Morocco',
-      '213': 'Algeria',
-      '216': 'Tunisia',
-      '218': 'Libya',
-      '220': 'Gambia',
-      '221': 'Senegal',
-      '222': 'Mauritania',
-      '223': 'Mali',
-      '224': 'Guinea',
-      '225': 'Ivory Coast',
-      '226': 'Burkina Faso',
-      '227': 'Niger',
-      '228': 'Togo',
-      '229': 'Benin',
-      '230': 'Mauritius',
-      '231': 'Liberia',
-      '232': 'Sierra Leone',
-      '233': 'Ghana',
-      '234': 'Nigeria',
-      '235': 'Chad',
-      '236': 'Central African Republic',
-      '237': 'Cameroon',
-      '238': 'Cape Verde',
-      '239': 'São Tomé and Príncipe',
-      '240': 'Equatorial Guinea',
-      '241': 'Gabon',
-      '242': 'Republic of the Congo',
-      '243': 'Democratic Republic of the Congo',
-      '244': 'Angola',
-      '245': 'Guinea-Bissau',
-      '246': 'British Indian Ocean Territory',
-      '248': 'Seychelles',
-      '249': 'Sudan',
-      '250': 'Rwanda',
-      '251': 'Ethiopia',
-      '252': 'Somalia',
-      '253': 'Djibouti',
-      '254': 'Kenya',
-      '255': 'Tanzania',
-      '256': 'Uganda',
-      '257': 'Burundi',
-      '258': 'Mozambique',
-      '260': 'Zambia',
-      '261': 'Madagascar',
-      '262': 'Réunion',
-      '263': 'Zimbabwe',
-      '264': 'Namibia',
-      '265': 'Malawi',
-      '266': 'Lesotho',
-      '267': 'Botswana',
-      '268': 'Eswatini',
-      '269': 'Comoros',
-      '297': 'Aruba',
-      '298': 'Faroe Islands',
-      '299': 'Greenland',
-      '350': 'Gibraltar',
-      '351': 'Portugal',
-      '352': 'Luxembourg',
-      '353': 'Ireland',
-      '354': 'Iceland',
-      '355': 'Albania',
-      '356': 'Malta',
-      '357': 'Cyprus',
-      '358': 'Finland',
-      '359': 'Bulgaria',
-      '370': 'Lithuania',
-      '371': 'Latvia',
-      '372': 'Estonia',
-      '373': 'Moldova',
-      '374': 'Armenia',
-      '375': 'Belarus',
-      '376': 'Andorra',
-      '377': 'Monaco',
-      '378': 'San Marino',
-      '379': 'Vatican City',
-      '380': 'Ukraine',
-      '381': 'Serbia',
-      '382': 'Montenegro',
-      '383': 'Kosovo',
-      '385': 'Croatia',
-      '386': 'Slovenia',
-      '387': 'Bosnia and Herzegovina',
-      '389': 'North Macedonia',
-      '420': 'Czech Republic',
-      '421': 'Slovakia',
-      '423': 'Liechtenstein',
-      '500': 'Falkland Islands',
-      '501': 'Belize',
-      '502': 'Guatemala',
-      '503': 'El Salvador',
-      '504': 'Honduras',
-      '505': 'Nicaragua',
-      '506': 'Costa Rica',
-      '507': 'Panama',
-      '509': 'Haiti',
-      '590': 'Guadeloupe',
-      '591': 'Bolivia',
-      '592': 'Guyana',
-      '593': 'Ecuador',
-      '595': 'Paraguay',
-      '597': 'Suriname',
-      '598': 'Uruguay',
-      '599': 'Curaçao',
-      '670': 'East Timor',
-      '672': 'Norfolk Island',
-      '673': 'Brunei',
-      '674': 'Nauru',
-      '675': 'Papua New Guinea',
-      '676': 'Tonga',
-      '677': 'Solomon Islands',
-      '678': 'Vanuatu',
-      '679': 'Fiji',
-      '680': 'Palau',
-      '681': 'Wallis and Futuna',
-      '682': 'Cook Islands',
-      '683': 'Niue',
-      '685': 'Samoa',
-      '686': 'Kiribati',
-      '687': 'New Caledonia',
-      '688': 'Tuvalu',
-      '689': 'French Polynesia',
-      '690': 'Tokelau',
-      '691': 'Micronesia',
-      '692': 'Marshall Islands',
-      '850': 'North Korea',
-      '852': 'Hong Kong',
-      '853': 'Macau',
-      '855': 'Cambodia',
-      '856': 'Laos',
-      '880': 'Bangladesh',
-      '886': 'Taiwan',
-      '960': 'Maldives',
-      '961': 'Lebanon',
-      '962': 'Jordan',
-      '963': 'Syria',
-      '964': 'Iraq',
-      '965': 'Kuwait',
-      '966': 'Saudi Arabia',
-      '967': 'Yemen',
-      '968': 'Oman',
-      '970': 'Palestine',
-      '971': 'United Arab Emirates',
-      '972': 'Israel',
-      '973': 'Bahrain',
-      '974': 'Qatar',
-      '975': 'Bhutan',
-      '976': 'Mongolia',
-      '977': 'Nepal',
-      '992': 'Tajikistan',
-      '993': 'Turkmenistan',
-      '994': 'Azerbaijan',
-      '995': 'Georgia',
-      '996': 'Kyrgyzstan',
-      '998': 'Uzbekistan'
-    };
-
-    // Try to find the country code
-    let countryCode = '';
-    let mobileNumber = cleanedNumber;
-
-    // Try 3-digit codes first, then 2-digit, then 1-digit
-    for (let i = 3; i >= 1; i--) {
-      if (cleanedNumber.length > i) {
-        const potentialCode = cleanedNumber.substring(0, i);
-        if (countryCodes[potentialCode]) {
-          countryCode = potentialCode;
-          mobileNumber = cleanedNumber.substring(i);
-          break;
-        }
-      }
-    }
-
-    // If no country code is found, use a default approach
-    if (!countryCode) {
-      // Assume first 1-3 digits might be country code
-      countryCode = cleanedNumber.substring(0, Math.min(3, cleanedNumber.length - 6));
-      mobileNumber = cleanedNumber.substring(countryCode.length);
-    }
-
-    return {
-      countryCode,
-      mobileNumber
-    };
+  private clearNomineeFields(): void {
+    this.nomineeName = '';
+    this.nomineeDob = '';
+    this.nomineeEmail = '';
+    this.nomineeRelation = '';
+    this.nominee_mobile_number = '';
   }
 
   checkWindowSize(): void {
@@ -1314,6 +1337,8 @@ async ngOnInit() {
         // Open the datepicker when moving to DOB field
         if (nextFieldId === 'dob') {
           this.openDatepicker();
+        } else if (nextFieldId === 'nomineeDob') {
+          this.openNomineeDatepicker();
         }
       }
     }
@@ -1325,5 +1350,98 @@ async ngOnInit() {
       dobInput.click(); // Open ngx-bootstrap datepicker
     }
   }
-}
 
+  openNomineeDatepicker() {
+    const dobInput = document.getElementById('nomineeDob') as HTMLInputElement;
+    if (dobInput) {
+      dobInput.click(); // Open ngx-bootstrap datepicker
+    }
+  }
+
+  getRelationData() {
+    let body = {
+      parent_code: 'NOMINATION',
+      type: 'ANSWER',
+    };
+    this.delegateService.getRelationDataApi(body).subscribe({
+      next: (res) => {
+        console.log('Res', res);
+        this.relationData = res;
+      },
+    });
+  }
+
+  private isNomineeFormDirty(): boolean {
+    return (
+      (this.nomineeName?.trim() || '') !== '' ||
+      (this.nomineeDob?.trim() || '') !== '' ||
+      (this.nomineeEmail?.trim() || '') !== '' ||
+      (this.nomineeRelation?.trim() || '') !== '' ||
+      (this.nominee_mobile_number?.trim() || '') !== ''
+    );
+  }
+
+  // ✅ Reset form and ngModel dirty state
+  private clearFormState(): void {
+    this.nomineeName = '';
+    this.nomineeDob = '';
+    this.nomineeEmail = '';
+    this.nomineeRelation = '';
+    this.nominee_mobile_number = '';
+
+    this.registrationForm.markAsPristine(); // Reset form state
+    this.registrationForm.markAsUntouched();
+  }
+
+  onUserTypeChange(selectedType: string): void {
+    this.isFormDirty = this.isNomineeFormDirty(); // Update before checking
+
+    if (this.isFormDirty || this.registrationForm.dirty) {
+      const confirmation = window.confirm(
+        'Warning: Your unsaved data will be lost. Do you want to continue?'
+      );
+
+      if (confirmation) {
+        this.userType = selectedType;
+        console.log('User Type Selected:', this.userType);
+        // this.clearFormState();
+        this.isFormDirty = false; // Reset dirty flag
+        // this.registrationForm.reset();
+      } else {
+        console.log('User type change canceled.');
+        this.userType = this.previousType;
+      }
+    } else {
+      this.userType = selectedType;
+      console.log('User Type Selected:', this.userType);
+    }
+  }
+
+  // Disable the user type selection
+  disableUserTypeChange(): void {
+    const checkbox = document.getElementById(
+      'userTypeCheckbox'
+    ) as HTMLInputElement;
+    if (checkbox) {
+      checkbox.disabled = true;
+    }
+  }
+
+  validateNomineeName(event: KeyboardEvent) {
+    const inputChar = event.key;
+
+    // Allow alphabets and space (except at the beginning)
+    if (!/^[A-Za-z ]$/.test(inputChar) && inputChar !== 'Backspace') {
+      event.preventDefault();
+    }
+
+    // Prevent space at the beginning
+    if (
+      event.target instanceof HTMLInputElement &&
+      event.target.value.length === 0 &&
+      inputChar === ' '
+    ) {
+      event.preventDefault();
+    }
+  }
+}

@@ -145,12 +145,40 @@ export class DelegatePaymentSuccessComponent {
       p_type: this.pType
 
     }
-    debugger;
+
     this.delegateService.postVerifySession(body).subscribe({
       next: (response: any) => {
         this.loading = false;
+        console.log('Response:', response);
         if (response.success) {
+
           this.isPaymentStatus = response.session.payment_status;
+
+          if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
+            let peaceStudentData = response.savedDetails[0].nominations[0];
+            let adultData = response.savedDetails[0].parent_details[0];
+            this.peaceStudentData = {
+              studentTitle: peaceStudentData.title_nom,
+              studentFirstName: peaceStudentData.first_name_nom,
+              studentLastName: response.savedDetails.last_name_nom || '',
+              studentEmail: response.savedDetails.email_id_nom || '',
+              studentMobileNumber: response.savedDetails.studentMobileNumber || '',
+              studentCountry_id: response.savedDetails.studentCountry_id || '',
+              studentDob: response.savedDetails.studentDob || '',
+              studentRelation: response.savedDetails.studentRelation || '',
+              studentInstituteName: response.savedDetails.studentInstituteName || '',
+
+              adultTitle: adultData.title,
+              adultFirstName: adultData.first_name,
+              adultLastName: adultData.last_name || '',
+              adultEmail: adultData.email_id || '',
+              adultMobileNumber: response.savedDetails.adultMobileNumber || '',
+              adultCountryId: response.savedDetails.adultCountryId || '',
+              transcation_id: response.session.payment_intent || '',
+              transcation_json: response.session.status || '',
+            };
+          }
+
           this.registrationData = {
             title: '',
             first_name: '',
@@ -182,9 +210,10 @@ export class DelegatePaymentSuccessComponent {
           this.isPaymentStatus = 'failed';
         }
       },
-      error: (err: any) => {
+      error: (err) => {
         this.loading = false;
-        console.error('Error verifying session:', err);
+        console.log('Error verifying session:', err.error);
+        this.sharedService.ToastPopup(err['error'], '', 'error');
       },
     });
   }
@@ -270,6 +299,7 @@ export class DelegatePaymentSuccessComponent {
     // });
     }
     else if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
+      debugger;
       const params = {
         studentTitle: this.peaceStudentData?.studentTitle,
         studentFirstName: this.peaceStudentData?.studentFirstName,
@@ -295,7 +325,7 @@ export class DelegatePaymentSuccessComponent {
       };
       sessionStorage.setItem('IsChildNomination', 'false');
       const encryptedParams = this.encryptionService.encryptData(params);
-      this.router.navigate(['/delegate-child-nomination'], {
+      this.router.navigate(['/delegate-student-nomination'], {
         queryParams: { data: encryptedParams },
       });
     }
