@@ -179,31 +179,34 @@ export class DelegatePaymentSuccessComponent {
             };
           }
 
-          this.registrationData = {
-            title: '',
-            first_name: '',
-            last_name: '',
-            email: response.session.customer_email || '',
-            mobile_number: '',
-            transcation_id: response.session.payment_intent || '',
-            transcation_json: { status: response.session.status || '' },
-            country_id: ''
-          };
-          if (this.registrationData) {
-            this.registrationData.email = response.session.customer_email;
-            this.registrationData.transcation_id =response.session.payment_intent;
-            this.registrationData.transcation_json.status = response.session.status;
+          else if(this.pType == 'DELEGATE_ONLINE' || this.pType == 'DELEGATE_OFFLINE'){
             this.registrationData = {
-              title: response.savedDetails.title,
-              first_name: response.savedDetails.first_name,
-              last_name: response.savedDetails.last_name,
-              email: response.savedDetails.email_id || '',
-              mobile_number: response.savedDetails.mobile_number,
+              title: response.savedDetails[0].title,
+              first_name: response.savedDetails[0].first_name,
+              last_name: response.savedDetails[0].last_name,
+              email: response.savedDetails[0].email_id || '',
+              mobile_number: response.savedDetails[0].mobile_number,
               transcation_id: response.session.payment_intent || '',
               transcation_json: { status: response.session.status || '' },
               country_id: response.savedDetails.country_id
             };
+            if (this.registrationData) {
+              this.registrationData.email = response.session.customer_email;
+              this.registrationData.transcation_id =response.session.payment_intent;
+              this.registrationData.transcation_json.status = response.session.status;
+              this.registrationData = {
+                title: response.savedDetails[0].title,
+                first_name: response.savedDetails[0].first_name,
+                last_name: response.savedDetails[0].last_name,
+                email: response.savedDetails[0].email_id || '',
+                mobile_number: response.savedDetails[0].mobile_number,
+                transcation_id: response.session.payment_intent || '',
+                transcation_json: { status: response.session.status || '' },
+                country_id: response.savedDetails[0].country_id
+              };
+            }
           }
+
           this.transactionVerified = true;
           this.showPaymentSuccess = true;
         } else {

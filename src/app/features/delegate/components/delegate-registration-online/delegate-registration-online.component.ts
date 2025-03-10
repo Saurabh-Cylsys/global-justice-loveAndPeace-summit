@@ -342,6 +342,7 @@ async ngOnInit() {
   }
 
   changeCountry(e: any) {
+    debugger;
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
