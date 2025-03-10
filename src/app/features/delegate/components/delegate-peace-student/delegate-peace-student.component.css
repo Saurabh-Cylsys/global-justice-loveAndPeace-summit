@@ -45,3 +45,11 @@ form > div {
   margin-top: 20px;
   padding: 10px 20px;
 }
+
+
+.image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
