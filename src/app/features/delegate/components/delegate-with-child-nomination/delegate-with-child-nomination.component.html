@@ -148,7 +148,10 @@
                                             class="form-label-span" style="color: #ff0000">
                                             *</span></label>
 
-                                        <input type="text" class="form-control p-0" placeholder="Select Date of birth"
+                                    <input type="text" class="form-control p-0" placeholder="DD/MM/YYYY"
+                                            id="dob" formControlName="dob" readonly />
+
+                                        <!-- <input type="text" class="form-control p-0" placeholder="Select Date of birth"
                                           id="dob" #dob formControlName="dob" [minDate]="minDate1" [maxDate]="maxDate1"
                                           (keydown)="disableManualInput($event)" tabindex="0" (ngModelChange)="
                                             onUserDobChange($event)
@@ -158,7 +161,7 @@
                                             showWeekNumbers: false,
                                             containerClass: colorTheme,
                                             maxDate: today
-                                          }" readonly />
+                                          }" readonly /> -->
 
                                         <div *ngIf="
                                             getcontrol('dob')?.errors &&
@@ -390,6 +393,7 @@
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
+
                                   <div class="form-group fg-lname col-md-6 col-sm-6 my-3">
                                     <div class="col-md-12 no-padding">
                                       <div class="">
@@ -405,6 +409,7 @@
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
+
                                   <div class="form-group fg-field_10 col-md-6 col-sm-6 my-3">
                                     <div class="col-md-12 no-padding">
                                       <div class="">
@@ -432,6 +437,7 @@
                                       </div>
                                     </div>
                                   </div>
+
                                   <div class="form-group fg-lname col-md-6 col-sm-6 my-3">
                                     <div class="col-md-12 no-padding">
                                       <div class="">
@@ -452,6 +458,7 @@
                                     </div>
                                   </div>
                                 </div>
+
                                 <div class="row mb-3">
                                   <div class="col-md-12">
                                     <h6>Address Details :</h6>
@@ -474,6 +481,7 @@
                                       <div class="help-block with-errors"></div>
                                     </div>
                                   </div>
+
                                   <div class="form-group fg-field_3 col-md-6 col-sm-6 my-3">
                                     <div class="col-md-12 no-padding">
                                       <div class="">
@@ -713,7 +721,11 @@
                                           <label class="col-md-12 no-padding p-0" for="childDob">Date Of Birth<span
                                               class="form-label-span" style="color: #ff0000">
                                               *</span></label>
-                                          <input disabled type="text" name="nomineeDob" id="childDob" class="form-control p-0"
+
+                                        <input type="text" class="form-control p-0" placeholder="DD/MM/YYYY"
+                                          id="dob" [(ngModel)]="nomineeDob" readonly  [ngModelOptions]="{ standalone: true }"/>
+
+                                          <!-- <input disabled type="text" name="nomineeDob" id="childDob" class="form-control p-0"
                                             [(ngModel)]="nomineeDob" (ngModelChange)="
                                               onNomineeDobChange($event)
                                             " [ngModelOptions]="{ standalone: true }"
@@ -726,6 +738,7 @@
                                               containerClass: colorTheme,
                                               maxDate: today
                                             }" readonly />
+                                             -->
                                         </div>
                                       </div>
 

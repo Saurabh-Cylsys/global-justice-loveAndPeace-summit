@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
 import {FormGroup,Validators,FormBuilder,AbstractControl,ValidatorFn,FormControl} from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -141,6 +141,7 @@ export class DelegateWithChildNominationComponent {
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
+    private cdr: ChangeDetectorRef
   ) {
     this.fullURL = window.location.href;
 
@@ -149,8 +150,13 @@ export class DelegateWithChildNominationComponent {
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
-
+    debugger;
       if (selectedCountry) {
+
+        // this.registrationForm.patchValue({
+        //   country: selectedCountry.name,
+        //   country_id: +selectedCountry.id
+        // });
 
         const patchFormData = {
           country_id: +this.country_id,
@@ -158,6 +164,8 @@ export class DelegateWithChildNominationComponent {
          }
         this.registrationForm.patchValue(patchFormData);
 
+
+        this.cdr.detectChanges(); // 👈 Force UI update
         if (this.country_id) {
         this.delegateService.getAllStates(this.country_id).subscribe(
           (res: any) => {
@@ -169,10 +177,14 @@ export class DelegateWithChildNominationComponent {
           }
         );
       }
+      // this.registrationForm.patchValue({ country: selectedCountry });
 
     } else {
       console.warn("Country not found for ID:", this.country_id);
     }
+
+    console.log("Selected Country:", this.registrationForm.value.country);
+    console.log("Selected CountryID:", this.registrationForm.value.country_id);
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -194,7 +206,7 @@ export class DelegateWithChildNominationComponent {
     return this.registrationForm.controls;
   }
 
-  ngOnInit(): void {
+ async ngOnInit() {
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -218,42 +230,73 @@ export class DelegateWithChildNominationComponent {
 
             console.log('Decrypted Data:', decryptedData);
             if (decryptedData) {
-              this.title = decryptedData.adultTitle;
-              this.first_name = decryptedData.adultFirstName;
-              this.last_name = decryptedData.adultLastName;
-              this.country_code = decryptedData.adultCountryCode;
-              this.mobile_number = decryptedData.adultMobileNumber;
-              this.email_id = decryptedData.adultEmail;
-              this.country_id = decryptedData.adultCountryId;
-              this.dob = decryptedData.adultDob;
 
+              const isNominee = localStorage.getItem('isNominee');
 
-              this.nomineeName = decryptedData.studentFirstName;
-              this.nomineeDob = decryptedData.studentDob;
-              this.nomineeEmail = decryptedData.studentEmail;
-              this.nominee_CountryCode = decryptedData.studentCountry_Code;
-              this.nominee_mobile_number = decryptedData.studentMobileNumber;
-              this.nomineeRelation = decryptedData.studentRelation;
-              this.instituteName = decryptedData.studentInstituteName;
+              if(isNominee == 'student') {
+                this.title = decryptedData.adultTitle;
+                this.first_name =  decryptedData.adultFirstName;
+                this.last_name = decryptedData.adultLastName;
+                this.country_code = decryptedData.adultCountryCode;
+                this.mobile_number = decryptedData.adultMobileNumber;
+                this.email_id = decryptedData.adultEmail;
+                this.country_id = decryptedData.adultCountryId;
+                this.dob = decryptedData.adultDob;
 
+                this.nomineeName = decryptedData.studentFirstName + ' ' + decryptedData.studentLastName;
+                this.nomineeDob =  this.formatDate(decryptedData.studentDob);
+                this.nomineeEmail = decryptedData.studentEmail;
+                this.nominee_CountryCode = decryptedData.studentCountry_Code;
+                this.nominee_mobile_number = decryptedData.studentMobileNumber;
+                this.nomineeRelation = decryptedData.studentRelation;
+                this.instituteName = decryptedData.studentInstituteName;
+              }
 
-              this.title = decryptedData.adultTitle;
+              else if(isNominee == 'adult') {
+                this.title = decryptedData.studentTitle;
+                this.first_name =  decryptedData.studentFirstName;
+                this.last_name = decryptedData.studentLastName;
+                this.country_code = decryptedData.studentCountry_Code;
+                this.mobile_number = decryptedData.studentMobileNumber;
+                this.email_id = decryptedData.studentEmail;
+                this.country_id = decryptedData.studentCountryId;
+                this.dob = decryptedData.studentDob;
+
+                this.nomineeName = decryptedData.adultFirstName + ' ' + decryptedData.adultLastName;
+                this.nomineeDob =  this.formatDate(decryptedData.adultDob);
+                this.nomineeEmail = decryptedData.adultEmail;
+                this.nominee_CountryCode = decryptedData.adultCountryCode;
+                this.nominee_mobile_number = decryptedData.adultMobileNumber;
+                this.nomineeRelation = decryptedData.studentRelation;
+                this.instituteName = decryptedData.studentInstituteName;
+              }
 
             }
           }
 
     });
 
-    if (this.countryData.length > 0) {
-      this.setCountry();
-   }
+
 
     this.createForm();
-    // this.selectedRadioValue = this.userType;
 
-    // this.getdates()
-    this.getAllCountries();
-    // this.getAllCountrycode()
+    await this.getAllCountries();
+
+    console.log("this.countryData", this.countryData);
+
+    if (this.countryData.length > 0) {
+      debugger
+      this.setCountry();
+   }
+  }
+
+  formatDate(dateString: string): string {
+    if (!dateString) return '';  // Handle null/undefined case
+    const date = new Date(dateString); // Convert to Date object
+    const day = String(date.getUTCDate()).padStart(2, '0'); // Ensure two digits
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`; // Return formatted date
   }
 
   createForm() {
@@ -261,7 +304,7 @@ export class DelegateWithChildNominationComponent {
       title: [this.title, [Validators.required]],
       first_name: [this.first_name, [Validators.required]],
       last_name: [this.last_name, [Validators.required]],
-      dob: [this.dob, [Validators.required]],
+      dob: [this.formatDate(this.dob), [Validators.required]],
       country_code: [this.country_code],
       mobile_number: [this.mobile_number, [Validators.minLength(7), Validators.required]],
       email_id: [
@@ -359,130 +402,18 @@ export class DelegateWithChildNominationComponent {
     );
   }
 
-  onUserDobChange(event: string): void {
-    if (!event) return; // Handle empty date input
+  async getAllCountries() {
+    try {
+      const response = await this.delegateService.getAllCountryApi();
+      this.countryData = response.data;
+      console.log("Country Data:", this.countryData);
 
-    const dob = new Date(event);
-    const newAge = this.calculateAge(dob);
+        this.setCountry();
 
-    if (this.userAge !== newAge) {
-      this.userAge = newAge;
-      console.log('User Age Updated:', this.userAge);
-    } else {
-      console.log('No Change in User Age, Skipping Update');
+    } catch (error) {
+      console.error("Error fetching countries:", error);
     }
-
-    this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-
-    if (this.userDob !== event) {
-      this.userDob = event;
-      this.formattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
     }
-
-    // Perform validation
-    this.validateUserAge();
-  }
-
-  onNomineeDobChange(event: string): void {
-    if (!event) return; // Handle empty date input
-
-    const dob = new Date(event);
-    const newAge = this.calculateAge(dob);
-
-    if (this.nomineeAge !== newAge) {
-      this.nomineeAge = newAge;
-      console.log('Nominee Age Updated:', this.nomineeAge);
-    } else {
-      console.log('No Change in Nominee Age, Skipping Update');
-    }
-
-    const parsedDate = new Date(event);
-    // this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-    this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-    if (this.nomineeDob !== event) {
-
-      this.nomineeDob = event;
-      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
-
-
-    }
-
-    // Perform validation
-    this.validateNomineeAge();
-  }
-
-  // Common function to calculate age
-  private calculateAge(dob: Date): number {
-    const today = new Date();
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    const dayDiff = today.getDate() - dob.getDate();
-
-    // Adjust age if the birthday hasn't occurred yet this year
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-    return age;
-  }
-
-  // Validation for User Age (Student or Adult)
-  private validateUserAge(): void {
-    if (this.userType === 'student') {
-      if (this.userAge <= 0 || this.userAge >= 21) {
-        this.SharedService.ToastPopup(
-          'As a Student, your age must be between 1 and less than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    } else if (this.userType === 'adult') {
-      if (this.userAge < 21) {
-        this.SharedService.ToastPopup(
-          'As an Adult, your age must be 21 or older.',
-          '',
-          'error'
-        );
-        return;
-      }
-    }
-  }
-
-  // Validation for Nominee Age
-  private validateNomineeAge(): void {
-    if (this.userType === 'student') {
-      if (this.nomineeAge <= 21) {
-        this.SharedService.ToastPopup(
-          'As a Student, your nominee must be older than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    } else if (this.userType === 'adult') {
-      if (this.nomineeAge >= 21 || this.nomineeAge <= 0) {
-        this.SharedService.ToastPopup(
-          'As an Adult, your nominee must be between 1 and less than 21.',
-          '',
-          'error'
-        );
-        return;
-      }
-    }
-  }
-
-  getAllCountries() {
-    this.delegateService.getAllCountries().subscribe(
-      (res: any) => {
-        this.countryData = res.data;
-      },
-      (err: any) => {
-        console.log('error', err);
-      }
-    );
-  }
 
   changeCountry(e: any) {
     const selectedValue = e.target.value;
@@ -914,103 +845,7 @@ export class DelegateWithChildNominationComponent {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Ensure both ages are defined before proceeding
 
-    if (
-      !this.registrationForm.value.title ||
-      this.registrationForm.value.title.length < 2
-    ) {
-      this.renderer.selectRootElement('#title').focus();
-      this.SharedService.ToastPopup(
-        'Title must be at least 2 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      !this.registrationForm.value.first_name ||
-      this.registrationForm.value.first_name.length < 3
-    ) {
-      this.renderer.selectRootElement('#f_name').focus();
-      this.SharedService.ToastPopup(
-        'First Name must be at least 3 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      !this.registrationForm.value.last_name ||
-      this.registrationForm.value.last_name.length < 2
-    ) {
-      this.renderer.selectRootElement('#l_name').focus();
-      this.SharedService.ToastPopup(
-        'Last Name must be at least 2 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      this.registrationForm.value.dob == '' ||
-      this.registrationForm.value.dob == undefined
-    ) {
-      this.renderer.selectRootElement('#dob').focus();
-      this.openDatepicker();
-      this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
-      return;
-    } else if (
-      this.registrationForm.value.mobile_number == '' ||
-      this.registrationForm.value.mobile_number == undefined ||
-      this.registrationForm.value.mobile_number == null
-    ) {
-      setTimeout(() => {
-        const inputElement = document.querySelector(
-          '#number_mobile1 input'
-        ) as HTMLInputElement;
-        if (inputElement) {
-          inputElement.focus();
-        } else {
-          console.error('Could not find mobile number input field');
-        }
-      }, 100);
-
-      this.SharedService.ToastPopup('Please Enter  Mobile Number', '', 'error');
-      return;
-    } else if (
-      this.registrationForm.controls['mobile_number'].errors &&
-      !this.registrationForm.controls['mobile_number'].errors
-        ?.validatePhoneNumber?.valid
-    ) {
-      setTimeout(() => {
-        const inputElement = document.querySelector(
-          '#number_mobile1 input'
-        ) as HTMLInputElement;
-        if (inputElement) {
-          inputElement.focus();
-        } else {
-          console.error('Could not find mobile number input field');
-        }
-      }, 100);
-
-      this.SharedService.ToastPopup(
-        'Please enter a valid mobile number for the selected country',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      this.registrationForm.value.email_id == '' ||
-      this.registrationForm.value.email_id == undefined
-    ) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup(
-        'Please enter a valid Email ID',
-        '',
-        'error'
-      );
-      return;
-    } else if (
+   if (
       !this.registrationForm.value.profession_1 ||
       this.registrationForm.value.profession_1.trim().length < 2
     ) {
@@ -1021,19 +856,7 @@ export class DelegateWithChildNominationComponent {
         'error'
       );
       return;
-    } else if (this.country_name == '' || this.country_name == undefined) {
-      setTimeout(() => {
-        const countryElement = this.renderer.selectRootElement(
-          '#country',
-          true
-        );
-        if (countryElement) {
-          countryElement.focus();
-        }
-      }, 100);
-      this.SharedService.ToastPopup('Please Select Country', '', 'error');
-      return;
-    } else if (this.state_name == '' || this.state_name == undefined) {
+    }  else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
         const stateElement = this.renderer.selectRootElement('#state', true);
         if (stateElement) {
@@ -1079,23 +902,6 @@ export class DelegateWithChildNominationComponent {
         'error'
       );
       return;
-    } else if (!this.nomineeDob || this.nomineeDob == undefined) {
-      this.renderer.selectRootElement('#childDob').focus();
-      this.openNomineeDatepicker();
-      this.SharedService.ToastPopup(
-        'Please Select nominee Date Of Birth',
-        '',
-        'error'
-      );
-      return;
-    } else if (this.nomineeEmail == '' || this.nomineeEmail == undefined) {
-      this.renderer.selectRootElement('#nomineeEmail').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (!emailPattern.test(this.nomineeEmail)) {
-      this.renderer.selectRootElement('#nomineeEmail').focus();
-      this.SharedService.ToastPopup('Please Enter Valid Email ID', '', 'error');
-      return;
     }
 
 
@@ -1103,10 +909,14 @@ export class DelegateWithChildNominationComponent {
 
     const returnDOB = this.registrationForm.value.dob;
 
+    // Convert "DD/MM/YYYY" → "YYYY-MM-DD"
+    const [day, month, year] = returnDOB.split('/');
+    const delegateDob = `${year}-${month}-${day}`;
+
     this.registrationForm.patchValue({
       country_code: this.country_code,
       mobile_number: this.mobile_number,
-      dob: this.formattedDate,
+      dob: delegateDob,
       country: this.registrationForm.value.country,
       state: this.state_name,
       city: this.city_name,

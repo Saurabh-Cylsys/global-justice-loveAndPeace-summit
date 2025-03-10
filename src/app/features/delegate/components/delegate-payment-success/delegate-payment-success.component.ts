@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
+  FormGroup
 } from '@angular/forms';
 import { DelegateService } from '../../services/delegate.service';
-import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
-import { DatePipe, LocationStrategy } from '@angular/common';
+import { LocationStrategy } from '@angular/common';
 
 interface RegistrationData {
   title: string
@@ -84,6 +80,8 @@ export class DelegatePaymentSuccessComponent {
   isBackNavigation: boolean = false;
   transactionId: any;
   pType: any;
+  adultData: any;
+  peaceStudent :any
 
   constructor(
 
@@ -163,8 +161,14 @@ export class DelegatePaymentSuccessComponent {
 
           debugger;
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
+           const isNominee = localStorage.getItem('isNominee')
+
+           console.log("isnominee",isNominee);
+
+           if(isNominee == 'student') {
+            let adultData  = response.savedDetails[0].parent_details[0];
             let peaceStudentData = response.savedDetails[0].nominations[0];
-            let adultData = response.savedDetails[0].parent_details[0];
+
             this.peaceStudentData = {
               studentTitle: peaceStudentData?.title_nom,
               studentFirstName: peaceStudentData?.first_name_nom,
@@ -188,9 +192,39 @@ export class DelegatePaymentSuccessComponent {
 
               transcation_id: response.session.payment_intent,
               transcation_json: response.session.status,
+            }
+           }
+           else if(isNominee == 'adult') {
+            let peaceStudentData = response.savedDetails[0].parent_details[0];
+            let adultData = response.savedDetails[0].nominations[0];
 
-            };
-          }
+            this.peaceStudentData = {
+              studentTitle: peaceStudentData?.title,
+              studentFirstName: peaceStudentData?.first_name,
+              studentLastName: peaceStudentData.last_name,
+              studentEmail: peaceStudentData.email_id,
+              studentCountry_id: peaceStudentData.country_id,
+              studentMobileNumber: peaceStudentData.mobile_no,
+              studentCountry_Code: peaceStudentData.country_code,
+              studentDob: peaceStudentData.dob,
+              studentRelation: peaceStudentData.relation,
+              studentInstituteName: adultData.institution_name_nom,
+
+              adultTitle: adultData.title_nom,
+              adultFirstName: adultData.first_name_nom,
+              adultLastName: adultData.last_name_nom,
+              adultEmail: adultData.email_id_nom,
+              adultCountryCode :adultData.country_code_nom,
+              adultMobileNumber: adultData.mobile_no_nom,
+              adultCountryId: adultData.country_id_nom,
+              adultDob:adultData.dob_nom,
+
+
+              transcation_id: response.session.payment_intent,
+              transcation_json: response.session.status,
+           }
+        };
+      }
 
           else if(this.pType == 'DELEGATE_ONLINE' || this.pType == 'DELEGATE_OFFLINE'){
             this.registrationData = {
@@ -272,11 +306,13 @@ export class DelegatePaymentSuccessComponent {
         title: this.registrationData?.title,
         email: this.registrationData?.email,
         mobile_no: this.registrationData?.mobile_number,
-        name: this.registrationData?.first_name + ' ' + this.registrationData?.last_name || '',
+        firstName: this.registrationData?.first_name,
+        lastName : this.registrationData?.last_name,
         country_id: this.registrationData?.country_id,
         country_code : this.registrationData?.country_code,
         dob: this.registrationData?.dob,
         isOnline: true,
+        pType : 'DELEGATE_ONLINE'
       };
       sessionStorage.setItem('IsOnline', 'true');
       const encryptedParams = this.encryptionService.encryptData(params);
@@ -289,14 +325,13 @@ export class DelegatePaymentSuccessComponent {
       title: this.registrationData?.title,
       email: this.registrationData?.email,
       mobile_no: this.registrationData?.mobile_number,
-      name:
-        this.registrationData?.first_name +
-        ' ' +
-        this.registrationData?.last_name,
+      firstName: this.registrationData?.first_name,
+      lastName : this.registrationData?.last_name,
       country_id: this.registrationData?.country_id,
       dob: this.registrationData?.dob,
       country_code : this.registrationData?.country_code,
-      isOnline: true,
+      isOnline: false,
+      pType : 'DELEGATE_OFFLINE'
     };
     sessionStorage.setItem('IsOffline', 'true');
     const encryptedParams = this.encryptionService.encryptData(params);
@@ -307,17 +342,20 @@ export class DelegatePaymentSuccessComponent {
     }
     else if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
       debugger;
+
+      console.log("this.peaceStudentData",this.peaceStudentData);
+
       const params = {
         studentTitle: this.peaceStudentData?.studentTitle,
         studentFirstName: this.peaceStudentData?.studentFirstName,
-        studentLastName : this.peaceStudentData?.studentLastName || '',
-        studentEmail: this.peaceStudentData?.studentEmail || '',
-        studentCountry_Code: this.peaceStudentData?.studentCountry_Code || '',
-        studentMobileNumber: this.peaceStudentData?.studentMobileNumber || '',
-        studentCountryId: this.peaceStudentData?.studentCountry_id || '',
-        studentDob : this.peaceStudentData?.studentDob || '',
-        studentRelation : this.peaceStudentData?.studentRelation || '',
-        studentInstituteName : this.peaceStudentData?.studentInstituteName || '',
+        studentLastName : this.peaceStudentData?.studentLastName,
+        studentEmail: this.peaceStudentData?.studentEmail,
+        studentCountry_Code: this.peaceStudentData?.studentCountry_Code,
+        studentMobileNumber: this.peaceStudentData?.studentMobileNumber,
+        studentCountryId: this.peaceStudentData?.studentCountry_id,
+        studentDob : this.peaceStudentData?.studentDob,
+        studentRelation : this.peaceStudentData?.studentRelation,
+        studentInstituteName : this.peaceStudentData?.studentInstituteName,
 
         adultTitle: this.peaceStudentData?.adultTitle,
         adultFirstName: this.peaceStudentData?.adultFirstName,

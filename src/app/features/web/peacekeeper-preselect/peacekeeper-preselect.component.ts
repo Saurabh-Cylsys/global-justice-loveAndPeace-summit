@@ -46,7 +46,7 @@ export class PeacekeeperPreselectComponent {
 
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { code: this.referralCode, medium: 0 }
+        queryParams: { dType: 'offline', code: this.referralCode, medium: 0 }
       });
     }
     else {
@@ -59,14 +59,14 @@ export class PeacekeeperPreselectComponent {
   goToChildNomination() {
 
     this.router.navigate(['/delegate-student'], {
-      queryParams: { code: this.referralCode }
+      queryParams: { dType: 'offline', code: this.referralCode }
     });
   }
 
   goToOnlineDelegate() {
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { code: this.referralCode }
+        queryParams: { dType: 'offline', code: this.referralCode }
       });
     }
     else {
