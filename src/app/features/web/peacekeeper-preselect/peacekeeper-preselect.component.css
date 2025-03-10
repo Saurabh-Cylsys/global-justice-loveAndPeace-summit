@@ -504,19 +504,48 @@ h5 {
 }
 
 /* 🌟 Responsive Design */
-@media (max-width: 1024px) {
-  /* Tablets */
-  .ui-card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
+@media (min-width: 320px) {
   /* Mobile */
+  /* .ui-card-container {
+    grid-template-columns: repeat(3, 1fr);
+  } */
   .ui-card-container {
     grid-template-columns: 1fr;
   }
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid #c0c0c0;
+    background-size: 50% 50%;
+    height: auto;
 }
+}
+@media (min-width: 426px){
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 10px;
+    border: 1px solid #c0c0c0;
+    background-size: 50% 50%;
+}
+}
+@media (min-width: 1024px) {
+  /* Tablets */
+  .ui-card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #ffffff;
+    border-radius: 50%;
+    padding: 25px;
+    border: 1px solid #c0c0c0;
+    background-size: 50% 50%;
+}
+}
+
+
 
 @media (max-width: 425px) {
   .ui-card[_ngcontent-ymk-c52]:hover {

@@ -207,3 +207,12 @@
   align-items: center;
   border-bottom: 1px !important;
 }
+
+
+h1{
+font-weight: 700;
+font-size: clamp(1rem, 3vw, 3rem);
+line-height: 100%;
+letter-spacing: 0%;
+color: #005A93;
+}

@@ -53,13 +53,13 @@
     display: grid
 ;
     grid-template-columns: 300px;
-    grid-template-rows: 190px 160px 60px;
+    grid-template-rows: 190px 160px 0px;
     grid-template-areas:
         "image"
         "text"
         "stats";
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-radius: 15px;
+    /* border-top-right-radius: 15px; */
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
     font-family: Roboto, sans-serif;
     text-align: center;
