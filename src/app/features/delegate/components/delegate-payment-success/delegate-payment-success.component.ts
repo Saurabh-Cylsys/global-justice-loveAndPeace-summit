@@ -212,8 +212,8 @@ export class DelegatePaymentSuccessComponent {
       },
       error: (err) => {
         this.loading = false;
-        console.log('Error verifying session:', err.error);
-        this.sharedService.ToastPopup(err['error'], '', 'error');
+        console.log('Error verifying session:', err.error['error']);
+        this.sharedService.ToastPopup(err.error['error'], '', 'error');
       },
     });
   }
@@ -251,10 +251,7 @@ export class DelegatePaymentSuccessComponent {
         title: this.registrationData?.title,
         email: this.registrationData?.email || '',
         mobile_no: this.registrationData?.mobile_number || '',
-        name:
-          this.registrationData?.first_name +
-          ' ' +
-          this.registrationData?.last_name || '',
+        name: this.registrationData?.first_name + ' ' + this.registrationData?.last_name || '',
         country_id: this.registrationData?.country_id || '',
         isOnline: true,
       };
