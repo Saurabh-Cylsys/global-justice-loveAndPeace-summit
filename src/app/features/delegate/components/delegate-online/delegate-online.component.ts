@@ -348,6 +348,8 @@ export class DelegateOnlineComponent implements OnInit {
         this.pType = "DELEGATE_ONLINE";
       }
 
+
+
       if(this.pType == "DELEGATE_ONLINE") {
          this.payload = {
           title: this.userForm.get('title')?.value,

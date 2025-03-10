@@ -1098,60 +1098,6 @@ export class DelegateWithChildNominationComponent {
       return;
     }
 
-    if (!this.nominee_mobile_number) {
-      // Simplified check for empty/undefined/null
-      setTimeout(() => {
-        const intlInput = document.querySelector(
-          '#number_mobile2'
-        ) as HTMLElement;
-        if (intlInput) {
-          const inputField = intlInput.querySelector(
-            'input'
-          ) as HTMLInputElement;
-          if (inputField) {
-            inputField.focus(); // Set focus inside the input
-          } else {
-            console.error(
-              'Mobile number input field not found inside ngx-intl-tel-input.'
-            );
-          }
-        }
-      }, 100);
-
-      this.SharedService.ToastPopup('Please Enter Mobile Number', '', 'error');
-      return;
-    } else if (
-      this.nomineeRelation == '' ||
-      this.nomineeRelation == undefined
-    ) {
-      this.renderer.selectRootElement('#nominee_relation').focus();
-      this.SharedService.ToastPopup('Please Enter Relation ', '', 'error');
-      return;
-    } else if (
-      this.instituteName.trim() == '' ||
-      this.instituteName == undefined
-    ) {
-      this.renderer.selectRootElement('#institute_Name').focus();
-      this.SharedService.ToastPopup(
-        'Please Enter Institute Name ',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      this.nominee_mobile_number === this.registrationForm.value.mobile_number
-    ) {
-      this.SharedService.ToastPopup(
-        'Both Mobile numbers should not be the same',
-        '',
-        'error'
-      );
-      return;
-    }
-
-
-    this.validateUserAge();
-    this.validateNomineeAge();
 
     // Delegate Mobile Number
 
@@ -1172,15 +1118,6 @@ export class DelegateWithChildNominationComponent {
         : '';
     } else if (typeof rawNomineeMobileNumber === 'string') {
       formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
-    }
-
-    if (formattedMobileNumber === formattedNomineeMobileNumber) {
-      this.SharedService.ToastPopup(
-        'Both Mobile numbers should not be the same',
-        '',
-        'error'
-      );
-      return;
     }
 
     this.registrationForm.patchValue({

@@ -9,7 +9,7 @@ export class Constants {
     public readonly API_IS_DEVELOPMENT_ENV: boolean = environment.production;
 
 
-    public readonly API_ENDPOINT_registration: string = 'registration/create-delegate-profile'
+    public readonly API_ENDPOINT_registration: string = 'create-delegate-profile-online'
     public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
     public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
     public readonly API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE: string = 'peacekeeper/'
