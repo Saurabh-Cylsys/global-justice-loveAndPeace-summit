@@ -828,29 +828,30 @@ async ngOnInit() {
 
       this.SharedService.ToastPopup('Please Enter  Mobile Number', '', 'error');
       return;
-    } else if (
-      this.registrationForm.controls['mobile_number'].errors &&
-      !this.registrationForm.controls['mobile_number'].errors
-        ?.validatePhoneNumber?.valid
-    ) {
-      setTimeout(() => {
-        const inputElement = document.querySelector(
-          '#number_mobile1 input'
-        ) as HTMLInputElement;
-        if (inputElement) {
-          inputElement.focus();
-        } else {
-          console.error('Could not find mobile number input field');
-        }
-      }, 100);
-
-      this.SharedService.ToastPopup(
-        'Please enter a valid mobile number for the selected country',
-        '',
-        'error'
-      );
-      return;
     }
+    // else if (
+    //   this.registrationForm.controls['mobile_number'].errors &&
+    //   !this.registrationForm.controls['mobile_number'].errors
+    //     ?.validatePhoneNumber?.valid
+    // ) {
+    //   setTimeout(() => {
+    //     const inputElement = document.querySelector(
+    //       '#number_mobile1 input'
+    //     ) as HTMLInputElement;
+    //     if (inputElement) {
+    //       inputElement.focus();
+    //     } else {
+    //       console.error('Could not find mobile number input field');
+    //     }
+    //   }, 100);
+
+    //   this.SharedService.ToastPopup(
+    //     'Please enter a valid mobile number for the selected country',
+    //     '',
+    //     'error'
+    //   );
+    //   return;
+    // }
     else if (
       this.registrationForm.value.email_id == '' ||
       this.registrationForm.value.email_id == undefined
@@ -954,6 +955,8 @@ async ngOnInit() {
 
       this.reqBody = {
         ...this.registrationForm.value,
+        country_code : "+91",
+        mobile_number :'9283939393',
         is_nomination: "0",
         p_type: "DELEGATE_ONLINE",
         p_reference_by: '0'

@@ -796,10 +796,10 @@
                                       </option>
                                       <option
                                         *ngFor="
-                                          let country of countryData;
+                                          let country of countryData ;
                                           let j = index
                                         "
-                                        [ngValue]="country"
+                                        [value]="country | json"
                                       >
                                         {{ country.name }}
                                       </option>
