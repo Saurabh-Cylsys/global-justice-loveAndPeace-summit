@@ -36,12 +36,18 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
 import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
 import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
 import { CommitteeComponent } from './committee/committee.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
 import { VideoComponent } from './media/video/video.component';
 import { MediaHeaderComponent } from 'src/app/shared/components/media-header/media-header.component';
 import { PhotosComponent } from './media/photos/photos.component';
 import { ArticlesComponent } from './media/articles/articles.component';
 import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
+import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
+import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -72,11 +78,17 @@ import { NewsPaperComponent } from './media/news-paper/news-paper.component';
     DownloadApplicationsComponent,
     PeacekeeperPreselectComponent,
     RequestAccountDeletionsComponent,
+    SpeakerDetailsComponent,
     CommitteeComponent,
+    SpeakersProfileComponent,
     VideoComponent,
     PhotosComponent,
     ArticlesComponent,
     NewsPaperComponent,
+    PeaceShopComponent,
+    PeaceMenuComponent,
+    PeaceFashionComponent,
+    AboutUsComponent,
 
     // WhoShouldAttendAndWhyComponent,
 

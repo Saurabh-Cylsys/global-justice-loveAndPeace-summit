@@ -104,4 +104,7 @@ export class DelegateService {
   }
 
 
+  getAmbassadorURL(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
+  }
 }

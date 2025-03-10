@@ -75,6 +75,7 @@ export class Constants {
 
     // 'create-delegate-profile-short'
     public readonly API_ENDPOINT_CREATE_ONLINE_DELEGATE: string = 'pre_delegate_user'
+    public readonly API_ENDPOINT_GET_AMBASSADOR : string = 'get_ambassador_by_code'
 
     public readonly API_ENDPOINT_CREATE_ONLINE_MP: string = 'initiate-payment'
 
