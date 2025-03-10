@@ -15,15 +15,13 @@ export class DelegateMessageComponent implements OnInit {
   loading: boolean = true;
   hasAlreadyPaid: boolean = false;
   errorMessage: string = '';
-  private history: string[] = [];
 
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private delegateService: DelegateService,
-    private ngxService: NgxUiLoaderService,
-    private location: Location
+    private ngxService: NgxUiLoaderService
   ) {}
 
   ngOnInit(): void {
