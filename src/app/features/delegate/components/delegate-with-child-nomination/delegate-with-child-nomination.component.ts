@@ -9,7 +9,6 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import {CountryISO,NgxIntlTelInputComponent,PhoneNumberFormat,SearchCountryField} from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
-import { th } from 'intl-tel-input/i18n';
 
 
 interface PeaceStudentData {
@@ -117,6 +116,7 @@ export class DelegateWithChildNominationComponent {
 
 
   peaceStudentData: PeaceStudentData | null = null;
+  nominee_CountryCode: any;
 
   markDirty(): void {
     this.isFormDirty = true;
@@ -144,6 +144,35 @@ export class DelegateWithChildNominationComponent {
   ) {
     this.fullURL = window.location.href;
 
+  }
+
+  setCountry() {
+    const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
+
+
+      if (selectedCountry) {
+
+        const patchFormData = {
+          country_id: +this.country_id,
+          country: selectedCountry.name
+         }
+        this.registrationForm.patchValue(patchFormData);
+
+        if (this.country_id) {
+        this.delegateService.getAllStates(this.country_id).subscribe(
+          (res: any) => {
+            this.ngxService.stop();
+            this.statesData = res.data;
+          },
+          (err: any) => {
+            console.log('Err', err);
+          }
+        );
+      }
+
+    } else {
+      console.warn("Country not found for ID:", this.country_id);
+    }
   }
 
   getcontrol(name: any): AbstractControl | null {
@@ -192,15 +221,21 @@ export class DelegateWithChildNominationComponent {
               this.title = decryptedData.adultTitle;
               this.first_name = decryptedData.adultFirstName;
               this.last_name = decryptedData.adultLastName;
+              this.country_code = decryptedData.adultCountryCode;
               this.mobile_number = decryptedData.adultMobileNumber;
               this.email_id = decryptedData.adultEmail;
+              this.country_id = decryptedData.adultCountryId;
+              this.dob = decryptedData.adultDob;
+
 
               this.nomineeName = decryptedData.studentFirstName;
               this.nomineeDob = decryptedData.studentDob;
               this.nomineeEmail = decryptedData.studentEmail;
+              this.nominee_CountryCode = decryptedData.studentCountry_Code;
               this.nominee_mobile_number = decryptedData.studentMobileNumber;
               this.nomineeRelation = decryptedData.studentRelation;
               this.instituteName = decryptedData.studentInstituteName;
+
 
               this.title = decryptedData.adultTitle;
 
@@ -208,6 +243,10 @@ export class DelegateWithChildNominationComponent {
           }
 
     });
+
+    if (this.countryData.length > 0) {
+      this.setCountry();
+   }
 
     this.createForm();
     // this.selectedRadioValue = this.userType;
@@ -222,8 +261,8 @@ export class DelegateWithChildNominationComponent {
       title: [this.title, [Validators.required]],
       first_name: [this.first_name, [Validators.required]],
       last_name: [this.last_name, [Validators.required]],
-      dob: ['', [Validators.required]],
-      country_code: [''],
+      dob: [this.dob, [Validators.required]],
+      country_code: [this.country_code],
       mobile_number: [this.mobile_number, [Validators.minLength(7), Validators.required]],
       email_id: [
         this.email_id,
@@ -252,7 +291,7 @@ export class DelegateWithChildNominationComponent {
       city: ['', [Validators.required]],
       city_id: ['', [Validators.required]],
       state_id: ['', [Validators.required]],
-      country_id: ['', [Validators.required]],
+      country_id: [this.country_id, [Validators.required]],
       passport_no: [''],
       passport_issue_by: [''],
       pin_code: [null],

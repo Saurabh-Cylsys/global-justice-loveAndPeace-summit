@@ -62,7 +62,7 @@
                                           <span class="form-label-span" style="color: #ff0000">
                                             *</span>
                                         </label>
-                                        <input type="text" name="title" id="title" #title placeholder="Enter title"
+                                        <input readonly type="text" name="title" id="title" #title placeholder="Enter title"
                                           class="form-control p-0" [maxlength]="15" (keypress)="validateAlpha($event)"
                                           (paste)="onPaste($event)" formControlName="title" autocomplete="off"
                                           (input)="onInput($event, 'title')" />
@@ -83,7 +83,7 @@
                                         <label class="col-md-12 no-padding p-0" for="fname1">First Name<span
                                             class="form-label-span" style="color: #ff0000">
                                             *</span></label>
-                                        <input type="text" name="fname[1]" id="f_name" #f_name
+                                        <input readonly type="text" name="fname[1]" id="f_name" #f_name
                                           placeholder="Enter first name" class="form-control p-0" required
                                           formControlName="first_name" minlength="3" maxlength="115"
                                           (keypress)="validateAlpha($event)" (paste)="onPaste($event)"
@@ -115,7 +115,7 @@
                                         <label class="col-md-12 no-padding p-0" for="lname1">Last Name<span
                                             class="form-label-span" style="color: #ff0000">
                                             *</span></label>
-                                        <input type="text" name="lname[1]" id="l_name" placeholder="Enter last name"
+                                        <input readonly type="text" name="lname[1]" id="l_name" placeholder="Enter last name"
                                           class="form-control p-0" required formControlName="last_name" #l_name
                                           minlength="2" maxlength="115" (keypress)="validateAlpha($event)"
                                           (paste)="onPaste($event)" (keydown)="
@@ -180,7 +180,22 @@
                                     <h6>Contact Information :</h6>
                                   </div>
 
-                                  <div class="form-group fg-mobile col-md-6 col-sm-6 my-3">
+                                  <div class="">
+                                    <label
+                                    class="col-md-12 no-padding p-0"
+                                    for="mobile1"
+                                    >Mobile Number<span
+                                      class="form-label-span"
+                                      style="color: #ff0000"
+                                    >
+                                      *</span
+                                    ></label
+                                  >
+                                    <label>{{country_code}} {{this.mobile_number}}</label>
+                                  </div>
+
+
+                                  <!-- <div class="form-group fg-mobile col-md-6 col-sm-6 my-3">
                                     <div class="row no-padding">
                                       <div class="form-group form-group-inner mobile-number">
                                         <label class="col-md-12 no-padding p-0" for="mobile1">Mobile Number<span
@@ -217,8 +232,7 @@
                                           (Country code + Mobile number) will be
                                           7 to 15 digits based on country.
                                         </small>
-                                        <!-- <p class="text-danger mb-1">  Mobile number must be at least 7 to 10 digit
-                                          long.</p> -->
+
                                       </div>
                                       <div class="form-group form-group-inner mobile-number">
                                         <div class="help-block with-errors"></div>
@@ -242,7 +256,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
+                                  </div> -->
 
                                   <div class="form-group fg-email col-md-6 col-sm-6 my-3">
                                     <div class="col-md-12 no-padding">
@@ -479,8 +493,9 @@
                                           <option *ngFor="
                                               let country of countryData;
                                               let j = index
-                                            " [value]="country | json">
-                                            {{ country.name }}
+                                            " [value]="country['name']"
+                                              [attr.data-name]="country['id']">
+                                            {{ country['name'] }}
                                           </option>
                                         </select>
                                         <div class="help-block with-errors"></div>
@@ -565,7 +580,7 @@
                                   </div>
                                 </div>
 
-                                <div class="row g-2 mt-5">
+                                <!-- <div class="row g-2 mt-5">
                                   <div class="col-md-12">
                                     <p class="refLabel col-md-8">
                                       On submission of this form, you will be
@@ -589,7 +604,7 @@
                                         (input)="onInput($event, 'reference_no')" />
                                     </div>
                                   </div>
-                                </div>
+                                </div> -->
 
                                 <div class="row g-2 mt-3">
                                   <div class="col-md-12">
@@ -735,7 +750,10 @@
                                                 class="form-label-span" style="color: #ff0000">
                                                 *</span></label>
                                             <div class="">
-                                              <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
+
+                                              {{nominee_CountryCode}} {{this.nominee_mobile_number}}
+
+                                              <!-- <ngx-intl-tel-input class="custom-width-container" [preferredCountries]="[
                                                   CountryISO.India,
                                                   CountryISO.UnitedStates,
                                                   CountryISO.UnitedKingdom
@@ -760,15 +778,15 @@
                                                     $event,
                                                     mobile_number
                                                   )
-                                                "></ngx-intl-tel-input>
+                                                "></ngx-intl-tel-input> -->
                                             </div>
-                                            <small class="text-danger" *ngIf="mobile_numberVal">
+                                            <!-- <small class="text-danger" *ngIf="mobile_numberVal">
                                               (Country code + Mobile number) will be 7
                                               to 15 digits based on country.
-                                            </small>
+                                            </small> -->
 
                                           </div>
-                                          <div class="form-group form-group-inner mobile-number">
+                                          <!-- <div class="form-group form-group-inner mobile-number">
                                             <div class="help-block with-errors"></div>
                                             <div *ngIf="
                                                 getcontrol('mobile_number')?.errors &&
@@ -786,7 +804,7 @@
                                                 {{ getPhoneErrorMessage() }}
                                               </small>
                                             </div>
-                                          </div>
+                                          </div> -->
                                         </div>
                                       </div>
 

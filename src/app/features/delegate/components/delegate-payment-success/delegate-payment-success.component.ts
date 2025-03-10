@@ -36,15 +36,19 @@ interface PeaceStudentData {
   studentCountry_id: string;
   studentDob:string;
   studentRelation:string;
-  studentInstituteName :string
+  studentInstituteName :string;
+  studentCountry_Code: string;
+
   adultTitle: string;
   adultFirstName: string;
   adultLastName: string;
   adultEmail: string;
   adultMobileNumber: string;
   adultCountryId: string;
+  adultDob:string;
   transcation_id: string;
   transcation_json: any;
+  adultCountryCode: string;
 
 }
 
@@ -166,20 +170,25 @@ export class DelegatePaymentSuccessComponent {
               studentFirstName: peaceStudentData?.first_name_nom,
               studentLastName: peaceStudentData.last_name_nom,
               studentEmail: peaceStudentData.email_id_nom,
+              studentCountry_id: peaceStudentData.country_id_nom,
               studentMobileNumber: peaceStudentData.mobile_no_nom,
-              studentCountry_id: peaceStudentData.country_code_nom,
+              studentCountry_Code: peaceStudentData.country_code_nom,
               studentDob: peaceStudentData.dob_nom,
-              studentRelation: peaceStudentData.studentRelation,
+              studentRelation: peaceStudentData.relation,
               studentInstituteName: peaceStudentData.institution_name_nom,
 
               adultTitle: adultData.title,
               adultFirstName: adultData.first_name,
               adultLastName: adultData.last_name,
               adultEmail: adultData.email_id,
+              adultCountryCode :adultData.country_code,
               adultMobileNumber: adultData.mobile_no,
-              adultCountryId: adultData.adultCountryId,
+              adultCountryId: adultData.country_id,
+              adultDob:adultData.dob,
+
               transcation_id: response.session.payment_intent,
               transcation_json: response.session.status,
+
             };
           }
 
@@ -274,14 +283,6 @@ export class DelegatePaymentSuccessComponent {
       this.router.navigate(['/delegate-registration-online'], {
         queryParams: { data: encryptedParams },
       });
-      // this.router.navigate(['/delegate-registration'], {
-      //   queryParams: {
-      //     email: this.encrypt(this.registrationData?.email || ''),
-      //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
-      //     name: this.encrypt(this.registrationData?.name || ''),
-      //     isOnline: true
-      //   }
-      // });
     }
    else if(this.pType == 'DELEGATE_OFFLINE'){
     const params = {
@@ -302,14 +303,7 @@ export class DelegatePaymentSuccessComponent {
     this.router.navigate(['/delegate-registration-online'], {
       queryParams: { data: encryptedParams },
     });
-    // this.router.navigate(['/delegate-registration'], {
-    //   queryParams: {
-    //     email: this.encrypt(this.registrationData?.email || ''),
-    //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
-    //     name: this.encrypt(this.registrationData?.name || ''),
-    //     isOnline: true
-    //   }
-    // });
+
     }
     else if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
       debugger;
@@ -318,6 +312,7 @@ export class DelegatePaymentSuccessComponent {
         studentFirstName: this.peaceStudentData?.studentFirstName,
         studentLastName : this.peaceStudentData?.studentLastName || '',
         studentEmail: this.peaceStudentData?.studentEmail || '',
+        studentCountry_Code: this.peaceStudentData?.studentCountry_Code || '',
         studentMobileNumber: this.peaceStudentData?.studentMobileNumber || '',
         studentCountryId: this.peaceStudentData?.studentCountry_id || '',
         studentDob : this.peaceStudentData?.studentDob || '',
@@ -326,12 +321,15 @@ export class DelegatePaymentSuccessComponent {
 
         adultTitle: this.peaceStudentData?.adultTitle,
         adultFirstName: this.peaceStudentData?.adultFirstName,
-        adultLastName: this.peaceStudentData?.adultLastName || '',
-        adultEmail: this.peaceStudentData?.adultEmail || '',
-        adultMobileNumber: this.peaceStudentData?.adultMobileNumber || '',
-        adultCountryId: this.peaceStudentData?.adultCountryId || '',
-        transcation_id: this.peaceStudentData?.transcation_id || '',
-        transcation_json: this.peaceStudentData?.transcation_json || '',
+        adultLastName: this.peaceStudentData?.adultLastName,
+        adultEmail: this.peaceStudentData?.adultEmail,
+        adultMobileNumber: this.peaceStudentData?.adultMobileNumber,
+        adultCountryId: this.peaceStudentData?.adultCountryId ,
+        adultCountryCode : this.peaceStudentData?.adultCountryCode,
+        adultDob : this.peaceStudentData?.adultDob,
+        transcation_id: this.peaceStudentData?.transcation_id,
+        transcation_json: this.peaceStudentData?.transcation_json,
+
 
         IsChildNomination: true,
 

@@ -78,7 +78,7 @@ export class DelegatePeaceStudentComponent {
     const today = new Date();
 
     // Student: Age between 1 to 21 years
-    this.maxStudentDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate()); // 1 year old
+    this.maxStudentDate = new Date(today.getFullYear() - 2, today.getMonth(), today.getDate()); // 1 year old
     this.minStudentDate = new Date(today.getFullYear() - 21, today.getMonth(), today.getDate()); // 21 years old
 
     // Delegate: Must be strictly older than 21 years
