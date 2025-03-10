@@ -795,14 +795,15 @@
                                         Select Country
                                       </option>
                                       <option
-                                        *ngFor="
-                                          let country of countryData ;
-                                          let j = index
-                                        "
-                                        [value]="country | json"
-                                      >
-                                        {{ country.name }}
-                                      </option>
+                                      *ngFor="
+                                        let country of countryData;
+                                        let j = index
+                                      "
+                                      [value]="country['id']"
+                                       [attr.data-name]="country['name']"
+                                    >
+                                      {{ country['name'] }}
+                                    </option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                     <div

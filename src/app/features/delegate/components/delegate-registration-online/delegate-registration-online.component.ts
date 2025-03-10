@@ -156,15 +156,33 @@ async ngOnInit() {
 
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
+   
 
-    if (selectedCountry) {
-      this.registrationForm.patchValue({
-        country: selectedCountry.name,
-        country_id: +selectedCountry.id
-      });
+      if (selectedCountry) {
 
-      this.cdr.detectChanges(); // 👈 Force UI update
+        // this.registrationForm.patchValue({
+        //   country: selectedCountry.name,
+        //   country_id: +selectedCountry.id
+        // });
 
+        const patchFormData = {
+          country: +this.country_id 
+         }
+        this.registrationForm.patchValue(patchFormData);
+  
+  
+        this.cdr.detectChanges(); // 👈 Force UI update
+        if (this.country_id) {
+        this.delegateService.getAllStates(this.country_id).subscribe(
+          (res: any) => {
+            this.ngxService.stop();
+            this.statesData = res.data;
+          },
+          (err: any) => {
+            console.log('Err', err);
+          }
+        );
+      }
       // this.registrationForm.patchValue({ country: selectedCountry });
 
     } else {
