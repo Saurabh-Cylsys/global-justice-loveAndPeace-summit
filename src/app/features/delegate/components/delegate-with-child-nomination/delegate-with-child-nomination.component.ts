@@ -1101,30 +1101,13 @@ export class DelegateWithChildNominationComponent {
 
     // Delegate Mobile Number
 
-    const returnmobileNumber = this.registrationForm.value.mobile_number;
     const returnDOB = this.registrationForm.value.dob;
 
-    const rawMobileNumber = this.registrationForm.value.mobile_number.number;
-    let formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    console.log(formattedMobileNumber);
-
-    // Nominee Mobile Number
-    let formattedNomineeMobileNumber = '';
-    const rawNomineeMobileNumber = this.nominee_mobile_number;
-
-    if (rawNomineeMobileNumber && typeof rawNomineeMobileNumber === 'object') {
-      formattedNomineeMobileNumber = rawNomineeMobileNumber.number
-        ? rawNomineeMobileNumber.number.replace(/[^0-9]/g, '')
-        : '';
-    } else if (typeof rawNomineeMobileNumber === 'string') {
-      formattedNomineeMobileNumber = rawNomineeMobileNumber.replace(/[^0-9]/g, '');
-    }
-
     this.registrationForm.patchValue({
-      country_code: this.registrationForm.value.mobile_number.dialCode,
-      mobile_number: formattedMobileNumber,
+      country_code: this.country_code,
+      mobile_number: this.mobile_number,
       dob: this.formattedDate,
-      country: this.country_name,
+      country: this.registrationForm.value.country,
       state: this.state_name,
       city: this.city_name,
     });
@@ -1152,34 +1135,17 @@ export class DelegateWithChildNominationComponent {
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
 
-            this.delegateId = result.delegate_id;
-            const formattedNomineeMobileNumber = this.formatNomineeMobileNumber(
-              this.nominee_mobile_number
-            );
+            setTimeout(() => {
+              this.router.navigateByUrl('/delegate-message');
+          }, 3000);
 
-            if (this.delegateId) {
-              const nomineeBody = {
-                delegate_id: this.delegateId,
-                nomination_name: this.nomineeName,
-                relation_id: this.nomineeRelation,
-                dob: this.nomineeFormattedDate,
-                email: this.nomineeEmail,
-                mobile_no: formattedNomineeMobileNumber,
-                institution: this.instituteName,
-              };
-
-              this.callNominationProfileAPI(nomineeBody, result.url);
-            }
           } else {
             this.SharedService.ToastPopup('', result.message, 'error');
           }
         },
         error: (err) => {
           this.ngxService.stop();
-          this.registrationForm.patchValue({
-            mobile_number: returnmobileNumber,
-            dob: returnDOB,
-          });
+
           this.SharedService.ToastPopup('', err.error.message, 'error');
         },
       });
