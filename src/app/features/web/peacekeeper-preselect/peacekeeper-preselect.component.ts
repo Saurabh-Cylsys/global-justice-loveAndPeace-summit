@@ -20,7 +20,7 @@ export class PeacekeeperPreselectComponent {
 
         this.referralCode = params.code;
         if (params.medium == 1 && params.code) {
-          this.packageAmt = 2640;
+          this.packageAmt = 2604;
           this.router.navigate(['/delegate-registration'], {
             queryParams: { code: this.referralCode }, // Pass query params
             queryParamsHandling: 'merge', // Preserve existing query params (optional)
@@ -31,7 +31,7 @@ export class PeacekeeperPreselectComponent {
         else if (!params.medium) {
           console.log('Medium value not found, redirecting...');
           if (this.referralCode)
-            this.packageAmt = 2640;
+            this.packageAmt = 2604;
 
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
