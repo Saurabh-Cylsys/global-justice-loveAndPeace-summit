@@ -2939,7 +2939,7 @@ button:focus {
   border-color: none;
   outline: 0 !important;
   box-shadow: none !important;
-
+}
 #pe6 {
   background-image: url(../images/venueBg.png) !important;
   background-color: var(--color5) !important;
@@ -2980,4 +2980,4 @@ button:focus {
   text-align: center;
   color: #1e1e1e;
 }
-}
+
