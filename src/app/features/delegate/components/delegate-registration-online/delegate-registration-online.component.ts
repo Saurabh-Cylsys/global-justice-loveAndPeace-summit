@@ -95,6 +95,9 @@ export class DelegateRegistrationOnlineComponent {
   tinyURL: string = environment.tinyUrl;
   isOnline: boolean = false;
   country_id: any;
+  country_code: any;
+  dob: any;
+  isDisabled = true;
 
   constructor(
     private datePipe: DatePipe,
@@ -123,6 +126,7 @@ export class DelegateRegistrationOnlineComponent {
   }
 
 async ngOnInit() {
+  this.isDisabled = true;
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -131,6 +135,7 @@ async ngOnInit() {
         this.referralCode = params.code;
 
         if (params['data']) {
+          debugger;
           const decryptedData = this.encryptionService.decryptData(params['data']);
 
           if (decryptedData) {
@@ -140,6 +145,8 @@ async ngOnInit() {
             this.name = decryptedData.name;
             this.isOnline = decryptedData.isOnline;
             this.country_id = decryptedData.country_id
+            this.country_code = decryptedData.country_code
+            this.dob = decryptedData.dob;
           }
         }
       }
@@ -156,7 +163,7 @@ async ngOnInit() {
 
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
-   
+
 
       if (selectedCountry) {
 
@@ -166,11 +173,12 @@ async ngOnInit() {
         // });
 
         const patchFormData = {
-          country: +this.country_id 
+          country_id: +this.country_id,
+          country: selectedCountry.name
          }
         this.registrationForm.patchValue(patchFormData);
-  
-  
+
+
         this.cdr.detectChanges(); // 👈 Force UI update
         if (this.country_id) {
         this.delegateService.getAllStates(this.country_id).subscribe(
@@ -240,14 +248,20 @@ async ngOnInit() {
     return this.registrationForm.controls;
   }
 
+  preventDatepicker(event: Event) {
+    // Prevent the datepicker from opening.
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   createForm() {
 
     this.registrationForm = this.formBuilder.group({
       title: [this.title, [Validators.required]],
       first_name: [this.name ? this.name.split(' ')[0] : '', [Validators.required]],
       last_name: [this.name ? this.name.split(' ')[1] : '', [Validators.required]],
-      dob: ['', [Validators.required]],
-      country_code: [''],
+      dob: [this.datePipe.transform(this.dob, 'yyyy-MM-dd'), [Validators.required]],
+      country_code: [this.country_code],
       mobile_number: [this.mobileNo || '', [Validators.minLength(7), Validators.required]],
       email_id: [
         this.email || '',
@@ -786,106 +800,7 @@ async ngOnInit() {
   }
 
   submitData(): void {
-    if (
-      !this.registrationForm.value.title ||
-      this.registrationForm.value.title.length < 2
-    ) {
-      this.renderer.selectRootElement('#title').focus();
-      this.SharedService.ToastPopup(
-        'Title must be at least 2 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      !this.registrationForm.value.first_name ||
-      this.registrationForm.value.first_name.length < 3
-    ) {
-      this.renderer.selectRootElement('#f_name').focus();
-      this.SharedService.ToastPopup(
-        'First Name must be at least 3 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      !this.registrationForm.value.last_name ||
-      this.registrationForm.value.last_name.length < 2
-    ) {
-      this.renderer.selectRootElement('#l_name').focus();
-      this.SharedService.ToastPopup(
-        'Last Name must be at least 3 characters long.',
-        '',
-        'error'
-      );
-      return;
-    } else if (
-      this.registrationForm.value.dob == '' ||
-      this.registrationForm.value.dob == undefined
-    ) {
-      this.renderer.selectRootElement('#dob').focus();
-      this.SharedService.ToastPopup('Please Select Date Of Birth', '', 'error');
-      return;
-    }
-    else if (
-      !this.isOnline &&
-      (this.registrationForm.value.mobile_number == '' ||
-        this.registrationForm.value.mobile_number == undefined ||
-        this.registrationForm.value.mobile_number == null)
-    ) {
-      setTimeout(() => {
-        const inputElement = document.querySelector(
-          '#number_mobile1 input'
-        ) as HTMLInputElement;
-        if (inputElement) {
-          inputElement.focus();
-        } else {
-          console.error('Could not find mobile number input field');
-        }
-      }, 100);
-
-      this.SharedService.ToastPopup('Please Enter  Mobile Number', '', 'error');
-      return;
-    }
-    // else if (
-    //   this.registrationForm.controls['mobile_number'].errors &&
-    //   !this.registrationForm.controls['mobile_number'].errors
-    //     ?.validatePhoneNumber?.valid
-    // ) {
-    //   setTimeout(() => {
-    //     const inputElement = document.querySelector(
-    //       '#number_mobile1 input'
-    //     ) as HTMLInputElement;
-    //     if (inputElement) {
-    //       inputElement.focus();
-    //     } else {
-    //       console.error('Could not find mobile number input field');
-    //     }
-    //   }, 100);
-
-    //   this.SharedService.ToastPopup(
-    //     'Please enter a valid mobile number for the selected country',
-    //     '',
-    //     'error'
-    //   );
-    //   return;
-    // }
-    else if (
-      this.registrationForm.value.email_id == '' ||
-      this.registrationForm.value.email_id == undefined
-    ) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup('Please Enter Email ID', '', 'error');
-      return;
-    } else if (this.registrationForm.controls['email_id'].invalid) {
-      this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup(
-        'Please enter a valid Email ID',
-        '',
-        'error'
-      );
-      return;
-    } else if (
+  if (
       !this.registrationForm.value.profession_1 ||
       this.registrationForm.value.profession_1.trim().length < 2
     ) {
@@ -895,18 +810,6 @@ async ngOnInit() {
         '',
         'error'
       );
-      return;
-    } else if (this.country_name == '' || this.country_name == undefined) {
-      setTimeout(() => {
-        const countryElement = this.renderer.selectRootElement(
-          '#country',
-          true
-        );
-        if (countryElement) {
-          countryElement.focus();
-        }
-      }, 100);
-      this.SharedService.ToastPopup('Please Select Country', '', 'error');
       return;
     } else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
@@ -952,17 +855,10 @@ async ngOnInit() {
     const returnDOB = this.registrationForm.value.dob;
 
 
-    // let formattedMobileNumber = returnmobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
-    // console.log(formattedMobileNumber);
-    const result = this.extractPhoneComponents(this.mobileNo);
-    let formattedMobileNumber = result.mobileNumber;
-    let countryCode = result.countryCode
 
     this.registrationForm.patchValue({
-      country_code: countryCode,
-      mobile_number: formattedMobileNumber,
-      dob: this.formattedDate,
-      country: this.country_name,
+      dob: this.datePipe.transform(returnDOB, 'yyyy-MM-dd'),
+      country: this.registrationForm.value.country,
       state: this.state_name,
       city: this.city_name,
     });
@@ -973,8 +869,8 @@ async ngOnInit() {
 
       this.reqBody = {
         ...this.registrationForm.value,
-        country_code : "+91",
-        mobile_number :'9283939393',
+        country_code : this.country_code,
+        mobile_number : this.mobileNo,
         is_nomination: "0",
         p_type: "DELEGATE_ONLINE",
         p_reference_by: '0'
@@ -1000,7 +896,6 @@ async ngOnInit() {
         (err) => {
           this.ngxService.stop();
           this.registrationForm.patchValue({
-            mobile_number: formattedMobileNumber,
             dob: returnDOB,
           });
 

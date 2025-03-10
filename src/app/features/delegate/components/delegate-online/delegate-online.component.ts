@@ -76,6 +76,7 @@ export class DelegateOnlineComponent implements OnInit {
   SearchCountryField = SearchCountryField;
   delagateType: any;
   pType: string = "";
+  payload: any;
 
   constructor(
     private fb: FormBuilder,
@@ -347,33 +348,52 @@ export class DelegateOnlineComponent implements OnInit {
         this.pType = "DELEGATE_ONLINE";
       }
 
-      const payload = {
-        title: this.userForm.get('title')?.value,
-        first_name : this.userForm.get('first_name')?.value,
-        last_name : this.userForm.get('last_name')?.value,
-        mobile_number: formattedMobileNumber,
-        email_id: this.userForm.get('email')?.value.toLowerCase(),
-        country_code:  this.userForm.get('mobile_number')?.value.dialCode,
-        reference_no: this.referralCode ? this.referralCode : '',
-        dob: this.formattedDateOfBirth,
-        country_id: this.userForm.value.country,
-        is_nomination:"0",
-        p_type: this.pType,
-        p_reference_by:"0"
-      };
+      if(this.pType == "DELEGATE_ONLINE") {
+         this.payload = {
+          title: this.userForm.get('title')?.value,
+          first_name : this.userForm.get('first_name')?.value,
+          last_name : this.userForm.get('last_name')?.value,
+          mobile_number: formattedMobileNumber,
+          email_id: this.userForm.get('email')?.value.toLowerCase(),
+          country_code:  this.userForm.get('mobile_number')?.value.dialCode,
+          reference_no: this.referralCode ? this.referralCode : '',
+          dob: this.formattedDateOfBirth,
+          country_id: this.userForm.value.country,
+          is_nomination:"1",
+          p_type: this.pType,
+          p_reference_by:"0"
+        };
+      }
+      else if (this.pType == "DELEGATE_OFFLINE") {
+        this.payload = {
+          title: this.userForm.get('title')?.value,
+          first_name : this.userForm.get('first_name')?.value,
+          last_name : this.userForm.get('last_name')?.value,
+          mobile_number: formattedMobileNumber,
+          email_id: this.userForm.get('email')?.value.toLowerCase(),
+          country_code:  this.userForm.get('mobile_number')?.value.dialCode,
+          reference_no: this.referralCode ? this.referralCode : '',
+          dob: this.formattedDateOfBirth,
+          country_id: this.userForm.value.country,
+          is_nomination:"0",
+          p_type: this.pType,
+          p_reference_by:"0"
+        };
 
-      this.delegateService.postDelegateOnline(payload).subscribe({
+      }
+
+      this.delegateService.postDelegateOnline(this.payload).subscribe({
         next: (response: any) => {
 
           this.sharedService.ToastPopup(response.message, '', 'success');
-          this.registrationData = payload;
+          this.registrationData = this.payload;
 
           setTimeout(async () => {
             debugger
             if(response.isStripe)
-              await this.fnStripePG(response, payload);
+              await this.fnStripePG(response, this.payload);
             else
-              await this.fnMagnatiPG(response, payload);
+              await this.fnMagnatiPG(response, this.payload);
           }, 5000);
 
           this.loading = false;

@@ -22,6 +22,9 @@ interface RegistrationData {
   transcation_id: string;
   transcation_json: any;
   country_id: string;
+  country_code:string;
+  dob :string;
+
 }
 
 interface PeaceStudentData {
@@ -154,28 +157,29 @@ export class DelegatePaymentSuccessComponent {
 
           this.isPaymentStatus = response.session.payment_status;
 
+          debugger;
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
             let peaceStudentData = response.savedDetails[0].nominations[0];
             let adultData = response.savedDetails[0].parent_details[0];
             this.peaceStudentData = {
-              studentTitle: peaceStudentData.title_nom,
-              studentFirstName: peaceStudentData.first_name_nom,
-              studentLastName: response.savedDetails.last_name_nom || '',
-              studentEmail: response.savedDetails.email_id_nom || '',
-              studentMobileNumber: response.savedDetails.studentMobileNumber || '',
-              studentCountry_id: response.savedDetails.studentCountry_id || '',
-              studentDob: response.savedDetails.studentDob || '',
-              studentRelation: response.savedDetails.studentRelation || '',
-              studentInstituteName: response.savedDetails.studentInstituteName || '',
+              studentTitle: peaceStudentData?.title_nom,
+              studentFirstName: peaceStudentData?.first_name_nom,
+              studentLastName: peaceStudentData.last_name_nom,
+              studentEmail: peaceStudentData.email_id_nom,
+              studentMobileNumber: peaceStudentData.mobile_no_nom,
+              studentCountry_id: peaceStudentData.country_code_nom,
+              studentDob: peaceStudentData.dob_nom,
+              studentRelation: peaceStudentData.studentRelation,
+              studentInstituteName: peaceStudentData.institution_name_nom,
 
               adultTitle: adultData.title,
               adultFirstName: adultData.first_name,
-              adultLastName: adultData.last_name || '',
-              adultEmail: adultData.email_id || '',
-              adultMobileNumber: response.savedDetails.adultMobileNumber || '',
-              adultCountryId: response.savedDetails.adultCountryId || '',
-              transcation_id: response.session.payment_intent || '',
-              transcation_json: response.session.status || '',
+              adultLastName: adultData.last_name,
+              adultEmail: adultData.email_id,
+              adultMobileNumber: adultData.mobile_no,
+              adultCountryId: adultData.adultCountryId,
+              transcation_id: response.session.payment_intent,
+              transcation_json: response.session.status,
             };
           }
 
@@ -184,11 +188,13 @@ export class DelegatePaymentSuccessComponent {
               title: response.savedDetails[0].title,
               first_name: response.savedDetails[0].first_name,
               last_name: response.savedDetails[0].last_name,
-              email: response.savedDetails[0].email_id || '',
-              mobile_number: response.savedDetails[0].mobile_number,
+              email: response.savedDetails[0].email_id ,
+              country_code :response.savedDetails[0].country_code,
+              mobile_number: response.savedDetails[0].mobile_no,
+              country_id :response.savedDetails[0].country_id,
               transcation_id: response.session.payment_intent || '',
               transcation_json: { status: response.session.status || '' },
-              country_id: response.savedDetails.country_id
+              dob : response.savedDetails[0].dob
             };
             if (this.registrationData) {
               this.registrationData.email = response.session.customer_email;
@@ -198,11 +204,13 @@ export class DelegatePaymentSuccessComponent {
                 title: response.savedDetails[0].title,
                 first_name: response.savedDetails[0].first_name,
                 last_name: response.savedDetails[0].last_name,
-                email: response.savedDetails[0].email_id || '',
-                mobile_number: response.savedDetails[0].mobile_number,
+                country_code: response.savedDetails[0].country_code,
+                email: response.savedDetails[0].email_id,
+                mobile_number: response.savedDetails[0].mobile_no,
                 transcation_id: response.session.payment_intent || '',
                 transcation_json: { status: response.session.status || '' },
-                country_id: response.savedDetails[0].country_id
+                country_id: response.savedDetails[0].country_id,
+                dob: response.savedDetails[0].dob
               };
             }
           }
@@ -249,13 +257,16 @@ export class DelegatePaymentSuccessComponent {
 
   showCompleteProfile() {
 
+    debugger;
     if(this.pType == 'DELEGATE_ONLINE'){
       const params = {
         title: this.registrationData?.title,
-        email: this.registrationData?.email || '',
-        mobile_no: this.registrationData?.mobile_number || '',
+        email: this.registrationData?.email,
+        mobile_no: this.registrationData?.mobile_number,
         name: this.registrationData?.first_name + ' ' + this.registrationData?.last_name || '',
-        country_id: this.registrationData?.country_id || '',
+        country_id: this.registrationData?.country_id,
+        country_code : this.registrationData?.country_code,
+        dob: this.registrationData?.dob,
         isOnline: true,
       };
       sessionStorage.setItem('IsOnline', 'true');
@@ -275,13 +286,15 @@ export class DelegatePaymentSuccessComponent {
    else if(this.pType == 'DELEGATE_OFFLINE'){
     const params = {
       title: this.registrationData?.title,
-      email: this.registrationData?.email || '',
-      mobile_no: this.registrationData?.mobile_number || '',
+      email: this.registrationData?.email,
+      mobile_no: this.registrationData?.mobile_number,
       name:
         this.registrationData?.first_name +
         ' ' +
-        this.registrationData?.last_name || '',
-      country_id: this.registrationData?.country_id || '',
+        this.registrationData?.last_name,
+      country_id: this.registrationData?.country_id,
+      dob: this.registrationData?.dob,
+      country_code : this.registrationData?.country_code,
       isOnline: true,
     };
     sessionStorage.setItem('IsOffline', 'true');

@@ -9,6 +9,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import {CountryISO,NgxIntlTelInputComponent,PhoneNumberFormat,SearchCountryField} from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
+import { th } from 'intl-tel-input/i18n';
 
 
 interface PeaceStudentData {
@@ -104,9 +105,16 @@ export class DelegateWithChildNominationComponent {
   selectedRadioValue: string = '';
   previousType: string = '';
 
-  email: string = '';
+  title :string = "";
+  first_name: string = '';
+  last_name: string = '';
+  email_id :string = '';
   mobileNo: string = '';
-  name: string = '';
+  dob: string = '';
+  country_code:string = '';
+  country_id: string = '';
+
+
 
   peaceStudentData: PeaceStudentData | null = null;
 
@@ -175,16 +183,27 @@ export class DelegateWithChildNominationComponent {
 
           this.referralCode = updatedParams.code ? updatedParams.code : null;
 
+          debugger;
           if (params['data']) {
             const decryptedData = this.encryptionService.decryptData(params['data']);
 
+            console.log('Decrypted Data:', decryptedData);
             if (decryptedData) {
-              // this.peaceStudentData?.studentTitle = decryptedData.title;
-              // this.email = decryptedData.email;
-              // this.mobileNo = decryptedData.mobile_no;
-              // this.name = decryptedData.name;
-              // this.isOnline = decryptedData.isOnline;
-              // this.country_id = decryptedData.country_id
+              this.title = decryptedData.adultTitle;
+              this.first_name = decryptedData.adultFirstName;
+              this.last_name = decryptedData.adultLastName;
+              this.mobile_number = decryptedData.adultMobileNumber;
+              this.email_id = decryptedData.adultEmail;
+
+              this.nomineeName = decryptedData.studentFirstName;
+              this.nomineeDob = decryptedData.studentDob;
+              this.nomineeEmail = decryptedData.studentEmail;
+              this.nominee_mobile_number = decryptedData.studentMobileNumber;
+              this.nomineeRelation = decryptedData.studentRelation;
+              this.instituteName = decryptedData.studentInstituteName;
+
+              this.title = decryptedData.adultTitle;
+
             }
           }
 
@@ -200,14 +219,14 @@ export class DelegateWithChildNominationComponent {
 
   createForm() {
     this.registrationForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
+      title: [this.title, [Validators.required]],
+      first_name: [this.first_name, [Validators.required]],
+      last_name: [this.last_name, [Validators.required]],
       dob: ['', [Validators.required]],
       country_code: [''],
-      mobile_number: ['', [Validators.minLength(7), Validators.required]],
+      mobile_number: [this.mobile_number, [Validators.minLength(7), Validators.required]],
       email_id: [
-        '',
+        this.email_id,
         [
           Validators.required,
           Validators.email,
@@ -300,41 +319,6 @@ export class DelegateWithChildNominationComponent {
       }
     );
   }
-
-  // onUserDobChange(event: string): void {
-  //   if (!event) return; // Handle empty date input
-
-  //   const dob = new Date(event);
-  //   this.userAge = this.calculateAge(dob);
-
-  //   this.userDob = event;
-  //   console.log("User Age:", this.userAge);
-
-  //   const parsedDate = new Date(event);
-  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-  //   // Perform validation
-  //   this.validateUserAge();
-  // }
-
-  // onNomineeDobChange(event: string): void {
-  //   if (!event) return; // Handle empty date input
-
-  //   const dob = new Date(event);
-  //   this.nomineeAge = this.calculateAge(dob);
-  //   this.nomineeDob = event;
-  //   console.log("Nominee Age:", this.nomineeAge);
-
-  //   const parsedDate = new Date(event);
-  //   this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-  //   this.nomineeFormattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-  //   // Perform validation
-  //   this.validateNomineeAge();
-  // }
 
   onUserDobChange(event: string): void {
     if (!event) return; // Handle empty date input

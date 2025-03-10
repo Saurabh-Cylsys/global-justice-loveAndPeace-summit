@@ -71,6 +71,7 @@
                                       formControlName="title"
                                       autocomplete="off"
                                       (input)="onInput($event, 'title')"
+                                      readonly
                                     />
                                   </div>
                                   <div
@@ -118,6 +119,7 @@
                                       (paste)="onPaste($event)"
                                       autocomplete="off"
                                       (input)="onInput($event, 'first_name')"
+                                      readonly
                                       [ngClass]="{
                                         'text-danger':
                                           submitted && f.first_name.errors
@@ -177,6 +179,7 @@
                                       (keydown)="handleTabKey($event, 'dob')"
                                       autocomplete="off"
                                       (input)="onInput($event, 'last_name')"
+                                      readonly
                                       [ngClass]="{
                                         'is-invalid':
                                           submitted && f.last_name.errors
@@ -231,8 +234,7 @@
                                       [minDate]="minDate1"
                                       [maxDate]="maxDate1"
                                       (keydown)="disableManualInput($event)"
-                                      (ngModelChange)="onDateChange($event)"
-                                      (keydown.tab)="openDatepicker()"
+                                      (click)="preventDatepicker($event)"
                                       bsDatepicker
                                       [bsConfig]="{
                                         isAnimated: true,
@@ -241,6 +243,7 @@
                                         containerClass: colorTheme
                                       }"
                                       readonly
+                                      [isDisabled]="isDisabled"
                                     />
 
                                     <div
@@ -285,7 +288,7 @@
                                       ></label
                                     >
                                     <div class="" *ngIf="this.isOnline">
-                                      <label>+{{this.mobileNo}}</label>
+                                      <label>{{country_code}} {{this.mobileNo}}</label>
                                     </div>
                                     <div class="" *ngIf="!this.isOnline">
                                       <ngx-intl-tel-input
@@ -799,8 +802,8 @@
                                         let country of countryData;
                                         let j = index
                                       "
-                                      [value]="country['id']"
-                                       [attr.data-name]="country['name']"
+                                      [value]="country['name']"
+                                       [attr.data-name]="country['id']"
                                     >
                                       {{ country['name'] }}
                                     </option>
