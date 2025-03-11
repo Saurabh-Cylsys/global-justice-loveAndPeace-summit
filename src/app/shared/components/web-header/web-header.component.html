@@ -256,7 +256,7 @@
           aria-label="Close"
           data-bs-dismiss="offcanvas"
         >
-          Chairman’s Corner</a
+          Chairman's Corner</a
         >
       </li>
       <li>
@@ -449,7 +449,7 @@
                 class="nav-link"
                 routerLinkActive="active"
                 [routerLink]="['/chairman-corner']"
-                >Chairman’s Corner</a
+                >Chairman's Corner</a
               >
             </div>
           </li>
@@ -466,7 +466,7 @@
       <div class="col-md-2">
         <form class="d-flex justify-content-end" role="search">
           <!-- [routerLink]="['/delegate-registration']" -->
-          <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
+          <a type="btn" class="btn btn-success me-2 p-0" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
           <!-- <select
@@ -477,25 +477,19 @@
             <option value="">Eng</option>
           </select> -->
           <a
-            class="nav-link"
+            class="nav-link p-0"
             routerLinkActive="active"
-            style="
-              border: 1px solid #fff;
-              border-radius: 5px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              flex-flow: column wrap;
-            "
             data-bs-toggle="tooltip"
             data-bs-custom-class="custom-tooltip"
             data-bs-title="Download Brochures"
+            data-bs-placement="bottom"
+            data-bs-trigger="hover focus"
             [routerLink]="['/DownloadCenter']"
-            >Lang <br /><img
+            ><img
               loading="eager"
-              src="assets/UIComponents/images/download.svg"
-              alt="attach image"
-              class="w-50"
+              src="assets/UIComponents/images/download_new.svg"
+              alt="Download Brochures"
+              class="img-fluid"
           /></a>
         </form>
       </div>

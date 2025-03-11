@@ -2951,3 +2951,22 @@ button:focus {
   text-align: center;
   color: #1e1e1e;
 }
+
+/* Custom tooltip styles */
+.custom-tooltip {
+  --bs-tooltip-bg: var(--color3);
+  --bs-tooltip-color: white;
+  font-family: "din_proregular";
+  font-size: 14px;
+  padding: 8px;
+  --bs-tooltip-arrow-height: 0.5rem;
+  --bs-tooltip-arrow-width: 1rem;
+  --bs-tooltip-padding-y: 0.5rem;
+  --bs-tooltip-padding-x: 0.8rem;
+  --bs-tooltip-margin: 0.5rem 0 0 0;
+}
+
+/* Ensure the tooltip arrow points correctly when placed at the bottom */
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: var(--color3);
+}
