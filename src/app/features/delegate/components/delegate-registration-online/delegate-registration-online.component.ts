@@ -138,7 +138,6 @@ async ngOnInit() {
         this.referralCode = params.code;
 
         if (params['data']) {
-          debugger;
           const decryptedData = this.encryptionService.decryptData(params['data']);
 
           if (decryptedData) {

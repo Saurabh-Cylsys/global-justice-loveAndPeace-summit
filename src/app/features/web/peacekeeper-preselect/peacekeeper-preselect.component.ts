@@ -66,7 +66,7 @@ export class PeacekeeperPreselectComponent {
   goToOnlineDelegate() {
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { dType: 'offline', code: this.referralCode }
+        queryParams: { dType: 'online', code: this.referralCode }
       });
     }
     else {

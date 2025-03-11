@@ -89,7 +89,7 @@ export class DelegateOnlineComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-        debugger;
+
         this.referralCode = params.code;
 
         this.delagateType = params.dType;

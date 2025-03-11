@@ -162,7 +162,6 @@ export class DelegatePaymentSuccessComponent {
 
           this.isPaymentStatus = response.session.payment_status;
 
-          debugger;
           if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
            const isNominee = localStorage.getItem('isNominee')
 
@@ -307,7 +306,6 @@ export class DelegatePaymentSuccessComponent {
 
   showCompleteProfile() {
 
-    debugger;
     if(this.pType == 'DELEGATE_ONLINE'){
       const params = {
         title: this.registrationData?.title,
@@ -350,9 +348,7 @@ export class DelegatePaymentSuccessComponent {
 
     }
     else if(this.pType == 'DELEGATE_CHILD_NOMINATION'){
-      debugger;
 
-      console.log("this.peaceStudentData",this.peaceStudentData);
 
       const params = {
         studentTitle: this.peaceStudentData?.studentTitle,

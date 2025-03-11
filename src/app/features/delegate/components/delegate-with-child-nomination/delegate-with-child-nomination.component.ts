@@ -150,7 +150,6 @@ export class DelegateWithChildNominationComponent {
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
-    debugger;
       if (selectedCountry) {
 
         // this.registrationForm.patchValue({
@@ -224,7 +223,6 @@ export class DelegateWithChildNominationComponent {
 
           this.referralCode = updatedParams.code ? updatedParams.code : null;
 
-          debugger;
           if (params['data']) {
             const decryptedData = this.encryptionService.decryptData(params['data']);
 
@@ -287,7 +285,7 @@ export class DelegateWithChildNominationComponent {
     console.log("this.countryData", this.countryData);
 
     if (this.countryData.length > 0) {
-      debugger
+
       this.setCountry();
    }
   }
