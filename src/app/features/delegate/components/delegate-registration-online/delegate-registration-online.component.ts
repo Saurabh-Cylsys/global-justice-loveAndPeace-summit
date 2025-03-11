@@ -152,6 +152,7 @@ async ngOnInit() {
             this.country_code = decryptedData.country_code
             this.dob = decryptedData.dob;
             this.pType = decryptedData.pType;
+            this.referralCode = decryptedData.reference_no;
           }
         }
       }

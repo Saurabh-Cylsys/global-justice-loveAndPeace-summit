@@ -242,6 +242,7 @@ export class DelegateWithChildNominationComponent {
                 this.email_id = decryptedData.adultEmail;
                 this.country_id = decryptedData.adultCountryId;
                 this.dob = decryptedData.adultDob;
+                this.referralCode = decryptedData.reference_no
 
                 this.nomineeName = decryptedData.studentFirstName + ' ' + decryptedData.studentLastName;
                 this.nomineeDob =  this.formatDate(decryptedData.studentDob);
@@ -261,6 +262,7 @@ export class DelegateWithChildNominationComponent {
                 this.email_id = decryptedData.studentEmail;
                 this.country_id = decryptedData.studentCountryId;
                 this.dob = decryptedData.studentDob;
+                this.referralCode = decryptedData.reference_no
 
                 this.nomineeName = decryptedData.adultFirstName + ' ' + decryptedData.adultLastName;
                 this.nomineeDob =  this.formatDate(decryptedData.adultDob);

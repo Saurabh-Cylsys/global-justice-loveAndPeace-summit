@@ -20,6 +20,7 @@ interface RegistrationData {
   country_id: string;
   country_code:string;
   dob :string;
+  referralCode? :string
 
 }
 
@@ -45,6 +46,8 @@ interface PeaceStudentData {
   transcation_id: string;
   transcation_json: any;
   adultCountryCode: string;
+
+  referralCode? :string
 
 }
 
@@ -189,6 +192,7 @@ export class DelegatePaymentSuccessComponent {
               adultMobileNumber: adultData.mobile_no,
               adultCountryId: adultData.country_id,
               adultDob:adultData.dob,
+              referralCode : adultData.reference_no,
 
               transcation_id: response.session.payment_intent,
               transcation_json: response.session.status,
@@ -209,6 +213,7 @@ export class DelegatePaymentSuccessComponent {
               studentDob: peaceStudentData.dob,
               studentRelation: peaceStudentData.relation,
               studentInstituteName: adultData.institution_name_nom,
+              referralCode : peaceStudentData.reference_no,
 
               adultTitle: adultData.title_nom,
               adultFirstName: adultData.first_name_nom,
@@ -237,7 +242,8 @@ export class DelegatePaymentSuccessComponent {
               country_id :response.savedDetails[0].country_id,
               transcation_id: response.session.payment_intent || '',
               transcation_json: { status: response.session.status || '' },
-              dob : response.savedDetails[0].dob
+              dob : response.savedDetails[0].dob,
+              referralCode : response.savedDetails[0].reference_no
             };
             if (this.registrationData) {
               this.registrationData.email = response.session.customer_email;
@@ -253,7 +259,8 @@ export class DelegatePaymentSuccessComponent {
                 transcation_id: response.session.payment_intent || '',
                 transcation_json: { status: response.session.status || '' },
                 country_id: response.savedDetails[0].country_id,
-                dob: response.savedDetails[0].dob
+                dob: response.savedDetails[0].dob,
+                referralCode : response.savedDetails[0].reference_no
               };
             }
           }
@@ -311,6 +318,7 @@ export class DelegatePaymentSuccessComponent {
         country_id: this.registrationData?.country_id,
         country_code : this.registrationData?.country_code,
         dob: this.registrationData?.dob,
+        reference_no : this.registrationData?.referralCode,
         isOnline: true,
         pType : 'DELEGATE_ONLINE'
       };
@@ -330,6 +338,7 @@ export class DelegatePaymentSuccessComponent {
       country_id: this.registrationData?.country_id,
       dob: this.registrationData?.dob,
       country_code : this.registrationData?.country_code,
+      reference_no : this.registrationData?.referralCode,
       isOnline: false,
       pType : 'DELEGATE_OFFLINE'
     };
@@ -367,6 +376,8 @@ export class DelegatePaymentSuccessComponent {
         adultDob : this.peaceStudentData?.adultDob,
         transcation_id: this.peaceStudentData?.transcation_id,
         transcation_json: this.peaceStudentData?.transcation_json,
+
+        reference_no : this.peaceStudentData?.referralCode,
 
 
         IsChildNomination: true,
