@@ -890,7 +890,8 @@ header .nav-item .nav-link.active {
 /* contact-info */
 
 .contact-info {
-  background-image: url(../images/contact-us/contact-info.gif);
+  /* background-image: url(../images/contact-us/contact-info.gif); */
+  background-color: #004d7a;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -2929,6 +2930,40 @@ button:focus {
   color: #131313 !important;
 }
 
+.ui-card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 210px 80px;
+  grid-template-areas:
+    "image"
+    "text"
+    "stats";
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  transition: 0.4s ease;
+  cursor: pointer;
+  margin: auto; /* Center alignment */
+  max-width: 320px; /* Prevents too much stretching */
+}
+
+.delegateonline .iti{
+  border-bottom:  0 !important;
+}
+
+.delegateonline .iti #phone{
+  border: 0 !important;
+}
+
+.delegateonline .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: none;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
 #pe6 {
   background-image: url(../images/venueBg.png) !important;
   background-color: var(--color5) !important;

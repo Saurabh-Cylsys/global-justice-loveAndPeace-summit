@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+//import { SafePipe } from './pipes/safe.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedRoutingModule } from './shared-routing.module';
 import { WebHeaderComponent } from './components/web-header/web-header.component';
@@ -10,6 +11,7 @@ import { MediaHeaderComponent } from './components/media-header/media-header.com
 // import { CustomePipePipe } from './classes/custome-pipe.pipe';
 @NgModule({
   declarations: [
+    //SafePipe,
     WebHeaderComponent,
     WebFooterComponent,
     LeftPanelComponent,

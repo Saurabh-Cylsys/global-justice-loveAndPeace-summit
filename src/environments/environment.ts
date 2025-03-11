@@ -10,9 +10,10 @@ export const environment = {
   // domainUrl:'https://globaljusticeqc.cylsys.com',         //QC for peackeeper qrcode
   // tinyUrl : 'https://tinyurl.com/7yuvnmyj',               //tiny url for mediator page
 
+  // tinyUrl : 'https://tinyurl.com/3322sj49',   // For Local
+
   apiMockUrl: '/api/v1',
   app_env: 'development',
   encryptionKey: 'np9dYaGAsDAswUhBUmrF5DsKDUXD5xlG4yn+6+wvaRoyP0UYgdOlSw5uGAa5iBNu'
-
 };
 
