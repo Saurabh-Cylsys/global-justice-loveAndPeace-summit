@@ -1,0 +1,35 @@
+.header-text {
+  font-weight: 600;
+  font-size: clamp(20.54px, 2vw, 28px);
+  line-height: 150%;
+  letter-spacing: 4%;
+  text-transform: capitalize;
+  color: #005b94;
+}
+
+.header-text-2 {
+  font-weight: 600;
+  font-size: clamp(20.54px, 2vw, 28px);
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: #36382e;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+}
+
+.footer-links a {
+  font-size: clamp(16px, 2vw, 23px);
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #005b94;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: disc;
+  color: #005b94;
+}
