@@ -404,7 +404,6 @@ private async fnStripePG(response: any, payload: any) {
     const studentrawMobileNumber = this.delegateForm.value.mobile_number.number;
     let studentMobileNumber = studentrawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
 
-    debugger;
 
     if(this.userType === 'student'){
 
@@ -421,7 +420,7 @@ private async fnStripePG(response: any, payload: any) {
         "mobile_number": studentMobileNumber ,
         "email_id": this.trimValue(this.studentForm.value.email),
         "country_code": this.studentForm.value.mobile_number.dialCode,
-        "reference_no": this.referralCode ? this.referralCode : '',
+        "reference_no": this.referralCode ? this.referralCode : this.studentForm.value.reference_no,
         "dob": this.formattedStudentDob,
         "country_id": this.studentForm.value.country,
 
@@ -454,7 +453,7 @@ private async fnStripePG(response: any, payload: any) {
         "mobile_number": delegateMobileNumber,
         "email_id": this.trimValue(this.delegateForm.value.email),
         "country_code": this.delegateForm.value.mobile_number.dialCode,
-        "reference_no": this.referralCode ? this.referralCode : '',
+        "reference_no": this.referralCode ? this.referralCode : this.delegateForm.value.reference_no,
         "dob": this.formattedDelagateDob,
         "country_id": this.delegateForm.value.country,
 
@@ -479,7 +478,7 @@ private async fnStripePG(response: any, payload: any) {
           this.sharedService.ToastPopup('', response.message, 'success');
 
           setTimeout(async () => {
-            debugger
+
             if(response.isStripe)
               await this.fnStripePG(response, this.requestBody);
             else
