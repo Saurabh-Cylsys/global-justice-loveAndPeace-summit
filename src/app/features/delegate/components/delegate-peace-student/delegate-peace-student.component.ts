@@ -407,6 +407,15 @@ private async fnStripePG(response: any, payload: any) {
 
     if(this.userType === 'student'){
 
+      if (
+        this.studentForm?.value?.email?.trim().toLowerCase() ===
+        this.delegateForm?.value?.email?.trim().toLowerCase()
+      ) {
+        this.sharedService.ToastPopup('Both email IDs should not be the same', '', 'error');
+        return;
+      }
+
+
       if(this.delegateForm.value.relation == "") {
         this.sharedService.ToastPopup('Please enter relation','','error');
         return;
@@ -440,6 +449,14 @@ private async fnStripePG(response: any, payload: any) {
       localStorage.setItem('isNominee','adult');
     }
     else if(this.userType === 'delegate'){
+
+      if (
+        this.studentForm?.value?.email?.trim().toLowerCase() ===
+        this.delegateForm?.value?.email?.trim().toLowerCase()
+      ) {
+        this.sharedService.ToastPopup('Both email IDs should not be the same', '', 'error');
+        return;
+      }
 
       if(this.studentForm.value.relation == "") {
         this.sharedService.ToastPopup('Please enter relation','','error');
