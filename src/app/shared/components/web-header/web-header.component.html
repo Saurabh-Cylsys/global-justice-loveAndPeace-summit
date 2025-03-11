@@ -316,18 +316,17 @@
         *ngIf="!isMobileView"
         [ngClass]="{ 'small-logo': isScrolled }"
       >
-      <a
+        <a
           class="navbar-brand logo"
           [routerLink]="['/home']"
           *ngIf="!isHomePage"
         >
-        <img
-          loading="eager"
-          src="assets/UIComponents/images/logo.gif"
-          alt="attach images"
-          width="80%"
-
-        />
+          <img
+            loading="eager"
+            src="assets/UIComponents/images/logo.gif"
+            alt="attach images"
+            width="80%"
+          />
         </a>
         <img
           loading="eager"
@@ -369,7 +368,12 @@
                 >
                   {{ link.label }}
                 </a> -->
-                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" [routerLink]="['/the-summit']" fragment="{{ link.fragment }}">
+                <a
+                  *ngFor="let link of summitLinks"
+                  (click)="navigateToSection(link.fragment)"
+                  [routerLink]="['/the-summit']"
+                  fragment="{{ link.fragment }}"
+                >
                   {{ link.label }}
                 </a>
               </div>
@@ -439,9 +443,29 @@
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <button class="dropbtn" [routerLink]="['/media/news-paper']">
+            <!-- <button class="dropbtn" [routerLink]="['/media/news-paper']">
               Media
-            </button>
+            </button> -->
+            <!-- <button class="dropbtn"
+              [routerLink]="['/DownloadCenter']"
+              >Download Center</button
+            > -->
+            <div class="hover-dropdown">
+              <button class="dropbtn" [routerLink]="['/DownloadCenter']">
+                Download Center
+              </button>
+              <div class="hover-dropdown-content">
+                <button [routerLink]="['/download-brochure']"  class="btn btn-success" style="font-size: 14px; margin: 0 0; text-align: center; width: 100%; border-radius: 0;" tabindex="0"> Download Brochure </button>
+                <a
+                  *ngFor="let link of downloadLinks"
+                  [routerLink]="['/DownloadCenter']"
+                  (click)="navigateToSection(link.fragment)"
+                  fragment="{{ link.fragment }}"
+                >
+                  {{ link.label }}
+                </a>
+              </div>
+            </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
             <div class="hover-dropdown">
@@ -466,7 +490,7 @@
       <div class="col-md-2">
         <form class="d-flex justify-content-end" role="search">
           <!-- [routerLink]="['/delegate-registration']" -->
-          <a type="btn" class="btn btn-success me-2 p-0" (click)="navigateUrl()"
+          <a type="btn" class="btn btn-success me-2" (click)="navigateUrl()"
             >Register As a Delegate</a
           >
           <!-- <select
@@ -477,6 +501,27 @@
             <option value="">Eng</option>
           </select> -->
           <a
+            routerlinkactive="active"
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
+            class="nav-link"
+            style="
+              border: 1px solid #fff;
+              border-radius: 5px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-flow: column wrap;
+            "
+            [routerLink]="['/download-brochure']"
+            >Lang <br /><img
+              loading="eager"
+              src="assets/UIComponents/images/download.svg"
+              alt="attach image"
+              class="w-50"
+          /></a>
+          <!-- <a
             class="nav-link p-0"
             routerLinkActive="active"
             data-bs-toggle="tooltip"
@@ -490,7 +535,7 @@
               src="assets/UIComponents/images/download_new.svg"
               alt="Download Brochures"
               class="img-fluid"
-          /></a>
+          /></a> -->
         </form>
       </div>
     </div>
