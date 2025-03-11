@@ -1,3 +1,5 @@
+
+
 .section5.pre-select {
   background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
   min-height: 100vh;
@@ -298,98 +300,98 @@ h5 {
 }
 /*
 .container-01 {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	width: 100%;
-	height: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
   margin-top: 10px;
-	background: #f0f3f678;
+  background: #f0f3f678;
 }
 .container-01 h2 {
-	position: relative;
-	width: 50%;
-	text-align: center;
-	z-index: 11;
-	color: #32a3b1;
-	font-size: 25px;
-	font-weight: 700;
-	text-align: center;
-	border-radius: 15px;
-	padding: 5px 8px;
-	font-size: 25px;
-	box-shadow: -6px -6px 20px rgba(255,255,255,1),
-				6px 6px 20px rgba(0,0,0,0.1);
+  position: relative;
+  width: 50%;
+  text-align: center;
+  z-index: 11;
+  color: #32a3b1;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 15px;
+  padding: 5px 8px;
+  font-size: 25px;
+  box-shadow: -6px -6px 20px rgba(255,255,255,1),
+        6px 6px 20px rgba(0,0,0,0.1);
 }
 .container-01 .neumorphic-card {
-	width: 320px;
-	height: 500px;
-	margin: 28px;
-	padding: 40px 30px;
-	background: #ebf5fc;
-	border-radius: 40px;
-	box-shadow: -6px -6px 20px rgba(255,255,255,1),
-				6px 6px 20px rgba(0,0,0,0.1);
+  width: 320px;
+  height: 500px;
+  margin: 28px;
+  padding: 40px 30px;
+  background: #ebf5fc;
+  border-radius: 40px;
+  box-shadow: -6px -6px 20px rgba(255,255,255,1),
+        6px 6px 20px rgba(0,0,0,0.1);
 }
 .container-01 .neumorphic-card:hover {
-	box-shadow: none 26px 26px 10px rgba(255,255,255,0.5),
-				inset 26px 26px 20px rgba(0,0,0,0.05);
+  box-shadow: none 26px 26px 10px rgba(255,255,255,0.5),
+        inset 26px 26px 20px rgba(0,0,0,0.05);
 }
 .container-01 .neumorphic-card .imgBox {
-	position: relative;
-	text-align: center;
+  position: relative;
+  text-align: center;
 }
 .container-01 .neumorphic-card .imgBox i {
-	font-size: max(80px);
-	color: #0a0f10;
+  font-size: max(80px);
+  color: #0a0f10;
 }
 .container-01 .neumorphic-card .contentBox {
-	position: relative;
-	margin-top: 20px;
-	text-align:center;
+  position: relative;
+  margin-top: 20px;
+  text-align:center;
 }
 .container-01 .neumorphic-card .contentBox h3 {
-	color: #0a0f10;
-	font-weight: 700;
-	letter-spacing: 2px;
-	font-size: 1.4em;
+  color: #0a0f10;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1.4em;
 }
 .container-01 .neumorphic-card .contentBox p {
-	color: #0a0f10;
+  color: #0a0f10;
 }
 .container-01 .neumorphic-card .contentBox a {
-	display: inline-block;
-	padding: 10px 20px;
-	margin-top: 15px;
-	border-radius: 40px;
-	color: #0a0f10;
-	font-size: 16px;
-	text-decoration: none;
-	box-shadow: -4px -4px 15px rgba(255,255,255,1),
-				4px 4px 15px rgba(0,0,0,0.1);
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border-radius: 40px;
+  color: #0a0f10;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: -4px -4px 15px rgba(255,255,255,1),
+        4px 4px 15px rgba(0,0,0,0.1);
 }
 .container-01 .neumorphic-card .contentBox a:hover {
-	box-shadow: inset-4px -4px 10px rgba(255,255,255,0.5),
-				inset 4px 4px 10px rgba(0,0,0,0.1);
+  box-shadow: inset-4px -4px 10px rgba(255,255,255,0.5),
+        inset 4px 4px 10px rgba(0,0,0,0.1);
 }
 .container-01 .neumorphic-card .contentBox a:hover span {
-	display: block;
-	transform: scale(0.98);
+  display: block;
+  transform: scale(0.98);
 }
 .container-01 .neumorphic-card:hover .imgBox,
 .container-01 .neumorphic-card:hover .contentBox {
-	transform: scale(0.98);
+  transform: scale(0.98);
 }
 .container-01 p {
-	z-index: 12;
-	margin: 20px auto 10px;
-	position: relative;
-	color: #0a0f10;
+  z-index: 12;
+  margin: 20px auto 10px;
+  position: relative;
+  color: #0a0f10;
 }
 .container-01 p span {
-	font-weight: 700;
+  font-weight: 700;
 } */
 
 /* Container for the cards */
@@ -616,6 +618,9 @@ h5 {
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 1;
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 .price-ribbon:before {
   content: '';
@@ -780,3 +785,44 @@ h5 {
   outline: none !important;
   box-shadow: none !important;
 }
+/*
+.video-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  padding: 2rem;
+
+}
+
+
+.video-background:before{
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: "";
+  background-color: #000;
+  opacity: 0.39;
+  z-index: 6;
+ }
+ .video-background {
+   position: relative;
+  background: #222;
+ width:100%;
+ z-index:5;
+   }
+ #video-background{
+  background-size: cover;
+ transition: 1s opacity;
+ }
+
+ .cover-text{
+ position:absolute;
+ width:100%;
+ text-align:center;
+ z-index:9999;
+ top:5em;
+ }
+
+ .cover-text h1, .cover-text p{
+ color:#fff !important;
+  } */
