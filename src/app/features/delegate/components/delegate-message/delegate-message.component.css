@@ -255,3 +255,15 @@
     top: 38px;
   }
 }
+
+@media (min-width: 320px) {
+  .confirmation-container {
+    padding: 0rem;
+  }
+}
+
+@media (min-width: 426px) {
+  .confirmation-container {
+    padding: 2rem;
+  }
+}

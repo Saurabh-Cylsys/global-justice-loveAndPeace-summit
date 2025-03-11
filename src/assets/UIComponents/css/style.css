@@ -889,7 +889,8 @@ header .nav-item .nav-link.active {
 /* contact-info */
 
 .contact-info {
-  background-image: url(../images/contact-us/contact-info.gif);
+  /* background-image: url(../images/contact-us/contact-info.gif); */
+  background-color: #004d7a;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
