@@ -1,6 +1,6 @@
 .header-text {
   font-weight: 600;
-  font-size: clamp(20.54px, 2vw, 28px);
+  font-size: clamp(18px, 2vw, 22px);
   line-height: 150%;
   letter-spacing: 4%;
   text-transform: capitalize;
@@ -9,7 +9,7 @@
 
 .header-text-2 {
   font-weight: 600;
-  font-size: clamp(20.54px, 2vw, 28px);
+  font-size: clamp(18px, 2vw, 22px);
   line-height: 130%;
   letter-spacing: 0%;
   color: #36382e;
@@ -21,7 +21,7 @@ ul {
 }
 
 .footer-links a {
-  font-size: clamp(16px, 2vw, 23px);
+  font-size: clamp(14px, 2vw, 16px);
   line-height: 150%;
   letter-spacing: 0%;
   text-align: center;
@@ -76,6 +76,7 @@ ul {
 .social-icons a img {
   animation: float 3s ease-in-out infinite;
   animation-delay: calc(var(--i, 0) * 0.2s);
+  width: 30px;
 }
 
 .social-icons a:nth-child(1) img { --i: 1; }
