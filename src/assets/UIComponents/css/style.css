@@ -183,6 +183,7 @@ header .nav-item .nav-link.active {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   text-shadow: 0px 1.11px 4.44px #000000;
+  margin: 0;
 }
 
 .index .section1 .tableBox table tr td p {
@@ -889,7 +890,8 @@ header .nav-item .nav-link.active {
 /* contact-info */
 
 .contact-info {
-  background-image: url(../images/contact-us/contact-info.gif);
+  /* background-image: url(../images/contact-us/contact-info.gif); */
+  background-color: #004d7a;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -1777,6 +1779,10 @@ header .nav-item .nav-link.active {
 
 .confirmation table tr td:nth-child(2) {
   font-weight: 600;
+}
+.confirmation table tr td:nth-child(3) {
+  /* font-weight: 900; */
+  text-transform: uppercase;
 }
 
 .indexSec2 ul {
@@ -2906,6 +2912,40 @@ button:focus {
   color: #131313 !important;
 }
 
+.ui-card {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 210px 80px;
+  grid-template-areas:
+    "image"
+    "text"
+    "stats";
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  transition: 0.4s ease;
+  cursor: pointer;
+  margin: auto; /* Center alignment */
+  max-width: 320px; /* Prevents too much stretching */
+}
+
+.delegateonline .iti{
+  border-bottom:  0 !important;
+}
+
+.delegateonline .iti #phone{
+  border: 0 !important;
+}
+
+.delegateonline .form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: none;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
 #pe6 {
   background-image: url(../images/venueBg.png) !important;
   background-color: var(--color5) !important;
@@ -2945,4 +2985,23 @@ button:focus {
   letter-spacing: 0%;
   text-align: center;
   color: #1e1e1e;
+}
+
+/* Custom tooltip styles */
+.custom-tooltip {
+  --bs-tooltip-bg: var(--color3);
+  --bs-tooltip-color: white;
+  font-family: "din_proregular";
+  font-size: 14px;
+  padding: 8px;
+  --bs-tooltip-arrow-height: 0.5rem;
+  --bs-tooltip-arrow-width: 1rem;
+  --bs-tooltip-padding-y: 0.5rem;
+  --bs-tooltip-padding-x: 0.8rem;
+  --bs-tooltip-margin: 0.5rem 0 0 0;
+}
+
+/* Ensure the tooltip arrow points correctly when placed at the bottom */
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: var(--color3);
 }

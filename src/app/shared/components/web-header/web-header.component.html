@@ -256,7 +256,7 @@
           aria-label="Close"
           data-bs-dismiss="offcanvas"
         >
-          Chairman’s Corner</a
+          Chairman's Corner</a
         >
       </li>
       <li>
@@ -316,18 +316,17 @@
         *ngIf="!isMobileView"
         [ngClass]="{ 'small-logo': isScrolled }"
       >
-      <a
+        <a
           class="navbar-brand logo"
           [routerLink]="['/home']"
           *ngIf="!isHomePage"
         >
-        <img
-          loading="eager"
-          src="assets/UIComponents/images/logo.gif"
-          alt="attach images"
-          width="80%"
-
-        />
+          <img
+            loading="eager"
+            src="assets/UIComponents/images/logo.gif"
+            alt="attach images"
+            width="80%"
+          />
         </a>
         <img
           loading="eager"
@@ -369,7 +368,12 @@
                 >
                   {{ link.label }}
                 </a> -->
-                <a *ngFor="let link of summitLinks" (click)="navigateToSection(link.fragment)" [routerLink]="['/the-summit']" fragment="{{ link.fragment }}">
+                <a
+                  *ngFor="let link of summitLinks"
+                  (click)="navigateToSection(link.fragment)"
+                  [routerLink]="['/the-summit']"
+                  fragment="{{ link.fragment }}"
+                >
                   {{ link.label }}
                 </a>
               </div>
@@ -439,24 +443,19 @@
             </div>
           </li>
           <li class="nav-item" routerLinkActive="active">
+            <!-- <button class="dropbtn" [routerLink]="['/media/news-paper']">
+              Media
+            </button> -->
+            <!-- <button class="dropbtn"
+              [routerLink]="['/DownloadCenter']"
+              >Download Center</button
+            > -->
             <div class="hover-dropdown">
               <button class="dropbtn" [routerLink]="['/DownloadCenter']">
                 Download Center
               </button>
               <div class="hover-dropdown-content">
-                <button
-                  class="btn btn-success"
-                  [routerLink]="['/download-brochure']"
-                  style="
-                    font-size: 14px;
-                    margin: 0 0;
-                    text-align: center;
-                    width: 100%;
-                    border-radius: 0;
-                  "
-                >
-                  Download Brochure
-                </button>
+                <button [routerLink]="['/download-brochure']"  class="btn btn-success" style="font-size: 14px; margin: 0 0; text-align: center; width: 100%; border-radius: 0;" tabindex="0"> Download Brochure </button>
                 <a
                   *ngFor="let link of downloadLinks"
                   [routerLink]="['/DownloadCenter']"
@@ -465,10 +464,6 @@
                 >
                   {{ link.label }}
                 </a>
-                <!-- <a [routerLink]="['/download-applications']"
-                >
-                  Download Mobile Application
-                </a> -->
               </div>
             </div>
           </li>
@@ -478,7 +473,7 @@
                 class="nav-link"
                 routerLinkActive="active"
                 [routerLink]="['/chairman-corner']"
-                >Chairman’s Corner</a
+                >Chairman's Corner</a
               >
             </div>
           </li>
@@ -506,8 +501,11 @@
             <option value="">Eng</option>
           </select> -->
           <a
+            routerlinkactive="active"
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
             class="nav-link"
-            routerLinkActive="active"
             style="
               border: 1px solid #fff;
               border-radius: 5px;
@@ -516,9 +514,6 @@
               justify-content: center;
               flex-flow: column wrap;
             "
-            data-bs-toggle="tooltip"
-            data-bs-custom-class="custom-tooltip"
-            data-bs-title="Download Brochures"
             [routerLink]="['/download-brochure']"
             >Lang <br /><img
               loading="eager"
@@ -526,6 +521,21 @@
               alt="attach image"
               class="w-50"
           /></a>
+          <!-- <a
+            class="nav-link p-0"
+            routerLinkActive="active"
+            data-bs-toggle="tooltip"
+            data-bs-custom-class="custom-tooltip"
+            data-bs-title="Download Brochures"
+            data-bs-placement="bottom"
+            data-bs-trigger="hover focus"
+            [routerLink]="['/DownloadCenter']"
+            ><img
+              loading="eager"
+              src="assets/UIComponents/images/download_new.svg"
+              alt="Download Brochures"
+              class="img-fluid"
+          /></a> -->
         </form>
       </div>
     </div>

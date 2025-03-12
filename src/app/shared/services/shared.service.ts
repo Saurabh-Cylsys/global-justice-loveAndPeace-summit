@@ -103,6 +103,7 @@ private getRouteData(): any {
     return this._apiHttpService.post(this._apiEndpointsService.registrationEndpoint(), data
     )
   }
+
   contectUs(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.contectUsEndpoint(), data
     )
@@ -135,6 +136,11 @@ private getRouteData(): any {
 
   getIPAddress() {
     return this._apiHttpService.get('https://api64.ipify.org?format=json')
+  }
+
+  registrationOnline(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postRegistrationOnlineEndpoint(), data
+    )
   }
 
 }
