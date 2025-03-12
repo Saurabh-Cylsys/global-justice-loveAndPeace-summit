@@ -576,14 +576,13 @@ export class WebService {
       Credentials: 'Secretary General Indian Business & Professional Council (IBPC) Dubai, CFO Ajmal Perfumes',
     },
 
-    {
-      // "S_No": 33,
-      View: '',
-      Profile_Photo: 'speaker36.png',
-      Name: 'Sanjay Khan',
-      Country: 'INDIA',
-      Credentials: 'Producer, Director, & Actor',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker36.png',
+    //   Name: 'Sanjay Khan',
+    //   Country: 'INDIA',
+    //   Credentials: 'Producer, Director, & Actor',
+    // },
     {
       // "S_No": 34,
       View: '',
@@ -703,14 +702,13 @@ export class WebService {
       Credentials: 'Celebrity Fitness Trainer',
     },
     // list 21
-    {
-      // "S_No": 39,
-      View: '',
-      Profile_Photo: 'speaker43.png',
-      Name: 'Zayed Khan',
-      Country: 'INDIA',
-      Credentials: 'Producer & Actor',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker43.png',
+    //   Name: 'Zayed Khan',
+    //   Country: 'INDIA',
+    //   Credentials: 'Producer & Actor',
+    // },
   ];
 
   speakersList: any[] = [
@@ -1218,14 +1216,13 @@ export class WebService {
       Credentials: 'Secretary General Indian Business & Professional Council (IBPC) Dubai, CFO Ajmal Perfumes',
     },
 
-    {
-      // "S_No": 33,
-      View: '',
-      Profile_Photo: 'speaker36.png',
-      Name: 'Sanjay Khan',
-      Country: 'INDIA',
-      Credentials: 'Producer, Director, & Actor',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker36.png',
+    //   Name: 'Sanjay Khan',
+    //   Country: 'INDIA',
+    //   Credentials: 'Producer, Director, & Actor',
+    // },
     {
       // "S_No": 34,
       View: '',
@@ -1345,14 +1342,13 @@ export class WebService {
       Credentials: 'Celebrity Fitness Trainer',
     },
     // list 21
-    {
-      // "S_No": 39,
-      View: '',
-      Profile_Photo: 'speaker43.png',
-      Name: 'Zayed Khan',
-      Country: 'INDIA',
-      Credentials: 'Producer & Actor',
-    },
+    // {
+    //   View: '',
+    //   Profile_Photo: 'speaker43.png',
+    //   Name: 'Zayed Khan',
+    //   Country: 'INDIA',
+    //   Credentials: 'Producer & Actor',
+    // },
     {
       // "S_No": 39,
       View: '',
@@ -1975,13 +1971,20 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Secretary General Indian Business & Professional Council (IBPC) Dubai, CFO Ajmal Perfumes',
           },
+          // {
+          //   View: '',
+          //   Profile_Photo: 'speaker36.png',
+          //   Name: 'Sanjay Khan',
+          //   Country: 'INDIA',
+          //   Credentials: 'Producer, Director, & Actor',
+          // },
           {
-            // "S_No": 33,
+            // "S_No": 34,
             View: '',
-            Profile_Photo: 'speaker36.png',
-            Name: 'Sanjay Khan',
+            Profile_Photo: 'speaker70.png',
+            Name: 'Sanjeev Kapoor',
             Country: 'INDIA',
-            Credentials: 'Producer, Director, & Actor',
+            Credentials: 'World Renowned Chef',
           },
           
         ],
@@ -1991,14 +1994,7 @@ export class WebService {
           // list 19
           
 
-          {
-            // "S_No": 34,
-            View: '',
-            Profile_Photo: 'speaker70.png',
-            Name: 'Sanjeev Kapoor',
-            Country: 'INDIA',
-            Credentials: 'World Renowned Chef',
-          },
+          
 
           {
             // "S_No": 33,
@@ -2016,14 +2012,6 @@ export class WebService {
             Country: 'USA',
             Credentials: 'Ambassador of Sikh Dharma',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 20
-          
-
           {
             // "S_No": 34,
             View: '',
@@ -2033,6 +2021,15 @@ export class WebService {
             Credentials:
               'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 20
+          
+
+          
           {
             // "S_No": 34,
             View: '',
@@ -2049,14 +2046,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Producer & Actress, Royalty',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 21
-          
-
           {
             // "S_No": 1,
             View: '',
@@ -2066,6 +2055,15 @@ export class WebService {
             Credentials:
               'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 21
+          
+
+          
           {
             // "S_No": 35,
             View: '',
@@ -2083,13 +2081,6 @@ export class WebService {
             Credentials:
               'High Priest, Shreeji Pak Iranshah Atash Behram, Udvada : Zoroastrian Religion Leader',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 22
-          
           {
             // "S_No": 36,
             View: '',
@@ -2099,6 +2090,14 @@ export class WebService {
             Credentials:
               'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
           },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 22
+          
+          
 
           {
             // "S_No": 37,
@@ -2117,13 +2116,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Attorney General of India',
           },
-          
-        ],
-      },
-      {
-        speakers: [
-          // list 22
-          
           {
             // "S_No": 37,
             View: '',
@@ -2132,6 +2124,13 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'CEO, OIC (Organisation of Islamic Countries)',
           },
+        ],
+      },
+      {
+        speakers: [
+          // list 22
+          
+          
           {
             // "S_No": 38,
             View: '',
@@ -2140,19 +2139,13 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Celebrity Fitness Trainer',
           },
-          {
-            // "S_No": 39,
-            View: '',
-            Profile_Photo: 'speaker43.png',
-            Name: 'Zayed Khan',
-            Country: 'INDIA',
-            Credentials: 'Producer & Actor',
-          },
-        ],
-      },
-      {
-        speakers: [
-          
+          // {
+          //   View: '',
+          //   Profile_Photo: 'speaker43.png',
+          //   Name: 'Zayed Khan',
+          //   Country: 'INDIA',
+          //   Credentials: 'Producer & Actor',
+          // },
           {
             // "S_No": 39,
             View: '',
@@ -2162,7 +2155,6 @@ export class WebService {
             Credentials:
               'President, East Timor & Nobel Peace Laureate, 1996 (ONLINE)',
           },
-
           {
             View: '',
             Profile_Photo: 'speaker61.png',
@@ -2170,6 +2162,14 @@ export class WebService {
             Country: 'LIBERIA',
             Credentials: 'President of Liberia (ONLINE)',
           },
+        ],
+      },
+      {
+        speakers: [
+          
+          
+
+          
           {
             View: '',
             Profile_Photo: 'speaker49.png',
