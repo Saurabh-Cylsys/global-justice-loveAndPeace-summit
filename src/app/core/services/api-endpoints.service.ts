@@ -353,4 +353,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
   }
 
+  public getAmbassadorURLEndpoint(): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_AMBASSADOR);
+  }
 }

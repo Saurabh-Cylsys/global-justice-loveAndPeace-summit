@@ -77,6 +77,7 @@ export class DelegateOnlineComponent implements OnInit {
   delagateType: any;
   pType: string = "";
   payload: any;
+  btnDisabled: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -84,13 +85,11 @@ export class DelegateOnlineComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
     private sharedService: SharedService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private encryptionService: EncryptionService
+    private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-        debugger;
+
         this.referralCode = params.code;
 
         this.delagateType = params.dType;
@@ -118,11 +117,28 @@ export class DelegateOnlineComponent implements OnInit {
   async ngOnInit() {
 
     this.initializeForms();
-    this.checkQueryParams();
-    this.setupFormSubscriptions();
 
     await this.getAllCountries();
 
+  }
+
+  validateAlpha(event: KeyboardEvent) {
+    const input = event.target as HTMLInputElement;
+    const key = event.key;
+    const currentValue = input.value;
+    const cursorPos = input.selectionStart;
+
+    // Block space at the beginning
+    if (key === ' ' && (cursorPos === 0 || currentValue === '')) {
+      event.preventDefault();
+      return;
+    }
+
+    // Allow letters, spaces (not at start),
+    const allowedPattern = /^[a-zA-Z\s\'‘]$/;
+    if (!allowedPattern.test(key)) {
+      event.preventDefault();
+    }
   }
 
   getAllCountries() {
@@ -259,63 +275,6 @@ export class DelegateOnlineComponent implements OnInit {
     return '';
   }
 
-  private checkQueryParams() {
-
-    this.route.queryParams.subscribe(params => {
-
-      console.log('params...', params);
-      if (params['session_id']) {
-        this.sessionId = params['session_id'] || 'No session_id';
-        this.registrationData = {
-          first_name: params['first_name'] || '',
-          last_name: params['last_name'] || '',
-          email_id: params['email_id'],
-          mobile_number: params['mobile_no'],
-          country_id: params['country_id']
-        };
-        this.handlePaymentSuccess();
-      }
-    });
-  }
-
-  private setupFormSubscriptions() {
-    this.userForm.get('email')?.valueChanges.subscribe(() => {
-      this.checkFormValidity();
-    });
-    this.userForm.get('mobile')?.valueChanges.subscribe(() => {
-      this.checkFormValidity();
-    });
-  }
-
-  async verifySession() {
-    let body = {
-      sessionId: this.sessionId
-    }
-    console.log('body', body);
-    await this.delegateService.postVerifySessionOnline(body).subscribe({
-      next: (response: any) => {
-        if (response.success) {
-          //console.log('Session Verified:', response.session);
-          this.isPaymentStatus = true;
-          this.transactionVerified = true;
-          this.showPaymentSuccess = true;
-          if (this.registrationData && this.paymentSuccess) {
-            this.userForm.patchValue({
-              first_name: this.registrationData.first_name,
-              last_name: this.registrationData.last_name,
-              email_id: this.registrationData.email_id,
-              mobile_number: this.registrationData.mobile_number,
-              reference_no:this.referralCode
-            });
-          }
-        } else {
-          this.isPaymentStatus = 'failed';
-        }
-      },
-      error: (err) => console.error('Error verifying session:', err),
-    });
-  }
-
   onDateChange(event: string): void {
     // Convert the date format
     const parsedDate = new Date(event);
@@ -325,7 +284,6 @@ export class DelegateOnlineComponent implements OnInit {
 
   onSubmit() {
     console.log("Userform",this.userForm.value);
-    debugger;
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
@@ -349,7 +307,6 @@ export class DelegateOnlineComponent implements OnInit {
       }
 
 
-
       if(this.pType == "DELEGATE_ONLINE") {
          this.payload = {
           title: this.userForm.get('title')?.value,
@@ -358,7 +315,7 @@ export class DelegateOnlineComponent implements OnInit {
           mobile_number: formattedMobileNumber,
           email_id: this.userForm.get('email')?.value.toLowerCase(),
           country_code:  this.userForm.get('mobile_number')?.value.dialCode,
-          reference_no: this.referralCode ? this.referralCode : '',
+          reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
           country_id: this.userForm.value.country,
           is_nomination:"1",
@@ -374,7 +331,7 @@ export class DelegateOnlineComponent implements OnInit {
           mobile_number: formattedMobileNumber,
           email_id: this.userForm.get('email')?.value.toLowerCase(),
           country_code:  this.userForm.get('mobile_number')?.value.dialCode,
-          reference_no: this.referralCode ? this.referralCode : '',
+          reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
           country_id: this.userForm.value.country,
           is_nomination:"0",
@@ -386,12 +343,11 @@ export class DelegateOnlineComponent implements OnInit {
 
       this.delegateService.postDelegateOnline(this.payload).subscribe({
         next: (response: any) => {
-
+          this.btnDisabled = true;
           this.sharedService.ToastPopup(response.message, '', 'success');
           this.registrationData = this.payload;
 
           setTimeout(async () => {
-            debugger
             if(response.isStripe)
               await this.fnStripePG(response, this.payload);
             else
@@ -454,55 +410,6 @@ export class DelegateOnlineComponent implements OnInit {
     }
   }
 
-  checkFormValidity() {
-    if (this.userForm.valid) {
-      //this.createDelegateOnline();
-    }
-  }
-  async handlePaymentSuccess() {
-
-    await this.verifySession();
-
-  }
-
-  showCompleteProfile() {
-    const params = {
-      email_id: this.registrationData?.email_id || '',
-      mobile_number: this.registrationData?.mobile_number || '',
-      first_name: this.registrationData?.first_name || '',
-      last_name: this.registrationData?.last_name || '',
-      country_id:this.registrationData?.country_id || '',
-      isOnline: true
-    };
-    sessionStorage.setItem('IsOnline', 'true');
-    const encryptedParams = this.encryptionService.encryptData(params);
-    this.router.navigate(['/delegate-registration-online'], {
-      queryParams: { data: encryptedParams }
-    });
-    // this.router.navigate(['/delegate-registration'], {
-    //   queryParams: {
-    //     email: this.encrypt(this.registrationData?.email || ''),
-    //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
-    //     name: this.encrypt(this.registrationData?.name || ''),
-    //     isOnline: true
-    //   }
-    // });
-  }
-
-  onCompleteProfile() {
-    if (this.completeProfileForm.valid) {
-      const profileData: CompleteProfileData = this.completeProfileForm.value;
-      // this.delegateService.updateDelegateProfile(profileData).subscribe({
-      //   next: (response: any) => {
-      //     this.sharedService.ToastPopup('Success', 'Profile updated successfully', 'success');
-      //     // Additional logic after profile completion
-      //   },
-      //   error: (error: any) => {
-      //     this.sharedService.ToastPopup('Error', error.error?.message || 'Profile update failed', 'error');
-      //   }
-      // });
-    }
-  }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: any) {

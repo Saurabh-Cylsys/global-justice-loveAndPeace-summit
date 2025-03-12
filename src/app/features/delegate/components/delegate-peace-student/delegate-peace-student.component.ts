@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
-import { th } from 'intl-tel-input/i18n';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -50,6 +49,7 @@ export class DelegatePeaceStudentComponent {
   delagateType: any;
   showPaymentSuccess = false;
   requestBody: any;
+  isNominee : boolean = false;
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
@@ -99,8 +99,8 @@ export class DelegatePeaceStudentComponent {
     this.initializeStudentForm();
     this.initializeDelegateForm();
 
-    this.getAllCountries();
 
+    this.getAllCountries();
   }
 
   initializeStudentForm() {
@@ -114,7 +114,8 @@ export class DelegatePeaceStudentComponent {
       email: ['', [Validators.required, Validators.email]],
       country: ['', [Validators.required]],
       institutionName: ['', [Validators.required]],
-      relation: ['',[Validators.required]]
+      reference_no: [this.referralCode ? this.referralCode : ''],
+      relation: ['']
     });
   }
 
@@ -129,6 +130,7 @@ export class DelegatePeaceStudentComponent {
       country: ['', [Validators.required]],
       delegateDob :['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
+      relation : ['']
     });
   }
 
@@ -137,22 +139,9 @@ export class DelegatePeaceStudentComponent {
 
     if (this.userType === type) return;
 
-    // if (this.isFormDirty()) {
-    //   const confirmed = confirm(
-    //     'Warning: Your unsaved data will be lost. Do you want to continue?'
-    //   );
-
-    //   if (!confirmed) {
-
-    //     return; // Exit without changing userType
-    //   }
-    //   this.resetForms();
-    // }
-
     this.userType = type; // Update only after confirmation
     this.resetForms();
   }
-
 
   private resetForms(): void {
     this.initializeStudentForm();
@@ -172,14 +161,6 @@ export class DelegatePeaceStudentComponent {
   disableManualInput(event: KeyboardEvent): void {
     event.preventDefault();
   }
-
-  // validateAlpha(event: any) {
-  //   const allowedPattern = /^[a-zA-Z\s\-'_‘]$/;
-
-  //   if (!allowedPattern.test(event.key)) {
-  //     event.preventDefault(); // Block invalid characters
-  //   }
-  // }
 
   validateAlpha(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
@@ -423,9 +404,23 @@ private async fnStripePG(response: any, payload: any) {
     const studentrawMobileNumber = this.delegateForm.value.mobile_number.number;
     let studentMobileNumber = studentrawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
 
-    debugger;
 
     if(this.userType === 'student'){
+
+      if (
+        this.studentForm?.value?.email?.trim().toLowerCase() ===
+        this.delegateForm?.value?.email?.trim().toLowerCase()
+      ) {
+        this.sharedService.ToastPopup('Both email IDs should not be the same', '', 'error');
+        return;
+      }
+
+
+      if(this.delegateForm.value.relation == "") {
+        this.sharedService.ToastPopup('Please enter relation','','error');
+        return;
+      }
+
       this.requestBody = {
 
         "title": this.trimValue(this.studentForm.value.title),
@@ -434,7 +429,7 @@ private async fnStripePG(response: any, payload: any) {
         "mobile_number": studentMobileNumber ,
         "email_id": this.trimValue(this.studentForm.value.email),
         "country_code": this.studentForm.value.mobile_number.dialCode,
-        "reference_no": this.referralCode ? this.referralCode : '',
+        "reference_no": this.referralCode ? this.referralCode : this.studentForm.value.reference_no,
         "dob": this.formattedStudentDob,
         "country_id": this.studentForm.value.country,
 
@@ -447,11 +442,26 @@ private async fnStripePG(response: any, payload: any) {
         "nom_dob":  this.formattedDelagateDob,
         "nom_country_id": this.delegateForm.value.country,
 
-        "nom_relation": this.trimValue(this.studentForm.value.relation),
+        "nom_relation": this.trimValue(this.delegateForm.value.relation),
         "nom_institution": this.trimValue(this.studentForm.value.institutionName)
       }
+
+      localStorage.setItem('isNominee','adult');
     }
     else if(this.userType === 'delegate'){
+
+      if (
+        this.studentForm?.value?.email?.trim().toLowerCase() ===
+        this.delegateForm?.value?.email?.trim().toLowerCase()
+      ) {
+        this.sharedService.ToastPopup('Both email IDs should not be the same', '', 'error');
+        return;
+      }
+
+      if(this.studentForm.value.relation == "") {
+        this.sharedService.ToastPopup('Please enter relation','','error');
+        return;
+      }
       this.requestBody = {
 
         "title": this.trimValue(this.delegateForm.value.title),
@@ -460,7 +470,7 @@ private async fnStripePG(response: any, payload: any) {
         "mobile_number": delegateMobileNumber,
         "email_id": this.trimValue(this.delegateForm.value.email),
         "country_code": this.delegateForm.value.mobile_number.dialCode,
-        "reference_no": this.referralCode ? this.referralCode : '',
+        "reference_no": this.referralCode ? this.referralCode : this.delegateForm.value.reference_no,
         "dob": this.formattedDelagateDob,
         "country_id": this.delegateForm.value.country,
 
@@ -475,6 +485,8 @@ private async fnStripePG(response: any, payload: any) {
         "nom_relation": this.trimValue(this.studentForm.value.relation),
         "nom_institution": this.trimValue(this.studentForm.value.institutionName)
       }
+
+      localStorage.setItem('isNominee','student');
     }
 
     this.delegateService.postPreDelegateNominationApi(this.requestBody).subscribe({
@@ -483,7 +495,7 @@ private async fnStripePG(response: any, payload: any) {
           this.sharedService.ToastPopup('', response.message, 'success');
 
           setTimeout(async () => {
-            debugger
+
             if(response.isStripe)
               await this.fnStripePG(response, this.requestBody);
             else
@@ -500,27 +512,4 @@ private async fnStripePG(response: any, payload: any) {
     })
   }
 
-    showCompleteProfile() {
-      const params = {
-        // email_id: this.registrationData?.email_id || '',
-        // mobile_number: this.registrationData?.mobile_number || '',
-        // first_name: this.registrationData?.first_name || '',
-        // last_name: this.registrationData?.last_name || '',
-        // country_id:this.registrationData?.country_id || '',
-        // isOnline: true
-      };
-      sessionStorage.setItem('IsOnline', 'true');
-      // const encryptedParams = this.encryptionService.encryptData(params);
-      // this.router.navigate(['/delegate-registration-online'], {
-      //   queryParams: { data: encryptedParams }
-      // });
-      // this.router.navigate(['/delegate-registration'], {
-      //   queryParams: {
-      //     email: this.encrypt(this.registrationData?.email || ''),
-      //     mobile_no: this.encrypt(this.registrationData?.mobile_no || ''),
-      //     name: this.encrypt(this.registrationData?.name || ''),
-      //     isOnline: true
-      //   }
-      // });
-    }
   }

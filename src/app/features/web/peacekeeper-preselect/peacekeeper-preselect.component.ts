@@ -20,7 +20,7 @@ export class PeacekeeperPreselectComponent {
 
         this.referralCode = params.code;
         if (params.medium == 1 && params.code) {
-          this.packageAmt = 2640;
+          this.packageAmt = 2604;
           this.router.navigate(['/delegate-registration'], {
             queryParams: { code: this.referralCode }, // Pass query params
             queryParamsHandling: 'merge', // Preserve existing query params (optional)
@@ -31,7 +31,7 @@ export class PeacekeeperPreselectComponent {
         else if (!params.medium) {
           console.log('Medium value not found, redirecting...');
           if (this.referralCode)
-            this.packageAmt = 2640;
+            this.packageAmt = 2604;
 
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
@@ -46,7 +46,7 @@ export class PeacekeeperPreselectComponent {
 
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { code: this.referralCode, medium: 0 }
+        queryParams: { dType: 'offline', code: this.referralCode, medium: 0 }
       });
     }
     else {
@@ -59,14 +59,14 @@ export class PeacekeeperPreselectComponent {
   goToChildNomination() {
 
     this.router.navigate(['/delegate-student'], {
-      queryParams: { code: this.referralCode }
+      queryParams: { dType: 'offline', code: this.referralCode }
     });
   }
 
   goToOnlineDelegate() {
     if (this.referralCode) {
       this.router.navigate(['/delegate-online'], {
-        queryParams: { code: this.referralCode }
+        queryParams: { dType: 'online', code: this.referralCode }
       });
     }
     else {
