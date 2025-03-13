@@ -2490,6 +2490,7 @@ img {
   letter-spacing: 2%;
   text-align: center;
   color: #ffffffb2 !important;
+  white-space: nowrap;
 }
 
 @media (min-width: 1024px) {
