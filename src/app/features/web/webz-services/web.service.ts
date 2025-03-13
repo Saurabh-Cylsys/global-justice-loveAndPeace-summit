@@ -377,7 +377,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
-      Country: 'DENMARK',
+      Country: 'GERMANY',
       Credentials: 'Royalty, TV Host, Philanthropist',
     },
     // list 11
@@ -1017,7 +1017,7 @@ export class WebService {
       View: '',
       Profile_Photo: 'speaker11.png',
       Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
-      Country: 'DENMARK',
+      Country: 'GERMANY',
       Credentials: 'Royalty, TV Host, Philanthropist',
     },
     // list 11
@@ -1733,7 +1733,7 @@ export class WebService {
             View: '',
             Profile_Photo: 'speaker11.png',
             Name: 'Mario-Max Schaumburg-Lippe, His Highness, Dr. Prince',
-            Country: 'DENMARK',
+            Country: 'GERMANY',
             Credentials: 'Royalty, TV Host, Philanthropist',
           },
           {
