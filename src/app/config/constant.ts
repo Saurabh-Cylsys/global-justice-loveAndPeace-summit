@@ -78,6 +78,8 @@ export class Constants {
     public readonly API_ENDPOINT_GET_DATA_BY_TRANSACTION_ID: string = 'transaction'
 
     public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
+    
     public readonly API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION: string ='pre_delegate_nomination'
-
+    
+    public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'       
 }

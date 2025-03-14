@@ -107,4 +107,8 @@ export class DelegateService {
   getAmbassadorURL(data: any) {
     return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
   }
+
+  postDelegateDraft(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+  }
 }

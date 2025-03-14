@@ -10,6 +10,7 @@ export class PeacekeeperPreselectComponent {
   referralCode: string = '';
   mediumValue: string | null = '';
   packageAmt: number = 2800;
+  onlinepackageAmt: number= 260;
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -31,8 +32,10 @@ export class PeacekeeperPreselectComponent {
         else if (!params.medium) {
           console.log('Medium value not found, redirecting...');
           if (this.referralCode)
+          {
             this.packageAmt = 2604;
-
+            this.onlinepackageAmt = 260;
+          }
           this.router.navigate(['/peacekeeper-preselect'], {
             queryParams: { code: this.referralCode },
           });

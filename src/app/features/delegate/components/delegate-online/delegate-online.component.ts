@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DelegateService } from '../../services/delegate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { lastValueFrom } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { HostListener } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+import { environment } from 'src/environments/environment';
 
 interface RegistrationData {
   // name: string;
@@ -364,6 +366,46 @@ export class DelegateOnlineComponent implements OnInit {
       });
     }
   }
+
+  @HostListener('window:beforeunload', ['$event'])
+beforeUnloadHandler(event: BeforeUnloadEvent): void {
+  const email = this.userForm.get('email')?.value;
+  const mobile = this.userForm.get('mobile')?.value;
+  const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+  const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
+
+  if (email || formattedMobileNumber) {
+    event.preventDefault();
+    event.returnValue = true; // Show confirmation message
+
+    const payload = {
+      title: this.userForm.get('title')?.value ?? '',
+      first_name: this.userForm.get('first_name')?.value ?? '',
+      last_name: this.userForm.get('last_name')?.value ?? '',
+      mobile_number: formattedMobileNumber ?? '',
+      email_id: this.userForm.get('email')?.value?.toLowerCase() ?? '',
+      country_code: this.userForm.get('mobile_number')?.value?.dialCode ?? '',
+      reference_no: (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
+      dob: this.formattedDateOfBirth ?? '',
+      country_id: this.userForm.value.country ?? ''
+    };
+
+    try {
+      // Convert object to URL-encoded format
+      const params = new URLSearchParams();
+      Object.entries(payload).forEach(([key, value]) => {
+        params.append(key, value);
+      });
+
+      // Send data using navigator.sendBeacon()
+      navigator.sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
+    } catch (e) {
+      console.warn('Draft save failed:', e);
+      localStorage.setItem('delegateFormDraft', JSON.stringify(payload));
+    }
+  }
+}
+
 
   private async fnStripePG(response: any, payload: any) {
     if (response.success && response.gatewayUrl) {
