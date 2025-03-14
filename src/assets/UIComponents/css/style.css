@@ -2463,18 +2463,37 @@ img {
   color: var(--color1) !important;
 }
 
-@media (min-width: 320px) {
-  .chairmanCenter,
-  .chairmanCenter h2 {
-    text-align: center !important;
-  }
+.chairmanCenter h2 {
+  font-weight: 700 !important;
+  font-size: clamp(20px, 1.5vw, 35px) !important;
+  line-height: 100% !important;
+  letter-spacing: 0% !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  color: var(--color2) !important;
+  white-space: nowrap;
 }
-@media (min-width: 1024px) {
-  .chairmanCenter,
-  .chairmanCenter h2 {
-    text-align: start !important;
-  }
+.chairmanCenter p {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 2%;
+  text-align: center;
+  color: #12100B !important;
+  ;
+}
+.chairmanCenter p a {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 29px;
+  letter-spacing: 2%;
+  text-align: center;
+  color: #ffffffb2 !important;
+  white-space: nowrap;
+}
 
+@media (min-width: 1024px) {
   #ts3 .carousel-item {
     min-height: 65vh;
   }
@@ -3004,4 +3023,10 @@ button:focus {
 /* Ensure the tooltip arrow points correctly when placed at the bottom */
 .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
   border-bottom-color: var(--color3);
+}
+
+
+.card-chairman{
+  box-shadow: 0px -1px 3px 0px #00000040 inset;
+  border-radius: 10px;
 }
