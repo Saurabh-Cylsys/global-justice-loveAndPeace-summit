@@ -109,6 +109,10 @@ export class DelegateService {
   }
 
   postDelegateDraft(body: any): Observable<any> {
-    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOraftEndpoint(), body);
+  }
+
+  getCouponValidation(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.getCouponValidationEndpoint(), body);
   }
 }

@@ -358,6 +358,11 @@ export class ApiEndpointsService {
   }
 
   public postCreateDelegateOraftEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_DRAFT_DELEGATE);
   }
+
+  public getCouponValidationEndpoint() {
+    return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
+  }
+
 }

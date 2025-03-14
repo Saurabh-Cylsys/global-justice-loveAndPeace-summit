@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DelegateService } from '../../services/delegate.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Subscription, timer } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
@@ -17,14 +17,14 @@ interface RegistrationData {
   // mobile_no: string;
 
 
-  first_name : string,
-  last_name : string,
+  first_name: string,
+  last_name: string,
   email_id: string,
-  mobile_number:  string,
-  country_id:string;
-  title ?: string,
-  reference_no? : any,
-  dob ?: string,
+  mobile_number: string,
+  country_id: string;
+  title?: string,
+  reference_no?: any,
+  dob?: string,
   is_nomination?: string,
   p_type?: string,
   p_reference_by?: string
@@ -80,6 +80,8 @@ export class DelegateOnlineComponent implements OnInit {
   pType: string = "";
   payload: any;
   btnDisabled: boolean = false;
+  private autoSaveSubscription?: Subscription;
+  private isFormSubmitted = false; // Flag to track submission
 
   constructor(
     private fb: FormBuilder,
@@ -91,11 +93,10 @@ export class DelegateOnlineComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
-
         this.referralCode = params.code;
-
         this.delagateType = params.dType;
 
+        this.fnPartialSave()
         // this.router.navigate([], {
         //   relativeTo: this.route,
         //   queryParams: { '': 'rakesh.gupta.pc' }, // Customize the URL
@@ -116,11 +117,63 @@ export class DelegateOnlineComponent implements OnInit {
     this.minDate = new Date(today.getFullYear() - 120, 0, 1);
   }
 
+  fnPartialSave() {
+    const email = this.userForm.get('email')?.value;
+    const mobile = this.userForm.get('mobile')?.value;
+    const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+    const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
+
+    if (email || formattedMobileNumber) {
+
+      const payload = {
+        title: this.userForm.get('title')?.value ?? '',
+        first_name: this.userForm.get('first_name')?.value ?? '',
+        last_name: this.userForm.get('last_name')?.value ?? '',
+        mobile_number: formattedMobileNumber ?? '',
+        email_id: this.userForm.get('email')?.value?.toLowerCase() ?? '',
+        country_code: this.userForm.get('mobile_number')?.value?.dialCode ?? '',
+        reference_no: (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
+        dob: this.formattedDateOfBirth ?? '',
+        country_id: this.userForm.value.country ?? ''
+      };
+
+      try {
+        // Convert object to URL-encoded format
+        const params = new URLSearchParams();
+        Object.entries(payload).forEach(([key, value]) => {
+          params.append(key, value);
+        });
+
+        // Send data using navigator.sendBeacon()
+        //this..sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
+
+
+
+        this.delegateService.postDelegateDraft(this.payload).subscribe({
+          next: (response: any) => {
+
+          },
+          error: (error: any) => {
+          }
+        });
+
+
+      } catch (e) {
+        console.warn('Draft save failed:', e);
+        localStorage.setItem('delegateFormDraft', JSON.stringify(payload));
+      }
+    }
+  }
+
   async ngOnInit() {
 
     this.initializeForms();
-
     await this.getAllCountries();
+    this.autoSaveSubscription = timer(0, 60000).subscribe(() => {
+      if (!this.isFormSubmitted) {
+        this.fnPartialSave();
+      }
+    });
 
   }
 
@@ -191,10 +244,10 @@ export class DelegateOnlineComponent implements OnInit {
 
   private initializeForms() {
     this.userForm = this.fb.group({
-      title: ['', [Validators.required,Validators.minLength(2)]],
-      first_name: ['', [Validators.required,Validators.minLength(3)]],
-      last_name: ['', [Validators.required,Validators.minLength(2)]],
-      email:  ['',
+      title: ['', [Validators.required, Validators.minLength(2)]],
+      first_name: ['', [Validators.required, Validators.minLength(3)]],
+      last_name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['',
         [Validators.required,
         Validators.email,
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]
@@ -285,7 +338,7 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Userform",this.userForm.value);
+    console.log("Userform", this.userForm.value);
 
     if (!this.userForm.valid || this.loading) {
       return; // Prevent submission if the form is invalid or loading
@@ -301,56 +354,58 @@ export class DelegateOnlineComponent implements OnInit {
     if (this.userForm.valid) {
       this.loading = true;
 
-      if(this.delagateType == 'offline'){
+      if (this.delagateType == 'offline') {
         this.pType = "DELEGATE_OFFLINE";
       }
-      else{
+      else {
         this.pType = "DELEGATE_ONLINE";
       }
 
 
-      if(this.pType == "DELEGATE_ONLINE") {
-         this.payload = {
+      if (this.pType == "DELEGATE_ONLINE") {
+        this.payload = {
           title: this.userForm.get('title')?.value,
-          first_name : this.userForm.get('first_name')?.value,
-          last_name : this.userForm.get('last_name')?.value,
+          first_name: this.userForm.get('first_name')?.value,
+          last_name: this.userForm.get('last_name')?.value,
           mobile_number: formattedMobileNumber,
           email_id: this.userForm.get('email')?.value.toLowerCase(),
-          country_code:  this.userForm.get('mobile_number')?.value.dialCode,
+          country_code: this.userForm.get('mobile_number')?.value.dialCode,
           reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
           country_id: this.userForm.value.country,
-          is_nomination:"1",
+          is_nomination: "1",
           p_type: this.pType,
-          p_reference_by:"0"
+          p_reference_by: "0"
         };
       }
       else if (this.pType == "DELEGATE_OFFLINE") {
         this.payload = {
           title: this.userForm.get('title')?.value,
-          first_name : this.userForm.get('first_name')?.value,
-          last_name : this.userForm.get('last_name')?.value,
+          first_name: this.userForm.get('first_name')?.value,
+          last_name: this.userForm.get('last_name')?.value,
           mobile_number: formattedMobileNumber,
           email_id: this.userForm.get('email')?.value.toLowerCase(),
-          country_code:  this.userForm.get('mobile_number')?.value.dialCode,
+          country_code: this.userForm.get('mobile_number')?.value.dialCode,
           reference_no: this.referralCode ? this.referralCode : this.userForm.value.reference_no,
           dob: this.formattedDateOfBirth,
           country_id: this.userForm.value.country,
-          is_nomination:"0",
+          is_nomination: "0",
           p_type: this.pType,
-          p_reference_by:"0"
+          p_reference_by: "0"
         };
 
       }
 
       this.delegateService.postDelegateOnline(this.payload).subscribe({
         next: (response: any) => {
+          this.isFormSubmitted = true; // Mark form as submitted
+          this.stopAutoSave(); // Stop autosave
           this.btnDisabled = true;
           this.sharedService.ToastPopup(response.message, '', 'success');
           this.registrationData = this.payload;
 
           setTimeout(async () => {
-            if(response.isStripe)
+            if (response.isStripe)
               await this.fnStripePG(response, this.payload);
             else
               await this.fnMagnatiPG(response, this.payload);
@@ -362,49 +417,61 @@ export class DelegateOnlineComponent implements OnInit {
           console.error('Error creating delegate:', error);
           this.sharedService.ToastPopup('Error', error.error?.message || 'Registration failed', 'error');
           this.loading = false;
+          this.isFormSubmitted = true; // Mark form as submitted
+          this.stopAutoSave(); // Stop autosave
         }
       });
     }
   }
 
-  @HostListener('window:beforeunload', ['$event'])
-beforeUnloadHandler(event: BeforeUnloadEvent): void {
-  const email = this.userForm.get('email')?.value;
-  const mobile = this.userForm.get('mobile')?.value;
-  const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
-  const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
-
-  if (email || formattedMobileNumber) {
-    event.preventDefault();
-    event.returnValue = true; // Show confirmation message
-
-    const payload = {
-      title: this.userForm.get('title')?.value ?? '',
-      first_name: this.userForm.get('first_name')?.value ?? '',
-      last_name: this.userForm.get('last_name')?.value ?? '',
-      mobile_number: formattedMobileNumber ?? '',
-      email_id: this.userForm.get('email')?.value?.toLowerCase() ?? '',
-      country_code: this.userForm.get('mobile_number')?.value?.dialCode ?? '',
-      reference_no: (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
-      dob: this.formattedDateOfBirth ?? '',
-      country_id: this.userForm.value.country ?? ''
-    };
-
-    try {
-      // Convert object to URL-encoded format
-      const params = new URLSearchParams();
-      Object.entries(payload).forEach(([key, value]) => {
-        params.append(key, value);
-      });
-
-      // Send data using navigator.sendBeacon()
-      navigator.sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
-    } catch (e) {
-      console.warn('Draft save failed:', e);
-      localStorage.setItem('delegateFormDraft', JSON.stringify(payload));
+  private stopAutoSave() {
+    if (this.autoSaveSubscription) {
+      this.autoSaveSubscription.unsubscribe();
     }
   }
-}
+
+  ngOnDestroy() {
+    this.stopAutoSave(); // Cleanup on component destruction
+  }
+
+  //   @HostListener('window:beforeunload', ['$event'])
+  // beforeUnloadHandler(event: BeforeUnloadEvent): void {
+  //   const email = this.userForm.get('email')?.value;
+  //   const mobile = this.userForm.get('mobile')?.value;
+  //   const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+  //   const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
+
+  //   if (email || formattedMobileNumber) {
+  //     event.preventDefault();
+  //     event.returnValue = true; // Show confirmation message
+
+  //     const payload = {
+  //       title: this.userForm.get('title')?.value ?? '',
+  //       first_name: this.userForm.get('first_name')?.value ?? '',
+  //       last_name: this.userForm.get('last_name')?.value ?? '',
+  //       mobile_number: formattedMobileNumber ?? '',
+  //       email_id: this.userForm.get('email')?.value?.toLowerCase() ?? '',
+  //       country_code: this.userForm.get('mobile_number')?.value?.dialCode ?? '',
+  //       reference_no: (this.referralCode ? this.referralCode : this.userForm.value.reference_no) ?? '',
+  //       dob: this.formattedDateOfBirth ?? '',
+  //       country_id: this.userForm.value.country ?? ''
+  //     };
+
+  //     try {
+  //       // Convert object to URL-encoded format
+  //       const params = new URLSearchParams();
+  //       Object.entries(payload).forEach(([key, value]) => {
+  //         params.append(key, value);
+  //       });
+
+  //       // Send data using navigator.sendBeacon()
+  //       navigator.sendBeacon(environment.apiUrl + '/pre_delegate_draft_details', params);
+  //     } catch (e) {
+  //       console.warn('Draft save failed:', e);
+  //       localStorage.setItem('delegateFormDraft', JSON.stringify(payload));
+  //     }
+  //   }
+  // }
 
 
   private async fnStripePG(response: any, payload: any) {
