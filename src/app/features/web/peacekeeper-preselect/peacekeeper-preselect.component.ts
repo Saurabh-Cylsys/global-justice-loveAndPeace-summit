@@ -22,6 +22,7 @@ export class PeacekeeperPreselectComponent {
         this.referralCode = params.code;
         if (params.medium == 1 && params.code) {
           this.packageAmt = 2604;
+          this.onlinepackageAmt = 260;
           this.router.navigate(['/delegate-registration'], {
             queryParams: { code: this.referralCode }, // Pass query params
             queryParamsHandling: 'merge', // Preserve existing query params (optional)
