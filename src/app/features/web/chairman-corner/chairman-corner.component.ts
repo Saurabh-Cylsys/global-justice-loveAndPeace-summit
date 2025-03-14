@@ -3,6 +3,7 @@ import { Component, HostListener, Inject, Renderer2 } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { WebService } from '../webz-services/web.service';
 
 @Component({
   selector: 'app-chairman-corner',
@@ -11,6 +12,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class ChairmanCornerComponent {
   isMobileView = false;
+  slides : any = []
   constructor(
     private router: ActivatedRoute,
     public _router: Router,
@@ -18,7 +20,8 @@ export class ChairmanCornerComponent {
     private titleService: Title,
       private metaService: Meta,
       private renderer: Renderer2,
-      @Inject(DOCUMENT) private document: Document
+      @Inject(DOCUMENT) private document: Document,
+      private webService: WebService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +36,10 @@ export class ChairmanCornerComponent {
           element.scrollIntoView({ behavior: 'smooth' });
         }
       }
+    });
+
+   this.webService.getSpeakers().subscribe((data:any) => {
+      this.slides = data;
     });
   }
 
