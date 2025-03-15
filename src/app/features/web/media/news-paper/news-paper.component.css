@@ -26,3 +26,25 @@ article p span {
 img {
   border-radius: 10px;
 }
+
+h2 {
+  text-decoration: underline;
+  width: 100%;
+  color: var(--color1);
+  font-weight: 500;
+  font-size: 24.67px;
+  line-height: 100%;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-transform: uppercase;
+  width: 100%;
+  display: block;
+}
+h2 span {
+  color: #f65050;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
