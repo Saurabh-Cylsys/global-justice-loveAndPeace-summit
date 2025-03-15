@@ -13,7 +13,7 @@ export class WebService {
   private SPEAKERS_CACHE_KEY = 'speakers_cache_v1';
   private CACHE_EXPIRATION = 24 * 60 * 60 * 1000; // 24 hours
   private SPEAKERS_URL = 'assets/speakers.json';
-  private API_BASE_URL = 'https://devglobaljusticeapis.cylsys.com/api/v1';
+  private API_BASE_URL = environment.apiUrl;
 
   constructor(
     private _apiHttpService: ApiHttpService,
@@ -67,7 +67,7 @@ export class WebService {
       p_limit: limit,
       p_type: type
     };
-    
+
     return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
   }
 
@@ -1405,7 +1405,7 @@ export class WebService {
             Country: 'Mauritius',
             Credentials: 'Her Excellency Former President of the Republic of Mauritius',
           },
-          
+
         ],
       },
 
@@ -1471,7 +1471,7 @@ export class WebService {
             Credentials:
               'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
           },
-          
+
         ],
       },
 
@@ -1506,7 +1506,7 @@ export class WebService {
             Credentials:
               'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
           },
-          
+
         ],
       },
 
@@ -1539,7 +1539,7 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Actress',
           },
-          
+
         ],
       },
       {
@@ -1571,7 +1571,7 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Chief Justice of the Supreme Court of Gambia',
           },
-          
+
         ],
       },
       {
@@ -1605,7 +1605,7 @@ export class WebService {
               'Industrialist : President, Arab Women Investors Union',
           },
 
-          
+
         ],
       },
       {
@@ -1649,7 +1649,7 @@ export class WebService {
         speakers: [
           // list 9
 
-          
+
           {
             // "S_No": 14,
             View: '',
@@ -1683,7 +1683,7 @@ export class WebService {
         speakers: [
           // list 10
 
-          
+
           {
             // "S_No": 15,
             View: '',
@@ -1718,7 +1718,7 @@ export class WebService {
         speakers: [
           // list 11
 
-          
+
           {
             // "S_No": 17,
             View: '',
@@ -1758,7 +1758,7 @@ export class WebService {
         speakers: [
           // list 12
 
-          
+
           {
             // "S_No": 20,
             View: 'salam',
@@ -1791,7 +1791,7 @@ export class WebService {
         speakers: [
           // list 13
 
-          
+
 
           {
             // "S_No": 17,
@@ -1824,7 +1824,7 @@ export class WebService {
         speakers: [
           // list 14
 
-          
+
 
           {
             // "S_No": 17,
@@ -1856,7 +1856,7 @@ export class WebService {
         speakers: [
           // list 15
 
-          
+
           {
             // "S_No": 17,
             View: '',
@@ -1888,7 +1888,7 @@ export class WebService {
         speakers: [
           // list 16
 
-          
+
 
           {
             // "S_No": 27,
@@ -1920,7 +1920,7 @@ export class WebService {
       {
         speakers: [
           // list 17
-          
+
           {
             // "S_No": 30,
             View: 'rina',
@@ -1953,7 +1953,7 @@ export class WebService {
         speakers: [
           // list 18
 
-          
+
           {
             // "S_No": 32,
             View: '',
@@ -1986,15 +1986,15 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'World Renowned Chef',
           },
-          
+
         ],
       },
       {
         speakers: [
           // list 19
-          
 
-          
+
+
 
           {
             // "S_No": 33,
@@ -2021,15 +2021,15 @@ export class WebService {
             Credentials:
               'Social Activist, Judge, Lawyer : Nobel Peace Laureate 2003',
           },
-          
+
         ],
       },
       {
         speakers: [
           // list 20
-          
 
-          
+
+
           {
             // "S_No": 34,
             View: '',
@@ -2055,15 +2055,15 @@ export class WebService {
             Credentials:
               'Industrialist : Chairman & Managing Partner, Vault Investments + Chairman & MD, Relam Investments + Founder & MD, Sultan Lootah  Petroleum Company',
           },
-          
+
         ],
       },
       {
         speakers: [
           // list 21
-          
 
-          
+
+
           {
             // "S_No": 35,
             View: '',
@@ -2090,14 +2090,14 @@ export class WebService {
             Credentials:
               'Vice-President, Vietnam Buddhist Sangha & Permanent Vice-Chancellor, Vietnam Buddhist Society : Buddhist Religion Leader',
           },
-          
+
         ],
       },
       {
         speakers: [
           // list 22
-          
-          
+
+
 
           {
             // "S_No": 37,
@@ -2129,8 +2129,8 @@ export class WebService {
       {
         speakers: [
           // list 22
-          
-          
+
+
           {
             // "S_No": 38,
             View: '',
@@ -2166,10 +2166,10 @@ export class WebService {
       },
       {
         speakers: [
-          
-          
 
-          
+
+
+
           {
             View: '',
             Profile_Photo: 'speaker49.png',
@@ -2180,7 +2180,7 @@ export class WebService {
           },
         ],
       },
-      
+
     ];
   }
 
