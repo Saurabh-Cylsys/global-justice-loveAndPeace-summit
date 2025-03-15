@@ -25,6 +25,21 @@ article p span {
 
 img {
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  will-change: transform, opacity, box-shadow;
+  overflow: hidden;
+}
+
+.col-md-12, .col-md-6 {
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+a {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 h2 {
@@ -48,3 +63,50 @@ h2 span {
   text-decoration-skip-ink: none;
 }
 
+/* Animation helper classes */
+.animated-container {
+  perspective: 1000px;
+}
+
+/* Loading indicator styles */
+.loading-container {
+  padding: 40px 0;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover effect enhancement */
+a:hover img, img:hover {
+  filter: brightness(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img {
+    transition: none !important;
+  }
+  
+  .fade-in {
+    animation: none !important;
+  }
+}
