@@ -112,7 +112,8 @@ export class DelegateRegistrationOnlineComponent {
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private Encryption: EncryptionService
   ) {
     this.fullURL = window.location.href;
 
@@ -330,8 +331,14 @@ async ngOnInit() {
   }
 
  async getAllCountries() {
+  debugger
   try {
     const response = await this.delegateService.getAllCountryApi();
+      // Decrypt the response data
+      let encryptedData = response.data;
+      let decryptData = this.Encryption.decryptData(encryptedData);
+    console.log("Country decryptData:", decryptData);
+
     this.countryData = response.data;
     console.log("Country Data:", this.countryData);
 

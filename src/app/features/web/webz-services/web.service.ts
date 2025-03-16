@@ -5,6 +5,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class WebService {
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
-    private http: HttpClient
+    private http: HttpClient,
+    private encryptionService: EncryptionService,
   ) {}
 
   getSpeakers(): Observable<any[]> {
@@ -61,15 +63,29 @@ export class WebService {
     return JSON.stringify(oldList) !== JSON.stringify(newList);
   }
 
-  getSpeakersList(search: string = '', limit: string = '10', type: string = 'All'): Observable<any> {
-    const payload = {
-      p_search: search,
-      p_limit: limit,
-      p_type: type
-    };
+  // getSpeakersList(search: string = '', limit: string = '10', type: string = 'All'): Observable<any> {
+  //   const payload = {
+  //     p_search: search,
+  //     p_limit: limit,
+  //     p_type: type
+  //   };
 
-    return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
-  }
+  //   return this.http.post<any>(`${this.API_BASE_URL}/get_speaker_list`, payload);
+  // }
+
+ //encrypted 
+ getSpeakersList(search: string = '', limit: string = '10', type: string = 'All') {
+  let encryptedData = this.encryptionService.encryptData({
+    p_search: search,
+    p_limit: limit,
+    p_type: type
+  });
+
+  const payload = {
+    "encryptedData": encryptedData
+  };
+  return this._apiHttpService.post(this._apiEndpointsService.getAllSpeakersListEndpoint(payload),payload);
+}
 
   confirmedSpeakersList: any[] = [
     // list 1

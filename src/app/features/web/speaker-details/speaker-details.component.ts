@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WebService } from '../webz-services/web.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 interface Speaker {
   speaker_name: string;
@@ -28,7 +29,9 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   private countrySubscription?: Subscription;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
-  constructor(private webService: WebService) {}
+  constructor(private webService: WebService,
+    private Encryption: EncryptionService
+  ) {}
 
   ngOnInit() {
     this.setupSearchDebounce();
@@ -91,9 +94,12 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     .subscribe({
       next: (response: any) => {
         if (response?.data) {
+          // Decrypt the response data
+          let encryptedData = response.data;
+          let decryptData = this.Encryption.decryptData(encryptedData);
 
             // Map the API response data and filter out excluded countries
-            const mappedData = response.data
+            const mappedData = decryptData
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
                 speaker_id: item.speaker_id || '',

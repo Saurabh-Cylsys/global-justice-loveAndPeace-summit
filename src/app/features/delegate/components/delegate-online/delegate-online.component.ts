@@ -89,7 +89,9 @@ export class DelegateOnlineComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
     private sharedService: SharedService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private encryptionService: EncryptionService
+
   ) {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -197,8 +199,17 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   getAllCountries() {
+    debugger
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
+        let encryptedData = res;
+        let decryptData = this.encryptionService.decryptData(res.encryptedData);
+
+        
+      console.log("Country decryptData:", decryptData);
+
+
+
         this.countryData = res.data;
       },
       (err: any) => {

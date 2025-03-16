@@ -24,6 +24,7 @@ export class EncryptionService {
     }
 
     decryptData(encryptedText: string): any {
+        debugger
         try {
             const decodedText = decodeURIComponent(encryptedText);
             const bytes = CryptoJS.AES.decrypt(decodedText, environment.encryptionKey);

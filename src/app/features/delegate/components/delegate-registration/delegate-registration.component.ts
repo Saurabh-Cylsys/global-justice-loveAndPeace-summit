@@ -26,6 +26,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { environment } from 'src/environments/environment';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-registration',
@@ -103,7 +104,8 @@ export class DelegateRegistrationComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService
   ) {
     this.fullURL = window.location.href;
 
@@ -306,8 +308,13 @@ export class DelegateRegistrationComponent {
   }
 
   getAllCountries() {
+    debugger
+
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
+        let decryptData = this.encryptionService.decryptData(res);
+      console.log("Country decryptData:", decryptData);
+
         this.countryData = res.data;
       },
       (err: any) => {

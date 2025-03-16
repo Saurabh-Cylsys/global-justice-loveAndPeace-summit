@@ -44,18 +44,24 @@ export class Constants {
     public readonly API_ENDPOINT_approveRegisration: string = 'registration/approve'
 
     public readonly API_ENDPOINT_unapproveRegisration: string = 'registration/unapprove'
-
+    
     public readonly API_ENDPOINT_getdates:string = 'getDates'
     public readonly API_ENDPOINT_GET_SPEAKERS:string = 'invite_speakers'
     public readonly API_ENDPOINT_GET_getAllCountrycode:string = 'getcountry'
     public readonly API_ENDPOINT_GET_ALL_COUNTRY:string = 'getcountry'
+    public readonly API_ENDPOINT_GET_ALL_COUNTRY_ENCRYPT:string = 'getcountry/encryption'
     public readonly API_ENDPOINT_GET_ALL_STATES:string = 'getstate'
+    public readonly API_ENDPOINT_GET_ALL_STATES_ENCRYPT:string = 'getstate/encryption'
     public readonly API_ENDPOINT_GET_ALL_CITIES:string = 'getcity'
+    public readonly API_ENDPOINT_GET_ALL_CITIES_ENCRYPT:string = 'getcity/encryption'
     public readonly API_ENDPOINT_Download_Badge: string = 'registration/download_badge'
 
     public readonly API_ENDPOINT_ALL_COUNTRY: string = 'get_delegate_country'
+    public readonly API_ENDPOINT_ALL_COUNTRY_ENCRYPT: string = 'get_delegate_country/encryption'
     public readonly API_ENDPOINT_STATE_BY_COUNTRY: string = 'get_delegate_state'
+    public readonly API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT: string = 'get_delegate_state/encryption'
     public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
+    public readonly API_ENDPOINT_CITY_BY_STATE_ENCRYPT: string = 'get_delegate_city/encryption'
 
     public readonly API_ENDPOINT_SEND_OTP: string = 'send-otp'
     public readonly API_ENDPOINT_VERIFY_OTP: string = 'verify-otp'
@@ -85,4 +91,10 @@ export class Constants {
     public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'
 
     public readonly API_ENDPOINT_VALIDATE_COUPON: string = 'check_coupon'
+
+    public readonly API_ENDPOINT_GET_SPEAKERS_LIST: string = 'get_speaker_list'
+
+    public readonly API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT: string = 'get_speaker_list/encryption'
+
+    
 }

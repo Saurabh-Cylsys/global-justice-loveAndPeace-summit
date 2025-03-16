@@ -284,7 +284,7 @@ export class ApiEndpointsService {
   }
 
   public getAllCountryForDelegatesEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY);
+    return this.createUrl(this._constants.API_ENDPOINT_ALL_COUNTRY_ENCRYPT);
   }
 
   public getStatesByCountryEndpoint(country_id:any): string {
@@ -365,4 +365,8 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VALIDATE_COUPON);
   }
 
+
+  public getAllSpeakersListEndpoint(data:any): string {
+    return this.createUrl(this._constants.API_ENDPOINT_GET_SPEAKERS_LIST_ENCRYPT );
+  }
 }
