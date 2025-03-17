@@ -2449,10 +2449,10 @@ header .nav-item .nav-link.active {
   counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 
-.awardLink a:nth-child(2) {
+/* .awardLink a:nth-child(2) {
   background-color: #3e8e41;
   color: var(--color2) !important;
-}
+} */
 
 img {
   max-width: 100%;
