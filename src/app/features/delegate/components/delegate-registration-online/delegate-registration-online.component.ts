@@ -113,7 +113,6 @@ export class DelegateRegistrationOnlineComponent {
     private renderer: Renderer2,
     private encryptionService: EncryptionService,
     private cdr: ChangeDetectorRef,
-    private Encryption: EncryptionService
   ) {
     this.fullURL = window.location.href;
 
@@ -135,6 +134,7 @@ async ngOnInit() {
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
+      debugger
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
 
@@ -186,8 +186,10 @@ async ngOnInit() {
 
 
         this.cdr.detectChanges(); // 👈 Force UI update
+            const encryptedObj = this.encryptionService.encryptData(this.country_id);
+
         if (this.country_id) {
-        this.delegateService.getAllStates(this.country_id).subscribe(
+        this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
             this.ngxService.stop();
             this.statesData = res.data;
@@ -331,16 +333,14 @@ async ngOnInit() {
   }
 
  async getAllCountries() {
-  debugger
   try {
     const response = await this.delegateService.getAllCountryApi();
       // Decrypt the response data
-      let encryptedData = response.data;
-      let decryptData = this.Encryption.decryptData(encryptedData);
-    console.log("Country decryptData:", decryptData);
+      let encryptedData = response.encryptedData;
+      let decryptData = this.encryptionService.decryptData(encryptedData);
+      let countryDcrypt = JSON.parse(decryptData);  
 
-    this.countryData = response.data;
-    console.log("Country Data:", this.countryData);
+    this.countryData = countryDcrypt.data;
 
     // Ensure we bind the country only after fetching data
     if (this.isOnline) {
@@ -353,13 +353,15 @@ async ngOnInit() {
   }
 
   changeCountry(e: any) {
+    debugger
     const selectedValue = e.target.value;
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
+    const encryptedObj = this.encryptionService.encryptData(countryObj.id);
 
     this.ngxService.start();
-    this.delegateService.getAllStates(countryObj.id).subscribe(
+    this.delegateService.getAllStates(encryptedObj).subscribe(
       (res: any) => {
         this.ngxService.stop();
         this.statesData = res.data;
@@ -855,11 +857,14 @@ async ngOnInit() {
         p_reference_by: '0'
       };
 
-
+      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
       this.ngxService.start();
-      this.SharedService.registrationOnline(this.reqBody).subscribe(
+      this.SharedService.registrationOnline(encryptedObj).subscribe(
         async (result: any) => {
-          if (result.success) {
+          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          if (decryptedObj.success) {
+console.log("decryptedObj", decryptedObj);
+
             this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();

@@ -933,14 +933,15 @@ export class DelegateWithChildNominationComponent {
         p_type:"DELEGATE_CHILD_NOMINATION",
         p_reference_by:'0'
       };
-
+      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
       this.ngxService.start();
 
-      this.SharedService.registration(this.reqBody).subscribe({
-        next: async (result: any) => {
-          this.ngxService.stop(); // Stop the loader here, after first API completes
+this.SharedService.registrationOnline(encryptedObj).subscribe({
+        next:  async (result: any) => {
+          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          if (decryptedObj.success) {
+console.log("decryptedObj", decryptedObj);
 
-          if (result.success) {
             console.log('Registration Successful:', result);
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();

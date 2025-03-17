@@ -288,7 +288,7 @@ export class ApiEndpointsService {
   }
 
   public getStatesByCountryEndpoint(country_id:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY + '/' + country_id);
+    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT + '/' + country_id);
   }
 
   public getCityByStateEndpoint(country_id:any): string {
@@ -335,7 +335,7 @@ export class ApiEndpointsService {
   }
 
   public postRegistrationOnlineEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE);
+    return this.createUrl(this._constants.API_ENDPOINT_REGISTRATION_ONLINE_ENCRYPT);
   }
 
   public postCreateDelegateOnlineMPEndpoint() {

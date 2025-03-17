@@ -96,8 +96,15 @@ export class DelegateOnlineComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
         this.referralCode = params.code;
-        this.delagateType = params.dType;
+debugger
+        if (params['data']) {
+          const decryptedData = this.encryptionService.decryptData(params['data']);
 
+          if (decryptedData) {
+            this.referralCode = decryptedData.code;
+            this.delagateType = decryptedData.dType;
+          }
+        }
         this.fnPartialSave()
         // this.router.navigate([], {
         //   relativeTo: this.route,
@@ -199,18 +206,13 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   getAllCountries() {
-    debugger
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        let encryptedData = res;
-        let decryptData = this.encryptionService.decryptData(res.encryptedData);
-
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decryptData(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);         
         
-      console.log("Country decryptData:", decryptData);
-
-
-
-        this.countryData = res.data;
+        this.countryData = countryDcrypt.data;
       },
       (err: any) => {
         console.log('error', err);

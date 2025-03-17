@@ -934,12 +934,14 @@ export class DelegateRegistrationComponent {
         p_type: 'DELEGATE_OFFLINE',
         p_reference_by: '0',
       };
-
+      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
       this.ngxService.start();
-      this.SharedService.registration(this.reqBody).subscribe(
+      this.SharedService.registrationOnline(encryptedObj).subscribe(
         async (result: any) => {
-          if (result.success) {
-            console.log('result', result);
+          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          if (decryptedObj.success) {
+console.log("decryptedObj", decryptedObj);
+
             // this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();

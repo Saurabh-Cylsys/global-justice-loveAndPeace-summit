@@ -30,7 +30,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
   constructor(private webService: WebService,
-    private Encryption: EncryptionService
+    private encryptionService: EncryptionService
   ) {}
 
   ngOnInit() {
@@ -93,13 +93,15 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     this.webService.getSpeakersList(searchQuery, '73', 'All')
     .subscribe({
       next: (response: any) => {
-        if (response?.data) {
+        debugger
+        if (response?.encryptedData) {
           // Decrypt the response data
-          let encryptedData = response.data;
-          let decryptData = this.Encryption.decryptData(encryptedData);
+          let encryptedData = response.encryptedData;
+          let decryptData = this.encryptionService.decryptData(encryptedData);
+          let data = JSON.parse(decryptData);
 
             // Map the API response data and filter out excluded countries
-            const mappedData = decryptData
+            const mappedData = data.data
               .filter((item: any) => !this.excludedCountries.includes(item.speaker_country))
               .map((item: any) => ({
                 speaker_id: item.speaker_id || '',
@@ -127,6 +129,9 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         },
         error: (error) => {
+          debugger
+          let decryptData = this.encryptionService.decryptData(error.error.encryptedData);
+          console.log(JSON.parse(decryptData), 'decrypted data');
           console.error('Error fetching speakers:', error);
           this.isLoading = false;
           this.speakersList = [];

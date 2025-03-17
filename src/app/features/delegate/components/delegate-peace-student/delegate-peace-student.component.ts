@@ -5,6 +5,7 @@ import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 @Component({
   selector: 'app-delegate-peace-student',
   templateUrl: './delegate-peace-student.component.html',
@@ -55,15 +56,25 @@ export class DelegatePeaceStudentComponent {
     private delegateService: DelegateService,
     private datePipe: DatePipe,
     private sharedService:SharedService,
-    private route: ActivatedRoute,) {
+    private route: ActivatedRoute,
+  private encryptionService: EncryptionService 
+) {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
 
         this.referralCode = params.code;
 
+        if (params['data']) {
+          const decryptedData = this.encryptionService.decryptData(params['data']);
+
+          if (decryptedData) {
+              this.delagateType = decryptedData.dType;
+          }
+        }
+
+
         console.log('params', params);
-        this.delagateType = params.dType;
 
         // this.router.navigate([], {
         //   relativeTo: this.route,
@@ -322,7 +333,11 @@ export class DelegatePeaceStudentComponent {
   getAllCountries() {
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        this.countryData = res.data;
+
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decryptData(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);  
+        this.countryData = countryDcrypt.data;
       },
       (err: any) => {
         console.log('error', err);

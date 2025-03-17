@@ -26,6 +26,7 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-with-child',
@@ -116,7 +117,8 @@ export class DelegateWithChildComponent {
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService
   ) {
     this.fullURL = window.location.href;
   }
@@ -1248,13 +1250,16 @@ export class DelegateWithChildComponent {
       //   }
       // );
 
+      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
       this.ngxService.start();
 
-      this.SharedService.registration(this.reqBody).subscribe({
-        next: async (result: any) => {
-          this.ngxService.stop(); // Stop the loader here, after first API completes
+this.SharedService.registrationOnline(encryptedObj).subscribe({
+        next:  async (result: any) => {
+          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          if (decryptedObj.success) {
+console.log("decryptedObj", decryptedObj);
 
-          if (result.success) {
+
             console.log('Registration Successful:', result);
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();

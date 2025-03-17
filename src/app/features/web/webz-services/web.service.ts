@@ -75,11 +75,12 @@ export class WebService {
 
  //encrypted 
  getSpeakersList(search: string = '', limit: string = '10', type: string = 'All') {
-  let encryptedData = this.encryptionService.encryptData({
+  let body = {
     p_search: search,
     p_limit: limit,
     p_type: type
-  });
+  }
+  let encryptedData = this.encryptionService.encrypt(JSON.stringify(body));
 
   const payload = {
     "encryptedData": encryptedData

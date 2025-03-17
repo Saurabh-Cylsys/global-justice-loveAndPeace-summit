@@ -26,6 +26,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { environment } from 'src/environments/environment';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-delegate-registration-seo',
@@ -106,7 +107,8 @@ showPopup: boolean = false;
     private ngxService: NgxUiLoaderService,
     private router: Router,
     private route: ActivatedRoute,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService
   ) {
     this.fullURL = window.location.href;
 
@@ -997,11 +999,13 @@ showPopup: boolean = false;
         p_reference_by:'0'
       };
 
+      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
       this.ngxService.start();
-      this.SharedService.registration(this.reqBody).subscribe(
+      this.SharedService.registrationOnline(encryptedObj).subscribe(
         async (result: any) => {
-          if (result.success) {
-            console.log('result', result);
+          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          if (decryptedObj.success) {
+console.log("decryptedObj", decryptedObj);
             // this.ngxService.stop();
             this.SharedService.ToastPopup('', result.message, 'success');
             this.registrationForm.reset();
