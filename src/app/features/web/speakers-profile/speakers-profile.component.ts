@@ -19,6 +19,8 @@ export class SpeakersProfileComponent implements OnInit {
   isLoading = true;
  totalColor :  any[] = [];
   tinyURL : string = environment.tinyUrl;
+  domainUrl : string = environment.domainUrl;
+  speakerShareUrl : string = '';
 
   constructor(
     private webService: WebService,
@@ -36,7 +38,9 @@ export class SpeakersProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getrandomcolor(10)
-
+debugger
+this.speakerShareUrl = this.domainUrl + this.router.url 
+console.log(this.speakerShareUrl);
 
     this.route.params.subscribe((params: any) => {
       console.log("Params", params);
@@ -135,7 +139,7 @@ export class SpeakersProfileComponent implements OnInit {
   shareContent(): void {
 
     // Ensure that speakersDetails.qr_code is available
-    if (!this.speakersDetails[0].url && !this.speakersDetails[0].QR_CODE) {
+    if (!this.speakerShareUrl) {
       this._sharedService.ToastPopup("QR Code URL is missing.", '', 'error');
       return;
     }
@@ -194,7 +198,7 @@ _"where every smile counts"_ 😊✨
 
 📢 *Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.*
 
- ${this.speakersDetails[0].url || this.speakersDetails[0].QR_CODE}
+ ${this.speakerShareUrl}
 
 📞 *Summit Helpline* ☎️
 INTERNATIONAL : +971543257125

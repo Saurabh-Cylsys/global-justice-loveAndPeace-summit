@@ -2449,10 +2449,10 @@ header .nav-item .nav-link.active {
   counter-reset: justice-counter 24; /* Start counter at 4 (3+1) */
 }
 
-.awardLink a:nth-child(2) {
+/* .awardLink a:nth-child(2) {
   background-color: #3e8e41;
   color: var(--color2) !important;
-}
+} */
 
 img {
   max-width: 100%;
@@ -3029,4 +3029,8 @@ button:focus {
 .card-chairman{
   box-shadow: 0px -1px 3px 0px #00000040 inset;
   border-radius: 10px;
+}
+
+.agenda th, .agenda td{
+  color: #fff;
 }

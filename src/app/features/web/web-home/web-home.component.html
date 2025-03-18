@@ -30,7 +30,9 @@
                       </div>
                       <div class="col-12" *ngIf="isMobileView">
                         <h5 class="m-0">12th - 13th April 2025</h5>
-                        <p class="text-dark mb-2"><b>DEC at Dubai Expo City</b></p>
+                        <p class="text-dark mb-2">
+                          <b>DEC at Dubai Expo City</b>
+                        </p>
                       </div>
                       <div class="col-4">
                         <div class="card">
@@ -79,14 +81,17 @@
                       </li>
                       <li class="p-1">
                         <a [routerLink]="['/peace-menu']">
-                        <img
-                          src="assets/UIComponents/images/peaceBtn2.svg"
-                          alt=""
-                          class="col-12"
+                          <img
+                            src="assets/UIComponents/images/peaceBtn2.svg"
+                            alt=""
+                            class="col-12"
                         /></a>
                       </li>
                       <li class="p-1">
-                        <a href="assets/UIComponents/files/agendaBook.pdf" target="_blank">
+                        <a
+                          href="assets/UIComponents/files/agendaBook.pdf"
+                          target="_blank"
+                        >
                           <img
                             src="assets/UIComponents/images/agendaBook.svg"
                             alt=""
@@ -114,10 +119,8 @@
                           <td>
                             <h6>28</h6>
                             <p>
-                              28 Peace Menu 
-                              <span
-                                >(28 Countries Menu Over 2 days)</span
-                              >
+                              28 Peace Menu
+                              <span>(28 Countries Menu Over 2 days)</span>
                             </p>
                           </td>
                         </tr>
@@ -191,7 +194,7 @@
                   JUSTICE, LOVE & PEACE SUMMIT &#64; DUBAI ON 12th - 13th APRIL
                   2025
                 </h2>
-                <h6 class="editYear">UPDATED AS OF MARCH 9th, 2025</h6>
+                <h6 class="editYear">UPDATED AS OF MARCH 16th, 2025</h6>
               </div>
               <div class="col-md-12">
                 <div class="table-responsive confirmation px-md-0">
@@ -239,8 +242,8 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let row of joinOnline">
-                        <td>{{ row.S_No }}</td>
+                      <tr *ngFor="let row of joinOnline; let i = index">
+                        <td>{{ i + 1 }}</td>
                         <td>{{ row.Name }}</td>
                         <td>{{ row.Country }}</td>
                         <td>
@@ -259,8 +262,8 @@
                     <ul class="my-lg-3 d-block text-start">
                       <li><span>A.</span> 12 Nobel Peace Laureates</li>
                       <li><span>B.</span> 11 Royalty</li>
-                      <li><span>C.</span> 3 Heads of State</li>
-                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>C.</span> 4 Heads of State</li>
+                      <li><span>D.</span> 10 Religious Leaders</li>
                       <li><span>E.</span> 5 Industrialist (Business)</li>
                     </ul>
                   </div>
@@ -275,9 +278,9 @@
                   </div>
                   <div class="col-lg-3 col-md">
                     <ul class="my-lg-3 d-block text-start">
-                      <li><span>K.</span> 11 Film Stars, Glamour</li>
+                      <li><span>K.</span> 12 Film Stars, Glamour</li>
                       <li><span>L.</span> 3 Politicians</li>
-                      <li><span>M.</span> 3 Beauty Queen</li>
+                      <li><span>M.</span> 4 Beauty Queen</li>
                       <li><span>N.</span> 5 Social Activist</li>
                       <li><span>O.</span> 2 Ex-Head of State</li>
                     </ul>
@@ -285,7 +288,7 @@
                   <div class="col-lg-3 col-md">
                     <ul class="my-lg-3 d-block text-start">
                       <li><span>P.</span> 2 Academician</li>
-                      <li><span>Q.</span> 12 Others</li>
+                      <li><span>Q.</span> 13 Others</li>
                     </ul>
                   </div>
                 </div>
@@ -294,8 +297,8 @@
                     <ul class="my-lg-3 d-block text-start">
                       <li><span>A.</span> 12 Nobel Peace Laureates</li>
                       <li><span>B.</span> 11 Royalty</li>
-                      <li><span>C.</span> 3 Heads of State</li>
-                      <li><span>D.</span> 9 Religious Leaders</li>
+                      <li><span>C.</span> 4 Heads of State</li>
+                      <li><span>D.</span> 10 Religious Leaders</li>
                       <li><span>E.</span> 5 Industrialist (Business)</li>
                       <li><span>F.</span> 5 Sports Champions</li>
                       <li><span>G.</span> 1 Artist</li>
@@ -306,13 +309,13 @@
                   </div>
                   <div class="col-md-6">
                     <ul class="my-lg-3 d-block text-start">
-                      <li><span>K.</span> 11 Film Stars, Glamour</li>
+                      <li><span>K.</span> 12 Film Stars, Glamour</li>
                       <li><span>L.</span> 3 Politicians</li>
-                      <li><span>M.</span> 3 Beauty Queen</li>
+                      <li><span>M.</span> 4 Beauty Queen</li>
                       <li><span>N.</span> 5 Social Activist</li>
                       <li><span>O.</span> 2 Ex-Head of State</li>
                       <li><span>P.</span> 2 Academician</li>
-                      <li><span>Q.</span> 12 Others</li>
+                      <li><span>Q.</span> 13 Others</li>
                     </ul>
                   </div>
                 </div>
@@ -323,8 +326,8 @@
                 <ul class="my-lg-3">
                   <li><span>A.</span> 12 Nobel Peace Laureates</li>
                   <li><span>B.</span> 11 Royalty</li>
-                  <li><span>C.</span> 3 Heads of State</li>
-                  <li><span>D.</span> 9 Religious Leaders</li>
+                  <li><span>C.</span> 4 Heads of State</li>
+                  <li><span>D.</span> 10 Religious Leaders</li>
                   <li><span>E.</span> 5 Industrialist (Business)</li>
                 </ul>
                 <ul class="my-lg-3">
@@ -335,15 +338,15 @@
                   <li><span>J.</span> 2 Judge</li>
                 </ul>
                 <ul class="my-lg-3">
-                  <li><span>K.</span> 11 Film Stars, Glamour</li>
+                  <li><span>K.</span> 12 Film Stars, Glamour</li>
                   <li><span>L.</span> 3 Politicians</li>
-                  <li><span>M.</span> 3 Beauty Queen</li>
+                  <li><span>M.</span> 4 Beauty Queen</li>
                   <li><span>N.</span> 5 Social Activist</li>
                   <li><span>O.</span> 2 Ex-Head of State</li>
                 </ul>
                 <ul class="my-lg-3">
                   <li><span>P.</span> 2 Academician</li>
-                  <li><span>Q.</span> 12 Others</li>
+                  <li><span>Q.</span> 13 Others</li>
                 </ul>
                 <!-- <p class="my-md-0 m-2">
                 (His Excellency Jose Manuel Ramos-Horta falls in both the categories
@@ -475,6 +478,15 @@
                     <h3>12th -13th <span>April, 2025</span></h3>
                     <!-- <h5>10:00 AM - 11:00 PM</h5> -->
                   </div>
+                  <h3 style="
+                  font-weight: 700;
+                  font-size: clamp(18px, 2vw, 35px);
+                  line-height: 150%;
+                  letter-spacing: 30%;
+                  vertical-align: middle;
+                  color: #004D85;
+                  text-transform: uppercase;
+                  ">Agenda</h3>
                   <h4 class="location">
                     <a
                       href="https://virtualexpodubai.com/mobility-district/dubai-exhibition-centre-dec"
@@ -495,31 +507,12 @@
                   <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
-              <div
-                class="col-lg-6 col-md-12 col-12 text-lg-start text-center text-md-center"
-              >
-                <!-- <label for="" class="mb-3">SCHEDULE</label> -->
-                <h1
-                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
-                >
-                  SCHEDULE AND AGENDA
-                </h1>
-                <p
-                  class="mb-3 col-lg-6 text-lg-start text-center text-md-center"
-                >
-                  A representation of the event planning of Global Summit
-                </p>
-
-                <button (click)="downloadPDF()" class="btn btn-success p-md-3">
-                  DOWNLOAD SCHEDULE
-                </button>
-              </div>
               <div class="col-12" *ngIf="isMobileView">
                 <div
                   class="d-lg-flex d-md-flex align-items-center justify-content-between"
                 >
                   <div class="date">
-                    <h3>12th -13th <span>April, 2025</span></h3>
+                    <h3>Agenda</h3>
                     <!-- <h5>10:00 AM - 11:00 PM</h5> -->
                   </div>
                   <h4 class="location">
@@ -542,83 +535,259 @@
                   <div class="progress-bar" style="width: 25%"></div>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="row">
-                  <div class="col-12">
-                    <h4 class="event_day">Day 1 - 12th April 2025</h4>
-                    <div class="timeline-content">
-                      <ul class="timeline">
-                        <li
-                          class="event"
-                          [attr.data-date]="event.time"
-                          [attr.data-count]="i + 1"
-                          *ngFor="let event of events_day1; let i = index"
-                        >
-                          <h3
-                            class="fw-bold"
-                            [innerHTML]="event.title | customePipe"
-                          ></h3>
-                        </li>
-                        <!-- <li class="event" data-date="8:00 AM-10:00 AM">
-                          Registration
-                        </li>
-                        <li class="event" data-date="10:00 AM-10:30 AM">
-                          Opening Session
-                        </li>
-                        <li class="event" data-date="10:00 AM-10:30 AM">
-                          Opening Session
-                        </li> -->
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="collapse" id="collapseExample">
-                      <h4 class="event_day mt-3">Day 2 - 13th April 2025</h4>
-                      <div class="timeline-content">
-                        <ul class="timeline">
-                          <!-- <li
-                            class="event"
-                            [attr.data-date]="event.time"
-                            [attr.data-count]="i + 1"
-                            *ngFor="
-                              let event of events_day2 ;
-                              let i = index
-                            "
-                          >
-                            <h3 class="fw-bold">{{ event.title }}</h3>
-                          </li> -->
-                          <li
-                            class="event"
-                            [attr.data-date]="event.time"
-                            [attr.data-count]="i + 1"
-                            *ngFor="let event of events_day2; let i = index"
-                          >
-                            <h3
-                              class="fw-bold"
-                              [innerHTML]="event.title | customePipe"
-                            ></h3>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <p class="d-inline-flex gap-1">
-                      <button
-                        class="btn bg-transparent"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseExample"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                        (click)="showMore(!isVisibleCount ? true : false)"
-                      >
-                        <b style="color: rgba(3, 192, 75, 0.623)">{{
-                          isVisibleCount == false ? "See More..." : "Less..."
-                        }}</b>
-                      </button>
-                    </p>
-                  </div>
+              <div class="col-md-12">
+                <h2
+                  style="
+                    font-size: 20px;
+                    color: var(--color3);
+                    font-weight: bold;
+                  "
+                >
+                  Day 1 - 12th April 2025 (Saturday)
+                </h2>
+
+                <div class="table-responsive">
+                  <table class="table text-center align-middle agenda">
+                    <thead class="table-dark">
+                      <tr>
+                        <th style="background-color: #d9d9d9"></th>
+                        <th style="background-color: #363636">
+                          Mahatma Gandhi Justice Hall
+                        </th>
+                        <th style="background-color: #4f4f4f">
+                          Nelson Mandela Love Hall
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="background-color: #128940">
+                          10:30 AM - 11:00 AM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Welcome and Opening remarks by chairman
+                        </td>
+                        <td style="background-color: #65a15a"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          11:00 AM - 12:15 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Justice (Session 1)
+                        </td>
+                        <td style="background-color: #005b94">
+                          Love (Session 7)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          12:15 PM - 1:30 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Justice (Session 2)
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Love (Session 8)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          1:30 PM - 3:00 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Lunch Break + Networking
+                        </td>
+                        <td style="background-color: #005b94"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          3:00 PM - 4:15 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Love (Session 3)
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Peace (Session 9)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          4:15 PM - 5:30 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Love (Session 4)
+                        </td>
+                        <td style="background-color: #005b94">
+                          Peace (Session 10)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          5:30 PM - 6:30 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Special Meditation Session + World Yoga Session
+                        </td>
+                        <td style="background-color: #65a15a"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          6:30 PM - 7:45 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Peace (Session 5)
+                        </td>
+                        <td style="background-color: #005b94">
+                          Justice (Session 11)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          7:45 PM - 9:00 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Peace (Session 6)
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Justice (Session 12)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          9:00 PM - 10:30 PM
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Gala Dinner
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
+              <div class="col-md-12">
+                <h2
+                  style="
+                    font-size: 20px;
+                    color: var(--color3);
+                    font-weight: bold;
+                  "
+                >
+                  Day 2 - 13th April 2025 (Sunday)
+                </h2>
+
+                <div class="table-responsive">
+                  <table class="table text-center align-middle agenda">
+                    <thead class="table-dark">
+                      <tr>
+                        <th style="background-color: #d9d9d9"></th>
+                        <th style="background-color: #363636">
+                          Mahatma Gandhi Justice Hall
+                        </th>
+                        <th style="background-color: #4f4f4f">
+                          Nelson Mandela Love Hall
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="background-color: #128940">
+                          10:30 AM - 11:00 AM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Key Not address by Chief Guest
+                        </td>
+                        <td style="background-color: #65a15a"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          11:00 AM - 12:15 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Love (Session 13)
+                        </td>
+                        <td style="background-color: #005b94">
+                          Justice (Session 17)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          12:15 PM - 1:30 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Love (Session 14)
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Justice (Session 18)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          1:30 PM - 3:00 PM
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Lunch Break + Networking
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          3:00 PM - 4:15 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Justice (Session 15)
+                        </td>
+                        <td style="background-color: #65a15a">
+                          Love (Session 18)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          4:15 PM - 5:30 PM
+                        </td>
+                        <td style="background-color: #005b94">
+                          Justice (Session 16)
+                        </td>
+                        <td style="background-color: #005b94">
+                          Love (Session 19)
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          5:30 PM - 7:00 PM
+                        </td>
+                        <td style="background-color: #64a15a">
+                          Nobel Peace Laureates Panel Discussion (Session 21)
+                        </td>
+                        <td style="background-color: #65a15a"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          7:00 PM - 7:45 PM
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Tea Break + Networking
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #128940">
+                          7:45 PM - 9:00 PM
+                        </td>
+                        <td style="background-color: #64a15a">Eirene Awards</td>
+                        <td style="background-color: #65a15a"></td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #024d88">
+                          9:00 PM - 10:30 PM
+                        </td>
+                        <td style="background-color: #005b94" colspan="2">
+                          Gala Dinner
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
             </div>
           </div>
           <img
@@ -653,7 +822,7 @@
 
                 <img
                   loading="eager"
-                  src="assets/UIComponents/images/index/GHD.png"
+                  src="assets/UIComponents/images/index/GHD.webp"
                   alt="Second Image"
                   class="position-absolute second-image col-md-4"
                 />

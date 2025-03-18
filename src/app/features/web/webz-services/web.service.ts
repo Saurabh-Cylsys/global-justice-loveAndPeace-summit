@@ -124,13 +124,6 @@ export class WebService {
       Country: 'DENMARK',
       Credentials: 'Royalty, Lawyer, Philanthropist',
     },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker19.png',
-    //   Name: 'Arjuna Ranatunga, Deshamanya',
-    //   Country: 'SRI LANKA',
-    //   Credentials: 'Cricketer & Politician',
-    // },
     {
       // "S_No": 1,
       View: '',
@@ -138,6 +131,14 @@ export class WebService {
       Name: 'Asle Toje',
       Country: 'NORWAY',
       Credentials: 'Deputy Leader, Norwegian Nobel Committee',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Azali Assoumani, His Excellency',
+      Country: 'COMOROS',
+      Credentials: 'Head of State, President ',
     },
     {
       // "S_No": 1,
@@ -294,13 +295,13 @@ export class WebService {
     //   Country: 'SRI LANKA, INDIA',
     //   Credentials: 'Beauty Queen, Actress',
     // },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker27.png',
-    //   Name: 'Juan Carlos Sainz-Borgo, Dr.',
-    //   Country: 'COSTA RICA',
-    //   Credentials: 'Vice Rector, University of Peace',
-    // },
+    {
+      View: '',
+      Profile_Photo: null,
+      Name: 'Jannat Zubair',
+      Country: 'INDIA',
+      Credentials: 'Actress, content creator and social media influencer',
+    },
     // list 8
     {
       // "S_No": 13,
@@ -318,14 +319,6 @@ export class WebService {
       Country: 'TANZANIAN',
       Credentials:
         'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
-    },
-    {
-      // "S_No": 14,
-      View: '',
-      Profile_Photo: 'speaker63.png',
-      Name: 'Kriti Kharbanda',
-      Country: 'INDIA',
-      Credentials: 'Actress ( Hindi, South Indian )',
     },
     {
       // "S_No": 14,
@@ -364,15 +357,7 @@ export class WebService {
         'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
     },
     // list 10
-    {
-      // "S_No": 17,
-      View: '',
-      Profile_Photo: 'speaker30.png',
-      Name: 'Mahawa Simou Diouf, Judge President of the Court of Justice of WAEMU (West African Monetary & Economic Union)',
-      Country: 'BURKINA FASO',
-      Credentials:
-        'Head of Association of Judges of 8 countries in West Africa',
-    },
+    
     {
       // "S_No": 17,
       View: '',
@@ -382,13 +367,7 @@ export class WebService {
       Credentials:
         'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
     },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker64.png',
-    //   Name: 'Maqsoud Cruz',
-    //   Country: 'UAE',
-    //   Credentials: 'Chairman, National Human Rights Commission, UAE',
-    // },
+    
     {
       // "S_No": 18,
       View: '',
@@ -763,13 +742,6 @@ export class WebService {
       Country: 'DENMARK',
       Credentials: 'Royalty, Lawyer, Philanthropist',
     },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker19.png',
-    //   Name: 'Arjuna Ranatunga, Deshamanya',
-    //   Country: 'SRI LANKA',
-    //   Credentials: 'Cricketer & Politician',
-    // },
     {
       // "S_No": 1,
       View: '',
@@ -777,6 +749,14 @@ export class WebService {
       Name: 'Asle Toje',
       Country: 'NORWAY',
       Credentials: 'Deputy Leader, Norwegian Nobel Committee',
+    },
+    {
+      // "S_No": 1,
+      View: '',
+      Profile_Photo: null,
+      Name: 'Azali Assoumani, His Excellency',
+      Country: 'COMOROS',
+      Credentials: 'Head of State, President ',
     },
     {
       // "S_No": 1,
@@ -934,13 +914,13 @@ export class WebService {
     //   Country: 'SRI LANKA, INDIA',
     //   Credentials: 'Beauty Queen, Actress',
     // },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker27.png',
-    //   Name: 'Juan Carlos Sainz-Borgo, Dr.',
-    //   Country: 'COSTA RICA',
-    //   Credentials: 'Vice Rector, University of Peace',
-    // },
+    {
+      View: '',
+      Profile_Photo: null,
+      Name: 'Jannat Zubair',
+      Country: 'INDIA',
+      Credentials: 'Actress, content creator and social media influencer',
+    },
     // list 8
     {
       // "S_No": 13,
@@ -958,14 +938,6 @@ export class WebService {
       Country: 'TANZANIAN',
       Credentials:
         'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
-    },
-    {
-      // "S_No": 14,
-      View: '',
-      Profile_Photo: 'speaker63.png',
-      Name: 'Kriti Kharbanda',
-      Country: 'INDIA',
-      Credentials: 'Actress ( Hindi, South Indian )',
     },
     {
       // "S_No": 14,
@@ -1004,15 +976,7 @@ export class WebService {
         'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
     },
     // list 10
-    {
-      // "S_No": 17,
-      View: '',
-      Profile_Photo: 'speaker30.png',
-      Name: 'Mahawa Simou Diouf, Judge President of the Court of Justice of WAEMU (West African Monetary & Economic Union)',
-      Country: 'BURKINA FASO',
-      Credentials:
-        'Head of Association of Judges of 8 countries in West Africa',
-    },
+    
     {
       // "S_No": 17,
       View: '',
@@ -1022,13 +986,7 @@ export class WebService {
       Credentials:
         'Tennis : Former World Number 1 Doubles Tennis Player, 12 times Grand Slam Doubles Winner',
     },
-    // {
-    //   View: '',
-    //   Profile_Photo: 'speaker64.png',
-    //   Name: 'Maqsoud Cruz',
-    //   Country: 'UAE',
-    //   Credentials: 'Chairman, National Human Rights Commission, UAE',
-    // },
+    
     {
       // "S_No": 18,
       View: '',
@@ -1382,6 +1340,13 @@ export class WebService {
       Country: 'LIBERIA',
       Credentials: 'President of Liberia (ONLINE)',
     },
+    {
+      View: '',
+      Profile_Photo: null,
+      Name: 'Mata Amritanandamayi',
+      Country: 'INDIA',
+      Credentials: 'Chancellor of Amrita Vishwa Vidyapeetham',
+    },
     // list 22
     {
       View: '',
@@ -1449,18 +1414,26 @@ export class WebService {
           {
             // "S_No": 1,
             View: '',
-            Profile_Photo: 'speaker20.png',
-            Name: 'Baba Ramdev',
-            Country: 'INDIA',
-            Credentials: 'World Yoga Guru',
+            Profile_Photo: null,
+            Name: 'Azali Assoumani, His Excellency',
+            Country: 'COMOROS',
+            Credentials: 'Head of State, President ',
           },
+          
         ],
       },
 
       {
         speakers: [
           // list 3
-
+          {
+            // "S_No": 1,
+            View: '',
+            Profile_Photo: 'speaker20.png',
+            Name: 'Baba Ramdev',
+            Country: 'INDIA',
+            Credentials: 'World Yoga Guru',
+          },
           {
             // "S_No": 2,
             View: '',
@@ -1479,6 +1452,14 @@ export class WebService {
             Credentials:
               'General : Former Chief of the Indian Army',
           },
+          
+
+        ],
+      },
+
+      {
+        speakers: [
+          // list 4
           {
             // "S_No": 3,
             View: 'binod',
@@ -1488,13 +1469,6 @@ export class WebService {
             Credentials:
               'President, Chaudhary Group : Industrialist, Member of House of Representatives of Nepal',
           },
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 4
           {
             // "S_No": 4,
             View: '',
@@ -1514,6 +1488,14 @@ export class WebService {
             Credentials:
               'Wrestler : 1st Indian born World Heavyweight Champion, WWE',
           },
+          
+
+        ],
+      },
+
+      {
+        speakers: [
+          // list 5
           {
             // "S_No": 5,
             View: '',
@@ -1523,13 +1505,6 @@ export class WebService {
             Credentials:
               'Sports Champion : Silver Medallist at 2016 Rio Paralympics',
           },
-
-        ],
-      },
-
-      {
-        speakers: [
-          // list 5
           {
             // "S_No": 6,
             View: '',
@@ -1548,6 +1523,13 @@ export class WebService {
             Credentials:
               'President of the Permanent Secretariat of the World Summit of Nobel Peace Laureates',
           },
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 6
           {
             // "S_No": 7,
             View: '',
@@ -1556,12 +1538,6 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Actress',
           },
-
-        ],
-      },
-      {
-        speakers: [
-          // list 6
           {
             // "S_No": 8,
             View: '',
@@ -1580,6 +1556,13 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Industrialist : Chairman, Wockhardt Group',
           },
+          
+
+        ],
+      },
+      {
+        speakers: [
+          // list 7
           {
             // "S_No": 11,
             View: '',
@@ -1588,12 +1571,6 @@ export class WebService {
             Country: 'GAMBIA',
             Credentials: 'Chief Justice of the Supreme Court of Gambia',
           },
-
-        ],
-      },
-      {
-        speakers: [
-          // list 7
           {
             // "S_No": 12,
             View: '',
@@ -1612,15 +1589,7 @@ export class WebService {
             Country: 'SOUTH AFRICA',
             Credentials: 'Actress, Humanitarian',
           },
-          {
-            // "S_No": 12,
-            View: '',
-            Profile_Photo: 'speaker58.png',
-            Name: 'Hoda Galal Yassa, Dr.',
-            Country: 'EGYPT',
-            Credentials:
-              'Industrialist : President, Arab Women Investors Union',
-          },
+          
 
 
         ],
@@ -1631,18 +1600,34 @@ export class WebService {
           {
             // "S_No": 12,
             View: '',
+            Profile_Photo: 'speaker58.png',
+            Name: 'Hoda Galal Yassa, Dr.',
+            Country: 'EGYPT',
+            Credentials:
+              'Industrialist : President, Arab Women Investors Union',
+          },
+          {
+            // "S_No": 12,
+            View: '',
             Profile_Photo: 'speaker26.png',
             Name: 'Houcine Abbasi',
             Country: 'TUNISIA',
             Credentials: 'Educationist : Nobel Peace Laureate 2015',
           },
-          // {
-          //   View: '',
-          //   Profile_Photo: 'speaker59.png',
-          //   Name: 'Jacqueline Fernandez',
-          //   Country: 'SRI LANKA, INDIA',
-          //   Credentials: 'Beauty Queen, Actress',
-          // },
+          
+          {
+            View: '',
+            Profile_Photo: null,
+            Name: 'Jannat Zubair',
+            Country: 'INDIA',
+            Credentials: 'Actress, content creator and social media influencer',
+          },
+          
+        ],
+      },
+      {
+        speakers: [
+          // list 9
           {
             // "S_No": 13,
             View: '',
@@ -1660,21 +1645,7 @@ export class WebService {
             Credentials:
               'Content Creator and Social Media Influencer Honoured by the High Commission of India in Tanzania',
           },
-        ],
-      },
-      {
-        speakers: [
-          // list 9
 
-
-          {
-            // "S_No": 14,
-            View: '',
-            Profile_Photo: 'speaker63.png',
-            Name: 'Kriti Kharbanda',
-            Country: 'INDIA',
-            Credentials: 'Actress ( Hindi, South Indian )',
-          },
           {
             // "S_No": 14,
             View: '',
@@ -1684,6 +1655,13 @@ export class WebService {
             Credentials:
               'Social Activist : Founder & President, Imad Ibn Ziaten Youth Association for Peace : Zayed Award for Human Fraternity 2021, National Order of the Legion of Honour 2015',
           },
+          
+        ],
+      },
+
+      {
+        speakers: [
+          // list 10
           {
             // "S_No": 14,
             View: '',
@@ -1693,13 +1671,6 @@ export class WebService {
             Credentials:
               'Politician, Trade Union Activist : Nobel Peace Laureate 1983',
           },
-        ],
-      },
-
-      {
-        speakers: [
-          // list 10
-
 
           {
             // "S_No": 15,
@@ -1719,15 +1690,7 @@ export class WebService {
             Credentials:
               'Founder, Ahimsa Vishwa Bharti & World Peace Centre Global Peace Ambassador, Jain Religion Spiritual Leader',
           },
-          {
-            // "S_No": 17,
-            View: '',
-            Profile_Photo: 'speaker30.png',
-            Name: 'Mahawa Simou Diouf, Judge President of the Court of Justice of WAEMU (West African Monetary & Economic Union)',
-            Country: 'BURKINA FASO',
-            Credentials:
-              'Head of Association of Judges of 8 countries in West Africa',
-          },
+          
         ],
       },
 
@@ -1761,13 +1724,7 @@ export class WebService {
             Country: 'INDIA',
             Credentials: 'Boxer, 6 times World Champion',
           },
-          // {
-          //   View: '',
-          //   Profile_Photo: 'speaker64.png',
-          //   Name: 'Maqsoud Cruz',
-          //   Country: 'UAE',
-          //   Credentials: 'Chairman, National Human Rights Commission, UAE',
-          // },
+          
         ],
       },
 
@@ -2183,7 +2140,13 @@ export class WebService {
       },
       {
         speakers: [
-
+          {
+            View: '',
+            Profile_Photo: null,
+            Name: 'Mata Amritanandamayi',
+            Country: 'INDIA',
+            Credentials: 'Chancellor of Amrita Vishwa Vidyapeetham',
+          },
 
 
 
