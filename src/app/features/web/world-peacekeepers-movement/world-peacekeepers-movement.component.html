@@ -447,7 +447,7 @@
                     Already have a peacekeeper account ?
                     <span>
                       <a
-                        href="https://peacebook.justice-love-peace.com"
+                      [href]="peacebookwebAppurl"
                         target="_blank"
                         style="color: #359138; font-weight: 600;"
                         >Sign in
@@ -1392,6 +1392,7 @@
       <div class="col-md-12 row ms-2 my-3" style="width: 95%">
         <div class="col-6">
           <button
+            [disabled] = "btnDisabled"
             class="btn btn-success w-100"
             (click)="downloadImage()"
             style="height: 36px; font-size: 15px"
