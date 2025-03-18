@@ -107,9 +107,9 @@ export class WebHeaderComponent implements OnInit {
     //   queryParams: { medium :1 }
     // });
 
-    // const tinyUrlWithParams = `${this.tinyURL}`;
+    const tinyUrlWithParams = `${this.tinyURL}`;
 
-    const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
+    // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
 
         window.location.href = tinyUrlWithParams;
 

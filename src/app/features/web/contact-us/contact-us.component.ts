@@ -20,6 +20,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -171,6 +172,7 @@ export class ContactUsComponent {
     private titleService: Title,
         private metaService: Meta,
         private renderer: Renderer2,
+        private encryptionService: EncryptionService,
         @Inject(DOCUMENT) private document: Document
   ) {}
   getcontrol(name: any): AbstractControl | null {
@@ -335,14 +337,37 @@ export class ContactUsComponent {
     // if (this.contactUsForm.invalid) {
     //   return console.log('Invalid Details');
     // }
+    debugger
     if (this.submitted) {
       this.reqBody = {
-        ...this.contactUsForm.value,
+        title: this.contactUsForm.value.title,
+        email: this.contactUsForm.value.email,
+        firstName: this.contactUsForm.value.firstName,
+        lastName: this.contactUsForm.value.lastName,
+        countryCode: this.contactUsForm.value.countryCode,
+        phoneNumber: this.contactUsForm.value.phoneNumber,
+        yourQuestion: this.contactUsForm.value.yourQuestion
+
+        // title:"Mr",
+        //     email:"uday@gmail.com",
+        //     firstName:"Uday",
+        //     lastName:"Shimpi",
+        //     countryCode:"+91",
+        //    phoneNumber:"124565",
+        //    yourQuestion:"I am delegate"
       };
+      const encryptData = this.encryptionService.encryptData(this.reqBody);
+      console.log('encryptData', encryptData);
       console.log('this.contactUsForm.value', this.contactUsForm.value);
       this.ngxService.start();
-      this.SharedService.contectUs(this.reqBody).subscribe(
+      let body ={
+        encryptedData : encryptData
+      }
+      this.SharedService.contectUs(body).subscribe(
         (result: any) => {
+      const decryptData = this.encryptionService.decryptData(this.reqBody);
+console.log( 'decryptData', decryptData);
+
           if (result.success) {
             console.log('result', result);
             this.ngxService.stop();

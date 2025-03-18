@@ -10,7 +10,7 @@ export class Constants {
 
 
     public readonly API_ENDPOINT_registration: string = 'create-delegate-profile-online'
-    public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us'
+    public readonly API_ENDPOINT_CONTECT_US: string = 'contact_us/encryption'
     public readonly API_ENDPOINT_PEACEKEEPER: string = 'create-peacekeeper'
     public readonly API_ENDPOINT_DOWNLOAD_PEACEKEEPER_BADGE: string = 'peacekeeper/'
 
