@@ -190,3 +190,22 @@
 .containerCheck{
   color: #B8B9B5 !important;
 }
+
+.custom-select {
+  color: #000000;
+}
+
+.custom-select option[value=""][disabled] {
+  color: #B8B9B5 !important;
+}
+
+.custom-select option[value=""][disabled]:focus,
+.custom-select option[value=""][disabled]:active,
+.custom-select option[value=""][disabled]:checked {
+  color: white !important;
+  background-color: #0275d8 !important;
+}
+
+.custom-select option {
+  color: #000000;
+}
