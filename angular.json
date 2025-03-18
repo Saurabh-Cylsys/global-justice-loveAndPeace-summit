@@ -26,7 +26,15 @@
               "src/web.config"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.css",      
+              "./src/assets/UIComponents/css/bootstrap.min.css",
+              "./src/assets/UIComponents/css/style.css",
+              "./src/assets/UIComponents/css/font.css",
+              "./src/assets/UIComponents/css/responsive.css",
+              "./src/assets/UIComponents/css/slick.css",
+              "./src/assets/UIComponents/css/timeline.css",
+              "./src/assets/UIComponents/css/fullpage.css",
+              "./src/assets/UIComponents/css/swiper-bundle.css",   
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/aos/dist/aos.css",
@@ -34,7 +42,9 @@
 
             ],
             "scripts": [
-              "node_modules/aos/dist/aos.js"
+              "node_modules/aos/dist/aos.js",
+              "./src/assets/UIComponents/js/script.js",
+              "./src/assets/UIComponents/js/fullpage.js"
             ]
           },
           "configurations": {
