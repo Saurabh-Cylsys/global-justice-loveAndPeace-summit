@@ -169,7 +169,7 @@ const routes: Routes = [
         component: SpeakerDetailsComponent
       },
       {
-        path: 'speaker-details/:speakerId/:speakerName',
+        path: 'speaker-profile',
         component: SpeakersProfileComponent
       },
       {
