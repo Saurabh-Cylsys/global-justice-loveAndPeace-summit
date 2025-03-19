@@ -848,12 +848,12 @@ export class DelegateWithChildNominationComponent {
         p_type:"DELEGATE_CHILD_NOMINATION",
         p_reference_by:'0'
       };
-      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
 
 this.SharedService.registrationOnline(encryptedObj).subscribe({
         next:  async (result: any) => {
-          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          let decryptedObj:any = this.encryptionService.decrypt(result.encryptedData);
           if (decryptedObj.success) {
 console.log("decryptedObj", decryptedObj);
 
@@ -866,13 +866,16 @@ console.log("decryptedObj", decryptedObj);
           }, 3000);
 
           } else {
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         error: (err) => {
+
+          let decryptedErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+console.log("decryptedObj", decryptedErr);
           this.ngxService.stop();
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptedErr.message, 'error');
         },
       });
     }

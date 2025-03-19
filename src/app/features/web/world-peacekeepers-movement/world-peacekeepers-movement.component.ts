@@ -416,7 +416,11 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     this.DelegateService.getAllCountrycode().subscribe(
       (res: any) => {
 
-        this.code = res.data;
+        let encryptedData = res.encryptedData;
+        let decryptData = this.encryptionService.decrypt(encryptedData);
+        let countryDcrypt = JSON.parse(decryptData);         
+        
+        this.code = countryDcrypt.data;
         // Define the country name you want to find (e.g., "India (+91)")
         const countryToFind = 'India';
 

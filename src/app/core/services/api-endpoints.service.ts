@@ -256,7 +256,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_getdates);
   }
   public getAllCountrycodeEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_GET_getAllCountrycode);
+    return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_COUNTRY_ENCRYPT);
   }
   public getAllCountriesEndpoint(): string {
     return this.createUrl(this._constants.API_ENDPOINT_GET_ALL_COUNTRY);
@@ -327,7 +327,7 @@ export class ApiEndpointsService {
   }
 
   public postCreateDelegateOnlineEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_ONLINE_DELEGATE_ENCRYPT);
   }
 
   public postVerifySessionOnlineEndpoint() {

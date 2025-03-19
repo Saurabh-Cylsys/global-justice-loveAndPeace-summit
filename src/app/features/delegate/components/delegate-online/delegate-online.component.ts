@@ -409,26 +409,36 @@ debugger
 
       }
 
-      this.delegateService.postDelegateOnline(this.payload).subscribe({
+      const EncryptData = this.encryptionService.encrypt(this.payload);
+let reqBody = {
+  encryptedData: EncryptData
+}
+
+      this.delegateService.postDelegateOnline(reqBody).subscribe({
         next: (response: any) => {
+
+          let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
+          decryptData = JSON.parse(decryptData);
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
           this.btnDisabled = true;
-          this.sharedService.ToastPopup(response.message, '', 'success');
+          this.sharedService.ToastPopup(decryptData.message, '', 'success');
           this.registrationData = this.payload;
 
           setTimeout(async () => {
-            if (response.isStripe)
-              await this.fnStripePG(response, this.payload);
+            if (decryptData.isStripe)
+              await this.fnStripePG(decryptData, this.payload);
             else
-              await this.fnMagnatiPG(response, this.payload);
+              await this.fnMagnatiPG(decryptData, this.payload);
           }, 5000);
 
           this.loading = false;
         },
         error: (error: any) => {
-          console.error('Error creating delegate:', error);
-          this.sharedService.ToastPopup('Error', error.error?.message || 'Registration failed', 'error');
+          let decryptErr:any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
+          this.sharedService.ToastPopup('',decryptErr?.message || 'Registration failed', 'error');
           this.loading = false;
           this.isFormSubmitted = true; // Mark form as submitted
           this.stopAutoSave(); // Stop autosave
