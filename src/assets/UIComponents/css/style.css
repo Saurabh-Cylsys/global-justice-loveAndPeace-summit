@@ -1558,7 +1558,7 @@ header .nav-item .nav-link.active {
 }
 .iti .dropdown-menu.show {
   overflow: scroll;
-  height: 50vh;
+  max-height: 45vh;
 }
 
 .form-floating > .form-control-plaintext ~ label,
