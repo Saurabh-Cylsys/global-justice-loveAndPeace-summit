@@ -97,7 +97,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
         if (response?.encryptedData) {
           // Decrypt the response data
           let encryptedData = response.encryptedData;
-          let decryptData = this.encryptionService.decryptData(encryptedData);
+          let decryptData = this.encryptionService.decrypt(encryptedData);
           let data = JSON.parse(decryptData);
 
             // Map the API response data and filter out excluded countries

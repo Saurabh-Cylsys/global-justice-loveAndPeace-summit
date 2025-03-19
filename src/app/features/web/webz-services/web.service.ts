@@ -80,7 +80,7 @@ export class WebService {
     p_limit: limit,
     p_type: type
   }
-  let encryptedData = this.encryptionService.encrypt(JSON.stringify(body));
+  let encryptedData = this.encryptionService.encrypt(body);
 
   const payload = {
     "encryptedData": encryptedData
