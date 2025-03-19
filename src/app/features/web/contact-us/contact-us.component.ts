@@ -170,11 +170,11 @@ export class ContactUsComponent {
     private httpClient: HttpClient,
     private route: ActivatedRoute,
     private titleService: Title,
-        private metaService: Meta,
-        private renderer: Renderer2,
-        private encryptionService: EncryptionService,
-        @Inject(DOCUMENT) private document: Document
-  ) {}
+    private metaService: Meta,
+    private renderer: Renderer2,
+    private encryptionService: EncryptionService,
+    @Inject(DOCUMENT) private document: Document
+  ) { }
   getcontrol(name: any): AbstractControl | null {
     return this.contactUsForm.get(name);
   }
@@ -296,27 +296,27 @@ export class ContactUsComponent {
     this.contactUsForm.controls[controlName].setValue(trimmedValue, { emitEvent: false });
   }
 
- /** ✅ Function to Display Validation Message */
- getPhoneErrorMessage() {
-  const control = this.contactUsForm.controls['phoneNumber'];
+  /** ✅ Function to Display Validation Message */
+  getPhoneErrorMessage() {
+    const control = this.contactUsForm.controls['phoneNumber'];
 
-  if (control.errors.validatePhoneNumber['valid']) {
-    return '';
-  } else {
-    return 'Invalid mobile number for selected country.';
+    if (control.errors.validatePhoneNumber['valid']) {
+      return '';
+    } else {
+      return 'Invalid mobile number for selected country.';
+    }
   }
-}
 
   keyPressNumbers(event: KeyboardEvent, inputValue: any) {
-    if(inputValue !== null){
+    if (inputValue !== null) {
 
-      if(inputValue.number.length<7){
+      if (inputValue.number.length < 7) {
         this.mobile_numberVal = true;
         // event.preventDefault()
       } else {
         this.mobile_numberVal = false;
       }
-     }
+    }
   }
 
 
@@ -349,18 +349,19 @@ export class ContactUsComponent {
         phoneNumber: this.contactUsForm.value.phoneNumber,
         yourQuestion: this.contactUsForm.value.yourQuestion
       };
-      const encryptData = this.encryptionService.encryptData(this.reqBody);
+      const encryptData = this.encryptionService.encrypt(this.reqBody);
       console.log('encryptData', encryptData);
       console.log('this.contactUsForm.value', this.contactUsForm.value);
       this.ngxService.start();
-      let body ={
-        encryptedData : encryptData
+      let body = {
+        encryptedData: encryptData
       }
       this.SharedService.contectUs(body).subscribe(
         (result: any) => {
-      let decryptData = this.encryptionService.decryptData(result.encryptedData);
-      decryptData = JSON.parse(decryptData);
-console.log( 'decryptData', decryptData);
+          let decryptData:any = this.encryptionService.decrypt(result.encryptedData);
+
+          decryptData = JSON.parse(decryptData);
+          console.log('decryptData', decryptData);
 
           if (decryptData.success) {
             console.log('result', result);

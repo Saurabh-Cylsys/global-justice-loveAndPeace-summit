@@ -700,14 +700,24 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
       url: environment.domainUrl,
     };
-
+    
     // // Append all form fields except the file
     // Object.keys(this.peacekeepersForm.value).forEach((key) => {
-    //   formData.append(key, this.peacekeepersForm.value[key]);
-    // });
+      //   formData.append(key, this.peacekeepersForm.value[key]);
+      // });
+  
+      // // Append the selected file
+      // if (this.selectedFile) {
+      //   formData.append(
+      //     'profile_picture',
+      //     this.selectedFile,
+      //     this.selectedFile.name
+      //   );
+      // }
+      // formData.append('url', environment.domainUrl);
 
 
-    const EncryptData = this.encryptionService.encryptData(formData);
+    const EncryptData = this.encryptionService.encrypt(formData);
     const encryptedPayload = new FormData();
     encryptedPayload.append('encryptedData', EncryptData);
     this.getAllCountrycode();
@@ -723,15 +733,6 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     console.log('encryptedPayload', encryptedPayload);
     console.log('Payload', formData);
 
-    // // Append the selected file
-    // if (this.selectedFile) {
-    //   formData.append(
-    //     'profile_picture',
-    //     this.selectedFile,
-    //     this.selectedFile.name
-    //   );
-    // }
-    // formData.append('url', environment.domainUrl);
 
     // Show loader
     this.ngxService.start();
@@ -739,7 +740,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     // Call the service to submit data
     this.SharedService.postPeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
-        let decryptData = this.encryptionService.decryptData(response.encryptedData);
+        let decryptData:any = this.encryptionService.decrypt(response.encryptedData);
         decryptData = JSON.parse(decryptData);
 
         if (decryptData.success) {
@@ -766,7 +767,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       },
       (err) => {
 
-        let decryptErr = this.encryptionService.decryptData(err.error.encryptedData);
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
         decryptErr = JSON.parse(decryptErr);
         console.log('decryptErr', decryptErr);
 

@@ -209,7 +209,7 @@ debugger
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
         let encryptedData = res.encryptedData;
-        let decryptData = this.encryptionService.decryptData(encryptedData);
+        let decryptData = this.encryptionService.decrypt(encryptedData);
         let countryDcrypt = JSON.parse(decryptData);         
         
         this.countryData = countryDcrypt.data;

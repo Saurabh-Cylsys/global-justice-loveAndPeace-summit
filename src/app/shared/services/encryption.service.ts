@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class EncryptionService {
     constructor() { }
 
-    encrypt(text: string): string {
+    encrypt(text: any): string {
         return CryptoJS.AES.encrypt(JSON.stringify(text), environment.encryptionKey).toString();
     }
 
@@ -21,7 +21,7 @@ export class EncryptionService {
     encryptData(data: any): string {
         const jsonString = JSON.stringify(data);
         const encrypted = CryptoJS.AES.encrypt(jsonString, environment.encryptionKey).toString();
-        return encrypted; // Make it URL-safe
+        return encodeURIComponent(encrypted); // Make it URL-safe
     }
 
     decryptData(encryptedText: string): any {
