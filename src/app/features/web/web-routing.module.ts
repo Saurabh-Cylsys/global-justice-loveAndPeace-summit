@@ -18,6 +18,23 @@ import { DownloadBrochureComponent } from './download-brochure/download-brochure
 import { PaymentMainComponent } from './payment-main/payment-main.component';
 import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
+import { HumanValuesComponent } from './blog/human-values/human-values.component';
+import { HowToUseSocialMediaComponent } from './blog/how-to-use-social-media/how-to-use-social-media.component';
+import { SitemapComponent } from './sitemap/sitemap.component';
+import { DownloadApplicationsComponent } from './download-applications/download-applications.component';
+import { RequestAccountDeletionsComponent } from './request-account-deletions/request-account-deletions.component';
+import { PeacekeeperPreselectComponent } from './peacekeeper-preselect/peacekeeper-preselect.component';
+import { SpeakerDetailsComponent } from './speaker-details/speaker-details.component';
+import { CommitteeComponent } from './committee/committee.component';
+import { SpeakersProfileComponent } from './speakers-profile/speakers-profile.component';
+import { VideoComponent } from './media/video/video.component';
+import { PhotosComponent } from './media/photos/photos.component';
+import { ArticlesComponent } from './media/articles/articles.component';
+import { NewsPaperComponent } from './media/news-paper/news-paper.component';
+import { PeaceShopComponent } from './peace-shop/peace-shop.component';
+import { PeaceMenuComponent } from './peace-menu/peace-menu.component';
+import { PeaceFashionComponent } from './peace-fashion/peace-fashion.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -121,6 +138,75 @@ const routes: Routes = [
         data: {
           metaKey: 'visitor-terms-conditions',
         },
+      },
+
+      {
+        path: 'blog/human-values',
+        component: HumanValuesComponent,
+      },
+      {
+        path: 'blog/how-to-use-social-media',
+        component: HowToUseSocialMediaComponent,
+      },
+      {
+        path: 'sitemap',
+        component: SitemapComponent,
+      },
+      {
+        path: 'download-applications',
+        component: DownloadApplicationsComponent,
+      },
+      {
+        path: 'peacekeeper-preselect',
+        component: PeacekeeperPreselectComponent,
+      },
+      {
+        path: 'request-account-deletion',
+        component: RequestAccountDeletionsComponent,
+      },
+      {
+        path: 'speaker-details',
+        component: SpeakerDetailsComponent
+      },
+      {
+        path: 'speaker-profile',
+        component: SpeakersProfileComponent
+      },
+      {
+        path: 'contact-us/working-committee',
+        component: CommitteeComponent,
+      },
+      {
+        path: 'media/videos',
+        component: VideoComponent,
+      },
+      {
+        path: 'media/photos',
+        component: PhotosComponent,
+      },
+      // {
+      //   path: 'media/articles',
+      //   component: ArticlesComponent,
+      // },
+      {
+        path: 'media/news-paper',
+        component: NewsPaperComponent,
+      },
+      {
+        path: 'peace-shop',
+        component: PeaceShopComponent,
+      },
+      {
+        path: 'peace-menu',
+        component: PeaceMenuComponent,
+      },
+      {
+        path: 'peace-fashion',
+        component: PeaceFashionComponent,
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
       },
 
       { path: '', redirectTo: 'home', pathMatch: 'full' },

@@ -45,6 +45,29 @@
     background-repeat: no-repeat;
     min-height: 67vh; /* Keeps the height relative to the viewport */
   }
+  .preCarousal .carousel-inner {
+    height: 100%;
+    border-radius: 20px;
+  }
+  .ui-card {
+    display: grid
+;
+    grid-template-columns: 300px;
+    grid-template-rows: 190px 160px 0px;
+    grid-template-areas:
+        "image"
+        "text"
+        "stats";
+    border-radius: 15px;
+    /* border-top-right-radius: 15px; */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    transition: 0.4sease;
+    cursor: pointer;
+    margin: auto;
+    max-width: 320px;
+}
 }
 
 /* Add media queries for finer control on smaller devices */
@@ -110,16 +133,16 @@
 }
 
 @media (min-width: 1024px) {
-  /* .main-body .scroll {
-    min-height: 100vh;
-  } */
+  .main-body .scroll {
+    min-height: 88vh;
+  }
   .timeline-content {
     gap: 4rem;
     padding: 0 0 0 11.5rem;
   }
   .chairmanCenter,
   .chairmanCenter h2 {
-    text-align: start !important;
+    text-align: center !important;
   }
 
   #ts3 .carousel-item {
@@ -248,7 +271,7 @@
     display: block;
   }
   .scroll p {
-    font-size: 12px !important;
+    font-size: 15px !important;
   }
 
   .index .section7 p {
@@ -285,7 +308,7 @@
     font-size: 16px;
   }
   .index .section7 h1 {
-    font-size: 30px;
+    font-size: 19px;
     font-weight: 700;
     line-height: 40.6px;
   }
@@ -614,6 +637,9 @@
   .index .section6 h1,
   .index .section9 h2 {
     font-size: 18px;
+  }
+  .index .section6 h1{
+    line-height: 30px;
   }
   .index .section1 .cardMain h5 {
     font-size: 14px;

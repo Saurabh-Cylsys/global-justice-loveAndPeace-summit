@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ApiEndpointsService } from "src/app/core/services/api-endpoints.service";
 import { ApiHttpService } from "src/app/core/services/api-http.service";
-
 
 
 @Injectable({
@@ -17,23 +17,28 @@ export class DelegateService {
   getSpeakers() {
     return this._apiHttpService.get(this._apiEndpointsService.getSpeakersEndpoint());
   }
- 
+
   getdates() {
     return this._apiHttpService.get(this._apiEndpointsService.getdatesEndpoint());
   }
   getAllCountrycode() {
     return this._apiHttpService.get(this._apiEndpointsService.getAllCountrycodeEndpoint());
   }
+
   getAllCountries() {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllCountriesEndpoint());
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint());
+  }
+
+  getAllCountryApi(): Promise<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getAllCountryForDelegatesEndpoint()).toPromise();
   }
 
   getAllStates(country_id: any) {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllStatesEndpoint(country_id));
+    return this._apiHttpService.get(this._apiEndpointsService.getStatesByCountryEndpoint(country_id));
   }
 
   getAllCities(state_id: any) {
-    return this._apiHttpService.get(this._apiEndpointsService.getAllCitiesEndpoint(state_id));
+    return this._apiHttpService.get(this._apiEndpointsService.getCityByStateEndpoint(state_id));
 
   }
 
@@ -48,6 +53,66 @@ export class DelegateService {
   }
   postVerifySession(body: any) {
     return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionEndpoint(),body);
+  }
 
+  sendOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getSendOTPEndpoint(),body);
+  }
+
+  verifyOTPApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getVerifyOTPEndpoint(),body);
+  }
+
+  getRelationDataApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getLookupEndpoint(),body);
+  }
+
+  getNominationProfileApi(body: any){
+    return this._apiHttpService.post(this._apiEndpointsService.getCreateNominationProfileEndpoint(),body);
+  }
+
+  // postPeaceDeleteAcc(body: any) {
+  //   return this._apiHttpService.post(this._apiEndpointsService.postPeaceDeleteAccEndpoint(),body);
+
+  // }
+  postPeaceDeleteAcc(queryParamsObj: any): Observable<any> {
+
+    return this._apiHttpService.delete(this._apiEndpointsService.postPeaceDeleteAccEndpoint(queryParamsObj));
+  }
+
+  postDelegateOnline(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineEndpoint(), body);
+  }
+
+  postVerifySessionOnline(body: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifySessionOnlineEndpoint(),body);
+  }
+
+ postDelegateOnlineMP(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOnlineMPEndpoint(), body);
+  }
+
+  getDataByTransactionIdApi(transactionId: any): Observable<any> {
+    return this._apiHttpService.get(this._apiEndpointsService.getDataByTransactionIdEndpoint(transactionId));
+  }
+
+  postverifyPaymentStatus(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postVerifyPaymentStatusEndpoint(), body);
+  }
+  postPreDelegateNominationApi(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postPreDelegateNominationEndpoint(), body);
+  }
+
+
+  getAmbassadorURL(data: any) {
+    return this._apiHttpService.post(this._apiEndpointsService.getAmbassadorURLEndpoint(), data)
+  }
+
+  postDelegateDraft(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.postCreateDelegateOraftEndpoint(), body);
+  }
+
+  getCouponValidation(body: any): Observable<any> {
+    return this._apiHttpService.post(this._apiEndpointsService.getCouponValidationEndpoint(), body);
   }
 }

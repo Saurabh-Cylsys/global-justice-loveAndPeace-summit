@@ -12,6 +12,7 @@ export const environment = {
   domainUrl:'https://globaljusticeuat.cylsys.com',
   apiMockUrl: '/api/v1',
   app_env: 'development',
+  encryptionKey: 'np9dYaGAsDAswUhBUmrF5DsKDUXD5xlG4yn+6+wvaRoyP0UYgdOlSw5uGAa5iBNu'
 
 };
 

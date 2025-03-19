@@ -1,0 +1,112 @@
+.carousel-inner h2 {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 25.76px;
+  letter-spacing: 0%;
+  text-align: left;
+  color: #00000080;
+}
+
+article p {
+  font-weight: 500;
+  font-size: clamp(14px, 16px, 20px);
+  line-height: 25.76px;
+  letter-spacing: 0%;
+  text-align: justify;
+  color: #000000;
+}
+article p span {
+  font-weight: 700;
+}
+
+.card {
+  box-shadow: 0px 0px 4px 1px #0000000a;
+}
+
+img {
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+  will-change: transform, opacity, box-shadow;
+  overflow: hidden;
+}
+
+.col-md-12, .col-md-6 {
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+a {
+  display: block;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+h2 {
+  text-decoration: underline;
+  width: 100%;
+  color: var(--color1);
+  font-weight: 500;
+  font-size: 24.67px;
+  line-height: 100%;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-transform: uppercase;
+  width: 100%;
+  display: block;
+}
+h2 span {
+  color: #f65050;
+  text-decoration: underline;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+/* Animation helper classes */
+.animated-container {
+  perspective: 1000px;
+}
+
+/* Loading indicator styles */
+.loading-container {
+  padding: 40px 0;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover effect enhancement */
+a:hover img, img:hover {
+  filter: brightness(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img {
+    transition: none !important;
+  }
+  
+  .fade-in {
+    animation: none !important;
+  }
+}
