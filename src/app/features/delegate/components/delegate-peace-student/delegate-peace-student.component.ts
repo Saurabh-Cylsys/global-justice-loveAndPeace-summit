@@ -50,15 +50,15 @@ export class DelegatePeaceStudentComponent {
   delagateType: any;
   showPaymentSuccess = false;
   requestBody: any;
-  isNominee : boolean = false;
+  isNominee: boolean = false;
 
   constructor(private fb: FormBuilder,
     private delegateService: DelegateService,
     private datePipe: DatePipe,
-    private sharedService:SharedService,
+    private sharedService: SharedService,
     private route: ActivatedRoute,
-  private encryptionService: EncryptionService 
-) {
+    private encryptionService: EncryptionService
+  ) {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params != undefined && Object.keys(params).length > 0) {
@@ -69,7 +69,7 @@ export class DelegatePeaceStudentComponent {
           const decryptedData = this.encryptionService.decryptData(params['data']);
 
           if (decryptedData) {
-              this.delagateType = decryptedData.dType;
+            this.delagateType = decryptedData.dType;
           }
         }
 
@@ -105,7 +105,7 @@ export class DelegatePeaceStudentComponent {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
     this.initializeStudentForm();
     this.initializeDelegateForm();
@@ -115,12 +115,12 @@ export class DelegatePeaceStudentComponent {
   }
 
   initializeStudentForm() {
-     // Initialize student form
-     this.studentForm = this.fb.group({
-      title: ['',[Validators.required, Validators.minLength(2)]],
+    // Initialize student form
+    this.studentForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(2)]],
       first_name: ['', [Validators.required, Validators.minLength(3)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
-      studentDob :['', [Validators.required]],
+      studentDob: ['', [Validators.required]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       country: ['', [Validators.required]],
@@ -130,23 +130,23 @@ export class DelegatePeaceStudentComponent {
     });
   }
 
-  initializeDelegateForm(){
+  initializeDelegateForm() {
     // Initialize delegate form
     this.delegateForm = this.fb.group({
-      title: ['',[Validators.required, Validators.minLength(2)]],
+      title: ['', [Validators.required, Validators.minLength(2)]],
       first_name: ['', [Validators.required, Validators.minLength(3)]],
       last_name: ['', [Validators.required, Validators.minLength(2)]],
       mobile_number: ['', [Validators.minLength(7), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       country: ['', [Validators.required]],
-      delegateDob :['', [Validators.required]],
+      delegateDob: ['', [Validators.required]],
       reference_no: [this.referralCode ? this.referralCode : ''],
-      relation : ['']
+      relation: ['']
     });
   }
 
   // Set user type and move to the first step
-  setUserType(type: 'student' | 'delegate',event: Event) {
+  setUserType(type: 'student' | 'delegate', event: Event) {
 
     if (this.userType === type) return;
 
@@ -207,14 +207,14 @@ export class DelegatePeaceStudentComponent {
 
   onStudentDobChange(event: string): void {
     // Convert the date format
-        const parsedDate = new Date(event);
-        this.formattedStudentDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    const parsedDate = new Date(event);
+    this.formattedStudentDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
   onDelegateDobChange(event: string): void {
     // Convert the date format
-        const parsedDate = new Date(event);
-        this.formattedDelagateDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
+    const parsedDate = new Date(event);
+    this.formattedDelagateDob = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
   openDatepicker() {
@@ -231,12 +231,12 @@ export class DelegatePeaceStudentComponent {
     }
   }
 
-  onMobileKeyDown(event: KeyboardEvent,formType: 'student' | 'delegate'): void {
+  onMobileKeyDown(event: KeyboardEvent, formType: 'student' | 'delegate'): void {
     // const inputValue = this.studentForm.get('mobile_number')?.value || ''; // Use your actual form group name
 
     const mobileControl = formType === 'student' ? this.studentForm?.get('mobile_number') : this.delegateForm?.get('mobile_number');
 
-    const inputValue = mobileControl?.value ||  ''; // Use your actual form group name
+    const inputValue = mobileControl?.value || ''; // Use your actual form group name
 
     if (inputValue !== null) {
       // Prevent space at the beginning
@@ -261,26 +261,26 @@ export class DelegatePeaceStudentComponent {
       }
 
       // Handle backspace validation
-      if(formType == 'student'){
-      if (event.code === 'Backspace') {
-        if (inputValue.number.length < 7) {
-          this.studentMobileNumberVal = true;
-        } else {
-          this.studentMobileNumberVal = false;
+      if (formType == 'student') {
+        if (event.code === 'Backspace') {
+          if (inputValue.number.length < 7) {
+            this.studentMobileNumberVal = true;
+          } else {
+            this.studentMobileNumberVal = false;
+          }
+        }
+      }
+      else if (formType == 'delegate') {
+        if (inputValue && inputValue.number) {
+          if (inputValue.number.length < 7) {
+            this.deleagetMobileNumberVal = true;
+          } else {
+            this.deleagetMobileNumberVal = false;
+          }
         }
       }
     }
-    else if(formType == 'delegate'){
-      if (inputValue && inputValue.number) {
-        if (inputValue.number.length < 7) {
-          this.deleagetMobileNumberVal = true;
-        } else {
-          this.deleagetMobileNumberVal = false;
-        }
-      }
-    }
-   }
-}
+  }
 
   keyPressNumbersForStudent(event: KeyboardEvent) {
     const inputValue = this.studentForm.controls['mobile_number'].value; // Get value from form control
@@ -336,7 +336,7 @@ export class DelegatePeaceStudentComponent {
 
         let encryptedData = res.encryptedData;
         let decryptData = this.encryptionService.decryptData(encryptedData);
-        let countryDcrypt = JSON.parse(decryptData);  
+        let countryDcrypt = JSON.parse(decryptData);
         this.countryData = countryDcrypt.data;
       },
       (err: any) => {
@@ -351,58 +351,58 @@ export class DelegatePeaceStudentComponent {
   }
 
   // Helper function to trim a string value.
-private trimValue(value: any): any {
-  if (typeof value === 'string') {
-    const trimmed = value.trim();
-    return trimmed; // returns '' if only whitespace
+  private trimValue(value: any): any {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      return trimmed; // returns '' if only whitespace
+    }
+    return value;
   }
-  return value;
-}
 
-private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
-  if (response.success && response.gatewayUrl) {
-    localStorage.setItem('delegateRegistration', JSON.stringify(payload));
-    //window.location.href = response.payment_link;
-    let obj = {
-      "email": this.delegateForm.get('email')?.value.toLowerCase(),
-      "pay_type": "DELEGATE_ONLINE",
-    };
+  private async fnMagnatiPG(response: any, payload: { title: any; first_name: any; last_name: any; mobile_number: any; email_id: any; country_code: any; reference_no: any; dob: string; country_id: any; is_nomination: string; p_type: string; p_reference_by: string; }) {
+    if (response.success && response.gatewayUrl) {
+      localStorage.setItem('delegateRegistration', JSON.stringify(payload));
+      //window.location.href = response.payment_link;
+      let obj = {
+        "email": this.delegateForm.get('email')?.value.toLowerCase(),
+        "pay_type": "DELEGATE_ONLINE",
+      };
 
-    await this.delegateService.postDelegateOnlineMP(obj).subscribe({
-      next: (response: any) => {
-        //window.location.href = response.paymentUrl
-        // Redirect to the IPG gateway
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = response.gatewayUrl;
+      await this.delegateService.postDelegateOnlineMP(obj).subscribe({
+        next: (response: any) => {
+          //window.location.href = response.paymentUrl
+          // Redirect to the IPG gateway
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = response.gatewayUrl;
 
-        Object.keys(response.formData).forEach((key) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = response.formData[key];
-          form.appendChild(input);
-        });
+          Object.keys(response.formData).forEach((key) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = response.formData[key];
+            form.appendChild(input);
+          });
 
-        document.body.appendChild(form);
-        form.submit();
+          document.body.appendChild(form);
+          form.submit();
 
-      },
-      error: (error: any) => {
-        console.error('Error creating delegate:', error);
-        // this.loading = false;
-      }
-    });
+        },
+        error: (error: any) => {
+          console.error('Error creating delegate:', error);
+          // this.loading = false;
+        }
+      });
+    }
   }
-}
 
-private async fnStripePG(response: any, payload: any) {
-  if (response.success && response.gatewayUrl) {
-    window.location.href = response.gatewayUrl;
-  } else {
-    this.sharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
+  private async fnStripePG(response: any, payload: any) {
+    if (response.success && response.gatewayUrl) {
+      window.location.href = response.gatewayUrl;
+    } else {
+      this.sharedService.ToastPopup('Error', response.message || 'Payment failed', 'error');
+    }
   }
-}
 
   // Handle form submission
   onSubmit() {
@@ -420,7 +420,7 @@ private async fnStripePG(response: any, payload: any) {
     let studentMobileNumber = studentrawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers;
 
 
-    if(this.userType === 'student'){
+    if (this.userType === 'student') {
 
       if (
         this.studentForm?.value?.email?.trim().toLowerCase() ===
@@ -431,8 +431,8 @@ private async fnStripePG(response: any, payload: any) {
       }
 
 
-      if(this.delegateForm.value.relation == "") {
-        this.sharedService.ToastPopup('Please enter relation','','error');
+      if (this.delegateForm.value.relation == "") {
+        this.sharedService.ToastPopup('Please enter relation', '', 'error');
         return;
       }
 
@@ -441,29 +441,29 @@ private async fnStripePG(response: any, payload: any) {
         "title": this.trimValue(this.studentForm.value.title),
         "first_name": this.trimValue(this.studentForm.value.first_name),
         "last_name": this.trimValue(this.studentForm.value.last_name),
-        "mobile_number": studentMobileNumber ,
+        "mobile_number": studentMobileNumber,
         "email_id": this.trimValue(this.studentForm.value.email),
         "country_code": this.studentForm.value.mobile_number.dialCode,
         "reference_no": this.referralCode ? this.referralCode : this.studentForm.value.reference_no,
         "dob": this.formattedStudentDob,
         "country_id": this.studentForm.value.country,
 
-        "nom_title":  this.trimValue(this.delegateForm.value.title),
+        "nom_title": this.trimValue(this.delegateForm.value.title),
         "nom_first_name": this.trimValue(this.delegateForm.value.first_name),
-        "nom_last_name":  this.trimValue(this.delegateForm.value.last_name),
+        "nom_last_name": this.trimValue(this.delegateForm.value.last_name),
         "nom_mobile_number": delegateMobileNumber,
         "nom_country_code": this.delegateForm.value.mobile_number.dialCode,
-        "nom_email_id":  this.trimValue(this.delegateForm.value.email),
-        "nom_dob":  this.formattedDelagateDob,
+        "nom_email_id": this.trimValue(this.delegateForm.value.email),
+        "nom_dob": this.formattedDelagateDob,
         "nom_country_id": this.delegateForm.value.country,
 
         "nom_relation": this.trimValue(this.delegateForm.value.relation),
         "nom_institution": this.trimValue(this.studentForm.value.institutionName)
       }
 
-      localStorage.setItem('isNominee','adult');
+      localStorage.setItem('isNominee', 'adult');
     }
-    else if(this.userType === 'delegate'){
+    else if (this.userType === 'delegate') {
 
       if (
         this.studentForm?.value?.email?.trim().toLowerCase() ===
@@ -473,8 +473,8 @@ private async fnStripePG(response: any, payload: any) {
         return;
       }
 
-      if(this.studentForm.value.relation == "") {
-        this.sharedService.ToastPopup('Please enter relation','','error');
+      if (this.studentForm.value.relation == "") {
+        this.sharedService.ToastPopup('Please enter relation', '', 'error');
         return;
       }
       this.requestBody = {
@@ -501,30 +501,39 @@ private async fnStripePG(response: any, payload: any) {
         "nom_institution": this.trimValue(this.studentForm.value.institutionName)
       }
 
-      localStorage.setItem('isNominee','student');
+      localStorage.setItem('isNominee', 'student');
     }
 
-    this.delegateService.postPreDelegateNominationApi(this.requestBody).subscribe({
+
+    const EncryptData = this.encryptionService.encrypt(this.requestBody);
+    let payload = {
+      encryptedData: EncryptData
+    }
+
+    this.delegateService.postPreDelegateNominationApi(payload).subscribe({
       next: async (response: any) => {
-        if (response.success) {
-          this.sharedService.ToastPopup('', response.message, 'success');
+        let decryptData: any = this.encryptionService.decrypt(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
+        if (decryptData.success) {
+          this.sharedService.ToastPopup('', decryptData.message, 'success');
 
           setTimeout(async () => {
 
-            if(response.isStripe)
-              await this.fnStripePG(response, this.requestBody);
+            if (decryptData.isStripe)
+              await this.fnStripePG(decryptData, this.requestBody);
             else
-              await this.fnMagnatiPG(response, this.requestBody);
+              await this.fnMagnatiPG(decryptData, this.requestBody);
           }, 5000);
 
         }
       },
       error: (err) => {
-
-        console.error('Error creating delegate:', err);
-        this.sharedService.ToastPopup('Error', err.error?.message || 'Registration failed', 'error');
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error creating delegate:', decryptErr);
+        this.sharedService.ToastPopup('', decryptErr?.message || 'Registration failed', 'error');
       },
     })
   }
 
-  }
+}

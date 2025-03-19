@@ -21,6 +21,7 @@ export class Constants {
     // public readonly API_ENDPOINT_VERIFY_SESSION: string = 'registration/verify_session_stripe_payment'
 
     public readonly API_ENDPOINT_VERIFY_SESSION: string = 'verify_session_stripe_payment_new'
+    public readonly API_ENDPOINT_VERIFY_SESSION_ENCRYPT: string = 'verify_session_stripe_payment_new/encryption'
 
     public readonly API_ENDPOINT_checkEmailAndMobile: string = 'registration/delegate/already'
     public readonly API_ENDPOINT_checkEmailAndMobile_1: string = 'registration/partner/already'
@@ -92,6 +93,8 @@ export class Constants {
     public readonly API_ENDPOINT_VERIFY_PAYMENT_STATUS : string = 'verify-payment-status'
 
     public readonly API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION: string ='pre_delegate_nomination'
+
+    public readonly API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION_ENCRYPT: string ='pre_delegate_nomination/encryption'
 
     public readonly API_ENDPOINT_CREATE_DRAFT_DELEGATE: string = 'pre_delegate_draft_details'
 

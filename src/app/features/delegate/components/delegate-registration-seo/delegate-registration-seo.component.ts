@@ -34,7 +34,7 @@ import { EncryptionService } from 'src/app/shared/services/encryption.service';
   styleUrls: ['./delegate-registration-seo.component.css']
 })
 export class DelegateRegistrationSeoComponent {
-showPopup: boolean = false;
+  showPopup: boolean = false;
   formdisplay: boolean = true;
   display: string = '';
   reqBody: any;
@@ -86,7 +86,7 @@ showPopup: boolean = false;
   buttonText: string = 'Send OTP';
   mediumValue: string | null = '';
 
-  tinyURL : string = environment.tinyUrl;
+  tinyURL: string = environment.tinyUrl;
 
   // tinyUrl : string = 'https://tinyurl.com/ys5z7n2z'
   // tinyUatURL : string = 'https://tinyurl.com/3322sj49'
@@ -153,50 +153,50 @@ showPopup: boolean = false;
       //   console.log(this.referralCode, 'referralCode..........');
       // }
 
-      console.log("Params",params);
+      console.log("Params", params);
       // {code: "COININ-0000001-W"
       //   medium: "1"
       // }
-      if(params != undefined && Object.keys(params).length > 0){
-      this.referralCode = params.code;
-      if(params.medium == 1 && params.code) {
+      if (params != undefined && Object.keys(params).length > 0) {
+        this.referralCode = params.code;
+        if (params.medium == 1 && params.code) {
 
-        // this.router.navigate(['/delegate-registration'], {
-        //   queryParams: { code: this.referralCode }, // Pass query params
-        //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
-        //   relativeTo: this.route, // Stay on the same route
-        // })
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
+          // this.router.navigate(['/delegate-registration'], {
+          //   queryParams: { code: this.referralCode }, // Pass query params
+          //   queryParamsHandling: 'merge', // Preserve existing query params (optional)
+          //   relativeTo: this.route, // Stay on the same route
+          // })
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
 
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
 
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+          // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
 
-        window.location.href = tinyUrlWithParams;
-
-          // this.router.navigate(['/peacekeeper-preselect'], {
-          //   queryParams: { code: this.referralCode },
-          // });
-      }
-
-      else if(!params.medium) {
-        console.log('Medium value not found, redirecting...');
-        // this.mediumValue = params.medium
-        const params = new URLSearchParams();
-        params.set('code', this.referralCode);
-
-        const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
-
-        // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
-
-        window.location.href = tinyUrlWithParams;
+          window.location.href = tinyUrlWithParams;
 
           // this.router.navigate(['/peacekeeper-preselect'], {
           //   queryParams: { code: this.referralCode },
           // });
+        }
+
+        else if (!params.medium) {
+          console.log('Medium value not found, redirecting...');
+          // this.mediumValue = params.medium
+          const params = new URLSearchParams();
+          params.set('code', this.referralCode);
+
+          const tinyUrlWithParams = `${this.tinyURL}?${params.toString()}`;
+
+          // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}?${params.toString()}`;  //for local testing only
+
+          window.location.href = tinyUrlWithParams;
+
+          // this.router.navigate(['/peacekeeper-preselect'], {
+          //   queryParams: { code: this.referralCode },
+          // });
+        }
       }
-    }
 
 
       // if (params) {
@@ -994,42 +994,48 @@ showPopup: boolean = false;
     if (this.submitted) {
       this.reqBody = {
         ...this.registrationForm.value,
-        is_nomination : "1",
-        p_type:"DELEGATE_SEO",
-        p_reference_by:'0'
+        is_nomination: "1",
+        p_type: "DELEGATE_SEO",
+        p_reference_by: '0'
       };
 
-      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
-      this.SharedService.registrationOnline(encryptedObj).subscribe(
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+      this.SharedService.registrationOnline(payload).subscribe(
         async (result: any) => {
-          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
           if (decryptedObj.success) {
-console.log("decryptedObj", decryptedObj);
+            console.log("decryptedObj", decryptedObj);
             // this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
             setTimeout(() => {
-              console.log('get payment URL', result.url);
+              console.log('get payment URL', decryptedObj.url);
               this.ngxService.stop();
-              if (result.url) {
-                window.location.href = result.url; // Redirect to Stripe Checkout
+              if (decryptedObj.url) {
+                window.location.href = decryptedObj.url; // Redirect to Stripe Checkout
               }
             }, 5000);
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         }
       );
     }

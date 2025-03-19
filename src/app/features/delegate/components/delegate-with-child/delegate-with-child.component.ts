@@ -148,28 +148,28 @@ export class DelegateWithChildComponent {
 
     this.route.queryParams.subscribe((params: any) => {
 
-       // Remove 'code' if it's an empty string
+      // Remove 'code' if it's an empty string
       //  / Create a new params object excluding 'code' if it's empty
-       const updatedParams = { ...params };
-       if (!updatedParams.code || updatedParams.code === '') {
+      const updatedParams = { ...params };
+      if (!updatedParams.code || updatedParams.code === '') {
         delete updatedParams['code'];
       }
 
-       console.log("params after filtering:", updatedParams);
+      console.log("params after filtering:", updatedParams);
 
-       // Navigate with the updated query params to remove 'code' from the URL
-       this.router.navigate([], {
-         queryParams: updatedParams,
-         replaceUrl: true, // Prevents history stack clutter
-       });
-          // this.referralCode = params.code ? params.code : null;
+      // Navigate with the updated query params to remove 'code' from the URL
+      this.router.navigate([], {
+        queryParams: updatedParams,
+        replaceUrl: true, // Prevents history stack clutter
+      });
+      // this.referralCode = params.code ? params.code : null;
 
-          this.referralCode = updatedParams.code ? updatedParams.code : null;
+      this.referralCode = updatedParams.code ? updatedParams.code : null;
 
 
-          if (this.referralCode) {
-            console.log(this.referralCode, 'referralCode..........');
-          }
+      if (this.referralCode) {
+        console.log(this.referralCode, 'referralCode..........');
+      }
 
 
       // if (params) {
@@ -371,7 +371,7 @@ export class DelegateWithChildComponent {
     if (this.nomineeDob !== event) {
 
       this.nomineeDob = event;
-      this.nomineeFormattedDate =this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
+      this.nomineeFormattedDate = this.datePipe.transform(dob, 'yyyy-MM-dd') || '';
 
 
     }
@@ -1170,9 +1170,9 @@ export class DelegateWithChildComponent {
         ...this.registrationForm.value,
         created_by: 'Admin',
         status: '0',
-        is_nomination : "1",
-        p_type:"DELEGATE_CHILD_NOMINATION",
-        p_reference_by:'0'
+        is_nomination: "1",
+        p_type: "DELEGATE_CHILD_NOMINATION",
+        p_reference_by: '0'
       };
 
       // this.ngxService.start();
@@ -1250,21 +1250,25 @@ export class DelegateWithChildComponent {
       //   }
       // );
 
-      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
+      let payload = {
+        "encryptedData": encryptedObj
+      }
 
-this.SharedService.registrationOnline(encryptedObj).subscribe({
-        next:  async (result: any) => {
-          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+
+      this.SharedService.registrationOnline(payload).subscribe({
+        next: async (result: any) => {
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
           if (decryptedObj.success) {
-console.log("decryptedObj", decryptedObj);
 
 
-            console.log('Registration Successful:', result);
-            this.SharedService.ToastPopup('', result.message, 'success');
+            console.log('Registration Successful:', decryptedObj);
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
-            this.delegateId = result.delegate_id;
+            this.delegateId = decryptedObj.delegate_id;
             const formattedNomineeMobileNumber = this.formatNomineeMobileNumber(
               this.nominee_mobile_number
             );
@@ -1280,13 +1284,18 @@ console.log("decryptedObj", decryptedObj);
                 institution: this.instituteName,
               };
 
-              this.callNominationProfileAPI(nomineeBody, result.url);
+              this.callNominationProfileAPI(nomineeBody, decryptedObj.url);
             }
           } else {
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         error: (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+
+          console.error('Registration Error:', decryptErr)
+
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,

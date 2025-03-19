@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
-import {FormGroup,Validators,FormBuilder,AbstractControl,ValidatorFn,FormControl} from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl, ValidatorFn, FormControl } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DelegateService } from '../../services/delegate.service';
 import { DatePipe } from '@angular/common';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import {CountryISO,NgxIntlTelInputComponent,PhoneNumberFormat,SearchCountryField} from 'ngx-intl-tel-input';
+import { CountryISO, NgxIntlTelInputComponent, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
@@ -18,9 +18,9 @@ interface PeaceStudentData {
   studentEmail: string;
   studentMobileNumber: string;
   studentCountry_id: string;
-  studentDob:string;
-  studentRelation:string;
-  studentInstituteName :string
+  studentDob: string;
+  studentRelation: string;
+  studentInstituteName: string
   adultTitle: string;
   adultFirstName: string;
   adultLastName: string;
@@ -104,13 +104,13 @@ export class DelegateWithChildNominationComponent {
   selectedRadioValue: string = '';
   previousType: string = '';
 
-  title :string = "";
+  title: string = "";
   first_name: string = '';
   last_name: string = '';
-  email_id :string = '';
+  email_id: string = '';
   mobileNo: string = '';
   dob: string = '';
-  country_code:string = '';
+  country_code: string = '';
   country_id: string = '';
 
 
@@ -149,17 +149,17 @@ export class DelegateWithChildNominationComponent {
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
-      if (selectedCountry) {
+    if (selectedCountry) {
 
-        const patchFormData = {
-          country_id: +this.country_id,
-          country: selectedCountry.name
-         }
-        this.registrationForm.patchValue(patchFormData);
+      const patchFormData = {
+        country_id: +this.country_id,
+        country: selectedCountry.name
+      }
+      this.registrationForm.patchValue(patchFormData);
 
 
-        this.cdr.detectChanges(); // 👈 Force UI update
-        if (this.country_id) {
+      this.cdr.detectChanges(); // 👈 Force UI update
+      if (this.country_id) {
         this.delegateService.getAllStates(this.country_id).subscribe(
           (res: any) => {
             this.ngxService.stop();
@@ -195,73 +195,73 @@ export class DelegateWithChildNominationComponent {
     return this.registrationForm.controls;
   }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.checkWindowSize();
     // this.dobValidator();
 
     this.route.queryParams.subscribe((params: any) => {
 
-       const updatedParams = { ...params };
-       if (!updatedParams.code || updatedParams.code === '') {
+      const updatedParams = { ...params };
+      if (!updatedParams.code || updatedParams.code === '') {
         delete updatedParams['code'];
       }
 
-       this.router.navigate([], {
-         queryParams: updatedParams,
-         replaceUrl: true, // Prevents history stack clutter
-       });
+      this.router.navigate([], {
+        queryParams: updatedParams,
+        replaceUrl: true, // Prevents history stack clutter
+      });
 
-          this.referralCode = updatedParams.code ? updatedParams.code : null;
+      this.referralCode = updatedParams.code ? updatedParams.code : null;
 
-          if (params['data']) {
-            const decryptedData = this.encryptionService.decryptData(params['data']);
+      if (params['data']) {
+        const decryptedData = this.encryptionService.decryptData(params['data']);
 
-            if (decryptedData) {
+        if (decryptedData) {
 
-              const isNominee = localStorage.getItem('isNominee');
+          const isNominee = localStorage.getItem('isNominee');
 
-              if(isNominee == 'student') {
-                this.title = decryptedData.adultTitle;
-                this.first_name =  decryptedData.adultFirstName;
-                this.last_name = decryptedData.adultLastName;
-                this.country_code = decryptedData.adultCountryCode;
-                this.mobile_number = decryptedData.adultMobileNumber;
-                this.email_id = decryptedData.adultEmail;
-                this.country_id = decryptedData.adultCountryId;
-                this.dob = decryptedData.adultDob;
-                this.referralCode = decryptedData.reference_no
+          if (isNominee == 'student') {
+            this.title = decryptedData.adultTitle;
+            this.first_name = decryptedData.adultFirstName;
+            this.last_name = decryptedData.adultLastName;
+            this.country_code = decryptedData.adultCountryCode;
+            this.mobile_number = decryptedData.adultMobileNumber;
+            this.email_id = decryptedData.adultEmail;
+            this.country_id = decryptedData.adultCountryId;
+            this.dob = decryptedData.adultDob;
+            this.referralCode = decryptedData.reference_no
 
-                this.nomineeName = decryptedData.studentFirstName + ' ' + decryptedData.studentLastName;
-                this.nomineeDob =  this.formatDate(decryptedData.studentDob);
-                this.nomineeEmail = decryptedData.studentEmail;
-                this.nominee_CountryCode = decryptedData.studentCountry_Code;
-                this.nominee_mobile_number = decryptedData.studentMobileNumber;
-                this.nomineeRelation = decryptedData.studentRelation;
-                this.instituteName = decryptedData.studentInstituteName;
-              }
-
-              else if(isNominee == 'adult') {
-                this.title = decryptedData.studentTitle;
-                this.first_name =  decryptedData.studentFirstName;
-                this.last_name = decryptedData.studentLastName;
-                this.country_code = decryptedData.studentCountry_Code;
-                this.mobile_number = decryptedData.studentMobileNumber;
-                this.email_id = decryptedData.studentEmail;
-                this.country_id = decryptedData.studentCountryId;
-                this.dob = decryptedData.studentDob;
-                this.referralCode = decryptedData.reference_no
-
-                this.nomineeName = decryptedData.adultFirstName + ' ' + decryptedData.adultLastName;
-                this.nomineeDob =  this.formatDate(decryptedData.adultDob);
-                this.nomineeEmail = decryptedData.adultEmail;
-                this.nominee_CountryCode = decryptedData.adultCountryCode;
-                this.nominee_mobile_number = decryptedData.adultMobileNumber;
-                this.nomineeRelation = decryptedData.studentRelation;
-                this.instituteName = decryptedData.studentInstituteName;
-              }
-
-            }
+            this.nomineeName = decryptedData.studentFirstName + ' ' + decryptedData.studentLastName;
+            this.nomineeDob = this.formatDate(decryptedData.studentDob);
+            this.nomineeEmail = decryptedData.studentEmail;
+            this.nominee_CountryCode = decryptedData.studentCountry_Code;
+            this.nominee_mobile_number = decryptedData.studentMobileNumber;
+            this.nomineeRelation = decryptedData.studentRelation;
+            this.instituteName = decryptedData.studentInstituteName;
           }
+
+          else if (isNominee == 'adult') {
+            this.title = decryptedData.studentTitle;
+            this.first_name = decryptedData.studentFirstName;
+            this.last_name = decryptedData.studentLastName;
+            this.country_code = decryptedData.studentCountry_Code;
+            this.mobile_number = decryptedData.studentMobileNumber;
+            this.email_id = decryptedData.studentEmail;
+            this.country_id = decryptedData.studentCountryId;
+            this.dob = decryptedData.studentDob;
+            this.referralCode = decryptedData.reference_no
+
+            this.nomineeName = decryptedData.adultFirstName + ' ' + decryptedData.adultLastName;
+            this.nomineeDob = this.formatDate(decryptedData.adultDob);
+            this.nomineeEmail = decryptedData.adultEmail;
+            this.nominee_CountryCode = decryptedData.adultCountryCode;
+            this.nominee_mobile_number = decryptedData.adultMobileNumber;
+            this.nomineeRelation = decryptedData.studentRelation;
+            this.instituteName = decryptedData.studentInstituteName;
+          }
+
+        }
+      }
     });
 
     this.createForm();
@@ -271,7 +271,7 @@ export class DelegateWithChildNominationComponent {
     if (this.countryData.length > 0) {
 
       this.setCountry();
-   }
+    }
   }
 
   formatDate(dateString: string): string {
@@ -382,12 +382,12 @@ export class DelegateWithChildNominationComponent {
       this.countryData = response.data;
       console.log("Country Data:", this.countryData);
 
-        this.setCountry();
+      this.setCountry();
 
     } catch (error) {
       console.log("Error fetching countries:", error);
     }
-    }
+  }
 
   changeCountry(e: any) {
     const selectedValue = e.target.value;
@@ -763,7 +763,7 @@ export class DelegateWithChildNominationComponent {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     // Ensure both ages are defined before proceeding
 
-   if (
+    if (
       !this.registrationForm.value.profession_1 ||
       this.registrationForm.value.profession_1.trim().length < 2
     ) {
@@ -774,7 +774,7 @@ export class DelegateWithChildNominationComponent {
         'error'
       );
       return;
-    }  else if (this.state_name == '' || this.state_name == undefined) {
+    } else if (this.state_name == '' || this.state_name == undefined) {
       setTimeout(() => {
         const stateElement = this.renderer.selectRootElement('#state', true);
         if (stateElement) {
@@ -844,18 +844,22 @@ export class DelegateWithChildNominationComponent {
         ...this.registrationForm.value,
         created_by: 'Admin',
         status: '0',
-        is_nomination : "1",
-        p_type:"DELEGATE_CHILD_NOMINATION",
-        p_reference_by:'0'
+        is_nomination: "1",
+        p_type: "DELEGATE_CHILD_NOMINATION",
+        p_reference_by: '0'
       };
       let encryptedObj = this.encryptionService.encrypt(this.reqBody);
       this.ngxService.start();
-
-this.SharedService.registrationOnline(encryptedObj).subscribe({
-        next:  async (result: any) => {
-          let decryptedObj:any = this.encryptionService.decrypt(result.encryptedData);
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+      this.SharedService.registrationOnline(payload).subscribe({
+        next: async (result: any) => {
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+          this.ngxService.stop();
           if (decryptedObj.success) {
-console.log("decryptedObj", decryptedObj);
+            console.log("decryptedObj", decryptedObj);
 
             console.log('Registration Successful:', result);
             this.SharedService.ToastPopup('', decryptedObj.message, 'success');
@@ -863,7 +867,7 @@ console.log("decryptedObj", decryptedObj);
 
             setTimeout(() => {
               this.router.navigateByUrl('/delegate-message');
-          }, 3000);
+            }, 3000);
 
           } else {
             this.SharedService.ToastPopup('', decryptedObj.message, 'error');
@@ -871,8 +875,9 @@ console.log("decryptedObj", decryptedObj);
         },
         error: (err) => {
 
-          let decryptedErr:any = this.encryptionService.decrypt(err.error.encryptedData);
-console.log("decryptedObj", decryptedErr);
+          let decryptedErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptedErr = JSON.parse(decryptedErr);
+          console.log("decryptedObj", decryptedErr);
           this.ngxService.stop();
 
           this.SharedService.ToastPopup('', decryptedErr.message, 'error');

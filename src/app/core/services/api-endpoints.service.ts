@@ -280,7 +280,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_CHECKOUT_SESSION);
   }
   public postVerifySessionEndpoint() {
-    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
+    return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION_ENCRYPT);
   }
 
   public getAllCountryForDelegatesEndpoint() {
@@ -350,7 +350,7 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_VERIFY_PAYMENT_STATUS);
   }
   public postPreDelegateNominationEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION);
+    return this.createUrl(this._constants.API_ENDPOINT_POST_PRE_DELEGATE_NOMINATION_ENCRYPT);
   }
 
   public getAmbassadorURLEndpoint(): string {

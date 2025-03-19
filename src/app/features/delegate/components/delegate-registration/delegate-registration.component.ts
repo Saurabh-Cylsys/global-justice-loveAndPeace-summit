@@ -66,7 +66,7 @@ export class DelegateRegistrationComponent {
     { value: 'Peace', label: 'Peace' },
   ];
   disabledDates: Date[] = [];
-  isEnabled:boolean = false;
+  isEnabled: boolean = false;
   maxDate1: any;
   minDate1: any;
   colorTheme: string = 'theme-dark-blue';
@@ -312,10 +312,10 @@ export class DelegateRegistrationComponent {
 
     this.delegateService.getAllCountries().subscribe(
       (res: any) => {
-        let decryptData = this.encryptionService.decryptData(res);
-      console.log("Country decryptData:", decryptData);
+        let decryptData: any = this.encryptionService.decrypt(res);
+        console.log("Country decryptData:", decryptData);
 
-        this.countryData = res.data;
+        this.countryData = decryptData.data;
       },
       (err: any) => {
         console.log('error', err);
@@ -934,38 +934,45 @@ export class DelegateRegistrationComponent {
         p_type: 'DELEGATE_OFFLINE',
         p_reference_by: '0',
       };
-      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
+
       this.ngxService.start();
-      this.SharedService.registrationOnline(encryptedObj).subscribe(
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+      this.SharedService.registrationOnline(payload).subscribe(
         async (result: any) => {
-          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          let decryptedObj: any = this.encryptionService.decrypt(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
           if (decryptedObj.success) {
-console.log("decryptedObj", decryptedObj);
+            console.log("decryptedObj", decryptedObj);
 
             // this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
 
             setTimeout(() => {
-              console.log('get payment URL', result.url);
+              console.log('get payment URL', decryptedObj.url);
               this.ngxService.stop();
-              if (result.url) {
-                window.location.href = result.url; // Redirect to Stripe Checkout
+              if (decryptedObj.url) {
+                window.location.href = decryptedObj.url; // Redirect to Stripe Checkout
               }
             }, 5000);
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
           this.ngxService.stop();
           this.registrationForm.patchValue({
             mobile_number: returnmobileNumber,
             dob: returnDOB,
           });
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         }
       );
     }

@@ -91,7 +91,7 @@ export class DelegateRegistrationOnlineComponent {
   email: string = '';
   mobileNo: string = '';
   name: string = '';
-  title : string = '';
+  title: string = '';
   tinyURL: string = environment.tinyUrl;
   isOnline: boolean = false;
   country_id: any;
@@ -128,8 +128,8 @@ export class DelegateRegistrationOnlineComponent {
     this.minDate1 = new Date(today.getFullYear() - 120, 0, 1);
   }
 
-async ngOnInit() {
-  this.isDisabled = true;
+  async ngOnInit() {
+    this.isDisabled = true;
     this.checkWindowSize();
     // this.dobValidator();
 
@@ -163,32 +163,32 @@ async ngOnInit() {
 
     console.log("this.countryData", this.countryData);
 
-   if (this.countryData.length > 0) {
-       this.setCountry();
+    if (this.countryData.length > 0) {
+      this.setCountry();
     }
   }
 
   setCountry() {
     const selectedCountry = this.countryData.find((country: any) => country.id == this.country_id);
 
-      if (selectedCountry) {
+    if (selectedCountry) {
 
-        // this.registrationForm.patchValue({
-        //   country: selectedCountry.name,
-        //   country_id: +selectedCountry.id
-        // });
+      // this.registrationForm.patchValue({
+      //   country: selectedCountry.name,
+      //   country_id: +selectedCountry.id
+      // });
 
-        const patchFormData = {
-          country_id: +this.country_id,
-          country: selectedCountry.name
-         }
-        this.registrationForm.patchValue(patchFormData);
+      const patchFormData = {
+        country_id: +this.country_id,
+        country: selectedCountry.name
+      }
+      this.registrationForm.patchValue(patchFormData);
 
 
-        this.cdr.detectChanges(); // 👈 Force UI update
-            const encryptedObj = this.encryptionService.encryptData(this.country_id);
+      this.cdr.detectChanges(); // 👈 Force UI update
+      const encryptedObj = this.encryptionService.encryptData(this.country_id);
 
-        if (this.country_id) {
+      if (this.country_id) {
         this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
             this.ngxService.stop();
@@ -332,24 +332,24 @@ async ngOnInit() {
       this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
   }
 
- async getAllCountries() {
-  try {
-    const response = await this.delegateService.getAllCountryApi();
+  async getAllCountries() {
+    try {
+      const response = await this.delegateService.getAllCountryApi();
       // Decrypt the response data
       let encryptedData = response.encryptedData;
-      let decryptData = this.encryptionService.decryptData(encryptedData);
-      let countryDcrypt = JSON.parse(decryptData);  
+      let decryptData = this.encryptionService.decrypt(encryptedData);
+      let countryDcrypt = JSON.parse(decryptData);
 
-    this.countryData = countryDcrypt.data;
+      this.countryData = countryDcrypt.data;
 
-    // Ensure we bind the country only after fetching data
-    if (this.isOnline) {
-      this.setCountry();
+      // Ensure we bind the country only after fetching data
+      if (this.isOnline) {
+        this.setCountry();
+      }
+
+    } catch (error) {
+      console.error("Error fetching countries:", error);
     }
-
-  } catch (error) {
-    console.error("Error fetching countries:", error);
-  }
   }
 
   changeCountry(e: any) {
@@ -358,7 +358,7 @@ async ngOnInit() {
     const countryObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ country_id: countryObj.id });
     this.country_name = countryObj.name;
-    const encryptedObj = this.encryptionService.encryptData(countryObj.id);
+    const encryptedObj = this.encryptionService.encrypt(countryObj.id);
 
     this.ngxService.start();
     this.delegateService.getAllStates(encryptedObj).subscribe(
@@ -780,7 +780,7 @@ async ngOnInit() {
   }
 
   submitData(): void {
-  if (
+    if (
       !this.registrationForm.value.profession_1 ||
       this.registrationForm.value.profession_1.trim().length < 2
     ) {
@@ -850,40 +850,50 @@ async ngOnInit() {
 
       this.reqBody = {
         ...this.registrationForm.value,
-        country_code : this.country_code,
-        mobile_number : this.mobileNo,
+        country_code: this.country_code,
+        mobile_number: this.mobileNo,
         is_nomination: "0",
         p_type: this.pType,
         p_reference_by: '0'
       };
 
-      let encryptedObj = this.encryptionService.encryptData(this.reqBody);
+      let encryptedObj = this.encryptionService.encrypt(this.reqBody);
+
       this.ngxService.start();
-      this.SharedService.registrationOnline(encryptedObj).subscribe(
+      let payload = {
+        "encryptedData": encryptedObj
+      }
+
+      this.SharedService.registrationOnline(payload).subscribe(
         async (result: any) => {
           let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          decryptedObj = JSON.parse(decryptedObj);
+
           if (decryptedObj.success) {
-console.log("decryptedObj", decryptedObj);
+            console.log("decryptedObj", decryptedObj);
 
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'success');
             this.registrationForm.reset();
             setTimeout(() => {
-                this.router.navigateByUrl('/delegate-message');
+              this.router.navigateByUrl('/delegate-message');
             }, 3000);
 
           } else {
             this.ngxService.stop();
-            this.SharedService.ToastPopup('', result.message, 'error');
+            this.SharedService.ToastPopup('', decryptedObj.message, 'error');
           }
         },
         (err) => {
+          let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error creating delegate:', decryptErr);
           this.ngxService.stop();
           this.registrationForm.patchValue({
             dob: returnDOB,
           });
 
-          this.SharedService.ToastPopup('', err.error.message, 'error');
+          this.SharedService.ToastPopup('', decryptErr.message, 'error');
         }
       );
     }
