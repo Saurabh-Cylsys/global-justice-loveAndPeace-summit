@@ -18,6 +18,7 @@ import { DelegatePaymentSuccessComponent } from './components/delegate-payment-s
 import { DelegatePaymentFailComponent } from './components/delegate-payment-fail/delegate-payment-fail.component';
 import { DelegateWithChildNominationComponent } from './components/delegate-with-child-nomination/delegate-with-child-nomination.component';
 import { AmbassadorComponent } from './components/ambassador/ambassador.component';
+import { VerifyTicketComponent } from './components/verify-ticket/verify-ticket.component';
 @NgModule({
   declarations: [
     DelegateMainComponent,
@@ -31,7 +32,8 @@ import { AmbassadorComponent } from './components/ambassador/ambassador.componen
     DelegatePaymentSuccessComponent,
     DelegatePaymentFailComponent,
     DelegateWithChildNominationComponent,
-    AmbassadorComponent
+    AmbassadorComponent,
+    VerifyTicketComponent
   ],
   imports: [
     CommonModule,

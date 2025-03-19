@@ -99,6 +99,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   maxDate1: any;
   minDate1: any;
   colorTheme: string = 'theme-dark-blue';
+  btnDisabled : boolean = false;
+  peacebookwebAppurl : string = environment.peacebookWebAppUrl
 
 
   changePreferredCountries() {
@@ -173,6 +175,13 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
       });
     }
 
+    this.btnDisabled = true;
+
+    this.createPeacekeeperForm();
+
+  }
+
+  createPeacekeeperForm(){
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
       dob: ['', [Validators.required, this.ageValidator]],
@@ -291,18 +300,18 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   downloadImage() {
     if (this.peacekeeperBadge) {
       fetch(this.peacekeeperBadge)
-        .then(response => response.blob())  // Convert response to Blob
-        .then(blob => {
-          const url = URL.createObjectURL(blob); // Create an object URL for the blob
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-          URL.revokeObjectURL(url); // Clean up the object URL
-        })
-        .catch(error => console.error('Error downloading the image:', error));
+      .then(response => response.blob())  // Convert response to Blob
+      .then(blob => {
+        const url = URL.createObjectURL(blob); // Create an object URL for the blob
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url); // Clean up the object URL
+      })
+      .catch(error => console.error('Error downloading the image:', error));
     }
 
 
@@ -445,12 +454,12 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
           this.is_selectedFile = false;
           return;
         }
-        // Validate the file size
-        if (file.size < minSize || file.size > maxSize) {
-          this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-          this.is_selectedFile = false;
-          return;
-        }
+              // Validate the file size
+      // if (file.size < minSize || file.size > maxSize) {
+      //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+      //   this.is_selectedFile = false;
+      //   return;
+      // }
       }
       else {
         console.log('No file selected.');
@@ -745,6 +754,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
         if (decryptData.success) {
           this.submitted = true;
+
+          this.btnDisabled = false;
           this.ngxService.stop();
           console.log('decryptData', decryptData);
           // this.peacekeeperBadgeResponse = response.QR_code

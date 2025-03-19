@@ -12,6 +12,7 @@ import { DelegatePaymentSuccessComponent } from './components/delegate-payment-s
 import { DelegatePaymentFailComponent } from './components/delegate-payment-fail/delegate-payment-fail.component';
 import { DelegateWithChildNominationComponent } from './components/delegate-with-child-nomination/delegate-with-child-nomination.component';
 import { AmbassadorComponent } from './components/ambassador/ambassador.component';
+import { VerifyTicketComponent } from './components/verify-ticket/verify-ticket.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       {path:'delegate-student-nomination',component:DelegateWithChildNominationComponent},
       {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
       { path: 'ambassador/:name', component: AmbassadorComponent },
+      // {path :'verify_ticket', component:VerifyTicketComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },
