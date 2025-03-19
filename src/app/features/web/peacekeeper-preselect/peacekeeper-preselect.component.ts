@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DelegateService } from '../../delegate/services/delegate.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-peacekeeper-preselect',
@@ -12,62 +14,73 @@ export class PeacekeeperPreselectComponent {
   mediumValue: string | null = '';
   packageAmt: number = 2800;
   onlinepackageAmt: number = 280;
+  onlineDiscount: any;
+  childNominationDiscount: any;
+  offlineDiscount: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private delegateService: DelegateService) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private delegateService: DelegateService,
+              private sharedService : SharedService,
+              private ngxLoader:NgxUiLoaderService) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(async (params: any) => {
 
-      if (params != undefined && Object.keys(params).length > 0) {
-        this.referralCode = params.code;
-        if (params.medium == 1 && params.code) {
-          if (this.referralCode) {
-            await this.fnValidateCoupon(this.referralCode);
+      this.route.queryParams.subscribe(async (params: any) => {
 
+        if (params != undefined && Object.keys(params).length > 0) {
+          this.referralCode = params.code || null; ;
+          if (params.medium == 1 && params.code) {
+
+            if (this.referralCode) {
+              await this.fnValidateCoupon(this.referralCode);
+
+            }
+            this.router.navigate(['/delegate-registration'], {
+              queryParams: this.referralCode ? { code: this.referralCode } : {}, // Pass query params
+              queryParamsHandling: 'merge', // Preserve existing query params (optional)
+              relativeTo: this.route, // Stay on the same route
+            })
           }
-          this.router.navigate(['/delegate-registration'], {
-            queryParams: { code: this.referralCode }, // Pass query params
-            queryParamsHandling: 'merge', // Preserve existing query params (optional)
-            relativeTo: this.route, // Stay on the same route
-          })
+
+          else if (!params.medium) {
+            console.log('Medium value not found, redirecting...');
+            if (this.referralCode) {
+              await this.fnValidateCoupon(this.referralCode);
+            }
+            this.router.navigate(['/peacekeeper-preselect'], {
+              queryParams: this.referralCode ? { code: this.referralCode } : {},
+            });
+          }
         }
 
-        else if (!params.medium) {
-          console.log('Medium value not found, redirecting...');
-          if (this.referralCode) {
-            await this.fnValidateCoupon(this.referralCode);
-          }
-          this.router.navigate(['/peacekeeper-preselect'], {
-            queryParams: { code: this.referralCode },
-          });
+        else {
+          await this.fnValidateCoupon(0);
         }
-      }
-
-    });
+      });
   }
 
-  async fnValidateCoupon(referalCode: any) {
+  async fnValidateCoupon(referalCode: string | any) {
 
-    let obj = {
-      "coupon_code": referalCode
-    }
-
-    await this.delegateService.getCouponValidation(obj).subscribe({
+    this.ngxLoader.start();
+    await this.sharedService.getDiscountAmountByCouponCode(referalCode).subscribe({
       next: (response: any) => {
-        if (response.success == true && response.valid == 1) {
-          this.packageAmt = 2604;
-          this.onlinepackageAmt = 260;
-        }
-        else {
-          this.packageAmt = 2800;
-          this.onlinepackageAmt = 280;
-          this.referralCode = '';
+
+        this.ngxLoader.stop();
+        if(response && response.success) {
+          response.data.forEach((item:any) => {
+            if (item.p_type === "DELEGATE_ONLINE") {
+              this.onlineDiscount = item.discount_amount;
+            } else if (item.p_type === "DELEGATE_CHILD_NOMINATION") {
+              this.childNominationDiscount = item.discount_amount;
+            } else if (item.p_type === "DELEGATE_OFFLINE") {
+              this.offlineDiscount = item.discount_amount;
+            }
+          });
         }
       },
       error: (error: any) => {
-        this.packageAmt = 2800;
-        this.onlinepackageAmt = 280;
-        this.referralCode = '';
+        console.log("Eror",error);
       }
     });
   }

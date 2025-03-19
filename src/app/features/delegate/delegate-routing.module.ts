@@ -33,7 +33,7 @@ const routes: Routes = [
       {path:'delegate-student-nomination',component:DelegateWithChildNominationComponent},
       {path:'delegate-ad',component:DelegateRegistrationSeoComponent},
       { path: 'ambassador/:name', component: AmbassadorComponent },
-      // {path :'verify_ticket', component:VerifyTicketComponent},
+      {path :'verify_ticket', component:VerifyTicketComponent},
       {path:'', redirectTo:'/delegate-registration', pathMatch:'full'}
     ]
   },

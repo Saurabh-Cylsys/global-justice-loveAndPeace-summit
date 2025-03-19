@@ -9,6 +9,9 @@ import { DelegateService } from '../../services/delegate.service';
   styleUrls: ['./verify-ticket.component.css']
 })
 export class VerifyTicketComponent {
+  ticketId: any ="";
+  ticketUrl: any = "";
+  type: any = "";
 
   constructor(private router: Router,
               private route: ActivatedRoute ,
@@ -21,23 +24,41 @@ export class VerifyTicketComponent {
 
       if (params != undefined && Object.keys(params).length > 0) {
 
+        console.log("params",params);
         let ticketData = params['data'].replace(/ /g, '+');
 
         let decryptedData = this.encryptionService.decrypt(ticketData);
+
+        console.log("decryptedData",decryptedData);
 
         // Parse the decrypted string into key-value pairs
         const urlParams = new URLSearchParams(decryptedData);
 
         // Extract values
-        let ticketId = urlParams.get('ticket_id');
-        let ticketUrl = urlParams.get('ticket_url');
-        let type = urlParams.get('type');
+        this.ticketId = urlParams.get('ticket_id');
+        this.ticketUrl = urlParams.get('ticket_url');
+        this.type = urlParams.get('type');
 
-        console.log("Ticket ID:", ticketId);
-        console.log("Ticket URL:", ticketUrl);
-        console.log("Ticket type:", type);
-
+        console.log("Ticket ID:", this.ticketId);
+        console.log("Ticket URL:", this.ticketUrl);
+        console.log("Ticket type:", this.type);
       }
     });
+
+    // this.verifyTicket();
+  }
+
+  verifyTicket(){
+    let body = {
+      "p_type": this.type,
+      "p_ticket_no": this.ticketId
+  }
+    this.delegateService.getVerifyTicketApi(body).subscribe({
+      next : (res)=>{
+        console.log(res);
+      },error :(err)=>{
+        console.log("error",err);
+      }
+    })
   }
 }

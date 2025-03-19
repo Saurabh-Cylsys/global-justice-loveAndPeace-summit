@@ -118,9 +118,9 @@ export class DelegateOnlineComponent implements OnInit {
   }
 
   fnPartialSave() {
-    const email = this.userForm.get('email')?.value;
-    const mobile = this.userForm.get('mobile')?.value;
-    const rawMobileNumber = this.userForm.value.mobile_number?.number ?? '';
+    const email = this.userForm?.get('email')?.value;
+    const mobile = this.userForm?.get('mobile')?.value;
+    const rawMobileNumber = this.userForm?.value.mobile_number?.number ?? '';
     const formattedMobileNumber = rawMobileNumber.replace(/[^0-9]/g, ''); // Keeps only numbers
 
     if (email || formattedMobileNumber) {
