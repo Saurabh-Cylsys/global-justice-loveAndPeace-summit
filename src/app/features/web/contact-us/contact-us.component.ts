@@ -321,6 +321,7 @@ export class ContactUsComponent {
 
 
   submitData(): void {
+    debugger
     const rawMobileNumber = this.contactUsForm.value.phoneNumber.number;
     const formattedMobileNumber = rawMobileNumber.replace(/\s+/g, ''); // Removes all spaces
     console.log(formattedMobileNumber);
@@ -337,8 +338,8 @@ export class ContactUsComponent {
     // if (this.contactUsForm.invalid) {
     //   return console.log('Invalid Details');
     // }
-    debugger
     if (this.submitted) {
+      // ...this.contactUsForm.value,
       this.reqBody = {
         title: this.contactUsForm.value.title,
         email: this.contactUsForm.value.email,
@@ -347,14 +348,6 @@ export class ContactUsComponent {
         countryCode: this.contactUsForm.value.countryCode,
         phoneNumber: this.contactUsForm.value.phoneNumber,
         yourQuestion: this.contactUsForm.value.yourQuestion
-
-        // title:"Mr",
-        //     email:"uday@gmail.com",
-        //     firstName:"Uday",
-        //     lastName:"Shimpi",
-        //     countryCode:"+91",
-        //    phoneNumber:"124565",
-        //    yourQuestion:"I am delegate"
       };
       const encryptData = this.encryptionService.encryptData(this.reqBody);
       console.log('encryptData', encryptData);
@@ -365,14 +358,15 @@ export class ContactUsComponent {
       }
       this.SharedService.contectUs(body).subscribe(
         (result: any) => {
-      const decryptData = this.encryptionService.decryptData(this.reqBody);
+      let decryptData = this.encryptionService.decryptData(result.encryptedData);
+      decryptData = JSON.parse(decryptData);
 console.log( 'decryptData', decryptData);
 
-          if (result.success) {
+          if (decryptData.success) {
             console.log('result', result);
             this.ngxService.stop();
             this.contactUsForm.reset();
-            this.SharedService.ToastPopup('', result.message, 'success');
+            this.SharedService.ToastPopup('', decryptData.message, 'success');
           }
         },
         (err) => {

@@ -37,6 +37,7 @@ import {
   LoadedImage,
 } from 'ngx-image-cropper';
 import { DatePipe, DOCUMENT } from '@angular/common';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-world-peacekeepers-movement',
@@ -95,8 +96,8 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
   transform: ImageTransform = {}; // Object for applying transformations
   disabledDates: Date[] = [];
   formattedDate: string = '';
-  maxDate1 : any;
-  minDate1 : any;
+  maxDate1: any;
+  minDate1: any;
   colorTheme: string = 'theme-dark-blue';
 
 
@@ -116,8 +117,9 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     private SharedService: SharedService,
     private ngxService: NgxUiLoaderService,
     private route: ActivatedRoute,
+    private encryptionService: EncryptionService,
     @Inject(DOCUMENT) private document: Document,
-    private renderer : Renderer2
+    private renderer: Renderer2
   ) {
     this.defaultCountryISO = CountryISO.UnitedArabEmirates;
     // this.is_selectedFile = false;
@@ -173,7 +175,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
 
     this.peacekeepersForm = this.formBuilder.group({
       full_name: ['', [Validators.required]],
-      dob: ['', [Validators.required,this.ageValidator]],
+      dob: ['', [Validators.required, this.ageValidator]],
       country: ['', [Validators.required]],
       country_code: [''],
       mobile_number: [
@@ -216,71 +218,71 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     };
   }
 
-ageValidator(control: FormControl) {
-  const selectedDate = new Date(control.value);
+  ageValidator(control: FormControl) {
+    const selectedDate = new Date(control.value);
 
-  // If the selected date is invalid, return an error
-  if (isNaN(selectedDate.getTime())) {
-    return { invalidDate: true }; // Invalid date format
+    // If the selected date is invalid, return an error
+    if (isNaN(selectedDate.getTime())) {
+      return { invalidDate: true }; // Invalid date format
+    }
+
+    const today = new Date();
+    const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+
+    // If selected date is after or on the date 18 years ago, it's invalid
+    if (selectedDate > eighteenYearsAgo) {
+      return { ageError: 'Date must be at least 18 years ago' };
+    }
+
+    return null; // Valid date
   }
 
-  const today = new Date();
-  const eighteenYearsAgo = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+  onPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block pasting
+    const text = event.clipboardData?.getData('text') || '';
 
-  // If selected date is after or on the date 18 years ago, it's invalid
-  if (selectedDate > eighteenYearsAgo) {
-    return { ageError: 'Date must be at least 18 years ago' };
+    // Allow only alphabets and spaces
+    if (/^[a-zA-Z\s]*$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid text
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
 
-  return null; // Valid date
-}
+  onPasteMobileNumber(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
 
-onPaste(event: ClipboardEvent) {
-  event.preventDefault(); // Block pasting
-  const text = event.clipboardData?.getData('text') || '';
-
-  // Allow only alphabets and spaces
-  if (/^[a-zA-Z\s]*$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid text
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+    // Allow only numbers (0-9)
+    if (/^\d+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid numbers
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
-}
 
-onPasteMobileNumber(event: ClipboardEvent) {
-  event.preventDefault(); // Block default paste action
-  const text = event.clipboardData?.getData('text') || '';
+  onEmailPaste(event: ClipboardEvent) {
+    event.preventDefault(); // Block default paste action
+    const text = event.clipboardData?.getData('text') || '';
 
-  // Allow only numbers (0-9)
-  if (/^\d+$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid numbers
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+    // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
+    if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
+      const input = event.target as HTMLInputElement;
+      input.value += text; // Append only valid characters
+      input.dispatchEvent(new Event('input')); // Update Angular form control
+    }
   }
-}
 
-onEmailPaste(event: ClipboardEvent) {
-  event.preventDefault(); // Block default paste action
-  const text = event.clipboardData?.getData('text') || '';
-
-  // Allow only valid email characters (a-z, A-Z, 0-9, @, ., _, -)
-  if (/^[a-zA-Z0-9@._-]+$/.test(text)) {
-    const input = event.target as HTMLInputElement;
-    input.value += text; // Append only valid characters
-    input.dispatchEvent(new Event('input')); // Update Angular form control
+  disableManualInput(event: KeyboardEvent): void {
+    event.preventDefault();
   }
-}
 
-disableManualInput(event: KeyboardEvent): void {
-  event.preventDefault();
-}
+  onDateChange(event: string): void {
+    // Convert the date format
+    const parsedDate = new Date(event);
+    this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
 
-onDateChange(event: string): void {
-  // Convert the date format
-  const parsedDate = new Date(event);
-  this.formattedDate = this.datePipe.transform(parsedDate, 'yyyy-MM-dd') || '';
-
-}
+  }
 
   get dob() {
     return this.peacekeepersForm.get('dob');
@@ -289,18 +291,18 @@ onDateChange(event: string): void {
   downloadImage() {
     if (this.peacekeeperBadge) {
       fetch(this.peacekeeperBadge)
-      .then(response => response.blob())  // Convert response to Blob
-      .then(blob => {
-        const url = URL.createObjectURL(blob); // Create an object URL for the blob
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url); // Clean up the object URL
-      })
-      .catch(error => console.error('Error downloading the image:', error));    
+        .then(response => response.blob())  // Convert response to Blob
+        .then(blob => {
+          const url = URL.createObjectURL(blob); // Create an object URL for the blob
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = 'peacekeeper-card.png'; // Ensure it's saved as PNG
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url); // Clean up the object URL
+        })
+        .catch(error => console.error('Error downloading the image:', error));
     }
 
 
@@ -317,7 +319,7 @@ onDateChange(event: string): void {
         this.peacekeeperData = res.data;
         this.qrCodeImg = res.QR_code;
         this.fileUrl = this.peacekeeperData.file_urls[0];
-          });
+      });
     }
 
     this.showPopup = true;
@@ -333,29 +335,29 @@ onDateChange(event: string): void {
 
   isCorrect() {
 
-    if(!this.peacekeepersForm.value.full_name?.trim() || this.peacekeepersForm.value.full_name.trim().length < 3){
+    if (!this.peacekeepersForm.value.full_name?.trim() || this.peacekeepersForm.value.full_name.trim().length < 3) {
       this.renderer.selectRootElement('#fullName').focus();
-      this.SharedService.ToastPopup("Full Name must be at least 3 characters long",'','error');
+      this.SharedService.ToastPopup("Full Name must be at least 3 characters long", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
+    else if (this.peacekeepersForm.value.dob == "" || this.peacekeepersForm.value.dob == undefined) {
       this.renderer.selectRootElement('#dob').focus();
-      this.SharedService.ToastPopup("Please Select Date Of Birth",'','error');
+      this.SharedService.ToastPopup("Please Select Date Of Birth", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
+    else if (this.peacekeepersForm.value.country == "" || this.peacekeepersForm.value.country == undefined) {
       setTimeout(() => {
         const countryElement = this.renderer.selectRootElement('#country', true);
         if (countryElement) {
           countryElement.focus();
         }
       }, 100);
-      this.SharedService.ToastPopup("Please select country",'','error');
+      this.SharedService.ToastPopup("Please select country", '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
+    else if (this.peacekeepersForm.value.email_id == "" || this.peacekeepersForm.value.email_id == undefined) {
       this.renderer.selectRootElement('#email').focus();
-      this.SharedService.ToastPopup("Please Enter Email ID",'','error');
+      this.SharedService.ToastPopup("Please Enter Email ID", '', 'error');
       return;
     }
     else if (this.peacekeepersForm.controls['email_id'].invalid) {
@@ -363,7 +365,7 @@ onDateChange(event: string): void {
       this.SharedService.ToastPopup('Please enter a valid Email ID', '', 'error');
       return;
     }
-    else if(this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
+    else if (this.peacekeepersForm.value.mobile_number == "" || this.peacekeepersForm.value.mobile_number == undefined || this.peacekeepersForm.value.mobile_number == null) {
       setTimeout(() => {
         const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
         if (inputElement) {
@@ -372,23 +374,23 @@ onDateChange(event: string): void {
           console.error("Could not find mobile number input field");
         }
       }, 100);
-      this.SharedService.ToastPopup("Please Enter  Mobile Number",'','error');
+      this.SharedService.ToastPopup("Please Enter  Mobile Number", '', 'error');
       return;
     }
-   else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
-    setTimeout(() => {
-      const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
-      if (inputElement) {
-        inputElement.focus();
-      } else {
-        console.error("Could not find mobile number input field");
-      }
-    }, 100);
-    this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country",'','error');
-    return;
-  }
-    else if(this.selectedFile == null || this.selectedFile == undefined ) {
-      this.SharedService.ToastPopup("Please upload image",'','error');
+    else if (this.peacekeepersForm.controls['mobile_number'].errors && !this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber?.valid) {
+      setTimeout(() => {
+        const inputElement = document.querySelector('#number_mobile1 input') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.focus();
+        } else {
+          console.error("Could not find mobile number input field");
+        }
+      }, 100);
+      this.SharedService.ToastPopup("Please enter a valid mobile number for the selected country", '', 'error');
+      return;
+    }
+    else if (this.selectedFile == null || this.selectedFile == undefined) {
+      this.SharedService.ToastPopup("Please upload image", '', 'error');
       return;
     }
 
@@ -443,12 +445,12 @@ onDateChange(event: string): void {
           this.is_selectedFile = false;
           return;
         }
-              // Validate the file size
-      if (file.size < minSize || file.size > maxSize) {
-        this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-        this.is_selectedFile = false;
-        return;
-      }
+        // Validate the file size
+        if (file.size < minSize || file.size > maxSize) {
+          this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+          this.is_selectedFile = false;
+          return;
+        }
       }
       else {
         console.log('No file selected.');
@@ -531,13 +533,13 @@ onDateChange(event: string): void {
         this.is_selectedFile = false;
         return;
       }
-          // Validate the file size
-    // if (file.size < minSize || file.size > maxSize) {
-    //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
-    //   event.target.value = ''; // Reset the file input
-    //   this.is_selectedFile = false;
-    //   return;
-    // }
+      // Validate the file size
+      // if (file.size < minSize || file.size > maxSize) {
+      //   this.SharedService.ToastPopup('', 'Invalid file size! Please select an image between 200KB to 5MB.', 'error');
+      //   event.target.value = ''; // Reset the file input
+      //   this.is_selectedFile = false;
+      //   return;
+      // }
 
       this.isPeaceOn = 2;
       this.showPopup = true;
@@ -682,45 +684,75 @@ onDateChange(event: string): void {
         this.peacekeepersForm.value.mobile_number.dialCode +
         ' ' +
         formattedMobileNumber,
-        dob: this.formattedDate
+      dob: this.formattedDate
 
     });
-
+    debugger
     // Create FormData object
-    const formData = new FormData();
+    const formData = {
+      full_name: this.peacekeepersForm.value.full_name,
+      dob: this.peacekeepersForm.value.dob,
+      country: this.peacekeepersForm.value.country,
+      country_code: this.peacekeepersForm.value.country_code,
+      mobile_number: this.peacekeepersForm.value.mobile_number,
+      email_id: this.peacekeepersForm.value.email_id,
+      is_active: this.peacekeepersForm.value.is_active,
+      Check_email: this.peacekeepersForm.value.Check_email == true ? 1 : 0,
+      url: environment.domainUrl,
+    };
 
-    // Append all form fields except the file
-    Object.keys(this.peacekeepersForm.value).forEach((key) => {
-      formData.append(key, this.peacekeepersForm.value[key]);
-    });
+    // // Append all form fields except the file
+    // Object.keys(this.peacekeepersForm.value).forEach((key) => {
+    //   formData.append(key, this.peacekeepersForm.value[key]);
+    // });
 
-    // Append the selected file
+
+    const EncryptData = this.encryptionService.encryptData(formData);
+    const encryptedPayload = new FormData();
+    encryptedPayload.append('encryptedData', EncryptData);
+    this.getAllCountrycode();
+
     if (this.selectedFile) {
-      formData.append(
+      encryptedPayload.append(
         'profile_picture',
         this.selectedFile,
         this.selectedFile.name
       );
     }
-    formData.append('url', environment.domainUrl);
+
+    console.log('encryptedPayload', encryptedPayload);
+    console.log('Payload', formData);
+
+    // // Append the selected file
+    // if (this.selectedFile) {
+    //   formData.append(
+    //     'profile_picture',
+    //     this.selectedFile,
+    //     this.selectedFile.name
+    //   );
+    // }
+    // formData.append('url', environment.domainUrl);
 
     // Show loader
     this.ngxService.start();
 
     // Call the service to submit data
-    this.SharedService.postPeacekeeper(formData).subscribe(
+    this.SharedService.postPeacekeeper(encryptedPayload).subscribe(
       (response: any) => {
-        if (response.success) {
+        let decryptData = this.encryptionService.decryptData(response.encryptedData);
+        decryptData = JSON.parse(decryptData);
+
+        if (decryptData.success) {
           this.submitted = true;
           this.ngxService.stop();
-          console.log('response', response);
+          console.log('decryptData', decryptData);
           // this.peacekeeperBadgeResponse = response.QR_code
           this.peacekeeperBadgeResponse =
             'https://devglobaljusticeapis.cylsys.com/uploads/delegates/COIEIE-0000069-W.png';
-          this.peacekeeperBadge = response.batch;
+          this.peacekeeperBadge = decryptData.batch;
 
-          this.peacekeeperBadgeId = response.peacekeeper_id;
-          this.SharedService.ToastPopup('', response.message, 'success');
+          this.peacekeeperBadgeId = decryptData.peacekeeper_id;
+          this.SharedService.ToastPopup('', decryptData.message, 'success');
           this.is_selectedFile = false;
           this.peacekeepersForm.reset();
 
@@ -729,22 +761,27 @@ onDateChange(event: string): void {
           this.previewUrl = '';
         } else {
           this.ngxService.stop();
-          this.SharedService.ToastPopup('', response.message, 'error');
+          this.SharedService.ToastPopup('', decryptData.message, 'error');
         }
       },
       (err) => {
-          this.peacekeepersForm.patchValue({
+
+        let decryptErr = this.encryptionService.decryptData(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.log('decryptErr', decryptErr);
+
+        this.peacekeepersForm.patchValue({
           mobile_number: returnmobileNumber,
           dob: returnDOB,
         });
         this.ngxService.stop();
 
-        this.SharedService.ToastPopup('', err.error.message, 'error');
+        this.SharedService.ToastPopup('', decryptErr.message, 'error');
       }
     );
   }
 
-  onMobileNumberKeyDown(event: KeyboardEvent , inputValue: any): void {
+  onMobileNumberKeyDown(event: KeyboardEvent, inputValue: any): void {
 
     if (inputValue !== null) {
       // Prevent space at the beginning
@@ -757,8 +794,8 @@ onDateChange(event: string): void {
         return;
       }
 
-       // Allow only numbers and essential keys
-       if (
+      // Allow only numbers and essential keys
+      if (
         !/^[0-9]$/.test(event.key) &&
         !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(
           event.key
@@ -823,7 +860,7 @@ onDateChange(event: string): void {
           // event.preventDefault()
 
         } else {
-          console.log('form',this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber['valid']);
+          console.log('form', this.peacekeepersForm.controls['mobile_number'].errors?.validatePhoneNumber['valid']);
           this.mobile_numberVal = false;
         }
       }

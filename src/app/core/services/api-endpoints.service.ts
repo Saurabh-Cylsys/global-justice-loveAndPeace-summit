@@ -174,11 +174,11 @@ export class ApiEndpointsService {
     return this.createUrl(this._constants.API_ENDPOINT_registration);
   }
   public contectUsEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US);
+    return this.createUrl(this._constants.API_ENDPOINT_CONTECT_US_ENCRYPT);
   }
 
   public peacekeeperEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER);
+    return this.createUrl(this._constants.API_ENDPOINT_PEACEKEEPER_ENCRYPT);
   }
 
   public checkEmailAndMobileEndpoint(): string {
