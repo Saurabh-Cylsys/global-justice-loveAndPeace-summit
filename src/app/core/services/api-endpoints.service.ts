@@ -288,11 +288,19 @@ export class ApiEndpointsService {
   }
 
   public getStatesByCountryEndpoint(country_id:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT + '/' + country_id);
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT ,
+      (qs: QueryStringParameters) => {
+        qs.push('encryptedData', country_id);
+      }
+    );
   }
 
-  public getCityByStateEndpoint(country_id:any): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CITY_BY_STATE + '/' + country_id);
+  public getCityByStateEndpoint(state_id:any): string {
+    return this.createUrlWithQueryParameters(this._constants.API_ENDPOINT_CITY_BY_STATE_ENCRYPT ,
+      (qs: QueryStringParameters) => {
+        qs.push('encryptedData', state_id);
+      }
+    );
   }
 
   public getSendOTPEndpoint(): string {

@@ -186,16 +186,21 @@ export class DelegateRegistrationOnlineComponent {
 
 
       this.cdr.detectChanges(); // 👈 Force UI update
-      const encryptedObj = this.encryptionService.encryptData(this.country_id);
+      const encryptedObj = this.encryptionService.encrypt(this.country_id);
 
       if (this.country_id) {
         this.delegateService.getAllStates(encryptedObj).subscribe(
           (res: any) => {
+
+          let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+          decryptData = JSON.parse(decryptData);
             this.ngxService.stop();
-            this.statesData = res.data;
+            this.statesData = decryptData.data;
           },
           (err: any) => {
-            console.log('Err', err);
+            let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+            decryptErr = JSON.parse(decryptErr);
+            console.error('Error ', decryptErr);
           }
         );
       }
@@ -363,12 +368,15 @@ export class DelegateRegistrationOnlineComponent {
     this.ngxService.start();
     this.delegateService.getAllStates(encryptedObj).subscribe(
       (res: any) => {
-        this.ngxService.stop();
-        this.statesData = res.data;
+        let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+          decryptData = JSON.parse(decryptData);
+            this.ngxService.stop();
+            this.statesData = decryptData.data;
       },
       (err: any) => {
-        console.log('Err', err);
-      }
+        let decryptErr:any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+        console.error('Error ', decryptErr);      }
     );
   }
 
@@ -377,11 +385,14 @@ export class DelegateRegistrationOnlineComponent {
     const stateObj = JSON.parse(selectedValue); // Convert JSON string back to object
     this.registrationForm.patchValue({ state_id: stateObj.id });
     this.state_name = stateObj.name;
+    const encryptedObj = this.encryptionService.encrypt(stateObj.id);
 
     // this.ngxService.start();
-    this.delegateService.getAllCities(stateObj.id).subscribe((res: any) => {
+    this.delegateService.getAllCities(encryptedObj).subscribe((res: any) => {
       // this.ngxService.stop();
-      this.cityData = res.data;
+      let decryptData:any = this.encryptionService.decrypt(res.encryptedData);
+      decryptData = JSON.parse(decryptData);
+      this.cityData = decryptData.data;
     });
   }
 

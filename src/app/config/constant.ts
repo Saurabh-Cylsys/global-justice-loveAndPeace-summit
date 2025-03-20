@@ -62,9 +62,9 @@ export class Constants {
     public readonly API_ENDPOINT_ALL_COUNTRY: string = 'get_delegate_country'
     public readonly API_ENDPOINT_ALL_COUNTRY_ENCRYPT: string = 'get_delegate_country/encryption'
     public readonly API_ENDPOINT_STATE_BY_COUNTRY: string = 'get_delegate_state'
-    public readonly API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT: string = 'get_delegate_state/encryption'
+    public readonly API_ENDPOINT_STATE_BY_COUNTRY_ENCRYPT: string = 'get_delegate_state_encryption'
     public readonly API_ENDPOINT_CITY_BY_STATE: string = 'get_delegate_city'
-    public readonly API_ENDPOINT_CITY_BY_STATE_ENCRYPT: string = 'get_delegate_city/encryption'
+    public readonly API_ENDPOINT_CITY_BY_STATE_ENCRYPT: string = 'get_delegate_city_encryption'
 
     public readonly API_ENDPOINT_SEND_OTP: string = 'send-otp'
     public readonly API_ENDPOINT_VERIFY_OTP: string = 'verify-otp'
