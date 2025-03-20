@@ -70,6 +70,7 @@ export class Constants {
     public readonly API_ENDPOINT_VERIFY_OTP: string = 'verify-otp'
 
     public readonly API_ENDPOINT_CREATE_NOMINATION_PROFILE: string = 'registration/create-nomination-profile'
+    public readonly API_ENDPOINT_CREATE_NOMINATION_PROFILE_ENCRYPT: string = 'registration/create-nomination-profile/encryption'
     public readonly API_ENDPOINT_GET_LOOKUPDATA: string = 'getLookupData'
     public readonly API_ENDPOINT_DELETE_PEACEKEEPER_ACC: string = 'delete-user'
 

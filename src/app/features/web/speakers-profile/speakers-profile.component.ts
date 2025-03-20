@@ -50,7 +50,7 @@ export class SpeakersProfileComponent implements OnInit {
       if (params != undefined && Object.keys(params).length > 0) {
 
         if (params['data']) {
-          const decryptedData = this.encryptionService.decryptData(params['data']);
+          let decryptedData = this.encryptionService.decryptData(params['data']);
 
           if (decryptedData) {
 
@@ -91,8 +91,10 @@ export class SpeakersProfileComponent implements OnInit {
       .subscribe({
 
         next: (response: any) => {
-          if (response?.data) {
-            this.speakersDetails = response?.data;
+          if (response?.encryptedData) {
+            let decryptedObj:any = this.encryptionService.decrypt(response.encryptedData);
+            decryptedObj = JSON.parse(decryptedObj);
+            this.speakersDetails = decryptedObj?.data;
             this.speakersDetails[0].speaker_details = JSON.parse(this.speakersDetails[0].speaker_details)
             this.speakersDetails[0].qr_code = this.speakersDetails[0].url
             console.log(this.speakersDetails, 'list of speakers');
@@ -108,7 +110,9 @@ export class SpeakersProfileComponent implements OnInit {
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Error fetching speakers:', error);
+          let decryptErr: any = this.encryptionService.decrypt(error.error.encryptedData);
+          decryptErr = JSON.parse(decryptErr);
+          console.error('Error fetching speakers:', decryptErr);
           this.isLoading = false;
           this.speakersDetails = [];
         }

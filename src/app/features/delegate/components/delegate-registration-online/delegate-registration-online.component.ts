@@ -877,7 +877,7 @@ export class DelegateRegistrationOnlineComponent {
 
       this.SharedService.registrationOnline(payload).subscribe(
         async (result: any) => {
-          let decryptedObj = this.encryptionService.decryptData(result.encryptedData);
+          let decryptedObj:any = this.encryptionService.decrypt(result.encryptedData);
           decryptedObj = JSON.parse(decryptedObj);
 
           if (decryptedObj.success) {

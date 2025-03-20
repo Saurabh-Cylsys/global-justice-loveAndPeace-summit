@@ -1309,20 +1309,30 @@ export class DelegateWithChildComponent {
 
   private callNominationProfileAPI(nomineeBody: any, paymentUrl: string): void {
     this.ngxService.start();
-
-    this.delegateService.getNominationProfileApi(nomineeBody).subscribe({
+    let encryptedObj = this.encryptionService.encrypt(nomineeBody);
+    this.ngxService.start();
+    let payload = {
+      "encryptedData": encryptedObj
+    }
+debugger
+    this.delegateService.getNominationProfileApi(payload).subscribe({
       next: (res: any) => {
+        let decryptedObj: any = this.encryptionService.decrypt(res.encryptedData);
+        decryptedObj = JSON.parse(decryptedObj);
         this.ngxService.stop();
-        console.log('Nomination Profile Response:', res);
+        console.log('Nomination Profile Response:', decryptedObj);
 
-        if (res.success && paymentUrl) {
+        if (decryptedObj.success && paymentUrl) {
           window.location.href = paymentUrl; // Redirect to payment
           this.clearNomineeFields();
         }
       },
       error: (err) => {
+        let decryptErr: any = this.encryptionService.decrypt(err.error.encryptedData);
+        decryptErr = JSON.parse(decryptErr);
+
         this.ngxService.stop();
-        console.error('Nomination API Error:', err);
+        console.error('Nomination API Error:', decryptErr);
         this.SharedService.ToastPopup('', err.error.message, 'error');
       },
     });
