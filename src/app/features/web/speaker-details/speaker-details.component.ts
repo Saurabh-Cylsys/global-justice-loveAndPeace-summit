@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { WebService } from '../webz-services/web.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 interface Speaker {
@@ -29,9 +30,12 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
   private countrySubscription?: Subscription;
   private excludedCountries = ['Morocco', 'France']; // Countries to exclude
 
-  constructor(private webService: WebService,
-    private encryptionService: EncryptionService
-  ) {}
+  constructor(
+    private webService: WebService,
+    private router: Router,
+    private encryptionService: EncryptionService,
+
+  ) { }
 
   ngOnInit() {
     this.setupSearchDebounce();
@@ -120,7 +124,7 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
               this.loadCountries();
             }
 
-            console.log(this.speakersList , 'list of speakers');
+            console.log(this.speakersList, 'list of speakers');
 
           } else {
             this.speakersList = [];
@@ -185,5 +189,17 @@ export class SpeakerDetailsComponent implements OnInit, OnDestroy {
     }
 
     return '';
+  }
+
+
+  goToChildNomination(speakerId: any, speakerName: any) {
+    const params = {
+      speakerId: speakerId,
+      speakerName: speakerName
+    }
+    const encryptedParams = this.encryptionService.encryptData(params);
+    this.router.navigate(['/speaker-profile'], {
+      queryParams: {  data: encryptedParams }
+    });
   }
 }

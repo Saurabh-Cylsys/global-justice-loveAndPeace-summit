@@ -528,6 +528,7 @@ export class WorldPeacekeepersMovementComponent implements OnInit {
     }
   }
 
+  
   onFileChange(event: any): void {
 
     this.imageChangedEvent = event;

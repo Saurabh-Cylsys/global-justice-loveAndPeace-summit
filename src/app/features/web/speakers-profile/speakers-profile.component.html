@@ -1,5 +1,5 @@
 <div class="section5">
-<main class="global-justice col-lg-6">
+<main class="global-justice col-lg-6"*ngIf="this.speakersDetails.length > 0; else noDataTemplate">
   <div class="all-frames-wrapper shadow">
     <div class="all-frames" *ngFor="let speaker of this.speakersDetails">
       <header class="element">
@@ -279,4 +279,10 @@
       </section>
     </div>
   </div>
-</main></div>
+</main>
+
+<ng-template #noDataTemplate>
+  <h5 style="text-align: center; height: 50vh; " class="align-content-center justify-content-center"><span>No Data Found</span></h5>
+</ng-template>
+
+</div>
