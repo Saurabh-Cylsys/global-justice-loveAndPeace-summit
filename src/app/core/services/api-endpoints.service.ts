@@ -316,7 +316,7 @@ export class ApiEndpointsService {
   }
 
   public getCreateNominationProfileEndpoint(): string {
-    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE);
+    return this.createUrl(this._constants.API_ENDPOINT_CREATE_NOMINATION_PROFILE_ENCRYPT);
 
   // public postPeaceDeleteAccEndpoint() {
   //   return this.createUrl(this._constants.API_ENDPOINT_VERIFY_SESSION);
