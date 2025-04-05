@@ -19,6 +19,7 @@ export class SentInvitationComponent implements OnInit {
   form!: FormGroup;
   text :string ="";
   userData: any;
+  shareTitle: string = '';
 
   htmlContent: string = ''; // Store HTML content
 
@@ -110,6 +111,9 @@ export class SentInvitationComponent implements OnInit {
 
     this.userData = JSON.parse(localStorage.getItem('userDetails') || '');
     this.checkWindowSize();
+
+    this.loadShareContent();
+
   }
 
   // ngOnDestroy(): void {
@@ -195,6 +199,20 @@ export class SentInvitationComponent implements OnInit {
   //   }
   // }
 
+  loadShareContent(): void {
+    this.SharedService.getShareContent().subscribe({
+      next: (data:any) => {
+        this.shareTitle = data.shareTitle;
+      },
+      error: () => {
+        this.SharedService.ToastPopup('Failed to load share content.', '', 'error');
+      }
+    });
+    console.log(this.shareTitle + " shareTitle");
+    console.log(this.userData.qr_code + " qr_code");
+    console.log(this.userData.QR_CODE + " QR_CODE");
+    
+  }
 
   shareContent(): void {
 
@@ -207,65 +225,67 @@ export class SentInvitationComponent implements OnInit {
     // const shareTitle = 'Global Justice, Love and Peace Summit | Dubai';
     // const shareURL = this.userData.qr_code;
 
-    const shareTitle = `
-    *✨ 12 REASONS TO ATTEND GLOBAL JUSTICE, LOVE & PEACE SUMMIT AT DUBAI ON 12, 13 APRIL, 2025 ✨*
+//     const shareTitle = `✨ 12 REASONS TO ATTEND GLOBAL JUSTICE, LOVE & PEACE SUMMIT AT DUBAI ON 12th & 13th APRIL, 2025 ✨
 
-👑 *Chief Guest:* His Excellency Sheikh Nahayan Mabarak Al Nahayan, Minister of Tolerance & Co-Existence, UAE
+// 👑 Chief Guest: His Excellency Sheikh Nahayan Mabarak Al Nahayan, Minister of Tolerance & Co-Existence, UAE
 
-🌍 *Chairman of the Summit:* Dr. Huzaifa Khorakiwala
+// 🌍 Chairman of the Summit : Dr. Huzaifa Khorakiwala
 
-🌟 *A STAR-STUDDED, SENSITIVE, SPECIAL, SOCIABLE, SAGACIOUS, SWEET, & SATISFYING Summit!*
+// 🌟 A STAR-STUDDED, SENSITIVE, SPECIAL, SOCIABLE, SAGACIOUS, SWEET, & SATISFYING Summit!
 
-🎤 *1. OUTSTANDING, GLOBAL SPEAKERS* 🎓🌎
-72 outstanding, global speakers including *10 Nobel Peace Laureates* 🕊️ (including *Lech Walesa*), *Baba Ramdev*, *Sri Sri Ravishankar* (live online), *Jacqueline Fernandez*, *The Great Khali*, etc.
+// 🎤 1. OUTSTANDING, GLOBAL SPEAKERS 🎓🌎
+// 72 outstanding, global speakers including 12 Nobel Peace Laureates 🕊 (including Lech Walesa ), Baba Ramdev, Sri Sri Ravishankar (live online), The Great Khali, etc.
 
-🌐 *2. 2800 DELEGATES (PEACEKEEPERS)* 🤝💙
-Surely, one of the world’s *largest private summits* on *justice, love, & peace*, a great place to *network* with *noble & noteworthy Delegates (Peacekeepers).*
+// 🌐 2. 2800 DELEGATES (PEACEKEEPERS) 🤝💙
+// Surely, one of the world’s largest private summits on justice, love, & peace, a great place to network with noble & noteworthy Delegates (Peacekeepers).
 
-📅 *3. PEACE NETWORKING* 🤲📍
-*28 Peace Networking Tables* to do *private networking* by fixing up *meetings before the event* with Delegates of your choice.
+// 📅 3. PEACE NETWORKING 🤲📍
+// 28 Peace Networking Tables to do private networking by fixing up meetings before the event with Delegates of your choice.
 
-🏅 *4. PAX AWARDS* 🎖️✨
-*28 Awards* amongst *112 nominees* at a *glittering Awards ceremony.*
+// 🏅 4. EIRENE AWARDS 🎖✨
+// 28 Awards amongst 112 nominees at a glittering Awards ceremony.
 
-🍛 *5. PEACE MENU* 🌍🍽️
-*28 dishes* from *28 different countries* in an exotic *Peace Menu* over 1 meal, so with *2 Lunches & 2 Dinners*, there will be *112 dishes from 28 countries!*
+// 🍛 5. PEACE MENU 🌍🍽
+// 28 dishes from 28 different countries in an exotic Peace Menu over 1 meal, so with 2 Lunches & 2 Dinners, there will be 112 dishes from 28 countries!
 
-📸 *6. PRIVATE PHOTOS WITH SPEAKERS* 📷✨
-Each Speaker agrees to take *individual, private pictures* with *28 Delegates*—you could be *one of them!*
+// 📸 6. PRIVATE PHOTOS WITH SPEAKERS 📷✨
+// Each Speaker agrees to take individual, private pictures with 28 Delegates —you could be one of them!
 
-🥇 *7. INVITATION TO EXCLUSIVE VIP LUNCHES & DINNERS* 🏆🍴
-*12%* of Delegates will get a *Special Invite* to a *VIP Lunch or Dinner* where *Speakers & Awardees* are likely to be present. Hence, *48%* of Delegates will receive an invite to *one of the 4 Lunches or Dinners.*
+// 🥇 7. INVITATION TO EXCLUSIVE VIP LUNCHES & DINNERS 🏆🍴
+// 12% of Delegates will get a Special Invite to a VIP Lunch or Dinner where Speakers & Awardees are likely to be present. Hence, 48% of Delegates will receive an invite to one of the 4 Lunches or Dinners.
 
-🎁 *8. PEACE GIFTS* 🎀📦
-Every Delegate will receive *exquisite Peace Gifts*, which include a *Peace Calendar*, *Peace Coffee Mug*, *Peace Chocolates*, etc.
+// 🎁 8. PEACE GIFTS 🎀📦
+// Every Delegate will receive exquisite Peace Gifts, which include a Peace Calendar, Peace Coffee Mug, Peace Chocolates, etc.
 
-🎭 *9. SPEAKERS CUT-OUTS* 🖼️📷
-Each Delegate can *take photos* with *Speakers’ Cut-Outs!*
+// 🎭 9. SPEAKERS CUT-OUTS 🖼📷
+// Each Delegate can take photos with Speakers’ Cut-Outs!
 
-✊ *10. I AM PEACEKEEPER MOVEMENT* ✨🫶
-Become part of a *Global “I am Peacekeeper” Movement* & network with *Global Peacekeepers* while receiving *attractive offers & discounts!*
+// ✊ 10. I AM PEACEKEEPER MOVEMENT ✨🫶
+// Become part of a Global “I am Peacekeeper” Movement & network with Global Peacekeepers while receiving attractive offers & discounts!
 
-👗 *11. PEACE FASHION* 🌎🧵
-See a *unique Peace Fashion Show* featuring *7 leading fashion designers* from different continents.
+// 👗 11. PEACE FASHION 🌎🧵
+// See a unique Peace Fashion Show featuring 7 leading fashion designers from different continents.
 
-🎼 *12. PEACE SONGS* 🎶🎙️
-Experience *inspiring Peace Songs* live!
+// 🎼 12. PEACE SONGS 🎶🎙
+// Experience inspiring Peace Songs live!
 
-🚀 *SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED*
+// 🚀 SOME OCCASIONS & EXPERIENCES ARE JUST NOT TO BE MISSED
 
-_"where every smile counts"_ 😊✨
+// "where every smile counts" 😊✨
 
-📢 *Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.*
+// 📢 Register as a DELEGATE (Peacekeeper) through my personal link below & get 7% discount on the Summit Pass of $2800.
 
- ${this.userData.qr_code || this.userData.QR_CODE}
+// ${this.userData.qr_code || this.userData.QR_CODE}
 
-📞 *Summit Helpline* ☎️
-INTERNATIONAL : +971543257125
-INDIA : 18002672828
+// 📞 Summit Helpline ☎
+// INTERNATIONAL : +971543257125
+// INDIA : 18002672828
 
-🌐 www.justice-love-peace.com
-`
+// 🌐 www.justice-love-peace.com 
+// `
+
+const shareTitle = this.shareTitle.replace('{{qr_code}}', this.userData?.qr_code);
+
     // Construct WhatsApp Share URL
     // const whatsappURL = `https://api.whatsapp.com/send?text=${shareTitle}%20${shareURL}`;
 
