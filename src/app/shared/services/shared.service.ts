@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { NavigationEnd, Router } from '@angular/router';
 import CryptoJS from 'crypto-js';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,23 +15,25 @@ export class SharedService {
   apiUrl: any = environment.apiUrl;
   headerIcon: any = '';
   permissionData: any;
-
+  
   private refreshPermissionSubject = new Subject<boolean>();
   refresh$ = this.refreshPermissionSubject.asObservable();
   isMobileView = new Subject();
-
+  
   private collapsedState = new BehaviorSubject<boolean>(false);
   isCollapsed$ = this.collapsedState.asObservable();
-
+  
   //private refreshheader = new BehaviorSubject<boolean>(false);
   private refresHeaderSubject = new Subject<boolean>();
   refreshheader$ = this.refresHeaderSubject.asObservable();
+  private shareContentPath = 'assets/share-title.json';
 
   constructor(
     private _apiHttpService: ApiHttpService,
     private _apiEndpointsService: ApiEndpointsService,
     private _toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -138,4 +141,7 @@ export class SharedService {
 }
 
 
+getShareContent(): Observable<{ shareTitle: string }> {
+  return this.http.get<{ shareTitle: string }>(this.shareContentPath);
+}
 }
