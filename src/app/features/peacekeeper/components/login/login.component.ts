@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PeacekeeperService } from '../../services/peacekeeper.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ export class LoginComponent {
   timerExpired: boolean = false;
   interval: any;
   buttonText :string = 'Login with OTP'
+  peacebookwebsiteurl : string = environment.domainUrl;
 
   constructor(private router: Router,
     private fb: FormBuilder,
