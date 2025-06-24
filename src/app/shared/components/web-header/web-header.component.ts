@@ -101,17 +101,17 @@ export class WebHeaderComponent implements OnInit {
 
   navigateUrl() {
     // this._router.navigate(['/delegate-registration'],{ queryParams: { code: this.ReferenceCode }});
-    // this._router.navigate(['/delegate-registration']);
+    this._router.navigate(['/peacekeeper-preselect']);
 
     // this._router.navigate(['/delegate-registration'], {
     //   queryParams: { medium :1 }
     // });
 
-    const tinyUrlWithParams = `${this.tinyURL}`;
+    // const tinyUrlWithParams = `${this.tinyURL}`;
 
     // const tinyUrlWithParams = `${'https://tinyurl.com/3322sj49'}`;  //for local testing only
 
-        window.location.href = tinyUrlWithParams;
+        // window.location.href = tinyUrlWithParams;
 
     // this._router.navigate(['/peacekeeper-preselect'], {
     //   queryParams: { medium :1 },
